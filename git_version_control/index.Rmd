@@ -1,0 +1,1166 @@
+---
+title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+subtitle: '&emsp;'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2020-09-18 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
+</span></div> 
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE, include = TRUE, echo = FALSE,
+  fig.align='center', out.height='500px'
+)
+options(width = 90)
+stopifnot(require(base))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# At the end of the day ... you will
+
+.x-large-list[
+- Have your own personal GitHub repository for this course.
+
+- Have a GitHub repository shared with other participants on this course.
+
+- Know what version control is and why you should use it.
+
+- Know what <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub are.
+
+- Know how to work and collaborate efficiently with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub.
+]
+
+???
+
+Terms to define:
+
+- Repository
+- Remote
+
+---
+
+# What is version control and why should I use it?
+
+.pull-left[
+```{r}
+knitr::include_graphics("http://www.phdcomics.com/comics/archive/phd101212s.gif")
+```
+]
+
+.pull-right[
+- Try various ideas.
+
+- Track additions and deletions to a base document.
+
+- Undo and re-apply changes.
+
+- Integrate contributions from multiple authors.
+
+- Backup important work.
+
+- Manage and resolve conflicting changes.
+
+- Go back to any version at any time.
+]
+
+---
+
+# A brief history of version control systems
+
+Tools like [RCS](https://git.savannah.gnu.org/cgit/rcs.git), [CVS](https://savannah.nongnu.org/projects/cvs), or [Subversion](https://subversion.apache.org/) have been around since the early 1980s and are used by many large companies.
+
+However, many of these are now considered legacy systems (i.e., _outdated_) due to various limitations in their capabilities.
+
+More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https://www.mercurial-scm.org/), are _distributed_, meaning that they do not need a centralized server to host the repository.
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/01-basics/index.html>
+
+---
+
+# Examples
+
+1. Imagine you drafted an excellent paragraph for a paper you are writing, but later ruin it. How would you retrieve the excellent version of your conclusion? Is it even possible?
+
+2. Imagine you have 5 co-authors. How would you manage the changes and comments they make to your paper? If you use LibreOffice Writer or Microsoft Word, what happens if you accept changes made using the Track Changes option? Do you have a history of those changes?
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/01-basics/index.html>
+
+---
+
+# Features of version control systems
+
+- Version control track changes to all files and subdirectories in a given directory. 
+
+- Each file tracked by version control keeps the same name throughout the project (i.e., no need to rename files with "v1", "v2", ...).
+
+  + _Note:_ Renaming a file can also be a tracked change.
+
+- Changes are accompanied by informative notes and explanations.
+
+- Changes are automatically tagged and attributed to their respective author.
+
+- Multiple authors can work on the same file at the same time
+
+  + Best case: changes do not overlap, and merge naturally.
+  
+  + Worst case: changes overlap; but version control flags conflicting changes and helps to resolve them.
+  
+---
+
+# <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
+
+.pull-left[
+## <i class="fab fa-git"></i>
+
+- Version control system
+
+- Developed since 2005, by Linus Torvalds (famous creator of the Linux operating system kernel)
+
+- Distributed architecture, i.e.
+
+  + The full history of the software is not stored in a single place
+  
+  + Instead, each working copy used by developers contains the full history of changes
+
+]
+
+.pull-right[
+## <i class="fab fa-github"></i> GitHub
+
+- Online platform to store and share _code_.
+
+- Create _issues_ to report bugs, request new features, discuss.
+
+- Experiment with the same code in parallel.
+  
+- Propose and review changes.
+
+- Review, edit, and sign off on each other's contributions.
+
+- Friendly user interface.
+
+- Design and trigger workflows every time new code is submitted (e.g., test, deploy).
+]
+
+???
+
+Sources:
+
+- <https://www.atlassian.com/git/tutorials/what-is-git>
+
+---
+
+# Install <i class="fab fa-git"></i>
+
+Instructions are available at <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
+
+For Linux, macOS, and Windows.
+
+On the CGAT cluster, <i class="fab fa-git"></i> is already installed and loaded when you log in.
+
+```bash
+$ module list
+Currently Loaded Modulefiles:
+  1) system/git/2.17.01
+```
+
+```bash
+$ which git
+/ifs/apps/system/git-2.17.1/bin/git
+```
+
+---
+
+# Configure <i class="fab fa-git"></i>
+
+### Inspect
+
+At the Bash console, check your global configuration using the following commands.
+
+```bash
+$ git config --global user.name
+$ git config --global user.email
+$ git config --global core.editor
+$ git config --global --list
+```
+
+_Note:_ The global configuration is stored in the `$HOME/.gitconfig` file.
+
+## Edit
+
+```bash
+$ git config --global user.name “Your Name”
+$ git config --global user.email “email@email.com”
+$ git config --global core.editor nano
+```
+
+*Key point:* Use `git config` with the `--global` option to configure a user name, email address, editor, and other preferences once per machine.
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/02-setup/index.html>
+
+---
+
+# Create a repository (1)
+
+## Create a local directory
+
+Create a local directory for the repository.
+
+```bash
+$ cd /ifs/obds_training/sep20/${USER}
+$ mkdir -p devel/obds_training
+```
+
+Inspect the contents of the new directory, empty so far.
+
+```bash
+$ cd devel/obds_training
+$ ls -al
+total 4
+drwxrwxr-x 2 kevin obds  0 Aug 29 17:40 .
+drwxr-xr-x 4 kevin obds 62 Aug 29 17:40 ..
+```
+
+---
+
+# Create a repository (2)
+
+## Initialise a <i class="fab fa-git"></i> repository
+
+```bash
+$ git status     # check directory status
+$ git init       # initialise repository
+$ ls –al         # a .git folder appeared
+$ git status     # check repo status
+```
+
+_Note:_ Use this repository for your own code and notes throughout the course.
+Later, we will set up a distinct repository for shared code.
+
+---
+
+# Tracking changes with <i class="fab fa-git"></i>
+
+## Questions
+
+- How do I record changes in Git?
+
+- How do I check the status of my version control repository?
+
+- How do I record notes about what changes I made and why?
+
+## Objectives
+
+- Go through the modify-add-commit cycle for one or more files.
+
+- Explain where information is stored at each stage of that cycle.
+
+- Distinguish between descriptive and non-descriptive commit messages.
+
+---
+
+# Quote
+
+> If you have ever versioned a file by adding your initials or the date, you have effectively made a commit, albeit only for a single file. It is a version that is significant to you and that you might want to inspect or revert to later.
+
+.right[
+Jennifer Bryan, _Excuse me, do you have a moment to talk
+about version control?_ <https://doi.org/10.7287/peerj.preprints.3159v2>
+]
+
+---
+
+# Staging and commiting (1)
+
+Typically, <i class="fab fa-git"></i> follows a "modify, add, commit" paradigm.
+
+```{r, out.height='400px'}
+knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-staging-area.svg")
+```
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/04-changes/index.html>
+
+---
+
+# Staging and commiting (2)
+
+A single commit can record changes to multiple files.
+
+```{r, , out.height='400px'}
+knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-committing.svg")
+```
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/04-changes/index.html>
+
+---
+
+# Modify, Add, Commit
+
+## Modify
+
+Create, edit, or rename a file.
+
+```bash
+$ echo "OBDS training repository, by ${USER}" >> README.md
+```
+
+## Add
+
+_Stage_ files to include in the next _commit_ (i.e. set of changes).
+
+```bash
+$ git add README.md
+```
+
+## Commit
+
+Annotate your changes with an informative description of what you've done.
+
+```bash
+$ git commit -m "Created README.md with user name"
+```
+
+---
+
+# Untracked files
+
+Untracked files are files that exist in the directory, but that are not tracked by <i class="fab fa-git"></i>.
+Editing those files will change them on disk, but <i class="fab fa-git"></i> will not remember the past versions of those files.
+
+## Adding files
+
+Untracked files can be added to the repository (i.e. tracked) using `git add`.
+
+## Removing files
+
+Tracked files can be removed from the repository (i.e. untracked) using `git rm`.
+
+## Exercise
+
+- Create a new file.
+- Edit an existing file.
+- Inspect the output of `git status`.
+- Use `git rm` to remove a file and stop tracking it.
+
+---
+
+# A view of the file state life cycle in <i class="fab fa-git"></i>
+
+```{r}
+knitr::include_graphics("img/git_file_life_cycle.png")
+```
+
+---
+
+# Explore the history of a <i class="fab fa-git"></i> repository
+
+## Questions
+
+- How can I identify old versions of files?
+
+- How do I review my changes?
+
+- How can I recover old versions of files?
+
+## Objectives
+
+- Explain what the HEAD of a repository is and how to use it.
+
+- Identify and use Git commit numbers.
+
+- Compare various versions of tracked files.
+
+- Restore old versions of files.
+
+???
+
+Sources: 
+
+- <https://swcarpentry.github.io/git-novice/05-history/index.html>
+
+---
+
+# A view of the <i class="fab fa-git"></i> commit history
+
+```{r, out.height='450px'}
+knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-checkout.svg")
+```
+
+The `HEAD` file is a symbolic reference to the current commit your repository is on.
+
+???
+
+Sources:
+
+- <https://swcarpentry.github.io/git-novice/05-history/index.html>
+
+---
+
+# A single-file view of the <i class="fab fa-git"></i> commit history
+
+```{r, out.height='300px'}
+knitr::include_graphics("img/peerj_2017_bryan_fig3.png")
+```
+
+- <i class="fab fa-git"></i> uses the SHA-1 (Secure Hash Algorithm 1) cryptographic algorithm to generate a 40-digit hexadecimal number that uniquely identifies each commit.
+
+  + _Note:_ <i class="fab fa-git"></i> is smart enough to recognise the identifier from its first 7 characters.
+
+- Each commit is accompanied with a descriptive message.
+
+- Commits can be "tagged" to mark important milestones.
+
+---
+
+# Viewing the <i class="fab fa-git"></i> log
+
+_Anecdote:_ "log file" originates from "logbook", itself from "log" (above) + "book", from a wooden float (chip log, or simply log) used to measure speed.
+
+```bash
+$ git log           # default, extended view of commit, date, author, and message
+$ git log --oneline # condensed view of each commit as a single line
+$ git log --oneline --decorate --graph  # display the graph of commits
+```
+
+## Exercise
+
+- Add a few more commits to the repository (modify, add, commit)
+
+- Examine the output of `git log` with various options after each commit.
+
+- Use `git checkout` to restore a past version of the repository.
+
+- Use `git checkout master` to come back to the latest state of the repository.
+
+---
+
+# View changes between commits
+
+```bash
+$ git diff           # changes that are not staged yet
+$ git diff --cached  # changes that are staged
+```
+_Note:_ `git diff` alone shows what you _could_ tell <i class="fab fa-git"></i> to further add to the index but you still haven’t.
+Instead, The `--cached` option shows the changes that <i class="fab fa-git"></i> would record if you commit right now.
+
+```bash
+$ git diff commit           # changes since an arbitrary commit.
+$ git diff commit1 commit2  # changes in commit2 relative to commit1
+```
+
+## Exercise
+
+- Create, edit, rename files.
+
+```bash
+$ git diff
+$ git add .
+$ git diff
+$ git diff --cached
+```
+
+---
+
+# Undo changes
+
+## git revert
+
+```{r, out.height='250px'}
+knitr::include_graphics("https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/-416978476-1597909835/revert-concept.png")
+```
+
+The command `git revert` can be used to _add a new commit_ that exactly cancels out an earlier commit, _without editing any file ourselves_.
+
+<https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things>
+
+---
+
+# Undo changes
+
+## git reset --hard
+
+_WARNING:_ This approach is strongly discouraged on shared (i.e. collaborative) projects.
+It rewrites the history of the repository.
+
+```{r, out.height='250px'}
+knitr::include_graphics("https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/413538980-1597909835/reset-concept.png")
+```
+
+The command `git reset --hard` restore the repository to the requested commit, and _removes all later commits_ from the commit history (i.e., all those later commits are lost forever).
+
+<https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things>
+
+---
+
+# Undo changes
+
+## git reset --soft
+
+The command `git reset --soft` deletes all commits following the given one (i.e., it resets the repository _history_ to a given commit), but _preserves all files to their current state_.
+
+All the differences between the current version of the files and their version at the given commit can be collapsed into a new single commit.
+
+_WARNING:_ This approach rewrites the history of the repository.
+It is strongly discouraged on shared (i.e. collaborative) projects.
+
+```bash
+$ git status                  # git detects the file as edited
+$ git add README.md           # stage the file
+$ git status                  # git is ready to commit the changes
+$ git reset --soft README.md  # remove the file from the staging area, keep the changes
+$ git status                  # the file is still edited, but not staged anymore
+$ git reset --hard README.md  # reset the file to its state in the latest commit
+$ git status                  # git does not detect the file as edited anymore
+```
+
+---
+
+# Unstage files
+
+The command `git reset <file>` removes files from the staging area.
+This is useful if you have edited a file and you want to keep those changes, but you do not want to include them in the next commit yet.
+
+```{r}
+knitr::include_graphics("img/git_reset.png")
+```
+
+---
+
+# Create and merge branches
+
+```{r, out.height='300px'}
+knitr::include_graphics("https://www.nobledesktop.com/image/gitresources/git-branches-merge.png")
+```
+
+- Test and track new code without affecting the `master` branch (keep a working version of the code).
+
+- Multiple users can do this in parallel on different branches.
+
+- Branches are easy to create and delete if they don't work out.
+
+- If they do work out, changes saved on branches can be merged into the `master` branch.
+
+---
+
+# Create and work on a branch
+
+```bash
+$ git branch                                # list branches
+$ git branch fix-1                          # create new branch called fix-1
+$ git checkout fix-1                        # switch to branch fix-1
+$ git branch                                # list branches - * has moved
+$ nano file1.txt                            # Edit file
+$ git status                                # Check repo status
+$ git add file1.txt                         # Stage file
+$ git commit –m "created file1.txt"         # Commit changes with a message
+```
+
+---
+
+# Merge a branch
+
+```bash
+$ git branch            # confirm branch is fix-1
+$ git checkout master   # Switch to master branch (the target branch)
+$ less file1.txt        # file1.txt is not modified on master
+$ git diff master fix-1 # shows changes on branch fix-1 relative to branch master
+$ git merge fix-1       # merge branch fix-1 into master
+$ less file1.txt        # file1.txt is now modified on master
+$ git branch –d fix-1   # delete branch fix-1 (it doesn't contain anything new anymore)
+$ git branch            # branch fix-1 does not exist anymore
+```
+
+---
+
+# <i class="fab fa-github"></i> GitHub
+
+.pull-left[
+Online platform to store and share code
+
+- Personal user accounts
+
+- _Organisation_ accounts (i.e., teams, projects)
+  
+Everyone can _clone_ their own copy of repositories
+
+- Work offline
+
+- Work in parallel
+  
+Synchronisation
+
+- Individuals can _push_ their changes to the central repository (i.e., <i class="fab fa-github"></i> GitHub)
+
+- Others can _pull_ those changes to update their own local copy of the repository
+]
+
+.pull-right[
+```{r, out.height='300px'}
+knitr::include_graphics("img/peerj_2017_bryan_fig2.png")
+```
+]
+
+---
+
+# Working with remote clones of a repository
+
+```{r}
+knitr::include_graphics("img/git_remote_life_cycle.png")
+```
+
+---
+
+# <i class="fab fa-github"></i> GitHub setup
+
+## Create an account
+
+In your web browser, navigate to <https://github.com/>.
+
+## Add an SSH key to your <i class="fab fa-github"></i> GitHub account
+
+Follow the instructions at <https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account>.
+
+---
+
+# Create, link, and use a remote repository on <i class="fab fa-github"></i> GitHub
+
+## Create and link
+
+- Best practice is to name it identically to your local repository, e.g. `obds_training`
+
+- Please keep this repository `Public` for the duration of the course.
+
+Back on the cluster, in your repository working directory:
+
+```bash
+$ git remote -v # you should have an empty list of remotes at this point
+$ git remote add origin git@github.com:kevinrue/obds_training.git # adapt to your username
+$ git remote –v # now you should have a remote named origin with the URL above
+```
+
+## Upload code to the remote
+
+```bash
+$ git push –u origin master # you can push branches from your local repo to the remote
+```
+
+At this point, you should see files in your <i class="fab fa-github"></i> GitHub repository.
+
+---
+
+# Download code from the remote
+
+## Exercise (1)
+
+- In your web browser, go to your <i class="fab fa-github"></i> GitHub repository
+
+- Edit some files in your web browser. Save the changes (i.e., commit).
+
+Back on the cluster, in your repository working directory:
+
+```bash
+$ git pull origin master
+$ git pull # short form if you are already on the master branch and it tracks the remote
+```
+
+At this point, you should see that the changes you made online appeared in your local repository.
+
+---
+
+# Download code from the remote
+
+## Exercise (2)
+
+- In your web browser, go to your <i class="fab fa-github"></i> GitHub repository
+
+- Create a branch, e.g `github-branch`
+
+- On that branch, create a file.
+
+Back on the cluster, in your repository working directory:
+
+```bash
+$ git checkout master
+$ git pull # git will detect the github branch, but the new file does not exist on master
+$ git branch -a # git knows the branch exists on the github (origin) remote
+$ git checkout github-branch # you can switch to the branch that you created on github
+```
+
+At this point, you will see the file that you created on GitHub, because your local repository is now on the branch where you created the file on GitHub.
+
+---
+
+# Download code from the remote
+
+## Exercise (2)
+
+- In your web browser, go to your <i class="fab fa-github"></i> GitHub repository
+
+- Delete a branch (anything except `master`, e.g. `github-remote`)
+
+Back on the cluster, in your repository working directory:
+
+```bash
+$ git branch -a
+$ git fetch --prune # git will delete references to the branches on github
+$ git branch -a     # the branches are removed from the github (origin) remote
+$ git checkout master         # git cannot delete an active branch
+$ git delete -d github-remote # manually delete the local copy of the branch
+$ git branch -a
+```
+
+---
+
+# Clone a repository - on the cluster
+
+A repository already exists for this course.
+It is hosted at: <https://github.com/OBDS-Training/OBDS_Training_Sep_2020>.
+
+.pull-left[
+## Exercise
+
+1. Make sure `"SSH"` is selected.
+  This method allows the cluster to use the SSH key that we set up earlier.
+2. Create a clone of the repository on the cluster.
+]
+
+.pull-right[
+```{r, out.height='250px'}
+knitr::include_graphics("img/github_clone.png")
+```
+]
+
+```bash
+$ cd /ifs/obds-training/sep20/${USER}
+$ git clone git@github.com:OBDS-Training/OBDS_Training_Sep_2020.git
+```
+
+---
+
+# Clone a repository - on your laptop
+
+A repository already exists for this course.
+It is hosted at: <https://github.com/OBDS-Training/OBDS_Training_Sep_2020>.
+
+## Windows
+
+- Launch a Ubuntu terminal using the Windows Susbsystem for Linux.
+
+- Follow the same procedure as you did to clone on the cluster.
+
+Suggestion:
+
+- Use Atom to edit the files.
+
+- Use instructions in the [OBDS Setup](https://github.com/OBDS-Training/OBDS_Precourse_Setup/blob/master/setup_windows_subsystem_linux.md) to set up a shorcut to navigate to those files more easily.
+
+## MacOS
+
+- Follow the same procedure as you did to clone on the cluster.
+
+---
+
+# Clone a repository using Atom
+
+## Windows / MacOS
+
+- Launch a new Atom window.
+
+- Open the <i class="fab fa-github"></i> GitHub pane (use the button in the bottom right corner) 
+
+- Click on `Clone an existing GitHub repository...`
+
+- In the `Clone from` field, paste `git@github.com:OBDS-Training/OBDS_Training_Sep_2020.git`
+
+- Choose a local folder for your clone of the repository.
+  Click `Clone`.
+
+---
+
+# Pull requests
+
+## Questions
+
+- How can I suggest changes to a shared repository?
+
+- How can I get feedback from collaborators before a branch?
+
+## Objectives
+
+- Create a pull request
+
+- Review a pull request
+
+- Merge a pull request
+
+- Delete a branch after merging a pull request
+
+---
+
+# Pull request process
+
+```{r, out.height='400px'}
+knitr::include_graphics("img/pull_request.png")
+```
+
+An example pull request was created on the shared repository for this course at <https://github.com/OBDS-Training/OBDS_Training_Sep_2020/pull/2>.
+Let's go have a look!
+
+???
+
+Sources:
+
+- <https://www.slideshare.net/abderrahmanebenbachir/continuous-integration-in-github>
+
+---
+
+# Pull request process
+
+- Create a new branch.
+
+- Add one or more commits to the branch.
+
+- Push the branch to <i class="fab fa-github"></i> GitHub.
+
+- Create a pull request.
+
+- When ready, merge the pull request.
+
+  + _Note:_ There are different ways to merge a pull request:
+    (1) merge commit, (2) squash and merge, (3) rebase and merge
+
+- Delete the branch on <i class="fab fa-github"></i> GitHub
+
+- Pull updates to the local repository.
+
+  + _Note:_ Use `git fetch --prune` to delete the local reference to the remote branch that was deleted on <i class="fab fa-github"></i> GitHub.
+
+- Delete the local copy of the branch that was merged.
+
+---
+
+# Pull request
+
+## Exercise
+
+- In the shared repository for this course.
+
+- Switch to the branch `master`.
+
+- Make sure it is up to date with the GitHub repository.
+
+- Create a branch.
+
+- Add your name and username to the `README.md` file.
+
+- Push the branch.
+
+- Open a pull request.
+
+- Merge the branch into the branch `master`.
+
+  + Resolve any conflict that arises.
+
+- Pull the latest changes to the branch `master` to your local repository.
+
+- Delete the branch on GitHub and locally.
+
+---
+
+# Merge conflicts
+
+Occasionally, people edit and commit changes to the same line of code in parallel.
+
+When the times comes to merge those changes, <i class="fab fa-git"></i> will detect the conflicting changes and require that only one of the changes is kept, while the other is discarded.
+
+.pull-left[
+## Original file
+
+```
+-----------
+# Header
+
+A sentence.
+-----------
+```
+
+## Changes
+
+- `A longer sentence.`
+- `A more detailed sentence.`
+]
+
+.pull-right[
+## Conflicted file
+
+```
+-----------
+# Header
+
+<<<<<<< HEAD
+A longer sentence.
+=======
+A more detailed sentence.
+>>>>>>> master
+-----------
+```
+]
+
+---
+
+# Resolving a merge conflict
+
+.pull-left[
+## Conflicted file
+
+```
+-----------
+# Header
+
+<<<<<<< HEAD
+A longer sentence.
+=======
+A more detailed sentence.
+>>>>>>> master
+-----------
+```
+]
+
+.pull-right[
+## Resolved file
+
+```
+-----------
+# Header
+
+A longer sentence.
+-----------
+```
+
+Then commit the resolved file:
+
+- `git add README.md`
+- `git commit -m "Resolved merge conflict"`
+- Best practice: push the new commit to any remote repository shared with others.
+]
+
+---
+
+# Ignore files in <i class="fab fa-git"></i>
+
+<i class="fab fa-git"></i> can be told to ignore files that are present in the directory where your local repository is stored, but that you do not want to track as part of the changes in the repository.
+
+## Exercise
+
+- Create an empty file called `.gitignore` at the root of your repository (i.e., next to the `.git` directory)
+
+.pull-left[
+### Exercise 1
+
+- Create a new file, and save it.
+
+- Run `git status`.
+
+- Add that file name on a new line in the `.gitignore` file.
+
+- Run `git status`.
+]
+
+
+.pull-left[
+### Exercise 2
+
+- Edit a file that is already tracked.
+
+- Run `git status`.
+
+- Add that file name on a new line in the `.gitignore` file.
+
+- Run `git status`.
+]
+---
+
+# Which files should you track?
+
+.pull-left[
+## Track
+
+- _Small_ files (~ KB).
+
+- Source code
+
+- README(.md)
+
+- `.gitignore` files
+
+- Configuration files (e.g. conda YAML files)
+
+- Personal webpages (e.g. [blogdown](https://bookdown.org/yihui/blogdown/))
+
+- Wiki pages
+
+  + Each GitHub repository includes an optional wiki, for instance the shared repository for [this course](https://github.com/OBDS-Training/OBDS_Training_Sep_2020/wiki)
+]
+
+.pull-right[
+## Do not track
+
+- Large files (e.g., test data).
+
+  + Use `git lfs` if you have to.
+  
+  + Host elsewhere (e.g., zenodo, GEO) and document the URL.
+  
+  + Write code that downloads at runtime.
+
+- Confidential files (e.g., passwords).
+
+- Compiled files.
+
+  + Those files can be generated from the source files.
+]
+
+---
+
+# Tips
+
+.pull-left[
+## Do
+
+- Write descriptive commit messages.
+  Be kind to future you.
+
+- Focus on one feature per commit.
+
+- Start your repository with a README.
+
+- Use GitHub to safely backup all your repos.
+
+  + GitHub lets you control which repos are public or private.
+
+- Use GitHub issues as a "to do" list.
+
+- Use branches and pull requests to review changes.
+]
+
+.pull-right[
+## Do not
+
+- Nest git repositories.
+
+- Combine various unrelated changes in the same commit.
+
+  + You commit message will get messy.
+  
+  + You will not be able to undo one change without undoing the other.
+
+- Work directly on the `master` branch.
+]
+
+---
+
+# Summary
+
+```{r}
+knitr::include_graphics("https://imgs.xkcd.com/comics/git.png")
+```
+
+
+---
+
+# Summary
+
+.pull-left[
+```{r, out.height='300px'}
+knitr::include_graphics("img/peerj_2017_bryan_fig1.png")
+```
+]
+
+.pull-right[
+```{r, out.height='300px'}
+knitr::include_graphics("img/peerj_2017_bryan_fig2.png")
+```
+]
+
+.right[
+Jennifer Bryan, _Excuse me, do you have a moment to talk
+about version control?_ <https://doi.org/10.7287/peerj.preprints.3159v2>
+]
+
+---
+
+# Further reading
+
+- Software Carpentry: <https://swcarpentry.github.io/git-novice/>
+
+- git glossary: <https://git-scm.com/docs/gitglossary>
+
+---
+
+# References
+
+```{r refs, results="asis"}
+PrintBibliography(bib)
+```
+
+???
+
+Extras:
+
+- git merge vs rebase
