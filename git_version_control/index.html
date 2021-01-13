@@ -20,7 +20,7 @@ class: center, middle, inverse, title-slide
 ##  
 ### Kevin Rue-Albrecht
 ### Oxford Biomedical Data Science Training Programme
-### 2020-09-18 (updated: 2021-01-12)
+### 2020-09-18 (updated: 2021-01-13)
 
 ---
 
@@ -67,7 +67,7 @@ Terms to define:
 # What is version control and why should I use it?
 
 .pull-left[
-&lt;img src="http://www.phdcomics.com/comics/archive/phd101212s.gif" height="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/phd101212s.gif" height="500px" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -215,7 +215,7 @@ $ git config --global core.editor
 $ git config --global --list
 ```
 
-_Note:_ The global configuration is stored in the `$HOME/.gitconfig` file.
+&gt; **Note:** The global configuration is stored in the `$HOME/.gitconfig` file.
 
 ## Edit
 
@@ -225,7 +225,7 @@ $ git config --global user.email “email@email.com”
 $ git config --global core.editor nano
 ```
 
-*Key point:* Use `git config` with the `--global` option to configure a user name, email address, editor, and other preferences once per machine.
+&gt; **Key point:** Use `git config` with the `--global` option to configure a user name, email address, editor, and other preferences _once_ per machine.
 
 ???
 
@@ -269,7 +269,7 @@ $ ls –al         # a .git folder appeared
 $ git status     # check repo status
 ```
 
-_Note:_ Use this repository for your own code and notes throughout the course.
+&gt; **Note:** Use this repository for your own code and notes throughout the course.
 Later, we will set up a distinct repository for shared code.
 
 ---
@@ -309,13 +309,9 @@ about version control?_ &lt;https://doi.org/10.7287/peerj.preprints.3159v2&gt;
 
 Typically, &lt;i class="fab fa-git"&gt;&lt;/i&gt; follows a "modify, add, commit" paradigm.
 
-&lt;img src="https://swcarpentry.github.io/git-novice/fig/git-staging-area.svg" height="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/git-staging-area.svg" height="400px" style="display: block; margin: auto;" /&gt;
 
-???
-
-Sources:
-
-- &lt;https://swcarpentry.github.io/git-novice/04-changes/index.html&gt;
+Source: [swcarpentry.github.io - "Tracking Changes"](https://swcarpentry.github.io/git-novice/04-changes/index.html)
 
 ---
 
@@ -323,13 +319,9 @@ Sources:
 
 A single commit can record changes to multiple files.
 
-&lt;img src="https://swcarpentry.github.io/git-novice/fig/git-committing.svg" height="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/git-committing.svg" height="400px" style="display: block; margin: auto;" /&gt;
 
-???
-
-Sources:
-
-- &lt;https://swcarpentry.github.io/git-novice/04-changes/index.html&gt;
+Source: [swcarpentry.github.io - "Tracking Changes"](https://swcarpentry.github.io/git-novice/04-changes/index.html)
 
 ---
 
@@ -419,35 +411,31 @@ Sources:
 
 # A view of the &lt;i class="fab fa-git"&gt;&lt;/i&gt; commit history
 
-&lt;img src="https://swcarpentry.github.io/git-novice/fig/git-checkout.svg" height="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/git-checkout.svg" height="450px" style="display: block; margin: auto;" /&gt;
 
 The `HEAD` file is a symbolic reference to the current commit your repository is on.
 
-???
-
-Sources:
-
-- &lt;https://swcarpentry.github.io/git-novice/05-history/index.html&gt;
+Source: [swcarpentry.github.io - "Exploring History"](https://swcarpentry.github.io/git-novice/05-history/index.html)
 
 ---
 
 # A single-file view of the &lt;i class="fab fa-git"&gt;&lt;/i&gt; commit history
 
-&lt;img src="img/peerj_2017_bryan_fig3.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/peerj_2017_bryan_fig3.png" height="250px" style="display: block; margin: auto;" /&gt;
 
 - &lt;i class="fab fa-git"&gt;&lt;/i&gt; uses the SHA-1 (Secure Hash Algorithm 1) cryptographic algorithm to generate a 40-digit hexadecimal number that uniquely identifies each commit.
 
-  + _Note:_ &lt;i class="fab fa-git"&gt;&lt;/i&gt; is smart enough to recognise the identifier from its first 7 characters.
+&gt; **Note:** The first 7 characters of the commit ID are usually unique enough to identify a commit.
 
 - Each commit is accompanied with a descriptive message.
 
 - Commits can be "tagged" to mark important milestones.
 
+Source: [Bryan J. (2017)](https://doi.org/10.7287/peerj.preprints.3159v2)
+
 ---
 
 # Viewing the &lt;i class="fab fa-git"&gt;&lt;/i&gt; log
-
-_Anecdote:_ "log file" originates from "logbook", itself from "log" (above) + "book", from a wooden float (chip log, or simply log) used to measure speed.
 
 ```bash
 $ git log           # default, extended view of commit, date, author, and message
@@ -473,8 +461,8 @@ $ git log --oneline --decorate --graph  # display the graph of commits
 $ git diff           # changes that are not staged yet
 $ git diff --cached  # changes that are staged
 ```
-_Note:_ `git diff` alone shows what you _could_ tell &lt;i class="fab fa-git"&gt;&lt;/i&gt; to further add to the index but you still haven’t.
-Instead, The `--cached` option shows the changes that &lt;i class="fab fa-git"&gt;&lt;/i&gt; would record if you commit right now.
+&gt; **Note:** `git diff` alone shows what you _could_ tell &lt;i class="fab fa-git"&gt;&lt;/i&gt; to further add to the index but you still haven’t.
+Instead, The `--cached` option shows the changes that &lt;i class="fab fa-git"&gt;&lt;/i&gt; _would_ record _if_ you commit right now.
 
 ```bash
 $ git diff commit           # changes since an arbitrary commit.
@@ -498,11 +486,11 @@ $ git diff --cached
 
 ## git revert
 
-&lt;img src="https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/-416978476-1597909835/revert-concept.png" height="250px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/revert-concept.png" height="250px" style="display: block; margin: auto;" /&gt;
 
 The command `git revert` can be used to _add a new commit_ that exactly cancels out an earlier commit, _without editing any file ourselves_.
 
-&lt;https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things&gt;
+Source: [www.git-tower.com "Undoing things"](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things)
 
 ---
 
@@ -510,14 +498,15 @@ The command `git revert` can be used to _add a new commit_ that exactly cancels 
 
 ## git reset --hard
 
-_WARNING:_ This approach is strongly discouraged on shared (i.e. collaborative) projects.
+&gt; **WARNING:** This approach is strongly discouraged on shared (i.e. collaborative) projects.
 It rewrites the history of the repository.
+This will often conflict with the history of your collaborators.
 
-&lt;img src="https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/413538980-1597909835/reset-concept.png" height="250px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/reset-concept.png" height="250px" style="display: block; margin: auto;" /&gt;
 
 The command `git reset --hard` restore the repository to the requested commit, and _removes all later commits_ from the commit history (i.e., all those later commits are lost forever).
 
-&lt;https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things&gt;
+Source: [www.git-tower.com "Undoing things"](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things)
 
 ---
 
@@ -529,7 +518,7 @@ The command `git reset --soft` deletes all commits following the given one (i.e.
 
 All the differences between the current version of the files and their version at the given commit can be collapsed into a new single commit.
 
-_WARNING:_ This approach rewrites the history of the repository.
+&gt; **WARNING:** This approach rewrites the history of the repository.
 It is strongly discouraged on shared (i.e. collaborative) projects.
 
 ```bash
@@ -555,7 +544,7 @@ This is useful if you have edited a file and you want to keep those changes, but
 
 # Create and merge branches
 
-&lt;img src="https://www.nobledesktop.com/image/gitresources/git-branches-merge.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/git-branches-merge.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 - Test and track new code without affecting the `master` branch (keep a working version of the code).
 
@@ -621,6 +610,8 @@ Synchronisation
 
 .pull-right[
 &lt;img src="img/peerj_2017_bryan_fig2.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+Source: [Bryan J. (2017)](https://doi.org/10.7287/peerj.preprints.3159v2)
 ]
 
 ---
@@ -823,11 +814,8 @@ Suggestion:
 An example pull request was created on the shared repository for this course at &lt;https://github.com/OBDS-Training/OBDS_Training_Sep_2020/pull/2&gt;.
 Let's go have a look!
 
-???
-
-Sources:
-
-- &lt;https://www.slideshare.net/abderrahmanebenbachir/continuous-integration-in-github&gt;
+Source: [www.slideshare.net - "Continuous integration in github
+"](https://www.slideshare.net/abderrahmanebenbachir/continuous-integration-in-github)
 
 ---
 
@@ -1078,7 +1066,7 @@ Then commit the resolved file:
 
 # Summary
 
-&lt;img src="https://imgs.xkcd.com/comics/git.png" height="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/xkcd-git.png" height="500px" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -1110,7 +1098,10 @@ about version control?_ &lt;https://doi.org/10.7287/peerj.preprints.3159v2&gt;
 
 # References
 
-NULL
+&lt;a name=bib-bryan2017versioncontrol&gt;&lt;/a&gt;[Bryan
+J.](#cite-bryan2017versioncontrol) (2017). "Excuse me, do you have a moment to
+talk about version control?" In: _PeerJ Preprints_ 5.e3159v2. URL:
+[https://doi.org/10.7287/peerj.preprints.3159v2](https://doi.org/10.7287/peerj.preprints.3159v2).
 
 ???
 

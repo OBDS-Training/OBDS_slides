@@ -79,7 +79,8 @@ Terms to define:
 
 .pull-left[
 ```{r}
-knitr::include_graphics("http://www.phdcomics.com/comics/archive/phd101212s.gif")
+knitr::include_graphics("img/phd101212s.gif")
+# Source: http://www.phdcomics.com/comics/archive/phd101212s.gif
 ```
 ]
 
@@ -228,7 +229,7 @@ $ git config --global core.editor
 $ git config --global --list
 ```
 
-_Note:_ The global configuration is stored in the `$HOME/.gitconfig` file.
+> **Note:** The global configuration is stored in the `$HOME/.gitconfig` file.
 
 ## Edit
 
@@ -238,7 +239,7 @@ $ git config --global user.email “email@email.com”
 $ git config --global core.editor nano
 ```
 
-*Key point:* Use `git config` with the `--global` option to configure a user name, email address, editor, and other preferences once per machine.
+> **Key point:** Use `git config` with the `--global` option to configure a user name, email address, editor, and other preferences _once_ per machine.
 
 ???
 
@@ -282,7 +283,7 @@ $ ls –al         # a .git folder appeared
 $ git status     # check repo status
 ```
 
-_Note:_ Use this repository for your own code and notes throughout the course.
+> **Note:** Use this repository for your own code and notes throughout the course.
 Later, we will set up a distinct repository for shared code.
 
 ---
@@ -323,14 +324,11 @@ about version control?_ <https://doi.org/10.7287/peerj.preprints.3159v2>
 Typically, <i class="fab fa-git"></i> follows a "modify, add, commit" paradigm.
 
 ```{r, out.height='400px'}
-knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-staging-area.svg")
+knitr::include_graphics("img/git-staging-area.svg")
+# Source: https://swcarpentry.github.io/git-novice/fig/git-staging-area.svg
 ```
 
-???
-
-Sources:
-
-- <https://swcarpentry.github.io/git-novice/04-changes/index.html>
+Source: [swcarpentry.github.io - "Tracking Changes"](https://swcarpentry.github.io/git-novice/04-changes/index.html)
 
 ---
 
@@ -339,14 +337,11 @@ Sources:
 A single commit can record changes to multiple files.
 
 ```{r, , out.height='400px'}
-knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-committing.svg")
+knitr::include_graphics("img/git-committing.svg")
+# Source: https://swcarpentry.github.io/git-novice/fig/git-committing.svg
 ```
 
-???
-
-Sources:
-
-- <https://swcarpentry.github.io/git-novice/04-changes/index.html>
+Source: [swcarpentry.github.io - "Tracking Changes"](https://swcarpentry.github.io/git-novice/04-changes/index.html)
 
 ---
 
@@ -439,38 +434,35 @@ Sources:
 # A view of the <i class="fab fa-git"></i> commit history
 
 ```{r, out.height='450px'}
-knitr::include_graphics("https://swcarpentry.github.io/git-novice/fig/git-checkout.svg")
+knitr::include_graphics("img/git-checkout.svg")
+# Source: https://swcarpentry.github.io/git-novice/fig/git-checkout.svg
 ```
 
 The `HEAD` file is a symbolic reference to the current commit your repository is on.
 
-???
-
-Sources:
-
-- <https://swcarpentry.github.io/git-novice/05-history/index.html>
+Source: [swcarpentry.github.io - "Exploring History"](https://swcarpentry.github.io/git-novice/05-history/index.html)
 
 ---
 
 # A single-file view of the <i class="fab fa-git"></i> commit history
 
-```{r, out.height='300px'}
+```{r, out.height='250px'}
 knitr::include_graphics("img/peerj_2017_bryan_fig3.png")
 ```
 
 - <i class="fab fa-git"></i> uses the SHA-1 (Secure Hash Algorithm 1) cryptographic algorithm to generate a 40-digit hexadecimal number that uniquely identifies each commit.
 
-  + _Note:_ <i class="fab fa-git"></i> is smart enough to recognise the identifier from its first 7 characters.
+> **Note:** The first 7 characters of the commit ID are usually unique enough to identify a commit.
 
 - Each commit is accompanied with a descriptive message.
 
 - Commits can be "tagged" to mark important milestones.
 
+Source: `r Citet(bib, "bryan2017versioncontrol")`
+
 ---
 
 # Viewing the <i class="fab fa-git"></i> log
-
-_Anecdote:_ "log file" originates from "logbook", itself from "log" (above) + "book", from a wooden float (chip log, or simply log) used to measure speed.
 
 ```bash
 $ git log           # default, extended view of commit, date, author, and message
@@ -496,8 +488,8 @@ $ git log --oneline --decorate --graph  # display the graph of commits
 $ git diff           # changes that are not staged yet
 $ git diff --cached  # changes that are staged
 ```
-_Note:_ `git diff` alone shows what you _could_ tell <i class="fab fa-git"></i> to further add to the index but you still haven’t.
-Instead, The `--cached` option shows the changes that <i class="fab fa-git"></i> would record if you commit right now.
+> **Note:** `git diff` alone shows what you _could_ tell <i class="fab fa-git"></i> to further add to the index but you still haven’t.
+Instead, The `--cached` option shows the changes that <i class="fab fa-git"></i> _would_ record _if_ you commit right now.
 
 ```bash
 $ git diff commit           # changes since an arbitrary commit.
@@ -522,12 +514,13 @@ $ git diff --cached
 ## git revert
 
 ```{r, out.height='250px'}
-knitr::include_graphics("https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/-416978476-1597909835/revert-concept.png")
+knitr::include_graphics("img/revert-concept.png")
+# Source: https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things/revert-concept.png
 ```
 
 The command `git revert` can be used to _add a new commit_ that exactly cancels out an earlier commit, _without editing any file ourselves_.
 
-<https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things>
+Source: [www.git-tower.com "Undoing things"](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things)
 
 ---
 
@@ -535,16 +528,18 @@ The command `git revert` can be used to _add a new commit_ that exactly cancels 
 
 ## git reset --hard
 
-_WARNING:_ This approach is strongly discouraged on shared (i.e. collaborative) projects.
+> **WARNING:** This approach is strongly discouraged on shared (i.e. collaborative) projects.
 It rewrites the history of the repository.
+This will often conflict with the history of your collaborators.
 
 ```{r, out.height='250px'}
-knitr::include_graphics("https://www.git-tower.com/learn/media/pages/git/ebook/en/command-line/advanced-topics/undoing-things/413538980-1597909835/reset-concept.png")
+knitr::include_graphics("img/reset-concept.png")
+# Source: https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things/reset-concept.png
 ```
 
 The command `git reset --hard` restore the repository to the requested commit, and _removes all later commits_ from the commit history (i.e., all those later commits are lost forever).
 
-<https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things>
+Source: [www.git-tower.com "Undoing things"](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things)
 
 ---
 
@@ -556,7 +551,7 @@ The command `git reset --soft` deletes all commits following the given one (i.e.
 
 All the differences between the current version of the files and their version at the given commit can be collapsed into a new single commit.
 
-_WARNING:_ This approach rewrites the history of the repository.
+> **WARNING:** This approach rewrites the history of the repository.
 It is strongly discouraged on shared (i.e. collaborative) projects.
 
 ```bash
@@ -585,7 +580,8 @@ knitr::include_graphics("img/git_reset.png")
 # Create and merge branches
 
 ```{r, out.height='300px'}
-knitr::include_graphics("https://www.nobledesktop.com/image/gitresources/git-branches-merge.png")
+knitr::include_graphics("img/git-branches-merge.png")
+# Source: https://www.nobledesktop.com/image/gitresources/git-branches-merge.png
 ```
 
 - Test and track new code without affecting the `master` branch (keep a working version of the code).
@@ -654,6 +650,8 @@ Synchronisation
 ```{r, out.height='300px'}
 knitr::include_graphics("img/peerj_2017_bryan_fig2.png")
 ```
+
+Source: `r Citet(bib, "bryan2017versioncontrol")`
 ]
 
 ---
@@ -862,11 +860,8 @@ knitr::include_graphics("img/pull_request.png")
 An example pull request was created on the shared repository for this course at <https://github.com/OBDS-Training/OBDS_Training_Sep_2020/pull/2>.
 Let's go have a look!
 
-???
-
-Sources:
-
-- <https://www.slideshare.net/abderrahmanebenbachir/continuous-integration-in-github>
+Source: [www.slideshare.net - "Continuous integration in github
+"](https://www.slideshare.net/abderrahmanebenbachir/continuous-integration-in-github)
 
 ---
 
@@ -1118,7 +1113,8 @@ Then commit the resolved file:
 # Summary
 
 ```{r}
-knitr::include_graphics("https://imgs.xkcd.com/comics/git.png")
+knitr::include_graphics("img/xkcd-git.png")
+# Source: https://imgs.xkcd.com/comics/git.png
 ```
 
 
