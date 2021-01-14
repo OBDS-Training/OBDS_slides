@@ -1,0 +1,328 @@
+---
+title: "Example code for R statistics"
+author: "Kevin Rue-Albrecht"
+date: "14/01/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+```
+
+# Exercises
+
+## Generate and visualise a distribution
+
+- Generate a vector of 1000 normally distributed values with mean 10 and standard deviation 5.
+
+```{r}
+x <- rnorm(n = 1000, mean = 10, sd = 5)
+head(x)
+```
+
+- Inspect the output of the `summary()` function for that vector.
+
+```{r}
+summary(x)
+```
+
+- Compute the mean and standard deviation for those values.
+
+```{r}
+mean(x)
+sd(x)
+```
+
+- Compute the deciles (i.e. 10 evenly spaced quantiles) for those values.
+
+```{r}
+quantile(x = x, probs = seq(0, 1, 0.1))
+```
+
+- Visualise the distribution of those values as a histogram.
+
+```{r}
+hist(x, breaks = 50)
+```
+
+- Visualise as vertical lines on the histogram: the mean (red solid), median (red dashed), one standard deviation from the mean (blue solid), and one median absolute deviation from the median (blue dashed).
+
+```{r}
+hist(x, breaks = 50)
+abline(v = mean(x), col = "red", lty = 1)
+abline(v = median(x), col = "blue", lty = 1)
+abline(v = mean(x) + sd(x) * c(-1, 1), col = "red", lty = 2)
+abline(v = median(x) + mad(x) * c(-1, 1), col = "blue", lty = 2)
+```
+
+- Generate a new vector with _a lot_ more values (e.g., one million).
+  Draw again a histogram.
+  How does the distribution compare with more data points?
+
+```{r}
+x_million <- rnorm(n = 1E6, mean = 10, sd = 5)
+hist(x_million, breaks = 50)
+```
+
+## Query distributions and probabilities
+
+For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
+
+- Plot the cumulative distribution function in the range $[-5, 5]$.
+
+```{r}
+x <- seq(from = -5, to = 5, by = 0.01)
+p <- pnorm(q = x, mean = 0, sd = 1)
+plot(x = x, y = p)
+```
+
+- Plot the inverse cumulative distribution function for quantiles in 0.01 increment.
+
+```{r}
+p <- seq(from = 0, to = 1, by = 0.01)
+x <- qnorm(p = p, mean = 0, sd = 1)
+plot(x = p, y = x)
+```
+
+- Plot the density function in the range $[-5, 5]$.
+
+```{r}
+x <- seq(from = -5, to = 5, by = 0.01)
+d <- dnorm(x = x, mean = 0, sd = 1)
+plot(x = x, y = d)
+```
+
+- What is the probability of observing a value greater than 2?
+
+```{r}
+1 - pnorm(q = 2, mean = 0, sd = 1)
+```
+
+- What is the probability of observing a value between -2 and 2?
+
+```{r}
+pnorm(q = 2, mean = 0, sd = 1) - pnorm(q = -2, mean = 0, sd = 1)
+```
+
+- What is the probability of observing a value more extreme than -2 or 2?
+
+```{r}
+1 - (pnorm(q = 2, mean = 0, sd = 1) - pnorm(q = -2, mean = 0, sd = 1))
+```
+
+## Compute an Empirical Cumulative Distribution Function
+
+- Use the `ecdf()` function to compute the empirical cumulative distribution function for the variable `Sepal.Length` in the `iris` data set.\
+
+```{r}
+out <- ecdf(iris$Sepal.Length)
+out
+```
+
+- Use the `plot()` function to visualise the empirical cumulative distribution function.
+
+```{r}
+plot(out)
+```
+
+- Use the `knots()` function on the `ecdf` output and compare this with the (sorted) list of unique values for the variable `Sepal.Length`.
+
+```{r}
+knots(out)
+sort(unique(iris$Sepal.Length))
+```
+
+## Statistical tests
+
+The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris.
+
+- Use the `summary()` function to view some information about each column.
+
+```{r}
+summary(iris)
+```
+- Visualise the distribution of `Sepal.Length`, stratified by species.
+
+```{r}
+ggplot(iris, aes(Sepal.Length)) +
+  geom_density(aes(color = Species)) +
+  cowplot::theme_cowplot()
+```
+
+- Is `Sepal.Length` length normally distributed? Overall? Within each species?
+
+```{r}
+shapiro.test(iris$Sepal.Length)
+shapiro.test(iris$Sepal.Length[iris$Species == "setosa"])
+shapiro.test(iris$Sepal.Length[iris$Species == "versicolor"])
+shapiro.test(iris$Sepal.Length[iris$Species == "virginica"])
+```
+
+- Is there a significant variation of `Sepal.Length` between the various species? 
+
+```{r}
+out <- aov(Sepal.Length ~ Species, data = iris)
+summary(out)
+```
+
+## Linear regression
+
+The `ChickWeight` data set measures the impact of different diets on the early growth of chicks.
+
+- Visualise the evolution of weight over time for each diet.
+
+```{r}
+ggplot(ChickWeight, aes(Time, weight, color = as.factor(Diet))) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point()
+```
+
+- Fit a linear mode to measure the effect of `Time` and `Diet` in the `ChickWeight` data set.
+
+```{r}
+out <- lm(weight ~ Time * Diet, ChickWeight)
+summary(out)
+```
+
+- Which diet leads to the fastest increase in body weight?
+
+- On average, how much does weight increase per unit of `Time` for the top diet?
+
+```{r}
+ggplot(ChickWeight, aes(Time, weight, color = as.factor(Diet))) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point() +
+  geom_abline(intercept = 18.2503, slope = 11.4229)
+```
+
+- Does the top diet drive an increase in body weight that is significantly faster than the next best diet?
+
+```{r}
+ChickWeight$Diet <- relevel(ChickWeight$Diet, "3")
+out <- lm(weight ~ Time * Diet, ChickWeight)
+summary(out)
+```
+
+## Testing & Multiple testing correction
+
+- For each gene (i.e. row) in `logcounts.csv`, use `cell_metadata.csv` and a statistical test of your choice to identify gene differentially expressed in cells infected with _Salmonella_ relative to the control uninfected cells.
+
+> **Suggestion:** write the code to test one gene, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the genes.
+
+```{r}
+mat <- read.csv("data/logcounts.csv", row.names = 1)
+dim(mat)
+```
+
+```{r}
+cell_data <- read.csv("data/cell_metadata.csv")
+rownames(cell_data) <- cell_data$Sample
+cell_data <- cell_data[colnames(mat), ]
+head(cell_data)
+```
+
+```{r, warning=FALSE}
+test_row <- function(index, matrix) {
+    test_data <- data.frame(
+        value = as.numeric(mat[index, ]),
+        group = cell_data$Infection
+    )
+    out <- wilcox.test(value ~ group, test_data)
+    out$p.value
+}
+
+result_pvalues <- vapply(
+    X = seq_len(nrow(mat)), FUN = test_row, FUN.VALUE = numeric(1), matrix = mat)
+names(result_pvalues) <- rownames(mat)
+head(result_pvalues)
+```
+
+- Visualise a bar plot of the p-values.
+
+```{r}
+hist(result_pvalues, breaks = 100)
+```
+
+- Correct p-values for multiple testing.
+  How many genes remain before and after multiple testing?
+
+```{r}
+result_bh <- p.adjust(result_pvalues, method = "BH")
+hist(result_bh, breaks = 100)
+```
+
+```{r}
+table(result_bh < 0.05)
+```
+
+- Use `gene_metadata.csv` to get the gene name for the gene identifier associated with the smallest p-value.
+
+```{r}
+gene_table <- read.csv("data/gene_metadata.csv")
+top_gene_id <- names(result_bh)[which.min(result_bh)]
+gene_table$gene_name[gene_table$gene_id == top_gene_id]
+```
+
+## Over-representation analysis (ORA)
+
+- For each gene ontology (GO) category in `human_go_bp.csv`, use the list of differentially expressed gene identifiers that you obtained in the previous exercise to find GO categories enriched for differentially expressed genes.
+
+> **Suggestion:** Write the code to test one gene set, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the gene sets.
+
+```{r}
+go_table <- read.csv("data/human_go_bp.csv")
+go_list <- split(go_table$ensembl_gene_id, go_table$go_id)
+go_list[1]
+```
+
+```{r}
+gene_data <- read.csv("data/gene_metadata.csv")
+universe <- gene_data$gene_id
+head(universe)
+```
+
+```{r}
+test_geneset <- function(geneset, query, universe) {
+  geneset <- intersect(geneset, universe)
+  query <- intersect(query, universe)
+  cross_table <- tibble(
+    gene_id = universe,
+    x = factor(universe %in% geneset, c(TRUE, FALSE)),
+    query = factor(universe %in% query, c(TRUE, FALSE)),
+  )
+  test_table <- table(cross_table$x, cross_table$query)
+  if (sum(test_table[1, ]) < 10) {
+    return(NA)
+  }
+  pvalue <- fisher.test(test_table)$p.value
+  pvalue
+}
+
+de_genes <- names(result_bh)[result_bh < 0.05]
+go_pvalues <- vapply(X = go_list, FUN = test_geneset, FUN.VALUE = numeric(1), query = de_genes, universe = gene_data$gene_id)
+```
+
+- Correct p-values for multiple testing.
+  How many GO gene sets remain before and after multiple testing?
+
+```{r}
+go_bh <- p.adjust(go_pvalues, method = "BH")
+ggplot(tibble(p.value = go_bh), aes(p.value)) +
+  geom_histogram(bins = 20, fill = "grey", color = " black") +
+  scale_y_log10() +
+  scale_x_continuous(limit = c(0, 1))
+
+table(go_bh < 0.05)
+```
+
+- Use `go_info.csv` to get the description for the GO identifier associated with the smallest p-value.
+
+```{r}
+go_info <- read.csv("data/go_info.csv")
+top_go_id <- names(go_bh)[which.min(go_bh)]
+go_info$TERM[go_info$GOID == top_go_id]
+```
+
