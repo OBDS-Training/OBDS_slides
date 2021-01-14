@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 .DS_Store
+index.html
+index.pdf
+data/
+libs/
+index_files/
