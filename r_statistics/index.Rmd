@@ -1,9 +1,9 @@
 ---
 title: 'Statistics'
-subtitle: 'in <i class="fab fa-r-project"></i>'
+subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-02-23 (updated: `r Sys.Date()`)"
+date: "2021-02-24 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -94,18 +94,6 @@ The result on your computer should look like the following
 - Run tests and interpret results 
 
 - Visualise  data and test results 
-]
-
----
-
-# Pre-requisite
-
-.x-large-list[
-- Clone the repository <https://github.com/OBDS-Training/OBDS_environments>.
-
-- Copy the `statistics_using_r` subdirectory to your personal repository for the course.
-
-- Initialise the `renv` environment and use it for the exercises today.
 ]
 
 ---
@@ -1255,6 +1243,10 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
-PrintBibliography(bib)
+if (length(bib) > 0) {
+  PrintBibliography(bib)
+} else {
+  cat("<p align='center'>n/a</p>")
+}
 ```
 ]
