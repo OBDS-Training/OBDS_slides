@@ -1,0 +1,187 @@
+---
+title: 'Introduction to `r BiocStyle::CRANpkg("renv")`'
+subtitle: '<i class="fab fa-r-project"></i> - Reproducible science'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-02-23 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Statistics and Machine Learning in <i class="fab fa-r-project"></i>
+</span></div>
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Set up
+
+.x-large-list[
+- A clone of a personal GitHub repository for this course.
+
+- A clone of a shared GitHub repository for this course.
+
+- A working installation of R (4.0.3) including the `r BiocStyle::CRANpkg("renv")` package.
+
+- A working installation of <i class="fab fa-git"></i>.
+
+- A working installation of RStudio.
+]
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+.x-large-list[
+- Understand the concept of projects in RStudio.
+
+- Understand the concept of R environment.
+]
+
+## Learning objectives
+
+.x-large-list[
+- Create and switch between RStudio projects.
+
+- Create, manage, and share R environment using `r BiocStyle::CRANpkg("renv")`.
+]
+
+---
+
+# RStudio projects
+
+Reference [support.rstudio.com](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects):
+
+> RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.
+
+RStudio projects are associated with R working directories. You can create an RStudio project:
+
+- In a brand new directory
+
+- In an existing directory where you already have R code and data
+
+- By cloning a version control (e.g., [Git](https://git-scm.com/), [Subversion](https://subversion.apache.org/)) repository
+
+---
+
+# Create a new project
+
+To create a new project use the **Create Project** command (available on the **Projects** menu and on the global toolbar):
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/projects_new.png")
+```
+
+---
+
+# Create a test project
+
+- Select 'New Directory'.
+
+- Select 'New Project'.
+
+- In 'Directory name:', type `"obds-test-project"`.
+
+- In 'Create project as subdirectory of :', click on 'Browse' and select the directory of your personal GitHub repository for this course.
+
+- Untick the following checkboxes, if there are present:
+
+  + 'Create a git repository' (we create this project within a repository already)
+  
+  + 'Use renv with this project' (we will use `r BiocStyle::CRANpkg("renv")` later).
+
+> **Note:** The latter may not be visible if `r BiocStyle::CRANpkg("renv")` is not installed.
+  We will install it later.
+
+---
+
+# New project
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/project-blank.png")
+```
+
+---
+
+# Install `renv`
+
+In RStudio:
+
+> **Note:** if you are currently in a project, close it. <img src="img/no-project.png" align="right"></img>
+
+- Install `r BiocStyle::CRANpkg("renv")`
+
+- Restart RStudio (to make sure that the changes take effect).
+
+---
+
+# Learning objectives
+
+<br/>
+
+.xx-large-list[
+- TODO
+]
+
+---
+
+
+
+---
+
+# Further reading
+
+
+
+---
+
+# References
+
+.small-text[
+```{r, include=TRUE, echo=FALSE, results="asis"}
+if (length(bib) > 0) {
+  PrintBibliography(bib)
+} else {
+  cat("<p align='center'>n/a</p>")
+}
+```
+]
