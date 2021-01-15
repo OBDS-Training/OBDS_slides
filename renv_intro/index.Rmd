@@ -101,7 +101,7 @@ RStudio projects are associated with R working directories. You can create an RS
 
 - In an existing directory where you already have R code and data
 
-- By cloning a version control (e.g., [Git](https://git-scm.com/), [Subversion](https://subversion.apache.org/)) repository
+- By cloning a version control (e.g., [<i class="fab fa-git"></i>](https://git-scm.com/), [Subversion](https://subversion.apache.org/)) repository
 
 It is up to you to decide how to manage projects:
 
@@ -298,6 +298,38 @@ You may want to change the setting for the following reasons:
 
 ---
 
+# RStudio <i class="fab fa-git"></i> integration
+
+Having created a new project within your personal <i class="fab fa-git"></i> repository, the RStudio <i class="fab fa-git"></i> pane should report the presence of new files:
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/rstudio_git.png")
+```
+
+You can use this panel to stage the changes, commit, and push/pull:
+
+- **Ticked `[A]`:** new file is staged for commit (added)
+
+- **Unticked `[?]`:** new file not staged for commit (untracked)
+
+---
+
+# RStudio projets - Summary
+
+- One project = one logical unit of work (e.g. an analysis, a package).
+
+- It is easy to switch between projects.
+
+- Multiple projects can be stored in the same <i class="fab fa-git"></i> repository.
+
+- Do not commit data files, only code (use `.gitignore`).
+
+  + You can create symbolic links to data files stored outside your project.
+  
+  + Anything _produced_ by your scripts should be treated as disposable, so long as you track your scripts using version control.
+
+---
+
 # Install `renv`
 
 In RStudio:
@@ -307,20 +339,6 @@ In RStudio:
 - Install `r BiocStyle::CRANpkg("renv")`
 
 - Restart RStudio (to make sure that the changes take effect).
-
----
-
-# Learning objectives
-
-<br/>
-
-.xx-large-list[
-- TODO
-]
-
----
-
-
 
 ---
 
