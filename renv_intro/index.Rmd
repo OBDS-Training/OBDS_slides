@@ -364,7 +364,7 @@ In RStudio:
 
 - Install `r BiocStyle::CRANpkg("renv")`.
 
-> **Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _global_ R library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
+> **Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _system_ R library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
 
 - Restart RStudio, to make sure that the changes take effect, and that RStudio has access to the newly installed package(s).
 
@@ -408,6 +408,39 @@ When a new environment is created, `r BiocStyle::CRANpkg("renv")` :
 - creates or updates the file `.Rprofile` to automatically activate the environment every time you open the project
 
 - creates the file `renv.lock` to store the name, version, source, and checksum of packages installed in the project library.
+
+---
+
+# Install packages in a project environment
+
+.pull-left[
+In a new R environment, the **Packages** pane will include:
+
+- base packages, in the system library (installed with <i class="fab fa-r-project"></i>).
+
+- the `r BiocStyle::CRANpkg("renv")` package, installed in the project library.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+knitr::include_graphics("img/renv-library-init.png")
+```
+]
+
+.pull-right[
+## Functions
+```{r, eval=FALSE, include=TRUE}
+# base R
+install.packages('ggplot2')
+# renv
+renv::install('ggplot2')
+# Bioconductor
+BiocManager::install('ggplot2')
+# devtools offers several functions
+devtools::install_github()
+# remotes offers several functions
+remotes::install_github()
+```
+]
+
 
 ---
 
