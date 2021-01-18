@@ -334,11 +334,25 @@ You can use this panel to stage the changes, commit, and push/pull:
 
 The `r BiocStyle::CRANpkg("renv")` package is a new effort to bring project-local R dependency management to your projects.
 
+> `r BiocStyle::CRANpkg("renv")` = <ins>r</ins>eproducible <ins>env</ins>ironment.
+
 Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your existing workflows should just work as they did before:
 
 - `r BiocStyle::CRANpkg("renv")` helps manage library paths (and other project-specific state) to help isolate your project’s R dependencies
 
 - The existing tools you’ve used for managing R packages (e.g. `install.packages()`, `remove.packages()`, `BiocManager::install()`) should work as they did before.
+
+## Features
+
+- Isolated – each project has its own package library.
+
+- Portable – easy to transport projects across different computers.
+
+- Reproducible – records packages, versions and source.
+
+.right[
+<https://rstudio.github.io/renv/>
+]
 
 ---
 
@@ -377,6 +391,23 @@ Restarting R session...
 * Project '~/github/kevinrue/obds-training-jan2021/obds-test-project' loaded. [renv 0.12.5]
 ```
 
+---
+
+# New environment
+
+When a new environment is created, `r BiocStyle::CRANpkg("renv")`:
+
+- creates the project subdirectory `renv`, which contains:
+
+  + the project library in the subdirectory `library`
+  
+  + project settings in the file `settings.dcf`
+  
+  + a script to activate the environment in `activate.R`
+
+- creates or updates the file `.Rprofile` to automatically activate the environment every time you open the project
+
+- creates the file `renv.lock` to store the name, version, source, and checksum of packages installed in the project library.
 
 ---
 
