@@ -356,6 +356,30 @@ In RStudio:
 
 ---
 
+# Initialise a new project environment
+
+Call `renv::init()` to initialize a new project-local environment with a private R library.
+
+```{r, eval=FALSE, include=TRUE}
+> renv::init()
+* Initializing project ...
+* Discovering package dependencies ... Done!
+* Copying packages into the cache ... Done!
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- renv   [* -> 0.12.5]
+
+* Lockfile written to '~/github/kevinrue/obds-training-jan2021/obds-test-project/renv.lock'.
+
+Restarting R session...
+
+* Project '~/github/kevinrue/obds-training-jan2021/obds-test-project' loaded. [renv 0.12.5]
+```
+
+
+---
+
 # Further reading
 
 - [support.rstudio.com - "Using Projects"](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
