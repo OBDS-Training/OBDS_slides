@@ -146,7 +146,7 @@ knitr::include_graphics("img/projects_new.png")
 
 # New project
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='550px'}
 knitr::include_graphics("img/project-blank.png")
 ```
 
@@ -546,6 +546,10 @@ The function `renv::restore()` :
 - [Documentation (pkgdown)](https://rstudio.github.io/renv/)
 
 - [GitHub repository](https://github.com/rstudio/renv/)
+
+## git
+
+- [Software Carpentry - Using Git from RStudio](https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/)
 
 ---
 
