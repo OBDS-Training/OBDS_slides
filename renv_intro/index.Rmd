@@ -395,7 +395,7 @@ Restarting R session...
 
 # New environment
 
-When a new environment is created, `r BiocStyle::CRANpkg("renv")`:
+When a new environment is created, `r BiocStyle::CRANpkg("renv")` :
 
 - creates the project subdirectory `renv`, which contains:
 
