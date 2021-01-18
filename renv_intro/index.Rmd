@@ -1,6 +1,6 @@
 ---
 title: 'Introduction to `r BiocStyle::CRANpkg("renv")`'
-subtitle: '<i class="fab fa-r-project"></i> - Reproducible science'
+subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2021-02-23 (updated: `r Sys.Date()`)"
@@ -330,15 +330,29 @@ You can use this panel to stage the changes, commit, and push/pull:
 
 ---
 
+# Introduction to `r BiocStyle::CRANpkg("renv")`
+
+The `r BiocStyle::CRANpkg("renv")` package is a new effort to bring project-local R dependency management to your projects.
+
+Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your existing workflows should just work as they did before:
+
+- `r BiocStyle::CRANpkg("renv")` helps manage library paths (and other project-specific state) to help isolate your project’s R dependencies
+
+- The existing tools you’ve used for managing R packages (e.g. `install.packages()`, `remove.packages()`, `BiocManager::install()`) should work as they did before.
+
+---
+
 # Install `renv`
 
 In RStudio:
 
 > **Note:** if you are currently in a project, close it. <img src="img/no-project.png" align="right"></img>
 
-- Install `r BiocStyle::CRANpkg("renv")`
+- Install `r BiocStyle::CRANpkg("renv")`.
 
-- Restart RStudio (to make sure that the changes take effect).
+> **Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _global_ R library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
+
+- Restart RStudio, to make sure that the changes take effect, and that RStudio has access to the newly installed package(s).
 
 ---
 
