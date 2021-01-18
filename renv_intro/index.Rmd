@@ -439,8 +439,36 @@ devtools::install_github()
 # remotes offers several functions
 remotes::install_github()
 ```
+
+> **Note:** in the **Packages** pane, you will see several new packages listed under **Project library**: the package(s) that you asked for, as well as its dependencies.
 ]
 
+---
+
+# Save the state of an environment
+
+Call `renv::snapshot()` to save the state of the project library to the lockfile (called `renv.lock`).
+
+You may still see the following:
+
+```{r, include=TRUE, eval=FALSE}
+> renv::snapshot()
+* The lockfile is already up to date.
+```
+
+Create a script that loads one of the packages that you just installed, e.g.
+
+```{r, include=TRUE, eval=FALSE}
+## File: test-script.R
+library(ggplot2)
+```
+
+Then, call `renv::snapshot()` again.
+
+> **Note:** this time, you should be prompted to proceed with the snapshot, thereby updating the `renv.lock` file with the package dependencies effectively used in your project.
+
+Enter `y` to proceed with the snapshot.
+Open the file `renv.lock`, and inspect its contents.
 
 ---
 
