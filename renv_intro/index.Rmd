@@ -451,9 +451,9 @@ One of `r BiocStyle::CRANpkg("renv")`’s primary features is the use of a globa
 
 The renv package cache provides two primary benefits:
 
-1. Future calls to renv::restore() and renv::install() will become much faster, as renv will be able to find and re-use packages already installed in the cache.
+- Speed - Future calls to `renv::restore()` and `renv::install()` will become much faster, as renv will be able to find and re-use packages already installed in the cache.
 
-2. The renv cache should also help you save disk space, because it is not necessary to have duplicate versions of your packages installed in each project.
+- Space - The renv cache should also help you save disk space, because it is not necessary to have duplicate versions of your packages installed in each project.
 
 .pull-left[
 > **Note:** if you navigate to the `renv/library` subdirectory, you should see that each package is a symbolic link (to the global cache) rather than an actual folder.
@@ -464,6 +464,25 @@ The renv package cache provides two primary benefits:
 knitr::include_graphics("img/renv-global-cache.png")
 ```
 ]
+
+---
+
+# Remove and update packages
+
+<br/>
+
+Call `renv::remove()` remove packages from the project library.
+
+> **Note:** The package is kept in the global cache (it may be used in other projects).
+
+<br/>
+
+<br/>
+
+Call `renv::update()` to update packages that are out-of-date.
+
+> **Note:** Currently, only CRAN and GitHub package sources are supported (e.g.., not Bioconductor).
+
 
 ---
 
