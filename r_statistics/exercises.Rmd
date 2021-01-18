@@ -7,9 +7,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(ggplot2)
-library(cowplot)
 ```
 
 # Exercises
@@ -144,12 +141,17 @@ The `iris` data set gives the measurements in centimeters of the variables sepal
 ```{r}
 summary(iris)
 ```
-- Visualise the distribution of `Sepal.Length`, stratified by species.
+- Visualise the distribution of `Sepal.Length`, overall, and for each species.
 
 ```{r}
-ggplot(iris, aes(Sepal.Length)) +
-  geom_density(aes(color = Species)) +
-  cowplot::theme_cowplot()
+plot.new()
+plot.window(xlim = c(3, 9), ylim = c(0, 1.5))
+lines(density(iris$Sepal.Length))
+lines(density(iris$Sepal.Length[iris$Species == "setosa"]), col = "red")
+lines(density(iris$Sepal.Length[iris$Species == "versicolor"]), col = "green")
+lines(density(iris$Sepal.Length[iris$Species == "virginica"]), col = "blue")
+axis(1, at=seq(3, 9))
+axis(2, at=seq(0, 1.5, 0.2))
 ```
 
 - Is `Sepal.Length` length normally distributed? Overall? Within each species?
@@ -172,31 +174,49 @@ summary(out)
 
 The `ChickWeight` data set measures the impact of different diets on the early growth of chicks.
 
-- Visualise the evolution of weight over time for each diet.
+- Visualise the evolution of weight over time, colored by diet.
 
 ```{r}
-ggplot(ChickWeight, aes(Time, weight, color = as.factor(Diet))) +
-  geom_smooth(formula = y ~ x, method = "lm") +
-  geom_point()
+plot(ChickWeight$Time, ChickWeight$weight, col = ChickWeight$Diet, pch = 20)
+legend(x = "topleft", legend = unique(ChickWeight$Diet), pch = 20, col = as.numeric(unique(ChickWeight$Diet)))
 ```
 
-- Fit a linear mode to measure the effect of `Time` and `Diet` in the `ChickWeight` data set.
+- Fit a linear model to measure the average effect of `Time` on weight.
+
+```{r}
+out <- lm(weight ~ Time, ChickWeight)
+summary(out)
+```
+
+- Overlay the trend line to the plot above.
+
+```{r}
+plot(ChickWeight$Time, ChickWeight$weight, col = ChickWeight$Diet, pch = 20)
+abline(a = 27.4674, b = 8.8030)
+legend(x = "topleft", legend = unique(ChickWeight$Diet), pch = 20, col = as.numeric(unique(ChickWeight$Diet)))
+```
+
+- Fit a linear model to measure the combined effects of `Time` and `Diet` on weight.
 
 ```{r}
 out <- lm(weight ~ Time * Diet, ChickWeight)
 summary(out)
 ```
 
+- Overlay the trend line for each diet to the plot above.
+
+```{r}
+plot(ChickWeight$Time, ChickWeight$weight, col = ChickWeight$Diet, pch = 20)
+abline(a = 30.9310, b = 6.8418, col = 1)
+abline(a = 30.9310-2.2974, b = 6.8418 + 1.7673, col = 2)
+abline(a = 30.9310-12.6807, b = 6.8418 + 4.5811, col = 3)
+abline(a = 30.9310-0.1389, b = 6.8418 + 2.8726, col = 4)
+legend(x = "topleft", legend = unique(ChickWeight$Diet), pch = 20, col = as.numeric(unique(ChickWeight$Diet)))
+```
+
 - Which diet leads to the fastest increase in body weight?
 
 - On average, how much does weight increase per unit of `Time` for the top diet?
-
-```{r}
-ggplot(ChickWeight, aes(Time, weight, color = as.factor(Diet))) +
-  geom_smooth(formula = y ~ x, method = "lm") +
-  geom_point() +
-  geom_abline(intercept = 18.2503, slope = 11.4229)
-```
 
 - Does the top diet drive an increase in body weight that is significantly faster than the next best diet?
 
@@ -288,10 +308,10 @@ head(universe)
 test_geneset <- function(geneset, query, universe) {
   geneset <- intersect(geneset, universe)
   query <- intersect(query, universe)
-  cross_table <- tibble(
+  cross_table <- data.frame(
     gene_id = universe,
     x = factor(universe %in% geneset, c(TRUE, FALSE)),
-    query = factor(universe %in% query, c(TRUE, FALSE)),
+    query = factor(universe %in% query, c(TRUE, FALSE))
   )
   test_table <- table(cross_table$x, cross_table$query)
   if (sum(test_table[1, ]) < 10) {
@@ -307,13 +327,10 @@ go_pvalues <- vapply(X = go_list, FUN = test_geneset, FUN.VALUE = numeric(1), qu
 
 - Correct p-values for multiple testing.
   How many GO gene sets remain before and after multiple testing?
-
+  
 ```{r}
 go_bh <- p.adjust(go_pvalues, method = "BH")
-ggplot(tibble(p.value = go_bh), aes(p.value)) +
-  geom_histogram(bins = 20, fill = "grey", color = " black") +
-  scale_y_log10() +
-  scale_x_continuous(limit = c(0, 1))
+hist(go_bh, breaks = 20, xlim = c(0, 1))
 
 table(go_bh < 0.05)
 ```
