@@ -472,6 +472,28 @@ Open the file `renv.lock`, and inspect its contents.
 
 ---
 
+# Restore an environment
+
+The function `renv::restore()` :
+
+- _reads_ the file `renv.lock`.
+
+- installs or updates packages in your project library to match the versions described in `renv.lock`.
+
+> **Note:** we will use this functionality in the coming days and weeks, to give you project environments that we have tested for the course.
+
+## Example usage
+
+- Teaching - teacher initialises, manages, and shares the `renv.lock` file; students restore the environment from the `renv.lock` file.
+
+- Collaborations - after the environment is initialised, everyone manages, snapshots, and shared the updated `renv.lock` file with collaborators who update their own environment accordingly.
+
+- Publication - share the `renv.lock` file alongside your analysis code, for reproducibility.
+
+- ... and more!
+
+---
+
 # Further reading
 
 - [support.rstudio.com - "Using Projects"](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
