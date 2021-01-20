@@ -205,6 +205,18 @@ Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
 
 ---
 
+# Exercise
+
+## The built-in `diamonds` dataset
+
+```{r, include=TRUE}
+diamonds
+```
+
+**Note:** refer to the man page for more information about each column.
+
+---
+
 # Further reading
 
 ## ggplot2
