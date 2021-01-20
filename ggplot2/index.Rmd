@@ -217,6 +217,52 @@ diamonds
 
 ---
 
+# Exercise
+
+## Specify the dataset.
+
+What does `ggplot(diamonds)` do?
+
+## Add the aesthetics.
+
+What does `ggplot(diamonds, aes(x = carat, y = price))` do?
+
+## Add geometric objects
+
+- Draw points showing `carat` on the x-axis and `price` on the y-axis.
+
+- Color data points by `cut`.
+
+- Add a smoothed mean trendline
+
+**Note:** identify the relevant `geom_` function and add it as an additional layer.
+
+---
+
+# Exercise
+
+## Predict the difference between these two plots
+
+### Plot 1
+
+```{r, include=TRUE, eval=FALSE}
+ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
+  geom_point() +
+  geom_smooth()
+```
+
+### Plot 2
+
+```{r, include=TRUE, eval=FALSE}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut)) +
+  geom_smooth()
+```
+
+
+
+---
+
 # Further reading
 
 ## ggplot2
