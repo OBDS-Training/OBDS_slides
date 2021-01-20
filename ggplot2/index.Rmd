@@ -132,6 +132,31 @@ head(iris$Sepal.Length)
 
 ---
 
+# Tidy data
+
+```{r, include=TRUE}
+head(iris)
+```
+
+```{r, include=TRUE}
+summary(iris)
+```
+
+---
+
+# Plotting tidy data with _ggplot2_
+
+```{r, include=TRUE, fig.align='center', fig.height=4, fig.width=6}
+library(ggplot2)
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram(fill = "grey", color = "black") +
+  labs(title = "Histogram of sepal lengths", y = "Frequency", x = "Sepal length") +
+  theme(text = element_text(size = 16))
+```
+
+
+---
+
 # Further reading
 
 ## ggplot2
