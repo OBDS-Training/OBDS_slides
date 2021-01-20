@@ -182,6 +182,29 @@ knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
 
 ---
 
+# Geometric objects
+
+A **layer** combines **data**, **aesthetic** mapping, a **geom** (geometric object), a **stat** (statistical transformation), and a **position** adjustment.
+Typically, you will create layers using a `geom_` function, overriding the default **position** and **stat** if needed.
+
+Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
+
+- `geom_point()` - scatter plot, requires `x` and `y`.
+
+- `geom_histogram()` - histogram, requires `x` (continuous).
+
+- `geom_bar()` - histogram, requires `x` (categorical).
+
+- `geom_col()` - histogram, requires `x` and `y`.
+
+- `geom_boxplot()` - boxplot, requires `x` and/or `y`.
+
+- `geom_line()` - connect consecutive observations with line, requires `x` and `y`.
+
+**Note:** refer to man pages for optional and alternative aesthetics for each **geom**.
+
+---
+
 # Further reading
 
 ## ggplot2
