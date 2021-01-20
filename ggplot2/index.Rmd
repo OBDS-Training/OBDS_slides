@@ -144,16 +144,41 @@ summary(iris)
 
 ---
 
-# Plotting tidy data with _ggplot2_
+# Plotting tidy data with `r BiocStyle::CRANpkg("ggplot2")`
 
-```{r, include=TRUE, fig.align='center', fig.height=4, fig.width=6}
+```{r, include=TRUE, fig.align='center', fig.height=4.5, fig.width=8}
 library(ggplot2)
-ggplot(iris, aes(x = Sepal.Length)) +
+plot1 <- ggplot(iris, aes(x = Sepal.Length)) +
   geom_histogram(fill = "grey", color = "black") +
   labs(title = "Histogram of sepal lengths", y = "Frequency", x = "Sepal length") +
   theme(text = element_text(size = 16))
+print(plot1)
 ```
 
+---
+
+# `r BiocStyle::CRANpkg("ggplot2")`
+
+.pull-left[
+- Currently the most popular plotting framework in <i class="fab fa-r-project"></i>
+
+- Uses tidy data (part of the `r BiocStyle::CRANpkg("tidyverse")`
+
+  + e.g. `data.frame`, `datatable`, `tibble`
+  
+  + One row - one data point
+  
+  + One column - one feature of data points, e.g. position on x axis, color, size
+
+- Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
+# Source: https://makeameme.org/meme/plots-plots-everywhere
+```
+]
 
 ---
 
@@ -161,7 +186,7 @@ ggplot(iris, aes(x = Sepal.Length)) +
 
 ## ggplot2
 
-- 
+- Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
 
 ## renv
 
