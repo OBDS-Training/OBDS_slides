@@ -259,7 +259,59 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_smooth()
 ```
 
+---
 
+# Answer
+
+.pull-left[
+.small-code[
+```{r, include=TRUE, fig.height=4, fig.width=5}
+ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
+  geom_point() +
+  geom_smooth()
+```
+]
+
+**Note:** Colour aesthetic is passed to both `geom_point()` and `geom_smooth()`.
+]
+
+.pull-right[
+.small-code[
+```{r, include=TRUE, fig.height=4, fig.width=5}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut)) +
+  geom_smooth()
+```
+]
+
+**Note:** Colour aesthetic is only known to `geom_point()`.
+]
+
+---
+
+# Themes
+
+Themes are a powerful way to customize the non-data components of your plots, e.g.
+
+- axis ticks - `element_line(colour, size, linetype, ...)`
+
+- axis text - `element_text(family, face, colour, size, hjust, ...)`
+
+- background - `element_rect(fill, colour, size, linetype, color, ...)`
+
+```{r, include=TRUE, results='hide'}
+theme(
+  axis.ticks = element_line(size = 2),
+  axis.text.x = element_text(face = "italic", hjust = 1),
+  plot.background = element_rect(fill = "grey90", colour = "black")
+)
+```
+
+You can get details of the current theme using `theme_get()`.
+
+A number of presets are available, e.g. `theme_classic()`, `theme_minimal()`, `theme_bw()`.
+
+**Note:** you can combine a preset theme with further customisation, e.g. `theme_minimal() + theme(...)`.
 
 ---
 
