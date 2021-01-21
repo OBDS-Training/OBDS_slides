@@ -256,7 +256,7 @@ Sources:
 Create a local directory for the repository.
 
 ```bash
-$ cd /ifs/obds_training/sep20/${USER}
+$ cd /ifs/obds_training/jan21/${USER}
 $ mkdir -p devel/obds_training
 ```
 
@@ -785,7 +785,7 @@ knitr::include_graphics("img/github_clone.png")
 ]
 
 ```bash
-$ cd /ifs/obds-training/sep20/${USER}
+$ cd /ifs/obds-training/jan21/${USER}
 $ git clone git@github.com:OBDS-Training/OBDS_Training_Sep_2020.git
 ```
 
