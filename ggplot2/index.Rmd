@@ -234,7 +234,7 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 - Color data points by `cut`.
 
-- Add a smoothed mean trendline
+- Add a smoothed mean trend line.
 
 **Note:** identify the relevant `geom_` function and add it as an additional layer.
 
@@ -414,7 +414,47 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 # Exercise
 
-## TODO
+- Load the `ChickWeight` data set.
+
+- Plot a histogram of chick weight.
+
+- Change the fill and border color of the bars.
+
+- Change the number of bins (i.e.,bars).
+
+**Note:** you may change the bin width or the total number of bars.
+
+- Change the label and font size of the axes.
+
+- Change the font size and angle of the x-axis tick labels.
+
+**Note:** you will probably want to justify the text labels as right-aligned.
+
+- Change the y-axis upper limit to an arbitrary number, e.g. 100.
+
+- Facet a vertical strip of histograms, one for each diet.
+
+**Note:** you may also like to fill bars with a different color for each diet.
+
+- Allow each facet to fit the y-axis range to its own data.
+
+---
+
+# Exercise
+
+Using the `ChickWeight` data set:
+
+- Create a scatter plot of weight (y-axis) over time (x-axis).
+
+- Color by diet.
+
+- Add a linear mean trend line for each diet.
+
+- Which diet leads to the highest mean increase in weight?
+
+- Collate that last plot with the last histogram in the previous exercise.
+
+- Label the panels "A" and "B".
 
 ---
 
