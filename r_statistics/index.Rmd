@@ -72,7 +72,7 @@ bib <- ReadBib("bibliography.bib")
 
 - A working installation of <i class="fab fa-git"></i>.
 
-- A working installation of RStudio.
+- A working installation of [RStudio](https://rstudio.com/).
 ]
 
 ---
