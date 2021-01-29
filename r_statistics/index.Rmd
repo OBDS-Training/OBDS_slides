@@ -59,13 +59,31 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of a personal GitHub repository for this course.
+
+- A clone of a shared GitHub repository for this course.
+
+- A working installation of R (4.0.3).
+
+- A working installation of <i class="fab fa-git"></i>.
+
+- A working installation of RStudio.
+]
+
+---
+
 # Set up
 
-- Clone <https://github.com/OBDS-Training/OBDS_environments>
+- Create a new RStudio project, called `r_statistics`.
+  Store the project within your personal <i class="fab fa-git"></i> repository.
 
-- From that local clone, copy (recursively) the `r_statistics` sub-directory to your personal `obds_training` repository.
-
-- Download (recursively) the shared folder `week5/r_statistics/data` from the CGAT cluster, into `r_statistics`.
+- Download the shared folder `r/statistics/data` from the CGAT cluster.
+  Store the folder within the new RStudio project.
 
 The result on your computer should look like the following
 
@@ -77,8 +95,6 @@ The result on your computer should look like the following
 ```
 
 - Launch the R project in `r_statistics`.
-
-- Use `renv::restore()` to restore the environment.
 
 ---
 
