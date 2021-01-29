@@ -388,7 +388,7 @@ plot1 / plot2
 
 ---
 
-# Facets
+# Facets - Wrap
 
 Wrap a 1-dimensional 'ribbon' of plots over dimensions using `facet_wrap(~variable)`:
 
@@ -400,7 +400,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 ---
 
-# Facets
+# Facets - Grid
 
 Arrange plots by row and column following two variables using `facet_grid(row ~ column)`
 
