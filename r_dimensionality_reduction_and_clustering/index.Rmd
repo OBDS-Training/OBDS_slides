@@ -51,6 +51,45 @@ library(e1071)
 
 ---
 
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of a personal GitHub repository for this course.
+
+- A clone of a shared GitHub repository for this course.
+
+- A clone of <https://github.com/OBDS-Training/OBDS_environments>
+
+- A working installation of R (4.0.3).
+
+- A working installation of <i class="fab fa-git"></i>.
+
+- A working installation of [RStudio](https://rstudio.com/).
+]
+
+---
+
+# Set up
+
+- Copy the subdirectory `r_dimensionality_reduction_and_clustering` from the `OBDS_environments` repository to your personal <i class="fab fa-git"></i> repository for the course.
+
+- Download the shared folder `r/dimensionality_reduction_and_clustering/data` from the CGAT cluster as a subdirectory of `dimensionality_reduction_and_clustering` in your personal repository.
+
+The result on your computer should look like the following
+
+```
+  obds_training/
+  |_ r_dimensionality_reduction_and_clustering/
+    |_ data/
+      |_ ... (data files)
+```
+
+- Launch the R project in `r_dimensionality_reduction_and_clustering`.
+
+---
+
 # Learning objectives
 
 <br/>
