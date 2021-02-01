@@ -52,7 +52,7 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
-# Set up
+# Prerequisites
 
 <br/>
 
