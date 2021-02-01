@@ -67,6 +67,8 @@ library(e1071)
 - A working installation of <i class="fab fa-git"></i>.
 
 - A working installation of [RStudio](https://rstudio.com/).
+
+- Access to the CGAT cluster and the shared data folder.
 ]
 
 ---
