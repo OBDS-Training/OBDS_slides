@@ -88,6 +88,8 @@ The result on your computer should look like the following
 
 - Launch the R project in `r_dimensionality_reduction_and_clustering`.
 
+- Restore the project environment using `r BiocStyle::CRANpkg("renv")`.
+
 ---
 
 # Learning objectives
