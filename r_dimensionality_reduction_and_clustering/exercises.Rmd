@@ -1,0 +1,202 @@
+---
+title: "Example code for dimensionality reduction and clustering"
+author: "Kevin Rue-Albrecht"
+date: "01/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(cowplot)
+library(reshape2)
+library(Rtsne)
+```
+
+# Exercise
+
+## Dimensionality reduction
+
+- Download the shared folder `r/dimensionality_reduction_and_clustering/data` from the CGAT cluster.
+
+- Import the matrix data.
+  Inspect the matrix, to get familiar with rows and columns.
+
+```{r}
+mat <- read.csv("data/logcounts.csv", row.names = 1)
+dim(mat)
+```
+
+- Perform PCA.
+  Inspect the structure of the output.
+  
+```{r}
+prcomp_out <- prcomp(x = t(mat), scale. = TRUE)
+str(prcomp_out)
+```
+
+- Draw a scatter plot of the top two principal components and color by various experimental metadata.
+  Which experimental factors show the largest variance in the data?
+
+```{r}
+cell_data <- read.csv("data/cell_metadata.csv", row.names = 1)
+head(cell_data)
+```
+
+```{r}
+library(ggplot2)
+library(cowplot)
+plot_data <- bind_cols(
+  sample = rownames(prcomp_out$x),
+  cell_data,
+  prcomp_out$x %>% as_tibble() %>% dplyr::select(PC1, PC2)
+)
+
+gg_pca_time <- ggplot(plot_data) +
+  geom_point(aes(PC1, PC2, color = Time)) +
+  theme_cowplot() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+gg_pca_infection <- ggplot(plot_data) +
+  geom_point(aes(PC1, PC2, color = Infection)) +
+  theme_cowplot() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+gg_pca_status <- ggplot(plot_data) +
+  geom_point(aes(PC1, PC2, color = Status)) +
+  theme_cowplot() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+plot_grid(gg_pca_time, gg_pca_infection, gg_pca_status, nrow = 1)
+```
+
+- Draw a density plot, faceted by time and infection, colored by status, to inspect the variance of each experimental 
+factor on the top principal component.
+
+```{r}
+plot_data <- bind_cols(
+  sample = rownames(prcomp_out$x),
+  cell_data,
+  prcomp_out$x %>% as_tibble() %>% dplyr::select(PC1)
+)
+
+ggplot(plot_data) +
+  geom_density(aes(PC1, fill = Status), color = "black", alpha = 0.5) +
+  facet_grid(Time~Infection) +
+  theme_cowplot()
+```
+
+- How many principal components would you keep for downstream analyses?
+
+```{r}
+scree_table <- tibble(
+  PC = seq_along(prcomp_out$sdev),
+  sdev = prcomp_out$sdev,
+  # PC = 1:length(prcomp_out$sdev),
+  percent_var = sdev^2 / sum(sdev^2),
+  var_cumsum = cumsum(percent_var)
+)
+scree_table
+```
+```{r}
+scree_table %>% 
+  head(50) %>% 
+  ggplot(aes(PC, percent_var)) +
+  geom_col(fill = "grey") +
+  geom_point() +
+  scale_x_continuous(breaks = seq_along(scree_table$PC)) +
+  labs(y = "% Variance explained", title = "Percentage of Variance Explained") +
+  theme_cowplot()
+```
+
+```{r}
+ggplot(head(scree_table, 200), aes(PC, var_cumsum)) +
+  geom_line() + geom_point() +
+  geom_hline(yintercept = 0.9) +
+  scale_x_continuous(breaks = seq_along(scree_table$PC)) +
+  labs(y = "Cumulative % Variance explained", title = "Cumulative Percentage of Variance Explained") +
+  theme_cowplot() +
+  theme(axis.text.x = element_text(size=rel(0.5)))
+```
+
+- Find the top genes associated with the top principal components.
+
+```{r}
+library(reshape2)
+prcomp_out$rotation %>%
+  melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
+  as_tibble() %>% 
+  filter(PC == "PC1") %>% 
+  mutate(loading_abs = abs(loading)) %>% 
+  top_n(n = 20, wt = loading_abs) %>% 
+  arrange(desc(loading_abs))
+```
+
+- Visualise the gene expression value of the gene with the highest loading for PC1 as color on a scatter plot of PC1 and PC2.
+  What do you observe?
+
+```{r}
+plot_data <- bind_cols(
+  gene = as.numeric(mat["ENSG00000172183", ]),
+  cell_data,
+  prcomp_out$x %>% as_tibble() %>% dplyr::select(PC1, PC2)
+)
+
+ggplot(plot_data) +
+  geom_point(aes(PC1, PC2, color = gene)) +
+  theme_cowplot()
+```
+
+- Compare PCA to tSNE to UMAP.
+  Only use the subset of principal components selected above, when you run t-SNE and UMAP.
+
+```{r}
+library(Rtsne)
+tsne_out <- Rtsne(prcomp_out$x[, 1:25])
+str(tsne_out)
+```
+```{r}
+tsne_data <- tsne_out$Y
+colnames(tsne_data) <- paste0("TSNE", 1:2)
+
+tsne_plot_data <- bind_cols(
+  sample = rownames(prcomp_out$x),
+  cell_data[rownames(prcomp_out$x), ] %>% as_tibble(),
+  tsne_out$Y %>% as_tibble()
+)
+
+gg_tsne <- ggplot(tsne_plot_data, aes(V1, V2, color = Time)) +
+  geom_point() +
+  labs(x = "t-SNE 1", y = "t-SNE 2") +
+  theme_cowplot() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+plot_grid(gg_pca_time, gg_tsne)
+```
+
+```{r}
+library(umap)
+umap_out <- umap(d = prcomp_out$x[, 1:25])
+umap_out
+```
+
+```{r}
+umap_plot_data <- bind_cols(
+  sample = rownames(prcomp_out$x),
+  cell_data[rownames(prcomp_out$x), ] %>% as_tibble(),
+  umap_out$layout %>% as_tibble()
+)
+
+gg_umap <- ggplot(umap_plot_data, aes(V1, V2, color = Time)) +
+  geom_point() +
+  labs(x = "UMAP 1", y = "UMAP 2") +
+  theme_cowplot() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+plot_grid(
+  gg_pca_time,
+  gg_tsne,
+  gg_umap, nrow = 1)
+```
+
