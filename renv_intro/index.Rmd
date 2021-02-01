@@ -60,7 +60,7 @@ bib <- ReadBib("bibliography.bib")
 
 - A clone of a shared GitHub repository for this course.
 
-- A working installation of R (4.0.3) including the `r BiocStyle::CRANpkg("renv")` package.
+- A working installation of R (4.0.3).
 
 - A working installation of <i class="fab fa-git"></i>.
 
