@@ -22,7 +22,7 @@ library(Rtsne)
 
 - Download the shared folder `r/dimensionality_reduction_and_clustering/data` from the CGAT cluster.
 
-- Import the matrix data.
+- Import the matrix data from the file `logcounts.csv`.
   Inspect the matrix, to get familiar with rows and columns.
 
 ```{r}
