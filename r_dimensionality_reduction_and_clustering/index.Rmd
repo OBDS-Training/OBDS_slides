@@ -1152,13 +1152,18 @@ knitr::include_graphics("https://scikit-learn.org/stable/_images/sphx_glr_plot_c
 
 ## Clustering
 
-.x-large-list[
-- Which method would you use to cluster the data?
+- Cluster using k-means, for $k$ ranging from 1 to an arbitrary number (e.g. 30).
+  Store the sums of square (total, between, within) for each $k$ as a table.
 
-- How many clusters would you choose?
+- Draw a line and dot plot to visualise the within-cluster sum of squares for each value of $k$.
+  How many clusters would you choose?
 
 - Compare the cluster labels that you obtained with known metadata.
-]
+
+- Draw scatter plots colored by cluster label and experimental metadata.
+  Display them as a grid in a single figure using `r BiocStyle::CRANpkg("cowplot")`.
+
+- Compare k-means with other clustering methods (e.g. hierarchical clustering).
 
 ---
 
