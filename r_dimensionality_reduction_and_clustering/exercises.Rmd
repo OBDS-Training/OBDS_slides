@@ -20,8 +20,6 @@ library(Rtsne)
 
 ## Dimensionality reduction
 
-- Download the shared folder `r/dimensionality_reduction_and_clustering/data` from the CGAT cluster.
-
 - Import the matrix data from the file `logcounts.csv`.
   Inspect the matrix, to get familiar with rows and columns.
 
@@ -71,8 +69,7 @@ gg_pca_status <- ggplot(plot_data) +
 plot_grid(gg_pca_time, gg_pca_infection, gg_pca_status, nrow = 1)
 ```
 
-- Draw a density plot, faceted by time and infection, colored by status, to inspect the variance of each experimental 
-factor on the top principal component.
+- Draw a density plot, faceted by time and infection, colored by status, to inspect the variance of each experimental factor on the top principal component.
 
 ```{r}
 plot_data <- bind_cols(
@@ -87,7 +84,8 @@ ggplot(plot_data) +
   theme_cowplot()
 ```
 
-- How many principal components would you keep for downstream analyses?
+- Draw a bar plot of variance explained by each principal component, and a bar plot of the cumulative variance explained by the first N components.
+  How many principal components would you keep for downstream analyses?
 
 ```{r}
 scree_table <- tibble(
@@ -120,7 +118,7 @@ ggplot(head(scree_table, 200), aes(PC, var_cumsum)) +
   theme(axis.text.x = element_text(size=rel(0.5)))
 ```
 
-- Find the top genes associated with the top principal components.
+- Find the names of the top genes associated with the top principal components.
 
 ```{r}
 library(reshape2)

@@ -941,19 +941,27 @@ tsne_out$Y %>%
 
 ## Dimensionality reduction
 
-- Download the shared folder `r/dimensionality_reduction_and_clustering/data` from the CGAT cluster.
-
+- Import the matrix data from the file `logcounts.csv`.
+  Inspect the matrix, to get familiar with rows and columns.
+  
 - Perform PCA.
-  How many principal components do you think you should keep for follow up analysis?
+  Inspect the structure of the output.
 
-- Use the experimental metadata to visualise which cell types visually cluster together in principal component space.
+- Draw a scatter plot of the top two principal components and color by various experimental metadata.
+  Which experimental factors show the largest variance in the data?
+  
+- Draw a density plot, faceted by time and infection, colored by status, to inspect the variance of each experimental factor on the top principal component.
 
-- Investigate which groups of cells the top principal components are separating.
+- Draw a bar plot of variance explained by each principal component, and a bar plot of the cumulative variance explained by the first N components.
+  How many principal components would you keep for downstream analyses?
 
-- Find the top genes associated with the top principal components.
-  Visualise gene expression values against PC coordinates.
+- Find the names of the top genes associated with the top principal components.
+
+- Visualise the gene expression value of the gene with the highest loading for PC1 as color on a scatter plot of PC1 and PC2.
+  What do you observe?
 
 - Compare PCA to tSNE to UMAP.
+  Only use the subset of principal components selected above, when you run t-SNE and UMAP.
 
 ---
 
