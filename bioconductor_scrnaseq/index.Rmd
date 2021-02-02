@@ -844,7 +844,7 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 # Exercise step 6. Clustering
 
-- Use `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
+- Use `scran::getClusteredPCs()` to cluster cells after using varying number of PCs and pick the number of PCs using a heuristic based on the number of clusters.
 
 - Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
 
