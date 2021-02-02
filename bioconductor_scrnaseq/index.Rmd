@@ -723,7 +723,7 @@ shiny::runApp(app, port=1234)
 # Exercise - A typical workflow using Bioconductor
 
 1. Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
-  What can you tell from the object metadata?
+  What can you tell about the raw data?
 
 2. Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
   Would you remove any cell?
@@ -756,7 +756,7 @@ Aim for <https://osca.bioconductor.org/overview.html#quick-start>
 
 - Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
-**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
+**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
   Check the difference without using the `samples` argument.
 
 - Print a summary representation of the object.

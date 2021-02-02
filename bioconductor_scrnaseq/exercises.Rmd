@@ -10,11 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, message=FALSE}
-library(here)
 library(tidyverse)
+library(cowplot)
 library(DropletUtils)
 library(SummarizedExperiment)
-library(cowplot)
+library(DelayedMatrixStats)
+library(uwot)
+library(Rtsne)
+library(scran)
 library(iSEE)
 ```
 
@@ -27,7 +30,7 @@ library(iSEE)
 
 ```{r}
 sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = here::here("data/filtered_feature_bc_matrix")
+    "filtered" = "data/filtered_feature_bc_matrix"
 ))
 ```
 
@@ -107,6 +110,7 @@ assayNames(sce)
 ```
 
 ```{r}
+library(DelayedMatrixStats)
 keep_assay <- "logcounts"
 x <- DelayedArray(assay(sce, keep_assay))
 plot_data <- tibble(
@@ -125,6 +129,7 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
   What is the output?
 
 ```{r}
+library(scran)
 dec <- scran::modelGeneVar(sce)
 dec
 ```
@@ -184,6 +189,11 @@ reducedDimNames(sce)
 
 ```{r}
 sce <- scater::runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
+reducedDimNames(sce)
+```
+
+```{r}
+sce <- scater::runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
 
