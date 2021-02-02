@@ -881,7 +881,7 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 - Preconfigure the application to start with a subset of panels, e.g.
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, include=TRUE}
 iSEE::iSEE(sce, initial = list(
   ReducedDimensionPlot(PanelWidth=4L),
   RowDataTable(PanelWidth=8L)
