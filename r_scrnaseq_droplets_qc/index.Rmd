@@ -1,0 +1,344 @@
+---
+title: 'Quality control for single-cell RNA-seq data'
+subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-03-10 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Quality control for single-cell RNA-seq data
+</span></div> 
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE, include = FALSE
+)
+options(width = 90)
+stopifnot(require(base))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  max.names = 3,
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of a personal GitHub repository for this course.
+
+- A clone of a shared GitHub repository for this course.
+
+- A clone of <https://github.com/OBDS-Training/OBDS_environments>
+
+- A working installation of [R](https://www.r-project.org/) (4.0.3), including the *[renv](https://rstudio.github.io/renv/articles/renv.html)* package.
+
+- A working installation of [git](https://git-scm.com/).
+
+- A working installation of [RStudio](https://rstudio.com/).
+
+- Access to the CGAT cluster and the shared data folder.
+]
+
+---
+
+# Setup
+
+- Copy the subdirectory `r_scrnaseq_droplets_qc` from the `OBDS_environments` repository to your personal <i class="fab fa-git"></i> repository for the course.
+
+- Download the shared folder `r/scrnaseq_droplets_qc/data` from the CGAT cluster as a subdirectory of the OBDS environment in your personal repository.
+
+The result on your computer should look like the following
+
+```
+  obds_training/
+  |_ scrnaseq_droplets_qc/
+    |_ data/
+      |_ ... (data files)
+```
+
+- Launch the R project in `r_scrnaseq_droplets_qc`.
+
+- Restore the project environment using `r BiocStyle::CRANpkg("renv")`.
+
+---
+
+# Learning objectives
+
+<br/>
+
+.xx-large-list[
+- Empty droplets
+
+- Doublets
+]
+
+---
+
+# Empty droplets
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, out.height='500px'}
+knitr::include_graphics("https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png")
+```
+]
+
+.pull-right[
+- To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
+
+- This leads to a higher probability of a cell and a bead ending up in the same droplet.
+
+- However, this also leads to a large number of 'empty' droplets with just a bead and some ambient RNA or a dead cell.
+
+- But also, droplets can occasionally capture more than one cell.
+
+  + 1,000 cells ~ 0.8% doublets
+  + 2,000 cells ~ 1.6% doublets
+  + 3,000 cells ~ 2.3% doublets
+  + 4,000 cells ~ 3.1% doublets
+  + 5,000 cells ~ 3.9% doublets
+  + etc ...
+]
+
+---
+
+# Empty droplets
+
+Below is an example of a challenging cell-calling scenario mixing:
+
+- 300 high RNA content 293T cells
+- 2000 low RNA content PBMC cells
+
+On the left is the cell calling result with the cell calling algorithm prior to Cell Ranger 3.0 and on the right is the current Cell Ranger 3.0 result. You can see that low RNA content cells are successfully identified by the new algorithm.
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-old-cell-calling.png")
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-new-cell-calling.png")
+```
+]
+
+---
+
+# Empty droplets
+
+.pull-left[
+## Parameters
+
+- `m`, a matrix of UMI counts
+
+- `lower`, total UMI count below which barcodes are assumed to be empty droplets.
+
+- `niters`, number of iterations to use for the Monte Carlo p-value calculations.
+  More interations increase the sensitivity to yield lower $p$-values and identify more cell-containing droplets, at the cost of computing time.
+]
+
+
+.pull-right[
+## Method
+- Barcodes with fewer than `lower` are used to estimate the composition of ambient RNA.
+
+- The count vector for each barcode above lower is then tested for a significant deviation from these proportions.
+
+- $p$-values are corrected for multiple testing using the Benjamini-Hochberg correction.
+]
+
+## Output
+
+A table including the probability that each cell is an empty droplet.
+
+---
+
+# Doublets: DoubletFinder
+
+.pull-left[
+## Steps
+
+1.  Generate artificial doublets from existing scRNA-seq data
+
+2. Pre-process merged real-artificial data
+
+3. Perform PCA and use the PC distance matrix to find each cell's proportion of artificial k nearest neighbors (pANN)
+
+4. Rank order and threshold pANN values according to the expected number of doublets
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
+knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/11ab5a3c-8f8a-4e8d-a333-7e9feedb846a/fx1_lrg.jpg")
+```
+]
+
+.footnote[
+`r Citet(bib, "mcginnis2019doubletfinder")`
+
+<i class="fab fa-github"></i> <https://github.com/chris-mcginnis-ucsf/DoubletFinder>
+]
+
+---
+
+# DoubletFinder in a workflow
+
+.pull-left[
+- Works on `r BiocStyle::CRANpkg("Seurat")` objects.
+
+- Preprocess the Seurat object
+
+  + Normalise, scale, variable features, dimensionality reduction.
+
+- Sweep combiantions of parameters pN and pK. identify optimal pK parameter
+
+- Estimate proportion of homotypic doublets
+
+- Classify / predict / call doublets.
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/5dd42233-d6f7-43fd-99bf-b3f00e5dccaf/fx2_lrg.jpg")
+```
+]
+
+.footnote[
+`r Citet(bib, "mcginnis2019doubletfinder")`
+
+<i class="fab fa-github"></i> <https://github.com/chris-mcginnis-ucsf/DoubletFinder>
+]
+
+---
+
+# DoubletFinder parameters
+
+| Name | Description |
+|:-----|:------------|
+| `seu` | A fully-processed Seurat object (i.e., After NormalizeData, FindVariableGenes, ScaleData, and RunPCA have all been performed). |
+| `PCs` | The number of (significant) PCs to use for computing the distance matrix. |
+| `pN` | The proportion of artificial doublets to generate, relative to the number of cells in the dataset. |
+| `pK` | The proportion of cells in the merged dataset to use as nearest neighbors when testing each cell. |
+| `nExp` | The total number of doublets expected in the dataset.<br/>This value can best be estimated from cell loading densities into the 10X/Drop-Seq device, and adjusted according to the estimated proportion of homotypic doublets. |
+
+See `?DoubletFinder::doubletFinder()` for more details.
+
+---
+
+# Other Doublet Detection Methods
+
+## R
+
+.x-large-list[
+- [Scrublet](https://github.com/AllonKleinLab/scrublet)
+  `r Citep(bib, "wolock2019scrublet")`
+
+- [DoubletDecon](https://github.com/EDePasquale/DoubletDecon)
+  `r Citep(bib, "depasquale2019doubletdecon")`
+
+- [scDblFinder](https://bioconductor.org/packages/release/bioc/html/scDblFinder.html)
+  `r Citep(bib, "germain2020scdblfinder")`
+
+## Python
+
+- [DoubletDetection](https://github.com/JonathanShor/DoubletDetection)
+  [![](https://camo.githubusercontent.com/59083fb9150b0c7ca76e63da1b27d2d58c1731efd9303f04780ff959fcac8583/68747470733a2f2f7a656e6f646f2e6f72672f62616467652f38363235363030372e737667)](https://zenodo.org/badge/latestdoi/86256007)
+]
+
+---
+
+# Ambient RNA
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
+knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs13059-020-1950-6/MediaObjects/13059_2020_1950_Fig1_HTML.png?as=webp")
+```
+
+`r Citet(bib, "yang2020decontx")`
+]
+
+.pull-right[
+- Bioconductor package `r BiocStyle::Biocpkg("celda")`
+
+- Function `celda::decontX()`
+]
+
+---
+
+# Exercises: Empty droplets
+
+- Use `rsync -L` to download files, from the shared folder `clinic2`.
+
+- Use `r BiocStyle::Biocpkg("DropletUtils")` to identify empty droplets.
+  Inspect the output.
+  
+  + Start with the `pbmc1k` dataset.
+  
+  + If time allows, run the workflow on the `pbmc10k` dataset.
+
+- Visualise the library size of cells against their rank.
+  Color probable empty droplets.
+
+- How many empty droplets would exclude?
+
+- Compare results with the data set pre-filtered by Cell Ranger.
+
+- Identify and visualize properties that differentiates empty droplets from other droplets.
+
+  + e.g., gene expression, quality metrics, ...
+
+- Remove empty droplets from the data set.
+
+---
+
+# Exercises: Doublets
+
+- Continue using the data set after excluding empty droplets.
+
+- Use `r BiocStyle::Biocpkg("scDblFinder")` to identify doublets.
+  Inspect the output.
+
+- Compare results with the output of `r BiocStyle::Githubpkg('chris-mcginnis-ucsf/DoubletFinder')`
+
+  + You will need to make a `Seurat` object.
+
+---
+
+# References
+
+```{r refs, include=TRUE, echo=FALSE, results="asis"}
+PrintBibliography(bib)
+```

@@ -1,0 +1,75 @@
+@article{mcginnis2019doubletfinder,
+title = "DoubletFinder: Doublet Detection in Single-Cell RNA Sequencing Data Using Artificial Nearest Neighbors",
+journal = "Cell Systems",
+volume = "8",
+number = "4",
+pages = "329 - 337.e4",
+year = "2019",
+issn = "2405-4712",
+doi = "https://doi.org/10.1016/j.cels.2019.03.003",
+url = "http://www.sciencedirect.com/science/article/pii/S2405471219300730",
+author = "Christopher S. McGinnis and Lyndsay M. Murrow and Zev J. Gartner",
+keywords = "single-cell RNA sequencing, machine learning, quality-control, doublet detection",
+abstract = "Summary
+Single-cell RNA sequencing (scRNA-seq) data are commonly affected by technical artifacts known as “doublets,” which limit cell throughput and lead to spurious biological conclusions. Here, we present a computational doublet detection tool—DoubletFinder—that identifies doublets using only gene expression data. DoubletFinder predicts doublets according to each real cell’s proximity in gene expression space to artificial doublets created by averaging the transcriptional profile of randomly chosen cell pairs. We first use scRNA-seq datasets where the identity of doublets is known to show that DoubletFinder identifies doublets formed from transcriptionally distinct cells. When these doublets are removed, the identification of differentially expressed genes is enhanced. Second, we provide a method for estimating DoubletFinder input parameters, allowing its application across scRNA-seq datasets with diverse distributions of cell types. Lastly, we present “best practices” for DoubletFinder applications and illustrate that DoubletFinder is insensitive to an experimentally validated kidney cell type with “hybrid” expression features."
+}
+
+@article{wolock2019scrublet,
+title = "Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data",
+journal = "Cell Systems",
+volume = "8",
+number = "4",
+pages = "281 - 291.e9",
+year = "2019",
+issn = "2405-4712",
+doi = "https://doi.org/10.1016/j.cels.2018.11.005",
+url = "http://www.sciencedirect.com/science/article/pii/S2405471218304745",
+author = "Samuel L. Wolock and Romain Lopez and Allon M. Klein",
+keywords = "single-cell, bioinformatics, cell doublets, artifact detection, decoy classifier, high dimensional data analysis, RNA-seq",
+abstract = "Summary
+Single-cell RNA-sequencing has become a widely used, powerful approach for studying cell populations. However, these methods often generate multiplet artifacts, where two or more cells receive the same barcode, resulting in a hybrid transcriptome. In most experiments, multiplets account for several percent of transcriptomes and can confound downstream data analysis. Here, we present Single-Cell Remover of Doublets (Scrublet), a framework for predicting the impact of multiplets in a given analysis and identifying problematic multiplets. Scrublet avoids the need for expert knowledge or cell clustering by simulating multiplets from the data and building a nearest neighbor classifier. To demonstrate the utility of this approach, we test Scrublet on several datasets that include independent knowledge of cell multiplets. Scrublet is freely available for download at github.com/AllonKleinLab/scrublet."
+}
+
+@article{depasquale2019doubletdecon,
+   author = {DePasquale, Erica A. K. and Schnell, Daniel J. and Van Camp, Pieter-Jan and Valiente-Alandí, Íñigo and Blaxall, Burns C. and Grimes, H. Leighton and Singh, Harinder and Salomonis, Nathan},
+   title = {DoubletDecon: Deconvoluting Doublets from Single-Cell RNA-Sequencing Data},
+   journal = {Cell Reports},
+   volume = {29},
+   number = {6},
+   pages = {1718-1727.e8},
+   ISSN = {2211-1247},
+   DOI = {10.1016/j.celrep.2019.09.082},
+   url = {https://doi.org/10.1016/j.celrep.2019.09.082},
+   year = {2019},
+   type = {Journal Article}
+}
+
+@article{germain2020scdblfinder,
+   author = {Germain, Pierre-Luc and Sonrel, Anthony and Robinson, Mark D.},
+   title = {pipeComp, a general framework for the evaluation of computational pipelines, reveals performant single cell RNA-seq preprocessing tools},
+   journal = {Genome biology},
+   volume = {21},
+   number = {1},
+   pages = {227-227},
+   ISSN = {1474-760X
+1474-7596},
+   DOI = {10.1186/s13059-020-02136-7},
+   url = {https://pubmed.ncbi.nlm.nih.gov/32873325
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7465801/},
+   year = {2020},
+   type = {Journal Article}
+}
+
+@article{yang2020decontx,
+   author = {Yang, Shiyi and Corbett, Sean E. and Koga, Yusuke and Wang, Zhe and Johnson, W. Evan and Yajima, Masanao and Campbell, Joshua D.},
+   title = {Decontamination of ambient RNA in single-cell RNA-seq with DecontX},
+   journal = {Genome Biology},
+   volume = {21},
+   number = {1},
+   pages = {57},
+   ISSN = {1474-760X},
+   DOI = {10.1186/s13059-020-1950-6},
+   url = {https://doi.org/10.1186/s13059-020-1950-6},
+   year = {2020},
+   type = {Journal Article}
+}
