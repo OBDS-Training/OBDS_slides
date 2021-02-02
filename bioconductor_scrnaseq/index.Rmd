@@ -722,24 +722,25 @@ shiny::runApp(app, port=1234)
 
 # Exercise - A typical workflow using Bioconductor
 
-- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+1. Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+  What can you tell from the object metadata?
 
-- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
+2. Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
   Would you remove any cell?
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
+3. Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
 
-- Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
+4. Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
 
-- Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
+5. Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
 
-- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+6. Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
 
-- Identify markers for each cluster; use `r BiocStyle::Biocpkg("scran")`.
+7. Identify markers for each cluster; use `r BiocStyle::Biocpkg("scran")`.
 
-- At every step, take the time to _visualise_ results and relate them to the raw/normalised data; try `r BiocStyle::Biocpkg("iSEE")`.
+8. At every step, take the time to _visualise_ results and relate them to the raw/normalised data; try `r BiocStyle::Biocpkg("iSEE")`.
 
-- Bonus point: Import the raw matrix, and:
+9. Bonus point: Import the raw matrix, and:
 
   + Identify and exclude empty droplets; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
@@ -748,6 +749,144 @@ shiny::runApp(app, port=1234)
 ???
 
 Aim for <https://osca.bioconductor.org/overview.html#quick-start>
+
+---
+
+# Exercise step 1. Import the filtered matrix
+
+- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+
+**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
+  Check the difference without using the `samples` argument.
+
+- Print a summary representation of the object.
+  What can you tell about the contents of the object?
+
+- What can you tell from the object metadata?
+
+**Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
+
+---
+
+# Exercise step 2. Quality control
+
+- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
+
+**Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+
+**Note:** what is the return value?
+  where are the quality metrics stored?
+  what is the difference with `scater::perCellQCMetrics()`?
+
+- Visualise quality metrics; use `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Would you remove any cell?
+
+**Note:** we have imported a matrix prefiltered by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) using a certain set of criteria (which ones?); what other criteria can you think of, which may be useful for filterering cells?
+
+- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+
+---
+
+# Exercise step 3. Normalisation
+
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
+
+**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
+  What is the return value?
+  Where can you find the normalised counts?
+
+- Plot the variance against the mean of each gene.
+
+**Note:** how can you tell whether the normalisation was effective?
+  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
+
+---
+
+# Exercise step 4. Feature selection
+
+Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
+
+- Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
+  What is the output?
+
+- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
+
+**Note:** How do you interpret those different values?
+
+- Use `scran::getTopHVGs()` to identify highly variable genes.
+
+**Note:** what is the output?
+  How many genes do you identify?
+  Where are those genes located in the mean-variance plot?
+  What happens to this plot if you set more stringent thresholds to define highly variable genes?
+
+---
+
+# Exercise step 5. Dimensionality reduction
+
+- Use `scater::runPCA` to compact the data and further reduce noise.
+
+**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically variable genes in the data set.
+
+- Continue with UMAP or t-SNE.
+
+**Note:** UMAP and t-SNE are typically given the output of PCA, to further reduce the dimensionality for ease of visualisation.
+
+- Visualise the layout of cells produced by each of those dimensionality reduction methods.
+  Considering coloring points with quality control metrics.
+
+## Bonus point
+
+- use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+
+---
+
+# Exercise step 6. Clustering
+
+- Use `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
+
+- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
+
+- Visualise the assigned cluster on your preferred dimensionality reduction layout.
+
+**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA output.
+  They may not always agree with each other, often helping to diagnose over- or under-clustering.
+
+## Bonus point
+
+- Test different numbers of principal components and compare results.
+
+- Try `scran::quickCluster()`; identify key parameters and compare results.
+
+---
+
+# Exercise step 7. Cluster markers
+
+- Use `scran::findMarkers()` to identify markers for each cluster.
+
+- Visualise the expression of selected markers:
+
+  + as a dot plot, optionally with a violin layer.
+  
+  + on a dimensionality reduction layout.
+  
+---
+
+# Exercise step 8. iSEE
+
+- Use `iSEE::iSEE()` to launch an interactive web-application to visualise the contents of the `SingleCellExperiment` object.
+
+## Bonus point
+
+- Preconfigure the application to start with a subset of panels, e.g.
+
+```{r, eval=FALSE}
+iSEE::iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth=4L),
+  RowDataTable(PanelWidth=8L)
+))
+```
 
 ---
 
