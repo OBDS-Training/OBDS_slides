@@ -186,6 +186,29 @@ A table including the probability that each cell is an empty droplet.
 
 ---
 
+# Exercises
+
+## Empty droplets
+
+- Import the raw Cell Ranger matrix for 1,000 cells into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+
+- Remove droplets without any count at all.
+
+- Run `emptyDrops`.
+
+**Note:**
+  How do you read the output?
+  Which droplets would you consider empty?
+
+- Draw plots comparing empty droplets and other droplets
+  (e.g., library size, mitochondrial content, PCA).
+
+- Import the filtered Cell Ranger matrix for 1,000 cells and compare their set of filtered cells.
+
+- Remove empty droplets from the data sets.
+
+---
+
 # Doublets: DoubletFinder
 
 .pull-left[
@@ -295,32 +318,6 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 
 - Function `celda::decontX()`
 ]
-
----
-
-# Exercises: Empty droplets
-
-- Use `rsync -L` to download files, from the shared folder `clinic2`.
-
-- Use `r BiocStyle::Biocpkg("DropletUtils")` to identify empty droplets.
-  Inspect the output.
-  
-  + Start with the `pbmc1k` dataset.
-  
-  + If time allows, run the workflow on the `pbmc10k` dataset.
-
-- Visualise the library size of cells against their rank.
-  Color probable empty droplets.
-
-- How many empty droplets would exclude?
-
-- Compare results with the data set pre-filtered by Cell Ranger.
-
-- Identify and visualize properties that differentiates empty droplets from other droplets.
-
-  + e.g., gene expression, quality metrics, ...
-
-- Remove empty droplets from the data set.
 
 ---
 
