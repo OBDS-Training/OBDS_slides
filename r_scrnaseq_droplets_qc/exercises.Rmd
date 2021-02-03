@@ -1,0 +1,109 @@
+---
+title: "Example code for single-cell droplet quality control"
+author: "Kevin Rue-Albrecht"
+date: "03/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DropletUtils)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+```
+
+# Exercises
+
+## Empty droplets
+
+- Import the raw matrix for 1,000 cells into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+
+```{r}
+sce <- DropletUtils::read10xCounts(
+  samples = c("pbmc1k" = "data/pbmc_1k_v3_raw"),
+  col.names = TRUE
+)
+```
+
+- Remove droplets without any count at all.
+
+```{r}
+sce <- sce[, colSums(assay(sce, "counts")) > 0]
+sce
+```
+
+- Run emptyDrops
+
+**Note:**
+  How do you read the output?
+  Which droplets would you consider empty?
+
+```{r}
+out <- DropletUtils::emptyDrops(assay(sce, "counts"))
+out
+```
+
+- Draw plots comparing empty droplets and other droplets.
+  (e.g., library size, mitochondrial content, PCA)
+
+```{r}
+plot_data <- tibble(
+  library_size = colSums(assay(sce, "counts")),
+  empty_droplet = out$FDR > 0.01
+)
+ggplot(plot_data, aes(empty_droplet, library_size)) +
+  geom_jitter(width = 0.1, height = 0) +
+  scale_y_continuous(trans = "log10")
+```
+
+```{r}
+is.mt <- grepl("^MT-", rowData(sce)[["Symbol"]])
+# table(is.mt)
+plot_data <- tibble(
+  total = colSums(assay(sce, "counts")),
+  MT_total = colSums(assay(sce, "counts")[is.mt, ]),
+  MT_percent = MT_total / total * 100,
+  empty_droplet = out$FDR > 0.01
+)
+ggplot(plot_data, aes(empty_droplet, MT_percent)) +
+  geom_jitter(width = 0.1, height = 0) +
+  scale_y_continuous(trans = "log10")
+```
+
+```{r}
+library(scater)
+sce <- logNormCounts(sce)
+sce <- runPCA(sce)
+plot_data <- tibble(
+  reducedDim(sce, "PCA")[, c("PC1", "PC2")] %>% as_tibble(),
+  empty_droplet = out$FDR > 0.01
+)
+ggplot(plot_data, aes(PC1, PC2, color = empty_droplet)) +
+  geom_jitter(width = 0.1, height = 0)
+```
+
+- Import the filtered Cell Ranger matrix for 1,000 cells and compare their set of filtered cells.
+
+```{r}
+sce_filtered_cellranger <- DropletUtils::read10xCounts(
+  samples = c("pbmc1k" = "data/pbmc_1k_v3_filtered"),
+  col.names = TRUE
+)
+# sce_filtered_cellranger
+all_barcodes <- colnames(sce)
+# length(all_barcodes)
+compare_table <- tibble(
+  emptydrops = all_barcodes %in% colnames(sce)[out$FDR <= 0.01],
+  cellranger = all_barcodes %in% colnames(sce_filtered_cellranger),
+)
+table(compare_table)
+```
+
+- Remove empty droplets from the data sets.
+
+```{r}
+sce_filtered_emptydrops <- sce[, which(out$FDR <= 0.01)]
+sce_filtered_emptydrops
+```
+
