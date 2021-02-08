@@ -103,15 +103,18 @@ The result on your computer should look like the following
 - Empty droplets
 
 - Doublets
+
+- Ambient RNA
 ]
 
 ---
 
-# Empty droplets
+# The origin of empty droplets
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, out.height='500px'}
-knitr::include_graphics("https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png")
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
+# Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
+knitr::include_graphics("img/10x-barcoded gel beads.png")
 ```
 ]
 
@@ -134,7 +137,7 @@ knitr::include_graphics("https://cores.research.asu.edu/sites/default/files/inli
 
 ---
 
-# Empty droplets
+# Empty droplets contain fewer transcripts
 
 Below is an example of a challenging cell-calling scenario mixing:
 
@@ -145,19 +148,23 @@ On the left is the cell calling result with the cell calling algorithm prior to 
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-old-cell-calling.png")
+# Source: https://support.10xgenomics.com/img/single-cell-gex/knee-plot-old-cell-calling.png
+knitr::include_graphics("img/knee-plot-old-cell-calling.png")
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-new-cell-calling.png")
+# Source: https://support.10xgenomics.com/img/single-cell-gex/knee-plot-new-cell-calling.png
+knitr::include_graphics("img/knee-plot-new-cell-calling.png")
 ```
 ]
 
 ---
 
-# Empty droplets
+# The emptyDrops method
+
+The function `DropletUtils::emptyDrops()` estimates the probability of empty droplets.
 
 .pull-left[
 ## Parameters
@@ -209,7 +216,35 @@ A table including the probability that each cell is an empty droplet.
 
 ---
 
-# Doublets: DoubletFinder
+# The origin of doublets
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
+# Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
+knitr::include_graphics("img/10x-barcoded gel beads.png")
+```
+]
+
+.pull-right[
+- To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
+
+- This leads to a higher probability of a cell and a bead ending up in the same droplet.
+
+- However, this also leads to a large number of 'empty' droplets with just a bead and some ambient RNA or a dead cell.
+
+- But also, droplets can occasionally capture more than one cell.
+
+  + 1,000 cells ~ 0.8% doublets
+  + 2,000 cells ~ 1.6% doublets
+  + 3,000 cells ~ 2.3% doublets
+  + 4,000 cells ~ 3.1% doublets
+  + 5,000 cells ~ 3.9% doublets
+  + etc ...
+]
+
+---
+
+# The DoubletFinder method
 
 .pull-left[
 ## Steps
@@ -232,7 +267,7 @@ knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/
 .footnote[
 `r Citet(bib, "mcginnis2019doubletfinder")`
 
-<i class="fab fa-github"></i> <https://github.com/chris-mcginnis-ucsf/DoubletFinder>
+<i class="fab fa-github"></i> [chris-mcginnis-ucsf/DoubletFinder](https://github.com/chris-mcginnis-ucsf/DoubletFinder)
 ]
 
 ---
@@ -262,7 +297,7 @@ knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/
 .footnote[
 `r Citet(bib, "mcginnis2019doubletfinder")`
 
-<i class="fab fa-github"></i> <https://github.com/chris-mcginnis-ucsf/DoubletFinder>
+<i class="fab fa-github"></i> [chris-mcginnis-ucsf/DoubletFinder](https://github.com/chris-mcginnis-ucsf/DoubletFinder)
 ]
 
 ---
@@ -281,42 +316,45 @@ See `?DoubletFinder::doubletFinder()` for more details.
 
 ---
 
+# The scDblFinder method
+
+The rough logic is very similar to other methods (e.g. `r BiocStyle::Githubpkg("chris-mcginnis-ucsf/DoubletFinder")`, `r BiocStyle::Biocpkg("scds")`), with a few twists that make it more efficient and provide extra features `r Citep(bib, "germain2020scdblfinder")`.
+
+## Parameters
+
+| Name | Description |
+|:-----|:------------|
+| `sce` | A `SummarizedExperiment` or count matrix. |
+| `clusters` | Optional cluster assignments (if omitted, will run clustering). |
+| `samples` | Vector indicating which sample each cell belong to. Samples are understood to be processed independently. |
+| `artificialDoublets` | Approximate number of doublets to identify (if omitted, will be $5 \times nbClusters^2$). |
+| `k` | Number of nearest neighbours for KNN graph. |
+
+.footnote[
+Bioconductor: `r BiocStyle::Biocpkg("scDblFinder")`.
+See `?scDblFinder::scDblFinder()` for more details.
+]
+
+---
+
 # Other Doublet Detection Methods
 
 ## R
 
 .x-large-list[
-- [Scrublet](https://github.com/AllonKleinLab/scrublet)
-  `r Citep(bib, "wolock2019scrublet")`
+- `r BiocStyle::Biocpkg("scds")` (Bioconductor)
 
-- [DoubletDecon](https://github.com/EDePasquale/DoubletDecon)
+- <i class="fab fa-github"></i> [EDePasquale/DoubletDecon](https://github.com/EDePasquale/DoubletDecon)
   `r Citep(bib, "depasquale2019doubletdecon")`
-
-- [scDblFinder](https://bioconductor.org/packages/release/bioc/html/scDblFinder.html)
-  `r Citep(bib, "germain2020scdblfinder")`
+]
 
 ## Python
 
-- [DoubletDetection](https://github.com/JonathanShor/DoubletDetection)
-  [![](https://camo.githubusercontent.com/59083fb9150b0c7ca76e63da1b27d2d58c1731efd9303f04780ff959fcac8583/68747470733a2f2f7a656e6f646f2e6f72672f62616467652f38363235363030372e737667)](https://zenodo.org/badge/latestdoi/86256007)
-]
+.x-large-list[
+- <i class="fab fa-github"></i> [JonathanShor/DoubletDetection](https://github.com/JonathanShor/DoubletDetection)
 
----
-
-# Ambient RNA
-
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
-knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs13059-020-1950-6/MediaObjects/13059_2020_1950_Fig1_HTML.png?as=webp")
-```
-
-`r Citet(bib, "yang2020decontx")`
-]
-
-.pull-right[
-- Bioconductor package `r BiocStyle::Biocpkg("celda")`
-
-- Function `celda::decontX()`
+- <i class="fab fa-github"></i> [Scrublet](https://github.com/AllonKleinLab/scrublet)
+  `r Citep(bib, "wolock2019scrublet")`
 ]
 
 ---
@@ -335,6 +373,25 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 - Compare results with the output of `r BiocStyle::Githubpkg('chris-mcginnis-ucsf/DoubletFinder')`
 
   + You will need to make a `Seurat` object.
+
+---
+
+# Ambient RNA
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
+# Source: https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs13059-020-1950-6/MediaObjects/13059_2020_1950_Fig1_HTML.png
+knitr::include_graphics("img/decontx_Fig1_HTML.png")
+```
+
+`r Citet(bib, "yang2020decontx")`
+]
+
+.pull-right[
+- Bioconductor package `r BiocStyle::Biocpkg("celda")`
+
+- Function `celda::decontX()`
+]
 
 ---
 
