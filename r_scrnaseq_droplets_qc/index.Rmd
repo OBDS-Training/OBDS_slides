@@ -376,7 +376,32 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 ---
 
-# Ambient RNA
+# The origin of ambient RNA
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+# Source: https://twitter.com/GenomeBiology/status/1235571002903576576/photo/1
+knitr::include_graphics("img/ambient_rna_origin.png")
+```
+
+`r Citet(bib, "yang2020decontx")`
+]
+
+.pull-right[
+- In droplet-based microfluidic devices, ambient RNA can be incorporated into droplets along with oligonucleotide-barcoded beads and cells.
+
+- Both native mRNA from the cell and contaminating ambient RNA will be barcoded and counted within a droplet.
+]
+
+<br/>
+
+## Objective
+
+Deconvolute ambient RNA signal from cellular transcripts to estimate true biological signal as precisely as possible.
+
+---
+
+# The decontX method
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
@@ -391,7 +416,49 @@ knitr::include_graphics("img/decontx_Fig1_HTML.png")
 - Bioconductor package `r BiocStyle::Biocpkg("celda")`
 
 - Function `celda::decontX()`
+
+- **Only
+the expression profile of “real” cells after cell calling are required to run DecontX.**
+
+- **Empty cell droplet information (low expression cell barcodes before cell calling) are
+not needed.**
 ]
+
+---
+
+# The decontX method
+
+The function `celda::decontX()` identifies contamination from factors such as ambient RNA in single cell genomic datasets.
+It estimate matrices of native expression and contamination from ambient RNA.
+
+.pull-left[
+## Parameters
+
+- `x`, a `SingleCellExperiment` object.
+
+- `z`, broad cell cluster labels.
+
+- `batch`, batch labels.
+
+- `maxIter`, maximum iterations for the EM algorithm.
+]
+
+
+.pull-right[
+## Method
+
+Assumption: each cell is a mixture of two multinomial distributions:
+
+1. a distribution of native transcripts from the cell’s true population
+
+2. a distribution of contaminating transcripts from all other cell populations captured in the assay
+]
+
+## Output
+
+A `SingleCellExperiment` object with the decontaminated counts stored as a new assay.
+Other pieces of information are stored in `colData()` and `metadata()`.
+See `?celda::decontX()` for more information.
 
 ---
 
