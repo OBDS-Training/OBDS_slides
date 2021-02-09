@@ -15,6 +15,8 @@ library(cowplot)
 library(scDblFinder)
 library(Seurat)
 library(DoubletFinder)
+library(celda)
+library(scater)
 ```
 
 # Exercises
@@ -165,6 +167,13 @@ ggplot(plot_data, aes(PC1, PC2, color = scdblfinder)) +
   geom_jitter(width = 0.1, height = 0)
 ```
 
+- Remove doublets from the data sets.
+
+```{r}
+sce_filtered_scdblfinder <- sce_scdblfinder[, sce_scdblfinder$scDblFinder.class == "singlet"]
+sce_filtered_scdblfinder
+```
+
 ## Bonus point
 
 - Compare results with the output of `r BiocStyle::Githubpkg('chris-mcginnis-ucsf/DoubletFinder')`
@@ -226,5 +235,107 @@ doublets_table <- data.frame(
 )
 
 table(doublets_table)
+```
+
+# Exercises
+
+## Ambient RNA
+
+- Run `celda::decontX()`.
+
+```{r, message=FALSE}
+library(celda)
+sce_decontX <- celda::decontX(sce_filtered_scdblfinder)
+```
+
+- Visualize the UMAP layout created by `decontX`; use `plotDimReduceCluster()`.
+
+```{r}
+umap <- reducedDim(sce_decontX, "decontX_UMAP")
+plotDimReduceCluster(x = sce_decontX$decontX_clusters, dim1 = umap[, 1], dim2 = umap[, 2])
+```
+
+- Visualize the percentage of contamination estimated by `decontX` in each cell.
+  Use the `plotDecontXContamination()` function.
+
+**Note:** Does any cluster display higher (estimated) levels of ambient RNA?
+
+```{r}
+plotDecontXContamination(sce_decontX)
+```
+
+- Visualize the log-normalised expression of marker genes on a UMAP layout faceted by gene; use `plotDimReduceFeature()`.
+
+**Note:** Use either markers genes expected from literature or computationally identified for this data set.
+
+<!--
+Source: https://bioconductor.org/packages/devel/bioc/vignettes/celda/inst/doc/decontX.pdf
+(Section 5.3)
+We will use:
+- CD3D and CD3E for T-cells,
+- LYZ, S100A8, and S100A9 for monocytes,
+- CD79A, CD79B, and MS4A1 for B-cells,
+- GNLY for NK-cells,
+- and PPBP for megakaryocytes
+-->
+
+```{r}
+sce_decontX <- logNormCounts(sce_decontX, assay.type = "counts")
+rownames(sce_decontX) <- uniquifyFeatureNames(
+  ID = rownames(sce_decontX),
+  names = rowData(sce_decontX)[["Symbol"]])
+plotDimReduceFeature(as.matrix(logcounts(sce_decontX)),
+  dim1 = umap[, 1],
+  dim2 = umap[, 2],
+  features = c("CD3D", "CD3E", "GNLY",
+  "LYZ", "S100A8", "S100A9",
+  "CD79A", "CD79B", "MS4A1"),
+  exactMatch = TRUE)
+```
+
+- Visualise the percentage of cells with detectable expression of marker genes before and after decontamination as a bar plot; use `plotDecontXMarkerPercentage()`.
+
+<!--
+It looks like recoding multiple clusters into one -- e.g. Tcells = c(3, 4) -- loses that cluster from the bar plot.
+Make a reproducible example for them.
+-->
+
+```{r}
+markers <- list(Tcell_Markers = c("CD3E", "CD3D"),
+  Bcell_Markers = c("CD79A", "CD79B", "MS4A1"),
+  Monocyte_Markers = c("S100A8", "S100A9", "LYZ"),
+  NKcell_Markers = "GNLY")
+cellTypeMappings <- list(
+  Tcells = 4,
+  Bcells = 2,
+  Monocytes = 1,
+  NKcells = 5)
+plotDecontXMarkerPercentage(sce_decontX,
+  markers = markers,
+  groupClusters = cellTypeMappings,
+  assayName = "counts")
+```
+
+```{r}
+plotDecontXMarkerPercentage(sce_decontX,
+  markers = markers,
+  groupClusters = cellTypeMappings,
+  assayName = "decontXcounts")
+```
+
+```{r}
+plotDecontXMarkerPercentage(sce_decontX,
+  markers = markers,
+  groupClusters = cellTypeMappings,
+  assayName = c("counts", "decontXcounts"))
+```
+
+- Visualize the log-normalised expression of marker genes before and after decontamination as a bar plot; use `plotDecontXMarkerExpression()`.
+
+```{r}
+plotDecontXMarkerExpression(sce_decontX,
+  markers = markers[["Monocyte_Markers"]],
+  groupClusters = cellTypeMappings,
+  ncol = 3)
 ```
 
