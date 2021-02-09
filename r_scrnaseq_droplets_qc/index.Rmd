@@ -359,7 +359,9 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 ---
 
-# Exercises: Doublets
+# Exercises
+
+## Doublets
 
 - Continue using the data set after excluding empty droplets.
 
@@ -367,6 +369,8 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
+
+- Remove doublets from the data sets.
 
 ## Bonus point
 
@@ -459,6 +463,15 @@ Assumption: each cell is a mixture of two multinomial distributions:
 A `SingleCellExperiment` object with the decontaminated counts stored as a new assay.
 Other pieces of information are stored in `colData()` and `metadata()`.
 See `?celda::decontX()` for more information.
+
+---
+
+# Exercises
+
+## Ambient RNA
+
+- Run `celda::decontX()`.
+
 
 ---
 
