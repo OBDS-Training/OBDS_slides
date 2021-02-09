@@ -1,5 +1,5 @@
 ---
-title: 'Quality control for single-cell RNA-seq data'
+title: 'Empty droplets, doublets and ambient RNA in single-cell droplet data'
 subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
@@ -22,8 +22,8 @@ layout: true
 
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-Quality control for single-cell RNA-seq data
+&emsp;&emsp;&emsp;
+Empty droplets, doublets and ambient RNA in single-cell droplet data
 </span></div> 
 
 ```{r setup, include = FALSE}
@@ -97,9 +97,9 @@ The result on your computer should look like the following
 
 # Learning objectives
 
-<br/>
+## Learn to work with:
 
-.xx-large-list[
+.x-large-list[
 - Empty droplets
 
 - Doublets
