@@ -18,6 +18,13 @@
 - [x] Computational methods.
 - [x] Key parameters of computational methods.
 
+## Ambient RNA
+
+- [x] Experimental origin.
+- [x] Theoretical identification.
+- [x] Computational methods.
+- [x] Key parameters of computational methods.
+
 ## Conclusion
 
 - [x] Further reading
