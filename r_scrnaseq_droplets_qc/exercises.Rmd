@@ -192,7 +192,9 @@ seu <- RunUMAP(seu, dims = 1:10)
 
 ```{r, message=FALSE}
 ## pK Identification (no ground-truth) 
-sweep.res.list <- paramSweep_v3(seu, PCs = 1:10, sct = FALSE)
+oblivion <- capture.output( ## get rid of printed messages
+  sweep.res.list <- paramSweep_v3(seu, PCs = 1:10, sct = FALSE) ## still assign the value
+)
 sweep.stats <- summarizeSweep(sweep.res.list, GT = FALSE)
 bcmvn <- find.pK(sweep.stats)
 ```
