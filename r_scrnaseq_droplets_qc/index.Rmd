@@ -84,7 +84,7 @@ The result on your computer should look like the following
 
 ```
   obds_training/
-  |_ scrnaseq_droplets_qc/
+  |_ r_scrnaseq_droplets_qc/
     |_ data/
       |_ ... (data files)
 ```
