@@ -74,6 +74,8 @@ bib <- ReadBib("bibliography.bib")
 
 # Set up
 
+<br/>
+
 - Copy the subdirectory `r_machine_learning` from the `OBDS_environments` repository to your personal <i class="fab fa-git"></i> repository for the course.
 
 - Launch the R project in `r_machine_learning`.
@@ -470,8 +472,9 @@ Sources:
 ## Regression
 
 The `BostonHousing` data set contains housing data for 506 census districts of Boston from the 1970 census.
+Load it from the `r BiocStyle::CRANpkg("mlbench")` using `data(BostonHousing)`.
 
-We will use machine learning to build a model that predicts the value of properties based on various pieces of information about the property and its environment.
+We will use machine learning to build a model that predicts the value of properties based on various pieces of information about properties and their environment.
 
 - Get familiar with the data set. What are rows? What are columns? Are there outliers?
 
@@ -485,7 +488,8 @@ We will use machine learning to build a model that predicts the value of propert
 - Use the model to make predictions on the test set.
   How accurate is our model?
 
-- Can we improve the predictive accuracy of our model using other variables (or combinations thereof) in the data set?
+- Can we improve the predictive accuracy of our model,
+  e.g. using other variables (or combinations thereof) in the data set, removing outliers?
 
 ---
 
