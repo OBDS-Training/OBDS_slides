@@ -1,0 +1,534 @@
+---
+title: 'Introduction to machine learning'
+subtitle: '<i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-03-02 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Introduction to machine learning
+</span></div>
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+options(width = 200)
+library(tidyverse)
+library(caret)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of a personal GitHub repository for this course.
+
+- A clone of a shared GitHub repository for this course.
+
+- A working installation of [R](https://www.r-project.org/) (4.0.3) including the `r BiocStyle::CRANpkg("renv")` package.
+
+- A working installation of [git](https://git-scm.com/).
+
+- A working installation of [RStudio](https://rstudio.com/).
+]
+
+---
+
+# Set up
+
+- Copy the subdirectory `r_machine_learning` from the `OBDS_environments` repository to your personal <i class="fab fa-git"></i> repository for the course.
+
+- Launch the R project in `r_machine_learning`.
+
+- Restore the project environment using `r BiocStyle::CRANpkg("renv")`.
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+.x-large-list[
+- What is machine learning and when we use it.
+
+- Learn to use the the `r BiocStyle::CRANpkg("caret")` package.
+]
+
+## Learning objectives
+
+.x-large-list[
+- Train models.
+
+- Apply models to make predictions.
+]
+
+---
+
+# What is machine learning?
+
+In short:
+
+> Computer algorithms that improve automatically through experience.
+
+More precisely:
+
+> Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to do so.
+
+.right[
+Wikipedia
+]
+
+---
+
+# Examples of machine learning applications
+
+- Tagging people and objects in pictures
+
+- Classifying incoming mail as spam
+
+- Combat fake news, e.g. <http://www.fakenewschallenge.org/>
+
+- Detecting disease from images, e.g. skin cancer, diabetic retinopathy
+
+- Suggesting TV shows to watch / items to buy
+
+- Google search
+   
+   + Autocompletion
+
+   + Which results to show first, depending on who you are, e.g. "Java"
+   
+   + Popular searches, e.g. [Google searches for 'move to Canada' skyrocket during U.S. presidential debate](https://nationalpost.com/news/world/last-nights-debate-was-so-bad-google-searches-for-move-to-canada-were-off-the-charts)
+
+.center[
+Can you tell which of these are _classification_ or _regression_ problems?
+]
+
+---
+
+# The 7 Steps of machine learning
+
+.x-large-list[
+1. Gathering data
+
+2. Preparing that data
+
+3. Choosing a model
+
+4. Training
+
+5. Evaluation
+
+6. Hyperparameter tuning
+
+7. Prediction
+]
+
+???
+
+Sources:
+
+- <https://www.youtube.com/watch?v=nKW8Ndu7Mjw&ab_channel=GoogleCloudPlatform>
+
+---
+
+# 1. Gathering data
+
+The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris
+
+```{r, include=TRUE, echo=FALSE}
+knitr::kable(head(iris))
+```
+
+---
+
+# 2. Preparing the data
+
+.pull-left[
+- Visualise data and identify any issue:
+
+  + Relationships between variables.
+  
+  + Data imbalance
+  
+  + Duplicated data
+  
+  + Normalisation
+  
+  + Error correction, batch correction
+
+- Randomise the data
+
+  + Order in which the model sees data
+
+- Partition data into training and test set
+
+  + Test the model on data that it hasn't seen before
+]
+
+.pull-right[
+## Example
+
+- Height (m) / Height (inches)
+
+- Imbalance:
+
+```{r, include=TRUE, echo=FALSE, out.height='300px', fig.align='center'}
+df <- data.frame(
+  group = c(rep("Control", 90), rep("Disease", 10))
+)
+ggplot(df) +
+  geom_bar(aes(group)) +
+  cowplot::theme_cowplot()
+```
+]
+
+---
+
+# 3. Choosing a model
+
+## There are many models, each suited for different types of data
+
+<br/>
+<br/>
+<br/>
+
+.center[
+<i class="fa fa-file-text-o fa-6x" aria-hidden="true"></i>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i class="fa fa-area-chart fa-6x" aria-hidden="true"></i>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i class="fa fa-picture-o fa-6x" aria-hidden="true"></i>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i class="fa fa-music fa-6x" aria-hidden="true"></i>
+]
+
+???
+
+Sources:
+
+- <https://www.youtube.com/watch?v=nKW8Ndu7Mjw&ab_channel=GoogleCloudPlatform>
+
+---
+
+# 4. Training
+
+Use data to incrementally improve the model's ability to make accurate predictions.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+# Source: https://nianlonggu.com/img/2019-05-27-SVM/hyperplane-over-iteration.gif
+knitr::include_graphics("img/hyperplane-over-iteration.gif")
+```
+
+???
+
+How does each step decide how to move the line?
+
+---
+
+# 5. Evaluation
+
+Use the test data to evaluate how good the model is at making predictions on data that it has never seen before.
+
+```{r, include=TRUE, echo=FALSE}
+df <- iris %>% 
+  sample_n(6) %>% 
+  mutate(Predicted = Species)
+df[4, "Predicted"] <- "virginica"
+knitr::kable(df)
+```
+
+An accepted rule of thumb is to keep about 20% of the original data set to make the test set.
+This also depends on the size of the original data set; with very large data sets, you can afford to use a smaller fraction of it as the test set.
+
+---
+
+# 6. Hyperparameter tuning
+
+The model produced by the training process is a set of _parameters_ that make predictions from input data.
+
+When we design the training process itself, we implicitly choose a set of _hyperparameters_, which affect _how_ the model is trained.
+It is possible to further improve the accuracy of the final model by trying different a different set of _hyperparameters_.
+
+- How many times do we show the training data to the model?
+  
+  + How many times do we tweak the parameters of the model?
+
+- Learning rate
+
+  + How much are parameter values incremented at each step
+  
+  + Speed up learning with larger increment
+  
+  + Tune parameters more finely with smaller increment
+
+- Initial conditions
+
+  + Initialise all parameters at a given value, e.g. 0
+  
+  + Sample initial values from a distribution, e.g. normal
+
+---
+
+# 7. Prediction
+
+- Present the model with new observations that it has never seen before
+
+- The parameters of the model are used to predict the outcome variable from the new observations
+
+```{r, include=TRUE, echo=FALSE}
+df <- iris %>% 
+  sample_n(6) %>% 
+  mutate(Predicted = "?")
+knitr::kable(df)
+```
+
+---
+
+# The 7 Steps of machine learning
+
+.x-large-list[
+1. Gathering data
+
+2. Preparing that data
+
+3. Choosing a model
+
+4. Training
+
+5. Evaluation
+
+6. Hyperparameter tuning
+
+7. Prediction
+]
+
+???
+
+Sources:
+
+- <https://www.youtube.com/watch?v=nKW8Ndu7Mjw&ab_channel=GoogleCloudPlatform>
+
+---
+
+# Machine learning using the caret package
+
+The `r BiocStyle::CRANpkg("caret")` package (short for **C**lassification **A**nd **RE**gression **T**raining) is a set of functions that attempt to streamline the process for creating predictive models.
+It is the R equivalent to the Python [*scikit-learn*](https://scikit-learn.org/) library.
+
+The package contains diverse functionality for each step of machine learning, including tools for:
+
+- data splitting
+
+- pre-processing
+
+- feature selection
+
+- model tuning using resampling
+
+- variable importance estimation
+
+---
+
+# Training models using caret
+
+## Partition dataset in training and test sets
+
+The vector of outcomes `y` is used to sample randomly _within_ each level or percentile, so that each categorical or continuous outcome is represented in both the training and test data sets.
+
+```{r, include=TRUE, echo=TRUE}
+set.seed(998)
+inTraining <- createDataPartition(iris$Species, p = .75, list = FALSE)
+training <- iris[ inTraining,]
+testing  <- iris[-inTraining,]
+```
+
+.pull-left[
+## Set training parameters
+
+```{r, include=TRUE, echo=TRUE}
+fitControl <- trainControl(
+  method = "boot", ## bootstrap
+  number = 5) ## repeated ten times
+```
+]
+
+.pull-right[
+## Train the model
+
+`modelLookup()` documents model parameters.
+
+```{r, include=TRUE, echo=TRUE}
+knnFit <- train(
+  Species ~ ., data = training, 
+  method = "knn", trControl = fitControl,
+  tuneGrid = data.frame(k = c(1,2,5,10,20)))
+```
+]
+
+---
+
+# Visualising model performance in caret
+
+```{r, include=TRUE, echo=TRUE, fig.align='center', out.height='400px'}
+ggplot(knnFit)
+```
+
+---
+
+# Apply a model to make predictions on new data
+
+## Make predictions
+
+```{r, include=TRUE, echo=TRUE}
+knnPred <- predict(knnFit, newdata = testing)
+```
+
+## Measure performance
+
+```{r, include=TRUE, echo=TRUE}
+confusionMatrix(data = knnPred, testing$Species)$table
+```
+
+```{r, include=TRUE}
+confusionMatrix(data = knnPred, testing$Species)$overall["Accuracy"]
+```
+
+---
+
+# Exercise
+
+## Classification
+
+The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris.
+
+We will use machine learning to build a model that classifies flowers, predicting a species based on the measurements.
+
+- Get familiar with the data set. What are rows? What are columns?
+
+- Use the [caret::featurePlot()](http://topepo.github.io/caret/visualizations.html) function to visualise species and measurements.
+  Try the different options for the `plot` argument.
+
+- [Partition](http://topepo.github.io/caret/data-splitting.html) the data set into one training and one test set.
+  Make sure the two sets are balanced with respect to `Species`.
+
+- [Train a model](http://topepo.github.io/caret/model-training-and-tuning.html#an-example), e.g. linear SVM (Support Vector Machine), random forest.
+
+- Inspect and evaluate the performance of the model during training.
+
+- Use the model to make predictions on the test set.
+  How accurate is the model?
+
+???
+
+Sources:
+
+- <https://topepo.github.io/caret/visualizations.html>
+
+---
+
+# Exercise
+
+## Regression
+
+The `BostonHousing` data set contains housing data for 506 census districts of Boston from the 1970 census.
+
+We will use machine learning to build a model that predicts the value of properties based on various pieces of information about the property and its environment.
+
+- Get familiar with the data set. What are rows? What are columns? Are there outliers?
+
+- [Partition](http://topepo.github.io/caret/data-splitting.html) the data set into one training and one test set.
+  Make sure the two sets are balanced with respect to `medv` (the median house value of districts).
+
+- [Train a model](http://topepo.github.io/caret/model-training-and-tuning.html#an-example), e.g. a linear regression model.
+
+- Inspect and evaluate the performance of the model during training.
+
+- Use the model to make predictions on the test set.
+  How accurate is our model?
+
+- Can we improve the predictive accuracy of our model using other variables (or combinations thereof) in the data set?
+
+---
+
+# Further reading
+
+- The `caret` Package: <https://topepo.github.io/caret/>
+
+- Cheatsheet for Scikit-learn (Python) & caret (R) packages, by [Kunal Jain](https://www.analyticsvidhya.com/blog/2016/12/cheatsheet-scikit-learn-caret-package-for-python-r-respectively/)
+
+- Machine Learning with Python scikit-learn Vs R Caret, by [Fisseha Berhane](https://datascience-enthusiast.com/R/ML_python_R_part1.html)
+
+- Machine Learning with caret in R [DataCamp](https://www.datacamp.com/courses/machine-learning-toolbox)
+
+- 238 models available in caret: [https://topepo.github.io/](https://topepo.github.io/caret/available-models.html)
+
+- What is Machine Learning, by [Google Could AI Adventures](https://youtu.be/HcqpanDadyQ)
+
+- The 7 steps of machine learning, by [Google Could AI Adventures](https://youtu.be/nKW8Ndu7Mjw)
+
+- Predictive modeling and machine learning in R with the caret package, by [ZevRoss.com](http://zevross.com/blog/2017/09/19/predictive-modeling-and-machine-learning-in-r-with-the-caret-package/)
+
+---
+
+# Further reading
+
+## ggplot2
+
+- Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
+
+## renv
+
+- [Documentation (pkgdown)](https://rstudio.github.io/renv/)
+
+---
+
+# References
+
+.small-text[
+```{r, include=TRUE, echo=FALSE, results="asis"}
+if (length(bib) > 0) {
+  PrintBibliography(bib)
+} else {
+  cat("<p align='center'>n/a</p>")
+}
+```
+]

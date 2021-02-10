@@ -1,0 +1,126 @@
+---
+title: "Introduction to machine learning"
+author: "Kevin Rue-Albrecht"
+date: "02/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(cowplot)
+library(ellipse)
+library(kernlab)
+```
+
+# Exercise
+
+## Classification
+
+The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris.
+
+We will use machine learning to build a model that classifies flowers, predicting a species based on the measurements.
+
+- Get familiar with the data set. What are rows? What are columns?
+
+```{r}
+"Each row represents one flower"
+"Each column reports either a feature or the known flower species"
+```
+
+
+- Use the [caret::featurePlot()](http://topepo.github.io/caret/visualizations.html) function to visualise species and measurements.
+  Try the different options for the `plot` argument.
+
+```{r}
+featurePlot(x = iris[, 1:4], 
+            y = iris$Species,
+            plot = "ellipse")
+```
+
+```{r}
+featurePlot(x = iris[, 1:4], 
+            y = iris$Species, 
+            plot = "pairs",
+            ## Add a key at the top
+            auto.key = list(columns = 3))
+```
+
+```{r}
+featurePlot(x = iris[, 1:4], 
+            y = iris$Species,
+            plot = "density",
+            ## Pass in options to xyplot() to 
+            ## make it prettier
+            scales = list(x = list(relation="free"), 
+                          y = list(relation="free")))
+```
+
+```{r}
+featurePlot(x = iris[, 1:4], 
+            y = iris$Species, 
+            plot = "box",
+            scales = list(y = list(relation="free")))
+```
+
+- [Partition](http://topepo.github.io/caret/data-splitting.html) the data set into one training and one test set.
+  Make sure the two sets are balanced with respect to `Species`.
+
+```{r}
+set.seed(3456)
+trainIndex <- createDataPartition(iris$Species, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+dim(trainIndex)
+```
+
+```{r}
+irisTrain <- iris[ trainIndex,]
+irisTest  <- iris[-trainIndex,]
+```
+
+```{r}
+table(irisTrain$Species)
+table(irisTest$Species)
+```
+
+- [Train a model](http://topepo.github.io/caret/model-training-and-tuning.html#an-example), e.g. linear SVM (Support Vector Machine), random forest.
+
+```{r}
+modelLookup("svmLinear")
+```
+
+```{r}
+svmLinearFit <- train(x = irisTrain[, 1:4],
+                      y = irisTrain[, 5],
+                      method = "svmLinear",
+                      tuneGrid = expand.grid(C = c(0.5, 1, 1.5, 2)))
+svmLinearFit
+```
+
+- Inspect and evaluate the performance of the model during training.
+
+```{r}
+plot(svmLinearFit)
+```
+
+```{r}
+ggplot(svmLinearFit)
+```
+
+- Use the model to make predictions on the test set.
+  How accurate is the model?
+
+```{r}
+svmLinearPred <- predict(svmLinearFit, newdata = irisTest[, 1:4])
+svmLinearPred
+```
+
+```{r}
+confusionMatrix(svmLinearPred, irisTest$Species)
+```
+
+```{r}
+table(svmLinearPred, irisTest$Species)
+```
+
