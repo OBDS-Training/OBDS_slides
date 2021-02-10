@@ -7,10 +7,12 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(caret)
 library(ggplot2)
 library(cowplot)
 library(ellipse)
 library(kernlab)
+library(mlbench)
 ```
 
 # Exercise
@@ -24,10 +26,8 @@ We will use machine learning to build a model that classifies flowers, predictin
 - Get familiar with the data set. What are rows? What are columns?
 
 ```{r}
-"Each row represents one flower"
-"Each column reports either a feature or the known flower species"
+head(iris)
 ```
-
 
 - Use the [caret::featurePlot()](http://topepo.github.io/caret/visualizations.html) function to visualise species and measurements.
   Try the different options for the `plot` argument.
@@ -124,3 +124,93 @@ confusionMatrix(svmLinearPred, irisTest$Species)
 table(svmLinearPred, irisTest$Species)
 ```
 
+# Exercise
+
+## Regression
+
+The `BostonHousing` data set contains housing data for 506 census districts of Boston from the 1970 census.
+Load it from the `r BiocStyle::CRANpkg("mlbench")` using `data(BostonHousing)`.
+
+We will use machine learning to build a model that predicts the value of properties based on various pieces of information about properties and their environment.
+
+- Get familiar with the data set. What are rows? What are columns? Are there outliers?
+
+```{r}
+data("BostonHousing")
+head(BostonHousing)
+```
+
+```{r}
+hist(BostonHousing$medv, breaks = 100)
+```
+
+- [Partition](http://topepo.github.io/caret/data-splitting.html) the data set into one training and one test set.
+  Make sure the two sets are balanced with respect to `medv` (the median house value of districts).
+
+```{r}
+set.seed(3456)
+trainIndex <- createDataPartition(BostonHousing$medv, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+dim(trainIndex) # 407 rows = 80% of 506 original rows
+```
+
+```{r}
+bostonTrain <- BostonHousing[ trainIndex,]
+bostonTest  <- BostonHousing[-trainIndex,]
+```
+
+```{r}
+plot_data <- BostonHousing %>%
+  mutate(split = "test")
+plot_data$split[trainIndex] <- "train"
+ggplot(plot_data, aes(medv)) +
+  geom_histogram() +
+  facet_wrap(~split, ncol = 1, scales = "free_y")
+```
+
+- [Train a model](http://topepo.github.io/caret/model-training-and-tuning.html#an-example), e.g. a linear regression model.
+  Start with a subset of predictors, e.g. `lstat`.
+
+```{r}
+modelLookup("lm")
+```
+
+```{r}
+lmFit <- train(form = medv~lstat,
+               data = bostonTrain,
+               method = "lm")
+lmFit
+```
+
+- Inspect and evaluate the performance of the model during training.
+
+```{r}
+summary(lmFit)
+```
+
+```{r}
+lmFit$finalModel
+```
+
+- Use the model to make predictions on the test set.
+  How accurate is our model?
+
+```{r}
+lmPred <- predict(lmFit, newdata = bostonTest)
+lmPred
+```
+
+```{r}
+lmCompare <- data.frame(
+  medv_predicted = lmPred,
+  medv_truth = bostonTest$medv
+)
+ggplot(lmCompare, aes(medv_truth, medv_predicted)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  cowplot::theme_cowplot()
+```
+
+- Can we improve the predictive accuracy of our model?
+  e.g. using other variables (or combinations thereof) in the data set, removing outliers.
