@@ -529,10 +529,6 @@ We will use machine learning to build a model that predicts the value of propert
 
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
-if (length(bib) > 0) {
-  PrintBibliography(bib)
-} else {
-  cat("<p align='center'>n/a</p>")
-}
+PrintBibliography(bib)
 ```
 ]
