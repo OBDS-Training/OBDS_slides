@@ -491,7 +491,6 @@ Call `renv::update()` to update packages that are out-of-date.
 
 **Note:** Currently, only CRAN and GitHub package sources are supported (e.g.., not Bioconductor).
 
-
 ---
 
 # Save the state of an environment
