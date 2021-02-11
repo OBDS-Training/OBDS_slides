@@ -72,6 +72,20 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
+# Setup
+
+- Open the RStudio project `r_ggplot2` that we created earlier.
+
+**Note:** this project has a project library that contains the package `r BiocStyle::CRANpkg("ggplot2")` and its dependencies.
+
+- Open a new R markdown document.
+  Select the HTML output format.
+
+**Note:** you will use this file to write your code as well as notes.
+One convenient feature of R markdown documents is that they display outputs (e.g. plots) next to the code chunks that produced them.
+
+---
+
 # Lesson goals and objectives
 
 ## Learning goals
