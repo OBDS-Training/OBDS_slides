@@ -66,6 +66,8 @@ bib <- ReadBib("bibliography.bib")
 - A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
+
+- An RStudio project with a project library including `r BiocStyle::CRANpkg("ggplot2")`.
 ]
 
 ---
