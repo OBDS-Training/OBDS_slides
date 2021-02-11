@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-n/a
+- An RStudio project with a project library including `ggplot2`, created during [Introduction to renv](../r_renv).
 
 ## General
 
