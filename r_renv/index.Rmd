@@ -127,7 +127,9 @@ knitr::include_graphics("img/projects_new.png")
 
 # Exercise
 
-## Create a test project
+## Create a project
+
+- Launch the **new Project Wizard**.
 
 - Select **New Directory**.
 
@@ -145,6 +147,8 @@ knitr::include_graphics("img/projects_new.png")
 
 **Note:** The latter may not be visible if `r BiocStyle::CRANpkg("renv")` is not installed.
   We will install it later.
+
+- Click on the button **Create Project**.
 
 ---
 
@@ -244,7 +248,7 @@ There are two ways to accomplish this:
 There are several options that can be set on a per-project basis to customize the behavior of RStudio.
 You can edit these options using the **Project Options** command on the **Project** menu:
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px', out.width='500px'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='350px', out.width='450px'}
 knitr::include_graphics("img/project_options.png")
 ```
 
@@ -360,7 +364,9 @@ Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your 
 
 ---
 
-# Install `renv`
+# Exercise
+
+## Install `renv`
 
 In RStudio:
 
@@ -368,9 +374,23 @@ In RStudio:
 
 - Install `r BiocStyle::CRANpkg("renv")`.
 
-**Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _system_ R library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
+```{r, include=TRUE, eval=FALSE}
+install.packages("renv")
+```
+
+**Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _system_ package library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
 
 - Restart RStudio, to make sure that the changes take effect, and that RStudio has access to the newly installed package(s).
+
+---
+
+# Exercise
+
+## Open a project
+
+- Switch back to the `r_ggplot2` project that you created earlier.
+
+**Note:** at this point the project still uses your _system_ package library.
 
 ---
 
@@ -390,11 +410,11 @@ The following package(s) will be updated in the lockfile:
 # CRAN ===============================
 - renv   [* -> 0.12.5]
 
-* Lockfile written to '~/github/kevinrue/obds-training-jan2021/r_ggplot2/renv.lock'.
+* Lockfile written to '~/github/kevinrue/obds-training-2021jan/r_ggplot2/renv.lock'.
 
 Restarting R session...
 
-* Project '~/github/kevinrue/obds-training-jan2021/r_ggplot2' loaded. [renv 0.12.5]
+* Project '~/github/kevinrue/obds-training-2021jan/r_ggplot2' loaded. [renv 0.12.5]
 ```
 
 ---
@@ -422,9 +442,9 @@ When a new environment is created, `r BiocStyle::CRANpkg("renv")` :
 .pull-left[
 In a new R environment, the **Packages** pane will include:
 
-- base packages, in the system library (installed with <i class="fab fa-r-project"></i>).
+- base packages, in the _system_ library (installed with <i class="fab fa-r-project"></i>).
 
-- the `r BiocStyle::CRANpkg("renv")` package, installed in the project library.
+- the `r BiocStyle::CRANpkg("renv")` package, installed in the _project_ library.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
 knitr::include_graphics("img/renv-library-init.png")
@@ -564,10 +584,6 @@ The function `renv::restore()` :
 
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
-if (length(bib) > 0) {
-  PrintBibliography(bib)
-} else {
-  cat("<p align='center'>n/a</p>")
-}
+PrintBibliography(bib)
 ```
 ]
