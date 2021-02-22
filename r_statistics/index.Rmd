@@ -1037,30 +1037,6 @@ The `iris` data set gives the measurements in centimeters of the variables sepal
 
 ---
 
-# Exercise
-
-## Linear regression
-
-The `ChickWeight` data set measures the impact of different diets on the early growth of chicks.
-
-- Visualise the evolution of weight over time, colored by diet.
-
-- Fit a linear model to measure the average effect of `Time` on weight.
-
-- Overlay the trend line to the plot above.
-
-- Fit a linear model to measure the combined effects of `Time` and `Diet` on weight.
-
-- Overlay the trend line for each diet to the plot above.
-
-- Which diet leads to the fastest increase in body weight?
-
-- On average, how much does weight increase per unit of `Time` for the top diet?
-
-- Does the top diet drive an increase in body weight that is significantly faster than the next best diet?
-
----
-
 # Multiple-testing correction
 
 ## Hypothesis
