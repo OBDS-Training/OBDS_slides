@@ -146,6 +146,130 @@ Can you tell which of these are _classification_ or _regression_ problems?
 
 ---
 
+# Linear regression is an example of machine learning
+
+The `cars` data set gives the speed of cars and the distances taken to stop.
+
+.pull-left[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+ggplot(cars, aes(speed, dist)) +
+  geom_point()
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+ggplot(cars, aes(speed, dist)) +
+  geom_point() +
+  stat_smooth(method = "lm")
+```
+]
+
+---
+
+# Linear regression models can be used to make predictions
+
+The `cars` data set gives the speed of cars and the distances taken to stop.
+
+.pull-left[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+ggplot(cars, aes(speed, dist)) +
+  geom_point()
+```
+]
+
+.pull-right[
+.small-code[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+ggplot(cars, aes(speed, dist)) +
+  geom_point() +
+  stat_smooth(method = "lm", fullrange=TRUE) +
+  xlim(xlim = c(0, 50))
+```
+]
+]
+
+---
+
+# Fit a linear model in base <i class="fab fa-r-project"></i>
+
+```{r, include=TRUE}
+cars_lm_fit <- lm(dist ~ speed, cars)
+cars_lm_fit
+```
+
+---
+
+# Summarise a linear model in base <i class="fab fa-r-project"></i>
+
+.pull-left[
+.small-code[
+```{r, include=TRUE}
+summary(cars_lm_fit)
+```
+]
+]
+
+.pull-right[
+.small-code[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+ggplot(cars, aes(speed, dist)) +
+  geom_point() +
+  stat_smooth(method = "lm", fullrange=TRUE) +
+  xlim(xlim = c(0, NA))
+```
+]
+]
+
+---
+
+# Make predictions from a linear model in base <i class="fab fa-r-project"></i>
+
+```{r, include=TRUE}
+predict(cars_lm_fit, data.frame(speed = c(1, 2, 5, 10, 20, 50)))
+```
+
+.pull-left[
+.small-code[
+```{r, include=TRUE, echo=TRUE, out.height='300px', fig.align='center'}
+gg <- ggplot(cars, aes(speed, dist)) +
+  geom_point() +
+  stat_smooth(method = "lm", fullrange=TRUE) +
+  geom_point(
+    aes(Speed, Dist), color = "red",
+    tibble(
+      Speed = c(1, 2, 5, 10, 20, 50),
+      Dist = predict(cars_lm_fit, tibble(speed = c(1, 2, 5, 10, 20, 50)))
+    )) +
+  xlim(xlim = c(0, NA))
+```
+]
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, out.height='300px', fig.align='center'}
+print(gg)
+```
+]
+
+---
+
+# Exercise
+
+## Linear regression
+
+The `ChickWeight` data set measures the impact of different diets on the early growth of chicks.
+
+- Fit a linear mode to measure the effect of `Time` and `Diet` in the `ChickWeight` data set.
+
+- Which diet leads to the fastest increase in body weight?
+
+- How much does weight increase per unit of `Time` for the top diet?
+
+- Does the top diet drive an increase in body weight that is significantly faster than the next best diet?
+
+---
+
 # The 7 Steps of machine learning
 
 .x-large-list[

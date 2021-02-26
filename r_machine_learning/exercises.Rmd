@@ -7,12 +7,55 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 library(caret)
 library(ggplot2)
 library(cowplot)
 library(ellipse)
 library(kernlab)
 library(mlbench)
+```
+
+# Exercise
+
+## Linear regression
+
+The `ChickWeight` data set measures the impact of different diets on the early growth of chicks.
+
+- Fit a linear mode to measure the effect of `Time`, `Diet` -- and their interaction term -- in the `ChickWeight` data set.
+
+```{r}
+out <- lm(weight ~ Time * Diet, ChickWeight)
+summary(out)
+```
+
+- Which diet leads to the fastest increase in body weight?
+
+```{r}
+"Diet3"
+```
+
+- How much does weight increase per unit of `Time` for the top diet?
+
+```{r}
+6.8418 + 4.5811
+```
+
+- Add a line with manually defined slope and intercept for the top diet, on top of the smoothed linear models computed by `ggplot2` to demonstrate your previous answer.
+
+```{r}
+ggplot(ChickWeight, aes(Time, weight, color = as.factor(Diet))) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point() +
+  geom_abline(intercept = 30.9310 -12.6807, slope = 6.8418 + 4.5811)
+```
+
+- Does the top diet drive an increase in body weight that is significantly faster than the next best diet?
+
+```{r}
+ChickWeight$Diet <- relevel(ChickWeight$Diet, "3")
+out <- lm(weight ~ Time * Diet, ChickWeight)
+summary(out) # yes..ish, second best is Diet4, p < 0.01 (no multiple testing correction)
 ```
 
 # Exercise
