@@ -60,7 +60,7 @@ bib <- ReadBib("bibliography.bib")
 
 - Recognise where <i class="fab fa-git"></i> stores information.
 
-- Practice how to record changes in <i class="fab fa-git"></i>. 
+- Practice how to record changes in <i class="fab fa-git"></i>.
 
 ## Goals
 
@@ -71,6 +71,20 @@ bib <- ReadBib("bibliography.bib")
 - Publish your contributions in the shared repository.
 
 - Retrieve contributions from other participants in the shared repository.
+
+---
+
+# Pre-requisites
+
+- The [<i class="fab fa-git"></i>](https://git-scm.com/) software (version 2.29.x and later is required).
+
+If the course is run on a remote cluster, <i class="fab fa-git"></i> should already be installed; you don't need to do anything.
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
+
+- Accept the invitation to be a member of the GitHub Organisation [OBDS-Training](https://github.com/OBDS-Training).
+
+Those last two points are required to grant you access to private repositories that are only visible to members of the organisation.
 
 ---
 
