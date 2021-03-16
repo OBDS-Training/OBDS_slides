@@ -64,13 +64,15 @@ bib <- ReadBib("bibliography.bib")
 
 ## Goals
 
-- Get your own copy of the shared repository.
+- Get your own copy of the shared repository for this course.
 
 - Edit files and record your changes.
 
 - Publish your contributions in the shared repository.
 
 - Retrieve contributions from other participants in the shared repository.
+
+- Examine the history of contributions to the shared repository.
 
 ---
 
@@ -85,6 +87,10 @@ If the course is run on a remote cluster, <i class="fab fa-git"></i> should alre
 - Accept the invitation to be a member of the GitHub Organisation [OBDS-Training](https://github.com/OBDS-Training).
 
 Those last two points are required to grant you access to private repositories that are only visible to members of the organisation.
+
+- A [SSH key pair]() - ideally password-protected - added to your GitHub account.
+
+This will allow the <i class="fab fa-github"></i> GitHub server to verify your identity when you programmatically interact with it.
 
 ---
 
