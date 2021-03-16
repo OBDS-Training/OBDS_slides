@@ -88,7 +88,7 @@ If the course is run on a remote cluster, <i class="fab fa-git"></i> should alre
 
 Those last two points are required to grant you access to private repositories that are only visible to members of the organisation.
 
-- A [SSH key pair]() - ideally password-protected - added to your GitHub account.
+- A [SSH key pair](https://www.ssh.com/ssh/public-key-authentication) - ideally password-protected - added to your GitHub account.
 
 This will allow the <i class="fab fa-github"></i> GitHub server to verify your identity when you programmatically interact with it.
 
