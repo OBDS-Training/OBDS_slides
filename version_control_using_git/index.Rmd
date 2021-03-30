@@ -3,7 +3,7 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: '&emsp;'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-01-22 (updated: `r Sys.Date()`)"
+date: "2021-05-10 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -91,6 +91,10 @@ Those last two points are required to grant you access to private repositories t
 - A [SSH key pair](https://www.ssh.com/ssh/public-key-authentication) - ideally password-protected - added to your GitHub account.
 
 This will allow the <i class="fab fa-github"></i> GitHub server to verify your identity when you programmatically interact with it.
+
+- A [shared GitHub repository](https://github.com/OBDS-Training/OBDS_Training_May_2021) for this course.
+
+This one is on us; we prepared it before the course.
 
 ---
 
