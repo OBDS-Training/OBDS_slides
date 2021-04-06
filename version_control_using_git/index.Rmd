@@ -132,6 +132,7 @@ knitr::include_graphics("img/phd101212s.gif")
 ## Microsoft Word
 
 ```{r, out.height='400px', out.width='600px'}
+# Source: https://medium.com/jumpto365/sharepoint-version-history-isnt-track-changes-fae1b71754ea
 knitr::include_graphics("img/microsoft-word-track-changes.png")
 ```
 
