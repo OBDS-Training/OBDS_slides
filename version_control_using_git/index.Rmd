@@ -305,7 +305,7 @@ $ git config --global email
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name "Kevin Rue-Albrecht"
-$ git config --global email "kevin.rue-albrecht@imm.ox.ac.uk"
+$ git config --global email "kevinrue@users.noreply.github.com"
 ```
 
 ---
