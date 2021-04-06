@@ -137,7 +137,7 @@ knitr::include_graphics("img/phd101212s.gif")
 
 - Go back to any version at any time.
 
-**What would you like from a tool to track changes?**
+**What do _you_ expect from a tool to track changes?**
 ]
 
 ---
@@ -182,6 +182,8 @@ Result:
 
 # Changes can be made independently
 
+## Different versions
+
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
@@ -203,6 +205,8 @@ For example, different users make independent changes on the same document.
 
 # Independent changes can be incorporated
 
+## Merge sets of changes
+
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
@@ -218,9 +222,9 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 
 ---
 
-# Functionality of version tracking software
+# Summary: version tracking software
 
-- Keep track of changes.
+- Keep track of changes (i.e. differences or _diffs_).
 
   + Effectively creating different _versions_ of our files.
 
@@ -230,9 +234,53 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 
 - The complete history of _commits_ for a given project makes upa _repository_.
 
-- _Repositories_ can be kept in sync across different computers (i.e. _remotes).
+- _Repositories_ can be kept in sync across different computers (i.e. _remotes_).
 
   + Each copy of the repository is called a _clone_.
+
+---
+
+# The Long History of Version Control Systems
+
+Tools like [RCS](https://git.savannah.gnu.org/cgit/rcs.git), [CVS](https://savannah.nongnu.org/projects/cvs), or [Subversion](https://subversion.apache.org/) have been around since the early 1980s and are used by many large companies.
+
+However, many of these are now considered legacy systems (i.e., _outdated_) due to various limitations in their capabilities.
+
+More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https://www.mercurial-scm.org/), are _distributed_, meaning that they do not need a centralized server to host the repository.
+
+---
+
+# Getting start with <i class="fab fa-git"></i>
+
+Use SSH to open a terminal on the cluster that we use for this training.
+
+The `which` command prints the path to the `git` executable.
+What path does it give you?
+
+```{bash, eval=FALSE, echo=TRUE}
+$ which git
+```
+
+The `git` command has many sub-commands, options, and flags.
+You can run `git` alone to list the sub-commands and a short description of each.
+How many sub-commands do you see?
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git
+```
+
+The `--version` flag asks `git` to print the version of the `git` executable that is used.
+What version of `git` are you running?
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git --version
+```
+
+You can access more detailed help for any sub-command using the `--help` flag.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git clone --help
+```
 
 ---
 
