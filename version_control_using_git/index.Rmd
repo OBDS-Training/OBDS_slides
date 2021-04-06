@@ -161,7 +161,7 @@ LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Comm
 
 # Track changes using version control
 
-## In _one_ document
+## Versions and changes
 
 ```{r, fig.align='center', out.height='200px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
@@ -290,7 +290,7 @@ $ git clone --help
 Pre-requisites:
 
 - What is version control
-  + Microsoft Word 'Track Changes'
+  x Microsoft Word 'Track Changes'
   + Renaming a function throughout a project
 
 - What is a repository
