@@ -98,6 +98,69 @@ This one is on us; we prepared it before the course.
 
 ---
 
+# What is version control and why should I use it?
+
+.pull-left[
+```{r}
+knitr::include_graphics("img/phd101212s.gif")
+# Source: http://www.phdcomics.com/comics/archive/phd101212s.gif
+```
+]
+
+.pull-right[
+- Try various ideas.
+
+- Track additions and deletions to a base document.
+
+- Undo and re-apply changes.
+
+- Integrate contributions from multiple authors.
+
+- Backup important work.
+
+- Manage and resolve conflicting changes.
+
+- Go back to any version at any time.
+
+**What would you like from a tool to track changes?**
+]
+
+---
+
+# Track changes
+
+## Microsoft Word
+
+```{r, out.height='400px', out.width='600px'}
+knitr::include_graphics("img/microsoft-word-track-changes.png")
+```
+
+**In your opinion, what are pros/cons of this method to track changes?**
+
+---
+
+
+---
+
+# Clone the shared repository
+
+<!--
+Pre-requisites:
+
+- What is version control
+  + Microsoft Word 'Track Changes'
+  + Renaming a function throughout a project
+
+- What is a repository
+  + Files on disk
+  + Database of commits
+
+- What is a remote
+  + a repository that is hosted on a remote 
+-->
+
+---
+
 # Further reading
 
 ## Novice
