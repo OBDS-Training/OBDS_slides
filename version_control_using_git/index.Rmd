@@ -1,5 +1,5 @@
 ---
-title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
 subtitle: '&emsp;'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
@@ -23,7 +23,7 @@ layout: true
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
+Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
 </span></div> 
 
 ```{r setup, include = FALSE}
@@ -98,6 +98,21 @@ This one is on us; we prepared it before the course.
 
 ---
 
+# Credits
+
+```{r, out.height='300px'}
+knitr::include_graphics("img/TheCarpentries.svg")
+# Source: https://carpentries.org/
+```
+
+.center[
+Version Control with Git
+
+<https://swcarpentry.github.io/git-novice/>
+]
+
+---
+
 # What is version control and why should I use it?
 
 .pull-left[
@@ -131,15 +146,93 @@ knitr::include_graphics("img/phd101212s.gif")
 
 ## Microsoft Word
 
-```{r, out.height='400px', out.width='600px'}
+```{r, out.height='350px', out.width='500px'}
 # Source: https://medium.com/jumpto365/sharepoint-version-history-isnt-track-changes-fae1b71754ea
 knitr::include_graphics("img/microsoft-word-track-changes.png")
 ```
 
-**In your opinion, what are pros/cons of this method to track changes?**
+Other examples:
+Google Docs [version history](https://support.google.com/docs/answer/190843?hl=en),
+LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Common/Recording_and_Displaying_Changes).
+
+**In your opinion, what are pros/cons of track changes in this way?**
 
 ---
 
+# Track changes using version control
+
+## In _one_ document
+
+```{r, fig.align='center', out.height='200px'}
+# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+knitr::include_graphics("img/carpentries-play-changes.svg")
+```
+
+Process:
+
+- Start with a base version of the document.
+- Then, record changes that you make along the way (i.e. checkpoints).
+
+Result:
+
+- You can rewind to any version of the document (up to the base version).
+- You can play back each change that you made (up to the most recent version).
+
+---
+
+# Changes can be made independently
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+knitr::include_graphics("img/carpentries-versions.svg")
+```
+]
+
+.pull-right[
+Changes are separate from the document itself.
+
+- You can play back different sets of changes on the base document.
+
+- Those changes result in different versions of that document.
+
+For example, different users make independent changes on the same document.
+]
+
+---
+
+# Independent changes can be incorporated
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+knitr::include_graphics("img/carpentries-merge.svg")
+```
+]
+
+.pull-right[
+Unless changes affect the same lines of the document (i.e., conflicts):
+
+- changes can be _merged_ into the same base document.
+]
+
+---
+
+# Functionality of version tracking software
+
+- Keep track of changes.
+
+  + Effectively creating different _versions_ of our files.
+
+- Allows users to decide which changes are made to the next version.
+
+  + Each record of changes is called a _commit_.
+
+- The complete history of _commits_ for a given project makes upa _repository_.
+
+- _Repositories_ can be kept in sync across different computers (i.e. _remotes).
+
+  + Each copy of the repository is called a _clone_.
 
 ---
 
