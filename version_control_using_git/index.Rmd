@@ -299,6 +299,7 @@ The `git config` sub-command can be used to get and set those settings.
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name
 $ git config --global email
+$ git config --global core.editor
 ```
 
 ## Setting
@@ -306,6 +307,7 @@ $ git config --global email
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name "Kevin Rue-Albrecht"
 $ git config --global email "kevinrue@users.noreply.github.com"
+$ git config --global core.editor "nano -w"
 ```
 
 ---
