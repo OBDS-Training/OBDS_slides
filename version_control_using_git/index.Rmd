@@ -64,15 +64,15 @@ bib <- ReadBib("bibliography.bib")
 
 ## Goals
 
-- Get your own copy of the shared repository for this course.
+- Get (i.e., _clone_) your own copy of the shared repository for this course.
 
-- Edit files and record your changes.
+- Edit files and record (i.e., _commit_) your changes.
 
-- Publish your contributions in the shared repository.
+- Publish (i.e., _push_) your contributions in the shared repository.
 
-- Retrieve contributions from other participants in the shared repository.
+- Retrieve (i.e., _pull_) contributions from other participants in the shared repository.
 
-- Examine the history of contributions to the shared repository.
+- Examine the history (i.e., _log_) of contributions (i.e., _commits_) to the shared repository.
 
 ---
 
@@ -219,6 +219,26 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 
 - changes can be _merged_ into the same base document.
 ]
+
+---
+
+# Tracking simultaneous changes to multiple files 
+
+```{r, fig.align='center', out.height='200px', out.width='800px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/commit-multiple-files.png")
+```
+
+Process:
+
+- Add each file to the next set of changes (i.e., _staging area_).
+- Then, add this set of changes to the repository (i.e., _commit_).
+
+Result:
+
+- That set of changes is recorded as a single unit in the repository.
+- Undoing or playing back these changes applies all the changes simultaneously.
+- It is _not_ possible to undo or play back these changes in one file independently from the other files.
 
 ---
 
