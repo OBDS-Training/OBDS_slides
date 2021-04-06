@@ -314,19 +314,19 @@ On each computer where we use <i class="fab fa-git"></i>, we need to configure a
 
 The `git config` sub-command can be used to get and set those settings.
 
-## Getting
+Getting:
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name
-$ git config --global email
+$ git config --global user.email
 $ git config --global core.editor
 ```
 
-## Setting
+Setting:
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name "Kevin Rue-Albrecht"
-$ git config --global email "kevinrue@users.noreply.github.com"
+$ git config --global user.email "kevinrue@users.noreply.github.com"
 $ git config --global core.editor "nano -w"
 ```
 
@@ -334,20 +334,20 @@ $ git config --global core.editor "nano -w"
 
 # Clone the shared repository
 
-<!--
-Pre-requisites:
+In this step, you will each get (i.e., _clone_) your own copy of the shared repository for this course.
 
-- What is version control
-  x Microsoft Word 'Track Changes'
-  + Renaming a function throughout a project
+The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
-- What is a repository
-  + Files on disk
-  + Database of commits
+```{bash, eval=FALSE, echo=TRUE}
+$ mkdir -p $HOME/devel
+$ cd $HOME/devel
+$ git clone git@github.com:OBDS-Training/OBDS_Training_May_2021.git
+```
 
-- What is a remote
-  + a repository that is hosted on a remote 
--->
+```{r, fig.align='center', out.height='300px'}
+# Source: https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone
+knitr::include_graphics("img/atlassian-clone.svg")
+```
 
 ---
 
