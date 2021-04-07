@@ -428,6 +428,17 @@ knitr::include_graphics("img/branch-conflict.png")
 
 ---
 
+# Working on branches
+
+## Work independently
+
+```{r, fig.align='center', out.height='400px', out.width='400px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-no-conflict.png")
+```
+
+---
+
 # Further reading
 
 ## Novice
