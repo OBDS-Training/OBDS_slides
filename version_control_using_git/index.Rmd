@@ -168,12 +168,12 @@ LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Comm
 knitr::include_graphics("img/carpentries-play-changes.svg")
 ```
 
-Process:
+#### Process
 
 - Start with a base version of the document.
 - Then, record changes that you make along the way (i.e. checkpoints).
 
-Result:
+#### Result
 
 - You can rewind to any version of the document (up to the base version).
 - You can play back each change that you made (up to the most recent version).
@@ -252,9 +252,9 @@ Result:
 
   + Each record of changes is called a _commit_.
 
-- The complete history of _commits_ for a given project makes upa _repository_.
+- The complete history of _commits_ for a given project makes up a _repository_.
 
-- _Repositories_ can be kept in sync across different computers (i.e. _remotes_).
+- Copies of a _repository_ can be kept in sync across different computers (i.e. _remotes_).
 
   + Each copy of the repository is called a _clone_.
 
@@ -314,7 +314,7 @@ On each computer where we use <i class="fab fa-git"></i>, we need to configure a
 
 The `git config` sub-command can be used to get and set those settings.
 
-Getting:
+#### Getting
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name
@@ -322,7 +322,7 @@ $ git config --global user.email
 $ git config --global core.editor
 ```
 
-Setting:
+#### Setting
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name "Kevin Rue-Albrecht"
@@ -364,14 +364,54 @@ $ cd OBDS_Training_May_2021
 $ ls -a
 ```
 
+#### Output
+
+```
+.  ..  .git  README.md
+```
+
 Git uses the `.git` sub-directory to store all the information about the project history.
 
+#### Result
+
 - Deleting the `.git` sub-directory is effectively discarding the _history_ of changes made to the repository.
-- However, deleting the `.git` sub-directory does not affect the _current state_ of the other sub-directories and files that make up your project.
+- However, deleting the `.git` sub-directory does not affect the _current state_ of the other sub-directories and files that make up your project (e.g., `README.md`).
 
 .center[
-**The history of changes is separate from the files themselves.**
+**Changes are stored separately from the files themselves.**
 ]
+
+---
+
+# Status of a repository
+
+The `git status` sub-command can be used to check whether the repository is up-to-date.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git status
+```
+
+#### Output
+
+```
+# On branch master
+nothing to commit, working directory clean
+```
+
+We will not discuss in further details the contents of the `.git` sub-directory.
+You can still have a brief look for yourself if you wish.
+Make sure that you do not alter anything in that sub-directory.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ ls -a .git/
+```
+
+#### Output
+
+```
+.   branches  description  hooks  info  objects      refs
+..  config    HEAD         index  logs  packed-refs
+```
 
 ---
 
