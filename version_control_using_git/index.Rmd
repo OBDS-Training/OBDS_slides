@@ -462,6 +462,81 @@ $ git status         # check the status of the repository (currently on branch k
 
 ---
 
+# Make changes
+
+First make sure that you have checked out a branch other than `master`.
+
+In the `git` sub-directory (not to be confused with `.git`), create a file called `<username>.md`, replacing `<username>` by your own GitHub user name.
+
+> I included an example `kevinrue.md`, as `kevinrue` is my GitHub user name.
+
+In that file, write you full name, following a hash tag symbol `#` and a space character.
+
+> For me, that looks like `# Kevin Rue-Albrecht`
+
+It is best practice to add a newline character at the end of this line.
+<i class="fab fa-git"></i> works best when the last line of each file is empty.
+
+#### Practice Bash
+
+You can also make a copy the example file and edit that copy, instead of creating the file from scratch yourself.
+
+---
+
+# Track changes
+
+We have just made changes to files in the repository.
+However, we have not told <i class="fab fa-git"></i> to record those changes yet.
+
+> Remember that changes are separate from the files themselves!
+
+The `git status` sub-command can be used to check the status of our project again.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git status
+```
+
+#### Output
+
+```
+# On branch usage
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	git/username.md
+```
+
+The "Untracked files" section reports files that are new and not track by <i class="fab fa-git"></i> yet.
+
+---
+
+# Track new files
+
+The `git add` sub-command can be used to add new files to the list of files tracked by <i class="fab fa-git"></i>.
+
+- As long as <i class="fab fa-git"></i> is not explicitly told to track new files, those files will exist in the _directory_ but not in the _repository_.
+- In other words, the file will exist, but changes to that file will not be tracked, and we will not be able to restore past versions of that file.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git add username.md
+$ git status
+```
+
+#### Output
+
+```
+# On branch usage
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   git/username.md
+#
+```
+
+**What changed in `git status` after running `git add`?**
+
+---
+
 # Further reading
 
 ## Novice
