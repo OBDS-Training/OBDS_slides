@@ -349,6 +349,30 @@ $ git clone git@github.com:OBDS-Training/OBDS_Training_May_2021.git
 knitr::include_graphics("img/atlassian-clone.svg")
 ```
 
+???
+
+- By default, the local directory will be named identically to the repository, it is possible to name it differently using `git clone git@github.com:OBDS-Training/OBDS_Training_May_2021.git local_directory_name`
+
+---
+
+# The `.git` subdirectory
+
+Change directory to your new local clone of the repository, and list its contents.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ cd OBDS_Training_May_2021
+$ ls -a
+```
+
+Git uses the `.git` sub-directory to store all the information about the project history.
+
+- Deleting the `.git` sub-directory is effectively discarding the _history_ of changes made to the repository.
+- However, deleting the `.git` sub-directory does not affect the _current state_ of the other sub-directories and files that make up your project.
+
+.center[
+**The history of changes is separate from the files themselves.**
+]
+
 ---
 
 # Further reading
