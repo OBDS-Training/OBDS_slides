@@ -364,8 +364,6 @@ $ cd OBDS_Training_May_2021
 $ ls -a
 ```
 
-#### Output
-
 ```
 .  ..  .git  README.md
 ```
@@ -391,8 +389,6 @@ The `git status` sub-command can be used to check whether the repository is up-t
 $ git status
 ```
 
-#### Output
-
 ```
 # On branch master
 nothing to commit, working directory clean
@@ -405,8 +401,6 @@ Make sure that you do not alter anything in that sub-directory.
 ```{bash, eval=FALSE, echo=TRUE}
 $ ls -a .git/
 ```
-
-#### Output
 
 ```
 .   branches  description  hooks  info  objects      refs
@@ -496,8 +490,6 @@ The `git status` sub-command can be used to check the status of our project agai
 $ git status
 ```
 
-#### Output
-
 ```
 # On branch usage
 # Untracked files:
@@ -522,8 +514,6 @@ $ git add username.md
 $ git status
 ```
 
-#### Output
-
 ```
 # On branch usage
 # Changes to be committed:
@@ -534,6 +524,42 @@ $ git status
 ```
 
 **What changed in `git status` after running `git add`?**
+
+---
+
+# The staging area
+
+We just ran `git add`, which added a set of changes to the _staging area_.
+
+- The _staging area_ contains the set of changes that will be recorded in the next _commit_.
+- You may add to the _staging area_ only a subset of the changes that you have made in the repository since the latest _commit_.
+- The _staging area_ can include changes made to multiple files.
+
+The `git commit` sub-command can be used to add changes currently in the _staging area_ in the next _commit_ of the _repository_.
+
+```{r, fig.align='center', out.height='200px', out.width='800px'}
+# Source: https://swcarpentry.github.io/git-novice/04-changes/index.html
+knitr::include_graphics("img/carpentries-git-staging-area.svg")
+```
+
+---
+
+# Record a set of changes 
+
+The `git commit` sub-command can be used to add changes currently in the _staging area_ in the next _commit_ of the _repository_.
+
+- The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git commit -m "Added a file for <username>"
+```
+
+```
+ 1 file changed, 1 insertion(+)
+ create mode 100644 git/username.md
+```
+
+**What information do you recognise in the message displayed as a result of the `git commit` command?**
 
 ---
 
