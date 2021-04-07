@@ -446,6 +446,7 @@ We will discuss later how to incorporate changes made on branches back into the 
 The `git branch` sub-command can be used to inspect and create branches in a copy of the repository.
 
 - This does not automatically synchronise remote copies of the repository.
+- You can only create branches with names that are not already used.
 
 The `git checkout` sub-command can be used to switch between branches.
 
