@@ -415,6 +415,19 @@ $ ls -a .git/
 
 ---
 
+# Working on branches
+
+## Conflict of histories
+
+```{r, fig.align='center', out.height='300px', out.width='400px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-conflict.png")
+```
+
+**What do you think will happen when David and Kevin push their respective `master` branch to GitHub?**
+
+---
+
 # Further reading
 
 ## Novice
