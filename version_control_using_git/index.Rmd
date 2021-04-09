@@ -663,7 +663,7 @@ On the page of the repository (<https://github.com/OBDS-Training/OBDS_Training_M
 - Unless a pull request already exists for that branch.
 
 ```{r, fig.align='center', out.height='75px', out.width='800px'}
-# In-house illustration made using Adobe Illustrator
+# Screenshot
 knitr::include_graphics("img/github-compare-and-pull-request.png")
 ```
 
@@ -674,9 +674,59 @@ knitr::include_graphics("img/github-compare-and-pull-request.png")
 GitHub also offers a page dedicated to creating pull requests.
 
 ```{r, fig.align='center', out.height='500px', out.width='800px'}
-# In-house illustration made using Adobe Illustrator
+# Screenshot
 knitr::include_graphics("img/github-new-pull-request.png")
 ```
+
+---
+
+# Create pull requests on GitHub
+
+## Comparing changes
+
+```{r, fig.align='center', out.height='375px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-compare-changes.png")
+```
+
+---
+
+# Create pull requests on GitHub
+
+## Open a pull request
+
+```{r, fig.align='center', out.height='450px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-open-pull-request.png")
+```
+
+---
+
+# Create pull requests on GitHub
+
+## Open a pull request
+
+```{r, fig.align='center', out.height='400px', out.width='550px'}
+# Screenshot
+knitr::include_graphics("img/github-pull-request.png")
+```
+
+.center[
+**What do you think is happening here?**
+]
+
+---
+
+# Review a pull request
+
+Often considered cumbersome, in practice manual reviews offer another chance to catch issues and provide feedback, before the changes are applied.
+
+```{r, fig.align='center', out.height='375px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-pull-request-review.png")
+```
+
+**Crucially, a pull request can only be applied if the reviewer selects the "Approve" radio button.**
 
 ---
 
