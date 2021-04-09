@@ -580,6 +580,14 @@ origin	git@github.com:OBDS-Training/OBDS_Training_May_2021.git (fetch)
 origin	git@github.com:OBDS-Training/OBDS_Training_May_2021.git (push)
 ```
 
+When everything is in place, you can tell <i class="fab fa-git"></i> to push a branch (e.g. `my_branch`) to a given remote (e.g. `origin`):
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git push origin my_branch
+```
+
+**Do not run this yet, we will do it in a moment.**
+
 ---
 
 # Synchronise branches between remotes
