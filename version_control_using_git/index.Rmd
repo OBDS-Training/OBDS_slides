@@ -630,6 +630,56 @@ Branch kevin set up to track remote branch kevin from origin.
 
 ---
 
+# Incorporate changes to the base branch
+
+The `git merge` sub-command can be used to merge branches.
+However, we are not going to use it, at least not explicitly at the command line.
+
+- We do not want to create different (i.e., conflicting) histories on the `master` branch.
+- We will use GitHub to manage the `master` branch centrally.
+- Every other repository will only ever `pull` the `master` branch from GitHub.
+- No one will ever directly `push` their `master` branch to GitHub.
+
+```{r, fig.align='center', out.height='200px', out.width='600px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-merge.png")
+```
+
+For illustrative purposes, to incorporate the changes from branch `kevin` into branch `master` locally:
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git checkout master
+$ git merge kevin
+```
+
+---
+
+# Create pull requests on GitHub
+
+## Recently pushed branches
+
+On the page of the repository (<https://github.com/OBDS-Training/OBDS_Training_May_2021>), branches that were recently pushed are highlighted, with a button "Compare & pull request".
+
+- Unless a pull request already exists for that branch.
+
+```{r, fig.align='center', out.height='75px', out.width='800px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/github-compare-and-pull-request.png")
+```
+
+---
+
+# Create pull requests on GitHub
+
+GitHub also offers a page dedicated to creating pull requests.
+
+```{r, fig.align='center', out.height='500px', out.width='800px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/github-new-pull-request.png")
+```
+
+---
+
 # Further reading
 
 ## Novice
