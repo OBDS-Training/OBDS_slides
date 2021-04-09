@@ -563,6 +563,65 @@ $ git commit -m "Added a file for <username>"
 
 ---
 
+# Share your changes with others
+
+The `git push` sub-command can be used to send local changes to a remote repository.
+
+- The local repository must have configured the address of the remote repository.
+
+Before we push, the `git remote` command can be used to inspect, add, and remove remote repositories from the local repository configuration.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git remote -v
+```
+
+```
+origin	git@github.com:OBDS-Training/OBDS_Training_May_2021.git (fetch)
+origin	git@github.com:OBDS-Training/OBDS_Training_May_2021.git (push)
+```
+
+---
+
+# Synchronise branches between remotes
+
+We have seen this illustration earlier, to discuss how branches allow multiple contributors to work independently.
+
+```{r, fig.align='center', out.height='450px', out.width='500px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-no-conflict.png")
+```
+
+---
+
+# Push a new branch to a remote
+
+The first time you push a new branch, you should use the `--set-upstream` flag (or `-u` in short), and <i class="fab fa-git"></i> will display a little more information.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git push -u origin kevin
+```
+
+```
+Counting objects: 5, done.
+Delta compression using up to 48 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 354 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'kevin' on GitHub by visiting:
+remote:      https://github.com/OBDS-Training/OBDS_Training_May_2021/pull/new/usage-test
+remote: 
+To git@github.com:OBDS-Training/OBDS_Training_May_2021.git
+ * [new branch]      kevin -> kevin
+Branch kevin set up to track remote branch kevin from origin.
+```
+
+.center[
+**How do you read the command? What do you think is done, according to the output?**
+]
+
+---
+
 # Further reading
 
 ## Novice
