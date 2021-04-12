@@ -1,71 +1,76 @@
-# Contents
+# Version control using git and GitHub
 
-## General
+## Instructor(s)
 
-- [x] What is version control and why should we use it?
-- [x] A brief history of version control systems.
-- [x] Examples of version control scenarios.
-- [x] Features of version control systems
-- [x] git and GitHub.
+- Kevin Rue-Albrecht (@kevinrue)
+- Lucy Garner (@lc822)
 
-## Getting started with git
+## Lesson goals and objectives
 
-- [x] Install git
-- [x] Configure git global settings
-- [x] Create and initialise a repository
+<!--
+Refer to:
+https://github.com/Bioconductor/BioC2019/blob/master/docs/workshop-syllabus.md#a-note-about-learning-goals-and-objectives-bloom
+https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/
+-->
 
-## Track changes with git
+### Learning goals
 
-- [x] The modify-add-commit paradigm
-- [x] `git add`
-- [x] `git commit`
-- [x] Untracked files
-- [x] Start tracking files
-- [x] Remove and stop tracking files
-- [x] The file state life cycle
+<!--
+High-level "big picture" objectives of the learning process.
+-->
 
-## Navigate the commit history
+- Understand what version control is and when to use it.
+- Identify where git stores information.
+- Practice how to record changes in git.
 
-- [x] The git HEAD
-- [x] `git log`, `--oneline`, `--decorate`, `--graph`
-- [x] The SHA hash
-- [x] Commit tags
-- [x] `git diff`, `--cached`, `commit`, `commit1 commit2`
-- [x] `git checkout`
-    
-## Revert changes
+### Learning objectives
 
-- [x] `git revert`
-- [x] `git reset`, `--hard`
+<!--
+More concrete and measurable outputs.
+-->
 
-## Branches
+- Get (i.e., _clone_) your own copy of the shared repository for this course.
+- Edit files and record (i.e., _commit_) your changes.
+- Publish (i.e., _push_) your contributions in the shared repository.
+- Retrieve (i.e., _pull_) contributions from other participants in the shared repository.
+- Examine the history (i.e., _log_) of contributions (i.e., _commits_) to the shared repository.
 
-- [x] Create and merge branches
-- [x] Delete branches
-- [x] Why is it useful to create and merge branches?
-- [x] Create a branch with `git branch branch1`
-- [x] The shorthand `git checkout -b branch1`
-- [x] Merge a branch with `git merge branch1`
-- [x] Delete a branch with `git branch -d` or `-D`
+## Pre-requisites
 
-## Work with remote repositories
+- An account on [GitHub](https://github.com/)
+- Membership to the [OBDS-Training](https://github.com/OBDS-Training) GitHub organisation
+- A working installation of [Git](https://git-scm.com/)
+- An [SSH key pair](https://www.ssh.com/ssh/keygen/)
 
-- [x] Why is GitHub and why do many people use it?
-- [x] How to work with remote repositories
-- [x] Set up a GitHub account
-- [x] Set up an SSH key on a GitHub account
-- [x] Create a repository on GitHub
-- [x] Link a local repository with a GitHub repository
-- [x] Push updates from a local repository to a remote, `git push`
-- [x] Pull updates from a remote to a local repository, `git pull`
-- [x] Clone a remote repository to a local directory, `git clone`
+## Data sets
 
-## Ignore files
+N/A
 
-- [x] Using `.gitignore` files.
+## Time outline
 
-## Summary
-
-- [x] Motivations to use version control
-- [x] How to use version control efficiently
-- [x] How to use remote repositories to backup and collaborate
+| Activity                                      |  Time |
+|-----------------------------------------------|-------|
+| What is version control and why use it        |  9:30 |
+| Getting started with `git`                    |  9:45 |
+| Setting up `git`                              | 10:00 |
+| Clone the shared repository                   | 10:15 |
+| The `.git` sub-directory                      | 10:30 |
+| Check the repository status                   | 10:40 |
+| **Morning Break**                             | 10:50 |
+| Working on branches                           | 11:00 |
+| Create a branch                               | 11:15 |
+| Make & track changes                          | 11:30 |
+| The staging area                              | 12:00 |
+| Record changes                                | 12:15 |
+| **Lunch Break**                               | 12:30 |
+| Share changes with others                     | 13:30 |
+| Incorporate changes to the base branch        | 13:45 |
+| Create a pull request                         | 14:00 |
+| Review a pull request                         | 14:15 |
+| Merge a pull request                          | 14:30 |
+| **Afternoon Break**                           | 14:50 |
+| Browse the repository history                 | 15:00 |
+| View past commits and differences.            | 15:15 |
+| Revert changes                                | 15:30 |
+| Reset a repository to an earlier commit       | 15:45 |
+| **Day End**                                   | 16:00 |
