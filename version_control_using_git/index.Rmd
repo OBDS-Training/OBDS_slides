@@ -847,6 +847,29 @@ $ git log --all --graph --oneline
 
 ---
 
+# The repository history
+
+## Examine past commits
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git show 28d3852
+commit 28d38521da4d75625b5062f61cd6c1bdb6429e6d
+Author: Kevin Rue-Albrecht <kevinrue67@gmail.com>
+Date:   Wed Apr 7 17:16:13 2021 +0100
+
+    Add an example file in the git sub-directory
+
+diff --git a/git/kevinrue.md b/git/kevinrue.md
+new file mode 100644
+index 0000000..468faf4
+--- /dev/null
++++ b/git/kevinrue.md
+@@ -0,0 +1 @@
++# Kevin Rue-Albrecht
+```
+
+---
+
 # Further reading
 
 ## Novice
