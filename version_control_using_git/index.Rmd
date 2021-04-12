@@ -914,6 +914,17 @@ knitr::include_graphics("img/git-diff.png")
 
 ---
 
+# Revert changes
+
+The `git revert` sub-command can be used to undo everything that was done in a particular commit, without the need to edit any of the files manually.
+
+```{r, fig.align='center', out.height='400px', out.width='700px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/git-revert.png")
+```
+
+---
+
 # Further reading
 
 ## Novice
