@@ -925,6 +925,23 @@ knitr::include_graphics("img/git-revert.png")
 
 ---
 
+# Reset to earlier commits
+
+.center[
+**!!! DANGER ZONE !!!**
+]
+
+The `git reset` sub-command can be used to reset the repository history to an earlier commit.
+
+- This is a dangerous action - in particular in a shared repository - as it is a destructive action which can creates conflicting histories.
+
+```{r, fig.align='center', out.height='350px', out.width='800px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/git-reset.png")
+```
+
+---
+
 # Further reading
 
 ## Novice
