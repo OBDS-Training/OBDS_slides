@@ -775,6 +775,30 @@ knitr::include_graphics("img/branch-merge.png")
 
 ---
 
+# Merge a pull request
+
+## Deleted branches
+
+```{r, fig.align='center', out.height='60px', out.width='900px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/github-branch-deleted.png")
+```
+
+- Deleting branches that were merged does not delete their commit(s).
+- Branches are merely pointers to certain commits.
+
+```{r, fig.align='center', out.height='200px', out.width='600px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-merge-delete.png")
+```
+
+
+.center[
+**Can you tell what the difference with the previous slide is?**
+]
+
+---
+
 # Further reading
 
 ## Novice
