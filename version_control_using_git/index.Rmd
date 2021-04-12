@@ -730,6 +730,15 @@ knitr::include_graphics("img/github-pull-request-review.png")
 
 ---
 
+# Merge a pull request
+
+```{r, fig.align='center', out.height='500px', out.width='600px'}
+# Screenshot
+knitr::include_graphics("img/github-merge-pull-request.png")
+```
+
+---
+
 # Further reading
 
 ## Novice
