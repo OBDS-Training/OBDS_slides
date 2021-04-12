@@ -752,6 +752,29 @@ knitr::include_graphics("img/github-merge-commit.png")
 
 ---
 
+# Merge a pull request
+
+## Delete branches successfully merged
+
+```{r, fig.align='center', out.height='75px', out.width='600px'}
+# Screenshot
+knitr::include_graphics("img/github-delete-branch-merged.png")
+```
+
+- The target branch now contains all the changes that were made on the branch that was merged.
+- The merged branch does not have any more value.
+
+```{r, fig.align='center', out.height='200px', out.width='600px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/branch-merge.png")
+```
+
+.center[
+**In this scenario, which branches would you delete and when?**
+]
+
+---
+
 # Further reading
 
 ## Novice
