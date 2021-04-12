@@ -813,6 +813,40 @@ knitr::include_graphics("img/github-network-graph.png")
 
 ---
 
+# The repository history
+
+The `git log` sub-command can be used to display the history of commits in the repository.
+
+- The `--all` option forces <i class="fab fa-git"></i> to display the repository history across all the branches.
+  + By default, <i class="fab fa-git"></i> only displays the history of the branch currently checked out.
+- The `--graph` option adds a visual representation of branches in the repository, and their connections to each other.
+- The `--oneline` (i.e., "one line") forces <i class="fab fa-git"></i> to summarise each commit as a single line.
+  + This limits the information displayed, but helps with the visualisation.
+
+.small-code[
+```{bash, eval=FALSE, echo=TRUE}
+$ git log --all --graph --oneline
+*   9d330e3 (HEAD -> master, origin/master, origin/HEAD) Merge pull request #2 from OBDS-Training/david
+|\  
+| * cae231c Add page for David Sims
+* |   dc19047 Merge pull request #1 from OBDS-Training/kevin
+|\ \  
+| |/  
+| * 0c4eacc Added a file for <username>
+| * 28d3852 Add an example file in the git sub-directory
+| * 5d0241c Reorder steps for pull request
+| * a430b66 Add usage to README
+|/  
+* e49981e Add README.md
+```
+]
+
+.center[
+**How do you read this commit history? Would you recommend anything to the authors?**
+]
+
+---
+
 # Further reading
 
 ## Novice
