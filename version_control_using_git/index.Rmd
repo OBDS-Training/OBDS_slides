@@ -792,9 +792,23 @@ knitr::include_graphics("img/github-branch-deleted.png")
 knitr::include_graphics("img/branch-merge-delete.png")
 ```
 
-
 .center[
 **Can you tell what the difference with the previous slide is?**
+]
+
+---
+
+# The repository history
+
+## On GitHub
+
+```{r, fig.align='center', out.height='400px', out.width='800px'}
+# In-house illustration made using Adobe Illustrator
+knitr::include_graphics("img/github-network-graph.png")
+```
+
+.center[
+**How do you read this graph?**
 ]
 
 ---
