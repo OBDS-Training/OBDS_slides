@@ -682,7 +682,7 @@ knitr::include_graphics("img/github-new-pull-request.png")
 
 # Create pull requests on GitHub
 
-## Comparing changes
+## Comparing changes and opening a pull request
 
 ```{r, fig.align='center', out.height='375px', out.width='800px'}
 # Screenshot
@@ -693,7 +693,7 @@ knitr::include_graphics("img/github-compare-changes.png")
 
 # Create pull requests on GitHub
 
-## Open a pull request
+## Title and description
 
 ```{r, fig.align='center', out.height='450px', out.width='800px'}
 # Screenshot
@@ -704,7 +704,7 @@ knitr::include_graphics("img/github-open-pull-request.png")
 
 # Create pull requests on GitHub
 
-## Open a pull request
+## Monitor the status of a pull request
 
 ```{r, fig.align='center', out.height='400px', out.width='550px'}
 # Screenshot
