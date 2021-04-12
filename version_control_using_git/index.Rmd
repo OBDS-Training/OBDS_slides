@@ -739,6 +739,19 @@ knitr::include_graphics("img/github-merge-pull-request.png")
 
 ---
 
+# Merge a pull request
+
+## Commit message
+
+```{r, fig.align='center', out.height='200px', out.width='600px'}
+# Screenshot
+knitr::include_graphics("img/github-merge-commit.png")
+```
+
+**Merging a pull request creates a new commit. This commit needs its own commit message.**
+
+---
+
 # Further reading
 
 ## Novice
