@@ -719,9 +719,9 @@ knitr::include_graphics("img/github-pull-request.png")
 
 # Review a pull request
 
-Often considered cumbersome, in practice manual reviews offer another chance to catch issues and provide feedback, before the changes are applied.
+Often considered cumbersome, in practice manual reviews offer another chance to catch issues and provide feedback, before the changes are applied to the target branch.
 
-```{r, fig.align='center', out.height='375px', out.width='800px'}
+```{r, fig.align='center', out.height='375px', out.width='600px'}
 # Screenshot
 knitr::include_graphics("img/github-pull-request-review.png")
 ```
