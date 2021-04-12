@@ -56,9 +56,9 @@ bib <- ReadBib("bibliography.bib")
 
 ## Learning Objectives
 
-- Understand what version control is and why should you should use it.
+- Understand what version control is and when you should use it.
 
-- Recognise where <i class="fab fa-git"></i> stores information.
+- Identify where <i class="fab fa-git"></i> stores information.
 
 - Practice how to record changes in <i class="fab fa-git"></i>.
 
@@ -825,19 +825,19 @@ The `git log` sub-command can be used to display the history of commits in the r
 
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
-$ git log --all --graph --oneline
-*   9d330e3 (HEAD -> master, origin/master, origin/HEAD) Merge pull request #2 from OBDS-Training/david
-|\  
-| * cae231c Add page for David Sims
-* |   dc19047 Merge pull request #1 from OBDS-Training/kevin
-|\ \  
-| |/  
-| * 0c4eacc Added a file for <username>
-| * 28d3852 Add an example file in the git sub-directory
-| * 5d0241c Reorder steps for pull request
-| * a430b66 Add usage to README
-|/  
-* e49981e Add README.md
+  $ git log --all --graph --oneline
+  *   9d330e3 (HEAD -> master, origin/master, origin/HEAD) Merge pull request #2 from OBDS-Training/david
+  |\  
+  | * cae231c Add page for David Sims
+  * |   dc19047 Merge pull request #1 from OBDS-Training/kevin
+  |\ \  
+  | |/  
+  | * 0c4eacc Added a file for <username>
+  | * 28d3852 Add an example file in the git sub-directory
+  | * 5d0241c Reorder steps for pull request
+  | * a430b66 Add usage to README
+  |/  
+  * e49981e Add README.md
 ```
 ]
 
@@ -933,12 +933,68 @@ knitr::include_graphics("img/git-revert.png")
 
 The `git reset` sub-command can be used to reset the repository history to an earlier commit.
 
-- This is a dangerous action - in particular in a shared repository - as it is a destructive action which can creates conflicting histories.
+- This is a dangerous and destructive action that can creates conflicting histories.
 
 ```{r, fig.align='center', out.height='350px', out.width='800px'}
 # In-house illustration made using Adobe Illustrator
 knitr::include_graphics("img/git-reset.png")
 ```
+
+.center[
+**What do you think will happen when Kevin and David pushed their `master` branch?**
+]
+
+---
+
+# Ignore files
+
+One or more special files named `.gitignore` can be placed in your project.
+
+Each line in those file specifies a file name or pattern that <i class="fab fa-git"></i> will ignore (i.e., not track) in the future.
+
+- Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the index, but keep the file itself).
+
+.pull-left[
+## .gitignore
+```
+ .DS_Store
+ data/
+ *fastq.gz
+ *sam
+ *bam
+```
+
+**Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
+]
+
+.pull-right[
+```
+my-project/
+|_ .gitignore
+|_ data_raw/
+| |_ sample1.1.fastq
+| |_ sample1.2.fastq
+| |_ sample2.1.fastq.gz
+| |_ sample2.2.fastq.gz
+|_ data/
+| |_ sample1.bam
+| |_ sample2.bam
+|_ scripts/
+  |_ fastq_to_bam.sh
+```
+]
+
+---
+
+# Final thoughts
+
+.center[
+**Can you identify the reasoning underlying each of the following pieces of advice?**
+]
+
+.pull-left[
+- Do not track large files.   
+]
 
 ---
 
