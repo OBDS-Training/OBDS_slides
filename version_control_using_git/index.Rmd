@@ -986,14 +986,45 @@ my-project/
 
 ---
 
-# Final thoughts
+# Final advice
 
 .center[
 **Can you identify the reasoning underlying each of the following pieces of advice?**
 ]
 
 .pull-left[
-- Do not track large files.   
+- Track:
+
+  + source code (e.g., scripts).
+  
+  + README file(s)
+  
+  + LICENSE file, if any
+  
+- Optionally track:
+
+  + `.gitignore` file(s)
+  
+  + Configuration file(s)
+
+- Do not track output files.
+]
+
+.pull-right[
+- Do not track very large files (e.g., data).
+
+  + Use [git-lfs](https://git-lfs.github.com/) if you must.
+
+  + Host elsewhere
+  (e.g.,
+  [figshare](https://figshare.com/),
+  [zenodo](https://zenodo.org/)).
+  
+  + Download data at runtime.
+
+- Do not track confidential information
+
+  + e.g. passwords
 ]
 
 ---
