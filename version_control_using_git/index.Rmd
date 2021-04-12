@@ -752,5 +752,6 @@ PrintBibliography(bib)
 
 Extras:
 
+- Install `git`
 - `git init` (as opposed to `git clone`)
 - `git merge` vs `git rebase`
