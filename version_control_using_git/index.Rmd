@@ -84,7 +84,7 @@ bib <- ReadBib("bibliography.bib")
 
 Those last two points are required to grant you access to private repositories that are only visible to members of the organisation.
 
-- A [SSH key pair](https://www.ssh.com/ssh/public-key-authentication) - ideally password-protected - added to your GitHub account.
+- A [SSH key pair](https://www.ssh.com/ssh/public-key-authentication) - ideally password-protected - added to your <i class="fab fa-github"></i> GitHub account.
 
 This will allow the <i class="fab fa-github"></i> GitHub server to verify your identity when you programmatically interact with it.
 
@@ -432,7 +432,7 @@ $ ls -a .git/
 knitr::include_graphics("img/branch-conflict.png")
 ```
 
-**What do you think will happen when David and Kevin push their respective `master` branch to GitHub?**
+**What do you think will happen when David and Kevin push their respective `master` branch to <i class="fab fa-github"></i> GitHub?**
 
 ---
 
@@ -459,11 +459,11 @@ The `git branch` sub-command can be used to inspect and create branches in a cop
 The `git checkout` sub-command can be used to switch between branches.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git branch         # list existing branches
-$ git branch kevin   # create a new branch named kevin
-$ git branch         # list existing branches (again)
-$ git checkout kevin # switch to the branch named kevin
-$ git status         # check the status of the repository (currently on branch kevin)
+$ git branch          # list existing branches
+$ git branch kevin    # create a new branch named kevin
+$ git branch          # list existing branches (again)
+$ git checkout kevin  # switch to the branch named kevin
+$ git status          # check the status of the repository (currently on branch kevin)
 ```
 
 **At this point, is there any difference between branch `master` and branch `kevin`?**
@@ -474,9 +474,9 @@ $ git status         # check the status of the repository (currently on branch k
 
 First make sure that you have checked out a branch other than `master`.
 
-In the repository sub-directory `week2/git_version_control`, create a file called `<username>.md`, replacing `<username>` by your own GitHub user name.
+In the repository sub-directory `week2/git_version_control`, create a file called `<username>.md`, replacing `<username>` by your own <i class="fab fa-github"></i> GitHub user name.
 
-> I included an example `kevinrue.md`, as `kevinrue` is my GitHub user name.
+> I included an example `kevinrue.md`, as `kevinrue` is my <i class="fab fa-github"></i> GitHub user name.
 
 In that file, write you full name as a first level header (preceded by a `#` symbol and s a space).
 
@@ -508,11 +508,12 @@ $ git status
 ```
 
 ```
-# On branch usage
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	git/username.md
+On branch kevin
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	week2/git_version_control/kevinrue.md
 ```
 
 The "Untracked files" section reports files that are new and not track by <i class="fab fa-git"></i> yet.
@@ -527,17 +528,15 @@ The `git add` sub-command can be used to add new files to the list of files trac
 - In other words, the file will exist, but changes to that file will not be tracked, and we will not be able to restore past versions of that file.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git add username.md
+$ git add kevinrue.md
 $ git status
 ```
 
 ```
-# On branch usage
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#	new file:   git/username.md
-#
+On branch kevin
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   week2/git_version_control/kevinrue.md
 ```
 
 **What changed in `git status` after running `git add`?**
@@ -568,12 +567,13 @@ The `git commit` sub-command can be used to add changes currently in the _stagin
 - The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git commit -m "Added a file for <username>"
+$ git commit -m "Added a file for kevin rue"
 ```
 
 ```
+[kevin 41121a3] Added a file for kevin rue
  1 file changed, 1 insertion(+)
- create mode 100644 git/username.md
+ create mode 100644 week2/git_version_control/kevinrue.md
 ```
 
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
@@ -620,26 +620,30 @@ knitr::include_graphics("img/branch-no-conflict.png")
 
 # Push a new branch to a remote
 
-The first time you push a new branch, you should use the `--set-upstream` flag (or `-u` in short), and <i class="fab fa-git"></i> will display a little more information.
+The first time you push a branch, you should use the `--set-upstream` flag (or `-u` in short), and <i class="fab fa-git"></i> will display more information.
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git push -u origin kevin
 ```
 
+.small-code[
 ```
-Counting objects: 5, done.
-Delta compression using up to 48 threads.
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 16 threads
 Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 354 bytes | 0 bytes/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
+Writing objects: 100% (5/5), 417 bytes | 417.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 remote: 
 remote: Create a pull request for 'kevin' on GitHub by visiting:
-remote:      https://github.com/OBDS-Training/OBDS_Training_May_2021/pull/new/usage-test
+remote:      https://github.com/OBDS-Training/OBDS_Training_May_2021/pull/new/kevin
 remote: 
-To git@github.com:OBDS-Training/OBDS_Training_May_2021.git
+To github.com:OBDS-Training/OBDS_Training_May_2021.git
  * [new branch]      kevin -> kevin
-Branch kevin set up to track remote branch kevin from origin.
+Branch 'kevin' set up to track remote branch 'kevin' from 'origin'.
 ```
+]
 
 .center[
 **How do you read the command? What do you think is done, according to the output?**
@@ -653,16 +657,16 @@ The `git merge` sub-command can be used to merge branches.
 However, we are not going to use it, at least not explicitly at the command line.
 
 - We do not want to create different (i.e., conflicting) histories on the `master` branch.
-- We will use GitHub to manage the `master` branch centrally.
-- Every other repository will only ever `pull` the `master` branch from GitHub.
-- No one will ever directly `push` their `master` branch to GitHub.
+- We will use <i class="fab fa-github"></i> GitHub to manage the `master` branch centrally.
+- Every other repository will only ever `pull` the `master` branch from <i class="fab fa-github"></i> GitHub.
+- No one will ever directly `push` their `master` branch to <i class="fab fa-github"></i> GitHub.
 
 ```{r, fig.align='center', out.height='200px', out.width='600px'}
 # In-house illustration made using Adobe Illustrator
 knitr::include_graphics("img/branch-merge.png")
 ```
 
-For illustrative purposes, to incorporate the changes from branch `kevin` into branch `master` locally:
+**Do not do this!** To incorporate the changes from branch `kevin` into branch `master` locally:
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git checkout master
@@ -671,7 +675,7 @@ $ git merge kevin
 
 ---
 
-# Create pull requests on GitHub
+# Create pull requests on <i class="fab fa-github"></i> GitHub
 
 ## Recently pushed branches
 
@@ -686,9 +690,9 @@ knitr::include_graphics("img/github-compare-and-pull-request.png")
 
 ---
 
-# Create pull requests on GitHub
+# Create pull requests on <i class="fab fa-github"></i> GitHub
 
-GitHub also offers a page dedicated to creating pull requests.
+<i class="fab fa-github"></i> GitHub also offers a page dedicated to creating pull requests.
 
 ```{r, fig.align='center', out.height='500px', out.width='800px'}
 # Screenshot
@@ -697,7 +701,7 @@ knitr::include_graphics("img/github-new-pull-request.png")
 
 ---
 
-# Create pull requests on GitHub
+# Create pull requests on <i class="fab fa-github"></i> GitHub
 
 ## Comparing changes and opening a pull request
 
@@ -708,7 +712,7 @@ knitr::include_graphics("img/github-compare-changes.png")
 
 ---
 
-# Create pull requests on GitHub
+# Create pull requests on <i class="fab fa-github"></i> GitHub
 
 ## Title and description
 
@@ -719,7 +723,7 @@ knitr::include_graphics("img/github-open-pull-request.png")
 
 ---
 
-# Create pull requests on GitHub
+# Create pull requests on <i class="fab fa-github"></i> GitHub
 
 ## Monitor the status of a pull request
 
@@ -817,7 +821,7 @@ knitr::include_graphics("img/branch-merge-delete.png")
 
 # The repository history
 
-## On GitHub
+## On <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='400px', out.width='800px'}
 # In-house illustration made using Adobe Illustrator
@@ -1054,7 +1058,8 @@ my-project/
 
 ## Advanced
 
-- git glossary: <https://git-scm.com/docs/gitglossary>
+- <i class="fab fa-git"></i> glossary: <https://git-scm.com/docs/gitglossary>
+- Oh s**t <i class="fab fa-git"></i>: <https://ohshitgit.com/>
 
 ---
 
