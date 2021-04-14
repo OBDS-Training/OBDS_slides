@@ -78,10 +78,6 @@ bib <- ReadBib("bibliography.bib")
 
 # Pre-requisites
 
-- The [<i class="fab fa-git"></i>](https://git-scm.com/) software (version 2.29.x and later is required).
-
-If the course is run on a remote cluster, <i class="fab fa-git"></i> should already be installed; you don't need to do anything.
-
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
 - Accept the invitation to be a member of the GitHub Organisation [OBDS-Training](https://github.com/OBDS-Training).
@@ -91,10 +87,6 @@ Those last two points are required to grant you access to private repositories t
 - A [SSH key pair](https://www.ssh.com/ssh/public-key-authentication) - ideally password-protected - added to your GitHub account.
 
 This will allow the <i class="fab fa-github"></i> GitHub server to verify your identity when you programmatically interact with it.
-
-- A [shared GitHub repository](https://github.com/OBDS-Training/OBDS_Training_May_2021) for this course.
-
-This one is on us; we prepared it before the course.
 
 ---
 
@@ -270,16 +262,36 @@ More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https:/
 
 ---
 
-# Getting start with <i class="fab fa-git"></i>
+# Using <i class="fab fa-git"></i> as an HPC module
 
-Use SSH to open a terminal on the cluster that we use for this training.
+Use SSH to open a terminal on the HPC cluster.
 
-The `which` command prints the path to the `git` executable.
-What path does it give you?
+The system executable of `git` on your default `PATH` is a rather old version.
+What is the path to the system `git`?
+What version of `git` is it?
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ which git
+$ git --version
 ```
+
+Instead, we will use the `module` command to put a more recent version of `git` on our `PATH`.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ module avail git
+$ module load git/2.31.1
+```
+
+Examine your `PATH` variable, the path to the new `git` executable, and the version of this new `git` executable.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ which git
+$ git --version
+```
+
+---
+
+# Getting started with <i class="fab fa-git"></i>
 
 The `git` command has many sub-commands, options, and flags.
 You can run `git` alone to list the sub-commands and a short description of each.
@@ -290,7 +302,7 @@ $ git
 ```
 
 The `--version` flag asks `git` to print the version of the `git` executable that is used.
-What version of `git` are you running?
+The <i class="fab fa-git"></i> program is generally backward compatible, but you may observe subtle differences in the way different version of <i class="fab fa-git"></i> display information.
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git --version
@@ -339,8 +351,8 @@ In this step, you will each get (i.e., _clone_) your own copy of the shared repo
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ mkdir -p $HOME/devel
-$ cd $HOME/devel
+$ mkdir -p $HOME/git
+$ cd $HOME/git
 $ git clone git@github.com:OBDS-Training/OBDS_Training_May_2021.git
 ```
 
@@ -390,13 +402,15 @@ $ git status
 ```
 
 ```
-# On branch master
-nothing to commit, working directory clean
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
 ```
 
 We will not discuss in further details the contents of the `.git` sub-directory.
 You can still have a brief look for yourself if you wish.
-Make sure that you do not alter anything in that sub-directory.
+Make sure that you do not alter or remove anything in that sub-directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ ls -a .git/
@@ -460,16 +474,19 @@ $ git status         # check the status of the repository (currently on branch k
 
 First make sure that you have checked out a branch other than `master`.
 
-In the `git` sub-directory (not to be confused with `.git`), create a file called `<username>.md`, replacing `<username>` by your own GitHub user name.
+In the repository sub-directory `week2/git_version_control`, create a file called `<username>.md`, replacing `<username>` by your own GitHub user name.
 
 > I included an example `kevinrue.md`, as `kevinrue` is my GitHub user name.
 
-In that file, write you full name, following a hash tag symbol `#` and a space character.
+In that file, write you full name as a first level header (preceded by a `#` symbol and s a space).
 
-> For me, that looks like `# Kevin Rue-Albrecht`
+> For me, that looks like:
+```
+# Kevin Rue-Albrecht
+```
 
 It is best practice to add a newline character at the end of this line.
-<i class="fab fa-git"></i> works best when the last line of each file is empty.
+<i class="fab fa-git"></i> works best files end with an empty line.
 
 #### Practice Bash
 
