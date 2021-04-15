@@ -3,7 +3,7 @@ title: 'Introduction to `r BiocStyle::CRANpkg("renv")`'
 subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-02-24 (updated: `r Sys.Date()`)"
+date: "2021-06-09 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -56,13 +56,11 @@ bib <- ReadBib("bibliography.bib")
 <br/>
 
 .x-large-list[
-- A clone of a personal GitHub repository for this course.
+- A working installation of [git](https://git-scm.com/).
 
-- A clone of a shared GitHub repository for this course.
+- A clone of the shared GitHub repository for this course.
 
 - A working installation of [R](https://www.r-project.org/) (4.0.3).
-
-- A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
 ]
@@ -84,7 +82,7 @@ bib <- ReadBib("bibliography.bib")
 ## Learning objectives
 
 .x-large-list[
-- Create and switch between RStudio projects.
+- Create RStudio projects and switch between them.
 
 - Initialise, manage, and share project environments using `r BiocStyle::CRANpkg("renv")`.
 ]
@@ -135,9 +133,9 @@ knitr::include_graphics("img/projects_new.png")
 
 - Select **New Project**.
 
-- In **Directory name:**, type `r_ggplot2`.
+- In **Directory name:**, type your GitHub user name (e.g. `kevinrue`).
 
-- In **Create project as subdirectory of :**, click on **Browse** and select the directory of your personal GitHub repository for this course.
+- In **Create project as subdirectory of :**, click on **Browse** and select the sub-directory `week5/day3_renv` in the shared GitHub repository for this course.
 
 - Untick the following checkboxes, if there are present:
 
@@ -154,13 +152,13 @@ knitr::include_graphics("img/projects_new.png")
 
 # New project RStudio session
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='550px'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
 knitr::include_graphics("img/project-blank.png")
 ```
 
 ---
 
-# How new project are set up in RStudio
+# How new projects are set up in RStudio
 
 When a new project is created, RStudio:
 
@@ -308,13 +306,25 @@ You may want to change the setting for the following reasons:
 
 # RStudio <i class="fab fa-git"></i> integration
 
-Having created a new project within your personal <i class="fab fa-git"></i> repository, the RStudio <i class="fab fa-git"></i> pane should report the presence of new files:
+The RStudio <i class="fab fa-git"></i> pane reports the presence of files modified since the latest commit on your current branch:
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.width='500px'}
 knitr::include_graphics("img/rstudio_git.png")
 ```
+]
+
+.pull-right[
+At this point, make sure you have checked out a branch other than `master`.
+
+```{bash, eval=FALSE, include=TRUE}
+$ git checkout -b your_username
+```
+]
 
 You can use this panel to stage the changes, commit, and push/pull:
+
+- **Unticked `[M]`:** tracked file not staged for commit (modified)
 
 - **Ticked `[A]`:** new file is staged for commit (added)
 
@@ -368,29 +378,13 @@ Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your 
 
 ## Install `renv`
 
-In RStudio:
-
-**Note:** if you are currently in a project, close it. <img src="img/no-project.png" align="right"></img>
-
-- Install `r BiocStyle::CRANpkg("renv")`.
-
 ```{r, include=TRUE, eval=FALSE}
 install.packages("renv")
 ```
 
 **Note:** this installs `r BiocStyle::CRANpkg("renv")` in your _system_ package library, i.e. it is available outside of any project, as soon as you open <i class="fab fa-r-project"></i>.
 
-- Restart RStudio, to make sure that the changes take effect, and that RStudio has access to the newly installed package(s).
-
----
-
-# Exercise
-
-## Open a project
-
-- Switch back to the `r_ggplot2` project that you created earlier.
-
-**Note:** at this point the project still uses your _system_ package library.
+Restart RStudio, to make sure that the changes take effect, and that RStudio has access to the newly installed package(s).
 
 ---
 
@@ -401,21 +395,25 @@ install.packages("renv")
 Call `renv::init()` to initialize a new project-local environment with a private R library.
 
 ```{r, eval=FALSE, include=TRUE}
-> renv::init()
-* Initializing project ...
-* Discovering package dependencies ... Done!
-* Copying packages into the cache ... Done!
-The following package(s) will be updated in the lockfile:
-
-# CRAN ===============================
-- renv   [* -> 0.12.5]
-
-* Lockfile written to '~/github/kevinrue/obds-training-2021jan/r_ggplot2/renv.lock'.
-
-Restarting R session...
-
-* Project '~/github/kevinrue/obds-training-2021jan/r_ggplot2' loaded. [renv 0.12.5]
+ > renv::init()
+ * Initializing project ...
+ * Discovering package dependencies ... Done!
+ * Copying packages into the cache ... Done!
+ The following package(s) will be updated in the lockfile:
+ 
+ # CRAN ===============================
+ - renv   [* -> 0.12.5]
+ 
+ * Lockfile written to '~/github/kevinrue/obds-training-2021jan/r_ggplot2/renv.lock'.
+ 
+ Restarting R session...
+ 
+ * Project '~/github/kevinrue/obds-training-2021jan/r_ggplot2' loaded. [renv 0.12.5]
 ```
+
+.center[
+**Do you see any update in the RStudio <i class="fab fa-git"></i> pane at this point? What should we do next?**
+]
 
 ---
 
@@ -453,6 +451,7 @@ knitr::include_graphics("img/renv-library-init.png")
 
 .pull-right[
 ## Functions
+.small-code[
 ```{r, eval=FALSE, include=TRUE}
 # base R
 install.packages('ggplot2')
@@ -461,10 +460,11 @@ renv::install('ggplot2')
 # Bioconductor
 BiocManager::install('ggplot2')
 # devtools offers several functions
-devtools::install_github()
+devtools::install_github("tidyverse/ggplot2")
 # remotes offers several functions
-remotes::install_github()
+remotes::install_github("tidyverse/ggplot2")
 ```
+]
 
 **Note:** in the **Packages** pane, you will see several new packages listed under **Project library**: the package(s) that you asked for, as well as its dependencies.
 ]
@@ -520,8 +520,8 @@ Call `renv::snapshot()` to save the state of the project library to the lockfile
 You may still see the following:
 
 ```{r, include=TRUE, eval=FALSE}
-> renv::snapshot()
-* The lockfile is already up to date.
+ > renv::snapshot()
+ * The lockfile is already up to date.
 ```
 
 Create a script that loads one of the packages that you just installed, e.g.
@@ -537,6 +537,10 @@ Then, call `renv::snapshot()` again.
 
 Enter `y` to proceed with the snapshot.
 Open the file `renv.lock`, and inspect its contents.
+
+.center[
+**Do you see any update in the RStudio <i class="fab fa-git"></i> pane at this point? What should we do next?**
+]
 
 ---
 
@@ -562,21 +566,43 @@ The function `renv::restore()` :
 
 ---
 
+# Share and restore environments
+
+At this point, each of you has pushed their own project and environment files to a separate branch.
+
+- Open a pull request for your own environment, and assign another participant to review your pull request.
+
+> Make sure that each of you is only assigned to one pull request.
+
+- As part of the review process, the participant assigned to each pull request must check out the corresponding branch, and restore the environment.
+
+  + If they successfully restore the environment, they can approve the pull request and you can merge it.
+
+  + Otherwise, their review should describe what the issue is (i.e., include the command run, and the error message).
+  
+We will use this method to give you an environment for each of the coming days.
+
+.center[
+**What do you think the pros and cons are, for this method of teaching?**
+]
+
+---
+
 # Further reading
 
 ## Projects
 
-- [support.rstudio.com - "Using Projects"](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+- "Using Projects" - [support.rstudio.com](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 
-## renv
+## `renv`
 
-- [Documentation (pkgdown)](https://rstudio.github.io/renv/)
+- Latest documentation: <https://rstudio.github.io/renv/>
 
-- [GitHub repository](https://github.com/rstudio/renv/)
+- <i class="fab fa-github"></i> GitHub repository: <https://github.com/rstudio/renv/>
 
-## git
+## <i class="fab fa-git"></i>
 
-- [Software Carpentry - Using Git from RStudio](https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/)
+- Using Git from RStudio - [Software Carpentry](https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/)
 
 ---
 
