@@ -474,7 +474,7 @@ $ git status          # check the status of the repository (currently on branch 
 
 First make sure that you have checked out a branch other than `master`.
 
-In the repository sub-directory `week2/git_version_control`, create a file called `<username>.md`, replacing `<username>` by your own <i class="fab fa-github"></i> GitHub user name.
+In the repository sub-directory `week2/day1_git`, create a file called `<username>.md`, replacing `<username>` by your own <i class="fab fa-github"></i> GitHub user name.
 
 > I included an example `kevinrue.md`, as `kevinrue` is my <i class="fab fa-github"></i> GitHub user name.
 
@@ -513,7 +513,7 @@ Your branch is up to date with 'origin/master'.
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	week2/git_version_control/kevinrue.md
+	week2/day1_git/kevinrue.md
 ```
 
 The "Untracked files" section reports files that are new and not track by <i class="fab fa-git"></i> yet.
@@ -536,7 +536,7 @@ $ git status
 On branch kevin
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-	new file:   week2/git_version_control/kevinrue.md
+	new file:   week2/day1_git/kevinrue.md
 ```
 
 **What changed in `git status` after running `git add`?**
@@ -573,7 +573,7 @@ $ git commit -m "Added a file for kevin rue"
 ```
 [kevin 41121a3] Added a file for kevin rue
  1 file changed, 1 insertion(+)
- create mode 100644 week2/git_version_control/kevinrue.md
+ create mode 100644 week2/day1_git/kevinrue.md
 ```
 
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
