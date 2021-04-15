@@ -381,6 +381,12 @@ $ ls -a
 ```
 
 Git uses the `.git` sub-directory to store all the information about the project history.
+You can have a brief look for yourself if you wish.
+Make sure that you do not alter or remove anything in that sub-directory.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ ls -a .git/
+```
 
 #### Result
 
@@ -406,19 +412,6 @@ On branch master
 Your branch is up to date with 'origin/master'.
 
 nothing to commit, working tree clean
-```
-
-We will not discuss in further details the contents of the `.git` sub-directory.
-You can still have a brief look for yourself if you wish.
-Make sure that you do not alter or remove anything in that sub-directory.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ ls -a .git/
-```
-
-```
-.   branches  description  hooks  info  objects      refs
-..  config    HEAD         index  logs  packed-refs
 ```
 
 ---
@@ -467,6 +460,14 @@ $ git status          # check the status of the repository (currently on branch 
 ```
 
 **At this point, is there any difference between branch `master` and branch `kevin`?**
+
+#### Alternative
+
+It is possible to create and checkout the new branch in a single command.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git checkout -b kevin
+```
 
 ---
 
@@ -816,6 +817,39 @@ knitr::include_graphics("img/branch-merge-delete.png")
 .center[
 **Can you tell what the difference with the previous slide is?**
 ]
+
+---
+
+# Delete a branch locally
+
+We deleted the branch on <i class="fab fa-github"></i> GitHub, but it still exists locally.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git branch -a
+```
+
+```
+ * kevin
+   master
+   remotes/origin/HEAD -> origin/master
+   remotes/origin/kevin
+   remotes/origin/master
+```
+
+To delete a branch locally, we need to move to another branch (often, `master`) first.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git fetch --prune   # remove local links to any branch deleted on the remote
+$ git branch -D kevin # "politely" remove the local copy of the branch
+$ git branch -D kevin # "force" remove the local copy of the branch
+$ git branch -a
+```
+
+```
+ * master
+   remotes/origin/HEAD -> origin/master
+   remotes/origin/master
+```
 
 ---
 
