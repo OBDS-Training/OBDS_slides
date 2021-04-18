@@ -123,6 +123,9 @@ knitr::include_graphics("img/swiss_roll.png")
 - Identify packages that we will use.
   + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
   + Visualisation.
+
+David asked to use `pandas`, not `numpy`.
+
 - Clarify how we will use python on the cluster.
 
 ---
