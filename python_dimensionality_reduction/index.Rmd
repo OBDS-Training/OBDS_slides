@@ -1,0 +1,153 @@
+---
+title: 'Dimensionality reduction using <i class="fab fa-python"></i> Python'
+subtitle: '&emsp;'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-05-10 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Dimensionality reduction using <i class="fab fa-python"></i> Python
+</span></div> 
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE, include = TRUE, echo = FALSE,
+  fig.align='center', out.height='500px'
+)
+options(width = 90)
+stopifnot(require(base))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Learning Objectives & Goals
+
+## Learning Goals
+
+- Understand what dimensionality reduction is.
+- Describe when and how to use it.
+
+## Objectives
+
+- Apply various dimensionality reduction methods to a data set.
+- Visualise the output of dimensionality reduction.
+
+---
+
+# Pre-requisites
+
+- 
+
+---
+
+# What is dimensionality reduction?
+
+.pull-left[
+```{r}
+x_nrow <- 10
+x <- data.frame(
+  V1 = rep(".", 10),
+  V2 = rep(".", 10),
+  V3 = rep(".", 10),
+  V4 = rep(".", 10),
+  V5 = rep(".", 10),
+  V6 = rep(".", 10),
+  row.names = paste0("sample", 1:x_nrow))
+knitr::kable(x)
+```
+]
+
+.pull-left[
+```{r}
+x_nrow <- 10
+x <- data.frame(
+  D1 = rep(".", 10),
+  D2 = rep(".", 10),
+  D3 = rep(".", 10),
+  row.names = paste0("sample", 1:x_nrow))
+knitr::kable(x)
+```
+]
+
+---
+
+# Why and when should you use dimensionality reduction?
+
+```{r, echo=FALSE, out.height='400px'}
+knitr::include_graphics("img/swiss_roll.png")
+```
+
+.center[
+1. Visualisation
+2. Interpretation
+3. Compression
+]
+
+---
+
+# To do
+
+- Choose a data set
+- Identify packages that we will use
+  + Dimensionality reduction (e.g., PCA, UMAP, t-SNE)
+  + Visualisation
+
+---
+
+# Further reading
+
+## Novice
+
+- One
+
+## Advanced
+
+- One
+
+---
+
+# References
+
+```{r refs, results="asis"}
+PrintBibliography(bib)
+```
+
+???
+
+Extras:
+
+- Install `git`
+- `git init` (as opposed to `git clone`)
+- `git merge` vs `git rebase`
