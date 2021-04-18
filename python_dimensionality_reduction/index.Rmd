@@ -117,6 +117,28 @@ knitr::include_graphics("img/swiss_roll.png")
 
 ---
 
+# Set up
+
+Use `conda.yml` to create a Conda environment for this exercise.
+
+```{bash, echo=TRUE, eval=FALSE}
+conda create --name obds-py-dimred --file conda.yml
+```
+
+Activate the environment.
+
+```{bash, echo=TRUE, eval=FALSE}
+conda activate obds-py-dimred
+```
+
+Launch JupyterLab.
+
+```{bash, echo=TRUE, eval=FALSE}
+jupyter lab
+```
+
+---
+
 # To do
 
 - Choose a data set.

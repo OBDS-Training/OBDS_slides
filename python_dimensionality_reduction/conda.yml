@@ -1,0 +1,9 @@
+name: obds-py-dimred
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - mamba
+  - jupyterlab
+prefix: /Users/kevin/miniconda3/envs/obds-py-dimred
