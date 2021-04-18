@@ -119,10 +119,11 @@ knitr::include_graphics("img/swiss_roll.png")
 
 # To do
 
-- Choose a data set
-- Identify packages that we will use
-  + Dimensionality reduction (e.g., PCA, UMAP, t-SNE)
-  + Visualisation
+- Choose a data set.
+- Identify packages that we will use.
+  + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
+  + Visualisation.
+- Clarify how we will use python on the cluster.
 
 ---
 
