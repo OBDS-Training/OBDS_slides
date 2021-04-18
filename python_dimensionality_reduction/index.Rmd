@@ -68,6 +68,7 @@ bib <- ReadBib("bibliography.bib")
 
 # Pre-requisites
 
+.x-large-list[
 - Access to the CCB cluster and the shared data folder.
 
 - A working installation of <i class="fab fa-git"></i>.
@@ -75,6 +76,7 @@ bib <- ReadBib("bibliography.bib")
 - A clone of the shared <i class="fab fa-github"></i> GitHub repository for this course.
 
 - A working installation of [Miniconda](https://docs.conda.io/en/latest/index.html).
+]
 
 ---
 
