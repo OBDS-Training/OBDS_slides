@@ -181,6 +181,16 @@ Import the `pandas` package as `pd`.
 
 Use the function `read_csv` (in the `pandas` package) to import data from the file `iris.data`.
 
+<!-- TODO: give them the path to the iris.data file on the cluster -->
+
+- What are the default column names?
+
+Use the following list of column names.
+
+```{python, echo=TRUE, eval=FALSE}
+['sepal length','sepal width','petal length','petal width','target']
+```
+
 ---
 
 # To do
