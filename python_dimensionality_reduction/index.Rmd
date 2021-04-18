@@ -137,6 +137,13 @@ Launch JupyterLab.
 jupyter lab
 ```
 
+Navigate to the sub-directory for today, and create a new notebook with your name,
+e.g. `kevinrue.ipynb`.
+
+---
+
+# Download the data set
+
 ---
 
 # To do
