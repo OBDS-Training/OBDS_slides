@@ -152,7 +152,7 @@ knitr::include_graphics("img/pca.jpeg")
 Use `conda.yml` to create a Conda environment for this exercise.
 
 ```{bash, echo=TRUE, eval=FALSE}
-conda create --name obds-py-dimred --file conda.yml
+conda env create --file conda.yml --name obds-py-dimred
 ```
 
 Activate the environment.

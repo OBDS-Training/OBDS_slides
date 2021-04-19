@@ -4,6 +4,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - mamba
   - jupyterlab
+  - pandas
+  - scikit-learn
 prefix: /Users/kevin/miniconda3/envs/obds-py-dimred
