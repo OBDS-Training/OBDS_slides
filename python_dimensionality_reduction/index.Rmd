@@ -289,6 +289,7 @@ Running a PCA using `scikit-learn` generally involves two steps:
 
 1. Use the `PCA` module to create an object (e.g. `pca`) that defines the parameters of the analysis.
 2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the data set (what we called `x`).
+  Assign the output of that function to a new variable `principalComponents`.
 
 .center[
 **What is the return value of the `fit_transform()` function?**
@@ -304,14 +305,19 @@ principalDf = ...
 
 ---
 
+# Visualise the PCA projection
+
+
+
+---
+
 # To do
 
-- ~~Choose a data set.~~ (iris)
 - Identify packages that we will use.
   + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
+    * UMAP
+    * t-SNE
   + Visualisation.
-
-David asked to use `pandas`, not `numpy`.
 
 - Clarify how we will use python on the cluster.
 
