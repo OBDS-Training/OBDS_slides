@@ -5,6 +5,8 @@ channels:
   - defaults
 dependencies:
   - jupyterlab
-  - pandas
+  - mamba
   - scikit-learn
+  - pandas
+  - matplotlib
 prefix: /Users/kevin/miniconda3/envs/obds-py-dimred

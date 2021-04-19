@@ -288,6 +288,7 @@ from sklearn.decomposition import PCA
 Running a PCA using `scikit-learn` generally involves two steps:
 
 1. Use the `PCA` module to create an object (e.g. `pca`) that defines the parameters of the analysis.
+  For instance, `PCA(n_components=2)` will request only the first two principal components of the analysis.
 2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the data set (what we called `x`).
   Assign the output of that function to a new variable `principalComponents`.
 
@@ -307,7 +308,30 @@ principalDf = ...
 
 # Visualise the PCA projection
 
+We will use the [`pyplot`](https://matplotlib.org/2.0.2/api/pyplot_api.html) module in the `matplotlib` library, to construct a scatter plot of the first two principal components.
 
+```{python, echo=TRUE, eval=FALSE}
+import matplotlib.pyplot as plt
+```
+
+.center[
+**Where should you add this line?**
+]
+
+#### Hints
+
+- Initialise a new figure.
+- Initialise a new figure panel.
+- Set the two axis labels and the plot title.
+- Draw a scatter plot of the two principal components.
+- Display grid lines in the background.
+
+#### Bonus point
+
+Color data points according to their class label. (**Recommendation:** use a separate notebook cell).
+
+- Use the function `pd.concat()` to add the class label to the data frame (we called it `principalDf`).
+- Use a `for` loop to iteratively add data points from each class label.
 
 ---
 
@@ -317,7 +341,6 @@ principalDf = ...
   + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
     * UMAP
     * t-SNE
-  + Visualisation.
 
 - Clarify how we will use python on the cluster.
 
@@ -327,11 +350,13 @@ principalDf = ...
 
 ## Novice
 
-- One
+- <https://swcarpentry.github.io/python-novice-inflammation/>
 
 ## Advanced
 
-- One
+- <https://pandas.pydata.org/>
+- <https://scikit-learn.org/stable/>
+- <https://matplotlib.org/stable/>
 
 ---
 
