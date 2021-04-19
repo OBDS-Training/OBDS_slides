@@ -221,6 +221,8 @@ Display the first 5 rows of the data set.
 
 --
 
+## Split measurements from class labels
+
 First, separate the numerical measurements and the classification labels in two separate variables,
 `x` and `y`, respectively.
 
