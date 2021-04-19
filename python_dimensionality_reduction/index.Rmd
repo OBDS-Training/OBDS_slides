@@ -254,17 +254,17 @@ from sklearn.preprocessing import StandardScaler
 --
 
 Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) method of the `StandardScaler` object to standardise the set of measurements (we called it `x`).
-Assign the standardised data to a new variable `x_norm`.
+Re-assign the standardised data to override the variable `x`.
 
 .center[
-**Can you see the difference between `x_norm` with `x`?**
+**Compare the value of `x` in notebook cells before and after standardisation.**
 ]
 
 --
 
 #### Bonus point
 
-Use `pd.DataFrane` to reconstruct a data frame from `x_norm` and the names of each feature measured.
+Use `pd.DataFrane` to reconstruct a data frame from the new value of `x` and the names of the features measured.
 
 You do not need to assign this to any variable.
 The goal is simply to display the result nicely in the notebook.
