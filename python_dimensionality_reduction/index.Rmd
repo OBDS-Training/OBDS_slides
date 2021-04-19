@@ -233,7 +233,7 @@ y = ...
 
 - For a data frame `df`, you can use the property [`df.loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) to access rows and columns by label.
 - You can use the symbol `:` alone to access _all_ the rows and/or columns.
-- For a data frame `df`,  you can extract _values_ as an Numpy array using the property `df.values`.
+- For a data frame `df`,  you can extract _values_ as an Numpy array using the property [`df.values`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.values.html.
 
 ---
 
