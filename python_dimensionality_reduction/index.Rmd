@@ -186,7 +186,7 @@ import panda as pd
 
 --
 
-Use the function `read_csv` (in the `pandas` package) to import data from the file `iris.data`,
+Use the function `read_csv()` (in the `pandas` package) to import data from the file `iris.data`,
 into a variable called `df`.
 
 ```{python, echo=TRUE, eval=FALSE}
@@ -216,7 +216,7 @@ Display the first 5 rows of the data set.
 > Standardise = Center and scale each feature measured in the data set.
 
 .center[
-**Why would we want to do this? Can we standardise _all_ the variables in the data set?**
+**Why would we want to do this? Can we standardise _all_ the variables in this data set?**
 ]
 
 --
@@ -253,8 +253,8 @@ from sklearn.preprocessing import StandardScaler
 
 --
 
-Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) method of the `StandardScaler` object to standardise the set of measurements (we called it `x`).
-Re-assign the standardised data to override the variable `x`.
+Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) in the `StandardScaler` object to standardise the set of measurements (we called it `x`).
+Re-assign the standardised data to the variable `x` (i.e., override the value of `x`).
 
 .center[
 **Compare the value of `x` in notebook cells before and after standardisation.**
@@ -273,7 +273,7 @@ The goal is simply to display the result nicely in the notebook.
 
 # Apply PCA
 
-We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` package, to apply principal component analysis (PCA) to the data set.
+We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` library, to apply principal component analysis (PCA) to the data set.
 
 ```{python, echo=TRUE, eval=FALSE}
 from sklearn.decomposition import PCA
