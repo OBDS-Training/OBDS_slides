@@ -335,6 +335,24 @@ Color data points according to their class label. (**Recommendation:** use a sep
 
 ---
 
+# Variance explained by PCA
+
+The variance explained by each principal component is stored in the `pca` object that we used to apply PCA to the data set.
+
+```{python, echo=TRUE, eval=FALSE}
+pca.explained_variance_ratio_
+```
+
+.center[
+**Running PCA without standardisation yielded the following variance explained for the first two components. How do you compare this with your results?**
+]
+
+```
+array([0.92461621, 0.05301557])
+```
+
+---
+
 # To do
 
 - Identify packages that we will use.
