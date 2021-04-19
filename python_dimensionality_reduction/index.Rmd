@@ -186,7 +186,12 @@ import panda as pd
 
 --
 
-Use the function `read_csv` (in the `pandas` package) to import data from the file `iris.data`.
+Use the function `read_csv` (in the `pandas` package) to import data from the file `iris.data`,
+into a variable called `df`.
+
+```{python, echo=TRUE, eval=FALSE}
+df = ...
+```
 
 <!-- TODO: give them the path to the iris.data file on the cluster -->
 
@@ -203,6 +208,32 @@ Use the following list of column names.
 ```
 
 Display the first 5 rows of the data set.
+
+---
+
+# Standardise the data
+
+> Standardise = Center and scale each feature measured in the data set.
+
+.center[
+**Why would we want to do this? Can we standardise _all_ the variables in the data set?**
+]
+
+--
+
+First, separate the numerical measurements and the classification labels in two separate variables,
+`x` and `y`, respectively.
+
+```{python, echo=TRUE, eval=FALSE}
+x = ...
+y = ...
+```
+
+Hints:
+
+- For a data frame `df`, you can use the property [`df.loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) to access rows and columns by label.
+- You can use the symbol `:` alone to access _all_ the rows and/or columns.
+ 
 
 ---
 
