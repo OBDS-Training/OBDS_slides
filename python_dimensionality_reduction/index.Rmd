@@ -3,7 +3,7 @@ title: 'Dimensionality reduction using <i class="fab fa-python"></i> Python'
 subtitle: '&emsp;'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-05-10 (updated: `r Sys.Date()`)"
+date: "2021-05-26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -172,18 +172,27 @@ e.g. `kevinrue.ipynb`.
 
 ---
 
-# Download the data set
+# Import the data set
 
-Import the `pandas` package as `pd`.
+Import the `pandas` package like a pro!
 
-> That's a whole _four_ characters fewer to type!
-> i.e., `pd.read_csv` instead of `pandas.read_csv`.
+```{python, echo=TRUE, eval=FALSE}
+import panda as pd
+```
+
+.center[
+**What does this line do? What are the consequences?**
+]
+
+--
 
 Use the function `read_csv` (in the `pandas` package) to import data from the file `iris.data`.
 
 <!-- TODO: give them the path to the iris.data file on the cluster -->
 
-- What are the default column names?
+.center[
+**What are the default column names?**
+]
 
 Use the following list of column names.
 
@@ -193,9 +202,13 @@ Use the following list of column names.
 
 ---
 
+# PCA using `scikit-learn`
+
+---
+
 # To do
 
-- Choose a data set.
+- ~~Choose a data set.~~ (iris)
 - Identify packages that we will use.
   + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
   + Visualisation.
