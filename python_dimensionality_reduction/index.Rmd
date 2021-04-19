@@ -351,6 +351,32 @@ pca.explained_variance_ratio_
 array([0.92461621, 0.05301557])
 ```
 
+The variance explained by principal components is additive and the sum across all principal components cannot exceed 1 (100% of the variance in the original data set).
+
+.center[
+**How much variance is explained by the principal components that you have computed?**
+]
+
+---
+
+# Summary: PCA
+
+.center[
+**Discuss the pros and cons in the following statements.**
+]
+
+- PCA is sensitive to variance: check if your data needs scaling.
+
+- The directions of largest variance are assumed to be the most interesting.
+  `True` or `False`?
+
+- Principal components are linear combinations of the original dimensions,
+  i.e, PCA can only rotate the original set of axes in your data.
+
+- When some original variables are correlated, PCA can achieve dimensionality reduction.
+
+- If the original variables are uncorrelated (i.e. orthogonal), PCA orders them by decreasing variance.
+
 ---
 
 # To do
