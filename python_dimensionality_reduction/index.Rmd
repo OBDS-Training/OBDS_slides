@@ -241,7 +241,7 @@ y = ...
 
 # Standardise the data
 
-We will use the [`StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) object in the `scikit-learn` package, to standardize features by removing the mean and scaling to unit variance.
+We will use the [`StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) module in the `scikit-learn` package, to standardize features by removing the mean and scaling to unit variance.
 
 ```{python, echo=TRUE, eval=FALSE}
 from sklearn.preprocessing import StandardScaler
@@ -271,7 +271,36 @@ The goal is simply to display the result nicely in the notebook.
 
 ---
 
-# PCA using `scikit-learn`
+# Apply PCA
+
+We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` package, to apply principal component analysis (PCA) to the data set.
+
+```{python, echo=TRUE, eval=FALSE}
+from sklearn.decomposition import PCA
+```
+
+.center[
+**Where should you add this line?**
+]
+
+--
+
+Running a PCA using `scikit-learn` generally involves two steps:
+
+1. Use the `PCA` module to create an object (e.g. `pca`) that defines the parameters of the analysis.
+2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the data set (what we called `x`).
+
+.center[
+**What is the return value of the `fit_transform()` function?**
+]
+
+--
+
+Use the return value of `fit_transform()` to create a `pandas.DataFrame` called `principalDf`, with two columns named "principal component 1" and "principal component 1".
+
+```{python, echo=TRUE, eval=FALSE}
+principalDf = ...
+```
 
 ---
 
