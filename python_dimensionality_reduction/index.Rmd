@@ -138,7 +138,7 @@ knitr::include_graphics("img/swiss_roll.png")
 
 # How can we reduce dimensions?
 
-## Method 1: Principal components analysis
+## Method 1: Principal components analysis (PCA)
 
 ```{r, echo=FALSE, out.height='400px'}
 # Source: https://towardsdatascience.com/pca-clearly-explained-how-when-why-to-use-it-and-feature-importance-a-guide-in-python-7c274582c37e
@@ -387,6 +387,22 @@ Use `matplotlib` to draw a bar plot of the variance explained by each principal 
 - If the original variables are uncorrelated (i.e. orthogonal), PCA orders them by decreasing variance.
 
 - Principal components that explain small amounts of variance can be excluded from downstream amalyses.
+
+---
+
+# How can we reduce dimensions?
+
+## Method 2: Uniform Manifold Approximation and Projection (UMAP)
+
+<i class="fab fa-youtube"></i> <https://www.youtube.com/watch?v=nq6iPZVUxZU&ab_channel=Enthought>
+
+UMAP Uniform Manifold Approximation and Projection for Dimension Reduction | SciPy 2018 |
+
+> This talk will present a new approach to dimension reduction called UMAP. UMAP is grounded in manifold learning and topology, making an effort to preserve the topological structure of the data. The resulting algorithm can provide both 2D visualisations of data of comparable quality to t-SNE, and general purpose dimension reduction. UMAP has been implemented as a (scikit-learn compatible) python library that can perform efficient dimension reduction, scaling out to much larger datasets than t-SNE or other comparable algorithms (see http://github.com/lmcinnes/umap​).
+
+---
+
+# Apply UMAP
 
 ---
 
