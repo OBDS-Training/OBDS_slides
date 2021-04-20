@@ -147,6 +147,23 @@ knitr::include_graphics("img/pca.jpeg")
 
 ---
 
+# Principal components analysis (PCA)
+
+## Eigenvalue decomposition
+
+```{r, echo=FALSE, out.height='300px'}
+# Source: https://blog.paperspace.com/dimension-reduction-with-principal-component-analysis/
+knitr::include_graphics("img/eigenvalue_decomposition.png")
+```
+
+#### Intepretation
+
+- Eigenvectors = new axes through the data set.
+
+- Eigenvalues = variance in the data set along the corresponding eigenvector.
+
+---
+
 # Set up
 
 Use `conda.yml` to create a Conda environment for this exercise.
