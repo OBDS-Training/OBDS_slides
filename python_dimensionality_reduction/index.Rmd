@@ -462,6 +462,18 @@ We will re-use the [`pyplot`](https://matplotlib.org/2.0.2/api/pyplot_api.html) 
 
 ---
 
+# Summary: UMAP
+
+.center[
+**Discuss the pros and cons in the following statements.**
+]
+
+- What does the acronym say about the method? (Uniform Manifold Approximation and Projection)
+
+- UMAP is a _non-linear_ dimensionality reduction method.
+
+---
+
 # Further reading
 
 ## Novice
