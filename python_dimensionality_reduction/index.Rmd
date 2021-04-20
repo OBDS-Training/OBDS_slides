@@ -386,6 +386,8 @@ Use `matplotlib` to draw a bar plot of the variance explained by each principal 
 
 - If the original variables are uncorrelated (i.e. orthogonal), PCA orders them by decreasing variance.
 
+- Principal components that explain small amounts of variance can be excluded from downstream amalyses.
+
 ---
 
 # To do
