@@ -273,7 +273,7 @@ The goal is simply to display the result nicely in the notebook.
 
 # Apply PCA
 
-We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` library, to apply principal component analysis (PCA) to the data set.
+We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` library, to perform principal component analysis (PCA).
 
 ```{python, echo=TRUE, eval=FALSE}
 from sklearn.decomposition import PCA
@@ -288,17 +288,20 @@ from sklearn.decomposition import PCA
 Running a PCA using `scikit-learn` generally involves two steps:
 
 1. Use the `PCA` module to create an object (e.g. `pca`) that defines the parameters of the analysis.
-  For instance, `PCA(n_components=2)` will request only the first two principal components of the analysis.
-2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the data set (what we called `x`).
+  For instance, `PCA(n_components=2)` will return only the first two principal components.
+2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the standardised data set.
   Assign the output of that function to a new variable `principalComponents`.
 
 .center[
+**What is the maximal number of principal components that can be computed on this data set?**
+
 **What is the return value of the `fit_transform()` function?**
 ]
 
 --
 
-Use the return value of `fit_transform()` to create a `pandas.DataFrame` called `principalDf`, with two columns named "principal component 1" and "principal component 1".
+Use the return value of `fit_transform()` to create a `pandas.DataFrame` called `principalDf`.
+Name the columns of the data frame `PC 1`, `PC 2`, and so on.
 
 ```{python, echo=TRUE, eval=FALSE}
 principalDf = ...
@@ -328,7 +331,7 @@ import matplotlib.pyplot as plt
 
 #### Bonus point
 
-Color data points according to their class label. (**Recommendation:** use a separate notebook cell).
+Color data points according to their class label. (**Recommendation:** start over in a separate notebook cell).
 
 - Use the function `pd.concat()` to add the class label to the data frame (we called it `principalDf`).
 - Use a `for` loop to iteratively add data points from each class label.
@@ -344,11 +347,11 @@ pca.explained_variance_ratio_
 ```
 
 .center[
-**Running PCA without standardisation yielded the following variance explained for the first two components. How do you compare this with your results?**
+**Running PCA without standardisation yielded the following variance explained for the first four components. How do you compare this with your results?**
 ]
 
 ```
-array([0.92461621, 0.05301557])
+array([0.92461621, 0.05301557, 0.01718514, 0.00518309])
 ```
 
 The variance explained by principal components is additive and the sum across all principal components cannot exceed 1 (100% of the variance in the original data set).
@@ -356,6 +359,13 @@ The variance explained by principal components is additive and the sum across al
 .center[
 **How much variance is explained by the principal components that you have computed?**
 ]
+
+#### Bonus point
+
+Use `matplotlib` to draw a bar plot of the variance explained by each principal component
+
+- Make sure the x-axis ticks reflect the name of each principal component.
+- You can use [`numpy.arange`](https://numpy.org/doc/stable/reference/generated/numpy.arange.html) to generate series of evenly spaced values within a given interval.
 
 ---
 
@@ -368,7 +378,6 @@ The variance explained by principal components is additive and the sum across al
 - PCA is sensitive to variance: check if your data needs scaling.
 
 - The directions of largest variance are assumed to be the most interesting.
-  `True` or `False`?
 
 - Principal components are linear combinations of the original dimensions,
   i.e, PCA can only rotate the original set of axes in your data.
