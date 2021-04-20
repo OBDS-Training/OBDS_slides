@@ -4,9 +4,10 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
-  - jupyterlab
-  - scikit-learn
   - pandas
   - matplotlib
+  - scikit-learn
+  - jupyterlab
+  - python=3.8
+  - umap-learn
 prefix: /Users/kevin/miniconda3/envs/obds-py-dimred
