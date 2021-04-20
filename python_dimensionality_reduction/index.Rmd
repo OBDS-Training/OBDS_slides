@@ -203,14 +203,12 @@ import panda as pd
 
 --
 
-Use the function `read_csv()` (in the `pandas` package) to import data from the file `iris.data`,
-into a variable called `df`.
+Use the function `read_csv()` (in the `pandas` library) to import data from the file `iris.data`,
+into a variable called `iris_data`.
 
 ```{python, echo=TRUE, eval=FALSE}
-df = ...
+iris_data = ...
 ```
-
-<!-- TODO: give them the path to the iris.data file on the cluster -->
 
 .center[
 **What are the default column names?**
@@ -241,24 +239,24 @@ Display the first 5 rows of the data set.
 ## Split measurements from class labels
 
 First, separate the numerical measurements and the classification labels in two separate variables,
-`x` and `y`, respectively.
+`iris_features` and `iris_class`, respectively.
 
 ```{python, echo=TRUE, eval=FALSE}
-x = ...
-y = ...
+iris_features = ...
+iris_class = ...
 ```
 
 #### Hints
 
 - For a data frame `df`, you can use the property [`df.loc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html) to access rows and columns by label.
 - You can use the symbol `:` alone to access _all_ the rows and/or columns.
-- For a data frame `df`,  you can extract _values_ as an Numpy array using the property [`df.values`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.values.html.
+- For a data frame `df`,  you can extract _values_ as an Numpy array using the property [`df.values`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.values.html).
 
 ---
 
 # Standardise the data
 
-We will use the [`StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) module in the `scikit-learn` package, to standardize features by removing the mean and scaling to unit variance.
+We will use the [`StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) class in the `scikit-learn` package, to standardize features by removing the mean and scaling to unit variance.
 
 ```{python, echo=TRUE, eval=FALSE}
 from sklearn.preprocessing import StandardScaler
@@ -270,18 +268,18 @@ from sklearn.preprocessing import StandardScaler
 
 --
 
-Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) in the `StandardScaler` object to standardise the set of measurements (we called it `x`).
-Re-assign the standardised data to the variable `x` (i.e., override the value of `x`).
+Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) of the `StandardScaler` object to standardise the set of measurements (we called it `iris_features`).
+Aœssign the standardised data to the new variable name `iris_standardised`.
 
 .center[
-**Compare the value of `x` in notebook cells before and after standardisation.**
+**Print the first four rows of `iris_standardised` and compare with `iris_features`.**
 ]
 
 --
 
 #### Bonus point
 
-Use `pd.DataFrane` to reconstruct a data frame from the new value of `x` and the names of the features measured.
+Use `pd.DataFrane` to reconstruct a data frame from the new value of `iris_features` and the names of the features measured.
 
 You do not need to assign this to any variable.
 The goal is simply to display the result nicely in the notebook.
@@ -290,7 +288,7 @@ The goal is simply to display the result nicely in the notebook.
 
 # Apply PCA
 
-We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) module in the `scikit-learn` library, to perform principal component analysis (PCA).
+We will use the [`PCA`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) class in the `scikit-learn` library, to perform principal component analysis.
 
 ```{python, echo=TRUE, eval=FALSE}
 from sklearn.decomposition import PCA
@@ -304,9 +302,9 @@ from sklearn.decomposition import PCA
 
 Running a PCA using `scikit-learn` generally involves two steps:
 
-1. Use the `PCA` module to create an object (e.g. `pca`) that defines the parameters of the analysis.
+1. Use the `PCA` module to create an object (e.g. `pca_iris`) that defines the parameters of the analysis.
   For instance, `PCA(n_components=2)` will return only the first two principal components.
-2. Use the `fit_transform()` function of the `pca` object to perform the analysis on the standardised data set.
+2. Use the `fit_transform()` function of the `pca_iris` object to perform the analysis on the standardised data set.
   Assign the output of that function to a new variable `principalComponents`.
 
 .center[
@@ -317,11 +315,11 @@ Running a PCA using `scikit-learn` generally involves two steps:
 
 --
 
-Use the return value of `fit_transform()` to create a `pandas.DataFrame` called `principalDf`.
+Use the return value of `fit_transform()` to create a `pandas.DataFrame` called `pca_dataframe`.
 Name the columns of the data frame `PC 1`, `PC 2`, and so on.
 
 ```{python, echo=TRUE, eval=FALSE}
-principalDf = ...
+pca_dataframe = ...
 ```
 
 ---
@@ -335,7 +333,7 @@ import matplotlib.pyplot as plt
 ```
 
 .center[
-**Where should you add this line?**
+**Where should you add this line? What does it do?**
 ]
 
 #### Hints
@@ -350,17 +348,18 @@ import matplotlib.pyplot as plt
 
 Color data points according to their class label. (**Recommendation:** start over in a separate notebook cell).
 
-- Use the function `pd.concat()` to add the class label to the data frame (we called it `principalDf`).
-- Use a `for` loop to iteratively add data points from each class label.
+- Use `pd.concat()` to add the class label to the data frame.
+  Assign to `pca_dataframe_labelled`.
+- Use a `for` loop and `zip()` to iteratively add data points with a different color for each species.
 
 ---
 
 # Variance explained by PCA
 
-The variance explained by each principal component is stored in the `pca` object that we used to apply PCA to the data set.
+The variance explained by each principal component is stored in the `pca_iris` object that we used to apply PCA to the data set.
 
 ```{python, echo=TRUE, eval=FALSE}
-pca.explained_variance_ratio_
+pca_iris.explained_variance_ratio_
 ```
 
 .center[
@@ -421,16 +420,45 @@ UMAP Uniform Manifold Approximation and Projection for Dimension Reduction | Sci
 
 # Apply UMAP
 
+We will use an instance of the [`UMAP`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) class in the `umap` library (`umap-learn` package), to perform the analysis on the set of principal components (i.e. not the original data set).
+
+.center[
+**Why is this often a good idea? Consider other forms of the data set that we could input to UMAP.**
+]
+
+```{python, echo=TRUE, eval=FALSE}
+import umap
+```
+
+.center[
+**Where should you add this line?**
+]
+
+--
+
+Running UMAP generally involves two steps:
+
+1. Create a `UMAP` object (e.g. `umap_reducer`) that defines the parameters of the analysis.
+2. Use the `fit_transform()` function of the `umap_reducer` object to perform the analysis.
+  Assign the output of that function to a new variable `umap_iris_embedding`.
+
+.center[
+**What are some basic parameters of UMAP objects?**
+
+**What is the return value of the `fit_transform()` function?**
+]
+
 ---
 
-# To do
+# Visualise the UMAP projection
 
-- Identify packages that we will use.
-  + Dimensionality reduction (e.g., PCA, UMAP, t-SNE).
-    * UMAP
-    * t-SNE
+We will re-use the [`pyplot`](https://matplotlib.org/2.0.2/api/pyplot_api.html) code that we wrote to visualise the PCA projection.
 
-- Clarify how we will use python on the cluster.
+#### Hints
+
+- Create a `pandas.DataFrame` that combines the UMAP projections and the class labels.
+  Call it `umap_iris_dataframe`.
+- Draw a scatter plot of UMAP projections, colored by class label.
 
 ---
 
