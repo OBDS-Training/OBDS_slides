@@ -107,7 +107,7 @@ knitr::kable(x)
 ```
 ]
 
-.pull-left[
+.pull-right[
 ```{r}
 x_nrow <- 10
 x <- data.frame(
