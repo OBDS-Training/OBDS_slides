@@ -269,7 +269,7 @@ from sklearn.preprocessing import StandardScaler
 --
 
 Use the method [`fit_transform()`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler.fit_transform) of the `StandardScaler` object to standardise the set of measurements (we called it `iris_features`).
-Aœssign the standardised data to the new variable name `iris_standardised`.
+Assign the standardised data to the new variable name `iris_standardised`.
 
 .center[
 **Print the first four rows of `iris_standardised` and compare with `iris_features`.**
