@@ -72,7 +72,7 @@ bib <- ReadBib("bibliography.bib")
 
 - Retrieve (i.e., _pull_) contributions from other participants in the shared repository.
 
-- Examine the history (i.e., _log_) of contributions (i.e., _commits_) to the shared repository.
+- Examine the history (i.e., _log_) of contributions to the shared repository.
 
 ---
 
