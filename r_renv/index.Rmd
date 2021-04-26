@@ -350,13 +350,15 @@ You can use this panel to stage the changes, commit, and push/pull:
 
 # Introduction to `r BiocStyle::CRANpkg("renv")`
 
+<https://kevinushey-2020-rstudio-conf.netlify.app/slides.html> (rstudio::conf 2020)
+
 The `r BiocStyle::CRANpkg("renv")` package is a new effort to bring project-local R dependency management to your projects.
 
 > `r BiocStyle::CRANpkg("renv")` = <ins>r</ins>eproducible <ins>env</ins>ironment.
 
 Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your existing workflows should just work as they did before:
 
-- `r BiocStyle::CRANpkg("renv")` helps manage library paths (and other project-specific state) to help isolate your project’s R dependencies
+- `r BiocStyle::CRANpkg("renv")` manages library paths (and other project-specific state) to isolate your project’s R dependencies
 
 - The existing tools you’ve used for managing R packages (e.g. `install.packages()`, `remove.packages()`, `BiocManager::install()`) should work as they did before.
 
@@ -370,6 +372,52 @@ Underlying the philosophy of `r BiocStyle::CRANpkg("renv")` is that any of your 
 
 .right[
 <https://rstudio.github.io/renv/>
+]
+
+---
+
+# Without `r BiocStyle::CRANpkg("renv")`
+
+By default, each R session uses the same set of library paths.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+knitr::include_graphics("img/renv-shared-library.svg")
+```
+
+.center[
+**What happens when you install a new version of a package in the library?**
+]
+
+---
+
+# With `r BiocStyle::CRANpkg("renv")`
+
+Instead, `r BiocStyle::CRANpkg("renv")` creates a local library for each project.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+knitr::include_graphics("img/renv-project-library.svg")
+```
+
+.center[
+**What happens when you install a new version of a package in library 1?**
+]
+
+---
+
+# `r BiocStyle::CRANpkg("renv")` uses a global package cache
+
+Instead of installing each package *de novo* in each project library,
+`r BiocStyle::CRANpkg("renv")` installs each version of package in a *global package cache*,
+and then *link* the relevant version of each package to the relevant project libraries.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+knitr::include_graphics("img/renv-package-cache.svg")
+```
+
+.center[
+**What are the benefits of this method?**
+
+**(Think about time and disk space)**
 ]
 
 ---
@@ -467,28 +515,6 @@ remotes::install_github("tidyverse/ggplot2")
 ]
 
 **Note:** in the **Packages** pane, you will see several new packages listed under **Project library**: the package(s) that you asked for, as well as its dependencies.
-]
-
----
-
-# renv uses a global package cache
-
-One of `r BiocStyle::CRANpkg("renv")`’s primary features is the use of a global package cache, which is shared across all projects using `r BiocStyle::CRANpkg("renv")`.
-
-The renv package cache provides two primary benefits:
-
-- Speed - Future calls to `renv::restore()` and `renv::install()` will become much faster, as renv will be able to find and re-use packages already installed in the cache.
-
-- Space - The renv cache should also help you save disk space, because it is not necessary to have duplicate versions of your packages installed in each project.
-
-.pull-left[
-**Note:** if you navigate to the `renv/library` subdirectory, you should see that each package is a symbolic link (to the global cache) rather than an actual folder.
-]
-
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
-knitr::include_graphics("img/renv-global-cache.png")
-```
 ]
 
 ---
@@ -595,6 +621,8 @@ We will use this method to give you an environment for each of the coming days.
 - "Using Projects" - [support.rstudio.com](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 
 ## `renv`
+
+- rstudio::conf 2020 slides: <https://kevinushey-2020-rstudio-conf.netlify.app/slides.html>
 
 - Latest documentation: <https://rstudio.github.io/renv/>
 
