@@ -465,7 +465,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 The `ggsave()` function can be used to save a plot to a file.
 
-```{r}
+```{r, include=TRUE, eval=FALSE}
 ggsave(
   filename,
   plot = last_plot(),
