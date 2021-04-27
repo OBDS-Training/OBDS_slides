@@ -256,57 +256,34 @@ obds_msleep <- ggplot(msleep, aes(order)) +
   guides(fill = guide_legend(ncol = 3))
 ```
 
-# Leftover
+# Exercise
 
-- Change the number of bins (i.e.,bars).
+## Plotting grid
 
-**Note:** you may change the bin width or the total number of bars.
+- Collate the plots that we saved through the day, as a single plot.
+
+  + Plots: `obds_diamonds`, `obds_chickweight`, `obds_msleep`.
+  
+  + Methods: `cowplot::plot_grid()`, `patchwork`, `gridExtra::grid.arrange()`.
 
 ```{r}
-ggplot(ChickWeight, aes(weight)) +
-  geom_histogram(fill = "grey", color = "black", binwidth = 10)
+first_row <- cowplot::plot_grid(
+  obds_diamonds, obds_chickweight,
+  ncol = 2
+)
+second_row <- cowplot::plot_grid(
+  obds_msleep, ncol = 1
+)
+super_plot <- cowplot::plot_grid(
+  first_row, second_row,
+  nrow = 2
+)
 ```
 
-- Change the y-axis upper limit to an arbitrary number, e.g. 100.
+- Save the new plot in a PDF file.
+
+> You will likely need a few attempts to fine-tune the width and height of the output file.
 
 ```{r}
-ggplot(ChickWeight, aes(weight)) +
-  geom_histogram(fill = "grey", color = "black", binwidth = 10) +
-  labs(x = "Chick weight", y = "Count") +
-  theme(
-    axis.title = element_text(size = rel(2)),
-    axis.text.x = element_text(size = rel(2), angle = 30, hjust = 1, vjust = 1)
-    ) +
-  coord_cartesian(ylim = c(0, 100))
-```
-
-- Facet a vertical strip of histograms, one for each diet.
-
-**Note:** you may also like to fill bars with a different color for each diet.
-
-```{r}
-ggplot(ChickWeight, aes(weight, fill = Diet)) +
-  geom_histogram(color = "black", bins = 100) +
-  labs(x = "Chick weight", y = "Count") +
-  theme(
-    axis.title = element_text(size = rel(2)),
-    axis.text.x = element_text(size = rel(2), angle = 30, hjust = 1, vjust = 1)
-    ) +
-  scale_x_log10() +
-  facet_wrap(~ Diet, ncol = 1)
-```
-
-- Allow each facet to fit the y-axis range to its own data.
-
-```{r}
-histogram_plot <- ggplot(ChickWeight, aes(weight, fill = Diet)) +
-  geom_histogram(color = "black", bins = 100) +
-  labs(x = "Chick weight", y = "Count") +
-  theme(
-    axis.title = element_text(size = rel(2)),
-    axis.text.x = element_text(size = rel(2), angle = 30, hjust = 1, vjust = 1)
-    ) +
-  scale_x_log10() +
-  facet_wrap(~ Diet, ncol = 1, scales = "free_y")
-histogram_plot
+ggsave("final_plot.pdf", super_plot, width = 12, height = 12)
 ```

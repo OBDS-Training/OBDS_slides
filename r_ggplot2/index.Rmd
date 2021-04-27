@@ -461,6 +461,28 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 ---
 
+# Save a plot to file
+
+The `ggsave()` function can be used to save a plot to a file.
+
+```{r}
+ggsave(
+  filename,
+  plot = last_plot(),
+  ...
+)
+```
+
+## Notes
+
+- The first argument is the `filename`, not the `plot`!
+
+- If `plot` is not given, the latest plot generated is used.
+
+- The extension of `filename` is used to automatically generate the right kind of file.
+
+---
+
 # Exercise
 
 ## Trend lines
@@ -513,15 +535,17 @@ Using the `ChickWeight` data set:
 
 # Exercise
 
-## Faceting
+## Plotting grid
 
-- Load the `????` data set.
+- Collate the plots that we saved through the day, as a single plot.
 
-- Plot ???
+  + Plots: `obds_diamonds`, `obds_chickweight`, `obds_msleep`.
+  
+  + Methods: `cowplot::plot_grid()`, `patchwork`, `gridExtra::grid.arrange()`.
 
-- Facet ???
+- Save the new plot in a PDF file.
 
-- Allow each facet to fit the y-axis range to its own data.
+> You will likely need a few attempts to fine-tune the width and height of the output file.
 
 ---
 
