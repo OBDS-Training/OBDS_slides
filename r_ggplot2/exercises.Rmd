@@ -67,7 +67,7 @@ ggplot(diamonds, aes(x = carat, y = price, color = cut)) +
 
 ### Plot 1
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE}
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point() +
   geom_smooth()
@@ -75,7 +75,7 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
 
 ### Plot 2
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE}
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point(aes(colour = cut)) +
   geom_smooth()
