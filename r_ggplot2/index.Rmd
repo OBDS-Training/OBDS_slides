@@ -118,15 +118,14 @@ One convenient feature of R markdown documents is that they display outputs (e.g
 
 ## Learning goals
 
-.x-large-list[
 - Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
 
-- Understand the key differences between `ggplot` objects and base R graphics.
-]
+- Identify the key differences between `ggplot` objects and base R graphics.
+
+- Understand the concept of tidy data.
 
 ## Learning objectives
 
-.x-large-list[
 - Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
 
 - Overlay multiple layers for the same data on a single plot.
@@ -134,7 +133,6 @@ One convenient feature of R markdown documents is that they display outputs (e.g
 - Use faceting and plotting grids.
 
 - Customise plot themes.
-]
 
 ---
 
@@ -209,7 +207,7 @@ print(plot1)
 .pull-left[
 - Currently the most popular plotting framework in <i class="fab fa-r-project"></i>
 
-- Uses tidy data (part of the `r BiocStyle::CRANpkg("tidyverse")`
+- Uses tidy data (part of the `r BiocStyle::CRANpkg("tidyverse")`)
 
   + e.g. `data.frame`, `datatable`, `tibble`
   
