@@ -52,6 +52,28 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
+# Lesson goals and objectives
+
+## Learning goals
+
+- Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Identify the key differences between `ggplot` objects and base R graphics.
+
+- Understand the concept of tidy data.
+
+## Learning objectives
+
+- Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
+
+- Overlay multiple layers for the same data on a single plot.
+
+- Use faceting and plotting grids.
+
+- Customise plot themes.
+
+---
+
 # Prerequisites
 
 <br/>
@@ -98,7 +120,7 @@ The resulting file structure should look like the following:
 
 ---
 
-# Setup
+# Set up
 
 - Open a new R markdown document.
 
@@ -111,28 +133,6 @@ knitr::include_graphics("img/rstudio-new-rmarkdown.png")
 
 **Note:** you will use this file to write your code as well as notes.
 One convenient feature of R markdown documents is that they display outputs (e.g. plots) next to the code chunks that produced them.
-
----
-
-# Lesson goals and objectives
-
-## Learning goals
-
-- Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
-
-- Identify the key differences between `ggplot` objects and base R graphics.
-
-- Understand the concept of tidy data.
-
-## Learning objectives
-
-- Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
-
-- Overlay multiple layers for the same data on a single plot.
-
-- Use faceting and plotting grids.
-
-- Customise plot themes.
 
 ---
 
@@ -280,6 +280,8 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 - Color data points by `cut`.
 
 - Add a smoothed mean trend line.
+
+- Save the last plot as `obds_diamonds`.
 
 ---
 
@@ -461,33 +463,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 # Exercise
 
-- Load the `ChickWeight` data set.
-
-- Plot a histogram of chick weight.
-
-- Change the fill and border color of the bars.
-
-- Change the number of bins (i.e.,bars).
-
-**Note:** you may change the bin width or the total number of bars.
-
-- Change the label and font size of the axes.
-
-- Change the font size and angle of the x-axis tick labels.
-
-**Note:** you will probably want to justify the text labels as right-aligned.
-
-- Change the y-axis upper limit to an arbitrary number, e.g. 100.
-
-- Facet a vertical strip of histograms, one for each diet.
-
-**Note:** you may also like to fill bars with a different color for each diet.
-
-- Allow each facet to fit the y-axis range to its own data.
-
----
-
-# Exercise
+## Trend lines
 
 Using the `ChickWeight` data set:
 
@@ -499,9 +475,53 @@ Using the `ChickWeight` data set:
 
 - Which diet leads to the highest mean increase in weight?
 
-- Collate that last plot with the last histogram in the previous exercise.
+- Facet a ribbon of sub-plots, one per diet.
 
-- Label the panels "A" and "B".
+- Save the last plot as `obds_chickweight`.
+
+---
+
+# Exercise
+
+## Bar plot
+
+- Load the `ggplot2::msleep` data set.
+
+- Draw a bar plot of number of observations by taxonomic order.
+
+- Change the angle and font size of the x-axis tick labels.
+
+> You will probably want to justify the text labels as right-aligned.
+
+- Change the label and font size of the axes.
+
+- Fill each bar with colors, proportionally to the count of each genus.
+
+> You may need to iteratively resize the labels of the ticks and axes.
+
+- Reduce the legend key size.
+  (Recommendation: use `unit(2, "mm")`).
+
+- Force the legend to be display in 3 columns.
+  (Recommendation: use `guide_legend(...)`).
+
+- Add a contour of thin black lines to the bars.
+
+- Save the last plot as `obds_msleep`.
+
+---
+
+# Exercise
+
+## Faceting
+
+- Load the `????` data set.
+
+- Plot ???
+
+- Facet ???
+
+- Allow each facet to fit the y-axis range to its own data.
 
 ---
 
