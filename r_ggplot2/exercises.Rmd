@@ -37,7 +37,7 @@ ggplot(diamonds, aes(x = carat, y = price))
 
 ## Add geometric objects
 
-- Draw points showing `carat` on the x-axis and `price` on the y-axis.
+- Add data points showing `carat` on the x-axis and `price` on the y-axis.
 
 ```{r}
 ggplot(diamonds, aes(x = carat, y = price)) +

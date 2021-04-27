@@ -230,7 +230,8 @@ knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
 # Geometric objects
 
 A **layer** combines **data**, **aesthetic** mapping, a **geom** (geometric object), a **stat** (statistical transformation), and a **position** adjustment.
-Typically, you will create layers using a `geom_` function, overriding the default **position** and **stat** if needed.
+Typically, you will create layers using a `geom_` function,
+occasionally overriding the default **position** and **stat** if needed.
 
 Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
 
@@ -274,13 +275,11 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 ## Add geometric objects
 
-- Draw points showing `carat` on the x-axis and `price` on the y-axis.
+- Add data points showing `carat` on the x-axis and `price` on the y-axis.
 
 - Color data points by `cut`.
 
 - Add a smoothed mean trend line.
-
-**Note:** identify the relevant `geom_` function and add it as an additional layer.
 
 ---
 
