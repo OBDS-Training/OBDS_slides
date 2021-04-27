@@ -285,7 +285,7 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 # Exercise
 
-## Predict the difference between these two plots
+## Spot (and predict) the difference!
 
 ### Plot 1
 
@@ -302,6 +302,10 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point(aes(colour = cut)) +
   geom_smooth()
 ```
+
+.center[
+**Predict the difference between these two plots**
+]
 
 ---
 
