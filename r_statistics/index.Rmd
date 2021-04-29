@@ -849,19 +849,25 @@ Further reading: [Towards data science](https://towardsdatascience.com/fishers-e
 
 # Fisher's Exact Test
 
-|         | Men| Women| Total|
-|:--------|---:|-----:|-----:|
-|Studying |   1|     9|    10|
-|Slacking |  11|     3|    14|
-|Total    |  12|    12|    24|
+|               |  DE | Not DE| Total|
+|:--------------|----:|------:|-----:|
+|In pathway     |  12 |     3 |   15 |
+|Not in pathway |   4 |    23 |   27 |
+|Total          |  16 |    26 |   42 |
 
-Knowing that 10 of these 24 teenagers are studying, and that 12 of the 24 are female, and assuming the null hypothesis that men and women are equally likely to study, what is the probability that these 10 teenagers who are studying would be so unevenly distributed between the women and the men?
+Knowing that 16 of these 42 teenagers are studying,
+and that 15 of the 42 are in the biological pathway of interest,
+and assuming the null hypothesis that genes in the pathway are equally likely to be differentially expressed,
+what is the probability that these 15 teenagers who are differentially expressed
+would be so unevenly distributed between the pathway of interest and unrelated biological functions?
 
 ```{r, include=TRUE, echo=FALSE, out.height="100px", fig.align='center'}
 knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg/355286b9e9fdc48395ff99ab24694092ee8f5b49")
 ```
 
 <br/>
+
+$$p = {15 \choose 12} {27 \choose 4} / {42 \choose 16} = $$
 
 ```{r, include=TRUE, echo=FALSE, out.height="50px", fig.align='center'}
 knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg/dd800d46585be53665dfbb75291aeee58a279cd9")
