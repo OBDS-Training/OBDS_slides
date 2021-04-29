@@ -829,13 +829,15 @@ lm(y ~ x, test_data) %>% summary()
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://www.pathwaycommons.org/guide/primers/statistics/fishers_exact_test/table_1.png")
+knitr::include_graphics("img/fisher-test-table.png")
+# Source: Kevin Rue-Albrecht
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://seqqc.files.wordpress.com/2019/07/screenshot-2019-07-25-at-14.30.54.png?w=300&h=253")
+knitr::include_graphics("img/fisher-test-venn.png")
+# Source: Kevin Rue-Albrecht
 ```
 ]
 
@@ -871,7 +873,7 @@ knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg
 
 .center[
 ```{r include=TRUE, echo=FALSE}
-x_table <- matrix(data = c(12, 3, 3, 12),
+x_table <- matrix(data = c(12, 4, 3, 23),
   nrow = 2,
   dimnames = list(
     c("DE","Not DE"),
