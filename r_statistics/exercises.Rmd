@@ -1,12 +1,13 @@
 ---
 title: "Example code for R statistics"
 author: "Kevin Rue-Albrecht"
-date: "14/01/2021"
+date: "14/06/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 # Exercises
@@ -153,6 +154,12 @@ lines(density(iris$Sepal.Length[iris$Species == "virginica"]), col = "blue")
 axis(1, at=seq(3, 9))
 axis(2, at=seq(0, 1.5, 0.2))
 ```
+
+```{r}
+ggplot(iris, aes(Sepal.Length)) +
+  geom_density(aes(color = Species))
+```
+
 
 - Is `Sepal.Length` length normally distributed? Overall? Within each species?
 

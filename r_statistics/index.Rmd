@@ -450,7 +450,7 @@ plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 
 # Exercise
 
-## Generate and visualise a distribution
+## Generate and summarise a distribution
 
 - Generate a vector of 1000 normally distributed values with mean 10 and standard deviation 5.
 
@@ -494,11 +494,19 @@ For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
 ## Compute an Empirical Cumulative Distribution Function
 
-- Use the `ecdf()` function to compute the empirical cumulative distribution function for the variable `Sepal.Length` in the `iris` data set.
+- Use the `ecdf()` function to compute the empirical cumulative distribution function for the variable `Sepal.Length` in the built-in `iris` data set.
 
 - Use the `plot()` function to visualise the empirical cumulative distribution function.
 
-- Use the `knots()` function on the `ecdf` output and compare this with the list of unique values for the variable `Sepal.Length`.
+.center[
+**What insights into the data does this plot give you?**
+]
+
+- Use the `knots()` function on the `ecdf` output and compare this with the set of unique values for the variable `Sepal.Length`.
+
+.center[
+**What are _knots_?**
+]
 
 ---
 
@@ -855,6 +863,26 @@ knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg
 
 ```{r, include=TRUE, echo=FALSE, out.height="50px", fig.align='center'}
 knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg/dd800d46585be53665dfbb75291aeee58a279cd9")
+```
+
+---
+
+# Fisher's Exact Test
+
+.center[
+```{r include=TRUE, echo=FALSE}
+x_table <- matrix(data = c(12, 3, 3, 12),
+  nrow = 2,
+  dimnames = list(
+    c("DE","Not DE"),
+    c("in_pathway", "not_pathway")
+  ))
+knitr::kable(x_table)
+```
+]
+
+```{r, include=TRUE}
+fisher.test(x_table)
 ```
 
 ---
