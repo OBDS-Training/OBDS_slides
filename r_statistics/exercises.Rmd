@@ -179,68 +179,78 @@ summary(out)
 
 ## Testing & Multiple testing correction
 
-Given a matrix of log-normalised counts and experimental metadata,
+Given a matrix of log-normalised counts (`logcounts_matrix.csv`) and experimental metadata (`cell_metadata.csv`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 
-### Approach
-
-1. Write the code to test a single gene and access the p-value.
-2. Write a function that generalises the code to test any one gene and return the p-value.
-3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
-
-## Deprecated
-
-- For each gene (i.e. row) in `logcounts.csv`, use `cell_metadata.csv` and a statistical test of your choice to identify gene differentially expressed in cells infected with _Salmonella_ relative to the control uninfected cells.
-
-> **Suggestion:** write the code to test one gene, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the genes.
-
 ```{r}
-mat <- read.csv("data/logcounts.csv", row.names = 1)
-dim(mat)
+logcounts_matrix <- read.csv("data/logcounts_matrix.csv", row.names = 1)
+dim(logcounts_matrix)
 ```
 
 ```{r}
 cell_data <- read.csv("data/cell_metadata.csv")
 rownames(cell_data) <- cell_data$Sample
-cell_data <- cell_data[colnames(mat), ]
+# all(rownames(cell_data) == colnames(logcounts_matrix))
 head(cell_data)
 ```
+### Approach
 
-```{r, warning=FALSE}
-test_row <- function(index, matrix) {
+1. Write the code to test a single gene and access the p-value.
+
+```{r}
+gene_index <- 1
+test_data <- data.frame(
+    value = as.numeric(logcounts_matrix[gene_index, ]),
+    group = cell_data$Infection
+)
+out <- t.test(value ~ group, test_data)
+out$p.value
+```
+
+2. Write a function that generalises the code to test any one gene and return the p-value.
+
+```{r}
+t_test_row <- function(index, matrix, group) {
     test_data <- data.frame(
-        value = as.numeric(mat[index, ]),
-        group = cell_data$Infection
+        value = as.numeric(matrix[index, ]),
+        group = group
     )
-    out <- wilcox.test(value ~ group, test_data)
+    out <- t.test(value ~ group, test_data)
     out$p.value
 }
-
-result_pvalues <- vapply(
-    X = seq_len(nrow(mat)), FUN = test_row, FUN.VALUE = numeric(1), matrix = mat)
-names(result_pvalues) <- rownames(mat)
-head(result_pvalues)
+t_test_row(index = 1, matrix = logcounts_matrix, group = cell_data$Infection)
 ```
+
+3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
+
+```{r}
+t_test_pvalues <- vapply(
+  X = seq_len(nrow(logcounts_matrix)),
+  FUN = t_test_row,
+  FUN.VALUE = numeric(1),
+  matrix = logcounts_matrix,
+  group = cell_data$Infection)
+names(t_test_pvalues) <- rownames(logcounts_matrix)
+head(t_test_pvalues)
+```
+
+### Bonus points
 
 - Visualise a bar plot of the p-values.
 
 ```{r}
-hist(result_pvalues, breaks = 100)
+hist(t_test_pvalues, breaks = 100)
 ```
 
 - Correct p-values for multiple testing.
   How many genes remain before and after multiple testing?
 
 ```{r}
-result_bh <- p.adjust(result_pvalues, method = "BH")
-hist(result_bh, breaks = 100)
-```
-
-```{r}
+result_bh <- p.adjust(t_test_pvalues, method = "BH")
 table(result_bh < 0.05)
 ```
 
-- Use `gene_metadata.csv` to get the gene name for the gene identifier associated with the smallest p-value.
+- Use `gene_metadata.csv` to get the gene name for the gene identifier with the smallest p-value.
 
 ```{r}
 gene_table <- read.csv("data/gene_metadata.csv")
@@ -250,9 +260,9 @@ gene_table$gene_name[gene_table$gene_id == top_gene_id]
 
 ## Over-representation analysis (ORA)
 
-- For each gene ontology (GO) category in `human_go_bp.csv`, use the list of differentially expressed gene identifiers that you obtained in the previous exercise to find GO categories enriched for differentially expressed genes.
-
-> **Suggestion:** Write the code to test one gene set, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the gene sets.
+Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
+and a list of gene sets (`human_go_bp.csv`),
+test each gene set for over-representation of differentially expressed genes.
 
 ```{r}
 go_table <- read.csv("data/human_go_bp.csv")
@@ -260,48 +270,79 @@ go_list <- split(go_table$ensembl_gene_id, go_table$go_id)
 go_list[1]
 ```
 
+### Approach
+
+1. Write the code to test a single gene and access the p-value.
+
 ```{r}
-gene_data <- read.csv("data/gene_metadata.csv")
-universe <- gene_data$gene_id
-head(universe)
+query <- names(result_bh)[result_bh < 0.05]
+query <- na.omit(query)
+universe <- rownames(logcounts_matrix)
+geneset <- go_list[[1]]
+cross_table <- data.frame(
+  gene_id = universe,
+  geneset = factor(universe %in% geneset, c(TRUE, FALSE)),
+  query = factor(universe %in% query, c(TRUE, FALSE))
+)
+test_table <- table(cross_table$geneset, cross_table$query)
+fisher.test(test_table)$p.value
 ```
 
+2. Write a function that generalises the code to test any one gene set and return the p-value.
+
 ```{r}
-test_geneset <- function(geneset, query, universe) {
-  geneset <- intersect(geneset, universe)
-  query <- intersect(query, universe)
+fisher_test_pathway <- function(index, pathways, query, universe) {
+  query <- na.omit(query)
+  geneset <- pathways[[index]]
   cross_table <- data.frame(
     gene_id = universe,
-    x = factor(universe %in% geneset, c(TRUE, FALSE)),
+    geneset = factor(universe %in% geneset, c(TRUE, FALSE)),
     query = factor(universe %in% query, c(TRUE, FALSE))
   )
-  test_table <- table(cross_table$x, cross_table$query)
-  if (sum(test_table[1, ]) < 10) {
-    return(NA)
-  }
-  pvalue <- fisher.test(test_table)$p.value
-  pvalue
+  test_table <- table(cross_table$geneset, cross_table$query)
+  fisher.test(test_table)$p.value
 }
+fisher_test_pathway(index = 1,
+  pathways = go_list,
+  query = names(result_bh)[result_bh < 0.05],
+  universe = rownames(logcounts_matrix))
+```
 
-de_genes <- names(result_bh)[result_bh < 0.05]
-go_pvalues <- vapply(X = go_list, FUN = test_geneset, FUN.VALUE = numeric(1), query = de_genes, universe = gene_data$gene_id)
+3. Use the function `vapply` to test every gene set in the list and collect a vector of p-values.
+
+```{r}
+fisher_test_pvalues <- vapply(
+  X = seq_len(length(go_list)),
+  FUN = fisher_test_pathway,
+  FUN.VALUE = numeric(1),
+  pathways = go_list,
+  universe = rownames(logcounts_matrix))
+names(fisher_test_pvalues) <- names(go_list)
+head(fisher_test_pvalues)
+```
+
+### Bonus points
+
+- Visualise a bar plot of the p-values.
+
+```{r}
+hist(fisher_test_pvalues, breaks = 100)
 ```
 
 - Correct p-values for multiple testing.
-  How many GO gene sets remain before and after multiple testing?
-  
-```{r}
-go_bh <- p.adjust(go_pvalues, method = "BH")
-hist(go_bh, breaks = 20, xlim = c(0, 1))
+  How many gene sets remain before and after multiple testing?
 
-table(go_bh < 0.05)
+```{r}
+fisher_test_bh <- p.adjust(fisher_test_pvalues, method = "BH")
+table(fisher_test_bh < 0.05)
 ```
 
-- Use `go_info.csv` to get the description for the GO identifier associated with the smallest p-value.
+- Use `go_info.csv` to annotate each GO gene set with its corrected p-value,
+  and arrange the table by increasing p-value.
 
 ```{r}
 go_info <- read.csv("data/go_info.csv")
-top_go_id <- names(go_bh)[which.min(go_bh)]
-go_info$TERM[go_info$GOID == top_go_id]
+go_info$BH <- fisher_test_bh[go_info$GOID]
+go_info <- arrange(go_info, BH)
+head(go_info)
 ```
-

@@ -1223,7 +1223,7 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 ## Testing & Multiple testing correction
 
-Given a matrix of log-normalised counts (`logcounts.csv`) and experimental metadata (`metadata.csv`),
+Given a matrix of log-normalised counts (`logcounts_matrix.csv`) and experimental metadata (`cell_metadata.csv`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 
 ### Approach
@@ -1239,7 +1239,7 @@ test each gene (i.e., row) in the matrix for differential expression between the
 - Correct p-values for multiple testing.
   How many genes remain before and after multiple testing?
 
-- Use `gene_metadata.csv` to get the gene name for the gene identifier associated with the smallest p-value.
+- Use `gene_metadata.csv` to get the gene name for the gene identifier with the smallest p-value.
 
 ---
 
@@ -1253,7 +1253,7 @@ test each gene set for over-representation of differentially expressed genes.
 
 ### Approach
 
-1. Write the code to test a single gene set and access the p-value.
+1. Write the code to test a single gene and access the p-value.
 2. Write a function that generalises the code to test any one gene set and return the p-value.
 3. Use the function `vapply` to test every gene set in the list and collect a vector of p-values.
 
@@ -1264,7 +1264,8 @@ test each gene set for over-representation of differentially expressed genes.
 - Correct p-values for multiple testing.
   How many gene sets remain before and after multiple testing?
 
-- Use `go_info.csv` to get the description for the GO identifier associated with the smallest p-value.
+- Use `go_info.csv` to annotate each GO gene set with its corrected p-value,
+  and arrange the table by increasing p-value.
 
 ---
 
