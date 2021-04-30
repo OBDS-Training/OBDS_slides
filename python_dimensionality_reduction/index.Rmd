@@ -203,7 +203,7 @@ import panda as pd
 
 --
 
-Use the function `read_csv()` (in the `pandas` library) to import data from the file `iris.data`,
+Use the function `read_csv()` (in the `pandas` library) to import data from the file `iris.csv`,
 into a variable called `iris_data`.
 
 ```{python, echo=TRUE, eval=FALSE}
