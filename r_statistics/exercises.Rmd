@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(dplyr)
 ```
 
 # Exercises
@@ -316,6 +317,7 @@ fisher_test_pvalues <- vapply(
   FUN = fisher_test_pathway,
   FUN.VALUE = numeric(1),
   pathways = go_list,
+  query = names(result_bh)[result_bh < 0.05],
   universe = rownames(logcounts_matrix))
 names(fisher_test_pvalues) <- names(go_list)
 head(fisher_test_pvalues)
