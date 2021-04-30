@@ -203,7 +203,7 @@ import panda as pd
 
 --
 
-Use the function `read_csv()` (in the `pandas` library) to import data from the file `iris.data`,
+Use the function `read_csv()` (in the `pandas` library) to import data from the file `iris.csv`,
 into a variable called `iris_data`.
 
 ```{python, echo=TRUE, eval=FALSE}
@@ -213,14 +213,6 @@ iris_data = ...
 .center[
 **What are the default column names?**
 ]
-
---
-
-Use the following list of column names.
-
-```{python, echo=TRUE, eval=FALSE}
-['sepal length','sepal width','petal length','petal width','target']
-```
 
 Display the first 5 rows of the data set.
 
