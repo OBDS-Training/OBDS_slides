@@ -1223,9 +1223,16 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 ## Testing & Multiple testing correction
 
-- For each gene (i.e. row) in `logcounts.csv`, use `cell_metadata.csv` and a statistical test of your choice to identify gene differentially expressed in cells infected with _Salmonella_ relative to the control uninfected cells.
+Given a matrix of log-normalised counts (`logcounts.csv`) and experimental metadata (`metadata.csv`),
+test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 
-> **Suggestion:** write the code to test one gene, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the genes.
+### Approach
+
+1. Write the code to test a single gene and access the p-value.
+2. Write a function that generalises the code to test any one gene and return the p-value.
+3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
+
+### Bonus points
 
 - Visualise a bar plot of the p-values.
 
@@ -1240,12 +1247,22 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 ## Over-representation analysis (ORA)
 
-- For each gene ontology (GO) category in `human_go_bp.csv`, use the list of differentially expressed gene identifiers that you obtained in the previous exercise to find GO categories enriched for differentially expressed genes.
+Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
+and a list of gene sets (`human_go_bp.csv`),
+test each gene set for over-representation of differentially expressed genes.
 
-> **Suggestion:** write the code to test one gene set, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the gene sets.
+### Approach
+
+1. Write the code to test a single gene set and access the p-value.
+2. Write a function that generalises the code to test any one gene set and return the p-value.
+3. Use the function `vapply` to test every gene set in the list and collect a vector of p-values.
+
+### Bonus points
+
+- Visualise a bar plot of the p-values.
 
 - Correct p-values for multiple testing.
-  How many GO gene sets remain before and after multiple testing?
+  How many gene sets remain before and after multiple testing?
 
 - Use `go_info.csv` to get the description for the GO identifier associated with the smallest p-value.
 

@@ -179,6 +179,17 @@ summary(out)
 
 ## Testing & Multiple testing correction
 
+Given a matrix of log-normalised counts and experimental metadata,
+test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
+
+### Approach
+
+1. Write the code to test a single gene and access the p-value.
+2. Write a function that generalises the code to test any one gene and return the p-value.
+3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
+
+## Deprecated
+
 - For each gene (i.e. row) in `logcounts.csv`, use `cell_metadata.csv` and a statistical test of your choice to identify gene differentially expressed in cells infected with _Salmonella_ relative to the control uninfected cells.
 
 > **Suggestion:** write the code to test one gene, refactor the code into a function that returns the p-value, and use `vapply` to apply that function to all the genes.
