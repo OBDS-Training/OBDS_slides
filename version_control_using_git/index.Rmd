@@ -615,7 +615,7 @@ $ git push origin my_branch
 ```
 
 .center[
-**Do not run this yet, we will do it in a moment, with an difference.**
+**Do not run this yet, we will do it in a moment, with a difference.**
 ]
 
 ---
