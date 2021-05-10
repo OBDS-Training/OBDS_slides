@@ -149,7 +149,9 @@ Other examples:
 Google Docs [version history](https://support.google.com/docs/answer/190843?hl=en),
 LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Common/Recording_and_Displaying_Changes).
 
+.center[
 **In your opinion, what are pros/cons of track changes in this way?**
+]
 
 ---
 
