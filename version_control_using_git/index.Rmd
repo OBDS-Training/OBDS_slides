@@ -679,7 +679,7 @@ However, we are not going to use it, at least not explicitly at the command line
 knitr::include_graphics("img/branch-merge.png")
 ```
 
-**Do not do this!** To incorporate the changes from branch `kevin` into branch `master` locally:
+**Do not do this:** To incorporate the changes from branch `kevin` into branch `master` locally, one could run:
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git checkout master
