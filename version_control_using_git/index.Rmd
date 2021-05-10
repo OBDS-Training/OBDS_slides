@@ -383,7 +383,7 @@ $ ls -a
 ```
 
 ```
-.  ..  .git  README.md
+.  ..  .git  README.md week2
 ```
 
 Git uses the `.git` sub-directory to store all the information about the project history.
@@ -431,7 +431,9 @@ nothing to commit, working tree clean
 knitr::include_graphics("img/branch-conflict.png")
 ```
 
+.center[
 **What do you think will happen when David and Kevin push their respective `master` branch to <i class="fab fa-github"></i> GitHub?**
+]
 
 ---
 
@@ -453,7 +455,7 @@ We will discuss later how to incorporate changes made on branches back into the 
 The `git branch` sub-command can be used to inspect and create branches in a copy of the repository.
 
 - This does not automatically synchronise remote copies of the repository.
-- You can only create branches with names that are not already used.
+- You can only create branches with names that are not already used (locally*).
 
 The `git checkout` sub-command can be used to switch between branches.
 
