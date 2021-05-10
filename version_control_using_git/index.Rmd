@@ -484,7 +484,7 @@ $ git checkout -b kevin
 
 First make sure that you have checked out a branch other than `master`.
 
-In the repository sub-directory `week2/day1_git`, create a file called `<username>.md`, replacing `<username>` by your own cluster user name (i.e. Bash command `whoami`).
+In the repository sub-directory `week2/day1_version_control_using_git`, create a file called `<username>.md`, replacing `<username>` by your own cluster user name (i.e. Bash command `whoami`).
 
 > I included an example `albrecht.md`, as `albrecht` is CCB user name.
 
@@ -504,6 +504,7 @@ You can also make a copy the example file and edit that copy, instead of creatin
 
 We have just made changes to files in the repository.
 However, we have not told <i class="fab fa-git"></i> to record those changes yet.
+In other words, we have edited the files, but we haven't committed those changes.
 
 > Remember that changes are separate from the files themselves!
 
@@ -519,7 +520,7 @@ Your branch is up to date with 'origin/master'.
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	week2/day1_git/kevinrue.md
+	week2/day1_version_control_using_git/albrecht.md
 ```
 
 The "Untracked files" section reports files that are new and not track by <i class="fab fa-git"></i> yet.
@@ -534,7 +535,7 @@ The `git add` sub-command can be used to add new files to the list of files trac
 - In other words, the file will exist, but changes to that file will not be tracked, and we will not be able to restore past versions of that file.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git add kevinrue.md
+$ git add albrecht.md
 $ git status
 ```
 
@@ -542,7 +543,7 @@ $ git status
 On branch kevin
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-	new file:   week2/day1_git/kevinrue.md
+	new file:   week2/day1_version_control_using_git/albrecht.md
 ```
 
 **What changed in `git status` after running `git add`?**
@@ -579,7 +580,7 @@ $ git commit -m "Added a file for kevin rue"
 ```
 [kevin 41121a3] Added a file for kevin rue
  1 file changed, 1 insertion(+)
- create mode 100644 week2/day1_git/kevinrue.md
+ create mode 100644 week2/day1_version_control_using_git/albrecht.md
 ```
 
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
@@ -919,11 +920,11 @@ Date:   Wed Apr 7 17:16:13 2021 +0100
 
     Add an example file in the git sub-directory
 
-diff --git a/git/kevinrue.md b/git/kevinrue.md
+diff --git a/git/albrecht.md b/git/albrecht.md
 new file mode 100644
 index 0000000..468faf4
 --- /dev/null
-+++ b/git/kevinrue.md
++++ b/git/albrecht.md
 @@ -0,0 +1 @@
 +# Kevin Rue-Albrecht
 ```
@@ -947,11 +948,11 @@ The `git diff` sub-command can be used to compare two states of the repository.
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
 $ git diff 5d0241c 0c4eacc
-diff --git a/git/kevinrue.md b/git/kevinrue.md
+diff --git a/git/albrecht.md b/git/albrecht.md
 new file mode 100644
 index 0000000..468faf4
 --- /dev/null
-+++ b/git/kevinrue.md
++++ b/git/albrecht.md
 @@ -0,0 +1 @@
 +# Kevin Rue-Albrecht
 diff --git a/git/username.md b/git/username.md
