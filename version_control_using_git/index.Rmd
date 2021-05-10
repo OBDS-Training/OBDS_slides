@@ -350,7 +350,7 @@ $ git config --global core.editor "nano -w"
 
 # Clone the shared repository
 
-In this step, you will each get (i.e., _clone_) your own copy of the shared repository for this course.
+In this step, you will each create (i.e., _clone_) your own copy of the shared repository for this course.
 
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
@@ -366,6 +366,8 @@ knitr::include_graphics("img/atlassian-clone.svg")
 ```
 
 ???
+
+- A clone contains both the files _and_ the history of changes.
 
 - By default, the local directory will be named identically to the repository, it is possible to name it differently using `git clone git@github.com:OBDS-Training/OBDS_Training_May_2021.git local_directory_name`
 
