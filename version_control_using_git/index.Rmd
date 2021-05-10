@@ -456,6 +456,7 @@ The `git branch` sub-command can be used to inspect and create branches in a cop
 
 - This does not automatically synchronise remote copies of the repository.
 - You can only create branches with names that are not already used (locally*).
+- The new branch is created from the commit on the current branch (not necessarily `master`).
 
 The `git checkout` sub-command can be used to switch between branches.
 
