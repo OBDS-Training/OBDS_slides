@@ -760,7 +760,9 @@ Often considered cumbersome, in practice manual reviews offer another chance to 
 knitr::include_graphics("img/github-pull-request-review.png")
 ```
 
-**Crucially, a pull request can only be applied if the reviewer selects the "Approve" radio button.**
+.center[
+**In this setup, a pull request can only be applied if the reviewer selects the "Approve" radio button.**
+]
 
 ---
 
@@ -782,7 +784,9 @@ knitr::include_graphics("img/github-merge-pull-request.png")
 knitr::include_graphics("img/github-merge-commit.png")
 ```
 
+.center[
 **Merging a pull request creates a new commit. This commit needs its own commit message.**
+]
 
 ---
 
