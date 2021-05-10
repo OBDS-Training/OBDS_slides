@@ -484,19 +484,15 @@ $ git checkout -b kevin
 
 First make sure that you have checked out a branch other than `master`.
 
-In the repository sub-directory `week2/day1_git`, create a file called `<username>.md`, replacing `<username>` by your own <i class="fab fa-github"></i> GitHub user name.
+In the repository sub-directory `week2/day1_git`, create a file called `<username>.md`, replacing `<username>` by your own cluster user name (i.e. Bash command `whoami`).
 
-> I included an example `kevinrue.md`, as `kevinrue` is my <i class="fab fa-github"></i> GitHub user name.
+> I included an example `albrecht.md`, as `albrecht` is CCB user name.
 
-In that file, write you full name as a first level header (preceded by a `#` symbol and s a space).
+In that file, write you full name as a first level header (preceded by a `#` symbol and a space).
 
-> For me, that looks like:
-```
-# Kevin Rue-Albrecht
-```
+As second level header (i.e., `##`), add a section 'Expertise' with a list of bullet points, and another second level header 'Operating System' to indicate whether you use 'macOS', 'Windows', or 'Linux' during this course.
 
-It is best practice to add a newline character at the end of this line.
-<i class="fab fa-git"></i> works best files end with an empty line.
+It is best practice to add a newline character at the end of this line as <i class="fab fa-git"></i> works best in that case.
 
 #### Practice Bash
 
