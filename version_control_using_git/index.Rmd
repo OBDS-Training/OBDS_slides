@@ -546,7 +546,9 @@ Changes to be committed:
 	new file:   week2/day1_version_control_using_git/albrecht.md
 ```
 
+.center[
 **What changed in `git status` after running `git add`?**
+]
 
 ---
 
@@ -583,7 +585,9 @@ $ git commit -m "Added a file for kevin rue"
  create mode 100644 week2/day1_version_control_using_git/albrecht.md
 ```
 
+.center[
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
+]
 
 ---
 
@@ -610,7 +614,9 @@ When everything is in place, you can tell <i class="fab fa-git"></i> to push a b
 $ git push origin my_branch
 ```
 
-**Do not run this yet, we will do it in a moment.**
+.center[
+**Do not run this yet, we will do it in a moment, with an difference.**
+]
 
 ---
 
