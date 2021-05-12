@@ -86,8 +86,6 @@ bib <- ReadBib("bibliography.bib")
 - A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
-
-- The R package `r BiocStyle::CRANpkg("renv")`
 ]
 
 ---
@@ -109,14 +107,13 @@ The resulting file structure should look like the following:
   |_ week5/
     |_ day3_ggplot2/
       |_ template
+        |_ ... (files)
       |_ albrecht (copied from 'template')
         |_ ... (files)
         |_ r_ggplot2.Rproj
 ```
 
 - Launch the RStudio project `r_ggplot2.Rproj` in your sub-directory.
-
-- Restore the project environment using `r BiocStyle::CRANpkg("renv")`.
 
 ---
 
@@ -211,9 +208,9 @@ print(plot1)
 
   + e.g. `data.frame`, `datatable`, `tibble`
   
-  + One row - one data point
+  + One row = one data point
   
-  + One column - one feature of data points, e.g. position on x axis, color, size
+  + One column = one property of data points, e.g. position on x axis, color, size
 
 - Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
 ]
@@ -230,7 +227,7 @@ knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
 # Geometric objects
 
 A **layer** combines **data**, **aesthetic** mapping, a **geom** (geometric object), a **stat** (statistical transformation), and a **position** adjustment.
-Typically, you will create layers using a `geom_` function,
+Typically, you will create layers using a `geom_*` function,
 occasionally overriding the default **position** and **stat** if needed.
 
 Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
@@ -555,9 +552,9 @@ the diet that leads to the highest mean increase in weight.
 
 - Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
 
-## renv
+## gridExtra
 
-- [Documentation (pkgdown)](https://rstudio.github.io/renv/)
+- Arranging multiple grobs on a page:  <https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html>
 
 ---
 
