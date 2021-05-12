@@ -8,7 +8,10 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(ggrepel)
 library(cowplot)
+library(patchwork)
+library(gridExtra)
 ```
 
 # Exercise
@@ -286,4 +289,31 @@ super_plot <- cowplot::plot_grid(
 
 ```{r}
 ggsave("final_plot.pdf", super_plot, width = 12, height = 12)
+```
+
+```{r, fig.height=12, fig.width=12}
+library(patchwork)
+(obds_diamonds + obds_chickweight) / obds_msleep
+```
+
+```{r, fig.height=12, fig.width=12}
+library(gridExtra)
+grid.arrange(
+  grobs=list(obds_diamonds, obds_chickweight, obds_msleep),
+  layout_matrix = rbind(c(1, 2),
+                 c(3, 3))
+)
+```
+
+# Exercise
+
+## Pair programming
+
+- Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
+
+```{r}
+ggplot(mpg, aes(cty, hwy, color = year)) +
+  geom_abline(slope = 1, intercept = 0) +
+  geom_point(size = 0.5) +
+  facet_wrap(~manufacturer)
 ```
