@@ -546,6 +546,14 @@ the diet that leads to the highest mean increase in weight.
 
 ---
 
+# Exercise
+
+## Pair programming
+
+- Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
+
+---
+
 # Further reading
 
 ## ggplot2
