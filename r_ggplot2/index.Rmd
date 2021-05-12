@@ -104,8 +104,8 @@ The resulting file structure should look like the following:
 
 ```
   OBDS_Training_May_2021/
-  |_ week5/
-    |_ day3_ggplot2/
+  |_ 5_r/
+    |_ 3_ggplot2/
       |_ template
         |_ ... (files)
       |_ albrecht (copied from 'template')
