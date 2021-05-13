@@ -1012,7 +1012,27 @@ tsne_out$Y %>%
 
 ---
 
-TODO
+# Exercise
+
+## t-SNE
+
+- Apply t-SNE and inspect the output.
+
+- Create a data frame of t-SNE coordinates.
+
+Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
+
+- Visualise the t-SNE projection.
+
+### Bonus points
+
+- Color data points according to their class label.
+
+- Combine PCA, UMAP and t-SNE in a single figure.
+
+---
+
+<!-- TODO: continue here -->
 
 # Exercise
 
