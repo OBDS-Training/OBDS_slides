@@ -366,15 +366,16 @@ In the context of PCA:
 
 # PCA
 
+Optionally:
+
 - First, center data.
+
 - If comparing different units, scale data.
   + i.e., using correlation matrix instead of covariance matrix<sup>1</sup>
   + Genes have very different dynamic ranges!
 
 .footnote[
-**See also:**
-
-1. [Towards data science](https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22), "Correlation matrix and covariance matrix"
+**See also:** [Towards data science](https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22), "Correlation matrix and covariance matrix"
 ]
 
 --
@@ -797,6 +798,43 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
   theme_cowplot()
 ```
 ]
+
+---
+
+# Exercise
+
+## Setup
+
+- Import the `iris` data set.
+
+- Display the first 5 rows of the data set.
+
+- Split measurements from class labels.
+
+Name the object `iris_features`.
+
+---
+
+# Exercise
+
+## Apply Principal components analysis (PCA)
+
+The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
+
+- Apply PCA while centering and scaling the variables (i.e., measurements).
+
+- Examine the PCA output.
+
+- Create a data frame of PCA coordinates.
+
+Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe`
+that contains the coordinates projected on principal components.
+
+- Visualise the PCA projection using `ggplot()`.
+
+### Bonus point
+
+- Color data points according to their class label.
 
 ---
 
