@@ -1288,7 +1288,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 # Exercise
 
-## `dbscan`
+## dbscan
 
 - Apply `dbscan` to the set of iris measurements.
 
