@@ -846,12 +846,6 @@ that contains the coordinates projected on principal components.
 
 - Visualise the variance explained by each principal component using `ggplot2::geom_col()`.
 
-- Visualise the UMAP projection using `ggplot2::geom_point()`.
-
-### Bonus point
-
-- Color data points according to their class label.
-
 ---
 
 # Exercise
@@ -861,6 +855,12 @@ that contains the coordinates projected on principal components.
 - Apply UMAP on the output of the PCA.
 
 - Inspect the UMAP output.
+
+- Visualise the UMAP projection using `ggplot2::geom_point()`.
+
+### Bonus point
+
+- Color data points according to their class label.
 
 ---
 
