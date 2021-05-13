@@ -1252,6 +1252,8 @@ Color by cluster label.
 
 - Cross-tabulate cluster labels with known labels.
 
+How many observations are mis-classified by K-means clustering?
+
 ## Elbow plot
 
 - Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
