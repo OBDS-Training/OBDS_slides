@@ -1270,6 +1270,8 @@ Do you agree that 3 is the optimal number of clusters for this data set?
 
 - Plot the clustering tree.
 
+How many clusters would you call from a visual inspection of the tree?
+
 - Color leaves by known species (use `dendextend`).
 
 - Cut the tree in 3 clusters and extract the cluster labels.
