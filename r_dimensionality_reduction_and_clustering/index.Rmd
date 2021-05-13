@@ -824,11 +824,11 @@ The `prcomp()` function allows you to standardise the data as part of the princi
 - Apply PCA while centering and scaling the variables (i.e., measurements).
 
 - Examine the PCA output.
+  How does each principal component relate to each variable?
 
 - Create a data frame of PCA coordinates.
 
-Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe`
-that contains the coordinates projected on principal components.
+Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
 
 - Visualise the PCA projection using `ggplot2::geom_point()`.
 
@@ -839,6 +839,12 @@ that contains the coordinates projected on principal components.
 ---
 
 # Exercise
+
+## Variable loading
+
+- Visualise the value of the variable most strongly associated with the first principal component, as color on the PCA plot.
+
+What do you observe?
 
 ## Variance explained
 
@@ -1006,27 +1012,11 @@ tsne_out$Y %>%
 
 ---
 
+TODO
+
 # Exercise
 
 ## Dimensionality reduction
-
-- Import the matrix data from the file `logcounts.csv`.
-  
-- Perform PCA.
-  Inspect the structure of the output.
-
-- Draw a scatter plot of the top two principal components and color by various experimental metadata in `cell_metadata.csv`.
-  Which experimental factors show the largest variance in the data?
-  
-- Draw a density plot, faceted by time and infection, colored by status, to inspect the variance of each experimental factor on the top principal component.
-
-- Draw a bar plot of variance explained by each principal component.
-  How many principal components would you keep for downstream analyses?
-
-- Find the names of the top genes associated with the top principal components.
-
-- Visualise the gene expression value of the gene with the highest loading for PC1 as color on a scatter plot of PC1 and PC2.
-  What do you observe?
 
 - Compare PCA to t-SNE to UMAP.
   Note that t-SNE and UMAP should be given the subset of principal components selected above.
