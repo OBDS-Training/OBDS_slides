@@ -1224,20 +1224,79 @@ knitr::include_graphics("https://scikit-learn.org/stable/_images/sphx_glr_plot_c
 
 # Exercise
 
-## Clustering
+## K-means
 
-- Cluster using k-means, for $k$ ranging from 1 to an arbitrary number (e.g. 30).
-  Store the sums of square (total, between, within) for each $k$ as a table.
+- Apply K-means clustering with K set to 3 clusters.
 
-- Draw a line and dot plot to visualise the within-cluster sum of squares for each value of $k$.
-  How many clusters would you choose?
+- Inspect the output.
 
-- Compare the cluster labels that you obtained with known metadata.
+- Extract the cluster labels.
 
-- Draw scatter plots colored by cluster label and experimental metadata.
-  Display them as a grid in a single figure using `r BiocStyle::CRANpkg("cowplot")`.
+- Extract the cluster centers.
 
-- Compare k-means with other clustering methods (e.g. hierarchical clustering).
+- Construct a data frame that includes the cluster label.
+
+- Plot the data set as a scatter plot.
+
+Color by cluster label.
+
+### Bonus point
+
+- Add cluster centers to the plot.
+
+---
+
+# Exercise
+
+## Cross-tabulation with ground truth
+
+- Cross-tabulate cluster labels with known labels.
+
+## Elbow plot
+
+- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
+
+---
+
+# Exercise
+
+## Hierarchical clustering
+
+- Perform hierarchical clustering using method `ward.D2`.
+
+- Plot the clustering tree.
+
+- Color leaves by known species (use `dendextend`).
+
+- Cut the tree in 3 clusters and extract the cluster labels.
+
+- Repeat clustering using 3 other agglomeration methods:
+
+  + `complete`
+  + `average`
+  + `single`
+
+- Compare clustering results on scatter plots of the data.
+
+---
+
+# Exercise
+
+## `dbscan`
+
+- Apply `dbscan` to the set of iris measurements.
+
+- Visualise the `dbscan` cluster label on a scatter plot of the data.
+
+## hdbscan
+
+- Apply `hdbscan` to the set of iris measurements.
+
+- Visualise the `hdbscan` cluster label on a scatter plot of the data.
+
+## Bonus point
+
+- Combine the plots of `dbscan` and `hdbscan` into a single plot.
 
 ---
 
