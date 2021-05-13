@@ -104,16 +104,16 @@ The resulting file structure should look like the following:
 
 ```
   OBDS_Training_May_2021/
-  |_ 5_r/
-    |_ 3_ggplot2/
+  |_ 6_r_stats_genomics/
+    |_ 2_dimred_clustering/
       |_ template
         |_ ... (files)
       |_ albrecht (copied from 'template')
         |_ ... (files)
-        |_ r_ggplot2.Rproj
+        |_ r_dim_red_and_clustering.Rproj
 ```
 
-- Launch the RStudio project `r_ggplot2.Rproj` in your sub-directory.
+- Launch the RStudio project `r_dim_red_and_clustering.Rproj` in your sub-directory.
 
 ---
 
