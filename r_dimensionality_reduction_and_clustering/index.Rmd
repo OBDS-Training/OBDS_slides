@@ -1038,17 +1038,6 @@ Save the t-SNE plot as an object named `tsne_iris_species`.
 
 ---
 
-<!-- TODO: continue here -->
-
-# Exercise
-
-## Dimensionality reduction
-
-- Compare PCA to t-SNE to UMAP.
-  Note that t-SNE and UMAP should be given the subset of principal components selected above.
-
----
-
 # Clustering
 
 <br/>
