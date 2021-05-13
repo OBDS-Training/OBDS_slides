@@ -348,6 +348,47 @@ $ git config --global core.editor "nano -w"
 
 ---
 
+# Setting up an SSH key for <i class="fab fa-github"></i> GitHub
+
+## Generate an SSH key pair
+
+At this point, you have likely generated an SSH key pair on your personal computer, but not on the HPC cluster.
+
+We need to generate a key pair *on the cluster*, so that you can programmatically identify yourself to <i class="fab fa-github"></i> GitHub and access private repositories.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ ssh-keygen -t rsa -b 4096
+# leave default location to store the key (leave field empty)
+# do set a passphrase (do not leave field empty)
+$ cat ~/.ssh/id_rsa.pub
+ssh-rsa [...] username@hostname
+# copy the whole line (including 'ssh-rsa' and 'username@hostname')
+```
+
+---
+
+# Setting up an SSH key for <i class="fab fa-github"></i> GitHub
+
+## Add the public key to your <i class="fab fa-github"></i> GitHub account
+
+```{r, fig.align='center', out.height='350px'}
+# Screenshot
+knitr::include_graphics("img/github-add-ssh-key.png")
+```
+
+---
+
+# Setting up an SSH key for <i class="fab fa-github"></i> GitHub
+
+## Add the public key to your <i class="fab fa-github"></i> GitHub account
+
+```{r, fig.align='center', out.height='350px'}
+# Screenshot
+knitr::include_graphics("img/github-add-ssh-key-form.png")
+```
+
+---
+
 # Clone the shared repository
 
 In this step, you will each create (i.e., _clone_) your own copy of the shared repository for this course.
