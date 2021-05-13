@@ -56,19 +56,13 @@ library(e1071)
 <br/>
 
 .x-large-list[
-- A clone of a personal GitHub repository for this course.
-
-- A clone of a shared GitHub repository for this course.
-
-- A clone of <https://github.com/OBDS-Training/OBDS_environments>
+- A clone of the shared GitHub repository for this course.
 
 - A working installation of [R](https://www.r-project.org/) (4.0.3).
 
 - A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
-
-- Access to the CGAT cluster and the shared data folder.
 ]
 
 ---
