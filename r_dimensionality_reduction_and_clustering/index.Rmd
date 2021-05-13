@@ -836,6 +836,8 @@ Use the return value of the PCA to create a `data.frame` called `pca_iris_datafr
 
 - Color data points according to their class label.
 
+Save the PCA plot as an object named `pca_iris_species`.
+
 ---
 
 # Exercise
@@ -867,6 +869,8 @@ What do you observe?
 ### Bonus point
 
 - Color data points according to their class label.
+
+Save the UMAP plot as an object named `umap_plot`.
 
 ---
 
@@ -1028,7 +1032,9 @@ Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dat
 
 - Color data points according to their class label.
 
-- Combine PCA, UMAP and t-SNE in a single figure.
+Save the t-SNE plot as an object named `tsne_iris_species`.
+
+- Combine PCA, UMAP and t-SNE plots in a single figure.
 
 ---
 
