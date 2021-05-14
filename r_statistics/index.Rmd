@@ -59,6 +59,32 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
+# Lesson goals and objectives
+
+## Learning goals
+
+- Identify statistical distributions and tests available in R.
+
+- Learn to use statistical distributions and tests in R.
+
+- Describe how to interpret the result of statistical tests.
+
+- Understand how to visualise data in the context of statistical testing.
+
+## Learning objectives
+
+- Query built-in statistical distributions.
+
+- Perform statistical tests.
+
+- Interpret test results.
+
+- Apply multiple testing correction.
+
+- Visualise data and test results.
+
+---
+
 # Prerequisites
 
 <br/>
@@ -71,8 +97,6 @@ bib <- ReadBib("bibliography.bib")
 - A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
-
-- The R package `r BiocStyle::CRANpkg("renv")`
 ]
 
 ---
@@ -95,22 +119,6 @@ The result on your computer should look like the following
 ```
 
 - Launch the R project in `r_statistics`.
-
----
-
-# Learning objectives
-
-<br/>
-
-.xx-large-list[
-- Learn to use the builtin statistical distributions
-
-- Learn to use the builtin statistical tests
-
-- Run tests and interpret results 
-
-- Visualise  data and test results 
-]
 
 ---
 
