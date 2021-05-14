@@ -103,22 +103,28 @@ bib <- ReadBib("bibliography.bib")
 
 # Set up
 
-- Create a new RStudio project, called `r_statistics`.
-  Store the project within your personal <i class="fab fa-git"></i> repository.
+- Pull the `master` branch of the shared repository.
 
-- Download the shared folder `r/statistics/data` from the CGAT cluster.
-  Store the folder within the new RStudio project.
+> We have added some files to get you started.
 
-The result on your computer should look like the following
+- In the daily sub-directory, make a recursive copy the `template` sub-directory with your HPC username.
+
+> e.g. `cp -R template albrecht`
+
+The resulting file structure should look like the following:
 
 ```
-  obds_training/
-  |_ r_statistics/
-    |_ data/
-      |_ ... (data files)
+  OBDS_Training_May_2021/
+  |_ 6_r_stats_genomics/
+    |_ 1_statistics/
+      |_ template
+        |_ ... (files)
+      |_ albrecht (copied from 'template')
+        |_ ... (files)
+        |_ r_statistics.Rproj
 ```
 
-- Launch the R project in `r_statistics`.
+- Launch the RStudio project `r_statistics.Rproj` in your sub-directory.
 
 ---
 
