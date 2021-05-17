@@ -743,7 +743,7 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 # Exercise step 5. Dimensionality reduction
 
-- Use `scater::runPCA` to compact the data and further reduce noise.
+- Use `scater::runPCA()` to compact the data and further reduce noise.
 
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically variable genes in the data set.
 
