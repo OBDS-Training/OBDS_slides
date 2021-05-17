@@ -57,10 +57,6 @@ bib <- ReadBib("bibliography.bib")
 
 ## Learning goals
 
-<!--
-High-level "big picture" objectives of the learning process.
--->
-
 - Understand the differences between Bioconductor and CRAN.
 
 - Describe common Bioconductor data structures for single-cell data sets.
@@ -69,10 +65,6 @@ High-level "big picture" objectives of the learning process.
   (e.g. [Seurat](https://satijalab.org/seurat/), [Scanpy](https://scanpy.readthedocs.io/en/stable/)).
 
 ## Learning objectives
-
-<!--
-More concrete and measurable outputs.
--->
 
 - Write a workflow that analyses single-cell RNA-sequencing data using Bioconductor packages.
 
