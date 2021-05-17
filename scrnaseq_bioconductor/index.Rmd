@@ -402,14 +402,14 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ## Import
 
-- `read10xCounts()` imports 10X Genomics data from the CellRanger output directories.
+- `DropletUtils::read10xCounts()` imports 10X Genomics data from the CellRanger output directories.
   It returns a `SingleCellExperiment` object.
 
 ## Utilities and quality control
 
-- `barcodeRanks()` ccomputes barcode rank statistics and identify the knee and inflection points on the total count curve.
-- `emptyDrops()` is designed to distinguish between empty droplets and cells by testing each barcode’s expression profile for significant deviation from the ambient profile.
-- `swappedDrops()` removes the effects of barcode swapping.
+- `DropletUtils::barcodeRanks()` ccomputes barcode rank statistics and identify the knee and inflection points on the total count curve.
+- `DropletUtils::emptyDrops()` is designed to distinguish between empty droplets and cells by testing each barcode’s expression profile for significant deviation from the ambient profile.
+- `DropletUtils::swappedDrops()` removes the effects of barcode swapping.
   It takes a list of paths to individual samples and returns a list with an item called `cleaned`, itself a list of sparse matrices, after removing swapped molecules.
 
 ---
@@ -463,12 +463,12 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 ## Quality-control
 
-- `perCellQCMetrics()` and `perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples).
+- `scater::perCellQCMetrics()` and `scater::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples).
 
 ## Normalisation
 
-- `logNormCounts()` computes log-transformed normalized expression values.
-  This includes the computation of size factors using `librarySizeFactors()`.
+- `scater::logNormCounts()` computes log-transformed normalized expression values.
+  This includes the computation of size factors using `scater::librarySizeFactors()`.
 
 ---
 
@@ -480,22 +480,22 @@ Some examples are presented below.
 .pull-left[
 ### Normalisation
 
-- `computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
+- `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
 
 ### Feature selection
 
-- `modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
-- `getTopHVGs()` uses modelling statistics `modelGeneVar()` to define a set of highly variable genes.
+- `scran::modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
+- `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
 ]
 
 .pull-right[
 ### Clustering
 
-- `quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
+- `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
 
 ### Differential expression
 
-- `findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
+- `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
 ]
 
 ---
@@ -580,7 +580,7 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 ## scater
 
-- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `plotReducedDim()`, `plotHeatmap()`)
+- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
 
 ## scran
 
