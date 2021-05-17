@@ -530,9 +530,9 @@ The package `r BiocStyle::Biocpkg("scater")` provides wrappers for several commo
 Those include:
 
 .x-large-list[
-- `runPCA()`
-- `runTSNE()`
-- `runUMAP()`
+- `scater::runPCA()`
+- `scater::runTSNE()`
+- `scater::runUMAP()`
 ]
 
 ## Important notes:
