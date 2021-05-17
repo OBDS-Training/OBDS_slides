@@ -96,7 +96,7 @@ bib <- ReadBib("bibliography.bib")
 
 > We have added some files to get you started.
 
-- In the daily sub-directory, make a copy the `template` sub-directory with your HPC username.
+- In the daily sub-directory, make a copy of the `template` sub-directory with your HPC username.
 
 > e.g. `cp -R template albrecht`
 
@@ -110,10 +110,10 @@ The resulting file structure should look like the following:
         |_ ... (files)
       |_ albrecht (copied from 'template')
         |_ ... (files)
-        |_ r_ggplot2.Rproj
+        |_ ggplot2.Rproj
 ```
 
-- Launch the RStudio project `r_ggplot2.Rproj` in your sub-directory.
+- Launch the RStudio project `ggplot2.Rproj` in your sub-directory.
 
 ---
 

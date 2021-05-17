@@ -53,64 +53,83 @@ bib <- ReadBib("bibliography.bib")
 
 ---
 
+# Lesson goals and objectives
+
+## Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+-->
+
+- Understand the differences between Bioconductor and CRAN.
+
+- Describe common Bioconductor data structures for single-cell data sets.
+
+- Understand the relationship with other single-cell software
+  (e.g. [Seurat](https://satijalab.org/seurat/), [Scanpy](https://scanpy.readthedocs.io/en/stable/)).
+
+## Learning objectives
+
+<!--
+More concrete and measurable outputs.
+-->
+
+- Write a workflow that analyses single-cell RNA-sequencing data using Bioconductor packages.
+
+- Import single-cell data from files into the R session.
+
+- Perform basic quality control and filter cells and features.
+
+- Normalise single-cell data and inspect the results.
+
+- Apply clustering methods and visualise the results.
+
+- Identify markers for each cluster and visualise their expression.
+
+---
+
+# Prerequisites
+
 # Prerequisites
 
 <br/>
 
 .x-large-list[
-- A clone of a personal GitHub repository for this course.
+- A clone of the shared GitHub repository for this course.
 
-- A clone of a shared GitHub repository for this course.
-
-- A clone of <https://github.com/OBDS-Training/OBDS_environments>
-
-- A working installation of [R](https://www.r-project.org/) (4.0.3), including the *[renv](https://rstudio.github.io/renv/articles/renv.html)* package.
+- A working installation of [R](https://www.r-project.org/) (4.0.3).
 
 - A working installation of [git](https://git-scm.com/).
 
 - A working installation of [RStudio](https://rstudio.com/).
-
-- Access to the CGAT cluster and the shared data folder.
 ]
 
 ---
 
-# Setup
+# Set up
 
-- Copy the subdirectory `bioconductor_singlecell` from the `OBDS_environments` repository to your personal <i class="fab fa-git"></i> repository for the course.
+- Pull the `master` branch of the shared repository.
 
-- Download the shared folder `r/bioconductor_singlecell/data` from the CGAT cluster as a subdirectory of the OBDS environment in your personal repository.
+> We have added some files to get you started.
 
-The result on your computer should look like the following
+- In the daily sub-directory, make a copy of the `template` sub-directory with your HPC username.
+
+> e.g. `cp -R template albrecht`
+
+The resulting file structure should look like the following:
 
 ```
-  obds_training/
-  |_ bioconductor_singlecell/
-    |_ data/
-      |_ ... (data files)
+  OBDS_Training_May_2021/
+  |_ 7_r_single_cell/
+    |_ 2_bioconductor_scrnaseq/
+      |_ template
+        |_ ... (files)
+      |_ albrecht (copied from 'template')
+        |_ ... (files)
+        |_ bioconductor_scrnaseq.Rproj
 ```
 
-- Launch the R project in `bioconductor_singlecell`.
-
-- Restore the project environment using `r BiocStyle::CRANpkg("renv")`.
-
----
-
-# Learning objectives
-
-<br/>
-
-.x-large-list[
-- Work with _Bioconductor_ data structures.
-
-- Experience a single-cell workflow using _Bioconductor_ packages.
-  + Quality control (cells, features, empty droplets)
-  + Normalisation
-  + Clustering
-  + Cluster markers (differential expression)
-
-- Understand the relationship with other single-cell software (e.g. `r BiocStyle::CRANpkg("Seurat")`, [Scanpy](https://scanpy.readthedocs.io/en/stable/)).
-]
+- Launch the RStudio project `bioconductor_scrnaseq.Rproj` in your sub-directory.
 
 ---
 
