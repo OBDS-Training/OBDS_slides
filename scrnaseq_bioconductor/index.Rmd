@@ -743,13 +743,15 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 # Exercise step 5. Dimensionality reduction
 
-- Use `scater::runPCA()` to compact the data and further reduce noise.
+- Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
 
-**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically variable genes in the data set.
+- Start with PCA.
+
+**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 - Continue with UMAP or t-SNE.
 
-**Note:** UMAP and t-SNE are typically given the output of PCA, to further reduce the dimensionality for ease of visualisation.
+**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 - Visualise the layout of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.
@@ -762,14 +764,16 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 # Exercise step 6. Clustering
 
-- Use `scran::getClusteredPCs()` to cluster cells after using varying number of PCs and pick the number of PCs using a heuristic based on the number of clusters.
+- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+
+- Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
 
 - Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
 
 - Visualise the assigned cluster on your preferred dimensionality reduction layout.
 
-**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA output.
-  They may not always agree with each other, often helping to diagnose over- or under-clustering.
+**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
+  They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
 
 ## Bonus point
 
