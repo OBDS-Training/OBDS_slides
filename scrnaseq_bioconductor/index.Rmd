@@ -567,12 +567,12 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for identifying cluster markers.
 
-- `findMarkers()` tests for differential expression between pairs of groups.
+- `scran::findMarkers()` tests for differential expression between pairs of groups.
 
-- `pairwiseTTests()` performs pairwise Welch t-tests between groups of cells, possibly after blocking on uninteresting factors of variation.
+- `scran::pairwiseTTests()` performs pairwise Welch t-tests between groups of cells, possibly after blocking on uninteresting factors of variation.
   The return value is a list of `DataFrame` - one for each group of cells - that can be examined separately of combined into a single table using `combineMarkers()`.
 
-- `pairwiseWilcox()` and `pairwiseBinom()` provide alternative statistical tests.
+- `scran::pairwiseWilcox()` and `scran::pairwiseBinom()` provide alternative statistical tests.
 
 ---
 
