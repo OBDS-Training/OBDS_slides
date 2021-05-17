@@ -547,8 +547,8 @@ Those include:
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for clustering single-cell data.
 
-- `quickCluster()` clusters similar cells using either log-expression values or ranks.
-- `buildSNNGraph()` builds a shared nearest-neighbour graph using cells as nodes.
+- `scran::quickCluster()` clusters similar cells using either log-expression values or ranks.
+- `scran::buildSNNGraph()` builds a shared nearest-neighbour graph using cells as nodes.
   For each cell, its $k$ nearest neighbours are identified using the `findKNN()` function, based on distances between their expression profiles (Euclidean by default).
   + The function works on a reduced dimension representation of the dataset, _not_ the gene expression matrix.
   + The output is a graph where nodes are cells and edges represent connections between nearest neighbors.
