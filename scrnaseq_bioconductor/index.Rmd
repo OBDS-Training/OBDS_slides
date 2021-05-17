@@ -90,8 +90,6 @@ More concrete and measurable outputs.
 
 # Prerequisites
 
-# Prerequisites
-
 <br/>
 
 .x-large-list[
