@@ -570,7 +570,7 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 - `scran::findMarkers()` tests for differential expression between pairs of groups.
 
 - `scran::pairwiseTTests()` performs pairwise Welch t-tests between groups of cells, possibly after blocking on uninteresting factors of variation.
-  The return value is a list of `DataFrame` - one for each group of cells - that can be examined separately of combined into a single table using `combineMarkers()`.
+  The return value is a list of `DataFrame` - one for each group of cells - that can be examined separately of combined into a single table using `scran::combineMarkers()`.
 
 - `scran::pairwiseWilcox()` and `scran::pairwiseBinom()` provide alternative statistical tests.
 
