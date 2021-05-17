@@ -470,6 +470,8 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 - `scater::logNormCounts()` computes log-transformed normalized expression values.
   This includes the computation of size factors using `scater::librarySizeFactors()`.
 
+`r NoCite(bib, "lun2016workflow")`
+
 ---
 
 # scran: Methods for single-cell RNA-seq data analysis
