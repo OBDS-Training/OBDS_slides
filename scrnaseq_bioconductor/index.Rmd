@@ -187,7 +187,7 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 
 Packages, vignettes, workflows.
 
-- Over 1,974 software packages; but also ...
+- Over 1,974 software packages (in release 3.12); but also ...
 
   + [Annotation packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___AnnotationData)  – static data bases of identifier maps, gene models, pathways, etc; e.g., `r BiocStyle::Biocpkg("TxDb.Hsapiens.UCSC.hg19.knownGene")`.
 
