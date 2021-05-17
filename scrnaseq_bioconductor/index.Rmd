@@ -708,7 +708,7 @@ Aim for <https://osca.bioconductor.org/overview.html#quick-start>
 
 # Exercise step 3. Normalisation
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
 
 **Note:** use `scater::logNormCounts()` to compute log-normalised counts.
   What is the return value?
