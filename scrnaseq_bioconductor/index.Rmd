@@ -465,7 +465,7 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 - `perCellQCMetrics()` and `perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples).
 
-## Preprocessing
+## Normalisation
 
 - `logNormCounts()` computes log-transformed normalized expression values.
   This includes the computation of size factors using `librarySizeFactors()`.
