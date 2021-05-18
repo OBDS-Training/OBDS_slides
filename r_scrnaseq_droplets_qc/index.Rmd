@@ -377,7 +377,7 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 - Continue using the data set after excluding empty droplets.
 
-- Run `scDblFinder.::scDblFinder()`.
+- Run `scDblFinder::scDblFinder()`.
 
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
