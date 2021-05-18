@@ -108,10 +108,10 @@ The resulting file structure should look like the following:
         |_ ... (files)
       |_ albrecht (copied from 'template')
         |_ ... (files)
-        |_ scrnaseq_droplets.Rproj
+        |_ scrnaseq_droplets_qc.Rproj
 ```
 
-- Launch the RStudio project `scrnaseq_droplets.Rproj` in your sub-directory.
+- Launch the RStudio project `scrnaseq_droplets_qc.Rproj` in your sub-directory.
 
 ---
 
