@@ -465,9 +465,9 @@ It estimate matrices of native expression and contamination from ambient RNA.
 
 Assumption: each cell is a mixture of two multinomial distributions:
 
-1. a distribution of native transcripts from the cell’s true population
+1. A distribution of native transcripts from the cell’s true population
 
-2. a distribution of contaminating transcripts from all other cell populations captured in the assay
+2. A distribution of contaminating transcripts from all other cell populations captured in the assay
 ]
 
 ## Output
