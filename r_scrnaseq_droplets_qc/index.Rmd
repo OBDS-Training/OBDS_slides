@@ -50,6 +50,8 @@ BibOptions(
 bib <- ReadBib("bibliography.bib")
 ```
 
+---
+
 # Lesson goals and objectives
 
 ## Learning goals
