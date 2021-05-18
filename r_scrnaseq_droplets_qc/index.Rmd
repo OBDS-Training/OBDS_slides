@@ -166,6 +166,10 @@ knitr::include_graphics("img/knee-plot-new-cell-calling.png")
 ```
 ]
 
+.small-p[
+Source: <https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/algorithms/overview>
+]
+
 ---
 
 # The emptyDrops method
@@ -497,6 +501,8 @@ See `?celda::decontX()` for more information.
 
 # References
 
+.small-p[
 ```{r refs, include=TRUE, echo=FALSE, results="asis"}
 PrintBibliography(bib)
 ```
+]
