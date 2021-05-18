@@ -261,13 +261,13 @@ knitr::include_graphics("img/10x-barcoded gel beads.png")
 .pull-left[
 ## Steps
 
-1.  Generate artificial doublets from existing scRNA-seq data
+1. Generate artificial doublets from existing scRNA-seq data.
 
-2. Pre-process merged real-artificial data
+2. Pre-process merged real-artificial data.
 
-3. Perform PCA and use the PC distance matrix to find each cell's proportion of artificial k nearest neighbors (pANN)
+3. Perform PCA and use the PC distance matrix to find each cell's proportion of artificial k nearest neighbors (pANN).
 
-4. Rank order and threshold pANN values according to the expected number of doublets
+4. Rank order and threshold pANN values according to the expected number of doublets.
 ]
 
 .pull-right[
