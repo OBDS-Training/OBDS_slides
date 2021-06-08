@@ -22,8 +22,8 @@ layout: true
 
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-Statistics and Machine Learning in <i class="fab fa-r-project"></i>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Introduction to renv
 </span></div>
 
 ```{r setup, include = FALSE}
@@ -135,7 +135,7 @@ knitr::include_graphics("img/projects_new.png")
 
 - In **Directory name:**, type your HPC user name (e.g. `albrecht`).
 
-- In **Create project as subdirectory of :**, click on **Browse** and select the sub-directory `week5/day3_renv` in the shared GitHub repository for this course.
+- In **Create project as subdirectory of :**, click on **Browse** and select the sub-directory `5_r/3_renv` in the shared GitHub repository for this course.
 
 - Untick the following checkboxes, if there are present:
 
@@ -408,7 +408,7 @@ knitr::include_graphics("img/renv-project-library.svg")
 
 Instead of installing each package *de novo* in each project library,
 `r BiocStyle::CRANpkg("renv")` installs each version of package in a *global package cache*,
-and then *link* the relevant version of each package to the relevant project libraries.
+and then *links* the relevant version of each package to the relevant project libraries.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
 knitr::include_graphics("img/renv-package-cache.svg")
