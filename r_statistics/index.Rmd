@@ -949,7 +949,8 @@ t.test(value ~ group, test_data)
 # Choosing a test
 
 ```{r, include=TRUE, echo=FALSE, out.height='400px', fig.align='center'}
-knitr::include_graphics("https://www.scielo.br/img/revistas/rbccv/v33n6//0102-7638-rbccv-33-06-000V-gf01.jpg")
+# Source: https://python.plainenglish.io/statistical-tests-with-python-880251e9b572
+knitr::include_graphics("img/choose-statistical-test.png")
 ```
 
 `r Citet(bib, "liguori2018data")`
