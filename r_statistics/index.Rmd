@@ -740,7 +740,8 @@ What is actually tested is whether the mean of the differences between the paire
 Is the variance _between_ groups larger than the variance _within_ groups?
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-knitr::include_graphics("https://www.scielo.br/img/revistas/rbccv/v33n6//0102-7638-rbccv-33-06-000V-gf04.jpg")
+# Source: https://turnthewheelsandbox.wordpress.com/2015/08/11/lesson-12-intro-to-one-way-anova/
+knitr::include_graphics("img/anova.png")
 ```
 
 `r Citet(bib, "liguori2018data")`
@@ -947,8 +948,9 @@ t.test(value ~ group, test_data)
 
 # Choosing a test
 
-```{r, include=TRUE, echo=FALSE, out.height='400px', fig.align='center'}
-knitr::include_graphics("https://www.scielo.br/img/revistas/rbccv/v33n6//0102-7638-rbccv-33-06-000V-gf01.jpg")
+```{r, include=TRUE, echo=FALSE, out.height='400px', out.width='600px' fig.align='center'}
+# Source: https://python.plainenglish.io/statistical-tests-with-python-880251e9b572
+knitr::include_graphics("img/choose-statistical-test.png")
 ```
 
 `r Citet(bib, "liguori2018data")`
