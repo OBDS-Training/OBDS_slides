@@ -3,7 +3,7 @@ title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-git
 subtitle: '&emsp;'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-05-10 (updated: `r Sys.Date()`)"
+date: "2021-10-04 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -78,7 +78,7 @@ bib <- ReadBib("bibliography.bib")
 
 # Pre-requisites
 
-- Access to the University VPN.
+- Access to the CCB cluster over SSH.
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
