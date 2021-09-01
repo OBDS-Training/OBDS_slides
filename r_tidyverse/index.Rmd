@@ -144,7 +144,7 @@ knitr::include_graphics("img/tidyverse.png")
 
 # Further reading
 
-- ...
+- [R for Data Science](https://r4ds.had.co.nz/)
 
 ---
 
