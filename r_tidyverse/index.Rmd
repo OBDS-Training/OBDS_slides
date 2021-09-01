@@ -110,6 +110,14 @@ The resulting file structure should look like the following:
 
 ---
 
+# The tidyverse
+
+```{r, include=TRUE, echo=FALSE, out.height='500px'}
+knitr::include_graphics("img/tidyverse.png")
+```
+
+---
+
 # Further reading
 
 - ...
