@@ -118,6 +118,30 @@ knitr::include_graphics("img/tidyverse.png")
 
 ---
 
+# Packages of the tidyverse
+
+.pull-left[
+- `r BiocStyle::CRANpkg("ggplot2")`: plot data.
+
+- `r BiocStyle::CRANpkg("dplyr")`: manipulate data.
+
+- `r BiocStyle::CRANpkg("tidyr")`: tidy data.
+
+- `r BiocStyle::CRANpkg("readr")`: import data from files.
+]
+
+.pull-right[
+- `r BiocStyle::CRANpkg("purrr")`: apply vectorised functions.
+
+- `r BiocStyle::CRANpkg("tibble")`: the tidyverse `data.frame`.
+
+- `r BiocStyle::CRANpkg("stringr")`: work with character strings.
+
+- `r BiocStyle::CRANpkg("forcats")`: work with factors.
+]
+
+---
+
 # Further reading
 
 - ...
