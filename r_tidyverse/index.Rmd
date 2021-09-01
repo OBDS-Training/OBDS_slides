@@ -154,6 +154,22 @@ The tidyverse provides functions for each stage of the data science process.
 
 ---
 
+# Loading tidyverse packages
+
+Loading the `r BiocStyle::CRANpkg("tidyverse")` package loads all the packages of the tidyverse in a single command.
+
+```{r, include=TRUE, message=TRUE}
+library(tidyverse)
+```
+
+However, packages of the tidyverse can also be loaded individually, e.g.
+
+```{r, include=TRUE}
+library(ggplot2)
+```
+
+---
+
 # Import data into <i class="fab fa-r-project"></i>
 
 <img src="img/readr.png" height="100px" align="top" style="float: left">
@@ -161,11 +177,18 @@ The tidyverse provides functions for each stage of the data science process.
 > provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf).
 > It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.
 
+```{r}
+library(readr)
+```
+
+
 ---
 
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
+
+- [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
 
 ---
 
