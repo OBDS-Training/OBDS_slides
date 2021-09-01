@@ -154,6 +154,15 @@ The tidyverse provides functions for each stage of the data science process.
 
 ---
 
+# Import data into <i class="fab fa-r-project"></i>
+
+<img src="img/readr.png" height="100px" align="top" style="float: left">
+
+> provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf).
+> It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
