@@ -1,5 +1,5 @@
 ---
-title: "Example code for R statistics"
+title: "Example code for tidyverse"
 author: "Kevin Rue-Albrecht"
 date: "14/06/2021"
 output: html_document

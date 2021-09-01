@@ -181,6 +181,46 @@ library(ggplot2)
 library(readr)
 ```
 
+The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to read and write files, e.g.
+
+.pull-left[
+- `read_csv`
+
+- `read_tsv`
+
+- `read_delim`
+
+- `read_rds`
+]
+
+.pull-right[
+- `write_csv`
+
+- `write_tsv`
+
+- `write_delim`
+
+- `write_rds`
+]
+
+---
+
+# Exercise
+
+## Read and write files
+
+- Read data from the file `mtcars.csv` using `r BiocStyle::CRANpkg("readr")`.
+  Assign the data imported from the file to an object called `mtcar_raw`.
+
+.center[
+**What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
+]
+
+- Display the value of `mtcar_raw` in the R console.
+
+.center[
+**What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
+]
 
 ---
 
