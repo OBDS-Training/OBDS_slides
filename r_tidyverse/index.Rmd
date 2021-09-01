@@ -112,7 +112,7 @@ The resulting file structure should look like the following:
 
 # The tidyverse
 
-```{r, include=TRUE, echo=FALSE, out.height='500px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', fig.align='center'}
 knitr::include_graphics("img/tidyverse.png")
 ```
 
@@ -138,6 +138,18 @@ knitr::include_graphics("img/tidyverse.png")
 - `r BiocStyle::CRANpkg("stringr")`: work with character strings.
 
 - `r BiocStyle::CRANpkg("forcats")`: work with factors.
+]
+
+---
+
+# The life cycle of data science
+
+```{r, include=TRUE, echo=FALSE, out.height='200px', fig.align='center'}
+knitr::include_graphics("img/r4ds-data-science.png")
+```
+
+.center[
+The tidyverse provides functions for each stage of the data science process.
 ]
 
 ---
