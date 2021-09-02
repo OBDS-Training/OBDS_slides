@@ -338,6 +338,12 @@ The `tibble` class keep the features that have stood the test of time, and drop 
 
 - It does not support row names.
 
+- It only shows the first 10 rows when displayed in the <i class="fab fa-r-project"></i> console.
+
+- It displays the type of data in each column.
+
+- It can contain another tibble (with the same number of rows) in a column.
+
 A great introduction to the tibble is available in the [package vignette](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html).
 
 ---
