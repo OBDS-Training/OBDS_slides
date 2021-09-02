@@ -430,6 +430,27 @@ iris %>% select(!c(Sepal.Length, Petal.Length))
 
 Functions such as `starts_with` and `ends_with` are made available by the `r BiocStyle::CRANpkg("tidyselect")` package.
 
+Note that `select()` does not affect the original object.
+It creates a new object that can be assigned to a new variable name in the <i class="fab fa-r-project"></i> session.
+
+---
+
+# Create and update columns in a table
+
+The `mutate()` function can be used to create or update values in one or more columns.
+
+Columns are treated sequentially, a single call to `mutate()` can create columns that immediately re-use columns created in the same call.
+
+.small-code[
+```{r, include=TRUE}
+iris %>% mutate(
+  ID = rep(1:50, times = 3),
+  Flower.ID = paste0(Species, ID)
+) %>%
+  group_by(Species) %>% slice_head(n = 3)
+```
+]
+
 ---
 
 # Exercise
