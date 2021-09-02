@@ -412,6 +412,18 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 ---
 
+# Exercise
+
+## Manipulate data
+
+- For each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+
+- Similarly, for each species of iris, compute the mean of every numeric column in the `iris_raw` object.
+  That is: `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width`.
+  **Hint:** use the `dplyr::across()` and `tidyselect::all_of()` functions.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
