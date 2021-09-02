@@ -253,20 +253,20 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 
 ## Read and write files
 
-- Read data from the file `mtcars.csv` using `r BiocStyle::CRANpkg("readr")`.
-  Assign the data imported from the file to an object called `mtcar_raw`.
+- Read data from the file `iris.csv` using `readr`.
+  Assign the data imported from the file to an object called `iris_raw`.
 
 .center[
 **What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
 ]
 
-- Display the value of `mtcar_raw` in the R console.
+- Display the value of `iris_raw` in the R console.
 
 .center[
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
 ]
 
-- Write the first four columns of the dataset to a file named `mtcars.tsv`, separating fields with the TAB character.
+- Write the dataset to a file named `iris.tsv`, separating fields with the TAB character.
 
 .center[
 **What function do you use? What options are available for that function?**
@@ -418,9 +418,13 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 ## Manipulate data
 
+### Exercise 1
+
 - For each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
 
-- Similarly, for each species of iris, compute the mean of every column that starts with "Sepal.".
+### Exercise 2
+
+- Similarly, for each species of iris, compute the mean of every column that starts with `"Sepal."`.
   **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
   
 - Filter the latest summary table to retain only species of iris with an average sepal length less than 6.
