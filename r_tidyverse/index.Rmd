@@ -342,6 +342,22 @@ A great introduction to the tibble is available in the [package vignette](https:
 
 ---
 
+# Making a tibble
+
+The `tibble()` function is a nice way to create a tibble from scratch.
+
+- Columns are created sequentially: subsequent columns can refer to previously defined ones.
+
+- Single values are recycled to fill the entire column.
+
+  + Vectors of a different length will cause the function to throw an error.
+
+```{r, include=TRUE}
+tibble(x = 1:5, y = 1, z = x ^ 2 + y)
+```
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
