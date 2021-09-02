@@ -410,6 +410,8 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 - `join`: merge two `tibble` objects on matching values in one or more columns.
 
+- `pull`: extract one column from a `tibble`.
+
 ---
 
 # Exercise
@@ -418,9 +420,15 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 - For each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
 
-- Similarly, for each species of iris, compute the mean of every numeric column in the `iris_raw` object.
-  That is: `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and `Petal.Width`.
-  **Hint:** use the `dplyr::across()` and `tidyselect::all_of()` functions.
+- Similarly, for each species of iris, compute the mean of every column that starts with "Sepal.".
+  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
+  
+- Filter the latest summary table to retain only species of iris with an average sepal length less than 6.
+
+- Sort the latest filtered table by decreasing `Sepal.Length`.
+
+- Extract the `Sepal.Length` column as a numeric vector.
+  Make it a named numeric vector, where each value is named with the corresponding species.
 
 ---
 
