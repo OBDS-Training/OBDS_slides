@@ -383,6 +383,35 @@ In this section, we will focus on data exploration using the tidyverse.
 
 ---
 
+# Manipulate data
+
+<!-- Source: https://www.tidyverse.org/packages/ -->
+<img src="img/dplyr.png" height="100px" align="top" style="float: left">
+
+> provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges.
+
+```{r}
+library(dplyr)
+```
+
+The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to sort, select, filter, group, combine, and summarise columns and observations, e.g.
+
+- `select`: select a subset of columns in a `tibble`.
+
+- `mutate`: create or update values in one or more columns.
+
+- `filter`: filter observations using conditions on column values.
+
+- `group_by`: group observations on column values; subsequent functions will be apply on each group separately.
+
+- `summarise`: summarise groups of observations.
+
+- `arrange`: sort observations.
+
+- `join`: merge two `tibble` objects on matching values in one or more columns.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
