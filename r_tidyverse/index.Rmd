@@ -302,6 +302,27 @@ Those make it simpler to insert the pipe in the RStudio Editor:
 
 ---
 
+# The tidyverse philoshopy
+
+- Most functions take (tidy) data as their first argument.
+
+  + The `r BiocStyle::CRANpkg("magrittr")` pipe operator `%>%` is central to tidyverse workflows.
+  
+- Most functions take columns names as unquoted variable names.
+
+  + Since the tidy dataset is given as first argument, all variable names are assumed to be names of columns in that dataset.
+
+- Most functions prefer to work with the `tibble` data structure.
+
+  + Tibble have certain features (e.g., no row names) which are expected and otherwise often raise warnings or messages.
+
+```{r, include=TRUE}
+iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
+```
+
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
