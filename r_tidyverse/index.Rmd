@@ -33,6 +33,7 @@ knitr::opts_chunk$set(
   message = FALSE, warning = FALSE, error = FALSE,
   include = FALSE
 )
+stopifnot(require(magrittr))
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -55,15 +56,26 @@ bib <- ReadBib("bibliography.bib")
 
 ## Learning goals
 
-- ...
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
 
-- ...
+- Describe tidy data.
+- Appreciate that scripts can combine base R and tidyverse.
+- Assemble iteratively longer workflows using the tidyverse pipe.
 
 ## Learning objectives
 
-- ...
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
 
-- ...
+- Import and manipulate tidy data using packages from the tidyverse.
+- Compute summary statistics on groups of observations in data frames.
+- Filter data frames to select observations that meet certain criteria.
+- Combine information from multiple data frames using matching information in certain columns.
 
 ---
 
@@ -150,6 +162,35 @@ knitr::include_graphics("img/r4ds-data-science.png")
 
 .center[
 The tidyverse provides functions for each stage of the data science process.
+]
+
+---
+
+# Tidy data
+
+.pull-left[
+## Tidy
+
+```{r, include=TRUE, echo=FALSE}
+x <- matrix(
+  data = rbinom(50, 10, 0.5), nrow = 10, ncol = 5,
+  dimnames = list(paste0("R", seq_len(10)), paste0("C", seq_len(5))))
+x <- as.data.frame(x)
+x
+```
+]
+
+.pull-right[
+## Not tidy
+```{r, include=TRUE, echo=FALSE}
+x %>% 
+  tibble::rownames_to_column(var = "row") %>% 
+  tidyr::pivot_longer(tidyselect::starts_with("C"), names_to = "column")
+```
+]
+
+.center[
+**How would you describe the difference between the tidy  and the "not tidy" layout of the data?**
 ]
 
 ---
