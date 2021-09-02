@@ -171,7 +171,7 @@ The tidyverse provides functions for each stage of the data science process.
 # Tidy data
 
 .pull-left[
-## Tidy
+## Not tidy
 
 ```{r, include=TRUE, echo=FALSE}
 x <- matrix(
@@ -183,7 +183,7 @@ x
 ]
 
 .pull-right[
-## Not tidy
+## Tidy
 ```{r, include=TRUE, echo=FALSE}
 x %>% 
   tibble::rownames_to_column(var = "row") %>% 
