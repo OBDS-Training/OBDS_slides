@@ -125,6 +125,7 @@ The resulting file structure should look like the following:
 # The tidyverse
 
 ```{r, include=TRUE, echo=FALSE, out.height='500px', fig.align='center'}
+## Source: https://www.tidyverse.org/
 knitr::include_graphics("img/tidyverse.png")
 ```
 
@@ -154,9 +155,10 @@ knitr::include_graphics("img/tidyverse.png")
 
 ---
 
-# The life cycle of data science
+# The data science workflow
 
 ```{r, include=TRUE, echo=FALSE, out.height='200px', fig.align='center'}
+## Source: https://r4ds.had.co.nz/introduction.html
 knitr::include_graphics("img/r4ds-data-science.png")
 ```
 
@@ -213,6 +215,7 @@ library(ggplot2)
 
 # Import data into <i class="fab fa-r-project"></i>
 
+<!-- Source: https://www.tidyverse.org/packages/ -->
 <img src="img/readr.png" height="100px" align="top" style="float: left">
 
 > provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf).
