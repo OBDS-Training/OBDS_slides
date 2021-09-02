@@ -157,7 +157,7 @@ knitr::include_graphics("img/tidyverse.png")
 
 # The data science workflow
 
-```{r, include=TRUE, echo=FALSE, out.height='200px', fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height='250px', fig.align='center'}
 ## Source: https://r4ds.had.co.nz/introduction.html
 knitr::include_graphics("img/r4ds-data-science.png")
 ```
@@ -264,6 +264,12 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 
 .center[
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
+]
+
+- Write the dataset to a file named `mtcars.tsv`, separating fields with the TAB character.
+
+.center[
+**What function do you use? What options are available for that function?**
 ]
 
 ---
