@@ -481,6 +481,33 @@ The `r BiocStyle::CRANpkg("tidyr")` package is mostly known for functions to res
 
 ---
 
+# Exercise
+
+## Pivot data from wide to long
+
+.pull-left[
+Reshape the `iris_raw` dataset in a tidy format where one observation is represented by:
+
+- the species
+
+- the variable measured
+
+- the value
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE}
+iris %>% 
+  pivot_longer(c(starts_with("Sepal"), starts_with("Petal")), names_to = "variable")
+```
+]
+
+.center[
+**What information have we lost in the process? What could we do to remedy the issue?**
+]
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
