@@ -213,7 +213,7 @@ library(ggplot2)
 
 ---
 
-# Import data into <i class="fab fa-r-project"></i>
+# Import and export data
 
 <!-- Source: https://www.tidyverse.org/packages/ -->
 <img src="img/readr.png" height="100px" align="top" style="float: left">
