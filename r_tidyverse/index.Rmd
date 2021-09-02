@@ -320,6 +320,25 @@ Those make it simpler to insert the pipe in the RStudio Editor:
 iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
 ```
 
+---
+
+# The tibble class
+
+The `r BiocStyle::CRANpkg("tibble")` package defines a modern take on data frames.
+
+The `tibble` class keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors).
+
+- It never changes the type of inputs used to create columns (e.g., character vectors are not converted to factors).
+
+- It never adjusts the name of columns (e.g., the space character is not substituted by `.`).
+
+- It always returns a `tibble` object after subsetting.
+
+- It never tries to partially match column names.
+
+- It does not support row names.
+
+A great introduction to the tibble is available in the [package vignette](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html).
 
 ---
 
