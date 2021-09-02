@@ -436,6 +436,27 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 ---
 
+# Exercise
+
+## Manipulate data
+
+### Exercise 3
+
+Let's make the silly assumption that iris sepals are rectangular in shape.
+
+- Using `iris_raw`, compute a new column named `Sepal.Area`, which is the product of `Sepal.Length` and `Sepal.Width`.
+
+- Subset the result to the columns named `Species` and `Sepal.Area`.
+
+- Subset the result to display the top 5 observations by `Sepal.Area`.
+
+## Bonus point
+
+- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `Sepal.Area` colored by species.
+  You might also want to facet the plot by species.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
