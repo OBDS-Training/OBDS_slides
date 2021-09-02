@@ -446,10 +446,11 @@ Columns are treated sequentially, a single call to `mutate()` can create columns
 iris %>% mutate(
   ID = rep(1:50, times = 3),
   Flower.ID = paste0(Species, ID)
-) %>%
-  group_by(Species) %>% slice_head(n = 3)
+) %>% group_by(Species) %>% slice_head(n = 3)
 ```
 ]
+
+Notice how `group_by()` is used here to display the first three flower for each species.
 
 ---
 
