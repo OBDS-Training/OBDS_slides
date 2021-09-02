@@ -281,6 +281,27 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 
 ---
 
+# The pipe operator
+
+The `r BiocStyle::CRANpkg("magrittr")` package defines the pipe operator as `%>%`.
+
+The pipe operator `%>%` in <i class="fab fa-r-project"></i> has a similar behaviour to pipe operator `|` in the Linux shell, adapted to the context of <i class="fab fa-r-project"></i> code:
+
+- The `%>%` operator must follow code that emits an object (e.g., data frame, but not only!).
+- The `%>%` operator must be followed by a function (base <i class="fab fa-r-project"></i>, tidyverse, or custom function).
+- The output of code on the left side of `%>%` is passed as the first argument of the function on the right side (it is possible to alter this when needed).
+
+## Keyboard shortcuts
+
+Those make it simpler to insert the pipe in the RStudio Editor:
+
+|  OS  | Shortcut |
+| :--: | :------: |
+| macOS | Command-Shift-M |
+| Windows / Linux | Control-Shift-M |
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
