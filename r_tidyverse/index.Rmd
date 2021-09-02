@@ -414,6 +414,24 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 ---
 
+# Subset the columns of a table
+
+The `select()` function can be used to subset a `tibble` to certain columns.
+This function _always_ returns a table, even for a single column (see `pull()` to extract a vector).
+
+There are many ways to define the selection of columns.
+
+```{r, include=TRUE, eval=FALSE}
+iris %>% select(Sepal.Length, Sepal.Width)
+iris %>% select(starts_with("Petal") | ends_with("Width"))
+iris %>% select(!ends_with("Width"))
+iris %>% select(!c(Sepal.Length, Petal.Length))
+```
+
+Functions such as `starts_with` and `ends_with` are made available by the `r BiocStyle::CRANpkg("tidyselect")` package.
+
+---
+
 # Exercise
 
 ## Manipulate data
