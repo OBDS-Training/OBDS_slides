@@ -375,6 +375,12 @@ knitr::include_graphics("img/r4ds-data-science-explore.png")
 In this section, we will focus on data exploration using the tidyverse.
 ]
 
+- We will start from data that is already tidy.
+
+- We will transform data (e.g., calculate, filter, summarise).
+
+- We will continue practicing visualisation using `r BiocStyle::CRANpkg("ggplot2")`
+
 ---
 
 # Further reading
