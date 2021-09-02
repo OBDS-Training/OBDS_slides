@@ -176,7 +176,7 @@ The tidyverse provides functions for each stage of the data science process.
 ```{r, include=TRUE, echo=FALSE}
 x <- matrix(
   data = rbinom(50, 10, 0.5), nrow = 10, ncol = 5,
-  dimnames = list(paste0("R", seq_len(10)), paste0("C", seq_len(5))))
+  dimnames = list(paste0("G", seq_len(10)), paste0("S", seq_len(5))))
 x <- as.data.frame(x)
 x
 ```
@@ -186,8 +186,8 @@ x
 ## Tidy
 ```{r, include=TRUE, echo=FALSE}
 x %>% 
-  tibble::rownames_to_column(var = "row") %>% 
-  tidyr::pivot_longer(tidyselect::starts_with("C"), names_to = "column")
+  tibble::rownames_to_column(var = "gene") %>% 
+  tidyr::pivot_longer(tidyselect::starts_with("S"), names_to = "sample")
 ```
 ]
 
