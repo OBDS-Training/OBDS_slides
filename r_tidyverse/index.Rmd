@@ -266,7 +266,7 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
 ]
 
-- Write the dataset to a file named `mtcars.tsv`, separating fields with the TAB character.
+- Write the first four columns of the dataset to a file named `mtcars.tsv`, separating fields with the TAB character.
 
 .center[
 **What function do you use? What options are available for that function?**
