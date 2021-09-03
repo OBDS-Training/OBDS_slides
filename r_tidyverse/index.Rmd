@@ -832,6 +832,7 @@ words %>% str_trim() %>% str_c(collapse = " ")
 | [<img src="img/readxl.png" height="75px" align="top">](https://readxl.tidyverse.org/index.html) | makes it easy to get data out of Excel and into R. |
 | [<img src="img/googledrive.png" height="75px" align="top">](https://googledrive.tidyverse.org/) | allows you to interact with files on Google Drive from R. |
 | [<img src="img/lubridate.png" height="75px" align="top">](https://lubridate.tidyverse.org/) | makes it easier to do the things R does with date-times and possible to do the things R does not. |
+| [<img src="img/hms.png" height="75px" align="top">](https://hms.tidyverse.org/) | provides a simple class for storing durations or time-of-day values and displaying them in the `hh:mm:ss` format. |
 
 ---
 
