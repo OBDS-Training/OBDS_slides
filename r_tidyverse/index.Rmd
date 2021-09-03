@@ -549,6 +549,63 @@ iris %>% pull(Sepal.Length, name = Species) %>%
 
 ---
 
+# Combine two tables using shared information
+
+The `r BiocStyle::CRANpkg("dplyr")` packages provides different functions to combine two tables.
+Those functions mainly differ in the way they handle observations that do not have matching information in the other table:
+
+- `inner_join()`: includes all rows in `x` and `y`.
+
+- `left_join()`: includes all rows in `x`.
+
+- `right_join()`: includes all rows in `y`.
+
+- `full_join()`: includes all rows in `x` or `y`.
+
+In particular, if a row in `x` matches multiple rows in `y`, all the rows in `y` will be returned once for each matching row in `x`.
+
+---
+
+# Combine two tables using shared information
+
+.pull-left[
+## tibble_1
+
+```{r, include=TRUE, echo=FALSE}
+tibble_1 <- tibble(
+  ID = paste0("sample", 1:4),
+  gene1 = rbinom(4, 10, 0.5),
+  gene2 = rbinom(4, 10, 0.5)
+)
+tibble_1
+```
+]
+
+.pull-right[
+## tibble_2
+
+```{r, include=TRUE, echo=FALSE}
+tibble_2 <- tibble(
+  ID = paste0("sample", 1:4),
+  batch = factor(rep(c("A", "B"), each = 2)),
+  condition = factor(rep(c("control", "treated"), times = 2)),
+)
+tibble_2
+```
+]
+
+---
+
+# Combine two tables using shared information
+
+```{r, include=TRUE}
+tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
+tibble_joined
+```
+
+
+---
+
 # Exercise
 
 ## Manipulate data
