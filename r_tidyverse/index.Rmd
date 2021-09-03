@@ -840,6 +840,8 @@ words %>% str_trim() %>% str_c(collapse = " ")
 
 ## Gene expression
 
+### Part 1
+
 We provide you with an Excel file that contains gene expression data for the nine most highly variable genes in a pancreas cancer gene expression dataset (<https://portal.gdc.cancer.gov/projects/TCGA-PAAD>), as well as metadata for the individual samples and genes.
 
 - Import the gene expression matrix from the Excel file into the R session as a `tibble`.
@@ -849,6 +851,17 @@ We provide you with an Excel file that contains gene expression data for the nin
   Assign it to a new object `exprs_assay_long`.
 
 - Draw a histogram of gene expression levels for each gene in a separate facet.
+
+---
+
+# Integrated exercise
+
+## Gene expression
+
+### Part 2
+
+- Import the sample metadata from the Excel file into the R session as a `tibble`.
+  Assign it to an object named `sample_info`.
 
 ---
 
