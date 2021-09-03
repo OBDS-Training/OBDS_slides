@@ -468,6 +468,35 @@ iris %>%
 
 ---
 
+# Compute summary statistics
+
+The `summarise()` function can be used to compute summary statistics for groups of observations (or the entire dataset).
+
+.pull-left[
+.small-code[
+## Without grouping
+
+```{r, include=TRUE}
+iris %>% 
+  summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+]
+]
+
+.pull-left[
+.small-code[
+## With grouping
+
+```{r, include=TRUE}
+iris %>% 
+  group_by(Species) %>% 
+  summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+]
+]
+
+---
+
 # Exercise
 
 ## Manipulate data
