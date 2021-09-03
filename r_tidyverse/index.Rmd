@@ -735,7 +735,7 @@ iris %>%
 
 The `unite()` function can be used to combine values stored in separate columns into a single new column.
 
-- Similarly to the `separate()` function, the original columns being split or combined are not retained from the resulting table.
+- Similarly to the `separate()` function, the original columns being split or combined are not retained from the resulting table, unless the option `remove=FALSE` is set.
 
 .small-code[
 ```{r, include=TRUE}
