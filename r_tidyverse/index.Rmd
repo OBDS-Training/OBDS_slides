@@ -700,6 +700,14 @@ iris %>%
 
 ---
 
+# Exercise
+
+## Pivot data from long to wide
+
+- Reshape the tidy format of the iris data set into the original wide format.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
