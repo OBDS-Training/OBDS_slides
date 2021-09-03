@@ -798,6 +798,28 @@ iris_species %>% unique()
 
 ---
 
+# Join multiple strings and remove whitespaces
+
+The `str_c()` function joins two or more strings, and the `str_trim()` function removes whitespaces for either end of a string.
+
+```{r, include=TRUE}
+words <- c("I ", " Am ", "legend")
+```
+
+Remove whitespaces.
+
+```{r, include=TRUE}
+str_trim(words)
+```
+
+Join the trimmed strings into a single string.
+
+```{r, include=TRUE}
+words %>% str_trim() %>% str_c(collapse = " ")
+```
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
