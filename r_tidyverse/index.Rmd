@@ -685,6 +685,8 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 - the variable measured
 
 - the value
+
+**Hint:** you want to pivot all the columns that start with `"Sepal"` or `"Petal"`.
 ]
 
 .pull-right[
