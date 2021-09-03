@@ -454,6 +454,20 @@ Notice how `group_by()` is used here to display the first three flower for each 
 
 ---
 
+# Subset observations in a table
+
+The `filter()` function can be used to select rows of a table (i.e., observations) using conditional statements on values in certain columns.
+
+.small-code[
+```{r, include=TRUE}
+iris %>%
+  filter(Sepal.Length > mean(Sepal.Length) & Sepal.Width > mean(Sepal.Width)) %>% 
+  as_tibble()
+```
+]
+
+---
+
 # Exercise
 
 ## Manipulate data
