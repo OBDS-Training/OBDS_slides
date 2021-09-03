@@ -712,6 +712,24 @@ iris %>%
 
 ---
 
+# Split a column value into multiple columns
+
+The `separate()` function can be used to split the values of a column into values stored in multiple columns using a separator given as a regular expression.
+
+- You need to know in advance how many new columns the split will create.
+
+- Each input value must generate the same number of output values.
+
+.small-code[
+```{r, include=TRUE}
+iris %>% 
+  separate(Sepal.Length, c("Sepal.Length.unit", "Sepal.Length.decimal"), sep = "[.]") %>% 
+  select(c("Sepal.Length.unit", "Sepal.Length.decimal")) %>% as_tibble()
+```
+]
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
