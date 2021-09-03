@@ -747,6 +747,32 @@ iris %>%
 
 ---
 
+# Working with character strings
+
+<!-- Source: https://www.tidyverse.org/packages/ -->
+<img src="img/stringr.png" height="100px" align="top" style="float: left">
+
+> provides a cohesive set of functions designed to make working with strings as easy as possible.
+> It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations.
+
+```{r}
+library(stringr)
+```
+
+The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to process, substitute, concatenate, and modify character strings, e.g.
+
+- `str_sub`: extract and replace substrings from a character vector.
+
+- `str_trim`: trim whitespaces.
+
+- `str_c`: join multiple strings into a single string.
+
+- `str_length`: query the length of a string.
+
+- `str_to_lower` / `str_to_lower`: convert case of a string.
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
