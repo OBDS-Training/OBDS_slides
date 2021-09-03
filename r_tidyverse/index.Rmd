@@ -499,6 +499,26 @@ iris %>%
 
 ---
 
+# Sort observations
+
+The `arrange()` function can be used to order observations using values in certain columns.
+
+- Multiple columns can be used; subsequent columns are used to break ties.
+
+- Columns that contain factors are sorted following the order of the factor levels.
+
+- Columns that contain character values are sorted alphabetically.
+
+.small-code[
+```{r, include=TRUE}
+iris %>% 
+  arrange(Species, desc(Sepal.Length)) %>% 
+  as_tibble()
+```
+]
+
+---
+
 # Exercise
 
 ## Manipulate data
