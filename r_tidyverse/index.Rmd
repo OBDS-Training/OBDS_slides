@@ -824,8 +824,15 @@ words %>% str_trim() %>% str_c(collapse = " ")
 # Other package of the tidyverse
 
 <!-- Source: https://github.com/tidyverse/haven/blob/master/man/figures/logo.png -->
-[<img src="img/haven.png" height="100px" align="top" style="float: left">](https://haven.tidyverse.org/index.html)
-enables R to read and write various data formats used by other statistical packages (e.g., SAS, SPSS, Stata)
+<!-- Source: https://github.com/tidyverse/readxl/blob/master/man/figures/logo.png -->
+
+| Package | Description |
+| :-----: | :---------- |
+|[<img src="img/haven.png" height="75px" align="top">](https://haven.tidyverse.org/index.html) | enables R to read and write various data formats used by other statistical packages (e.g., SAS, SPSS, Stata) |
+| [<img src="img/readxl.png" height="75px" align="top">](https://readxl.tidyverse.org/index.html) | makes it easy to get data out of Excel and into R. |
+| [<img src="img/googledrive.png" height="75px" align="top">](https://googledrive.tidyverse.org/) | allows you to interact with files on Google Drive from R. |
+
+
 
 ---
 
