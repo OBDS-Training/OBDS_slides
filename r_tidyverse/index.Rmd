@@ -472,6 +472,8 @@ iris %>%
 
 The `summarise()` function can be used to compute summary statistics for groups of observations (or the entire dataset).
 
+Without grouping, summary statistics are simply computed across all observations (as a single group).
+
 .pull-left[
 .small-code[
 ## Without grouping
