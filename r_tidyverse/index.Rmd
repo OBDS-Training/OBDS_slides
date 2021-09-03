@@ -708,6 +708,8 @@ iris %>%
 
 - Reshape the tidy format of the iris data set into the original wide format.
 
+**Hint:** you will only be able to restore the wide format if you kept track of the identifty of each flower in the long format.
+
 ---
 
 # Further reading
