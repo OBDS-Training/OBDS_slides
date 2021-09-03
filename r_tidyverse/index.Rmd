@@ -820,6 +820,14 @@ words %>% str_trim() %>% str_c(collapse = " ")
 
 ---
 
+# Other package of the tidyverse
+
+<!-- Source: https://github.com/tidyverse/haven/blob/master/man/figures/logo.png -->
+[<img src="img/haven.png" height="100px" align="top" style="float: left">](https://haven.tidyverse.org/index.html)
+enables R to read and write various data formats used by other statistical packages (e.g., SAS, SPSS, Stata)
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
