@@ -773,6 +773,31 @@ The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to
 
 ---
 
+# Extract substrings
+
+The `str_sub()` function can be used to extract or replace substrings using the index of the start and end positions.
+
+For demonstration, we extract the iris species in a character vector.
+
+```{r, include=TRUE}
+iris_species <- iris %>% pull(Species)
+```
+
+E.g., extract the unique substrings of the first three characters.
+
+```{r, include=TRUE}
+str_sub(iris_species, 1, 3) %>% unique()
+```
+
+E.g., replace the fourth character onwards by an ellipsis.
+
+```{r, include=TRUE}
+str_sub(iris_species, 4) <- "..."
+iris_species %>% unique()
+```
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
