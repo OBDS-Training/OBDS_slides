@@ -519,6 +519,36 @@ iris %>%
 
 ---
 
+# Extract a single column as a vector
+
+The `pull()` function can be used to extract a single column as a vector.
+
+- In particular, the `pull()` function has a `name=` argument that can be used to create a named vector.
+
+.pull-left[
+.small-code[
+## Without names
+
+```{r, include=TRUE}
+iris %>% pull(Sepal.Length) %>% 
+  head(5)
+```
+]
+]
+
+.pull-right[
+.small-code[
+## With names
+
+```{r, include=TRUE}
+iris %>% pull(Sepal.Length, name = Species) %>% 
+  head(5)
+```
+]
+]
+
+---
+
 # Exercise
 
 ## Manipulate data
