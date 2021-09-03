@@ -134,23 +134,24 @@ knitr::include_graphics("img/tidyverse.png")
 # Packages of the tidyverse
 
 .pull-left[
-- `r BiocStyle::CRANpkg("ggplot2")`: plot data.
 
-- `r BiocStyle::CRANpkg("dplyr")`: manipulate data.
+[<img src="img/ggplot2.png" height="100px" align="center">](https://ggplot2.tidyverse.org/index.html) plot data.
 
-- `r BiocStyle::CRANpkg("tidyr")`: tidy data.
+[<img src="img/dplyr.png" height="100px" align="center">](https://dplyr.tidyverse.org/index.html) `r BiocStyle::CRANpkg("dplyr")`: manipulate data.
 
-- `r BiocStyle::CRANpkg("readr")`: import data from files.
+[<img src="img/tidyr.png" height="100px" align="center">](https://tidyr.tidyverse.org/index.html) tidy data.
+
+[<img src="img/readr.png" height="100px" align="center">](https://readr.tidyverse.org/index.html) import data from files.
 ]
 
 .pull-right[
-- `r BiocStyle::CRANpkg("purrr")`: apply vectorised functions.
+[<img src="img/purrr.png" height="100px" align="center">](https://purrr.tidyverse.org/index.html) apply vectorised functions.
 
-- `r BiocStyle::CRANpkg("tibble")`: the tidyverse `data.frame`.
+[<img src="img/tibble.png" height="100px" align="center">](https://tibble.tidyverse.org/index.html) the tidyverse `data.frame`.
 
-- `r BiocStyle::CRANpkg("stringr")`: work with character strings.
+[<img src="img/stringr.png" height="100px" align="center">](https://stringr.tidyverse.org/index.html) work with character strings.
 
-- `r BiocStyle::CRANpkg("forcats")`: work with factors.
+[<img src="img/forcats.png" height="100px" align="center">](https://forcats.tidyverse.org/index.html) work with factors.
 ]
 
 ---
