@@ -832,8 +832,6 @@ words %>% str_trim() %>% str_c(collapse = " ")
 | [<img src="img/readxl.png" height="75px" align="top">](https://readxl.tidyverse.org/index.html) | makes it easy to get data out of Excel and into R. |
 | [<img src="img/googledrive.png" height="75px" align="top">](https://googledrive.tidyverse.org/) | allows you to interact with files on Google Drive from R. |
 
-
-
 ---
 
 # Further reading
