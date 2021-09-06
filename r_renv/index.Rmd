@@ -131,7 +131,7 @@ knitr::include_graphics("img/projects_new.png")
 
 - Select **New Project**.
 
-- In **Directory name:**, type your HPC user name (e.g. `albrecht`).
+- In **Directory name:**, type your username (e.g. `kevinrue`).
 
 - In **Create project as subdirectory of :**, click on **Browse** and select the sub-directory `5_r/3_renv` in the shared GitHub repository for this course.
 
