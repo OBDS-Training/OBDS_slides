@@ -879,6 +879,22 @@ We provide you with an Excel file that contains gene expression data for the nin
 
 ---
 
+# Integrated exercise
+
+## Gene expression
+
+### Part 3
+
+- Identify the gene with the highest expression in male patients in grade `G4`.
+
+- Visualise the expression of that gene across tumour grades.
+  Facet by `sex`.
+  Color by `T` score.
+
+
+
+---
+
 # Further reading
 
 - [R for Data Science](https://r4ds.had.co.nz/)
