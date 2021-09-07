@@ -1073,22 +1073,6 @@ qqnorm(x)
 
 ---
 
-# Exercise
-
-## Statistical tests
-
-The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris.
-
-- Use the `summary()` function to view some information about each column.
-
-- Visualise the distribution of `Sepal.Length`, stratified by species.
-
-- Is `Sepal.Length` length normally distributed? Overall? Within each species?
-
-- Is there a significant variation of `Sepal.Length` between the various species?
-
----
-
 # Multiple-testing correction
 
 ## Hypothesis
