@@ -115,7 +115,7 @@ The resulting file structure should look like the following:
 
 ```
   OBDS_Training_May_2021/
-  |_ 6_r_stats_genomics/
+  |_ 3_r_genomics_data_science/
     |_ 1_statistics/
       |_ template
         |_ ... (files)
