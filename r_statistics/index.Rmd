@@ -1223,7 +1223,7 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 ## Testing & Multiple testing correction
 
-Given a matrix of log-normalised counts (`logcounts_matrix.csv`) and experimental metadata (`cell_metadata.csv`),
+Given an Excel file that contains a matrix of log-normalised counts (`logcounts`) and experimental metadata (`cell_info`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 
 ### Approach
@@ -1239,7 +1239,7 @@ test each gene (i.e., row) in the matrix for differential expression between the
 - Correct p-values for multiple testing.
   How many genes remain before and after multiple testing?
 
-- Use `gene_metadata.csv` to get the gene name for the gene identifier with the smallest p-value.
+- Use `gene_info` to get the gene name for the gene identifier with the smallest p-value.
 
 ---
 
@@ -1248,7 +1248,7 @@ test each gene (i.e., row) in the matrix for differential expression between the
 ## Over-representation analysis (ORA)
 
 Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
-and a list of gene sets (`human_go_bp.csv`),
+and a list of gene sets (`go_db`),
 test each gene set for over-representation of differentially expressed genes.
 
 ### Approach
@@ -1264,7 +1264,7 @@ test each gene set for over-representation of differentially expressed genes.
 - Correct p-values for multiple testing.
   How many gene sets remain before and after multiple testing?
 
-- Use `go_info.csv` to annotate each GO gene set with its corrected p-value,
+- Use `go_info` to annotate each GO gene set with its corrected p-value,
   and arrange the table by increasing p-value.
 
 ---
