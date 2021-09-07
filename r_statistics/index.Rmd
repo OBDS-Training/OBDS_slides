@@ -725,7 +725,7 @@ ggplot(test_data, aes(variable, value)) +
 .pull-right[
 .small-code[
 ```{r, include=TRUE}
-t.test(x, y, test_data, paired = TRUE)
+t.test(x, y, paired = TRUE)
 ```
 ]
 
