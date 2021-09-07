@@ -3,7 +3,7 @@ title: 'Statistics'
 subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-06-14 (updated: `r Sys.Date()`)"
+date: "2021-10-11 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -948,7 +948,7 @@ t.test(value ~ group, test_data)
 
 # Choosing a test
 
-```{r, include=TRUE, echo=FALSE, out.height='400px', out.width='600px' fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height='400px', out.width='600px', fig.align='center'}
 # Source: https://python.plainenglish.io/statistical-tests-with-python-880251e9b572
 knitr::include_graphics("img/choose-statistical-test.png")
 ```
@@ -1205,7 +1205,7 @@ ggplot(result_table) +
 ```
 
 ```{r, include=TRUE, echo=FALSE, results='asis'}
-cat(sprintf("There are %i raw p-values smaller than 0.05", sum(result_table$pvalue < 0.05), n_tests))
+cat(sprintf("There are %i out of %i raw p-values smaller than 0.05", sum(result_table$pvalue < 0.05), n_tests))
 ```
 ]
 
