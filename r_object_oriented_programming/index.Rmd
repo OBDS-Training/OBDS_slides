@@ -319,12 +319,20 @@ knitr::include_graphics("img/oop_polymorphism-shape.png")
 Everything is an object in <i class="fab fa-r-project"></i>.
 For instance, factors are objects:
 
+.pull-left[
 ```{r, include=TRUE}
 object <- factor(c("A", "B", "C"))
+object
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
 str(object)
 class(object)
 attributes(object)
 ```
+]
 
 
 ---
