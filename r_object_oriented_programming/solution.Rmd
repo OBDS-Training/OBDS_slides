@@ -1,0 +1,21 @@
+---
+title: "Example code for R S3 object oriented programming"
+author: "Kevin Rue-Albrecht"
+date: "14/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+```
+
+# Exercises
+
+## TODO
+
+```{r}
+
+```
+
