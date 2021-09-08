@@ -171,6 +171,34 @@ knitr::include_graphics("img/functional-programming.png")
 
 ---
 
+# Classes
+
+.x-large-list[
+- Classes represent real world object
+
+- They contain data about the object (attributes)
+
+- They have functions to manipulate that data (methods)
+
+- They often have hierarchical relationships
+]
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+## Source: https://medium.com/cultured-perl/test-class-hierarchy-is-an-antipattern-391c6ef1e491
+knitr::include_graphics("img/classes-animals.png")
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
+## Source: https://bournetocode.com/projects/AQA_A_Theory/pages/OOP.html
+knitr::include_graphics("img/class-bike.png")
+```
+]
+
+---
+
 # Further reading
 
 - TODO
