@@ -145,6 +145,32 @@ knitr::include_graphics("img/functional-programming.png")
 
 ---
 
+# Object Oriented Programming (OOP)
+
+.pull-left[
+## Why Object Oriented Programming?
+
+- Better code reusability
+- Better security mechanisms
+- More flexibility and scalability
+]
+
+.pull-right[
+## In procedural programming:
+
+- Decompose the problem into sub-problems
+- Write _functions_ for each sub-problem
+- Task oriented
+
+## In object-oriented programming:
+
+- Focus on _data_ rather than logic
+- Use _objects_ / _classes_ to model real-world concepts
+- Objects can communicate with each other
+]
+
+---
+
 # Further reading
 
 - TODO
