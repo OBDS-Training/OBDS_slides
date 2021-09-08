@@ -316,7 +316,8 @@ knitr::include_graphics("img/oop_polymorphism-shape.png")
 
 # The S3 class system in <i class="fab fa-r-project"></i>
 
-A factor is an object.
+Everything is an object in <i class="fab fa-r-project"></i>.
+For instance, factors are objects:
 
 ```{r, include=TRUE}
 object <- factor(c("A", "B", "C"))
