@@ -238,6 +238,32 @@ knitr::include_graphics("img/class-bike.png")
 
 ---
 
+# Encapsulation
+
+.x-large-list[
+- Objects can keep their data private
+
+- Can only be accessed by methods
+
+- Improves security
+]
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+## Source: http://www.personal.psu.edu/users/a/g/ags5311/blogs/ExtendedText.html
+knitr::include_graphics("img/oop-encapsulation.png")
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='300px'}
+## Source: https://www.perltutorial.org/perl-oop/
+knitr::include_graphics("img/getters-setters.png")
+```
+]
+
+---
+
 # References
 
 .small-text[
