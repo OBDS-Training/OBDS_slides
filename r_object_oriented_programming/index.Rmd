@@ -116,9 +116,32 @@ The resulting file structure should look like the following:
 
 ---
 
-# TODO
+# So far, in the course
 
-- TODO
+## Procedural programming
+
+- So far we have been using functions
+
+- This is but one type of programming paradigm
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: http://www.hexainclude.com/procedure-oriented-programming-language/
+knitr::include_graphics("img/functional-programming.png")
+```
+]
+
+.pull-right[
+- Divide and conquer
+
+- Readable
+
+- Sustainable
+
+- Easier to debug
+
+- Reuse code
+]
 
 ---
 
