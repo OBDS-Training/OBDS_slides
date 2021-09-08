@@ -314,6 +314,20 @@ knitr::include_graphics("img/oop_polymorphism-shape.png")
 
 ---
 
+# The S3 class system in <i class="fab fa-r-project"></i>
+
+A factor is an object.
+
+```{r, include=TRUE}
+object <- factor(c("A", "B", "C"))
+str(object)
+class(object)
+attributes(object)
+```
+
+
+---
+
 # References
 
 .small-text[
