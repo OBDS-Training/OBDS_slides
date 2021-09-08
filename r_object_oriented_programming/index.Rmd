@@ -216,6 +216,28 @@ knitr::include_graphics("img/class-object-relationship.jpeg")
 
 ---
 
+# The four pillars of object oriented programming
+
+- The OOP paradigm follows four principles.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://medium.com/swlh/the-four-pillars-of-object-oriented-programming-8ce8a26b32eb
+knitr::include_graphics("img/oop-four-pillars.png")
+```
+
+???
+
+Note: Individually described in next few slides
+
+| Name | Description |
+| - | - |
+| polymorphism | refers to a programming language's ability to process objects differently depending on their data type or class. |
+| Encapsulation | describes the idea of bundling data and methods that work on that data within one unit, e.g., a class. |
+| Inheritance | is a mechanism where you can to derive a class from another class for a hierarchy of classes that share a set of attributes and methods. |
+| abstraction | refers to providing only essential information about the data to the outside world, hiding the background details or implementation (e.g. someone driving a car doesn't need to know how an engine works -> API) |
+
+---
+
 # Inheritance
 
 .pull-left[
@@ -264,13 +286,11 @@ knitr::include_graphics("img/getters-setters.png")
 
 # Abstraction
 
-- Expose only high level methods
+- Expose only high level methods.
 
-- Keep implementation details internal
+- Keep implementation details internal.
 
-- Reduces maintenance overhead
-
-  + Implementation can be changed without affecting other objects
+- Internal implementation can be changed without affecting other objects.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
 ## Source: https://www.journaldev.com/33191/what-is-abstraction-in-oops
