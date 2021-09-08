@@ -272,10 +272,25 @@ knitr::include_graphics("img/getters-setters.png")
 
   + Implementation can be changed without affecting other objects
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='600px'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
 ## Source: https://www.journaldev.com/33191/what-is-abstraction-in-oops
 knitr::include_graphics("img/process-abstraction.png")
 ```
+
+---
+
+# Polymorphism
+
+-  Attributes and public methods can be implemented differently for different classes and sub-classes.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://expertiza.csc.ncsu.edu/index.php/CSC/ECE_517_Fall_2011/ch1_1g_vn
+knitr::include_graphics("img/oop_polymorphism-shape.png")
+```
+
+.center[
+**What do you think `getArea()` does for each class?**
+]
 
 ---
 
