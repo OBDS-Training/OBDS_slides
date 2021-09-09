@@ -33,6 +33,7 @@ knitr::opts_chunk$set(
   message = FALSE, warning = FALSE, error = FALSE,
   include = FALSE
 )
+stopifnot(require(tidyverse))
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
@@ -317,27 +318,130 @@ knitr::include_graphics("img/oop_polymorphism-shape.png")
 # The S3 class system in <i class="fab fa-r-project"></i>
 
 Everything is an object in <i class="fab fa-r-project"></i>.
-For instance, factors are objects:
+For example, character vectors are objects.
 
 .pull-left[
 ```{r, include=TRUE}
-object <- factor(c("A", "B", "C"))
-object
+character_object <- "A"
+character_object
+str(character_object)
+class(character_object)
+attributes(character_object)
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE}
-str(object)
-class(object)
-attributes(object)
+character_object2 <- c("A", "B", "C")
+character_object2
+str(character_object2)
+class(character_object2)
+attributes(character_object2)
 ```
 ]
 
+---
+
+# Factors are objects, too
+
+.pull-left[
+```{r, include=TRUE}
+factor_object <- factor(c("A", "B", "C"))
+factor_object
+str(factor_object)
+class(factor_object)
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
+attributes(factor_object)
+attr(factor_object, "levels")
+attr(factor_object, "class")
+```
+]
+
+---
+
+# Data frames are objects
+
+.pull-left[
+```{r, include=TRUE}
+dataframe_object <- data.frame(
+  numbers = c(1, 2, 3),
+  strings = c("A", "B", "C")
+  )
+dataframe_object
+class(dataframe_object)
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
+str(dataframe_object)
+attributes(dataframe_object)
+```
+]
+
+---
+
+# Matrices are objects
+
+.pull-left[
+```{r, include=TRUE}
+matrix_object <- matrix(
+  data = rbinom(8, 10, 0.5),
+  nrow = 2
+  )
+matrix_object
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
+class(matrix_object)
+str(matrix_object)
+attributes(matrix_object)
+attr(matrix_object, "dim")
+```
+]
+
+---
+
+# S3 method dispatch
+
+Methods are ordinary functions that use a special naming convention: `generic.class`:
+
+.pull-left[
+```{r}
+options(width = 60)
+```
+
+
+```{r, include=TRUE}
+methods("print") %>% head(14)
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
+print.factor(factor_object)
+print.factor(character_object)
+print.default(character_object)
+```
+]
+
+.center[
+**You can call methods directly, but you shouldn't!**
+]
+
+The whole point of method dispatch is that <i class="fab fa-r-project"></i> uses the class of the object to determine the method to use.
 
 ---
 
 # References
+
+- [The S3 object system](http://adv-r.had.co.nz/S3.html), in _Advanced R_ by Hadley Wickham
 
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
