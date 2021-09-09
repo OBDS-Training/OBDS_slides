@@ -389,10 +389,20 @@ get_age(kevin) # do that (if you can)
 - Install the package `r BiocStyle::Biocpkg("Biostrings")` using `BiocManager::install()`.
 
 - Run the function `BiocManager::valid()`.
+  What does it do?
 
-.center[
-**What does it do?**
-]
+## Use Bioconductor packages and help pages
+
+- Load the `r BiocStyle::Biocpkg("Biostrings")` package.
+
+- The `r BiocStyle::Biocpkg("Biostrings")` package provides the object `DNA_ALPHABET`.
+  Print the object in the console and use the help page to explain the value of the object.
+
+- The `r BiocStyle::Biocpkg("Biostrings")` package provides the function `letterFrequency()`.
+  Run some code from the "Examples" section of the help page, and describe what the function does.
+
+- Access the package vignette(s).
+  How many vignette does the `r BiocStyle::Biocpkg("Biostrings")` package include?
 
 ---
 
