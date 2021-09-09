@@ -347,6 +347,8 @@ setClass("Person",
     age = "numeric")
   )
 ```
+
+Source: <http://adv-r.had.co.nz/S4.html>
 ]
 
 .pull-right[
@@ -375,8 +377,6 @@ get_age <- function(object) {
 get_age(kevin) # do that (if you can)
 ```
 ]
-
-Source: <http://adv-r.had.co.nz/S4.html>
 
 ---
 
