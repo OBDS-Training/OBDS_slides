@@ -122,8 +122,6 @@ The resulting file structure should look like the following:
 knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
 ```
 
-<br/>
-
 .x-large-list[
 - Home: <https://www.bioconductor.org/>
 
@@ -134,6 +132,8 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 - YouTube videos: <https://www.youtube.com/user/bioconductor>
 
 - Books: <http://www.bioconductor.org/books/release/>
+
+- Slack workspace: <https://bioc-community.herokuapp.com/>
 ]
 
 ---
@@ -168,13 +168,46 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 
 ---
 
-# Bioconductor - Project Overview
+# Bioconductor packages in a workflow
 
-Packages, vignettes, workflows.
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/workflow-steps-packages.png")
+```
 
-- Over 1,974 software packages (in release 3.12); but also ...
+---
 
-  + [Annotation packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___AnnotationData)  – static data bases of identifier maps, gene models, pathways, etc; e.g., `r BiocStyle::Biocpkg("TxDb.Hsapiens.UCSC.hg19.knownGene")`.
+# Release 3.13
+
+- Contents
+
+  + 2042 software packages
+  + 406 experiment data packages
+  + 965 annotation packages
+  + 29 workflows
+
+- Updates
+
+  + 133 new software packages
+  + 22 new data experiment packages
+  + 7 new annotation packages
+  + 1 new workflow
+  + no new books
+
+- Compatibility
+
+   + Bioconductor 3.13 is compatible with R 4.1.0
+   + Supported on Linux, 32- and 64-bit Windows, and macOS 10.14.6 Mojave or higher
+   + This release will include an updated Bioconductor Docker container.
+
+Source: <https://bioconductor.org/news/bioc_3_13_release/>
+
+---
+
+# TODO
+
+- Over 1,974 software packages (in release 3.13); but also ...
+
+  + [Annotation packages](https://www.bioconductor.org/packages/3.13/BiocViews.html#___AnnotationData)  – static data bases of identifier maps, gene models, pathways, etc; e.g., `r BiocStyle::Biocpkg("TxDb.Hsapiens.UCSC.hg19.knownGene")`.
 
   + [Experiment packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___ExperimentData) – data sets used to illustrate software functionality, e.g., `r BiocStyle::Biocpkg("airway")`.
 
