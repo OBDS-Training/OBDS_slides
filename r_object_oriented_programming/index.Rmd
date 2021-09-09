@@ -382,7 +382,7 @@ attributes(dataframe_object)
 
 ---
 
-# Matrices are objects
+# And matrices are objects
 
 .pull-left[
 ```{r, include=TRUE}
