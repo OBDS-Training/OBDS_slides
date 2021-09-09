@@ -323,7 +323,45 @@ Source:
 
 **Source:**
 
-- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
+- [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
+
+---
+
+# Bioconductor uses the S4 class system
+
+.pull-left[
+- Best practice: classes and methods implemented in a dedicated package.
+
+- Formal definition: parent class (optional), new slot names and types.
+
+- Internal validity checking method.
+
+- Methods and generics implemented outside the class definition.
+
+  + Possibly in other packages.
+]
+
+.pull-right[
+```{r, include=TRUE, results='hide'}
+setClass("Person",
+  representation(
+    name = "character",
+    age = "numeric")
+  )
+```
+
+```{r}
+Person <- function(name, age) {
+  new("Person", name = name, age = age)
+}
+```
+
+```{r, include=TRUE}
+Person(name = "Kevin", age = 21)
+```
+]
+
+Source: <http://adv-r.had.co.nz/S4.html>
 
 ---
 
