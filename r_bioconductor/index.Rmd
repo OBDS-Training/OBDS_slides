@@ -386,6 +386,14 @@ get_age(kevin) # do that (if you can)
 
 - Install the `r BiocStyle::CRANpkg("BiocManager")` package from CRAN.
 
+- Install the package `r BiocStyle::Biocpkg("Biostrings")` using `BiocManager::install()`.
+
+- Run the function `BiocManager::valid()`.
+
+.center[
+**What does it do?**
+]
+
 ---
 
 # The Bioconductor SummarizedExperiment
