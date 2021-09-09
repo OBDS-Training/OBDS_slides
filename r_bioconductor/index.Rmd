@@ -203,7 +203,7 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
 ---
 
-# TODO
+# Finding packages and information
 
 - Discover and navigate packages via [biocViews](https://www.bioconductor.org/packages/devel/BiocViews.html).
 
@@ -221,7 +221,7 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
   + Narrative documents illustrating how to use the package, integrating code in a workflow, e.g. `browseVignettes("Biobase")`.
 
-- Releae cycle
+- Release cycle
 
   + Every six months; development takes place on a separate branch of the repository.
 
