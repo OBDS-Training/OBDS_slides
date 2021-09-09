@@ -133,7 +133,7 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 
 - YouTube videos: <https://www.youtube.com/user/bioconductor>
 
-- Book: [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/)
+- Books: <http://www.bioconductor.org/books/release/>
 ]
 
 ---
