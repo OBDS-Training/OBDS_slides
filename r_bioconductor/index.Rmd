@@ -176,7 +176,7 @@ knitr::include_graphics("img/workflow-steps-packages.png")
 
 ---
 
-# Release 3.13
+# Bioconductor release 3.13
 
 - Contents
 
@@ -200,6 +200,10 @@ knitr::include_graphics("img/workflow-steps-packages.png")
    + This release will include an updated Bioconductor Docker container.
 
 Source: <https://bioconductor.org/news/bioc_3_13_release/>
+
+---
+
+# 
 
 ---
 
