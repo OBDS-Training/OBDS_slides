@@ -380,6 +380,14 @@ get_age(kevin) # do that (if you can)
 
 ---
 
+# Exercise
+
+## Install Bioconductor
+
+- Install the `r BiocStyle::CRANpkg("BiocManager")` package from CRAN.
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
