@@ -235,7 +235,7 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
 # Exercise
 
-## Exploring packages
+## Exploring software packages
 
 - Visit the listing of [All Packages](https://bioconductor.org/packages/release/BiocViews.html#___Software).
 
@@ -252,6 +252,35 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 .center[
 **When would you consult the vignette? When would the reference manual be helpful?**
 ]
+
+???
+
+Source:
+
+- [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
+
+---
+
+# Exercise
+
+## Exploring annotation packages
+
+- Visit the listing of [All Packages](https://bioconductor.org/packages/release/BiocViews.html#___Software).
+
+- Click on the `AnnotationData` top-level term.
+
+- Search, using the box on the right-hand side, for annotation packages that start with the following letters to get a sense of the packages and organisms available.
+
+  + `org.`: symbol mapping
+  + `TxDb.` and `EnsDb.`: gene models
+  + `BSgenome.`: reference genomes
+
+## Exploring workflow packages
+
+Workflow packages are meant to provide a comprehensive introduction to work flows that require several different packages.
+These can be quite extensive documents, providing a very rich source of information.
+
+- Briefly explore the ‘Simple Single Cell’ workflow (or other workflow relevant to your domain of interest) to get a sense of the material the workflow covers.
 
 ???
 
