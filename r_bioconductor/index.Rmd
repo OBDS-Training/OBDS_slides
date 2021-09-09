@@ -290,17 +290,17 @@ Source:
 
 ---
 
-# Bioconductor - Philosophy
+# The Bioconductor philosophy
 
 - Common data structures
 
-  + e.g., `DNAStringSet`, `GRanges`, `GAlignemts`, `SummarizedExperiment`, `TxDb`
+  + e.g., `DNAStringSet`, `GRanges`, `GAlignments`, `SummarizedExperiment`, `TxDb`
 
   + High standards of software engineering; [Core team](https://www.bioconductor.org/about/core-team/).
 
   + Reduce redundancy; Promotes interoperability.
 
-  + ..., but community adoption can take time (e.g., `r BiocStyle::Biocpkg("GSEABase")`)
+  + ..., but community adoption can take time.
 
 --
 
@@ -309,7 +309,7 @@ Source:
   + Packages on the _release_ branch are stable for at least 6 months.
     Active development takes place on the _devel_ branch.
   
-  + ..., but new features can take up to 6 months to be released (_devel_ $\rightarrow$ _release_).
+  + ..., but new features can take up to 6 months to be released (_devel_ $\rightarrow$ _release X.Y_).
 
 --
 
