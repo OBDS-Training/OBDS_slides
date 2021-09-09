@@ -106,11 +106,8 @@ The resulting file structure should look like the following:
   OBDS_Training_May_2021/
   |_ 3_r_genomics_data_science/
     |_ 1_oop/
-      |_ template
-        |_ ... (files)
-      |_ kevinrue (copied from 'template')
-        |_ ... (files)
-        |_ oop.Rproj
+      |_ README.md
+      |_ oop.Rproj
 ```
 
 - Launch the RStudio project `oop.Rproj` in your sub-directory.
