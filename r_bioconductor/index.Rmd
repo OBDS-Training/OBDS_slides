@@ -203,33 +203,33 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
 ---
 
-# 
-
----
-
 # TODO
 
-- Over 1,974 software packages (in release 3.13); but also ...
+- Discover and navigate packages via [biocViews](https://www.bioconductor.org/packages/devel/BiocViews.html).
 
-  + [Annotation packages](https://www.bioconductor.org/packages/3.13/BiocViews.html#___AnnotationData)  – static data bases of identifier maps, gene models, pathways, etc; e.g., `r BiocStyle::Biocpkg("TxDb.Hsapiens.UCSC.hg19.knownGene")`.
+  + Filter: Software, Annotation, Experiment, Workflow, ...
 
-  + [Experiment packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___ExperimentData) – data sets used to illustrate software functionality, e.g., `r BiocStyle::Biocpkg("airway")`.
+- Learn more on the [package landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 
-  + Discover and navigate via [biocViews](https://www.bioconductor.org/packages/devel/BiocViews.html).
-  
-  + Package [landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html): Title, author / maintainer, short description, citation, installation instructions, …, download statistics.
+  + Title, author / maintainer, short description, citation, installation instructions, …, download statistics.
 
-  + All user-visible functions have help pages, most with runnable examples.
+- All user-visible functions have help pages, most with runnable examples.
 
-  + ‘Vignettes’ an important feature in Bioconductor – narrative documents illustrating how to use the package, with integrated code, e.g. `browseVignettes("Biobase")`.
+  + Learn by doing on a minimal example; positive control; sanity check.
 
-  + ‘Release’ (every six months) and ‘devel’ branches.
+- Vignettes
+
+  + Narrative documents illustrating how to use the package, integrating code in a workflow, e.g. `browseVignettes("Biobase")`.
+
+- Releae cycle
+
+  + Every six months; development takes place on a separate branch of the repository.
 
 ???
 
 **Source:**
 
-- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
+- [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
 
 ---
 
