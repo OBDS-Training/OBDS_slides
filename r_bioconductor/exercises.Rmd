@@ -1,0 +1,40 @@
+---
+title: "Example code for introduction to Bioconductor"
+author: "Kevin Rue-Albrecht"
+date: "09/09/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, eval=FALSE}
+install.packages('BiocManager)
+```
+
+Then, they can install Bioconductor packages using the BiocManager package:
+
+```{r, eval=FALSE}
+BiocManager::install("limma")
+```
+
+Note that `BiocManager::install()` can also install CRAN packages.
+
+```{r, eval=FALSE}
+BiocManager::install("tidyverse")
+```
+
+There is a trick to install Bioconductor packages using base R functions.
+
+- In their `.Rprofile`, add:
+
+```{r}
+options(repos = BiocManager::repositories())
+```
+
+- Then, they can install packagess from both Bioconductor and CRAN using non-Bioconductor functions such as `install.packages()`.
+
+```{r, eval=FALSE}
+install.packages("limma")
+```

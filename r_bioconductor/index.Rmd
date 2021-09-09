@@ -1,0 +1,304 @@
+---
+title: 'Introduction to Bioconductor'
+subtitle: '<i class="fab fa-r-project"></i> for genomics data science'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-10-13 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Introduction to Bioconductor
+</span></div> 
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+options(width = 90)
+stopifnot(require(tidyverse))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+- Describe the Bioconductor project beyond software packages.
+
+- Identify  best practices to get help from packages developers and peers.
+
+- Identify classes and methods re-used across Bioconductor packages.
+
+## Learning objectives
+
+- Bookmark online website where help can be found.
+
+- Install core Bioconductor packages and workflow specific packages.
+
+- Create Bioconductor objects and access their contents.
+
+---
+
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of the shared GitHub repository for this course.
+
+- A working installation of [R](https://www.r-project.org/) (4.1).
+
+- A working installation of [git](https://git-scm.com/).
+
+- A working installation of [RStudio](https://rstudio.com/).
+]
+
+---
+
+# Set up
+
+- Pull the `master` branch of the shared repository.
+
+> We have added some files to get you started.
+
+- In the daily sub-directory, make a copy of the `template` sub-directory with your HPC username.
+
+> e.g. `cp -R template kevinrue`
+
+The resulting file structure should look like the following:
+
+```
+  OBDS_Training_May_2021/
+  |_ 3_r_stats_genomics/
+    |_ 3_bioconductor/
+      |_ template
+        |_ ... (files)
+      |_ kevinrue (copied from 'template')
+        |_ ... (files)
+        |_ bioconductor.Rproj
+```
+
+- Launch the RStudio project `bioconductor.Rproj` in your sub-directory.
+
+---
+
+# Bioconductor resources and help
+
+```{r, include=TRUE, echo=FALSE, out.height="100px", out.width="350px", fig.align="center"}
+knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
+```
+
+<br/>
+
+.x-large-list[
+- Home: <https://www.bioconductor.org/>
+
+- Support site: <https://support.bioconductor.org/>
+
+- Courses & Conferences materials: <https://www.bioconductor.org/help/course-materials/>
+
+- YouTube videos: <https://www.youtube.com/user/bioconductor>
+
+- Book: [Orchestrating Single-Cell Analysis with Bioconductor](https://osca.bioconductor.org/)
+]
+
+---
+
+# Bioconductor - Project Objectives
+
+.center[
+.x-large-text[
+**Analysis and comprehension of high-throughput genomic data**
+]
+]
+
+.x-large-list[
+- Statistical analysis: large data, technological artifacts, designed experiments; rigorous, robust.
+
+- Comprehension: biological context, visualization, reproducibility.
+
+- High-throughput.
+
+  + Sequencing: RNA-seq, ChIP-seq, variants, copy number, ...
+
+  + Microarrays: gene expression, SNP, ...
+
+  + Flow cytometry, proteomics, images, ...
+]
+
+???
+
+**Source:**
+
+- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
+
+---
+
+# Bioconductor - Project Overview
+
+Packages, vignettes, workflows.
+
+- Over 1,974 software packages (in release 3.12); but also ...
+
+  + [Annotation packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___AnnotationData)  – static data bases of identifier maps, gene models, pathways, etc; e.g., `r BiocStyle::Biocpkg("TxDb.Hsapiens.UCSC.hg19.knownGene")`.
+
+  + [Experiment packages](https://www.bioconductor.org/packages/3.10/BiocViews.html#___ExperimentData) – data sets used to illustrate software functionality, e.g., `r BiocStyle::Biocpkg("airway")`.
+
+  + Discover and navigate via [biocViews](https://www.bioconductor.org/packages/devel/BiocViews.html).
+  
+  + Package [landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html): Title, author / maintainer, short description, citation, installation instructions, …, download statistics.
+
+  + All user-visible functions have help pages, most with runnable examples.
+
+  + ‘Vignettes’ an important feature in Bioconductor – narrative documents illustrating how to use the package, with integrated code, e.g. `browseVignettes("Biobase")`.
+
+  + ‘Release’ (every six months) and ‘devel’ branches.
+
+???
+
+**Source:**
+
+- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
+
+---
+
+# Bioconductor - Philosophy
+
+- Common data structures
+
+  + e.g., `DNAStringSet`, `GRanges`, `GAlignemts`, `SummarizedExperiment`, `TxDb`
+
+  + High standards of software engineering; [Core team](https://www.bioconductor.org/about/core-team/).
+
+  + Reduce redundancy; Promotes interoperability.
+
+  + ..., but community adoption can take time (e.g., `r BiocStyle::Biocpkg("GSEABase")`)
+
+--
+
+- Release cycle every 6 months (April, October)
+
+  + Packages on the _release_ branch are stable for at least 6 months.
+    Active development takes place on the _devel_ branch.
+  
+  + ..., but new features can take up to 6 months to be released (_devel_ $\rightarrow$ _release_).
+
+--
+
+- New packages are thoroughly reviewed by members of the core team
+
+  + Packages are submitted as issues on <i class="fa fa-github"></i> [Bioconductor/Contributions](https://github.com/Bioconductor/Contributions)
+  
+  + Review and fixes can take time, but accepted packages are generally high quality!
+
+???
+
+**Source:**
+
+- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
+
+---
+
+# The Bioconductor SummarizedExperiment
+
+```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
+knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+```
+
+.footnote[
+**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
+]
+
+---
+
+# SingleCellExperiment extends SummarizedExperiment
+
+.pull-left[
+## SummarizedExperiment.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+```
+
+.small-text[
+**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
+]
+]
+
+.pull-right[
+## SingleCellExperiment
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
+```
+
+.small-text[
+**Source:** https://osca.bioconductor.org/data-infrastructure.html
+]
+]
+
+---
+
+# SingleCellExperiment
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
+```
+
+.footnote[
+**Source:** https://osca.bioconductor.org/data-infrastructure.html
+]
+
+---
+
+# Further reading
+
+- [CSAMA 2019 programme](https://www.huber.embl.de/csama2019/#programme)
+
+- [Bioconductor course materials](https://www.bioconductor.org/help/course-materials/)
+
+- [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/lab-1-intro-to-r-bioc.html), by Martin Morgan
+
+---
+
+# References
+
+.small-text[
+```{r, include=TRUE, echo=FALSE, results="asis"}
+PrintBibliography(bib)
+```
+]
