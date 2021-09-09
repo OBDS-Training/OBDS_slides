@@ -339,9 +339,7 @@ Source:
 - Methods and generics implemented outside the class definition.
 
   + Possibly in other packages.
-]
 
-.pull-right[
 ```{r, include=TRUE, results='hide'}
 setClass("Person",
   representation(
@@ -349,7 +347,9 @@ setClass("Person",
     age = "numeric")
   )
 ```
+]
 
+.pull-right[
 ```{r}
 Person <- function(name, age) {
   new("Person", name = name, age = age)
@@ -357,7 +357,22 @@ Person <- function(name, age) {
 ```
 
 ```{r, include=TRUE}
-Person(name = "Kevin", age = 21)
+kevin <- Person(name = "Kevin", age = 21)
+kevin
+```
+
+```{r, include=TRUE}
+kevin@age # don't do that
+```
+
+```{r}
+get_age <- function(object) {
+  object@age
+}
+```
+
+```{r, include=TRUE}
+get_age(kevin) # do that (if you can)
 ```
 ]
 
