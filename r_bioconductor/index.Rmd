@@ -451,6 +451,39 @@ The E-box motif is `"CANNTG"`.
 
 ---
 
+# Genomic ranges
+
+Coordinates on a genomic scale.
+
+.pull-left[
+## Information
+
+- Chromosome, contig
+
+- Start
+
+- End
+
+- Strand (optional)
+
+- Metadata
+]
+
+.pull-right[
+## Ranges and operations
+
+```{r, include=TRUE, echo=FALSE, out.width='800px'}
+## Source: https://www.bioconductor.org/help/course-materials/2015/SeattleApr2015/B_GenomicRanges.html
+knitr::include_graphics("img/genomic-ranges.png")
+```
+]
+
+---
+
+# rtracklayer
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
