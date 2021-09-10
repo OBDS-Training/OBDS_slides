@@ -485,18 +485,40 @@ knitr::include_graphics("img/genomic-ranges.png")
 
 ```{r, include=TRUE}
 library(GenomicRanges)
-GRanges(
+demo_granges <- GRanges(
   seqnames = c("chr1", "chr2"),
   ranges = IRanges(
     start = c(10, 20),
     end = c(25, 35)
     )
   )
+demo_granges
 ```
 
 .center[
 **What genomics file format does this remind you of?**
 ]
+
+---
+
+# Metadata columns
+
+`GRanges` is one of many classes that derive from the Bioconductor virtual class `Vector`.
+
+- Virtual classes cannot be instantiated into objects.
+
+- They are used to define slots and methods that be will passed down the inheritance path to all classes that derive from this virtual class.
+
+The `Vector` class defines two slots:
+
+- `metadata`, to store metadata related to the entire object.
+
+- `elementMetadata`, to store metadata for each element in the vector.
+
+```{r, include=TRUE}
+metadata(demo_granges)
+mcols(demo_granges)
+```
 
 ---
 
