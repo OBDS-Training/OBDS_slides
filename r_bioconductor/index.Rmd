@@ -502,6 +502,33 @@ demo_granges
 
 ---
 
+# Accessing core information in GRanges
+
+The functions `seqnames()`, `start()`, and `end()` access the components of the same name.
+
+.pull-left[
+```{r, include=TRUE}
+seqnames(demo_granges)
+```
+]
+
+.pull-right[
+```{r, include=TRUE}
+start(demo_granges)
+end(demo_granges)
+```
+]
+
+Chromosome names are conceptually similar to factors.
+The function `seqlevels()` returns the list of unique chromosome names in the object (including levels that may not be present in a subset).
+
+```{r, include=TRUE}
+seqlevels(demo_granges)
+```
+
+
+---
+
 # Metadata columns
 
 `GRanges` is one of many classes that derive from the Bioconductor virtual class `Vector`.
@@ -532,7 +559,7 @@ knitr::include_graphics("img/bsgenome-biocviews.png") # TODO
 ]
 
 .pull-right[
-- The `r BiocStyle::Biocpkg("BSgenome")` package provides core functionality.
+- The `r BiocStyle::Biocpkg("rtracklayer")` package provides core functionality.
 
 - Other package names start with `"BSgenome."`
 
