@@ -374,7 +374,7 @@ get_age <- function(object) {
 ```
 
 ```{r, include=TRUE}
-get_age(kevin) # do that (if you can)
+get_age(kevin) # do that (if possible)
 ```
 ]
 
