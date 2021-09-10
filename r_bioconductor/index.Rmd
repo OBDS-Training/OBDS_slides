@@ -415,6 +415,7 @@ Bioconductor provide genome sequences for a range of model organisms and their i
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
+## Source: https://bioconductor.org/help/course-materials/2019/CSAMA/L1.4-bioc-data-representation.html
 knitr::include_graphics("img/bsgenome-biocviews.png")
 ```
 ]
@@ -524,7 +525,19 @@ mcols(demo_granges)
 
 # rtracklayer
 
+.pull-left[
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/bsgenome-biocviews.png") # TODO
+```
+]
 
+.pull-right[
+- The `r BiocStyle::Biocpkg("BSgenome")` package provides core functionality.
+
+- Other package names start with `"BSgenome."`
+
+  + e.g. `BSgenome.Hsapiens.UCSC.hg19`
+]
 
 ---
 
