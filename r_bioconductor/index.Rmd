@@ -404,6 +404,8 @@ get_age(kevin) # do that (if possible)
 - Access the package vignette(s).
   How many vignette does the `r BiocStyle::Biocpkg("Biostrings")` package include?
 
+- Import sequences in the file `TruSeq3-PE-2.fa`.
+
 ---
 
 # The Bioconductor SummarizedExperiment
