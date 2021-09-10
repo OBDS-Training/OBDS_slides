@@ -408,6 +408,49 @@ get_age(kevin) # do that (if possible)
 
 ---
 
+# BSgenome packages
+
+Bioconductor provide genome sequences for a range of model organisms and their incremental versions over time.
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/bsgenome-biocviews.png")
+```
+]
+
+.pull-right[
+- The `r BiocStyle::Biocpkg("BSgenome")` package provides core functionality.
+
+- Other package names start with `"BSgenome."`
+
+  + e.g. `BSgenome.Hsapiens.UCSC.hg19`
+]
+
+---
+
+# Exercise
+
+## BSgenome packages
+
+- Install the package `BSgenome`.
+
+- Use the function `BSgenome::available.genomes()`.
+  What does it do?
+
+- Install and load the package `BSgenome.Hsapiens.UCSC.hg38.masked`.
+
+- Assign the genome object provided in the package to a new object called `genome`.
+
+An E-box (enhancer box) is a DNA response element found in some eukaryotes that acts as a protein-binding site and has been found to regulate gene expression in neurons, muscles, and other tissues.
+
+The E-box motif is `"CANNTG"`.
+
+- Extract the sequence of chromosome Y.
+
+- Count the number of E-box motifs present on chromosome Y.
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
