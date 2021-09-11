@@ -416,7 +416,7 @@ Bioconductor provide genome sequences for a range of model organisms and their i
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
 ## Source: https://bioconductor.org/help/course-materials/2019/CSAMA/L1.4-bioc-data-representation.html
-knitr::include_graphics("img/bsgenome-biocviews.png")
+knitr::include_graphics("img/biocviews-bsgenome.png")
 ```
 ]
 
@@ -554,16 +554,18 @@ mcols(demo_granges)
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("img/bsgenome-biocviews.png") # TODO
+knitr::include_graphics("img/biocviews-annotation.png")
 ```
 ]
 
 .pull-right[
-- The `r BiocStyle::Biocpkg("rtracklayer")` package provides core functionality.
+- The `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
 
-- Other package names start with `"BSgenome."`
+  + e.g., UCSC
 
-  + e.g. `BSgenome.Hsapiens.UCSC.hg19`
+- To that end, it also provides functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
+
+  + e.g., GFF, BED, bedGraph, BigWig
 ]
 
 ---
