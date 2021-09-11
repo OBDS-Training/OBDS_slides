@@ -405,7 +405,7 @@ get_age(kevin) # do that (if possible)
   How many vignette does the `r BiocStyle::Biocpkg("Biostrings")` package include?
 
 - Import sequences in the file `TruSeq3-PE-2.fa`.
-  What other file formats can `r BiocStyle::Biocpkg("Biostrings")` read?
+  What is the class of the object?
 
 ---
 
