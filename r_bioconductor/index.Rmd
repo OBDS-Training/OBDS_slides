@@ -570,6 +570,19 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 ---
 
+# Exercise
+
+## rtracklayer
+
+- Download the GTF file for human gene sets from <https://www.ensembl.org/info/data/ftp/index.html>
+
+- Install and load the `r `BiocStyle::Biocpkg("rtracklayer)` package.
+
+- Import the file in your <i class="fab fa-r-project"></i> session using the function `rtracklayer::import()`.
+  Assign the object to the variable name `gtf_data`.
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
