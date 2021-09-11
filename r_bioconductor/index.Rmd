@@ -519,13 +519,13 @@ end(demo_granges)
 ```
 ]
 
-Chromosome names are conceptually similar to factors.
+Chromosome names are conceptually similar to factors;
+a `GRanges` object often contains many ranges on each chromosome.
 The function `seqlevels()` returns the list of unique chromosome names in the object (including levels that may not be present in a subset).
 
 ```{r, include=TRUE}
 seqlevels(demo_granges)
 ```
-
 
 ---
 
