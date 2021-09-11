@@ -596,8 +596,8 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - How many transcripts do the annotations describe for that gene?
 
-- Split the annotations by transcript.
-  Use the function `split()`.
+- Subset the annotations to exons and split by transcript.
+  What is the class of the object that is returned?
 
 ---
 
