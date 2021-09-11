@@ -491,7 +491,8 @@ demo_granges <- GRanges(
   ranges = IRanges(
     start = c(10, 20),
     end = c(25, 35)
-    )
+    ),
+  metadata1 = c("control", "target")
   )
 demo_granges
 ```
@@ -543,10 +544,18 @@ The `Vector` class defines two slots:
 
 - `elementMetadata`, to store metadata for each element in the vector.
 
+.pull-left[
 ```{r, include=TRUE}
 metadata(demo_granges)
 mcols(demo_granges)
 ```
+]
+
+.pull-right[
+```{r, include=TRUE}
+demo_granges$metadata1
+```
+]
 
 ---
 
@@ -576,10 +585,19 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - Download the GTF file for human gene sets from <https://www.ensembl.org/info/data/ftp/index.html>
 
-- Install and load the `r `BiocStyle::Biocpkg("rtracklayer)` package.
+- Install and load the `r BiocStyle::Biocpkg("rtracklayer")` package.
 
 - Import the file in your <i class="fab fa-r-project"></i> session using the function `rtracklayer::import()`.
   Assign the object to the variable name `gtf_data`.
+
+- What are the metadata columns available in the object?
+
+- Subset the annotations to the gene `ACTB`.
+
+- How many transcripts do the annotations describe for that gene?
+
+- Split the annotations by transcript.
+  Use the function `split()`.
 
 ---
 
