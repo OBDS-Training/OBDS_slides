@@ -667,7 +667,8 @@ from the object.
 
 - Use the `keytypes()` method to discover which columns can be used to query information.
 
-- Use the `keys()` method to get the list of possible value for a key of interest.
+- Use the `keys()` method to get the first six gene symbols in the database.
+  Store as `human_symbols`.
 
 - Use the `select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
 
@@ -679,7 +680,21 @@ from the object.
 
 ## biomaRt
 
+- Install and load the package `biomaRt`.
 
+- Use the `listMarts()` function to list the BioMart databases to which the `biomaRt` package can connect.
+
+- Use the `listEnsemblArchives()` function to lists the available archived versions of Ensembl.
+
+- Use the `useMart()` function to create an object `mart` using the `"ENSEMBL_MART_ENSEMBL"` BioMart database and set the host `"https://may2021.archive.ensembl.org"`.
+  Why would one do that in practice?
+
+- Use the `listDatasets()` function to list the datasets available in the selected BioMart database.
+  What is the entifier of the database that contains information for _Homo sapiens_?
+
+- Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
+
+- Use the `getBM()` function to fetch the chromosome, start and end positions, and strand information for the gene symbols that you stored earlier as `human_symbols`.
 
 ---
 
