@@ -409,6 +409,30 @@ get_age(kevin) # do that (if possible)
 
 ---
 
+# Exercise
+
+## BiocManager repositories
+
+- Run `options("repos")`.
+  What do you see?
+
+The function `options()` can be used to get or set global options of the current <i class="fab fa-r-project"></i> session.
+
+- Run `BiocManager::repositories()`.
+
+The function returns a character vector that combines the URL of Bioconductor package repositories with those already present in `options("repos")`.
+
+- In the `.Rprofile` file, add the following line and restart the <i class="fab fa-r-project"></i> session.
+
+```{r}
+options(repos = BiocManager::repositories())
+```
+
+- Run `options("repos")` again in your freshly opened <i class="fab fa-r-project"></i> session.
+  What do you see now?
+
+---
+
 # BSgenome packages
 
 Bioconductor provide genome sequences for a range of model organisms and their incremental versions over time.
