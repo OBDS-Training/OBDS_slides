@@ -629,7 +629,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - How many transcripts do the annotations describe for that gene?
 
-- Subset the annotations to exons and split by transcript.
+- Subset the annotations to exons, and split by transcript.
   What is the class of the object that is returned?
 
 ---
@@ -645,6 +645,33 @@ Packages dedicated to query annotations exist in the `Software` and `Annotation`
 ```{r, include=TRUE, echo=FALSE}
 knitr::include_graphics("img/biocview-annotations-human.png")
 ```
+
+---
+
+# Exercise
+
+## Annotation packages
+
+Each annotation packages contains a database of information.
+
+The `OrgDb` family of packages provide annotations that link  several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
+
+- Install and load the package `org.Hs.eg.db`.
+
+Each `OrgDb` package contains an object of the same name.
+
+- What is the class of the object?
+
+- Use the `columns()` method to discover which sorts of annotations can be extracted
+from the object.
+
+- Use the `keytypes()` method to discover which columns can be used to query information.
+
+- Use the `keys()` method to get the list of possible value for a key of interest.
+
+- Use the `select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
+
+- Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
 
 ---
 
