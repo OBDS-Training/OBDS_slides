@@ -654,7 +654,7 @@ knitr::include_graphics("img/biocview-annotations-human.png")
 
 Each annotation packages contains a database of information.
 
-The `OrgDb` family of packages provide annotations that link  several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
+The `OrgDb` family of packages provide annotations that link several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
 
 - Install and load the package `r BiocStyle::Biocpkg("org.Hs.eg.db")`.
 
@@ -695,6 +695,31 @@ from the object.
 - Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
 
 - Use the `getBM()` function to fetch the chromosome, start and end positions, and strand information for the gene symbols that you stored earlier as `human_symbols`.
+
+---
+
+# EnsDb packages
+
+The `EnsDb` family of packages provide annotations that encapsulate individual version of the Ensembl annotations in Bioconductor packages.
+
+- Once the package is installed, annotations are available locally, without the need to query the online Ensembl backend.
+
+- The series of packages seems to have end at Ensembl version 86 ...
+
+- Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way.
+
+```{r}
+options(width = 200)
+```
+
+
+.small-code[
+```{r, include=TRUE}
+library(EnsDb.Hsapiens.v86)
+class(EnsDb.Hsapiens.v86)
+columns(EnsDb.Hsapiens.v86)
+```
+]
 
 ---
 
