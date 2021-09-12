@@ -409,6 +409,14 @@ get_age(kevin) # do that (if possible)
 
 ---
 
+# Updating Bioconductor packages
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/biocmanager-update.png")
+```
+
+---
+
 # Exercise
 
 ## BiocManager repositories
@@ -492,7 +500,7 @@ Coordinates on a genomic scale.
 
 - Strand (optional)
 
-- Metadata
+- ... and other metadata
 ]
 
 .pull-right[
