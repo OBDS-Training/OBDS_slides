@@ -700,7 +700,7 @@ from the object.
 
 # EnsDb packages
 
-The `EnsDb` family of packages provide annotations that encapsulate individual version of the Ensembl annotations in Bioconductor packages.
+The `EnsDb` family of packages provide annotations that encapsulate individual versions of the Ensembl annotations in Bioconductor packages.
 
 - Once the package is installed, annotations are available locally, without the need to query the online Ensembl backend.
 
@@ -709,15 +709,30 @@ The `EnsDb` family of packages provide annotations that encapsulate individual v
 - Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way.
 
 ```{r}
-options(width = 200)
+options(width = 130)
 ```
-
 
 .small-code[
 ```{r, include=TRUE}
 library(EnsDb.Hsapiens.v86)
 class(EnsDb.Hsapiens.v86)
 columns(EnsDb.Hsapiens.v86)
+```
+]
+
+---
+
+# TxDb packages
+
+The `TxDb` family of packages provide annotations that encapsulate individual versions of the annotation databases generated from UCSC in Bioconductor packages.
+
+.small-code[
+```{r, include=TRUE}
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+class(TxDb.Hsapiens.UCSC.hg38.knownGene)
+columns(TxDb.Hsapiens.UCSC.hg38.knownGene)
+keytypes(TxDb.Hsapiens.UCSC.hg38.knownGene)
+keys(TxDb.Hsapiens.UCSC.hg38.knownGene, "GENEID") %>% head()
 ```
 ]
 
