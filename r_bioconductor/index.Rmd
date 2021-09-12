@@ -492,7 +492,8 @@ demo_granges <- GRanges(
     start = c(10, 20),
     end = c(25, 35)
     ),
-  metadata1 = c("control", "target")
+  metadata1 = c("control", "target"),
+  metadata2 = c(1, 2)
   )
 demo_granges
 ```
@@ -542,11 +543,10 @@ The `Vector` class defines two slots:
 
 - `metadata`, to store metadata related to the entire object.
 
-- `elementMetadata`, to store metadata for each element in the vector.
+- `elementMetadata`, to store metadata for each element in the vector; accessed using `mcols()`.
 
 .pull-left[
 ```{r, include=TRUE}
-metadata(demo_granges)
 mcols(demo_granges)
 ```
 ]
@@ -554,6 +554,7 @@ mcols(demo_granges)
 .pull-right[
 ```{r, include=TRUE}
 demo_granges$metadata1
+metadata(demo_granges)
 ```
 ]
 
