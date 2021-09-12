@@ -656,7 +656,7 @@ Each annotation packages contains a database of information.
 
 The `OrgDb` family of packages provide annotations that link  several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
 
-- Install and load the package `org.Hs.eg.db`.
+- Install and load the package `r BiocStyle::Biocpkg("org.Hs.eg.db")`.
 
 Each `OrgDb` package contains an object of the same name.
 
@@ -672,6 +672,14 @@ from the object.
 - Use the `select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
 
 - Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
+
+---
+
+# Exercise
+
+## biomaRt
+
+
 
 ---
 
