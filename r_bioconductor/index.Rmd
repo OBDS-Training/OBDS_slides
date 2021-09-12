@@ -634,6 +634,20 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 ---
 
+# Annotation packages and biomaRt
+
+Packages dedicated to query annotations exist in the `Software` and `Annotation` categories of [biocViews](https://bioconductor.org/packages/release/BiocViews.html).
+
+- The `r BiocStyle::Biocannopkg("biomaRt")` package provides an interface to the [Ensembl BioMart](https://www.ensembl.org/biomart/martview) data repository.
+
+- A series of packages provide annotations for the most common organisms.
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/biocview-annotations-human.png")
+```
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
