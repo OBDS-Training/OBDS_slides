@@ -645,7 +645,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 ]
 
 .pull-right[
-- The `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
+- The package `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
 
   + e.g., UCSC
 
