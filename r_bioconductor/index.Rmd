@@ -936,6 +936,47 @@ If the slots and methods are suitable to store and process another type of data,
 - Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
   Display and inspect the updated object.
 
+---
+
+# The ExperimentHub package and resources
+
+The `r BiocStyle::Biocpkg("ExperimentHub")` package provides a portal to a large collection of preprocessed datasets available directly as Bioconductor objects.
+
+The package can be used to query, search, and filter the list of available datasets, before downloading and importing those of interest into your <i class="fab fa-r-project"></i> session.
+
+```{r}
+options(width = 80)
+```
+
+.pull-left[
+.x-small-code[
+```{r, include=TRUE}
+library(ExperimentHub)
+ehub <- ExperimentHub()
+query(ehub, c("SingleCellExperiment"))
+```
+]
+]
+
+.pull-right[
+.x-small-code[
+```{r, include=TRUE}
+eh1433 <- ehub[["EH1433"]]
+eh1433
+```
+]
+]
+
+---
+
+# Description of a dataset in the ExperimentHub
+
+A single pair of square brackets `[]` shows information about a given identifier, while a double pair `[[]]` downloads the dataset and imports the object.
+
+```{r}
+ehub["EH1433"]
+```
+
 
 ---
 
