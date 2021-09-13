@@ -858,6 +858,23 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 ---
 
+# Exercise
+
+## SummarizedExperiment extensions
+
+- Install and load the package `r BiocStyle::Biocpkg("DESeq2")`.
+
+- Convert your earlier `demo_se` to a `DESeq
+
+- What are the slots available in the `DESeqDataSet` object?
+
+- Which slots are new compared to the `SummarizedExperiment` object?
+
+- Which slots of the `DESeqDataSet` object can access using accessor functions (e.g. `assays()`) ?
+  Do all of those accessors work on the original `demo_se` object?
+
+---
+
 # SingleCellExperiment extends SummarizedExperiment
 
 .pull-left[
