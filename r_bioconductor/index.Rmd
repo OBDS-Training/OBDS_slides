@@ -522,11 +522,9 @@ demo_granges <- GRanges(
   seqnames = c("chr1", "chr2"),
   ranges = IRanges(
     start = c(10, 20),
-    end = c(25, 35)
-    ),
+    end = c(25, 35)),
   metadata1 = c("control", "target"),
-  metadata2 = c(1, 2)
-  )
+  metadata2 = c(1, 2))
 demo_granges
 ```
 
