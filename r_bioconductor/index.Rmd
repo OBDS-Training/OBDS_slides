@@ -823,6 +823,8 @@ demo_se <- SummarizedExperiment(
   colData = demo_coldata)
 ```
 ]
+
+What does the code above do?
 ]
 
 .pull-right[
