@@ -65,7 +65,7 @@ bib <- ReadBib("bibliography.bib")
 
 ## Learning objectives
 
-- Bookmark online website where help can be found.
+- Bookmark online websites where help can be found.
 
 - Install core Bioconductor packages and workflow specific packages.
 
