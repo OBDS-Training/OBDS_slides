@@ -122,7 +122,6 @@ The resulting file structure should look like the following:
 knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
 ```
 
-.x-large-list[
 - Main website: <https://www.bioconductor.org/>
 
 - Support site: <https://support.bioconductor.org/>
@@ -134,11 +133,12 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 - Books: <http://www.bioconductor.org/books/release/>
 
 - Slack workspace: <https://bioc-community.herokuapp.com/>
-]
+
+- ... and more! Can you think of others? <i class="far fa-smile"></i>
 
 ---
 
-# Bioconductor - Project Objectives
+# Project objectives
 
 .center[
 **Analysis and comprehension of high-throughput genomic data**
