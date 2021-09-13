@@ -748,7 +748,7 @@ The `EnsDb` family of packages provide annotations that encapsulate individual v
 
 - Once the package is installed, annotations are available locally, without the need to query the online Ensembl backend.
 
-- The series of packages seems to have end at Ensembl version 86 ...
+- The series of packages seems to have end at Ensembl version 86 (!)
 
 - Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way.
 
