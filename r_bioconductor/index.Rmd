@@ -141,12 +141,9 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 # Bioconductor - Project Objectives
 
 .center[
-.x-large-text[
 **Analysis and comprehension of high-throughput genomic data**
 ]
-]
 
-.x-large-list[
 - Statistical analysis: large data, technological artifacts, designed experiments; rigorous, robust.
 
 - Comprehension: biological context, visualization, reproducibility.
@@ -158,21 +155,22 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
   + Microarrays: gene expression, SNP, ...
 
   + Flow cytometry, proteomics, images, ...
+
+.footnote[
+Credits: [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan
 ]
-
-???
-
-**Source:**
-
-- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
 
 ---
 
 # Bioconductor packages in a workflow
 
-```{r, include=TRUE, echo=FALSE}
+```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='800px'}
 knitr::include_graphics("img/workflow-steps-packages.png")
 ```
+
+.footnote[
+Credits: [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
+]
 
 ---
 
