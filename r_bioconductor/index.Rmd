@@ -684,7 +684,7 @@ Packages dedicated to query annotations exist in the `Software` and `Annotation`
 
 - The `r BiocStyle::Biocannopkg("biomaRt")` package provides an interface to the [Ensembl BioMart](https://www.ensembl.org/biomart/martview) data repository.
 
-- A series of packages provide annotations for the most common organisms.
+- A collection of annotation packages provide most of that information for several model organisms.
 
 ```{r, include=TRUE, echo=FALSE}
 knitr::include_graphics("img/biocview-annotations-human.png")
