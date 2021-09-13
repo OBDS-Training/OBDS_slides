@@ -841,6 +841,20 @@ What do those functions do?
 
 ---
 
+# Exercise
+
+## Import SummarizedExperiment objects using tximeta
+
+- Install and load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
+
+The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at `system.file("extdata/salmon_dm", package="tximportData")`.
+
+- Navigate to that location in the file explorer of your respective operating system, and examine its contents.
+
+- Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (read the help page of `makeLinkedTxome()` and set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`).
+
+---
+
 # SingleCellExperiment extends SummarizedExperiment
 
 .pull-left[
