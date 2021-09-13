@@ -913,6 +913,32 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 
 ---
 
+# Exercise
+
+## SingleCellExperiment
+
+The class name `SingleCellExperiment` is only a name.
+While developed with single-cell genomics in mind, it is not limited to that use.
+Remember that classes are simply defined by their slots and methods.
+If the slots and methods are suitable to store and process another type of data, then go for it!
+
+- Install and load the package `r BiocStyle::Biocpkg("SingleCellExperiment")`.
+
+- Convert your earlier `demo_se` to a `SingleCellExperiment` object, using the `as()` function.
+  Call the object `demo_sce`.
+
+- Display the object.
+  What additional information can the `SingleCellExperiment` class store, relative to the `SummarizedExperiment` class?
+
+- Use the methods `reducedDimNames()`, `reducedDims()`, and `reducedDim()` on the object `demo_sce`.
+  What do they do?
+
+- Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
+  Display and inspect the updated object.
+
+
+---
+
 # Further reading
 
 - [CSAMA 2019 programme](https://www.huber.embl.de/csama2019/#programme)
