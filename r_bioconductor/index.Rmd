@@ -696,7 +696,7 @@ knitr::include_graphics("img/biocview-annotations-human.png")
 
 ## Annotation packages
 
-Each annotation packages contains a database of information.
+Each annotation package contains a database of information.
 
 The `OrgDb` family of packages provide annotations that link several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
 
