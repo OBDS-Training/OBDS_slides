@@ -845,7 +845,7 @@ What do those functions do?
 
 - Install and load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
 
-The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at `system.file("extdata/salmon_dm", package="tximportData")`.
+The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at the location returned by the code `system.file("extdata/salmon_dm", package="tximportData")`.
 
 - Navigate to that location in the file explorer of your respective operating system, and examine its contents.
 
