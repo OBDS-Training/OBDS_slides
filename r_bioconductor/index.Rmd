@@ -750,7 +750,7 @@ The `EnsDb` family of packages provide annotations that encapsulate individual v
 
 - The series of packages seems to have end at Ensembl version 86 (!)
 
-- Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way.
+- Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way for the different types of annotation packages.
 
 ```{r}
 options(width = 130)
