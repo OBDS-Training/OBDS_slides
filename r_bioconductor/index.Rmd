@@ -590,6 +590,56 @@ metadata(demo_granges)
 
 ---
 
+# Bioconductor has its own DataFrame class
+
+.pull-left[
+For example, take the metadata columns of the `demo_granges` object.
+
+.small-code[
+```{r, include=TRUE}
+demo_dataframe <- mcols(demo_granges)
+demo_dataframe
+```
+]
+
+The `DataFrame` itself could potentially have some metadata columns.
+
+.small-code[
+```{r, include=TRUE}
+mcols(demo_dataframe)
+```
+]
+
+Let's add some.
+
+.small-code[
+```{r, include=TRUE}
+mcols(demo_dataframe) <- DataFrame(a = c(1))
+```
+]
+]
+
+.pull-right[
+Note that a `DataFrame` object does not show its metadata like a `GRanges` does.
+
+.small-code[
+```{r, include=TRUE}
+demo_dataframe
+mcols(demo_dataframe)
+```
+]
+
+What happens if we run the following? Why?
+
+.small-code[
+```{r, include=TRUE, eval=FALSE}
+mcols(demo_dataframe) <- DataFrame(a = c(1, 2))
+```
+]
+]
+
+---
+
 # rtracklayer
 
 .pull-left[
