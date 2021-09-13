@@ -724,7 +724,7 @@ from the object.
 
 ## biomaRt
 
-- Install and load the package `biomaRt`.
+- Install and load the package `r BiocStyle::Biocpkg("biomaRt")`.
 
 - Use the `listMarts()` function to list the BioMart databases to which the `biomaRt` package can connect.
 
