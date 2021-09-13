@@ -734,7 +734,7 @@ from the object.
   Why would one do that in practice?
 
 - Use the `listDatasets()` function to list the datasets available in the selected BioMart database.
-  What is the entifier of the database that contains information for _Homo sapiens_?
+  What is the identifier of the database that contains information for _Homo sapiens_?
 
 - Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
 
