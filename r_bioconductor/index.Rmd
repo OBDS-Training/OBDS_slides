@@ -95,7 +95,7 @@ bib <- ReadBib("bibliography.bib")
 
 > We have added some files to get you started.
 
-- In the daily sub-directory, make a copy of the `template` sub-directory with your HPC username.
+- In the daily sub-directory, make a copy of the `template` sub-directory with your username.
 
 > e.g. `cp -R template kevinrue`
 
