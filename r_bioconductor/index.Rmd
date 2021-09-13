@@ -853,6 +853,9 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 - Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (read the help page of `makeLinkedTxome()` and set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`).
 
+- What other types of quantification programs does `tximeta` support?
+  Where do you find that information?
+
 ---
 
 # SingleCellExperiment extends SummarizedExperiment
