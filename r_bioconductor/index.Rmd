@@ -798,6 +798,43 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 
 ---
 
+# Creating a SummarizedExperiment object
+
+.pull-left[
+.small-code[
+```{r, include=TRUE, results='hide'}
+library(SummarizedExperiment)
+demo_count_matrix <- matrix(
+  data = rbinom(8, 10, 0.3), nrow = 4, ncol = 2,
+  dimnames = list(
+    paste0("gene", 1:4),
+    paste0("sample", 1:2)
+  ))
+demo_rowdata <- DataFrame(
+  symbol = head(letters, 4),
+  length = c(1234, 5678)
+  )
+demo_coldata <- DataFrame(
+  condition = c("control", "treated"),
+  age = c(18, 20)
+  )
+demo_se <- SummarizedExperiment(
+  assays = list(
+    counts = demo_count_matrix),
+  rowData = demo_rowdata,
+  colData = demo_coldata)
+```
+]
+]
+
+.pull-right[
+```{r, include=TRUE,}
+demo_se
+```
+]
+
+---
+
 # SingleCellExperiment extends SummarizedExperiment
 
 .pull-left[
