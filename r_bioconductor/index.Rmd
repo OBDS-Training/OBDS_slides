@@ -565,7 +565,7 @@ seqlevels(demo_granges)
 
 - They are used to define slots and methods that be will passed down the inheritance path to all classes that derive from this virtual class.
 
-The `Vector` class defines two slots:
+The virtual class `Vector` defines two slots:
 
 - `metadata`, to store metadata related to the entire object.
 
