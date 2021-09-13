@@ -864,7 +864,7 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 - Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
 
-- What are the slots available in the `DESeqDataSet` object?
+- What are the slots of information present in the `DESeqDataSet` object?
 
 - Which slots are new compared to the `SummarizedExperiment` object?
 
