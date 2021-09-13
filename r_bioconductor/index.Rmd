@@ -392,7 +392,7 @@ get_age(kevin) # do that (if possible)
 - Load the `r BiocStyle::Biocpkg("Biostrings")` package.
 
 - The `r BiocStyle::Biocpkg("Biostrings")` package provides the object `DNA_ALPHABET`.
-  Print the object in the console and use the help page to explain the value of the object.
+  Print the object in the console and use the help page to explain the contents of the object.
 
 - The `r BiocStyle::Biocpkg("Biostrings")` package provides the function `letterFrequency()`.
   Run some code from the "Examples" section of the help page, and describe what the function does.
