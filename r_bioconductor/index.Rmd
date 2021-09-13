@@ -67,7 +67,7 @@ bib <- ReadBib("bibliography.bib")
 
 - Bookmark online websites where help can be found.
 
-- Install core Bioconductor packages and workflow specific packages.
+- Install core Bioconductor packages and workflow-specific packages.
 
 - Create Bioconductor objects and access their contents.
 
