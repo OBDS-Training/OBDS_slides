@@ -112,7 +112,7 @@ The resulting file structure should look like the following:
         |_ bioconductor.Rproj
 ```
 
-- Launch the RStudio project `bioconductor.Rproj` in your sub-directory.
+- Launch the RStudio project `bioconductor.Rproj` in your own sub-directory.
 
 ---
 
