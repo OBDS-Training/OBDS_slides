@@ -123,7 +123,7 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 ```
 
 .x-large-list[
-- Home: <https://www.bioconductor.org/>
+- Main website: <https://www.bioconductor.org/>
 
 - Support site: <https://support.bioconductor.org/>
 
