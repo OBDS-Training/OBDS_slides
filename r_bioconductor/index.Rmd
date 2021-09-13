@@ -616,7 +616,7 @@ mcols(demo_dataframe) <- DataFrame(a = c(1))
 ]
 
 .pull-right[
-Note that a `DataFrame` object does not show its metadata like a `GRanges` does.
+Note that a `DataFrame` object does not show its metadata like a `GRanges` does, but they do exist inside the object.
 
 .small-code[
 ```{r, include=TRUE}
