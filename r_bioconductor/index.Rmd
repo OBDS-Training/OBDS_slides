@@ -849,7 +849,7 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 - Navigate to that location in the file explorer of your respective operating system, and examine its contents.
 
-- Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (read the help page of `makeLinkedTxome()` and set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`).
+- Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`, and read the help page of `makeLinkedTxome()`).
 
 - What other types of quantification programs does `tximeta` support?
   Where do you find that information?
