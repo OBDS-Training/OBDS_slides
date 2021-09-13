@@ -428,7 +428,7 @@ The function returns a character vector that combines the URL of Bioconductor pa
 
 - In the `.Rprofile` file, add the following line and restart the <i class="fab fa-r-project"></i> session.
 
-```{r}
+```{r, include=TRUE}
 options(repos = BiocManager::repositories())
 ```
 
