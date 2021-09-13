@@ -326,7 +326,7 @@ Source:
 # Bioconductor uses the S4 class system
 
 .pull-left[
-- Best practice: classes and methods implemented in a dedicated package.
+- Best practices: classes and methods implemented in a dedicated package.
 
 - Formal definition: parent class (optional), new slot names and types.
 
