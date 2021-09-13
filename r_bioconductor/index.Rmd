@@ -862,7 +862,7 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 - Install and load the package `r BiocStyle::Biocpkg("DESeq2")`.
 
-- Convert your earlier `demo_se` to a `DESeq
+- Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
 
 - What are the slots available in the `DESeqDataSet` object?
 
