@@ -973,10 +973,11 @@ eh1433
 
 A single pair of square brackets `[]` shows information about a given identifier, while a double pair `[[]]` downloads the dataset and imports the object.
 
-```{r}
+.small-code[
+```{r, include=TRUE}
 ehub["EH1433"]
 ```
-
+]
 
 ---
 
