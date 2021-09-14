@@ -999,6 +999,8 @@ library(iSEE)
 
 - [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/lab-1-intro-to-r-bioc.html), by Martin Morgan
 
+- [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html), by Martin Morgan
+
 ---
 
 # References
