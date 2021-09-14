@@ -981,6 +981,16 @@ ehub["EH1433"]
 
 ---
 
+# Interactive visualisation using iSEE
+
+<a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" align="bottom" height="90px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
+
+```{r, include=TRUE, eval=FALSE}
+library(iSEE)
+```
+
+---
+
 # Further reading
 
 - [CSAMA 2019 programme](https://www.huber.embl.de/csama2019/#programme)
