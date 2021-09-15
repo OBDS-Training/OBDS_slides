@@ -376,6 +376,26 @@ get_age(kevin) # do that (if possible)
 
 ---
 
+# Bioconductor depend on each other
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://f1000research.com/articles/8-752
+knitr::include_graphics("img/biocpkgtools-geoquery.gif")
+# Ideally, generate the figure using BiocPkgTools for package DESeq2
+```
+
+`r BiocStyle::Biocpkg("BiocPkgTools")` `r Citep(bib, "biocpkgtools2019f1000")`
+]
+
+.pull-right[
+Data visualization of dependencies between all packages within one degree of the GEOquery package.
+
+Links are colored based on type (Suggests [light blue], Depends [green], and Imports [red]) and arrows point to the “dependent” package.
+]
+
+---
+
 # Exercise
 
 ## Install Bioconductor
