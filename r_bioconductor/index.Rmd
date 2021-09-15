@@ -981,13 +981,22 @@ ehub["EH1433"]
 
 ---
 
-# Interactive visualisation using iSEE
+# Exercise
+
+## Interactive visualisation using iSEE
 
 <a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" align="bottom" height="90px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
 
-```{r, include=TRUE, eval=FALSE}
-library(iSEE)
-```
+- Install and load the package `r BiocStyle::Biocpkg("iSEE")`.
+
+- Use the `iSEE()` function on the `SingleCellExperiment` object `eh1433`.
+
+- Install and load the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")`.
+
+- Compute and add a PCA result to the object `eh1433`.
+
+- Launch the `iSEE` GUI again.
+  What changed?
 
 ---
 
