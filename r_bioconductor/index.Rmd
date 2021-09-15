@@ -594,6 +594,18 @@ chr7  127480532  127481699  Neg4  0  -  127480532  127481699  0,0,255
 
 ---
 
+# Genomic ranges in action
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/genomic-ranges-browser.png")
+```
+
+.right[
+Credits: Charlotte George
+]
+
+---
+
 # Accessing core information in GRanges
 
 The functions `seqnames()`, `start()`, and `end()` access the components of the same name.
