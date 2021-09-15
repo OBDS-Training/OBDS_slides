@@ -754,6 +754,14 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 ---
 
+# Annotations - An example
+
+```{r, include=TRUE, out.height='500px', echo=FALSE}
+knitr::include_graphics("img/biomart-ensembl.png")
+```
+
+---
+
 # Annotation packages and biomaRt
 
 Packages dedicated to query annotations exist in the `Software` and `Annotation` categories of [biocViews](https://bioconductor.org/packages/release/BiocViews.html).
