@@ -867,6 +867,34 @@ keys(TxDb.Hsapiens.UCSC.hg38.knownGene, "GENEID") %>% head()
 
 ---
 
+# Annotations - Summary
+
+.pull-left[
+## biomaRt
+
+Interface to the Ensembl BiomaRt database.
+
+## OrgDb
+
+Family of packages that provide mapping between various types of gene identifiers and pathway information.
+]
+
+.pull-right[
+## EnsDb
+
+Family of packages that each provide one release of gene annotations from Ensembl.
+
+## TxDb
+
+Family of packages that each provide one release of transcript annotations from UCSC.
+]
+
+.center[
+**Do you know any other?**
+]
+
+---
+
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
