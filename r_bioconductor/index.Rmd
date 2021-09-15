@@ -556,6 +556,7 @@ demo_granges
 
 # BED file format
 
+.center[
 ```
 chr7  127471196  127472363  Pos1  0  +  127471196  127472363  255,0,0
 chr7  127472363  127473530  Pos2  0  +  127472363  127473530  255,0,0
@@ -567,6 +568,25 @@ chr7  127478198  127479365  Neg3  0  -  127478198  127479365  0,0,255
 chr7  127479365  127480532  Pos5  0  +  127479365  127480532  255,0,0
 chr7  127480532  127481699  Neg4  0  -  127480532  127481699  0,0,255
 ```
+]
+
+.pull-left[
+- **chrom** - name of the chromosome or scaffold.
+- **chromStart** - Start position (first base is 0).
+- **chromEnd** - End position.
+- **name** - Label to be displayed for the feature.
+- **score** - A score between 0 and 1000.
+- **strand** - defined as + (forward) or - (reverse).
+- **thickStart** - start coordinate to draw a solid rectangle.
+]
+
+.pull-right[
+- **thickEnd** - end coordinate to draw a solid rectangle.
+- **itemRgb** - an RGB colour value (e.g. 0,0,255).
+- **blockCount** - the number of exons within the feature.
+- **blockSizes** - the size of these sub-elements.
+- **blockStarts** - the start coordinate of each sub-element
+]
 
 ---
 
