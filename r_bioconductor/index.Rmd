@@ -822,7 +822,8 @@ from the object.
 
 - Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
 
-- Use the `getBM()` function to fetch the chromosome, start and end positions, and strand information for the gene symbols that you stored earlier as `human_symbols`.
+- Use the `getBM()` function to fetch the chromosome, start and end positions, and strand for the gene symbols that you stored as `human_symbols`.
+  Use `listAttributes()` to identify field names to fetch.
 
 ---
 
