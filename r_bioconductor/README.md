@@ -31,8 +31,8 @@ This should be no more than 3 bullet points.
 -->
 
 - Describe the Bioconductor project beyond software packages.
-- Identify  best practices to get help from packages developers and peers.
 - Identify classes and methods re-used across Bioconductor packages.
+- Identify  best practices to get help from packages developers and peers.
 
 ### Learning objectives
 
@@ -83,15 +83,23 @@ Requirements:
 
 | Activity                                      |  Time |
 |-----------------------------------------------|-------|
-| Topic 1                                       |  9:30 |
-| Topic 2                                       | 10:00 |
+| The Bioconductor project and resources        |  9:30 |
+| Installing Bioconductor packages              | 10:00 |
+| Using package documentation                   | 10:15 |
+| Updating packages                             | 10:30 |
+| BSgenome packages                             | 10:45 |
 | **Morning Break**                             | 10:50 |
-| Topic 3                                       | 11:00 |
-| Topic 4                                       | 11:30 |
+| GenomicRanges                                 | 11:00 |
+| DataFrame                                     | 11:30 |
+| rtracklayer                                   | 11:45 |
 | **Lunch Break**                               | 12:30 |
-| Topic 5                                       | 13:30 |
-| Create and merge pull requests                | 14:00 |
+| Annotation packages                           | 13:30 |
+| SummarizedExperiment                          | 14:00 |
+| tximeta                                       | 14:30 |
 | **Afternoon Break**                           | 14:50 |
-| Resolve Git conflicts                         | 15:00 |
-| Set up the shared repository                  | 15:30 |
+| DESeq2                                        | 15:00 |
+| SingleCellExperiment                          | 15:15 |
+| Final advice                                  | 15:30 |
 | **Day End**                                   | 16:00 |
+| Bonus: ExperimentHub                          | NA:NA |
+| Bonus: iSEE                                   | NA:NA |
