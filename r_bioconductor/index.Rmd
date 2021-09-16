@@ -1123,6 +1123,24 @@ ehub["EH1433"]
 
 ---
 
+# Final advice
+
+## Choosing a package
+
+With so much choice, it can be difficult to decide which package to try first.
+
+- Go by popularity (e.g., biocViews, download stats, word of mouth)
+
+  + More users $\rightarrow$ more chance to find help online.
+
+- Read and manually run code in the package vignette(s).
+
+  + A good package that makes sense to you is better than an expert package that feels obscure.
+  
+  
+
+---
+
 # Further reading
 
 - [CSAMA 2019 programme](https://www.huber.embl.de/csama2019/#programme)
