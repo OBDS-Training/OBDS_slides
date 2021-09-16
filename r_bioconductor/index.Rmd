@@ -1123,6 +1123,8 @@ ehub["EH1433"]
 
 <a href="https://bioconductor.org/packages/affy/"><img src="img/affy-sticker.png" alt="affy sticker" align="bottom" height="100px"></a> Affymetrix microarrays.
 
+<a href="https://bioconductor.org/packages/bsseq/"><img src="img/bsseq-sticker.png" alt="bsseq sticker" align="bottom" height="100px"></a> Bisulfite sequencing for DNA methylation.
+
 ---
 
 # Final advice
