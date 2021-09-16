@@ -1136,7 +1136,7 @@ ehub["EH1433"]
 
 <a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
 
-<a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
+<a href="https://bioconductor.org/packages/tidybulk/"><img src="img/tidybulk-sticker.png" alt="tidybulk sticker" align="middle" height="100px"></a> DNA variation.
 ]
 
 ---
