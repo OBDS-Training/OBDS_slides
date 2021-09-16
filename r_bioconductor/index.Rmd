@@ -1155,7 +1155,13 @@ With so much choice, it can be difficult to decide which package to try first.
 
   + A good package that makes sense to you is better than an expert package that feels obscure.
   
+## Getting help
+
+- <https://support.bioconductor.org/>
+
+  + Public and searchable: asked once, answered once (avoid emails!).
   
+  + MRE: Minimal reproducible example (e.g., use demo object in help page).
 
 ---
 
