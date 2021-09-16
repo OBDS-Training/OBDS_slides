@@ -1130,11 +1130,11 @@ ehub["EH1433"]
 ]
 
 .pull-right[
-<a href="https://bioconductor.org/packages/SpatialExperiment/"><img src="img/spatialexperiment-sticker.png" alt="SpatialExperiment sticker" align="middle" height="100px"></a> Working with SAM files.
-
 <a href="https://bioconductor.org/packages/Spectra/"><img src="img/spectra-sticker.png" alt="Spectra sticker" align="middle" height="100px"></a> Mass spectrometry.
 
 <a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
+
+<a href="https://bioconductor.org/packages/SpatialExperiment/"><img src="img/spatialexperiment-sticker.png" alt="SpatialExperiment sticker" align="middle" height="100px"></a> Spatial transcriptomics.
 
 <a href="https://bioconductor.org/packages/tidybulk/"><img src="img/tidybulk-sticker.png" alt="tidybulk sticker" align="middle" height="100px"></a> Tidy transcriptomics.
 ]
