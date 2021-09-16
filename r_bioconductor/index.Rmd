@@ -1131,7 +1131,7 @@ With so much choice, it can be difficult to decide which package to try first.
 
 - Go by popularity (e.g., biocViews, download stats, word of mouth)
 
-  + More users $\rightarrow$ more chance to find help online.
+  + More users $\rightarrow$ more chance to find help, online and around you.
 
 - Read and manually run code in the package vignette(s).
 
