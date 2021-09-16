@@ -898,7 +898,8 @@ Family of packages that each provide one release of transcript annotations from 
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
-knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+## Source: https://www.nature.com/articles/nmeth.3252
+knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```
 
 .footnote[
@@ -1019,7 +1020,8 @@ knitr::include_graphics("img/singlecellexperiment.png")
 # SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
+## Source: https://bioconductor.org/books/release/OSCA/data-infrastructure.html
+knitr::include_graphics("img/singlecellexperiment.png")
 ```
 
 .footnote[
