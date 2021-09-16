@@ -1133,6 +1133,10 @@ ehub["EH1433"]
 <a href="https://bioconductor.org/packages/Rsamtools/"><img src="img/rsamtools-sticker.png" alt="Rsamtools sticker" align="middle" height="100px"></a> Working with SAM files.
 
 <a href="https://bioconductor.org/packages/Spectra/"><img src="img/spectra-sticker.png" alt="Spectra sticker" align="middle" height="100px"></a> Mass spectrometry.
+
+<a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
+
+<a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
 ]
 
 ---
