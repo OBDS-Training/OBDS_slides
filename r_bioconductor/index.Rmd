@@ -1125,6 +1125,8 @@ ehub["EH1433"]
 
 <a href="https://bioconductor.org/packages/bsseq/"><img src="img/bsseq-sticker.png" alt="bsseq sticker" align="bottom" height="100px"></a> Bisulfite sequencing for DNA methylation.
 
+<a href="https://bioconductor.org/packages/ChIPseeker/"><img src="img/chipseeker-sticker.png" alt="ChIPseeker sticker" align="bottom" height="100px"></a> ChIP-seq annotation and visualisation.
+
 ---
 
 # Final advice
