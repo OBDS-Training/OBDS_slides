@@ -1119,7 +1119,9 @@ ehub["EH1433"]
 
 # More popular Bioconductor packages
 
-<a href="https://bioconductor.org/packages/Gviz/"><img src="img/gviz-sticker.png" alt="Gviz sticker" align="bottom" height="100px"></a>
+<a href="https://bioconductor.org/packages/Gviz/"><img src="img/gviz-sticker.png" alt="Gviz sticker" align="bottom" height="100px"></a> Genome browser visualisations.
+
+<a href="https://bioconductor.org/packages/affy/"><img src="img/affy-sticker.png" alt="affy sticker" align="bottom" height="100px"></a> Affymetrix microarrays.
 
 ---
 
