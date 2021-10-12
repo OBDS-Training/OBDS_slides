@@ -1162,7 +1162,8 @@ pheatmap(log10(assay(airway, "counts")[keep_rows, ] + 1))
 # Comparing clustering algorithms on toy datasets
 
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://scikit-learn.org/stable/_images/sphx_glr_plot_cluster_comparison_0011.png")
+## Source: https://newbedev.com/scikit_learn/modules/clustering
+knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 ```
 
 **Source:** https://scikit-learn.org/stable/modules/clustering.html
