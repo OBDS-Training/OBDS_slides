@@ -394,8 +394,9 @@ In this step, you will each create (i.e., _clone_) your own copy of the shared r
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ mkdir -p $HOME/git
-$ cd $HOME/git
+$ cd /project/obds/kevinrue # adapt for your own folder
+$ mkdir git
+$ cd git
 $ git clone git@github.com:OBDS-Training/OBDS_Training_Sep_2021.git
 ```
 
