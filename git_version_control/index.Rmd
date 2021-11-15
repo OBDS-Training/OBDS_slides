@@ -443,17 +443,14 @@ Other pieces of information can be configured (e.g., preferred text editor), but
 
 ---
 
-# Clone the shared repository
+# Exercise
 
-In this step, you will each create (i.e., _clone_) your own copy of the shared repository for this course.
+## Clone the shared repository
 
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ cd /project/obds/kevinrue # adapt for your own folder
-$ mkdir git
-$ cd git
-$ git clone git@github.com:OBDS-Training/OBDS_Training_Sep_2021.git
+$ git clone git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git
 ```
 
 ```{r, fig.align='center', out.height='300px'}
