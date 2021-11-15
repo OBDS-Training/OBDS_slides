@@ -462,7 +462,7 @@ knitr::include_graphics("img/atlassian-clone.svg")
 
 - A clone contains both the files _and_ the history of changes.
 
-- By default, the local directory will be named identically to the repository, it is possible to name it differently using `git clone git@github.com:OBDS-Training/OBDS_Training_Sep_2021.git local_directory_name`
+- By default, the local directory will be named identically to the repository, it is possible to name it differently using `git clone git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git local_directory_name`
 
 ---
 
@@ -471,7 +471,7 @@ knitr::include_graphics("img/atlassian-clone.svg")
 Change directory to your new local clone of the repository, and list its contents.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ cd OBDS_Training_Sep_2021
+$ cd OBDS_Training_Jan_2022
 $ ls -a
 ```
 
@@ -697,8 +697,8 @@ $ git remote -v
 ```
 
 ```
-origin	git@github.com:OBDS-Training/OBDS_Training_Sep_2021.git (fetch)
-origin	git@github.com:OBDS-Training/OBDS_Training_Sep_2021.git (push)
+origin	git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git (fetch)
+origin	git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git (push)
 ```
 
 When everything is in place, you can tell <i class="fab fa-git"></i> to push a branch (e.g. `my_branch`) to a given remote (e.g. `origin`):
@@ -743,9 +743,9 @@ Total 5 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 remote: 
 remote: Create a pull request for 'kevin' on GitHub by visiting:
-remote:      https://github.com/OBDS-Training/OBDS_Training_Sep_2021/pull/new/kevin
+remote:      https://github.com/OBDS-Training/OBDS_Training_Jan_2022/pull/new/kevin
 remote: 
-To github.com:OBDS-Training/OBDS_Training_Sep_2021.git
+To github.com:OBDS-Training/OBDS_Training_Jan_2022.git
  * [new branch]      kevin -> kevin
 Branch 'kevin' set up to track remote branch 'kevin' from 'origin'.
 ```
@@ -785,7 +785,7 @@ $ git merge kevin
 
 ## Recently pushed branches
 
-On the page of the repository (<https://github.com/OBDS-Training/OBDS_Training_Sep_2021>), branches that were recently pushed are highlighted, with a button "Compare & pull request".
+On the page of the repository (<https://github.com/OBDS-Training/OBDS_Training_Jan_2022>), branches that were recently pushed are highlighted, with a button "Compare & pull request".
 
 - Unless a pull request already exists for that branch.
 
