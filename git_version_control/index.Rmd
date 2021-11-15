@@ -270,7 +270,7 @@ More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https:/
 
 # Exercise
 
-## Setting up an RStudio Cloud project for the course
+## Setting up an RStudio Cloud project
 
 This RStudio Cloud project will be your workplace for the course.
 
@@ -294,7 +294,7 @@ RStudio Cloud does not work well with the Git integration.
 
 ## Setting up the SSH key pair
 
-This key pair will allow your RStudio Cloud project to communicate with the GitHub API.
+This key pair will allow your RStudio Cloud project to push and pull code through the GitHub API.
 
 - In your RStudio Cloud project, open the Terminal.
 
@@ -311,6 +311,32 @@ This key pair will allow your RStudio Cloud project to communicate with the GitH
 - Add the public key to your GitHub account.
 
   + <https://github.com/settings/ssh/new>
+
+---
+
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+This token will allow your RStudio Cloud session to increase your quota of queries to the GitHub API, as an authenticated user.
+
+- Navigate to <https://github.com/settings/tokens/new>.
+
+- Set note to "RStudio Cloud OBDS January 2022".
+
+- Leave expiration to 30 days. _Do not_ tick any of the boxes.
+
+- Generate the token and copy it.
+
+- Back in your RStudio Cloud project, create a file called `.Renviron` in your home directory:
+
+  + In the R console, type `file.edit("~/.Renviron")`.
+  
+- In that file, add the line `GITHUB_PAT="<paste token here>"`.
+
+- Restart the R sesion, and check that the environment variable is set.
+
+  + In the menu bar: "Session" > "Restart R", and in the R console: `Sys.getenv("GITHUB_PAT")`.
 
 ---
 
