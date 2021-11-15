@@ -215,7 +215,7 @@ knitr::include_graphics("img/carpentries-merge.svg")
 .pull-right[
 Unless changes affect the same lines of the document (i.e., conflicts):
 
-- changes can be _merged_ into the same base document.
+- Changes can be _merged_ into the same base document.
 ]
 
 ---
