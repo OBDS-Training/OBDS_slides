@@ -86,15 +86,11 @@ More concrete and measurable outputs.
 
 # Pre-requisites
 
-- Access to the CCB cluster over SSH.
-
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
-- Membership to the [OBDS-Training](https://github.com/OBDS-Training) GitHub organisation.
+- Membership to the <i class="fab fa-github"></i> GitHub organisation [OBDS-Training](https://github.com/OBDS-Training) .
 
-Those last two points are required to grant you access to private repositories that are only visible to members of the organisation.
-
-- A working installation of [Git](https://git-scm.com/) (on your personal computer).
+- An [RStudio Cloud](https://rstudio.cloud/) account.
 
 ---
 
