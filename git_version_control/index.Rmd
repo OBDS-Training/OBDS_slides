@@ -340,71 +340,14 @@ This token will allow your RStudio Cloud session to increase your quota of queri
 
 ---
 
-# TODO
+# Configure <i class="fab fa-git"></i>
 
----
+On each computer where we use <i class="fab fa-git"></i>, we need to configure at least two pieces of information:
 
-# Using <i class="fab fa-git"></i> as an HPC module
+- our name
+- our email address
 
-Use SSH to open a terminal on the HPC cluster.
-
-The system executable of `git` on your default `PATH` is a rather old version.
-What is the path to the system `git`?
-What version of `git` is it?
-
-```{bash, eval=FALSE, echo=TRUE}
-$ which git
-$ git --version
-```
-
-Instead, we will use the `module` command to put a more recent version of `git` on our `PATH`.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ module avail git
-$ module load git/2.31.1
-```
-
-Examine your `PATH` variable, the path to the new `git` executable, and the version of this new `git` executable.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ which git
-$ git --version
-```
-
----
-
-# Getting started with <i class="fab fa-git"></i>
-
-The `git` command has many sub-commands, options, and flags.
-You can run `git` alone to list the sub-commands and a short description of each.
-How many sub-commands do you see?
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git
-```
-
-The `--version` flag asks `git` to print the version of the `git` executable that is used.
-The <i class="fab fa-git"></i> program is generally backward compatible, but you may observe subtle differences in the way different version of <i class="fab fa-git"></i> display information.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git --version
-```
-
-You can access more detailed help for any sub-command using the `--help` flag.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git clone --help
-```
-
----
-
-# Setting up <i class="fab fa-git"></i>
-
-On each computer where we use <i class="fab fa-git"></i>, we need to configure a few things:
-
-- our name and email address
-- our preferred text editor
-- that these settings should apply _globally_ (i.e. to all our projects on this computer)
+These two settings should apply _globally_ (i.e. to all our projects on this computer)
 
 The `git config` sub-command can be used to get and set those settings.
 
@@ -413,7 +356,6 @@ The `git config` sub-command can be used to get and set those settings.
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name
 $ git config --global user.email
-$ git config --global core.editor
 ```
 
 #### Setting
@@ -421,8 +363,13 @@ $ git config --global core.editor
 ```{bash, eval=FALSE, echo=TRUE}
 $ git config --global user.name "Kevin Rue-Albrecht"
 $ git config --global user.email "kevinrue@users.noreply.github.com"
-$ git config --global core.editor "nano -w"
 ```
+
+Other pieces of information can be configured (e.g., preferred text editor), but those are optional.
+
+---
+
+# TODO
 
 ---
 
