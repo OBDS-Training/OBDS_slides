@@ -308,6 +308,10 @@ RStudio Cloud does not work well with the Git integration.
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
 
+.center[
+_We need to set an SSH key pair between RStudio Cloud and GitHub._
+]
+
 ---
 
 # Exercise
@@ -368,7 +372,9 @@ When installing packages directly from GitHub, you may run into this type of err
 > remotes::install_github("immunogenomics/lisi")
 Downloading GitHub repo immunogenomics/lisi@master
 Error: HTTP error 403.
-  API rate limit exceeded for 151.181.86.126. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)
+  API rate limit exceeded for 151.181.86.126. (But here's the good news: Authenticated
+  requests get a higher rate limit. Check out the documentation for more
+  details.)
 
   Rate limit remaining: 0
   Rate limit reset at: 2018-10-16 15:23:35 UTC
@@ -382,8 +388,9 @@ What is happening:
 
 - Authenticated requests have a higher rate limit.
 
-We need to create a GitHub Personal Access Token, and set it as an environment variable that automatically applies to all our future queries.
-
+.center[
+_We need to create and set a GitHub Personal Access Token._
+]
 ---
 
 # Exercise
