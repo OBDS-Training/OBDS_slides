@@ -608,7 +608,6 @@ The `git checkout` sub-command can be used to switch between branches.
 ```{bash, eval=FALSE, echo=TRUE}
 $ git branch          # list existing branches
 $ git branch kevin    # create a new branch named kevin
-$ git branch          # list existing branches (again)
 $ git checkout kevin  # switch to the branch named kevin
 $ git status          # check the status of the repository (currently on branch kevin)
 ```
