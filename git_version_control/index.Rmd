@@ -273,8 +273,6 @@ knitr::include_graphics("img/atlassian-clone.svg")
 - Allows users to decide which changes are made to the next version.
 
   + Each record of changes is called a _commit_.
-  
-  + The _staging area_ is a workspace where the contents of the next commit are prepared.
 
 - The complete history of _commits_ for a given project makes up a _repository_.
 
