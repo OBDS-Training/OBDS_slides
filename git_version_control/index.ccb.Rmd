@@ -1,6 +1,6 @@
 ---
-title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub (on RStudio Cloud)'
-subtitle: 'On the RStudio Cloud'
+title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+subtitle: 'On the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2022-01-24 (updated: `r Sys.Date()`)"
@@ -39,7 +39,6 @@ High-level "big picture" objectives of the learning process.
 More concrete and measurable outputs.
 -->
 
-- Create an RStudio Cloud project.
 - Set up an SSH key pair on GitHub.
 - Set up a GitHub Personal Access Token.
 - Configure Git.
@@ -57,39 +56,12 @@ More concrete and measurable outputs.
 
 - Membership to the <i class="fab fa-github"></i> GitHub organisation [OBDS-Training](https://github.com/OBDS-Training) .
 
-- An [RStudio Cloud](https://rstudio.cloud/) account.
+- An account on the CCB cluster.
 
 ---
 
 ```{r child='opening.Rmd'}
 ```
-
----
-
-# RStudio Cloud projects
-
-```{r, fig.align='center', out.height='375px'}
-# Screenshot
-knitr::include_graphics("img/rstudio-cloud-projects.png")
-```
-
----
-
-# Exercise
-
-## Setting up an RStudio Cloud project
-
-This RStudio Cloud project will be your workplace for the course.
-
-- Navigate to <https://rstudio.cloud/> and sign in.
-
-- Create a new RStudio project
-
-  + "New Project" > "New RStudio Project".
-
-  + _Do not_ use "New Project from Git Repository".
-
-- Name the project "OBDS_Training_Jan_2022".
 
 ---
 
@@ -158,7 +130,7 @@ The following slides illustrate how to navigate to the page below more naturally
 
 - Generate the token and copy it.
 
-- Back in your RStudio Cloud project, create a file called `.Renviron` in your home directory:
+- Back on the CCB cluster, create a file called `.Renviron` in your home directory:
 
   + In the R console, type `file.edit("~/.Renviron")`.
   
@@ -171,6 +143,60 @@ The following slides illustrate how to navigate to the page below more naturally
 ---
 
 ```{r child='github-pat-screenshots.Rmd'}
+```
+
+---
+
+# Using <i class="fab fa-git"></i> as an HPC module
+
+Use SSH to open a terminal on the HPC cluster.
+
+The system executable of `git` on your default `PATH` is a rather old version.
+What is the path to the system `git`?
+What version of `git` is it?
+
+```{bash, eval=FALSE, echo=TRUE}
+$ which git
+$ git --version
+```
+
+Instead, we will use the `module` command to put a more recent version of `git` on our `PATH`.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ module avail git
+$ module load git/2.31.1
+```
+
+Examine your `PATH` variable, the path to the new `git` executable, and the version of this new `git` executable.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ which git
+$ git --version
+```
+
+---
+
+# Getting started with <i class="fab fa-git"></i>
+
+The `git` command has many sub-commands, options, and flags.
+You can run `git` alone to list the sub-commands and a short description of each.
+How many sub-commands do you see?
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git
+```
+
+The `--version` flag asks `git` to print the version of the `git` executable that is used.
+The <i class="fab fa-git"></i> program is generally backward compatible, but you may observe subtle differences in the way different version of <i class="fab fa-git"></i> display information.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git --version
+```
+
+You can access more detailed help for any sub-command using the `--help` flag.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git clone --help
 ```
 
 ---
