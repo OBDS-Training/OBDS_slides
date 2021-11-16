@@ -284,6 +284,8 @@ knitr::include_graphics("img/atlassian-clone.svg")
 
 # The Long History of Version Control Systems
 
+## A brief summary
+
 Tools like [RCS](https://git.savannah.gnu.org/cgit/rcs.git), [CVS](https://savannah.nongnu.org/projects/cvs), or [Subversion](https://subversion.apache.org/) have been around since the early 1980s and are used by many large companies.
 
 However, many of these are now considered legacy systems (i.e., _outdated_) due to various limitations in their capabilities.
