@@ -1,0 +1,41 @@
+---
+title: 'Object Oriented Programming (OOP)'
+subtitle: '<i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-10-11 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, child='opening.Rmd'}
+```
+
+---
+
+# Prerequisites
+
+- A clone of the shared GitHub repository for this course.
+
+- An account on the CCB cluster.
+
+---
+
+# Set up
+
+.center[
+_To be defined._
+]
+
+---
+
+```{r, child='exercises-after-setup.Rmd'}
+```
