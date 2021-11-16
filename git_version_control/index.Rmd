@@ -224,12 +224,12 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 knitr::include_graphics("img/commit-multiple-files.png")
 ```
 
-Process:
+#### Process
 
 - Add each file to the next set of changes (i.e., _staging area_).
 - Then, add this set of changes to the repository (i.e., _commit_).
 
-Result:
+#### Result
 
 - That set of changes is recorded as a single unit in the repository.
 - Undoing or playing back these changes applies all the changes simultaneously.
