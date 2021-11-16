@@ -528,7 +528,7 @@ $ ls -a
 ```
 
 ```
-.  ..  .git  .gitignore  1_linux  2_r  README.md
+.  ..  .git  .gitignore  README.md  setup
 ```
 
 Git uses the `.git` sub-directory to store all the information about the project history.
