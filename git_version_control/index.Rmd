@@ -237,15 +237,44 @@ knitr::include_graphics("img/commit-multiple-files.png")
 
 ---
 
+# Collaborate with remote repositories
+
+.pull-left[
+```{r, fig.align='center', , out.height='300px'}
+# Source: https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone
+knitr::include_graphics("img/atlassian-clone.svg")
+```
+]
+
+.pull-right[
+## Git Clones
+
+- Each contributor has a copy (i.e., _clone_) of the repository on their own computer.
+
+- Commits are first made locally.
+
+- Commits can then be _pushed_ and _pulled_ from one clone to another.
+]
+
+## Note
+
+- Clones do not communicate automatically with each other; they are not always synchronised.
+
+- Contributors generally interact with a "central" repository online (e.g., GitHub); not directly with each other's clone.
+
+---
+
 # Summary: version tracking software
 
-- Keep track of changes (i.e. differences or _diffs_).
+- Keep track of changes (i.e., differences or _diffs_).
 
-  + Effectively creating different _versions_ of our files.
+  + Effectively creating different _versions_ of our files, from a base document.
 
 - Allows users to decide which changes are made to the next version.
 
   + Each record of changes is called a _commit_.
+  
+  + The _staging area_ is a workspace where the contents of the next commit are prepared.
 
 - The complete history of _commits_ for a given project makes up a _repository_.
 
@@ -299,11 +328,9 @@ RStudio Cloud does not work well with the Git integration.
 # SSH key pairs
 
 ```{r, fig.align='center', out.height='400px', out.width='600px'}
-# Screenshot
+# Source: https://note.nguyenanhung.com/
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
-
-Source: <https://note.nguyenanhung.com/>
 
 .center[
 _We need to set an SSH key pair between RStudio Cloud and GitHub._
