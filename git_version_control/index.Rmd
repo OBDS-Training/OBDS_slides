@@ -268,6 +268,15 @@ More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https:/
 
 ---
 
+# RStudio Cloud projects
+
+```{r, fig.align='center', out.height='375px'}
+# Screenshot
+knitr::include_graphics("img/rstudio-cloud-projects.png")
+```
+
+---
+
 # Exercise
 
 ## Setting up an RStudio Cloud project
