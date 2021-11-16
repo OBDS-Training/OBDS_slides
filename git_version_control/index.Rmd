@@ -275,8 +275,6 @@ More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https:/
 knitr::include_graphics("img/rstudio-cloud-projects.png")
 ```
 
-Source: <https://note.nguyenanhung.com/>
-
 ---
 
 # Exercise
@@ -303,10 +301,12 @@ RStudio Cloud does not work well with the Git integration.
 
 # SSH key pairs
 
-```{r, fig.align='center', out.height='500px'}
+```{r, fig.align='center', out.height='400px', out.width='600px'}
 # Screenshot
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
+
+Source: <https://note.nguyenanhung.com/>
 
 .center[
 _We need to set an SSH key pair between RStudio Cloud and GitHub._
