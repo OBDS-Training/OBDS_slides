@@ -61,9 +61,7 @@ High-level "big picture" objectives of the learning process.
 -->
 
 - Understand what version control is and when to use it.
-
 - Identify where git stores information.
-
 - Practice how to record changes in git.
 
 ### Learning objectives
@@ -72,14 +70,13 @@ High-level "big picture" objectives of the learning process.
 More concrete and measurable outputs.
 -->
 
+- Set up an SSH key pair on GitHub.
+- Set up a GitHub Personal Access Token.
+- Configure Git.
 - _Clone_ your own copy of the shared repository for this course.
-
 - Edit files and _commit_ your changes.
-
 - _Push_ your contributions to the shared repository.
-
 - _Pull_ contributions from other participants in the shared repository.
-
 - Examine the _log_ of the shared repository.
 
 ---
