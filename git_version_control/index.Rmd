@@ -550,6 +550,46 @@ $ ls -a .git/
 
 ---
 
+# Ignore files
+
+One or more special files named `.gitignore` can be placed in your project.
+
+Each line in those file specifies a file name or pattern that <i class="fab fa-git"></i> will ignore (i.e., not track) in the future.
+
+- Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the index, but keep the file itself).
+
+.pull-left[
+## .gitignore
+```
+ .DS_Store
+ data/
+ *fastq.gz
+ *sam
+ *bam
+```
+
+**Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
+]
+
+.pull-right[
+```
+my-project/
+|_ .gitignore
+|_ data_raw/
+| |_ sample1.1.fastq
+| |_ sample1.2.fastq
+| |_ sample2.1.fastq.gz
+| |_ sample2.2.fastq.gz
+|_ data/
+| |_ sample1.bam
+| |_ sample2.bam
+|_ scripts/
+  |_ fastq_to_bam.sh
+```
+]
+
+---
+
 # Status of a repository
 
 The `git status` sub-command can be used to check whether the repository is up-to-date.
@@ -1157,46 +1197,6 @@ knitr::include_graphics("img/git-reset.png")
 
 .center[
 **What do you think will happen when Kevin and David pushed their `master` branch?**
-]
-
----
-
-# Ignore files
-
-One or more special files named `.gitignore` can be placed in your project.
-
-Each line in those file specifies a file name or pattern that <i class="fab fa-git"></i> will ignore (i.e., not track) in the future.
-
-- Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the index, but keep the file itself).
-
-.pull-left[
-## .gitignore
-```
- .DS_Store
- data/
- *fastq.gz
- *sam
- *bam
-```
-
-**Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
-]
-
-.pull-right[
-```
-my-project/
-|_ .gitignore
-|_ data_raw/
-| |_ sample1.1.fastq
-| |_ sample1.2.fastq
-| |_ sample2.1.fastq.gz
-| |_ sample2.2.fastq.gz
-|_ data/
-| |_ sample1.bam
-| |_ sample2.bam
-|_ scripts/
-  |_ fastq_to_bam.sh
-```
 ]
 
 ---
