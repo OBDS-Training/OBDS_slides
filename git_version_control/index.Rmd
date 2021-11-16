@@ -275,6 +275,8 @@ More modern systems, such as [Git](https://git-scm.com/) and [Mercurial](https:/
 knitr::include_graphics("img/rstudio-cloud-projects.png")
 ```
 
+Source: <https://note.nguyenanhung.com/>
+
 ---
 
 # Exercise
@@ -296,6 +298,15 @@ RStudio Cloud does not work well with the Git integration.
 -->
 
 - Name the project "OBDS_Training_Jan_2022".
+
+---
+
+# SSH key pairs
+
+```{r, fig.align='center', out.height='500px'}
+# Screenshot
+knitr::include_graphics("img/ssh-key-pair.png")
+```
 
 ---
 
