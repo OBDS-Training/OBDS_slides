@@ -1,0 +1,26 @@
+# GitHub Personal Access Tokens
+
+When installing packages directly from GitHub, you may run into this type of error.
+
+```
+> remotes::install_github("immunogenomics/lisi")
+Downloading GitHub repo immunogenomics/lisi@master
+Error: HTTP error 403.
+  API rate limit exceeded for 151.181.86.126. (But here's the good news: Authenticated
+  requests get a higher rate limit. Check out the documentation for more details.)
+
+  Rate limit remaining: 0
+  Rate limit reset at: 2018-10-16 15:23:35 UTC
+```
+
+What is happening:
+
+- GitHub limits the number of anonymous queries to its API.
+
+- A GitHub Personal Access Token (PAT) authenticates the requests (i.e., it identifies the user who made the request).
+
+- Authenticated requests have a higher rate limit.
+
+.center[
+_We need to create and set a GitHub Personal Access Token._
+]
