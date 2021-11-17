@@ -167,8 +167,7 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 - Internal implementation can be changed without affecting other objects.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
-## Source: https://www.journaldev.com/33191/what-is-abstraction-in-oops
-knitr::include_graphics("img/process-abstraction.png")
+knitr::include_graphics("img/class-abstraction.svg")
 ```
 
 ---
