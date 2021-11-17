@@ -441,9 +441,9 @@ the diet that leads to the highest mean increase in weight.
 
 - **Faceting** is built in `r BiocStyle::CRANpkg("ggplot2")` to subdivide a plot by faceting variables.
 
-- Other packages provide tools for assembling a grid of plots (e.g., `r BiocStyle::CRANpkg("cowplot")`, `r BiocStyle::CRANpkg("patchwork")`, `r BiocStyle::CRANpkg("gridExtra")`).
+- Other packages provide tools for **arranging plots in a grid** (e.g., `r BiocStyle::CRANpkg("cowplot")`, `r BiocStyle::CRANpkg("patchwork")`, `r BiocStyle::CRANpkg("gridExtra")`).
 
-- The function `ggsave()` can be used to save a plot to a range of file formats (e.g. PDF, PNG).
+- The function `ggsave()` can be used to **save a plot to a range of file formats** (e.g. PDF, PNG).
 
 - A [ggplot2 cheatsheet](https://www.rstudio.com/resources/cheatsheets/) is available from the RStudio website.
 
@@ -453,7 +453,14 @@ the diet that leads to the highest mean increase in weight.
 
 ## Pair programming
 
-- Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
+Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=6}
+ggplot(mpg, aes(cty, hwy, color = year)) +
+  geom_abline(slope = 1, intercept = 0) +
+  geom_point(size = 0.5) +
+  facet_wrap(~manufacturer)
+```
 
 ---
 
