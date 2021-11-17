@@ -176,9 +176,8 @@ knitr::include_graphics("img/class-abstraction.svg")
 
 -  Attributes and public methods can be implemented differently for different classes and sub-classes.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## Source: https://expertiza.csc.ncsu.edu/index.php/CSC/ECE_517_Fall_2011/ch1_1g_vn
-knitr::include_graphics("img/oop_polymorphism-shape.png")
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px'}
+knitr::include_graphics("img/class-polymorphism.svg")
 ```
 
 .center[
