@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 650.1 233.1" style="enable-background:new 0 0 650.1 233.1;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#EDEDED;stroke:#000000;stroke-miterlimit:10;}
+	.st1{font-family:'ArialMT';}
+	.st2{font-size:12px;}
+	.st3{fill:none;stroke:#000000;stroke-linecap:square;stroke-miterlimit:10;}
+</style>
+<rect x="286.9" y="24.4" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 306.7126 41.7696)" class="st1 st2">Animal</text>
+<rect x="78.2" y="102.6" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 97.7539 120.06)" class="st1 st2">Reptile</text>
+<rect x="286.9" y="102.6" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 314.3825 120.06)" class="st1 st2">Bird</text>
+<rect x="495.5" y="102.6" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 510.6732 120.06)" class="st1 st2">Mammal</text>
+<rect x="26.1" y="180.9" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 47.2625 198.3504)" class="st1 st2">Snake</text>
+<rect x="130.4" y="180.9" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 152.2443 198.3504)" class="st1 st2">Lizard</text>
+<rect x="234.7" y="180.9" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 256.5581 198.3504)" class="st1 st2">Parrot</text>
+<rect x="339" y="180.9" class="st0" width="76.4" height="27.8"/>
+<g>
+	<text transform="matrix(1 0 0 1 355.1884 198.3504)" class="st1 st2">Penguin</text>
+</g>
+<rect x="443.3" y="180.9" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 465.5139 198.3504)" class="st1 st2">Horse</text>
+<rect x="547.6" y="180.9" class="st0" width="76.4" height="27.8"/>
+<text transform="matrix(1 0 0 1 576.8239 198.3504)" class="st1 st2">Bat</text>
+<line class="st3" x1="64.3" y1="180.9" x2="64.3" y2="156.8"/>
+<line class="st3" x1="116.4" y1="156.8" x2="64.3" y2="156.8"/>
+<line class="st3" x1="116.4" y1="130.4" x2="116.4" y2="156.8"/>
+<line class="st3" x1="168.6" y1="156.8" x2="116.4" y2="156.8"/>
+<line class="st3" x1="168.6" y1="180.9" x2="168.6" y2="156.8"/>
+<line class="st3" x1="272.9" y1="180.9" x2="272.9" y2="156.8"/>
+<line class="st3" x1="325.1" y1="156.8" x2="272.9" y2="156.8"/>
+<line class="st3" x1="325.1" y1="130.4" x2="325.1" y2="156.8"/>
+<line class="st3" x1="377.2" y1="156.8" x2="325.1" y2="156.8"/>
+<line class="st3" x1="377.2" y1="180.9" x2="377.2" y2="156.8"/>
+<line class="st3" x1="481.5" y1="180.9" x2="481.5" y2="156.8"/>
+<line class="st3" x1="533.7" y1="156.8" x2="481.5" y2="156.8"/>
+<line class="st3" x1="533.7" y1="130.4" x2="533.7" y2="156.8"/>
+<line class="st3" x1="585.8" y1="156.8" x2="533.7" y2="156.8"/>
+<line class="st3" x1="585.8" y1="180.9" x2="585.8" y2="156.8"/>
+<line class="st3" x1="116.4" y1="102.6" x2="116.4" y2="78.6"/>
+<line class="st3" x1="325.1" y1="78.6" x2="116.4" y2="78.6"/>
+<line class="st3" x1="325.1" y1="52.1" x2="325.1" y2="78.6"/>
+<line class="st3" x1="533.7" y1="78.6" x2="325.1" y2="78.6"/>
+<line class="st3" x1="533.7" y1="102.6" x2="533.7" y2="78.6"/>
+<line class="st3" x1="325.1" y1="102.6" x2="325.1" y2="78.6"/>
+</svg>
