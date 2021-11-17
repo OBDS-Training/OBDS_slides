@@ -186,6 +186,24 @@ knitr::include_graphics("img/class-polymorphism.svg")
 
 ---
 
+# Now, the sad news ...
+
+- We've just described the _theory_ of object-oriented programming (OOP).
+
+- There are _many_ implementations of OOP. Sometimes multiple implementations for the same programming language!
+
+- <i class="fab fa-r-project"></i> has no less than _three_ implementations of OOP:
+
+  + S3, the original class system in base <i class="fab fa-r-project"></i>.
+  
+  + S4, implemented in the `r BiocStyle::CRANpkg("methods")` package.
+  
+  + R6, implemented in the `r BiocStyle::CRANpkg("R6")` package.
+
+In this lesson, we focus on S3, to understand classes of objects that we frequently come across in base <i class="fab fa-r-project"></i>.
+
+---
+
 # The S3 class system in <i class="fab fa-r-project"></i>
 
 Everything is an object in <i class="fab fa-r-project"></i>.
@@ -261,7 +279,7 @@ attributes(dataframe_object)
 .pull-left[
 ```{r, include=TRUE}
 matrix_object <- matrix(
-  data = rbinom(8, 10, 0.5),
+  data = c(1, 2, 3, 4, 5, 6, 7, 8),
   nrow = 2
   )
 matrix_object
@@ -288,10 +306,11 @@ Methods are ordinary functions that use a special naming convention: `generic.cl
 options(width = 60)
 ```
 
-
 ```{r, include=TRUE}
 methods("print") %>% head(14)
 ```
+
+**Note:** this is why it is bad practice to use the character `.` in the name of objects and custom functions.
 ]
 
 .pull-right[
@@ -307,6 +326,22 @@ print.default(character_object)
 ]
 
 The whole point of method dispatch is that <i class="fab fa-r-project"></i> uses the class of the object to determine the method to use.
+
+---
+
+# Summary
+
+## Key points
+
+- <i class="fab fa-r-project"></i> implements no less than three systems for object-oriented programming (OOP).
+
+- The S3 class system is the original implementation of classes in base <i class="fab fa-r-project"></i>.
+
+- _S3 classes_ are nothing more than ordinary <i class="fab fa-r-project"></i> objects (e.g., `vector`, `list`) with at least an attribute named `class` that indicate the name of the class(es) as a character vector.
+
+- _S3 methods_ are nothing more than ordinary <i class="fab fa-r-project"></i> functions named following the convention `generic.class` (e.g., `print.factor`)
+
+- Calling `print(factor_object)` will invoke the `print.factor` method if `factor_object` is an object of class `factor`.
 
 ---
 
