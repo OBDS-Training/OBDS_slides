@@ -1,0 +1,56 @@
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Introduction to ggplot2
+</span></div>
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+options(width = 200)
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+NoCite(bib, "ggplot2book")
+```
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+- Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Identify the key differences between `ggplot` objects and base R graphics.
+
+- Understand the concept of tidy data.
+
+## Learning objectives
+
+- Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
+
+- Overlay multiple layers for the same data on a single plot.
+
+- Use faceting and plotting grids.
+
+- Customise plot themes.
