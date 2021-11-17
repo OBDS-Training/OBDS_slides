@@ -159,7 +159,7 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 - Add a smoothed mean trend line.
 
-- Save the last plot as `obds_diamonds`.
+- Save the last plot as an object called `obds_diamonds`.
 
 ---
 
@@ -378,7 +378,7 @@ the diet that leads to the highest mean increase in weight.
 
 - Facet a ribbon of sub-plots, one per diet.
 
-- Save the last plot as `obds_chickweight`.
+- Save the last plot as an object called `obds_chickweight`.
 
 ---
 
@@ -407,7 +407,7 @@ the diet that leads to the highest mean increase in weight.
 
 - Add a contour of thin black lines to the bars.
 
-- Save the last plot as `obds_msleep`.
+- Save the last plot as an object called `obds_msleep`.
 
 ---
 
@@ -424,6 +424,28 @@ the diet that leads to the highest mean increase in weight.
 - Save the new plot in a PDF file, and open it in a PDF viewer (e.g. Adobe Acrobat Reader DC).
 
 > You will likely need a few attempts to fine-tune the width and height of the output file.
+
+---
+
+# Summary
+
+## Key points
+
+- `r BiocStyle::CRANpkg("ggplot2")` uses **tidy** data (it is part of the `r BiocStyle::CRANpkg("tidyverse")`).
+
+- **Geoms** define _how_ data are represented (e.g., points, lines, bars).
+
+- **Aesthetics** define the mapping between columns of data and properties of the **geom** (e.g., x, y, color, size).
+
+- **Themes** control aspects of the plot that are not related to data (e.g., background, fonts).
+
+- **Faceting** is built in `r BiocStyle::CRANpkg("ggplot2")` to subdivide a plot by faceting variables.
+
+- Other packages provide tools for assembling a grid of plots (e.g., `r BiocStyle::CRANpkg("cowplot")`, `r BiocStyle::CRANpkg("patchwork")`, `r BiocStyle::CRANpkg("gridExtra")`).
+
+- The function `ggsave()` can be used to save a plot to a range of file formats (e.g. PDF, PNG).
+
+- A [ggplot2 cheatsheet](https://www.rstudio.com/resources/cheatsheets/) is available from the RStudio website.
 
 ---
 
