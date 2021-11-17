@@ -118,9 +118,8 @@ Note: Individually described in next few slides
 # Inheritance
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
-## Source: https://medium.com/cultured-perl/test-class-hierarchy-is-an-antipattern-391c6ef1e491
-knitr::include_graphics("img/classes-animals.png")
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='700px'}
+knitr::include_graphics("img/class-animal-inheritance.svg")
 ```
 ]
 
