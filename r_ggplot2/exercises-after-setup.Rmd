@@ -277,44 +277,6 @@ base_plot +
 
 ---
 
-# Plot grids - cowplot
-
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
-plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
-plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
-library(cowplot)
-plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
-```
-
----
-
-# Plot grids - patchwork
-
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
-library(patchwork)
-plot1 + plot2
-```
-
----
-
-# Plot grids - gridExtra
-
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
-library(gridExtra)
-grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
-```
-
----
-
-# Plot grids - gridExtra
-
-```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
-library(gridExtra)
-plot1 / plot2
-```
-
----
-
 # Facets - Wrap
 
 Wrap a 1-dimensional 'ribbon' of plots over dimensions using `facet_wrap(~variable)`:
@@ -336,28 +298,6 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point() +
   facet_grid(cut ~ color)
 ```
-
----
-
-# Save a plot to file
-
-The `ggsave()` function can be used to save a plot to a file.
-
-```{r, include=TRUE, eval=FALSE}
-ggsave(
-  filename,
-  plot = last_plot(),
-  ...
-)
-```
-
-## Notes
-
-- The first argument is the `filename`, not the `plot`!
-
-- If `plot` is not given, the latest plot generated is used.
-
-- The extension of `filename` is used to automatically generate the right kind of file.
 
 ---
 
@@ -408,6 +348,66 @@ the diet that leads to the highest mean increase in weight.
 - Add a contour of thin black lines to the bars.
 
 - Save the last plot as an object called `obds_msleep`.
+
+---
+
+# Plot grids - cowplot
+
+```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
+plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
+library(cowplot)
+plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
+```
+
+---
+
+# Plot grids - patchwork
+
+```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+library(patchwork)
+plot1 + plot2
+```
+
+---
+
+# Plot grids - gridExtra
+
+```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+library(gridExtra)
+grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
+```
+
+---
+
+# Plot grids - gridExtra
+
+```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
+library(gridExtra)
+plot1 / plot2
+```
+
+---
+
+# Save a plot to file
+
+The `ggsave()` function can be used to save a plot to a file.
+
+```{r, include=TRUE, eval=FALSE}
+ggsave(
+  filename,
+  plot = last_plot(),
+  ...
+)
+```
+
+## Notes
+
+- The first argument is the `filename`, not the `plot`!
+
+- If `plot` is not given, the latest plot generated is used.
+
+- The extension of `filename` is used to automatically generate the right kind of file.
 
 ---
 
