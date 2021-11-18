@@ -595,9 +595,13 @@ tibble_2
 ```
 ]
 
+.center[
+**How would you describe how to join these two tibbles?**
+]
+
 --
 
-```{r, include=FALSE, echo=TRUE}
+```{r, include=TRUE, results='hide'}
 tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
 tibble_joined
 ```
