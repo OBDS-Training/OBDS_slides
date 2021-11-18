@@ -649,12 +649,12 @@ tibble_joined
 
 - Similarly, for each species of iris, compute the mean of every column that starts with `"Sepal."`.
   **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
-  
+
 - Filter the latest summary table to retain only species of iris with an average sepal length less than 6.
 
-- Sort the latest filtered table by decreasing `Sepal.Length`.
+- Sort the latest table (after filtering) by descending `Sepal.Length`.
 
-- Extract the `Sepal.Length` column as a numeric vector.
+- From the latest table, extract the `Sepal.Length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ---

@@ -98,19 +98,23 @@ tibble(x = 1:5, y = 1, z = x ^ 2 + y)
 ## Subset the columns of a table
 
 ```{r}
-iris %>% select(Sepal.Length, Sepal.Width)
+iris %>%
+    select(Sepal.Length, Sepal.Width)
 ```
 
 ```{r}
-iris %>% select(starts_with("Petal") | ends_with("Width"))
+iris %>%
+    select(starts_with("Petal") | ends_with("Width"))
 ```
 
 ```{r}
-iris %>% select(!ends_with("Width"))
+iris %>%
+    select(!ends_with("Width"))
 ```
 
 ```{r}
-iris %>% select(!c(Sepal.Length, Petal.Length))
+iris %>%
+    select(!c(Sepal.Length, Petal.Length))
 ```
 
 # Demo
@@ -127,3 +131,137 @@ iris %>%
     slice_head(n = 3)
 ```
 
+# Demo
+
+## Subset observations in a table
+
+```{r}
+iris %>%
+    filter(Sepal.Length > mean(Sepal.Length) & Sepal.Width > mean(Sepal.Width)) %>%
+    as_tibble()
+```
+
+# Demo
+
+## Compute summary statistics
+
+Without grouping
+
+```{r}
+iris %>%
+    summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+
+With grouping
+
+```{r}
+iris %>%
+    group_by(Species) %>%
+    summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+
+# Demo
+
+## Sort observations
+
+```{r}
+iris %>%
+    arrange(Species, desc(Sepal.Length)) %>%
+    as_tibble()
+```
+
+# Demo
+
+## Extract a single column as a vector
+
+Without names
+
+```{r}
+iris %>%
+    pull(Sepal.Length) %>%
+    head(5)
+```
+
+With names
+
+```{r}
+iris %>%
+    pull(Sepal.Length, name = Species) %>%
+    head(5)
+```
+
+# Demo
+
+## Combine two tables using shared information
+
+```{r}
+tibble_1 <- tibble(
+  ID = paste0("sample", 1:4),
+  gene1 = rbinom(4, 10, 0.5),
+  gene2 = rbinom(4, 10, 0.5)
+)
+tibble_1
+```
+
+```{r}
+tibble_2 <- tibble(
+  ID = paste0("sample", 1:4),
+  batch = factor(rep(c("A", "B"), each = 2)),
+  condition = factor(rep(c("control", "treated"), times = 2)),
+)
+tibble_2
+```
+
+```{r}
+tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
+tibble_joined
+```
+
+# Exercise
+
+## Manipulate data
+
+### Exercise 1
+
+- For each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+
+```{r}
+iris %>% 
+    
+```
+
+### Exercise 2
+
+- Similarly, for each species of iris, compute the mean of every column that starts with `"Sepal."`.
+  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
+
+```{r}
+iris %>% 
+    
+```
+
+- Filter the latest summary table to retain only species of iris with an average sepal length less than 6.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris %>% 
+    
+```
+
+
+- Sort the latest table (after filtering) by descending `Sepal.Length`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris %>% 
+    
+```
+
+- From the latest table, extract the `Sepal.Length` column as a numeric vector.
+  Make it a named numeric vector, where each value is named with the corresponding species.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris %>% 
+    
+```
