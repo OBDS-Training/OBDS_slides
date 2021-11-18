@@ -235,6 +235,26 @@ Those make it simpler to insert the pipe in the RStudio Editor:
 
 ---
 
+# The pipe operator
+
+.pull-left[
+## Example
+
+```{r, include=TRUE}
+x <- 4
+x %>% sqrt()
+```
+
+Is equivalent to:
+
+```{r, include=TRUE}
+x <- 4
+sqrt(x)
+```
+]
+
+---
+
 # The tidyverse philoshopy
 
 - Most functions take (tidy) data as their first argument.

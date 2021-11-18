@@ -1,0 +1,47 @@
+---
+title: "Template code for tidyverse"
+author: "Kevin Rue-Albrecht"
+date: "18/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exercise
+
+## Load the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+## Load a single package from the tidyverse
+
+```{r}
+library(ggplot2)
+```
+
+# Exercise
+
+# The pipe operator
+
+```{r}
+x <- 4
+x %>% sqrt()
+```
+
+```{r}
+x <- 4
+sqrt(x)
+```
+
+# Exercise
+
+## The tidyverse philosophy
+
+```{r}
+iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
+```
+
