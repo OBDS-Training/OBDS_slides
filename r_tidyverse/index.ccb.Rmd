@@ -403,7 +403,7 @@ The `r BiocStyle::CRANpkg("dplyr")` package is known for its many functions to s
 
 - `filter`: filter observations using conditions on column values.
 
-- `group_by`: group observations on column values; subsequent functions will be apply on each group separately.
+- `group_by`: group observations on column values; subsequent functions will be applied on each group separately.
 
 - `summarise`: summarise groups of observations.
 
