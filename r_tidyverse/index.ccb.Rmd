@@ -322,19 +322,19 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 **What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
 ]
 
-- Display the value of `iris_raw` in the R console.
+- Display the value of `iris_raw`.
 
 .center[
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
 ]
 
-- Write the dataset to a file named `iris.tsv`, separating fields with the TAB character.
+- Write the dataset to a file named `iris.tsv`, separating fields with the tabulation character.
 
 .center[
 **What function do you use? What options are available for that function?**
 ]
 
-- Inspect the file.
+- Inspect the file itself.
   You can use `file.edit()` to open the file in the RStudio editor.
 
 .center[

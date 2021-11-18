@@ -9,21 +9,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Exercise
+# Demo
 
-## Load the tidyverse
+- Load the tidyverse
 
 ```{r}
 library(tidyverse)
 ```
 
-## Load a single package from the tidyverse
+- Load a single package from the tidyverse
 
 ```{r}
 library(ggplot2)
 ```
 
-# Exercise
+# Demo
 
 # The pipe operator
 
@@ -37,7 +37,7 @@ x <- 4
 sqrt(x)
 ```
 
-# Exercise
+# Demo
 
 ## The tidyverse philosophy
 
@@ -45,3 +45,42 @@ sqrt(x)
 iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
 ```
 
+# Exercise
+
+## Read and write files
+
+- Read data from the file `iris.csv` using `readr`.
+  Assign the data imported from the file to an object called `iris_raw`.
+
+```{r}
+
+```
+
+**What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
+
+- Display the value of `iris_raw`.
+
+```{r}
+
+```
+
+**What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
+
+- Write the dataset to a file named `iris.tsv`, separating fields with the tabulation character.
+
+```{r}
+
+```
+
+**What function do you use? What options are available for that function?**
+
+- Inspect the file itself.
+  You can use `file.edit()` to open the file in the RStudio editor.
+
+```{r, eval=FALSE}
+
+```
+
+.center[
+**Are you satisfied with the contents and appearance of the file?**
+]
