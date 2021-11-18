@@ -673,14 +673,14 @@ library(tidyr)
 
 The `r BiocStyle::CRANpkg("tidyr")` package is mostly known for functions to reshape rectangular data, e.g.
 
-- `pivot_longer`: "lengthens" data, increasing the number of rows and decreasing the number of columns.
+- `pivot_longer()`: "lengthens" data, increasing the number of rows and decreasing the number of columns.
   This generally "tidies" data.
 
-- `pivot_wider`: Opposite of `pivot_longer`.
+- `pivot_wider()`: Opposite of `pivot_longer`.
 
-- `separate`: split the value of a column into multiple columns (e.g. sample name -> experimental conditions).
+- `separate()`: split the value of a column into multiple columns (e.g. sample name -> experimental conditions).
 
-- `unite`: Opposite of `separate`.
+- `unite()`: Opposite of `separate`.
 
 ---
 
