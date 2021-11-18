@@ -555,7 +555,7 @@ iris %>% pull(Sepal.Length, name = Species) %>%
 The `r BiocStyle::CRANpkg("dplyr")` packages provides different functions to combine two tables.
 Those functions mainly differ in the way they handle observations that do not have matching information in the other table:
 
-- `inner_join()`: includes all rows in `x` and `y`.
+- `inner_join()`: includes only rows present in both `x` and `y`.
 
 - `left_join()`: includes all rows in `x`.
 
