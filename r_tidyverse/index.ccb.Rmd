@@ -643,18 +643,18 @@ tibble_joined
 
 ### Exercise 1
 
-- For each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
 
 ### Exercise 2
 
-- Similarly, for each species of iris, compute the mean of every column that starts with `"Sepal."`.
+- For each species of iris, compute the mean of every column that starts with `"Sepal."`.
   **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
 
-- Filter the latest summary table to retain only species of iris with an average sepal length less than 6.
+- Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
 
 - Sort the latest table (after filtering) by descending `Sepal.Length`.
 
-- From the latest table, extract the `Sepal.Length` column as a numeric vector.
+- From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ---
@@ -686,10 +686,6 @@ Let's make the silly assumption that iris sepals are rectangular in shape.
 <img src="img/tidyr.png" height="100px" align="top" style="float: left">
 
 > provides a set of functions that help you get to tidy data. Tidy data is data with a consistent form: in brief, every variable goes in a column, and every column is a variable.
-
-```{r}
-library(tidyr)
-```
 
 The `r BiocStyle::CRANpkg("tidyr")` package is mostly known for functions to reshape rectangular data, e.g.
 
@@ -739,7 +735,7 @@ iris %>%
 
 - Reshape the tidy format of the iris data set into the original wide format.
 
-**Hint:** you will only be able to restore the wide format if you kept track of the identifty of each flower in the long format.
+**Hint:** you will only be able to restore the wide format if you kept track of the identity of each flower in the long format.
 
 ---
 
@@ -786,10 +782,6 @@ iris %>%
 > provides a cohesive set of functions designed to make working with strings as easy as possible.
 > It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations.
 
-```{r}
-library(stringr)
-```
-
 The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to process, substitute, concatenate, and modify character strings, e.g.
 
 - `str_sub`: extract and replace substrings from a character vector.
@@ -817,7 +809,7 @@ iris_species <- iris %>% pull(Species)
 E.g., extract the unique substrings of the first three characters.
 
 ```{r, include=TRUE}
-str_sub(iris_species, 1, 3) %>% unique()
+iris_species %>% str_sub(1, 3) %>% unique()
 ```
 
 E.g., replace the fourth character onwards by an ellipsis.
@@ -840,7 +832,7 @@ words <- c("I ", " Am ", "legend")
 Remove whitespaces.
 
 ```{r, include=TRUE}
-str_trim(words)
+words %>% str_trim()
 ```
 
 Join the trimmed strings into a single string.
