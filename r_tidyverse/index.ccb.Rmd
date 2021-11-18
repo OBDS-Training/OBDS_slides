@@ -595,6 +595,13 @@ tibble_2
 ```
 ]
 
+--
+
+```{r, include=FALSE, echo=TRUE}
+tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
+tibble_joined
+```
+
 ---
 
 # Combine two tables using shared information
@@ -603,7 +610,6 @@ tibble_2
 tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
 tibble_joined
 ```
-
 
 ---
 
