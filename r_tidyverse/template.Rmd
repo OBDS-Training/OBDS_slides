@@ -80,6 +80,8 @@ iris_raw <-
 
 **What function do you use? What options are available for that function?**
 
+
+
 - Inspect the file itself.
   You can use `file.edit()` to open the file in the RStudio editor.
 

@@ -1,7 +1,7 @@
 ---
-title: "Example code for tidyverse"
+title: "Solution code for tidyverse"
 author: "Kevin Rue-Albrecht"
-date: "14/06/2021"
+date: "18/11/2021"
 output: html_document
 ---
 
@@ -9,11 +9,603 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Exercises
+# Demo
 
-## Load the tidyverse
+- Load the tidyverse
 
 ```{r}
 library(tidyverse)
 ```
 
+- Load a single package from the tidyverse
+
+```{r}
+library(ggplot2)
+```
+
+# Demo
+
+# The pipe operator
+
+```{r}
+x <- 4
+x %>% sqrt()
+```
+
+```{r}
+x <- 4
+sqrt(x)
+```
+
+# Demo
+
+## The tidyverse philosophy
+
+```{r}
+iris %>%
+    select(Sepal.Length, Sepal.Width, Species) %>%
+    slice_head(n = 3)
+```
+
+# Exercise
+
+## Read and write files
+
+- Read data from the file `iris.csv` using `readr`.
+  Assign the data imported from the file to an object called `iris_raw`.
+
+```{r}
+iris_raw <- read_csv("data/iris.csv")
+```
+
+**What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
+
+Number of rows and columns in the data set.
+Delimiter used to parse the file.
+Name and type of individual columns.
+Hints about some functions and options that can be used.
+
+- Display the value of `iris_raw`.
+
+```{r}
+iris_raw
+```
+
+**What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
+
+Data are loaded as a `tibble`.
+Data set is 150 rows and 5 columns.
+Column types are: double, double, double, double, character.
+
+- Write the dataset to a file named `iris.tsv`, separating fields with the tabulation character.
+
+```{r}
+write_tsv(iris_raw[, 1:4], "iris.tsv")
+```
+
+**What function do you use? What options are available for that function?**
+
+`write.tsv()` is the ideal choice here.
+Options can be found on the man page, using `?write.tsv`.
+
+- Inspect the file itself.
+  You can use `file.edit()` to open the file in the RStudio editor.
+
+```{r, eval=FALSE}
+file.edit("iris.tsv")
+```
+
+**Are you satisfied with the contents and appearance of the file?**
+
+The file is as expected.
+Not the nicest to read, due to column names wider than values.
+
+# Demo
+
+## Making a tibble
+
+```{r}
+tibble(x = 1:5, y = 1, z = x ^ 2 + y)
+```
+
+# Demo
+
+## Subset the columns of a table
+
+```{r}
+iris %>%
+    select(Sepal.Length, Sepal.Width)
+```
+
+```{r}
+iris %>%
+    select(starts_with("Petal") | ends_with("Width"))
+```
+
+```{r}
+iris %>%
+    select(!ends_with("Width"))
+```
+
+```{r}
+iris %>%
+    select(!c(Sepal.Length, Petal.Length))
+```
+
+# Demo
+
+## Create and update columns in a table
+
+```{r}
+iris %>%
+    mutate(
+        ID = rep(1:50, times = 3),
+        Flower.ID = paste0(Species, ID)
+        ) %>%
+    group_by(Species) %>%
+    slice_head(n = 3)
+```
+
+# Demo
+
+## Subset observations in a table
+
+```{r}
+iris %>%
+    filter(Sepal.Length > mean(Sepal.Length) & Sepal.Width > mean(Sepal.Width)) %>%
+    as_tibble()
+```
+
+# Demo
+
+## Compute summary statistics
+
+Without grouping
+
+```{r}
+iris %>%
+    summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+
+With grouping
+
+```{r}
+iris %>%
+    group_by(Species) %>%
+    summarise(Sepal.Length.mean = mean(Sepal.Length))
+```
+
+# Demo
+
+## Sort observations
+
+```{r}
+iris %>%
+    arrange(Species, desc(Sepal.Length)) %>%
+    as_tibble()
+```
+
+# Demo
+
+## Extract a single column as a vector
+
+Without names
+
+```{r}
+iris %>%
+    pull(Sepal.Length) %>%
+    head(5)
+```
+
+With names
+
+```{r}
+iris %>%
+    pull(Sepal.Length, name = Species) %>%
+    head(5)
+```
+
+# Demo
+
+## Combine two tables using shared information
+
+```{r}
+tibble_1 <- tibble(
+  ID = paste0("sample", 1:4),
+  gene1 = rbinom(4, 10, 0.5),
+  gene2 = rbinom(4, 10, 0.5)
+)
+tibble_1
+```
+
+```{r}
+tibble_2 <- tibble(
+  ID = paste0("sample", 1:4),
+  batch = factor(rep(c("A", "B"), each = 2)),
+  condition = factor(rep(c("control", "treated"), times = 2)),
+)
+tibble_2
+```
+
+```{r}
+tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
+tibble_joined
+```
+
+# Exercise
+
+## Manipulate data
+
+### Exercise 1
+
+- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+
+```{r}
+iris_raw %>% 
+    group_by(Species) %>% 
+    summarise(
+        min = min(Sepal.Length),
+        mean = mean(Sepal.Length),
+        median = median(Sepal.Length),
+        max = max(Sepal.Length)
+    )
+```
+
+### Exercise 2
+
+- For each species of iris, compute the mean of every column that starts with `"Sepal."`.
+  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
+
+```{r}
+iris_raw %>% 
+    group_by(Species) %>% 
+    summarise(across(where(is.double), mean))
+```
+
+- Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    group_by(Species) %>% 
+    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
+    filter(Sepal.Length < 6)
+```
+
+- Sort the latest table (after filtering) by descending `Sepal.Length`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    group_by(Species) %>% 
+    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
+    filter(Sepal.Length < 6) %>% 
+    arrange(desc(Sepal.Length))
+```
+
+- From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
+  Make it a named numeric vector, where each value is named with the corresponding species.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    group_by(Species) %>% 
+    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
+    filter(Sepal.Length < 6) %>% 
+    arrange(desc(Sepal.Length)) %>% 
+    pull(Sepal.Length, name = Species)
+```
+
+# Exercise
+
+## Manipulate data
+
+### Exercise 3
+
+Let's make the silly assumption that iris sepals are rectangular in shape.
+
+- Using `iris_raw`, compute a new column named `Sepal.Area`, which is the product of `Sepal.Length` and `Sepal.Width`.
+
+```{r}
+iris_raw %>% 
+    mutate(
+        Sepal.Area = Sepal.Length * Sepal.Width
+    )
+```
+
+- Subset the result to the columns named `Species` and `Sepal.Area`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    mutate(
+        Sepal.Area = Sepal.Length * Sepal.Width
+    ) %>% 
+    select(Species, Sepal.Area)
+```
+
+- Subset the result to display the top 5 observations by `Sepal.Area`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    mutate(
+        Sepal.Area = Sepal.Length * Sepal.Width
+    ) %>% 
+    select(Species, Sepal.Area) %>% 
+    slice_max(Sepal.Area, n = 5)
+```
+
+## Bonus point
+
+- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `Sepal.Area` colored by species.
+  You might also want to facet the plot by species.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_for_ggplot <- iris_raw %>% 
+    mutate(
+        Sepal.Area = Sepal.Length * Sepal.Width
+    ) %>% 
+    select(Species, Sepal.Area)
+iris_for_ggplot
+```
+
+```{r}
+ggplot(iris_for_ggplot, aes(Sepal.Area, fill = Species)) +
+    geom_histogram() +
+    facet_wrap(~Species, ncol = 1)
+```
+
+# Exercise
+
+## Pivot data from wide to long
+
+Reshape the `iris_raw` dataset in a tidy format where one observation is represented by:
+
+- the species
+
+- the variable measured
+
+- the value
+
+**Hint:** you want to pivot all the columns that start with `"Sepal"` or `"Petal"`.
+
+```{r}
+iris_long <- iris_raw %>% 
+  pivot_longer(c(starts_with("Sepal"), starts_with("Petal")), names_to = "variable")
+iris_long
+```
+
+**What information have we lost in the process? What could we do to remedy the issue?**
+
+The identity of each observation is lost; e.g., we cannot tell which value of `Sepal.Length` is associated with which value of `Sepal.Width`.
+
+```{r}
+# Copy the code chunk above and refine to address the issue
+iris_long2 <- iris_raw %>% 
+  rownames_to_column("specimen") %>% 
+  pivot_longer(c(starts_with("Sepal"), starts_with("Petal")), names_to = "variable")
+iris_long2
+```
+
+# Exercise
+
+## Pivot data from long to wide
+
+- Reshape the tidy format of the iris data set into the original wide format.
+
+**Hint:** you will only be able to restore the wide format if you kept track of the identity of each flower in the long format.
+
+```{r}
+iris_long2 %>% 
+      pivot_wider(id_cols = c(specimen, Species, variable), names_from = variable, values_from = value) %>% 
+  select(-specimen)
+```
+
+# Demo
+
+## Split a column value into multiple columns
+
+```{r}
+iris %>% 
+    separate(Sepal.Length, c("Sepal.Length.unit", "Sepal.Length.decimal"), sep = "[.]") %>%
+    select(c("Sepal.Length.unit", "Sepal.Length.decimal")) %>%
+    as_tibble()
+```
+
+# Demo
+
+## Combine multiple columns into a single value
+
+```{r}
+iris %>% 
+  mutate(ID = seq(1, nrow(iris))) %>% 
+  unite("FlowerID", Species, ID, sep = "_") %>% 
+  as_tibble()
+```
+
+# Demo
+
+## Extract substrings
+
+```{r}
+iris_species <- iris %>%
+    pull(Species)
+```
+
+```{r}
+iris_species %>%
+    str_sub(1, 3) %>%
+    unique()
+```
+
+```{r}
+str_sub(iris_species, 4) <- "..."
+iris_species %>%
+    unique()
+```
+
+# Demo
+
+## Join multiple strings and remove whitespaces
+
+```{r}
+words <- c("I ", " Am ", "legend")
+words
+```
+
+```{r}
+words %>%
+    str_trim()
+```
+
+```{r}
+words %>%
+    str_trim() %>%
+    str_c(collapse = " ")
+```
+
+# Integrated exercise
+
+## Gene expression
+
+### Part 1
+
+We provide you with an Excel file that contains gene expression data for the nine most highly variable genes in a pancreas cancer gene expression dataset (<https://portal.gdc.cancer.gov/projects/TCGA-PAAD>), as well as metadata for the individual samples and genes.
+
+- Import the gene expression matrix from the Excel file into the R session as a `tibble`.
+  Assign it to an object named `exprs_assay`.
+
+```{r}
+library(readxl)
+excel_sheets("data/EH2011.xlsx")
+exprs_assay <- read_xlsx("data/EH2011.xlsx", "exprs")
+exprs_assay
+```
+
+- Reshape the gene expression matrix in a tidy format.
+  Assign it to a new object `exprs_assay_long`.
+
+```{r}
+exprs_assay_long <- exprs_assay %>%
+  pivot_longer(-gene, names_to = "sample", values_to = "exprs")
+exprs_assay_long
+```
+
+- Draw a histogram of gene expression levels for each gene in a separate facet.
+
+```{r}
+ggplot(exprs_assay_long, aes(exprs)) +
+  geom_histogram(fill = "grey", color = "black", bins = 40) +
+  facet_wrap(~gene) +
+  cowplot::theme_cowplot()
+```
+
+---
+
+# Integrated exercise
+
+## Gene expression
+
+### Part 2
+
+- Import the sample metadata from the Excel file into the R session as a `tibble`.
+  Assign it to an object named `sample_info`.
+
+```{r}
+excel_sheets("data/EH2011.xlsx")
+sample_info <- read_xlsx("data/EH2011.xlsx", "sample_info")
+sample_info
+```
+
+> Metadata key:
+> 
+> [NIH AJCC staging system](https://www.cancer.gov/publications/dictionaries/ca> ncer-terms/def/ajcc-staging-system)
+> 
+> - grade: how abnormal the cancer cells and tissue look under a microscope
+> - T: size of the tumor and any spread of cancer into nearby tissue
+> - N: spread of cancer to nearby lymph nodes
+> - M: metastasis (spread of cancer to other parts of the body)
+
+- Convert the relevant columns to the factor type.
+
+```{r}
+sample_info <- sample_info %>%
+  mutate(across(
+    c(sex, grade, T, N, M, vital_status, sample_type),
+    list(as.factor),
+    .names = "{.col}"))
+sample_info
+```
+
+- Combine sample information with gene expression data.
+  Assign the output to `exprs_sampleinfo`.
+
+```{r}
+exprs_sampleinfo <- sample_info %>%
+  left_join(exprs_assay_long, c("unique_patient_ID" = "sample"))
+exprs_sampleinfo
+```
+
+---
+
+# Integrated exercise
+
+## Gene expression
+
+### Part 3
+
+- Identify the gene with the largest absolute difference in expression between male and female patients.
+
+```{r}
+exprs_sampleinfo %>% 
+  group_by(sex, gene) %>% 
+  summarise(exprs = mean(exprs)) %>% 
+  pivot_wider(names_from = sex, values_from = exprs) %>% 
+  mutate(F_minus_M = F - M) %>% 
+  arrange(desc(abs(F_minus_M)))
+```
+
+- Visualise the expression of that gene across tumour grades.
+  Facet by `sex`.
+  Color by `T` score.
+
+```{r}
+table_for_ggplot <- exprs_sampleinfo %>% 
+  filter(gene == "XIST")
+table_for_ggplot
+```
+
+```{r}
+ggplot(table_for_ggplot, aes(grade, exprs, colour = T)) +
+  geom_point() +
+  facet_wrap(~ sex)
+```
+
+- Draw a heat map of all nine genes.
+  Remove labels as well as ticks for the x-axis.
+  Remove the panel grid and background.
+
+```{r}
+ggplot(exprs_sampleinfo, aes(unique_patient_ID, gene, fill = exprs)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    panel.grid = element_blank(), panel.background = element_blank())
+```
+
+### Bonus point
+
+- In the heat map, group samples by sex.
+
+```{r}
+# Copy the code chunk above and tweak the aes(...) contents.
+ggplot(exprs_sampleinfo, aes(interaction(unique_patient_ID, sex), gene, fill = exprs)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    panel.grid = element_blank(), panel.background = element_blank())
+```
