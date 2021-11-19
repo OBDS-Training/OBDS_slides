@@ -317,7 +317,7 @@ In this section, we will focus on data exploration using the tidyverse.
 # Manipulate tidy data
 
 <!-- Source: https://www.tidyverse.org/packages/ -->
-<img src="img/dplyr.png" height="100px" align="top" style="float: left">
+<img src="img/dplyr.png" height="100px" align="top" style="float: left;margin:0px 10px 0px 0px">
 
 > provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges.
 
