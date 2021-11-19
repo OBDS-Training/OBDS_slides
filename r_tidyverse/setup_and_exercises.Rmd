@@ -188,7 +188,7 @@ iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
 # Import and export data
 
 <!-- Source: https://www.tidyverse.org/packages/ -->
-<img src="img/readr.png" height="100px" align="top" style="float: left">
+<img src="img/readr.png" height="100px" align="top" style="float: left;margin:0px 10px 0px 0px">
 
 > provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf).
 > It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.
