@@ -29,5 +29,5 @@ knit: pagedown::chrome_print
 
 ---
 
-```{r, child='exercises-after-setup.Rmd'}
+```{r, child='setup_and_exercises.Rmd'}
 ```
