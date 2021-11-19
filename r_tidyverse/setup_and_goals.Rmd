@@ -1,0 +1,60 @@
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+The <i class="fab fa-r-project"></i> tidyverse
+</span></div>
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+stopifnot(require(magrittr))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe tidy data.
+- Appreciate that scripts can combine base R and tidyverse.
+- Assemble iteratively longer workflows using the tidyverse pipe.
+
+## Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Import and manipulate tidy data using packages from the tidyverse.
+- Compute summary statistics on groups of observations in data frames.
+- Filter data frames to select observations that meet certain criteria.
+- Combine information from multiple data frames using matching information in certain columns.
