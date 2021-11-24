@@ -359,7 +359,7 @@ plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 
 ## Generate and summarise a distribution
 
-- Generate a vector of 1000 normally distributed values with mean 10 and standard deviation 5.
+- Generate a vector of 1,000 normally distributed values with mean 10 and standard deviation 5.
 
 - Inspect the output of the `summary()` function for that vector.
 
