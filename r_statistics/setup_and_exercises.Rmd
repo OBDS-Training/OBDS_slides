@@ -1,27 +1,21 @@
 # Set up
 
-- Pull the `master` branch of the shared repository.
+- Checkout and pull the main branch of the shared repository.
 
 > We have added some files to get you started.
+- Create a new branch in the Git repository. Use your username and the date to make it unique.
 
-- In the daily sub-directory, make a copy of the `template` sub-directory with your HPC username.
+- Make a copy of the file `template.Rmd` for this lesson. Use your username to make it unique.
 
-> e.g. `cp -R template kevinrue`
+> e.g. `cp template.Rmd template_kevinrue.Rmd`
+- Open your copy of the notebook in RStudio.
 
-The resulting file structure should look like the following:
+- Follow along, running and writing code from the notebook as mentioned during the lesson.
 
-```
-  OBDS_Training_May_2021/
-  |_ 3_r_genomics_data_science/
-    |_ 1_statistics/
-      |_ template
-        |_ ... (files)
-      |_ albrecht (copied from 'template')
-        |_ ... (files)
-        |_ statistics.Rproj
-```
+## Note
 
-- Launch the RStudio project `statistics.Rproj` in your sub-directory.
+At the end of the day, you will have a chance to commit and push your own notebook to GitHub.
+_Do not_ work in the template solution notebook, to avoid Git conflicts.
 
 ---
 
