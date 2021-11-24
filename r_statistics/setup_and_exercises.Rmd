@@ -133,6 +133,31 @@ $${\mathcal {N}}(\mu ,\sigma ^{2})$$
 
 ---
 
+# Mean and standard deviation
+
+The base R functions `mean()` and `sd()` compute the mean and standard deviation of a distribution
+
+To demonstrate, let us first generate a vector of random, normally distributed, values.
+
+```{r, include=TRUE}
+x <- rnorm(n = 100, mean = 2, sd = 5)
+```
+
+We can then use that vector to demonstrate the functions.
+
+```{r, include=TRUE}
+mean(x)
+sd(x)
+```
+
+.center[
+**What are optional arguments for those functions?**
+
+**Why do you think the mean and standard deviation are not exactly those that we would expect?**
+]
+
+---
+
 # The standard normal distribution
 
 ```{r}
@@ -407,7 +432,7 @@ ggplot() +
 
 - Visualise the distribution of those values as a histogram.
 
-- Visualise as vertical lines on the histogram: the mean (red solid), median (red dashed), one standard deviation from the mean (blue solid), and one median absolute deviation from the median (blue dashed).
+- Visualise as vertical lines on the histogram: the mean (red solid), median (red dashed), one standard deviation below and above the mean (blue solid), and one median absolute deviation below and above the median (blue dashed).
 
 - Generate a new vector with _a lot_ more values (e.g., one million).
   Draw again a histogram.
