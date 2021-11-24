@@ -3,11 +3,13 @@
 - Checkout and pull the main branch of the shared repository.
 
 > We have added some files to get you started.
+
 - Create a new branch in the Git repository. Use your username and the date to make it unique.
 
 - Make a copy of the file `template.Rmd` for this lesson. Use your username to make it unique.
 
 > e.g. `cp template.Rmd template_kevinrue.Rmd`
+
 - Open your copy of the notebook in RStudio.
 
 - Follow along, running and writing code from the notebook as mentioned during the lesson.
