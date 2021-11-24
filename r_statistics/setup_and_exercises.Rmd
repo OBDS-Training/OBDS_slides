@@ -155,7 +155,8 @@ gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("pnorm(q = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the cumulative distribution function (c. d. f.)")
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -172,7 +173,8 @@ gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
     data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("qnorm(p = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the inverse c. d. f.")
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -189,7 +191,8 @@ gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("dnorm(x = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the density function (p. f. or p. d. f.)")
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -206,7 +209,8 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("rnorm(n = 1E3, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "a random variable having the specified distribution")
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r, include=TRUE, echo=FALSE, fig.width=12, fig.height=7}
@@ -237,7 +241,8 @@ gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("pnorm(q = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the cumulative distribution function (c. d. f.)")
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -254,7 +259,8 @@ gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
     data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("qnorm(p = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the inverse c. d. f.")
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -271,7 +277,8 @@ gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("dnorm(x = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "the density function (p. f. or p. d. f.)")
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -288,7 +295,8 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
     title = sprintf("rnorm(n = 1E3, mean = %s, sd = %s)", slide_mean, slide_sd),
-    subtitle = "a random variable having the specified distribution")
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r, include=TRUE, echo=FALSE, fig.width=12, fig.height=7}
@@ -314,7 +322,8 @@ x <- tibble(
 gg1 <- ggplot(x) + geom_point(aes(quantile, pbinom)) +
   labs(
     title = sprintf("pbinom(q = quantile, size = %s, prob = %s)", slide_size, slide_prob),
-    subtitle = "the cumulative distribution function (c. d. f.)")
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -325,7 +334,8 @@ x <- tibble(
 gg2 <- ggplot(x) + geom_point(aes(quantile, qbinom)) +
   labs(
     title = sprintf("qbinom(p = quantile, size = %s, prob = %s)", slide_size, slide_prob),
-    subtitle = "the inverse c. d. f.")
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -336,7 +346,8 @@ x <- tibble(
 gg3 <- ggplot(x) + geom_point(aes(quantile, dbinom)) +
   labs(
     title = sprintf("dbinom(x = quantile, size = %s, prob = %s)", slide_size, slide_prob),
-    subtitle = "the density function (p. f. or p. d. f.)")
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
 ```
 
 ```{r}
@@ -346,11 +357,38 @@ x <- tibble(
 gg4 <- ggplot(x, aes(rbinom)) + geom_histogram(bins = 30, color = "black", fill = "grey") +
   labs(
     title = sprintf("rbinom(n = 1E3, size = %s, prob = %s)", slide_size, slide_prob),
-    subtitle = "a random variable having the specified distribution")
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.width=12, fig.height=7}
+```{r, include=TRUE, echo=FALSE, fig.align='center',fig.width=12, fig.height=7}
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
+```
+
+---
+
+# Quantiles
+
+Quantiles are the values at a selected set of evenly-spaced locations in the distribution.
+
+For instance, the minimum value, the value that separates the lowest 10% values in the distribution, 20%, and so on, until the maximum value.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=6, fig.width=9}
+slide_mean <- 50; slide_sd <- 100;
+x1 <- tibble(
+  rnorm = rnorm(n = 10E3, mean = slide_mean, sd = slide_sd)
+)
+x2 <- tibble(
+  quantile = seq(0, 1, length.out = 10),
+  value = quantile(x1$rnorm, seq(0, 1, length.out = 10))
+)
+ggplot() +
+  geom_histogram(aes(rnorm), x1, bins = 30, color = "black", fill = "grey") +
+  geom_vline(aes(xintercept = value), x2, color = "blue", linetype = "dashed") +
+  labs(
+    title = sprintf("quantile(x, seq(0, 1, length.out = 10))"),
+    subtitle = "Ten deciles computed on the distribution `x`") +
+  cowplot::theme_cowplot()
 ```
 
 ---
@@ -512,7 +550,7 @@ test_data <- bind_rows(
 ggplot(test_data, aes(value)) +
   geom_histogram(fill = "grey", color = "black") +
   facet_wrap(~group, ncol = 1) +
-  theme_minimal()
+  cowplot::theme_cowplot()
 ```
 ]
 
@@ -556,7 +594,7 @@ test_data <- bind_rows(
 gg <- ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
   geom_histogram(fill = "grey", color = "black") +
-  theme_minimal()
+  cowplot::theme_cowplot()
 gg
 ```
 ]
@@ -609,7 +647,7 @@ test_data <- tibble(
 ggplot(test_data, aes(variable, value)) +
   geom_line(aes(group = sample), size = 0.1) +
   geom_point() +
-  theme_minimal()
+  cowplot::theme_cowplot()
 ```
 ]
 
@@ -666,7 +704,8 @@ test_data <- bind_rows(
 )
 gg <- ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
-  geom_histogram(fill = "grey", color = "black")
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
 gg
 ```
 ]
@@ -698,7 +737,8 @@ test_data <- tibble(
 ```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(test_data, aes(x = x, y = y)) +
   geom_point() +
-  stat_smooth(method = "glm", se = FALSE)
+  stat_smooth(method = "glm", se = FALSE) +
+  cowplot::theme_cowplot()
 ```
 
 - What is the slope?
@@ -822,7 +862,8 @@ test_data <- bind_rows(
 )
 gg <- ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
-  geom_histogram(fill = "grey", color = "black")
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
 gg
 ```
 ]
@@ -871,7 +912,8 @@ summary_table <- bind_rows(
 data_table %>% 
   ggplot() +
   geom_histogram(aes(x = x), color = "black", fill = "grey") +
-  geom_vline(aes(xintercept = value, color = Value), summary_table, size = 2, alpha = 0.3)
+  geom_vline(aes(xintercept = value, color = Value), summary_table, size = 2, alpha = 0.3) +
+  cowplot::theme_cowplot()
 ```
 ]
 

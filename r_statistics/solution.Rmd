@@ -32,6 +32,9 @@ summary(x)
 
 ```{r}
 mean(x)
+```
+
+```{r}
 sd(x)
 ```
 

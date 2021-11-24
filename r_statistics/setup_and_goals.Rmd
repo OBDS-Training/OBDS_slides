@@ -4,7 +4,7 @@ layout: true
 
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 Statistics in <i class="fab fa-r-project"></i>
 </span></div>
 
