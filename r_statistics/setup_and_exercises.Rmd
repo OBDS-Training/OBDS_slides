@@ -501,15 +501,10 @@ help(pairwise.t.test)
 
 ## General principles of hypothesis testing
 
-1. Decide on the effect that you are interested in, **design** a suitable experiment or study, pick a data summary function and test statistic.
-
-2. Set up a **null hypothesis**, which is a simple, computationally tractable model of reality that lets you compute the null distribution, i.e., the possible outcomes of the test statistic and their probabilities under the assumption that the null hypothesis is true.
-
-3. Decide on the **rejection region**, i.e., a subset of possible outcomes whose total probability is small.
-
-4. Do the experiment and collect the data; compute the **test statistic**.
-
-5. Make a **decision**: reject the null hypothesis if the test statistic is in the rejection region.
+```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='700px', fig.align='center'}
+# Source: Illustrator
+knitr::include_graphics("img/hypothesis-testing.png")
+```
 
 ---
 
