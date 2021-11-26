@@ -460,22 +460,72 @@ For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
 ---
 
-# Exercise
+# Empirical Cumulative Distribution Function
 
-## Compute an Empirical Cumulative Distribution Function
+The `ecdf()` function computes an empirical cumulative distribution function.
 
-- Use the `ecdf()` function to compute the empirical cumulative distribution function for the variable `Sepal.Length` in the built-in `iris` data set.
+It produces an object that can be plotted, printed, and used for further computations.
 
-- Use the `plot()` function to visualise the empirical cumulative distribution function.
-
-.center[
-**What insights into the data does this plot give you?**
+.small-code[
+```{r, include=TRUE}
+ecdf_iris_sepal_length <- ecdf(iris$Sepal.Length)
+ecdf_iris_sepal_length
+```
 ]
 
-- Use the `knots()` function on the `ecdf` output and compare this with the set of unique values for the variable `Sepal.Length`.
+.pull-left[
+.small-code[
+```{r, include=TRUE, message=FALSE, fig.align='center', fig.height=2.75, fig.width=5}
+ggplot(iris, aes(Sepal.Length)) +
+  geom_histogram(color = "black", fill = "grey") +
+  cowplot::theme_cowplot()
+```
+]
+]
+
+.pull-right[
+.small-code[
+```{r, include=TRUE, fig.align='center', fig.height=3.4, fig.width=5}
+plot(ecdf_iris_sepal_length, cex = 0.5)
+```
+]
+]
+
+---
+
+# ecdf - Knots
+
+Knots are the unique values observed in the empirical distribution.
+For ease of inspection, the function `knots()` automatically sorts knots in increasing order.
+
+```{r, include=TRUE, echo=TRUE}
+knots(ecdf_iris_sepal_length)
+```
+
+In other words, the `knots()` function is equivalent to identifying the unique values in the original vector and sorting them in increasing order.
+
+```{r, include=TRUE, echo=TRUE}
+sort(unique(iris$Sepal.Length))
+```
+
+---
+
+# ecdf - Quantiles
+
+The `quantile()` function can be applied to `ecdf` objects.
+
+```{r, include=TRUE, echo=TRUE}
+quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
+```
+
+In this case, the same function `quantile()` can be applied to the original vector of data for the same result.
+
+```{r, include=TRUE, echo=TRUE}
+quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
+```
 
 .center[
-**What are _knots_?**
+**Is this choice convenient or confusing to you? Why?**
 ]
 
 ---

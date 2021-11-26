@@ -142,27 +142,50 @@ pnorm(q = 2, mean = 0, sd = 1) - pnorm(q = -2, mean = 0, sd = 1)
 1 - (pnorm(q = 2, mean = 0, sd = 1) - pnorm(q = -2, mean = 0, sd = 1))
 ```
 
-## Compute an Empirical Cumulative Distribution Function
+# Demo
 
-- Use the `ecdf()` function to compute the empirical cumulative distribution function for the variable `Sepal.Length` in the `iris` data set.\
+## Empirical Cumulative Distribution Function
 
-```{r}
-out <- ecdf(iris$Sepal.Length)
-out
+```{r, include=TRUE}
+ecdf_iris_sepal_length <- ecdf(iris$Sepal.Length)
+ecdf_iris_sepal_length
 ```
 
-- Use the `plot()` function to visualise the empirical cumulative distribution function.
-
-```{r}
-plot(out)
+```{r, include=TRUE, message=FALSE, fig.align='center', fig.height=2.75, fig.width=5}
+ggplot(iris, aes(Sepal.Length)) +
+  geom_histogram(color = "black", fill = "grey") +
+  cowplot::theme_cowplot()
 ```
 
-- Use the `knots()` function on the `ecdf` output and compare this with the (sorted) list of unique values for the variable `Sepal.Length`.
+```{r, include=TRUE, fig.align='center', fig.height=3.4, fig.width=5}
+plot(ecdf_iris_sepal_length, cex = 0.5)
+```
 
-```{r}
-knots(out)
+# Demo
+
+## ecdf - Knots
+
+```{r, include=TRUE, echo=TRUE}
+knots(ecdf_iris_sepal_length)
+```
+
+```{r, include=TRUE, echo=TRUE}
 sort(unique(iris$Sepal.Length))
 ```
+
+# Demo
+
+## ecdf - Quantiles
+
+```{r, include=TRUE, echo=TRUE}
+quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
+```
+
+```{r, include=TRUE, echo=TRUE}
+quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
+```
+
+# Exercise
 
 ## Statistical tests
 
