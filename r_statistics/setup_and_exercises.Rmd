@@ -740,7 +740,7 @@ What is actually tested is whether the mean of the differences between the paire
 
 Is the variance _between_ groups larger than the variance _within_ groups?
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
 # Source: https://turnthewheelsandbox.wordpress.com/2015/08/11/lesson-12-intro-to-one-way-anova/
 knitr::include_graphics("img/anova.png")
 ```

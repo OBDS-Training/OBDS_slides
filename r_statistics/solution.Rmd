@@ -185,6 +185,126 @@ quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
 quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
+# Demo
+
+## <i class="fab fa-r-project"></i> Functions for Statistical Testing
+
+```{r}
+?pairwise.t.test
+```
+
+```{r}
+help(pairwise.t.test)
+```
+
+# Demo
+
+## Parametric t-test
+
+Two normal distributions.
+
+```{r, include=TRUE}
+set.seed(10)
+x <- rnorm(n = 100, mean = 0, sd = 1)
+y <- rnorm(n = 100, mean = 1, sd = 1)
+```
+
+```{r, include=TRUE, echo=FALSE, message=FALSE, fig.height=5}
+test_data <- bind_rows(
+  tibble(group = "x", value = x),
+  tibble(group = "y", value = y)
+)
+ggplot(test_data, aes(value)) +
+  geom_histogram(fill = "grey", color = "black") +
+  facet_wrap(~group, ncol = 1) +
+  cowplot::theme_cowplot()
+```
+
+Unpaired t-test.
+
+```{r, include=TRUE}
+t.test(value ~ group, test_data)
+```
+
+Compare with
+
+```{r}
+t.test(x, y)
+```
+
+```{r}
+t.test(y, x)
+```
+
+# Demo
+
+## Non-parametric wilcoxon test
+
+Two uniform distributions
+
+```{r, include=TRUE}
+set.seed(10)
+x <- runif(n = 100, min = 1, max = 11)
+y <- runif(n = 100, min = 3, max = 13)
+```
+
+```{r, include=TRUE, echo=FALSE, fig.height=5}
+test_data <- bind_rows(
+  tibble(group = "x", value = x),
+  tibble(group = "y", value = y)
+)
+gg <- ggplot(test_data, aes(value)) +
+  facet_wrap(~group, ncol = 1) +
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
+gg
+```
+]
+
+Mann-Whitney U test
+
+```{r, include=TRUE}
+wilcox.test(value ~ group, test_data)
+```
+
+Directed hypothesis
+
+```{r, include=TRUE}
+wilcox.test(value ~ group, test_data, alternative = "less")
+```
+
+# Demo
+
+## Paired test
+
+For each sample, the two measurements are related to one another; e.g. patients measured before and after a treatment.
+
+```{r, include=TRUE}
+set.seed(10)
+n_sample <- 100
+x <- runif(n = n_sample, min = 10, max = 20)
+y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
+```
+
+```{r}
+test_data <- tibble(
+  sample = paste("sample", seq_len(n_sample)),
+  x = x,
+  y = y
+) %>% pivot_longer(cols = c(x, y), names_to = "variable")
+```
+
+```{r, include=TRUE, echo=FALSE, fig.height=5}
+ggplot(test_data, aes(variable, value)) +
+  geom_line(aes(group = sample), size = 0.1) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+```{r, include=TRUE}
+t.test(x, y, paired = TRUE)
+```
+
 # Exercise
 
 ## Statistical tests
