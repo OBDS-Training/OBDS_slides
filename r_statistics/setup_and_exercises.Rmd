@@ -1235,6 +1235,7 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 Given an Excel file that contains a matrix of log-normalised counts (`logcounts`) and experimental metadata (`cell_info`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
+Start by importing the `logcounts` table and converting it to a matrix.
 
 ### Approach
 
@@ -1244,7 +1245,7 @@ test each gene (i.e., row) in the matrix for differential expression between the
 
 ### Bonus points
 
-- Visualise a bar plot of the p-values.
+- Visualise a histogram of the p-values.
 
 - Correct p-values for multiple testing.
   How many genes remain before and after multiple testing?
@@ -1260,10 +1261,11 @@ test each gene (i.e., row) in the matrix for differential expression between the
 Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
 and a list of gene sets (`go_db`),
 test each gene set for over-representation of differentially expressed genes.
+Start by importing the Gene Ontology table and converting it to a list.
 
 ### Approach
 
-1. Write the code to test a single gene and access the p-value.
+1. Write the code to test a single gene set and access the p-value.
 2. Write a function that generalises the code to test any one gene set and return the p-value.
 3. Use the function `vapply` to test every gene set in the list and collect a vector of p-values.
 
