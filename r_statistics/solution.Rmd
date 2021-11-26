@@ -7,8 +7,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
+library(readxl)
 ```
 
 # Demo
@@ -19,16 +19,20 @@ The base R functions `mean()` and `sd()` compute the mean and standard deviation
 
 To demonstrate, let us first generate a vector of random, normally distributed, values.
 
-```{r, include=TRUE}
+```{r}
 x <- rnorm(n = 100, mean = 2, sd = 5)
 ```
 
 We can then use that vector to demonstrate the functions.
 
-```{r, include=TRUE}
+```{r}
 mean(x)
+```
+
+```{r}
 sd(x)
 ```
+
 
 **What are optional arguments for those functions?**
 
@@ -38,7 +42,7 @@ sd(x)
 
 
 
-# Exercises
+# Exercise
 
 ## Generate and visualise a distribution
 
@@ -146,18 +150,18 @@ pnorm(q = 2, mean = 0, sd = 1) - pnorm(q = -2, mean = 0, sd = 1)
 
 ## Empirical Cumulative Distribution Function
 
-```{r, include=TRUE}
+```{r}
 ecdf_iris_sepal_length <- ecdf(iris$Sepal.Length)
 ecdf_iris_sepal_length
 ```
 
-```{r, include=TRUE, message=FALSE, fig.align='center', fig.height=2.75, fig.width=5}
+```{r}
 ggplot(iris, aes(Sepal.Length)) +
   geom_histogram(color = "black", fill = "grey") +
   cowplot::theme_cowplot()
 ```
 
-```{r, include=TRUE, fig.align='center', fig.height=3.4, fig.width=5}
+```{r}
 plot(ecdf_iris_sepal_length, cex = 0.5)
 ```
 
@@ -165,11 +169,11 @@ plot(ecdf_iris_sepal_length, cex = 0.5)
 
 ## ecdf - Knots
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
 knots(ecdf_iris_sepal_length)
 ```
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
 sort(unique(iris$Sepal.Length))
 ```
 
@@ -177,11 +181,11 @@ sort(unique(iris$Sepal.Length))
 
 ## ecdf - Quantiles
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
 quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
 quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
@@ -203,13 +207,13 @@ help(pairwise.t.test)
 
 Two normal distributions.
 
-```{r, include=TRUE}
+```{r}
 set.seed(10)
 x <- rnorm(n = 100, mean = 0, sd = 1)
 y <- rnorm(n = 100, mean = 1, sd = 1)
 ```
 
-```{r, include=TRUE, echo=FALSE, message=FALSE, fig.height=5}
+```{r}
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
@@ -222,7 +226,7 @@ ggplot(test_data, aes(value)) +
 
 Unpaired t-test.
 
-```{r, include=TRUE}
+```{r}
 t.test(value ~ group, test_data)
 ```
 
@@ -242,13 +246,13 @@ t.test(y, x)
 
 Two uniform distributions
 
-```{r, include=TRUE}
+```{r}
 set.seed(10)
 x <- runif(n = 100, min = 1, max = 11)
 y <- runif(n = 100, min = 3, max = 13)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
@@ -263,13 +267,13 @@ gg
 
 Mann-Whitney U test
 
-```{r, include=TRUE}
+```{r}
 wilcox.test(value ~ group, test_data)
 ```
 
 Directed hypothesis
 
-```{r, include=TRUE}
+```{r}
 wilcox.test(value ~ group, test_data, alternative = "less")
 ```
 
@@ -279,7 +283,7 @@ wilcox.test(value ~ group, test_data, alternative = "less")
 
 For each sample, the two measurements are related to one another; e.g. patients measured before and after a treatment.
 
-```{r, include=TRUE}
+```{r}
 set.seed(10)
 n_sample <- 100
 x <- runif(n = n_sample, min = 10, max = 20)
@@ -294,79 +298,309 @@ test_data <- tibble(
 ) %>% pivot_longer(cols = c(x, y), names_to = "variable")
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
 ggplot(test_data, aes(variable, value)) +
   geom_line(aes(group = sample), size = 0.1) +
   geom_point() +
   cowplot::theme_cowplot()
 ```
 
-```{r, include=TRUE}
+```{r}
 t.test(x, y, paired = TRUE)
+```
+
+# Demo
+
+## Analysis of Variance (ANOVA)
+
+```{r}
+set.seed(10)
+n_sample <- 1000
+x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
+x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
+x3 <- x2 + 0 + rnorm(n = n_sample, mean = 0, sd = 0.5)
+test_data <- bind_rows(
+  tibble(group = "x1", value = x1),
+  tibble(group = "x2", value = x2),
+  tibble(group = "x3", value = x3)
+)
+```
+
+```{r}
+test_data <- bind_rows(
+  tibble(group = "x1", value = x1),
+  tibble(group = "x2", value = x2),
+  tibble(group = "x3", value = x3)
+)
+gg <- ggplot(test_data, aes(value)) +
+  facet_wrap(~group, ncol = 1) +
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
+gg
+```
+
+```{r}
+out <- aov(value ~ group, test_data)
+out
+```
+
+```{r}
+summary(out)
+```
+
+# Demo
+
+## Linear models
+
+```{r}
+set.seed(10)
+test_data <- tibble(
+  x = rnorm(n = 50, mean = 0, sd = 1),
+  y = 10 + 2.5 * x + rnorm(n = 50, mean = 0, sd = 0.5))
+```
+
+```{r}
+ggplot(test_data, aes(x = x, y = y)) +
+  geom_point() +
+  stat_smooth(method = "glm", se = FALSE) +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+lm(y ~ x, test_data)
+```
+
+# Demo
+
+## Linear models - summary
+
+```{r}
+lm(y ~ x, test_data) %>% summary()
+```
+
+# Demo
+
+## Fisher's Exact Test
+
+```{r}
+x_table <- matrix(data = c(12, 4, 3, 23),
+  nrow = 2,
+  dimnames = list(
+    c("DE","Not DE"),
+    c("in_pathway", "not_pathway")
+  ))
+knitr::kable(x_table)
+```
+
+```{r}
+fisher.test(x_table)
+```
+
+# Demo
+
+## Beware of interpreting inadequate tests!
+
+Two uniform distributions.
+
+```{r}
+set.seed(10)
+n_size <- 10E3
+x <- runif(n = n_size, min = 1, max = 11)
+y <- runif(n = n_size, min = 3, max = 13)
+```
+
+```{r}
+test_data <- bind_rows(
+  tibble(group = "x", value = x),
+  tibble(group = "y", value = y)
+)
+gg <- ggplot(test_data, aes(value)) +
+  facet_wrap(~group, ncol = 1) +
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
+gg
+```
+
+Nothing prevents users from running a parametric test.
+
+```{r}
+t.test(value ~ group, test_data)
+```
+
+# Demo
+
+## Knowledge assumptions - Central tendency
+
+```{r, message=FALSE, warning=FALSE}
+x_mean <- 0
+x_sd <- 20
+data_table <- tibble(x = as.integer(rnorm(n = 10E3, mean = x_mean, sd = x_sd)))
+summary_table <- bind_rows(
+  tibble(Value = "mean", value = mean(data_table$x)),
+  tibble(Value = "median", value = median(data_table$x)),
+  tibble(Value = "mode", value = as.integer(names(which.max(table(data_table$x)))))
+)
+data_table %>% 
+  ggplot() +
+  geom_histogram(aes(x = x), color = "black", fill = "grey") +
+  geom_vline(aes(xintercept = value, color = Value), summary_table, size = 2, alpha = 0.3) +
+  cowplot::theme_cowplot()
+```
+
+# Demo
+
+## Knowledge assumptions - Normality
+
+Normal distribution
+
+```{r}
+x <- rnorm(n = 5000, mean = 0, sd = 1)
+```
+
+```{r}
+ggplot(tibble(x=x)) +
+  geom_histogram(aes(x), fill = "grey", color = "black", bins = 20) +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+shapiro.test(x)
+```
+
+Log-normal distribution
+
+```{r}
+x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
+```
+
+```{r}
+ggplot(tibble(x=x)) +
+  geom_histogram(aes(x), fill = "grey", color = "black", bins = 20) +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+shapiro.test(x)
+```
+
+# Demo
+
+## Knowledge assumptions - Normality
+
+Normal distribution
+
+```{r}
+x <- rnorm(n = 5000, mean = 5, sd = 3)
+qqnorm(x)
+```
+
+Log-normal distribution
+
+```{r}
+x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
+qqnorm(x)
+```
+
+# Demo
+
+## Multiple-testing correction
+
+For 1,000 iterations, generate two vectors of normally distributed values with mean 0 and standard deviation 1, and run a t-test to compare the two.
+
+```{r}
+set.seed(10)
+n_tests <- 1000
+compute_p_value <- function(dummy) {
+  x <- rnorm(n = 100, mean = 0, sd = 1)
+  y <- rnorm(n = 100, mean = 0, sd = 1)
+  out <- t.test(x, y)
+  out$p.value
+}
+result_table <- tibble(
+  pvalue = vapply(X = seq_len(n_tests), FUN = compute_p_value, FUN.VALUE = numeric(1)),
+  BH = p.adjust(p = pvalue, method = "BH"),
+  bonferroni = p.adjust(p = pvalue, method = "bonferroni")
+)
+```
+
+Illustrate one iteration.
+
+```{r, include=TRUE, echo=FALSE, fig.height=3}
+data_table <- tibble(
+  x = rnorm(n = 100, mean = 0, sd = 1),
+  y = rnorm(n = 100, mean = 0, sd = 1)
+) %>% pivot_longer(cols = c(x, y))
+ggplot(data_table) +
+  geom_boxplot(aes(name, value)) +
+  geom_jitter(aes(name, value), width = 0.1)
+```
+
+Plot the distribution of raw p-values.
+
+```{r, include=TRUE, echo=FALSE, fig.height=3}
+ggplot(result_table) +
+  geom_histogram(aes(pvalue), fill = "grey", color = "black", breaks = seq(0, 1, 0.05)) +
+  scale_x_continuous(limits = c(0, 1)) +
+  labs(title = "Raw p-value")
+```
+
+Print a short report message.
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+cat(sprintf("There are %i out of %i raw p-values smaller than 0.05", sum(result_table$pvalue < 0.05), n_tests))
+```
+
+Plot corrected p-values using BH correction.
+
+```{r, include=TRUE, echo=FALSE, fig.height=3}
+ggplot(result_table) +
+  geom_histogram(aes(BH), fill = "grey", color = "black", bins = 20) +
+  coord_cartesian(xlim = c(0, 1)) +
+  labs(title = "BH correction")
+```
+
+Print a short report message.
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+cat(sprintf("There are %i BH-corrected p-values smaller than 0.05", sum(result_table$BH < 0.05)))
+```
+
+Plot corrected p-values using Bonferroni correction.
+
+```{r, include=TRUE, echo=FALSE, fig.height=3}
+ggplot(result_table) +
+  geom_histogram(aes(bonferroni), fill = "grey", color = "black", bins = 20) +
+  coord_cartesian(xlim = c(0, 1)) +
+  labs(title = "bonferroni correction")
+```
+
+Print a short report message.
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(result_table$bonferroni < 0.05)))
 ```
 
 # Exercise
 
-## Statistical tests
-
-The `iris` data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris.
-
-- Use the `summary()` function to view some information about each column.
-
-```{r}
-summary(iris)
-```
-- Visualise the distribution of `Sepal.Length`, overall, and for each species.
-
-```{r}
-plot.new()
-plot.window(xlim = c(3, 9), ylim = c(0, 1.5))
-lines(density(iris$Sepal.Length))
-lines(density(iris$Sepal.Length[iris$Species == "setosa"]), col = "red")
-lines(density(iris$Sepal.Length[iris$Species == "versicolor"]), col = "green")
-lines(density(iris$Sepal.Length[iris$Species == "virginica"]), col = "blue")
-axis(1, at=seq(3, 9))
-axis(2, at=seq(0, 1.5, 0.2))
-```
-
-```{r}
-ggplot(iris, aes(Sepal.Length)) +
-  geom_density(aes(color = Species))
-```
-
-
-- Is `Sepal.Length` length normally distributed? Overall? Within each species?
-
-```{r}
-shapiro.test(iris$Sepal.Length)
-shapiro.test(iris$Sepal.Length[iris$Species == "setosa"])
-shapiro.test(iris$Sepal.Length[iris$Species == "versicolor"])
-shapiro.test(iris$Sepal.Length[iris$Species == "virginica"])
-```
-
-- Is there a significant variation of `Sepal.Length` between the various species? 
-
-```{r}
-out <- aov(Sepal.Length ~ Species, data = iris)
-summary(out)
-```
-
 ## Testing & Multiple testing correction
 
-Given a matrix of log-normalised counts (`logcounts_matrix.csv`) and experimental metadata (`cell_metadata.csv`),
+Given an Excel file that contains a matrix of log-normalised counts (`logcounts`) and experimental metadata (`cell_info`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 
 ```{r}
-logcounts_matrix <- read.csv("data/logcounts_matrix.csv", row.names = 1)
+logcounts_matrix <- read_excel("data/GSE111543.xlsx", "logcounts") %>% 
+  column_to_rownames("gene") %>% 
+  as.matrix()
 dim(logcounts_matrix)
 ```
 
 ```{r}
-cell_data <- read.csv("data/cell_metadata.csv")
-rownames(cell_data) <- cell_data$Sample
-# all(rownames(cell_data) == colnames(logcounts_matrix))
-head(cell_data)
+cell_info <- read_excel("data/GSE111543.xlsx", "cell_info")
+# rownames(cell_info) <- cell_info$Sample
+# all(rownames(cell_info) == colnames(logcounts_matrix))
+head(cell_info)
 ```
+
 ### Approach
 
 1. Write the code to test a single gene and access the p-value.
@@ -375,7 +609,7 @@ head(cell_data)
 gene_index <- 1
 test_data <- data.frame(
     value = as.numeric(logcounts_matrix[gene_index, ]),
-    group = cell_data$Infection
+    group = cell_info$Infection
 )
 out <- t.test(value ~ group, test_data)
 out$p.value
@@ -392,7 +626,7 @@ t_test_row <- function(index, matrix, group) {
     out <- t.test(value ~ group, test_data)
     out$p.value
 }
-t_test_row(index = 1, matrix = logcounts_matrix, group = cell_data$Infection)
+t_test_row(index = 1, matrix = logcounts_matrix, group = cell_info$Infection)
 ```
 
 3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
@@ -403,7 +637,7 @@ t_test_pvalues <- vapply(
   FUN = t_test_row,
   FUN.VALUE = numeric(1),
   matrix = logcounts_matrix,
-  group = cell_data$Infection)
+  group = cell_info$Infection)
 names(t_test_pvalues) <- rownames(logcounts_matrix)
 head(t_test_pvalues)
 ```
@@ -424,22 +658,24 @@ result_bh <- p.adjust(t_test_pvalues, method = "BH")
 table(result_bh < 0.05)
 ```
 
-- Use `gene_metadata.csv` to get the gene name for the gene identifier with the smallest p-value.
+- Use `gene_info` to get the gene name for the gene identifier with the smallest p-value.
 
 ```{r}
-gene_table <- read.csv("data/gene_metadata.csv")
+gene_table <- read_excel("data/GSE111543.xlsx", "gene_info")
 top_gene_id <- names(result_bh)[which.min(result_bh)]
 gene_table$gene_name[gene_table$gene_id == top_gene_id]
 ```
 
+# Exercise
+
 ## Over-representation analysis (ORA)
 
 Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
-and a list of gene sets (`human_go_bp.csv`),
+and a list of gene sets (`go_db`),
 test each gene set for over-representation of differentially expressed genes.
 
 ```{r}
-go_table <- read.csv("data/human_go_bp.csv")
+go_table <- read_excel("data/GSE111543.xlsx", "go_db")
 go_list <- split(go_table$ensembl_gene_id, go_table$go_id)
 go_list[1]
 ```
@@ -512,11 +748,11 @@ fisher_test_bh <- p.adjust(fisher_test_pvalues, method = "BH")
 table(fisher_test_bh < 0.05)
 ```
 
-- Use `go_info.csv` to annotate each GO gene set with its corrected p-value,
+- Use `go_info` to annotate each GO gene set with its corrected p-value,
   and arrange the table by increasing p-value.
 
 ```{r}
-go_info <- read.csv("data/go_info.csv")
+go_info <- read_excel("data/GSE111543.xlsx", "go_info")
 go_info$BH <- fisher_test_bh[go_info$GOID]
 go_info <- arrange(go_info, BH)
 head(go_info)

@@ -784,9 +784,14 @@ gg
 .pull-right[
 .small-code[
 ```{r, include=TRUE}
-(out <- aov(value ~ group, test_data))
+out <- aov(value ~ group, test_data)
+out
+```
+
+```{r, include=TRUE}
 summary(out)
 ```
+
 ]
 ]
 
@@ -825,7 +830,7 @@ lm(y ~ x, test_data)
 
 ---
 
-# Linear models - Summary
+# Linear models - summary
 
 .small-code[
 ```{r, include=TRUE}
