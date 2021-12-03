@@ -753,7 +753,7 @@ What do you observe?
 
 ## Variance explained
 
-- Compute the variance explained by principal components.
+- Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
 
 - Visualise the variance explained by each principal component using `ggplot2::geom_col()`.
 
