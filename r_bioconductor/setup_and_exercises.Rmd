@@ -103,7 +103,7 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
   + Filter: Software, Annotation, Experiment, Workflow, ...
 
-- Learn more on the [package landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html)
+- Learn more on each [package landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 
   + Title, author / maintainer, short description, citation, installation instructions, …, download statistics.
 
