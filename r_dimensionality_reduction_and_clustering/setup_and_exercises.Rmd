@@ -229,8 +229,6 @@ In the context of PCA:
 - An eigenvector represents a direction or axis.
 - The corresponding eigenvalue represents variance along that eigenvector.
 
-**Source:** https://notes.andrewgurung.com/data-science/linear-algebra/eigenvalues-and-eigenvectors
-
 ---
 
 # PCA
@@ -1054,8 +1052,6 @@ pheatmap(log10(assay(airway, "counts")[keep_rows, ] + 1))
 ## Source: https://newbedev.com/scikit_learn/modules/clustering
 knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 ```
-
-**Source:** https://scikit-learn.org/stable/modules/clustering.html
 
 ---
 
