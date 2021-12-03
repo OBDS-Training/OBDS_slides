@@ -747,7 +747,7 @@ Save the PCA plot as an object named `pca_iris_species`.
 
 ## Variable loading
 
-- Visualise the value of the variable most strongly associated with the first principal component, as color on the PCA plot.
+- Color a scatter plot of PC1 and PC2 by the value of the variable most strongly associated with the first principal component.
 
 What do you observe?
 
