@@ -206,7 +206,7 @@ Source:
 
 --
 
-- New packages are thoroughly reviewed by members of the core team
+- New packages are thoroughly reviewed by members of the core team and volunteers
 
   + Packages are submitted as issues on <i class="fa fa-github"></i> [Bioconductor/Contributions](https://github.com/Bioconductor/Contributions)
   
