@@ -1,27 +1,14 @@
 # Set up
 
-- Pull the `master` branch of the shared repository.
+- Checkout and pull the main branch of the shared repository.
 
 > We have added some files to get you started.
+- Create a new branch in the Git repository. Use your username and the date to make it unique.
+- Make a copy of the file `template.Rmd` for this lesson. Use your username to make it unique.
 
-- In the daily sub-directory, make a copy of the `template` sub-directory with your username.
-
-> e.g. `cp -R template kevinrue`
-
-The resulting file structure should look like the following:
-
-```
-  OBDS_Training_May_2021/
-  |_ 3_r_stats_genomics/
-    |_ 3_bioconductor/
-      |_ template
-        |_ ... (files)
-      |_ kevinrue (copied from 'template')
-        |_ ... (files)
-        |_ bioconductor.Rproj
-```
-
-- Launch the RStudio project `bioconductor.Rproj` in your own sub-directory.
+> e.g. `cp template.Rmd template_kevinrue.Rmd`
+- Open your copy of the notebook in RStudio.
+- Follow along, running and writing code from the notebook as mentioned during the lesson.
 
 ---
 
@@ -343,30 +330,6 @@ BiocManager::valid()
 ```{r, include=TRUE, echo=FALSE}
 knitr::include_graphics("img/biocmanager-update.png")
 ```
-
----
-
-# Exercise
-
-## BiocManager repositories
-
-- Run `options("repos")`.
-  What do you see?
-
-The function `options()` can be used to get or set global options of the current <i class="fab fa-r-project"></i> session.
-
-- Run `BiocManager::repositories()`.
-
-The function returns a character vector that combines the URL of Bioconductor package repositories with those already present in `options("repos")`.
-
-- In the `.Rprofile` file, add the following line and restart the <i class="fab fa-r-project"></i> session.
-
-```{r, include=TRUE}
-options(repos = BiocManager::repositories())
-```
-
-- Run `options("repos")` again in your freshly opened <i class="fab fa-r-project"></i> session.
-  What do you see now?
 
 ---
 
@@ -1083,6 +1046,32 @@ With so much choice, it can be difficult to decide which package to try first.
 - [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/lab-1-intro-to-r-bioc.html), by Martin Morgan
 
 - [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html), by Martin Morgan
+
+---
+
+# Advanced
+
+## BiocManager repositories
+
+Bioconductor packages can be installed and managed using base R function such as `install.packages()` with a minimum additional setup.
+
+- Run `options("repos")`.
+  What do you see?
+
+The function `options()` can be used to get or set global options of the current <i class="fab fa-r-project"></i> session.
+
+- Run `BiocManager::repositories()`.
+
+The function returns a character vector that combines the URL of Bioconductor package repositories with those already present in `options("repos")`.
+
+- In an `.Rprofile` file -- either in your home directory or in the root of your RStudio project -- add the following line and restart the <i class="fab fa-r-project"></i> session.
+
+```{r, include=TRUE}
+options(repos = BiocManager::repositories())
+```
+
+- Run `options("repos")` again in your freshly opened <i class="fab fa-r-project"></i> session.
+  What do you see now?
 
 ---
 
