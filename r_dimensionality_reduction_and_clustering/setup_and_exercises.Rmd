@@ -1076,6 +1076,8 @@ pheatmap(log10(assay(airway, "counts")[keep_rows, ] + 1))
 ```
 ]
 
+`r BiocStyle::CRANpkg("pvclust")` (CRAN)
+
 ---
 
 # Comparing clustering algorithms on toy datasets
