@@ -198,7 +198,8 @@ Source:
 
 - Release cycle every 6 months (April, October)
 
-  + Packages on the _release_ branch are stable for at least 6 months.
+  + Packages on the _release_ branch are stable for at least 6 months
+    (except for exceptional bug fixes).
     Active development takes place on the _devel_ branch.
   
   + ..., but new features can take up to 6 months to be released (_devel_ $\rightarrow$ _release X.Y_).
