@@ -374,7 +374,7 @@ The E-box motif is `"CANNTG"`.
 
 - Extract the sequence of chromosome Y.
 
-- Count the number of E-box motifs present on chromosome Y using the appropriate method available in the `r BiocStyle::Biocpkg("Biostrings")` package.
+- Find out the appropriate method in the `r BiocStyle::Biocpkg("Biostrings")` and count the number of E-box motifs present on chromosome Y.
 
 ---
 
