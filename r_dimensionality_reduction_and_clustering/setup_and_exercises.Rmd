@@ -895,7 +895,7 @@ Save the t-SNE plot as an object named `tsne_iris_species`.
 - Many methods (e.g. K-means clustering, hierarchical clustering)
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=3}
+```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=6}
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     geom_point() +
     cowplot::theme_cowplot() +
@@ -904,8 +904,17 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=3}
-ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=6}
+iris %>% 
+    mutate(
+        Cluster = Species %>% 
+            fct_recode(
+                "1" = "setosa",
+                "2" = "versicolor",
+                "3" = "virginica"
+            )
+    ) %>% 
+    ggplot(aes(Sepal.Length, Sepal.Width, color = Cluster)) +
     geom_point() +
     cowplot::theme_cowplot() +
     labs(x = "variable 1", y = "variable 2")
