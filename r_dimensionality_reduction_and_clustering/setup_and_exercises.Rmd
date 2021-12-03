@@ -731,8 +731,6 @@ The `prcomp()` function allows you to standardise the data as part of the princi
 - Examine the PCA output.
   How does each principal component relate to each variable?
 
-- Create a data frame of PCA coordinates.
-
 Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
 
 - Visualise the PCA projection using `ggplot2::geom_point()`.
