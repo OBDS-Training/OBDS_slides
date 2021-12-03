@@ -80,6 +80,8 @@ Experimental design is crucial to ensure that sources of interesting variation a
 .pull-left[
 ## Confounded
 
+<br/>
+
 .small-table[
 ```{r, include=TRUE, echo=FALSE}
 nrow <- 8
@@ -99,6 +101,8 @@ data.frame(
 
 .pull-left[
 ## Balanced
+
+<br/>
 
 .small-table[
 ```{r, include=TRUE, echo=FALSE}
