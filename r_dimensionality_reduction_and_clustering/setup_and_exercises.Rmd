@@ -710,9 +710,13 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
 
 - Display the first 5 rows of the data set.
 
-- Split measurements from class labels.
+- Separate measurements from class labels.
 
-Name the object `iris_features`.
+  + Store the matrix of measurements in an object named `iris_features`.
+  
+  + Optionally, store the class labels in a vector named `iris_species`.
+
+> Note: the last bit is not necessary, as we can always refer to `iris$Species`.
 
 ---
 
