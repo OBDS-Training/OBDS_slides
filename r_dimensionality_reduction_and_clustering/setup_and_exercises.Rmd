@@ -68,12 +68,12 @@ Difference in data (e.g., expression) can come from multiple sources:
 ]
 
 .x-large-text[
-Either of those types could be either:
+Either of those sources could be either:
 ]
 
 .x-large-list[
 - Of interest to study
-- Considered confounders
+- Considered a confounding covariate
 ]
 
 .x-large-text[
