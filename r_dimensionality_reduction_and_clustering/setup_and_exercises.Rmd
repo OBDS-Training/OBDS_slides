@@ -887,16 +887,12 @@ Save the t-SNE plot as an object named `tsne_iris_species`.
 
 # Clustering
 
-<br/>
-
-.x-large-list[
 - Technique for grouping of given data points and classification into groups.
   + In theory, points with similar properties or features should belong to the same group.
   + Points with dissimilar properties or features should belong to different groups.
   + Method of unsupervised learning (no known labels), common technique used in many fields.
 - Yields valuable insights from data by seeing what groups fall into after clustering
 - Many methods (e.g. K-means clustering, hierarchical clustering)
-]
 
 ---
 
