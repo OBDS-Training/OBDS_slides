@@ -1088,7 +1088,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 ## hdbscan
 
-- Apply `hdbscan` to the set of iris measurements.
+- Apply `hdbscan` to the `iris_features` data set.
 
 - Visualise the `hdbscan` cluster label on a scatter plot of the data.
 
@@ -1102,7 +1102,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 ## K-means
 
-- Apply K-means clustering with K set to 3 clusters.
+- Apply $K$-means clustering with $K$ set to 3 clusters.
 
 - Inspect the output.
 
@@ -1110,11 +1110,11 @@ How many clusters would you call from a visual inspection of the tree?
 
 - Extract the cluster centers.
 
-- Construct a data frame that includes the cluster label.
+- Construct a data frame that combines the `iris` dataset and the cluster label.
 
 - Plot the data set as a scatter plot.
 
-Color by cluster label.
+  + Color by cluster label.
 
 ### Bonus point
 
@@ -1128,11 +1128,11 @@ Color by cluster label.
 
 - Cross-tabulate cluster labels with known labels.
 
-How many observations are mis-classified by K-means clustering?
+How many observations are mis-classified by $K$-means clustering?
 
 ## Elbow plot
 
-- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
+- Plot the "total within-cluster sum of squares" for $K$ ranging from 2 to 10.
 
 Do you agree that 3 is the optimal number of clusters for this data set?
 
