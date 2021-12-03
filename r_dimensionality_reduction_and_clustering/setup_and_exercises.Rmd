@@ -894,6 +894,24 @@ Save the t-SNE plot as an object named `tsne_iris_species`.
 - Yields valuable insights from data by seeing what groups fall into after clustering
 - Many methods (e.g. K-means clustering, hierarchical clustering)
 
+.pull-left[
+```{r, fig.height=3}
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+    geom_point() +
+    cowplot::theme_cowplot() +
+    labs(x = "variable 1", y = "variable 2")
+```
+]
+
+.pull-right[
+```{r, fig.height=3}
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+    geom_point() +
+    cowplot::theme_cowplot() +
+    labs(x = "variable 1", y = "variable 2")
+```
+]
+
 ---
 
 # K-Means Clustering
