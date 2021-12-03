@@ -835,9 +835,7 @@ tsne_out$Y %>%
 
 - Apply t-SNE and inspect the output.
 
-- Create a data frame of t-SNE coordinates.
-
-Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
+- Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
 
 - Visualise the t-SNE projection.
 
@@ -1057,22 +1055,6 @@ knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 
 # Exercise
 
-## Cross-tabulation with ground truth
-
-- Cross-tabulate cluster labels with known labels.
-
-How many observations are mis-classified by K-means clustering?
-
-## Elbow plot
-
-- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
-
-Do you agree that 3 is the optimal number of clusters for this data set?
-
----
-
-# Exercise
-
 ## Hierarchical clustering
 
 - Perform hierarchical clustering using method `ward.D2`.
@@ -1136,6 +1118,22 @@ Color by cluster label.
 ### Bonus point
 
 - Add cluster centers to the plot.
+
+---
+
+# Exercise
+
+## Cross-tabulation with ground truth
+
+- Cross-tabulate cluster labels with known labels.
+
+How many observations are mis-classified by K-means clustering?
+
+## Elbow plot
+
+- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
+
+Do you agree that 3 is the optimal number of clusters for this data set?
 
 ---
 
