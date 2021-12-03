@@ -688,7 +688,7 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
 
 # Exercise
 
-## Apply Principal components analysis (PCA)
+## Apply Principal Components Analysis (PCA)
 
 The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
 
