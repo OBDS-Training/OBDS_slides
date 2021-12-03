@@ -898,12 +898,8 @@ Save the t-SNE plot as an object named `tsne_iris_species`.
 
 # K-Means Clustering
 
-<br/>
-
-.x-large-list[
 - Probably the most well known clustering algorithm (unsupervised).
 - Easy to understand and implement.
-]
 
 .pull-left[
 ## Pros
