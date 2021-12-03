@@ -988,7 +988,7 @@ airway_counts %>%
 
 To choose $k$, run multiple values and try to maximise `betweenss` / `totss`, which is a measure of how well the data is clustered.
 
-- **Sum of squares between clusters:** how close/far points are _between_ clusters (separation).
+- **Sum of squares between clusters:** how far points are _between_ clusters (separation).
 - **Sum of squares within clusters:** how close points are _within_ clusters (compactness).
 
 For good clustering we want small `sum(withinss)` and large `betweenss`, so this ratio we want to be as large as possible.
