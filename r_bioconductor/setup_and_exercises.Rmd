@@ -105,7 +105,7 @@ Source: <https://bioconductor.org/news/bioc_3_13_release/>
 
 - Learn more on each [package landing page](https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 
-  + Title, author / maintainer, short description, citation, installation instructions, …, download statistics.
+  + Title, authors, maintainer, short description, citation, installation instructions, …, download statistics.
 
 - All user-visible functions have help pages, most with runnable examples.
 
