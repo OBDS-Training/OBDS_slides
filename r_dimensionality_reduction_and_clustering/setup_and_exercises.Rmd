@@ -1106,7 +1106,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 ## K-means
 
-- Apply $K$-means clustering with $K$ set to 3 clusters.
+- Apply $K$-means clustering to `iris_features` with $K$ set to 3 clusters.
 
 - Inspect the output.
 
