@@ -1093,30 +1093,6 @@ knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 
 # Exercise
 
-## K-means
-
-- Apply K-means clustering with K set to 3 clusters.
-
-- Inspect the output.
-
-- Extract the cluster labels.
-
-- Extract the cluster centers.
-
-- Construct a data frame that includes the cluster label.
-
-- Plot the data set as a scatter plot.
-
-Color by cluster label.
-
-### Bonus point
-
-- Add cluster centers to the plot.
-
----
-
-# Exercise
-
 ## Cross-tabulation with ground truth
 
 - Cross-tabulate cluster labels with known labels.
@@ -1172,6 +1148,30 @@ How many clusters would you call from a visual inspection of the tree?
 ## Bonus point
 
 - Combine the plots of `dbscan` and `hdbscan` into a single plot.
+
+---
+
+# Exercise
+
+## K-means
+
+- Apply K-means clustering with K set to 3 clusters.
+
+- Inspect the output.
+
+- Extract the cluster labels.
+
+- Extract the cluster centers.
+
+- Construct a data frame that includes the cluster label.
+
+- Plot the data set as a scatter plot.
+
+Color by cluster label.
+
+### Bonus point
+
+- Add cluster centers to the plot.
 
 ---
 
