@@ -56,37 +56,26 @@ Heatmap(
 
 # Sources of variation in data
 
-<br/>
 
-.x-large-text[
 Difference in data (e.g., expression) can come from multiple sources:
-]
 
-.x-large-list[
 - Biological
+
 - Technical
-]
 
-.x-large-text[
 Either of those sources could be either:
-]
 
-.x-large-list[
 - Of interest to study
-- Considered a confounding covariate
-]
 
-.x-large-text[
-Depending on your research question.
-]
+- Considered a confounding covariate
+
+... depending on your research question.
 
 ---
 
 # Confounding
 
-.x-large-text[
 Experimental design is crucial to ensure that sources of interesting variation are not confounded with independent sources of uninteresting variation (e.g. technical).
-]
 
 .pull-left[
 ## Confounded
@@ -132,49 +121,28 @@ data.frame(
 
 # Feature selection
 
-<br/>
-
-.x-large-text[
 Many genes are not interesting because they don't vary much, or they
 don’t have enough counts.
-]
 
-<br/>
-
-.x-large-text[
 Filtering for feature selection is needed to:
-]
 
-.x-large-list[
 - Select genes that display useful variation.
+
 - Reduce memory usage and computational cost/time.
-]
 
 ---
 
 # Dimensionality reduction
 
-<br/>
-
-.x-large-text[
 We use dimensionality reduction methods to:
-]
 
-.x-large-list[
 - Find structure in the data.
 
 - Aid in visualization.
-]
 
-<br/>
-
-.x-large-text[
 Unsupervised learning helps finding groups of homogeneous items
-]
 
-.x-large-list[
 - Many approaches to do this (e.g. PCA, t-SNE, UMAP)
-]
 
 ---
 
