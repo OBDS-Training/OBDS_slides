@@ -273,7 +273,7 @@ get_age(kevin) # do that (if possible)
 
 ---
 
-# Bioconductor depend on each other
+# Bioconductor packages depend on each other
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
