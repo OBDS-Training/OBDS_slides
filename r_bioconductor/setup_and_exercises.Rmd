@@ -281,8 +281,6 @@ get_age(kevin) # do that (if possible)
 knitr::include_graphics("img/biocpkgtools-geoquery.gif")
 # Ideally, generate the figure using BiocPkgTools for package DESeq2
 ```
-
-`r BiocStyle::Biocpkg("BiocPkgTools")` `r Citep(bib, "biocpkgtools2019f1000")`
 ]
 
 .pull-right[
@@ -290,6 +288,8 @@ Data visualization of dependencies between all packages within one degree of the
 
 Links are colored based on type (Suggests [light blue], Depends [green], and Imports [red]) and arrows point to the “dependent” package.
 ]
+
+`r BiocStyle::Biocpkg("BiocPkgTools")` `r Citep(bib, "biocpkgtools2019f1000")`
 
 ---
 
