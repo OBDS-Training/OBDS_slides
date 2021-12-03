@@ -1057,13 +1057,14 @@ knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 
 ## Hierarchical clustering
 
-- Perform hierarchical clustering using method `ward.D2`.
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
 
 - Plot the clustering tree.
 
 How many clusters would you call from a visual inspection of the tree?
 
-- Color leaves by known species (use `dendextend`).
+- Bonus point: color leaves by known species (use `dendextend`).
 
 - Cut the tree in 3 clusters and extract the cluster labels.
 
