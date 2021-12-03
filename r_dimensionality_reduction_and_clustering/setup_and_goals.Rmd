@@ -1,0 +1,54 @@
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Dimensionality reduction and clustering
+</span></div>
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+options(width = 90)
+library(tidyverse)
+library(scRNAseq)
+library(ComplexHeatmap)
+library(kableExtra)
+library(scater)
+library(airway)
+library(reshape2)
+library(RColorBrewer)
+library(Rtsne)
+library(pvclust)
+library(pheatmap)
+library(cowplot)
+library(e1071)
+```
+
+---
+
+# Learning objectives
+
+## Learning goals
+
+- Describe dimensionality reduction and clustering methods.
+
+- Explain the difference between dimensionality reduction and clustering.
+
+- Learn how to use those methods as part of analytical workflow in R.
+
+## Learning objectives
+
+- Apply dimensionality reduction methods to data; visualise and compare results.
+
+- Identify and visualise features contributing most to principal components.
+
+- Apply clustering methods to data; visualise and compare results.
+
+- Integrate clustering and dimensionality reduction results for visualisation.

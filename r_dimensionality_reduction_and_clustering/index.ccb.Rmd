@@ -1,0 +1,41 @@
+---
+title: 'Dimensionality reduction and clustering'
+subtitle: 'in <i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2021-02-01 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, child='setup_and_goals.Rmd'}
+```
+
+---
+
+# Prerequisites
+
+<br/>
+
+.x-large-list[
+- A clone of the shared GitHub repository for this course.
+
+- A working installation of [R](https://www.r-project.org/) (4.0.3).
+
+- A working installation of [git](https://git-scm.com/).
+
+- A working installation of [RStudio](https://rstudio.com/).
+]
+
+---
+
+```{r, child='setup_and_exercises.Rmd'}
+```
