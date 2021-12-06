@@ -304,7 +304,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - What are the metadata columns available in the object?
 
-- Subset the annotations to the gene `ACTB`.
+- Use the function `subset()` to filter the annotations for the gene `ACTB`.
 
 - How many transcripts do the annotations describe for that gene?
 
