@@ -368,21 +368,15 @@ from the object.
 ## biomaRt
 
 - Load the package `r BiocStyle::Biocpkg("biomaRt")`.
-
 - Use the `listMarts()` function to list the BioMart databases to which the `r BiocStyle::Biocpkg("biomaRt")` package can connect.
-
 - Use the `listEnsemblArchives()` function to lists the available archived versions of Ensembl.
-
-- Use the `useMart()` function to create an object `mart` using the `"ENSEMBL_MART_ENSEMBL"` BioMart database and set the host `"https://may2021.archive.ensembl.org"`.
+- Use the `useMart()` function to create an object named `mart` using the `"ENSEMBL_MART_ENSEMBL"` BioMart database and set the host option to `"https://may2021.archive.ensembl.org"`.
   Why would one do that in practice?
-
 - Use the `listDatasets()` function to list the datasets available in the selected BioMart database.
   What is the identifier of the database that contains information for _Homo sapiens_?
-
 - Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
-
+- Use the `listAttributes()` function to list the fields of information available in the dataset.
 - Use the `getBM()` function to fetch the chromosome, start and end positions, and strand for the gene symbols that you stored as `human_symbols`.
-  Use `listAttributes()` to identify field names to fetch.
 
 ---
 
@@ -476,7 +470,7 @@ knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```{r, include=TRUE, results='hide'}
 library(SummarizedExperiment)
 demo_count_matrix <- matrix(
-  data = rbinom(8, 10, 0.3), nrow = 4, ncol = 2,
+  data = c(1, 2, 3, 4, 5, 6, 7, 8), nrow = 4, ncol = 2,
   dimnames = list(
     paste0("gene", 1:4),
     paste0("sample", 1:2)
@@ -505,7 +499,7 @@ What does the code above do?
 demo_se
 ```
 
-- Use the methods `assays()`, `assayNames()` `assay()`, `colData()`, `rowData()`, `mcols()` and `metadata()` on the object `demo_se`.
+Use the methods `assays()`, `assayNames()` `assay()`, `colData()`, `rowData()`, `mcols()` and `metadata()` on the object `demo_se`.
 
 What do those functions do?
 ]
