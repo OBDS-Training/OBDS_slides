@@ -265,6 +265,10 @@ mcols(demo_DataFrame)
 knitr::include_graphics("img/dataframe-mcols.svg")
 ```
 
+???
+
+- Note how row names are automatically set in the metadata, to the solumn names of the main `DataFrame`.
+
 ---
 
 # rtracklayer
