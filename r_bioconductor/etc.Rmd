@@ -19,7 +19,7 @@ knitr::include_graphics("img/biocmanager-update.png")
 - The `r BiocStyle::Biocpkg("Biostrings")` package provides the object `DNA_ALPHABET`.
   Print the object in the console and use the help page to explain the contents of the object.
 
-- The `r BiocStyle::Biocpkg("Biostrings")` package provides the function `luminaQuality()`.
+- The `r BiocStyle::Biocpkg("Biostrings")` package provides the function `IlluminaQuality()`.
   Run some code from the "Examples" section of the help page, and describe what the function does.
 
 - Access the package vignette(s).
