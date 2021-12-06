@@ -506,20 +506,7 @@ What do those functions do?
 
 ---
 
-# Exercise
 
-## Import SummarizedExperiment objects using tximeta
-
-- Load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
-
-The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at the location returned by the code `system.file("extdata/salmon_dm", package="tximportData")`.
-
-- Navigate to that location in the file explorer of your respective operating system, and examine its contents.
-
-- Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`, and read the help page of `makeLinkedTxome()`).
-
-- What other types of quantification programs does `tximeta` support?
-  Where do you find that information?
 
 ---
 
@@ -753,6 +740,23 @@ options(repos = BiocManager::repositories())
 
 - Run `options("repos")` again in your freshly opened <i class="fab fa-r-project"></i> session.
   What do you see now?
+
+---
+
+# Advanced
+
+## Import SummarizedExperiment objects using tximeta
+
+- Load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
+
+The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at the location returned by the code `system.file("extdata/salmon_dm", package="tximportData")`.
+
+- Navigate to that location in the file explorer of your respective operating system, and examine its contents.
+
+- Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`, and read the help page of `makeLinkedTxome()`).
+
+- What other types of quantification programs does `tximeta` support?
+  Where do you find that information?
 
 ---
 
