@@ -604,7 +604,7 @@ If the slots and methods are suitable to store and process another type of data,
 - Use the methods `reducedDimNames()`, `reducedDims()`, and `reducedDim()` on the object `demo_sce`.
   What do they do?
 
-- Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
+- **Bonus point:** Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
   Display and inspect the updated object.
 
 ---
