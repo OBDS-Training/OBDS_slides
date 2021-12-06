@@ -33,5 +33,38 @@ knit: pagedown::chrome_print
 
 ---
 
-```{r, child='setup_and_exercises.Rmd'}
+```{r, child='setup_and_philosophy.Rmd'}
+```
+
+---
+
+# Exercise
+
+## BiocManager
+
+On the CCB cluster, all the packages required for the course are already installed.
+As a result, you do not need (and should not) install any package yourself.
+
+> Instead, you should ask the system administrators to install or update packages for you.
+
+To give you an idea, what the system administrators did was:
+
+```{r, include=TRUE, echo=TRUE, eval=FALSE}
+install.packages("BiocManager")
+BiocManager::install("Biostrings")
+```
+
+The package `r BiocStyle::CRANpkg("BiocManager")` is the only official Bioconductor package on CRAN.
+It provides functions to install, update, and more generally manage your library of Bioconductor (and CRAN) packages.
+
+The function `BiocManager::install()` can install packages from Bioconductor, CRAN, and even GitHub.
+Here, we demonstrate it with a single package name.
+However, it was used to install a whole set of Bioconductor packages and their dependencies.
+
+- Run the function `BiocManager::valid()`.
+  What does it do?
+
+---
+
+```{r, child='biostrings_etc.Rmd'}
 ```
