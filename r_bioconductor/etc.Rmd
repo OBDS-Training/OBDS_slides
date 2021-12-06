@@ -348,17 +348,13 @@ The `OrgDb` family of packages provide annotations that link several types of id
 Each `OrgDb` package contains an object of the same name.
 
 - What is the class of the object?
-
 - Use the `columns()` method to discover which sorts of annotations can be extracted
 from the object.
-
 - Use the `keytypes()` method to discover which columns can be used to query information.
-
 - Use the `keys()` method to get the first six gene symbols in the database.
   Store as `human_symbols`.
-
-- Use the `select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
-
+- Use the `AnnotationDbi::select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
+  + What happens if you do not specify `AnnotationDbi`?
 - Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
 
 ---

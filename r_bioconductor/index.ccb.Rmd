@@ -45,7 +45,7 @@ knit: pagedown::chrome_print
 On the CCB cluster, all the packages required for the course are already installed.
 As a result, you do not need (and should not) install any package yourself.
 
-> Instead, you should ask the system administrators to install or update packages for you.
+> Instead, you should ask the CCB system administrators to install or update packages for you.
 
 To give you an idea, what the system administrators did essentially comes down to:
 
