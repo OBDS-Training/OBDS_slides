@@ -304,6 +304,22 @@ Links are colored based on type (Suggests [light blue], Depends [green], and Imp
 - Run the function `BiocManager::valid()`.
   What does it do?
 
+---
+
+# Updating Bioconductor packages
+
+```{r, include=TRUE, eval=FALSE}
+BiocManager::valid()
+```
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/biocmanager-update.png")
+```
+
+---
+
+# Exercise
+
 ## Use Bioconductor packages and help pages
 
 - Load the `r BiocStyle::Biocpkg("Biostrings")` package.
@@ -319,18 +335,6 @@ Links are colored based on type (Suggests [light blue], Depends [green], and Imp
 
 - Import sequences in the file `TruSeq3-PE-2.fa`.
   What is the class of the object?
-
----
-
-# Updating Bioconductor packages
-
-```{r, include=TRUE, eval=FALSE}
-BiocManager::valid()
-```
-
-```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("img/biocmanager-update.png")
-```
 
 ---
 
