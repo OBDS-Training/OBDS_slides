@@ -658,16 +658,35 @@ ehub["EH1433"]
 
 <a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" align="bottom" height="90px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
 
-- Load the package `r BiocStyle::Biocpkg("iSEE")`.
+.pull-left[
+Load the package `r BiocStyle::Biocpkg("iSEE")`.
 
-- Use the `iSEE()` function on the `SingleCellExperiment` object `eh1433`.
+Use the `iSEE()` function on the `SingleCellExperiment` object `eh1433`.
 
-- Load the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")`.
+Subset the object `eh1433` to remove cells where the sum of counts is `NA`.
 
-- Compute and add a PCA result to the object `eh1433`.
+.small-code[
+```{r, include=TRUE}
+eh1433 <- eh1433[, !is.na(colSums(assay(eh1433)))]
+```
+]
+]
 
-- Launch the `iSEE` GUI again.
-  What changed?
+.pull-right[
+Use the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")` to compute and add a PCA result to the object `eh1433`
+
+.small-code[
+```{r, include=TRUE}
+library(scuttle)
+library(scater)
+eh1433 <- logNormCounts(eh1433)
+eh1433 <- runPCA(eh1433)
+```
+]
+
+Launch the `iSEE` GUI again.
+What changed?
+]
 
 ---
 
@@ -744,7 +763,7 @@ The function `options()` can be used to get or set global options of the current
 
 - Run `BiocManager::repositories()`.
 
-The function returns a character vector that combines the URL of Bioconductor package repositories with those already present in `options("repos")`.
+The function reports the URLs from which to install Bioconductor and CRAN packages.
 
 - In an `.Rprofile` file -- either in your home directory or in the root of your RStudio project -- add the following line and restart the <i class="fab fa-r-project"></i> session.
 
@@ -752,8 +771,9 @@ The function returns a character vector that combines the URL of Bioconductor pa
 options(repos = BiocManager::repositories())
 ```
 
-- Run `options("repos")` again in your freshly opened <i class="fab fa-r-project"></i> session.
+- Run `options("repos")` again.
   What do you see now?
+  What does it mean?
 
 ---
 
@@ -765,7 +785,7 @@ options(repos = BiocManager::repositories())
 
 The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at the location returned by the code `system.file("extdata/salmon_dm", package="tximportData")`.
 
-- Navigate to that location in the file explorer of your respective operating system, and examine its contents.
+- Navigate to that location in the file explorer of your respective operating system, and examine its contents, in a text editor or your terminal application.
 
 - Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`, and read the help page of `makeLinkedTxome()`).
 
