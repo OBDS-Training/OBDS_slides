@@ -83,23 +83,23 @@ Requirements:
 
 | Activity                                      |  Time |
 |-----------------------------------------------|-------|
-| The Bioconductor project and resources        |  9:30 |
-| Installing Bioconductor packages              | 10:00 |
-| Using package documentation                   | 10:15 |
-| Updating packages                             | 10:30 |
-| BSgenome packages                             | 10:45 |
+| Setup                                         |  9:30 |
+| The Bioconductor project and resources        | 10:00 |
+| Exercise: the Bioconductor website            | 10:10 |
+| The Bioconductor philosophy                   | 10:30 |
+| Exercise: install Bioconductor packages       | 10:40 |
 | **Morning Break**                             | 10:50 |
-| GenomicRanges                                 | 11:00 |
-| DataFrame                                     | 11:30 |
-| rtracklayer                                   | 11:45 |
+| Biostrings                                    | 11:00 |
+| BSgenome                                      | 11:15 |
+| GRanges                                       | 11:30 |
+| DataFrame                                     | 11:45 |
+| rtracklayer                                   | 12:00 |
 | **Lunch Break**                               | 12:30 |
 | Annotation packages                           | 13:30 |
-| SummarizedExperiment                          | 14:00 |
-| tximeta                                       | 14:30 |
+| SummarizedExperiment                          | 14:30 |
 | **Afternoon Break**                           | 14:50 |
 | DESeq2                                        | 15:00 |
-| SingleCellExperiment                          | 15:15 |
-| Final advice                                  | 15:30 |
+| Bonus:SingleCellExperiment                    | 15:15 |
+| Bonus:ExperimentHub                           | 15:30 |
+| Bonus:iSEE                                    | 15:45 |
 | **Day End**                                   | 16:00 |
-| Bonus: ExperimentHub                          | NA:NA |
-| Bonus: iSEE                                   | NA:NA |
