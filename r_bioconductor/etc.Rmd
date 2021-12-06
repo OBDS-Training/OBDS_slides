@@ -175,7 +175,7 @@ Credits: Charlotte George
 
 ---
 
-# Accessing core information in GRanges
+# Accessing the contents of GRanges objects
 
 The functions `seqnames()`, `start()`, and `end()` access the components of the same name.
 
@@ -234,50 +234,36 @@ metadata(demo_granges)
 # Bioconductor has its own DataFrame class
 
 .pull-left[
-For example, take the metadata columns of the `demo_granges` object.
+A Bioconductor `DataFrame` is constructed like a base R `data.frame`.
 
 .small-code[
 ```{r, include=TRUE}
-demo_dataframe <- mcols(demo_granges)
-demo_dataframe
-```
-]
-
-The `DataFrame` itself could potentially have some metadata columns.
-
-.small-code[
-```{r, include=TRUE}
-mcols(demo_dataframe)
-```
-]
-
-Let's add some.
-
-.small-code[
-```{r, include=TRUE}
-mcols(demo_dataframe) <- DataFrame(a = c(1))
+library(S4Vectors)
+demo_DataFrame <- DataFrame(
+    column1 = c("A", "B"),
+    column2 = c(1, 2)
+)
+demo_DataFrame
 ```
 ]
 ]
 
 .pull-right[
-Note that a `DataFrame` object does not show its metadata like a `GRanges` does, but they do exist inside the object.
+However, a `DataFrame` can have additional metadata columns.
 
 .small-code[
 ```{r, include=TRUE}
-demo_dataframe
-mcols(demo_dataframe)
-```
-]
-
-What happens if we run the following? Why?
-
-.small-code[
-```{r, include=TRUE, eval=FALSE}
-mcols(demo_dataframe) <- DataFrame(a = c(1, 2))
+mcols(demo_DataFrame) <- DataFrame(
+  column_type = c("character", "numeric")
+)
+mcols(demo_DataFrame)
 ```
 ]
 ]
+
+```{r, include=TRUE, echo=FALSE, out.height='175px', fig.align='center'}
+knitr::include_graphics("img/dataframe-mcols.svg")
+```
 
 ---
 

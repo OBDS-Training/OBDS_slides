@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
   include = FALSE
 )
 options(width = 90)
-stopifnot(require(tidyverse))
+library(tidyverse)
+library(S4Vectors)
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
