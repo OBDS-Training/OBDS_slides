@@ -231,7 +231,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - Download the GTF file for human gene sets from <https://www.ensembl.org/info/data/ftp/index.html>
 
-- Install and load the `r BiocStyle::Biocpkg("rtracklayer")` package.
+- Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
 
 - Import the file in your <i class="fab fa-r-project"></i> session using the function `rtracklayer::import()`.
   Assign the object to the variable name `gtf_data`.
@@ -277,7 +277,7 @@ Each annotation package contains a database of information.
 
 The `OrgDb` family of packages provide annotations that link several types of identifiers for genes, proteins, and pathways (e.g. KEGG, Gene Ontology).
 
-- Install and load the package `r BiocStyle::Biocpkg("org.Hs.eg.db")`.
+- Load the package `r BiocStyle::Biocpkg("org.Hs.eg.db")`.
 
 Each `OrgDb` package contains an object of the same name.
 
@@ -301,7 +301,7 @@ from the object.
 
 ## biomaRt
 
-- Install and load the package `r BiocStyle::Biocpkg("biomaRt")`.
+- Load the package `r BiocStyle::Biocpkg("biomaRt")`.
 
 - Use the `listMarts()` function to list the BioMart databases to which the `r BiocStyle::Biocpkg("biomaRt")` package can connect.
 
@@ -450,7 +450,7 @@ What do those functions do?
 
 ## Import SummarizedExperiment objects using tximeta
 
-- Install and load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
+- Load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
 
 The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at the location returned by the code `system.file("extdata/salmon_dm", package="tximportData")`.
 
@@ -467,7 +467,7 @@ The help page of the `tximeta()` function refers to an example output of the Sal
 
 ## SummarizedExperiment extensions
 
-- Install and load the package `r BiocStyle::Biocpkg("DESeq2")`.
+- Load the package `r BiocStyle::Biocpkg("DESeq2")`.
 
 - Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
 
@@ -532,7 +532,7 @@ While developed with single-cell genomics in mind, it is not limited to that use
 Remember that classes are simply defined by their slots and methods.
 If the slots and methods are suitable to store and process another type of data, then go for it!
 
-- Install and load the package `r BiocStyle::Biocpkg("SingleCellExperiment")`.
+- Load the package `r BiocStyle::Biocpkg("SingleCellExperiment")`.
 
 - Convert your earlier `demo_se` to a `SingleCellExperiment` object, using the `as()` function.
   Call the object `demo_sce`.
@@ -597,11 +597,11 @@ ehub["EH1433"]
 
 <a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" align="bottom" height="90px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
 
-- Install and load the package `r BiocStyle::Biocpkg("iSEE")`.
+- Load the package `r BiocStyle::Biocpkg("iSEE")`.
 
 - Use the `iSEE()` function on the `SingleCellExperiment` object `eh1433`.
 
-- Install and load the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")`.
+- Load the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")`.
 
 - Compute and add a PCA result to the object `eh1433`.
 
