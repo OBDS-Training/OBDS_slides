@@ -100,7 +100,7 @@ However, it was used to install a whole set of Bioconductor packages and their d
 
 ## BSgenome packages
 
-- Load the package `BSgenome`.
+- Load the package `r BiocStyle::Biocpkg("BSgenome")`.
 
 - Use the function `BSgenome::available.genomes()`.
   What does it do?
