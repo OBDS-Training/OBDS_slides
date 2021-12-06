@@ -91,5 +91,33 @@ However, it was used to install a whole set of Bioconductor packages and their d
 
 ---
 
+```{r, child='bsgenome.Rmd'}
+```
+
+---
+
+# Exercise
+
+## BSgenome packages
+
+- Load the package `BSgenome`.
+
+- Use the function `BSgenome::available.genomes()`.
+  What does it do?
+
+- Install and load the package `BSgenome.Hsapiens.UCSC.hg38.masked`.
+
+- Assign the genome object provided in the package to a new object called `genome`.
+
+An E-box (enhancer box) is a DNA response element found in some eukaryotes that acts as a protein-binding site and has been found to regulate gene expression in neurons, muscles, and other tissues.
+
+The E-box motif is `"CANNTG"`.
+
+- Extract the sequence of chromosome Y.
+
+- Find out the appropriate method in the `r BiocStyle::Biocpkg("Biostrings")` and count the number of E-box motifs present on chromosome Y.
+
+---
+
 ```{r, child='etc.Rmd'}
 ```
