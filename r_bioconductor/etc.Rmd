@@ -506,7 +506,15 @@ What do those functions do?
 
 ---
 
+# Exercise
 
+## Assembling a SummarizedExperiment object
+
+- Import the matrix in the file `counts.csv`.
+
+- Import the data frames in the files `sample_metadata.csv` and `gene_metadata.csv`.
+
+- Use the `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
 
 ---
 
