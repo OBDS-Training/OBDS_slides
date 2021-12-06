@@ -1,9 +1,0 @@
-# Updating Bioconductor packages
-
-```{r, include=TRUE, eval=FALSE}
-BiocManager::valid()
-```
-
-```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("img/biocmanager-update.png")
-```
