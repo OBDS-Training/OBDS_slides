@@ -515,6 +515,7 @@ What do those functions do?
 - Import the data frames in the files `sample_metadata.csv` and `gene_metadata.csv`.
 
 - Use the `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
+  Call it `demo_se`.
 
 ---
 
@@ -525,8 +526,13 @@ What do those functions do?
 - Load the package `r BiocStyle::Biocpkg("DESeq2")`.
 
 - Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
+  Call the object `demo_deseq`.
+
+> Solution: `demo_deseq <- as(demo_se, "DESeqDataSet")`.
 
 - What are the slots of information present in the `DESeqDataSet` object?
+
+> Use the function `slotNames()`.
 
 - Which slots are new compared to the `SummarizedExperiment` object?
 
