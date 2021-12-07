@@ -1,3 +1,25 @@
+# Overview
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/overview-workflow.png")
+```
+
+---
+
+# Exercise
+
+## Import scRNA-seq data and create a Seurat object
+
+- Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory.
+  What class of object does the function return?
+
+- Have a look at the object and its structure.
+  What is a sparse matrix and how does it store data?
+
+- Create a Seurat object from the output of the `Read10X()` function.
+
+---
+
 # Further reading
 
 - TODO
