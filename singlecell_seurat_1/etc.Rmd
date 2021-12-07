@@ -10,6 +10,8 @@ knitr::include_graphics("img/overview-workflow.png")
 
 ## Import scRNA-seq data and create a Seurat object
 
+- Load the `r BiocStyle::CRANpkg("Seurat")` package.
+
 - Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory.
   What class of object does the function return?
 
