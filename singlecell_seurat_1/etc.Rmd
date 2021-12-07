@@ -96,6 +96,19 @@ knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-30
 
 ---
 
+# Advanced
+
+## Feature barcoding
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+## Source: http://en.biomarker.com.cn/platforms/10x-genomics
+knitr::include_graphics("img/feature-barcoding.png")
+```
+]
+
+---
+
 # References
 
 .small-text[
