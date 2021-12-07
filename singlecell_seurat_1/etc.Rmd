@@ -68,6 +68,29 @@ knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-30
 
 ---
 
+# Quantification
+
+## Cell Ranger (10x Genomics)
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+## Source: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count
+knitr::include_graphics("img/cellranger_count.png")
+```
+
+- Most of the time, you will start from FASTQ files.
+
+- [cellranger count](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count)
+  is the method officially supported by 10x Genomics.
+
+- Other methods include
+  [salmon alevin](https://salmon.readthedocs.io/en/latest/alevin.html) and
+  [kallisto | bustools](https://www.kallistobus.tools/).
+
+In all cases, the objective of quantification is to produce a matrix of UMI counts,
+for each feature and each barcode (i.e., cell).
+
+---
+
 # Exercise
 
 ## Import scRNA-seq data and create a Seurat object
