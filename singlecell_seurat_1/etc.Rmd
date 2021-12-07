@@ -89,6 +89,8 @@ knitr::include_graphics("img/cellranger_count.png")
 In all cases, the objective of quantification is to produce a matrix of UMI counts,
 for each feature and each barcode (i.e., cell).
 
+That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("Seurat")`.
+
 ---
 
 # Exercise
