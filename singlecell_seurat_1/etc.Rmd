@@ -1,8 +1,30 @@
 # Overview
 
 ```{r, include=TRUE, echo=FALSE}
+## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-workflow.png")
 ```
+
+---
+
+# Partitioning and barcoding
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://www.10xgenomics.com/instruments/chromium-controller
+knitr::include_graphics("img/overview-graphic-chromium-svg.svg")
+```
+]
+
+.pull-right[
+## GEM Generation & Barcoding
+
+- GEM: Gel bead-in EMulsions
+
+- Partition single cells, nuclei, or gDNA.
+
+- Objective: one GEM = one cell.
+]
 
 ---
 
