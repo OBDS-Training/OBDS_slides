@@ -93,6 +93,15 @@ That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("
 
 ---
 
+# Overview - Seurat workflow
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis.png")
+```
+
+---
+
 # Exercise
 
 ## Import scRNA-seq data and create a Seurat object
@@ -115,6 +124,15 @@ That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("
   How many features and barcodes are left in the Seurat object?
 
 - How many features and cells were filtered out when you created the Seurat object?
+
+---
+
+# Accessing the contents of a Seurat object
+
+Functions designed to access and interact the contents of a Seurat object were moved to a separate package
+called `r BiocStyle::CRANpkg("SeuratObject")`.
+
+- `DefaultAssay()` returns the name of the "active" assay, used by default if unspecified.
 
 ---
 
