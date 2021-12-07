@@ -10,7 +10,7 @@ knitr::include_graphics("img/overview-workflow.png")
 # Partitioning and barcoding
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
 ## Source: https://www.10xgenomics.com/instruments/chromium-controller
 knitr::include_graphics("img/overview-graphic-chromium-svg.svg")
 ```
@@ -24,6 +24,29 @@ knitr::include_graphics("img/overview-graphic-chromium-svg.svg")
 - Partition single cells, nuclei, or gDNA.
 
 - Objective: one GEM = one cell.
+]
+
+--
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+## Source: https://www.10xgenomics.com/products/single-cell-gene-expression
+knitr::include_graphics("img/barcoding.jpeg")
+```
+]
+
+.pull-right[
+## GEM Generation & Barcoding
+
+Gel beads coated with oligonucleotide barcodes.
+
+  + TruSeq primer (fixed)
+
+  + UMI barcode (unique, per bead)
+
+  + 10x barcode (fixed, per bead)
+
+  + A Poly(dT) tail (fixed)
 ]
 
 ---
