@@ -113,6 +113,8 @@ That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("
   Name the project `pbmc5k`.
   How many features and cells are left in the Seurat object?
 
+- How many features and cells were filtered out?
+
 ---
 
 # Further reading
