@@ -107,6 +107,14 @@ knitr::include_graphics("img/feature-barcoding.png")
 ```
 ]
 
+.pull-right[
+- Poly(dT)VN captures RNA molecules.
+
+- Additional capture sequences for other targets.
+
+- Targets must be barcoded with a complementary oligonucleotide.
+]
+
 ---
 
 # References
