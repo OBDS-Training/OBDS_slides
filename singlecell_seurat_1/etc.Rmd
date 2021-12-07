@@ -51,6 +51,18 @@ Gel beads coated with oligonucleotide barcodes.
 
 ---
 
+# Empty droplets and doublets
+
+Cells are loaded in a limiting dilution on the 10x Chromium controller, so that:
+
+- Most GEMs do not contain any cell.
+
+- Most of the GEMs that do contain a cell, contain a single cell.
+
+- The rate of GEMs that contain doublets (or more) is as small as technically possible.
+
+---
+
 # Exercise
 
 ## Import scRNA-seq data and create a Seurat object
