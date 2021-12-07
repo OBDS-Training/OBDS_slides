@@ -80,7 +80,7 @@ knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-30
 - Have a look at the object and its structure.
   What is a sparse matrix and how does it store data?
 
-- Create a Seurat object from the output of the `Read10X()` function.
+- How many features and barcodes (i.e., cells) are present in the data set?
 
 - Create a Seurat object from the object `read10x_data`.
   Include features detected in at least 3 cells,
