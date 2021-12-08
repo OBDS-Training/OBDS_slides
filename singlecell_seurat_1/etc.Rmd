@@ -318,6 +318,19 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 
 ---
 
+# Exercise
+
+## Quality control and visualisation
+
+- The library size and number of features detected per cell is already present in the Seurat object.
+  Use the function `VlnPlot()` to display them in a single violin plot.
+
+- Use the function `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
+  Store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
+  Visualise this new metric alongside the previous two in a new violin plot.
+
+---
+
 # Further reading
 
 - TODO
