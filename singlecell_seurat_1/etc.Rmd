@@ -230,9 +230,10 @@ Instead they are access using `@`, e.g. `seurat_object@project.name`.
 - `subset()` returns a new Seurat object restricted to certain features and cells.
 
 Those functions are often combined together, to achieve the desired result.
+For instance:
 
 ```{r, include=TRUE, eval=FALSE}
-seurat_subset <- subset(
+subset(
     x = seurat_object,
     cells = WhichCells(seurat_object, expression = LYZ > 500),
     features = VariableFeatures(object = seurat_object)
@@ -240,6 +241,9 @@ seurat_subset <- subset(
 ```
 
 - `merge()` combines the information from two Seurat objects into one.
+
+... and more miscellaneous functions such as `colMeans()`, `colSums()`, `rowMeans()` and `rowSums()`.
+See `help("Seurat-methods")`.
 
 ---
 
