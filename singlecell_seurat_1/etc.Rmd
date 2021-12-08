@@ -213,6 +213,9 @@ Instead they are access using `@`, e.g. `seurat_object@project.name`.
 - Instead, fetch the same column of metadata using `$`.
   What type of object do you get back this time?
 
+- Use the function `FetchData()` to access the library size and expression of the feature named `LYZ`.
+  What type of object do you get back?
+
 ---
 
 # Further reading
