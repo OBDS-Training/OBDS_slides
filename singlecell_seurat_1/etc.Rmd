@@ -147,6 +147,11 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `GetAssayData()` returns the (sparse) matrix for a given assay.
 
+- `[[` is used to access cell metadata.
+  Get all the metadata using empty brackets, i.e. `seurat_object[[]]`.
+
+- `FetchData()` is a versatile function that returns per-cell information (e.g., feature expression, dimensionality reduction coordinates, metadata).
+
 ---
 
 # Exercise
