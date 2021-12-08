@@ -239,6 +239,7 @@ seurat_subset <- subset(
 )
 ```
 
+- `merge()` combines the information from two Seurat objects into one.
 
 ---
 
