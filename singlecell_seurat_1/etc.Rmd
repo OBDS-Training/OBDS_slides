@@ -145,6 +145,17 @@ knitr::include_graphics("img/overview-analysis-import.png")
 
 ---
 
+# Contents of a Seurat object
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://github.com/satijalab/seurat/wiki/Seurat#slots
+knitr::include_graphics("img/seurat-slots.png")
+```
+
+<https://github.com/satijalab/seurat/wiki/Seurat#slots>
+
+---
+
 # Accessing the contents of a Seurat object
 
 Functions designed to access and interact the contents of a Seurat object were moved to a separate package
