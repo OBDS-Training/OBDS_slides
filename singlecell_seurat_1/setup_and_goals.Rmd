@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 options(width = 90)
 library(tidyverse)
 library(S4Vectors)
+source("preprocess.R")
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
