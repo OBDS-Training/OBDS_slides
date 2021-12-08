@@ -193,7 +193,7 @@ Instead they are access using `@`, e.g. `seurat_object@project.name`.
   What function do you use?
   Which arguments do you need to supply, and which ones are optional?
 
-- Display the entire data.frame of per-cell metadata.
+- Display the entire data.frame of per-cell metadata (at least the first six rows).
   What column names do you see?
 
 - Fetch one column of metadata using `[[`.
