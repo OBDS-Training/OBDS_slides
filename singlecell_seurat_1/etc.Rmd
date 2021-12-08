@@ -156,6 +156,17 @@ knitr::include_graphics("img/seurat-slots.png")
 
 ---
 
+# Assay objects
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://github.com/satijalab/seurat/wiki/Assay#slots
+knitr::include_graphics("img/seurat-assay-slots.png")
+```
+
+<https://github.com/satijalab/seurat/wiki/Assay#slots>
+
+---
+
 # Accessing the contents of a Seurat object
 
 Functions designed to access and interact the contents of a Seurat object were moved to a separate package
