@@ -93,6 +93,15 @@ That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("
 
 ---
 
+# cellranger count - outputs
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/output/overview
+knitr::include_graphics("img/cellranger_count_output.png")
+```
+
+---
+
 # Overview - Seurat workflow
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
