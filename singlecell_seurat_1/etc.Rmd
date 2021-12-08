@@ -145,6 +145,22 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `Assays()` returns the names of the available assays.
 
+- `GetAssayData()` returns the (sparse) matrix for a given assay.
+
+---
+
+# Exercise
+
+## Accessing the contents of a Seurat object
+
+- Query the name of the default assay in the Seurat object.
+
+- List the names of assays available in the Seurat object.
+
+- Get the RNA assay data.
+  What function do you use?
+  Which arguments are required, and which ones are optional?
+
 ---
 
 # Further reading
