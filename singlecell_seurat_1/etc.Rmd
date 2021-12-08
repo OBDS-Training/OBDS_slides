@@ -134,7 +134,8 @@ knitr::include_graphics("img/overview-analysis-import.png")
 
 - How many features and barcodes (i.e., cells) are present in the data set?
 
-- Create a Seurat object from the object `read10x_data`.
+- Create a Seurat object using the function `CreateSeuratObject()`
+  and the object `read10x_data`.
   Name the object `seurat_object`.
   Include features detected in at least 3 cells,
   and cells where at least 200 features detected.
@@ -215,6 +216,29 @@ Instead they are access using `@`, e.g. `seurat_object@project.name`.
 
 - Use the function `FetchData()` to access the library size and expression of the feature named `LYZ`.
   What type of object do you get back?
+
+---
+
+# Common operations on Seurat objects
+
+- `WhichCells()` returns the names of cells that match a logical expression.
+
+> e.g. `WhichCells(seurat_object, expression = LYZ > 500)`
+
+- `VariableFeatures()` returns the names of variable features (for a given assay, if computed).
+
+- `subset()` returns a new Seurat object restricted to certain features and cells.
+
+Those functions are often combined together, to achieve the desired result.
+
+```{r, include=TRUE, eval=FALSE}
+seurat_subset <- subset(
+    x = seurat_object,
+    cells = WhichCells(seurat_object, expression = LYZ > 500),
+    features = VariableFeatures(object = seurat_object)
+)
+```
+
 
 ---
 
