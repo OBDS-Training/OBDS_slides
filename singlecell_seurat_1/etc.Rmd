@@ -102,7 +102,16 @@ knitr::include_graphics("img/cellranger_count_output.png")
 
 ---
 
-# Overview - Seurat workflow
+# Seurat workflow - Overview
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis.png")
+```
+
+---
+
+# Seurat workflow - Create a Seurat object
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
@@ -147,10 +156,14 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `GetAssayData()` returns the (sparse) matrix for a given assay.
 
-- `[[` is used to access cell metadata.
+- `[[` is used to access one column of cell metadata as a `data.frame`.
   Get all the metadata using empty brackets, i.e. `seurat_object[[]]`.
 
+- `$` is used to access one column of cell metadata as a `vector`.
+
 - `FetchData()` is a versatile function that returns per-cell information (e.g., feature expression, dimensionality reduction coordinates, metadata).
+
+  + You will need to know the names of the variables available in the various components of your own Seurat object.
 
 ---
 
@@ -162,9 +175,16 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - List the names of assays available in the Seurat object.
 
-- Get the RNA assay data.
+- Display the first six rows of the RNA assay data.
   What function do you use?
-  Which arguments are required, and which ones are optional?
+  Which arguments do you need to supply, and which ones are optional?
+
+- Display the entire data.frame of per-cell metadata.
+  What column names do you see?
+
+- Fetch one column of metadata using `[[`.
+  What type of object do you get back?
+
 
 ---
 
