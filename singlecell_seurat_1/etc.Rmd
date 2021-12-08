@@ -143,6 +143,8 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `DefaultAssay()` returns the name of the "active" assay, used by default if unspecified.
 
+- `Assays()` returns the names of the available assays.
+
 ---
 
 # Further reading
