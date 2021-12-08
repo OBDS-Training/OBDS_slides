@@ -176,6 +176,9 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
   + You will need to know the names of the variables available in the various components of your own Seurat object.
 
+... but a lot of the slots do not have dedicated functions.
+Instead they are access using `@`, e.g. `seurat_object@project.name`.
+
 ---
 
 # Exercise
