@@ -193,6 +193,27 @@ Instead they are access using `@`, e.g. `seurat_object@project.name`.
 
 ---
 
+# Cell identities
+
+Seurat refers to cell identities as an umbrella for a number of things,
+from experimental conditions to cluster labels.
+
+- Sorted cells already have some form of identity.
+  
+- Clustering at different resolutions produce different set of labels.
+
+Seurat stores the "active" identity of cells in a dedicated slot of the object.
+
+- `Idents()` returns the "active" identity of the cells.
+
+- `Idents(seurat_object) <- "name"` assigns the metadata column called `"name"` as the active identity.
+
+- `SetIdent(object, cells = NULL, value)` can be used to assign a new identity to certain cells.
+
+See `help("Idents", package = "SeuratObject")`.
+
+---
+
 # Exercise
 
 ## Accessing the contents of a Seurat object
