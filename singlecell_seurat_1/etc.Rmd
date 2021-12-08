@@ -165,16 +165,16 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `Assays()` returns the names of the available assays.
 
-- `GetAssayData()` returns the (sparse) matrix for a given assay.
-
-- `[[` is used to access one column of cell metadata as a `data.frame`.
+- `[[` is a versatile function used to fetch one assay object or one column of cell metadata as a `data.frame`.
   Get all the metadata using empty brackets, i.e. `seurat_object[[]]`.
+
+- `FetchData()` is a generalised version of `[[` that returns per-cell information (e.g., feature expression, dimensionality reduction coordinates, metadata).
+
+> You will need to know the names of the variables available in the various components of your own Seurat object.
 
 - `$` is used to access one column of cell metadata as a `vector`.
 
-- `FetchData()` is a versatile function that returns per-cell information (e.g., feature expression, dimensionality reduction coordinates, metadata).
-
-  + You will need to know the names of the variables available in the various components of your own Seurat object.
+- `GetAssayData()` returns the (sparse) matrix for a given assay.
 
 ... but a lot of the slots do not have dedicated functions.
 Instead they are access using `@`, e.g. `seurat_object@project.name`.
