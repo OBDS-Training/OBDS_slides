@@ -338,7 +338,7 @@ PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 # Seurat visualisations
 
 .pull-left[
-## VlnPlot
+## VlnPlot()
 
 ```{r, include=TRUE, echo=FALSE}
 VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"))
@@ -346,7 +346,7 @@ VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"))
 ]
 
 .pull-right[
-## Number of features detected
+## FeatureScatter()
 
 ```{r, include=TRUE, echo=FALSE}
 FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
