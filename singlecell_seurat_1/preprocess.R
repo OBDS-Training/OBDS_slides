@@ -34,3 +34,19 @@ seurat_object <- NormalizeData(
     object = seurat_object,
     normalization.method = "LogNormalize"
 )
+
+# FindVariableFeatures ----
+
+seurat_object <- FindVariableFeatures(seurat_object, selection.method = "vst", nfeatures = 2000)
+
+# ScaleData ----
+
+seurat_object <- ScaleData(seurat_object)
+
+# RunPCA ----
+
+seurat_object <- RunPCA(seurat_object, features = VariableFeatures(object = seurat_object))
+
+# RunUMAP ----
+
+seurat_object <- RunUMAP(seurat_object, dims = 1:10)

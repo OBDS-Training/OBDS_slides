@@ -550,6 +550,21 @@ By nature, omics data sets survey a large number of features (e.g., tens of thou
     [ivis](https://doi.org/10.21105/joss.01596),
     etc.
 
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+Seurat::DoHeatmap(
+    object = seurat_object,
+    features = head(VariableFeatures(seurat_object), 100)
+)
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+DimPlot(seurat_object, reduction = "umap")
+```
+]
+
 ---
 
 # Exercise
