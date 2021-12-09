@@ -384,7 +384,9 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 ---
 
-# Normalisation strategies
+# Normalisation and transformation strategies
+
+## Standard transformation and normalisation methods
 
 - `NormalizeData()` provides a choice of standard normalisation strategies:
 
@@ -393,6 +395,14 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
   + `"CLR"`, assumes an overall fixed abundance in all cells.
   
   + `"RC"` (relative counts), `"LogNormalize"` without the "Log".
+
+- `ScaleData()` scales and centers features.
+
+  + Cell metadata and quality metrics can be regressed out to alleviate batch effects and technical artifacts.
+
+## [sctransform](https://github.com/ChristophH/sctransform/)
+
+- `SCTransform()` implements a new normalisation strategy that replaces the commands `NormalizeData()`, `ScaleData()`, and `FindVariableFeatures()`.
 
 ---
 
