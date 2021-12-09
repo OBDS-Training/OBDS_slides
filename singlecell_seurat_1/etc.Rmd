@@ -510,7 +510,7 @@ Many methods for downstream analysis work better when features are brought back 
 
 `ScaleData()` scales and centers features.
 
-- Cell metadata and quality metrics can be regressed out to alleviate batch effects and technical artifacts.
+- Cell metadata and quality metrics can be regressed out to remove unwanted sources of variation (e.g. batch effects and technical artifacts).
 
 ---
 
