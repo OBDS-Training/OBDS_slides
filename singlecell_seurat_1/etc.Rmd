@@ -304,7 +304,7 @@ knitr::include_graphics("img/overview-analysis-qc-filter.png")
 .pull-left[
 ## Library size
 
-```{r, include=TRUE, echo=FALSE}
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ggplot(seurat_object[[]], aes(nCount_RNA)) +
     geom_histogram(color = "black", fill = "grey", bins = 100) +
     cowplot::theme_cowplot()
@@ -314,7 +314,7 @@ ggplot(seurat_object[[]], aes(nCount_RNA)) +
 .pull-right[
 ## Number of features detected
 
-```{r, include=TRUE, echo=FALSE}
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ggplot(seurat_object[[]], aes(nFeature_RNA)) +
     geom_histogram(color = "black", fill = "grey", bins = 100) +
     cowplot::theme_cowplot()
@@ -345,16 +345,16 @@ PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 .pull-left[
 ## VlnPlot()
 
-```{r, include=TRUE, echo=FALSE}
-VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"))
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"), slot ="counts")
 ```
 ]
 
 .pull-right[
 ## FeatureScatter()
 
-```{r, include=TRUE, echo=FALSE}
-FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ", slot = "counts")
 ```
 ]
 
@@ -409,11 +409,53 @@ This is an advanced topic that will be discussed later in the course.
 
 ---
 
+# Log-normal and normal distributions
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+knitr::include_graphics("img/log_normal_and_normal_distributions.png")
+```
+
+- Many downstream methods work better with or require normal distributions.
+
+- Limits the impact of outliers on visualisations.
+
+---
+
+# Log-normalised feature data
+
+.pull-left[
+## Counts
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+ggplot(FetchData(seurat_object, vars = "LYZ", slot = "counts"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+```
+]
+
+.pull-right[
+## Log-normalised
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+```
+]
+
+---
+
 # Exercise
 
 ## Normalisation
 
 - Normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
+
+## Bonus
+
+- Visualise the distribution of raw counts and normalised data for a feature of your choice.
 
 ---
 
@@ -450,7 +492,9 @@ Many methods for downstream analysis work better when features are brought back 
 
 ## Variable features and scaling
 
-- Identify variable features.
+- Identify variable features in the normalised RNA assay of the Seurat object.
+  Use the `"vst"` method and select the 2,000 most variable features.
+  What does this subsetting do, and what are our motivations for doing it?
 
 - Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
 
