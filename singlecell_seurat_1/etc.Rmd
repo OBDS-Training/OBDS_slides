@@ -368,6 +368,9 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
 
 - Visualise a scatter plot of the proportion of mitochondrial UMIs against the library size in each cell.
 
+- Create a new Seurat object, called `seurat_after_qc`, that is subsetted to cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial features, and more than 1,500 features detected.
+  How many cells were removed in this step?
+
 ---
 
 # Further reading
