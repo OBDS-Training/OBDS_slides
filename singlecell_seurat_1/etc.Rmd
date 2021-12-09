@@ -470,7 +470,15 @@ knitr::include_graphics("img/overview-analysis-variable-scaling.png")
 
 # Identifying variable features
 
-TODO
+Motivations:
+
+- Variability = information.
+
+- Driving force for dimensionality reduction and clustering.
+
+`FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
+
+- Heteroscedasticity: feature with higher mean expression naturally have room for larger variance.
 
 ---
 
