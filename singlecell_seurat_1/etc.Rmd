@@ -366,6 +366,8 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
   Store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
   Visualise this new metric alongside the previous two in a new violin plot.
 
+- Visualise a scatter plot of the proportion of mitochondrial UMIs against the library size in each cell.
+
 ---
 
 # Further reading
