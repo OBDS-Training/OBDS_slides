@@ -146,7 +146,7 @@ knitr::include_graphics("img/overview-analysis-import.png")
 - Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory in an object named `read10x_data`.
   What class of object does the function return?
 
-- Have a look at the object and its structure (first six rows and columns).
+- Have a look at the object and its structure (first 15 rows and 6 columns).
   What is a sparse matrix and how does it store data?
 
 - How many features and barcodes (i.e., cells) are present in the data set?
