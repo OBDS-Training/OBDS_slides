@@ -225,7 +225,7 @@ Seurat stores the "active" identity of cells in a dedicated slot of the object.
 
 - `Idents(seurat_object) <- "name"` assigns the metadata column called `"name"` as the active identity.
 
-- `SetIdent(object, cells = NULL, value)` can be used to assign a new identity to certain cells.
+- `SetIdent(object, cells = NULL, value)` can be used to assign a new identity to certain cells, e.g.
 
 ```{r, include=TRUE, eval=FALSE}
 SetIdent(seurat_object, cells = 1:10, value = 'B')
