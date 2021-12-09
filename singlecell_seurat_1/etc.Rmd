@@ -197,7 +197,7 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 - `[[` is a versatile function used to fetch one assay object or one column of cell metadata as a `data.frame`.
   Get all the metadata using empty brackets, i.e. `seurat_object[[]]`.
 
-- `FetchData()` is a generalised version of `[[` that returns per-cell information (e.g., feature expression, dimensionality reduction coordinates, metadata).
+- `FetchData()` is a generalised version of `[[` that returns multiple pieces of per-cell information as a `data.frame` (e.g., feature expression, dimensionality reduction coordinates, metadata).
 
 > You will need to know the names of the variables available in the various components of your own Seurat object.
 
