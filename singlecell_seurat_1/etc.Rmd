@@ -567,6 +567,20 @@ DimPlot(seurat_object, reduction = "umap")
 
 ---
 
+# Dimensionality reduction in Seurat
+
+- `RunPCA()` runs a principal component analysis and stores the output inside the Seurat object itself.
+
+- `PCAPlot()` displays a scatter plot of two principal components.
+
+- `DimPlot()` is a versatile function used to plot any dimensionality reduction result available in the object, e.g.
+
+```{r, include=TRUE, eval=FALSE}
+DimPlot(..., reduction = "pca")
+```
+
+---
+
 # Exercise
 
 ## Dimensionality reduction
