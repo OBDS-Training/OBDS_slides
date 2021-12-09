@@ -318,6 +318,19 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 
 ---
 
+# Computing metrics for quality control
+
+- `PercentageFeatureSet()` computes the fraction of reads assigned to a subset of genes, for each cell.
+
+  + The function takes either a vector of feature names or a regex pattern to match feature names against.
+
+```{r, include=TRUE, eval=FALSE}
+PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
+```
+
+
+---
+
 # Exercise
 
 ## Quality control and visualisation
