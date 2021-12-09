@@ -353,6 +353,8 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
 ```
 ]
 
+... but you will likely use `r BiocStyle::CRANpkg("ggplot2")` to make publication quality plots.
+
 ---
 
 # Exercise
