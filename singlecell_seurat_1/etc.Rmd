@@ -537,7 +537,18 @@ knitr::include_graphics("img/overview-analysis-dimensionality.png")
 
 # Dimensionality reduction
 
-TODO
+By nature, omics data sets survey a large number of features (e.g., tens of thousands of known genes in the human genome).
+
+- High dimensionality prohibitively costly in time to generate and visualise all features.
+
+- Dimensionality reduction techniques identify/compute a smaller number of dimensions that summarise major axes of variation in the data.
+
+  + e.g.,
+    [PCA](https://doi.org/10.1080/14786440109462720),
+    [t-SNE](http://jmlr.org/papers/v9/vandermaaten08a.html),
+    [UMAP](https://doi.org/10.21105/joss.00861),
+    [ivis](https://doi.org/10.21105/joss.01596),
+    etc.
 
 ---
 
