@@ -400,7 +400,9 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 ## Normalisation and scaling
 
-- Normalise the Seurat object (after quality control) using the `"LogNormalize"` method.
+- Normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
+
+- Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
 
 ---
 
