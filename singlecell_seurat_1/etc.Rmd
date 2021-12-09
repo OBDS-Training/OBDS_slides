@@ -384,6 +384,26 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 ---
 
+# Normalisation strategies
+
+- `NormalizeData()` provides a choice of standard normalisation strategies:
+
+  + `"LogNormalize"`, based on the library size for each cell.
+  
+  + `"CLR"`, assumes an overall fixed abundance in all cells.
+  
+  + `"RC"` (relative counts), `"LogNormalize"` without the "Log".
+
+---
+
+# Exercise
+
+## Normalisation and scaling
+
+- Normalise the Seurat object (after quality control) using the `"LogNormalize"` method.
+
+---
+
 # Further reading
 
 - TODO
