@@ -146,7 +146,7 @@ knitr::include_graphics("img/overview-analysis-import.png")
 - Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory in an object named `read10x_data`.
   What class of object does the function return?
 
-- Have a look at the object and its structure.
+- Have a look at the object and its structure (first six rows and columns).
   What is a sparse matrix and how does it store data?
 
 - How many features and barcodes (i.e., cells) are present in the data set?
@@ -239,11 +239,11 @@ See `help("Idents", package = "SeuratObject")`.
 
 - List the names of assays available in the Seurat object.
 
-- Display the first six rows of the RNA assay data.
+- Display the first six rows and six columns of the RNA assay data.
   What function do you use?
   Which arguments do you need to supply, and which ones are optional?
 
-- Display the entire data.frame of per-cell metadata (at least the first six rows).
+- Display the entire data.frame of per-cell metadata (first six rows).
   What column names do you see?
 
 - Fetch one column of metadata using `[[`.
@@ -252,7 +252,7 @@ See `help("Idents", package = "SeuratObject")`.
 - Instead, fetch the same column of metadata using `$`.
   What type of object do you get back this time?
 
-- Use the function `FetchData()` to access the library size and expression of the feature named `"LYZ"`.
+- Use the function `FetchData()` to access the library size and expression of the feature named `"LYZ"` (first six rows).
   What type of object do you get back?
 
 ---
@@ -328,6 +328,7 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 ```
 
+- `VlnPlot()` produces a violin plot for a selection of per-cell metrics, including gene expression, quality control metrics, and dimensionality reduction results available in a Seurat object.
 
 ---
 
