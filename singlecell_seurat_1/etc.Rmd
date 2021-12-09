@@ -285,7 +285,7 @@ See `help("Seurat-methods")`.
 
 ---
 
-# Seurat workflow - Quality control
+# Seurat workflow - Quality control and filtering
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
@@ -396,23 +396,127 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
   
   + `"RC"` (relative counts), `"LogNormalize"` without the "Log".
 
-- `ScaleData()` scales and centers features.
-
-  + Cell metadata and quality metrics can be regressed out to alleviate batch effects and technical artifacts.
-
 ## [sctransform](https://github.com/ChristophH/sctransform/)
 
 - `SCTransform()` implements a new normalisation strategy that replaces the commands `NormalizeData()`, `ScaleData()`, and `FindVariableFeatures()`.
+
+This is an advanced topic that will be discussed later in the course.
 
 ---
 
 # Exercise
 
-## Normalisation and scaling
+## Normalisation
 
 - Normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
 
+---
+
+# Seurat workflow - Variable features and scaling
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-variable-scaling.png")
+```
+
+---
+
+# Identifying variable features
+
+TODO
+
+---
+
+# Scaling data
+
+Many methods for downstream analysis work better when features are brought back to a comparable range of values.
+
+- Features naturally present different dynamic ranges.
+
+- Biologically important features do not necessarily vary by a large absolute amount.
+
+`ScaleData()` scales and centers features.
+
+- Cell metadata and quality metrics can be regressed out to alleviate batch effects and technical artifacts.
+
+---
+
+# Exercise
+
+## Variable features and scaling
+
+- Identify variable features.
+
 - Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
+
+---
+
+# Seurat workflow - Dimensionality reduction
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-dimensionality.png")
+```
+
+---
+
+# Dimensionality reduction
+
+TODO
+
+---
+
+# Exercise
+
+## Dimensionality reduction
+
+TODO
+
+---
+
+# Seurat workflow - Clustering
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-clustering.png")
+```
+
+---
+
+# Clustering
+
+TODO
+
+---
+
+# Exercise
+
+## Clustering
+
+TODO
+
+---
+
+# Seurat workflow - Cluster markers
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-markers.png")
+```
+
+---
+
+# Identify cluster markers
+
+TODO
+
+---
+
+# Exercise
+
+## Identify cluster markers
+
+TODO
 
 ---
 
