@@ -187,7 +187,7 @@ knitr::include_graphics("img/seurat-assay-slots.png")
 
 # Accessing the contents of a Seurat object
 
-Functions designed to access and interact the contents of a Seurat object were moved to a separate package
+Functions designed to access and interact the contents of a Seurat object are stored in a separate package
 called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `DefaultAssay()` returns the name of the "active" assay, used by default if unspecified.
