@@ -328,7 +328,30 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 ```
 
-- `VlnPlot()` produces a violin plot for a selection of per-cell metrics, including gene expression, quality control metrics, and dimensionality reduction results available in a Seurat object.
+- `VlnPlot()` produces a violin plot for a selection of per-cell features, including gene expression, quality control metrics, and dimensionality reduction results available in a Seurat object.
+
+- `FeatureScatter()` produces a scatter plot of two per-cell features,
+  e.g., two features, a feature and quality control metric.
+
+---
+
+# Seurat visualisations
+
+.pull-left[
+## VlnPlot
+
+```{r, include=TRUE, echo=FALSE}
+VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"))
+```
+]
+
+.pull-right[
+## Number of features detected
+
+```{r, include=TRUE, echo=FALSE}
+FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ")
+```
+]
 
 ---
 
