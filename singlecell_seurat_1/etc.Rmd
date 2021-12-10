@@ -477,7 +477,7 @@ Motivations:
 - Driving force for dimensionality reduction and clustering.
 
 `FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
-Subsequently, `VariableFeaturePlot()` produces a "mean-variance" scatter plot good for diagnostics.
+Subsequently, `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
 
 - Heteroscedasticity: feature with higher mean expression naturally have room for larger variance.
 
