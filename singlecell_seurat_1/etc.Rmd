@@ -671,6 +671,26 @@ Clustering should be seen as a tool used to interpret data at different resoluti
 
 ---
 
+# Clustering in Seurat
+
+By nature, clustering requires algorithms to compare cells to one another.
+Increasingly large data sets are prohibitively costly in time and memory to compute the distance between every pair of data points.
+
+- `FindNeighbors()` identifies the $k$ nearest neighbours for each data point.
+  Subsequent steps will only consider those nearest neighbours, saving time and memory.
+
+- `FindClusters()` identifies clusters using an algorithm that processes a graph of shared nearest neighbours (SNN).
+
+## Implementation notes
+
+- `Graphs()` returns the names of available graphs in the Seurat object.
+
+- Cluster labels are stored as cell metadata.
+
+- The latest run `FindClusters()` overwrites the metadata column `seurat_clusters`, in addition to storing labels in its own column of metadata.
+
+---
+
 # Exercise
 
 ## Clustering
