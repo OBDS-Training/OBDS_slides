@@ -206,7 +206,7 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 - `GetAssayData()` returns the (sparse) matrix for a given assay.
 
 ... but a lot of the slots do not have dedicated functions.
-Instead they are access using `@`, e.g. `seurat_object@project.name`.
+Instead they are directly accessed using `@`, e.g. `seurat_object@project.name`.
 
 ---
 
