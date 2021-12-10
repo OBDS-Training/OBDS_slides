@@ -405,7 +405,7 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 - `SCTransform()` implements a new normalisation strategy that replaces the commands `NormalizeData()`, `ScaleData()`, and `FindVariableFeatures()`.
 
-This is an advanced topic that will be discussed later in the course.
+This is an advanced topic that will be demonstrated and discussed later in the course.
 
 ---
 
@@ -585,7 +585,9 @@ DimPlot(..., reduction = "pca")
 
 ## Dimensionality reduction
 
-TODO
+- Run a principal component analysis on the Seurat object.
+  Which features are used by the method in the default settings?
+  How could you change this?
 
 ---
 
