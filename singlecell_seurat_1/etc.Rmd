@@ -506,6 +506,7 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4}
 ggplot(HVFInfo(seurat_object), aes(mean, variance)) +
   geom_point() +
+  scale_x_log10() +
   cowplot::theme_cowplot()
 ```
 ]
