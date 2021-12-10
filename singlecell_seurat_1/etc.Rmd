@@ -583,7 +583,7 @@ DimPlot(seurat_object, reduction = "umap")
 - `DimPlot()` is a versatile function used to plot any dimensionality reduction result available in the object, e.g.
 
 ```{r, include=TRUE, eval=FALSE}
-DimPlot(..., reduction = "pca")
+DimPlot(..., reduction = "pca", ...)
 ```
 
 ---
