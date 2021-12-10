@@ -681,7 +681,7 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 - `FindClusters()` identifies clusters using an algorithm that processes a graph of shared nearest neighbours (SNN).
 
-## Implementation notes
+## Accessing results
 
 - `Graphs()` returns the names of available graphs in the Seurat object.
 
