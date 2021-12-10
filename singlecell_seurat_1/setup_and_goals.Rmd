@@ -33,6 +33,10 @@ BibOptions(
   hyperlink = "to.doc",
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
+NoCite(bib, "Hao2021")
+NoCite(bib, "Stuart2019")
+NoCite(bib, "Butler2018")
+NoCite(bib, "Satija2015")
 ```
 
 ---
