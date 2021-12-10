@@ -586,6 +586,8 @@ DimPlot(seurat_object, reduction = "umap")
 DimPlot(..., reduction = "pca", ...)
 ```
 
+- `Reductions()` returns the names of the available dimensionality reduction results.
+
 ---
 
 # Exercise
@@ -596,6 +598,16 @@ DimPlot(..., reduction = "pca", ...)
   Which features are used by the method in the default settings?
   How could you change this?
   How do you read the message output of the function `RunPCA()`?
+
+- List the names of dimensionality reduction results available in the Seurat object.
+
+- Use `PCAPlot()` or `DimPlot()` to produce a scatterplot of the first and second PCA components.
+
+- Extract the first and second PCA components from the Seurat object as a `data.frame`.
+
+## Bonus
+
+- Make a scatterplot of the first and second PCA components yourself using `r BiocStyle::CRANpkg("ggplot2")`.
 
 ---
 
