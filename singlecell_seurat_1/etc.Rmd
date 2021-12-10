@@ -346,6 +346,7 @@ PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 ## VlnPlot()
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
+Idents(seurat_object) <- "orig.ident"
 VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"), slot ="counts")
 ```
 ]
@@ -354,6 +355,7 @@ VlnPlot(seurat_object, features = c("nCount_RNA", "nFeature_RNA"), slot ="counts
 ## FeatureScatter()
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
+Idents(seurat_object) <- "orig.ident"
 FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ", slot = "counts")
 ```
 ]
@@ -588,6 +590,7 @@ Seurat::DoHeatmap(
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+Idents(seurat_object) <- "orig.ident"
 DimPlot(seurat_object, reduction = "umap")
 ```
 ]
@@ -710,6 +713,9 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
   Instead, set it to `0.5`.
   Do you expect more or fewer clusters following that change?
   What other parameters would you also try to experiment with?
+
+- Visualise the cluster labels on the UMAP scatter plot.
+  How would you describe the agreement between the UMAP layout and the clustering results?
 
 ---
 
