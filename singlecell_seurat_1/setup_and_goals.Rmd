@@ -59,4 +59,4 @@ NoCite(bib, "Satija2015")
 
 - Perform the steps of a Seurat workflow in a simple scenario.
 
-- Visualise, interpret, and discuss information produced at each step of a simple workflow.
+- Visualise, interpret, and discuss information produced at each step of a simple Seurat workflow.
