@@ -709,7 +709,7 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 - Then, compute the graph of nearest neighbours using the function `FindNeighbors()`.
   Which principal components are used by default?
-  Instead, ask the function to use principal components 1 through 20.
+  Instead, specify the number of components that you have chosen.
 
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
 
@@ -735,7 +735,27 @@ knitr::include_graphics("img/overview-analysis-markers.png")
 
 # Identify cluster markers
 
-TODO
+The interpretability of clusters relies on the ability to identify features acting as markers (positive or negative) that distinguish clusters from each other.
+
+- The quality of markers depends on the quality of clustering, which in turns depends on every choice made in earlier steps of the analysis.
+
+- Despite best efforts, clusters and markers might still reveal residual quality control issues left in the data set.
+
+.pull-left[
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.5")), aes(UMAP_1, UMAP_2, color = RNA_snn_res.0.5)) +
+    geom_point(size = 0.2) +
+    cowplot::theme_cowplot()
+```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_1, UMAP_2, color = CD3E)) +
+    geom_point(size = 0.2) +
+    cowplot::theme_cowplot()
+```
+]
 
 ---
 
