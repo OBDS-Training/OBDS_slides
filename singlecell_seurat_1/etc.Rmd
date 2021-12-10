@@ -606,6 +606,8 @@ DimPlot(seurat_object, reduction = "umap")
 DimPlot(..., reduction = "pca", ...)
 ```
 
+  + Other specialised functions are available, e.g. `TSNEPlot()`, `UMAPPlot()`.
+
 - `Reductions()` returns the names of the available dimensionality reduction results.
 
 ---
@@ -628,6 +630,8 @@ DimPlot(..., reduction = "pca", ...)
 ## Bonus
 
 - Make a scatterplot of the first and second PCA components yourself using `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Run the UMAP technique on the first 20 principal components stored in the Seurat object and visualise the result as a scatterplot.
 
 ---
 
