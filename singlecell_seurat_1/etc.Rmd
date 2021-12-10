@@ -739,7 +739,7 @@ The interpretability of clusters relies on the ability to identify features acti
 
 - The quality of markers depends on the quality of clustering, which in turns depends on every choice made in earlier steps of the analysis.
 
-- Despite best efforts, clusters and markers might still reveal residual quality control issues left in the data set.
+- Clustering, marker identification, and downstream analyses often form an iterative process to achieve sensible and interpretable results.
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
