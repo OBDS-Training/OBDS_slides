@@ -57,4 +57,13 @@ seurat_object <- FindNeighbors(seurat_object, dims = 1:10)
 
 # FindClusters ----
 
-seurat_object <- FindClusters(seurat_object, resolution = 0.5)
+seurat_object <- FindClusters(seurat_object, resolution = 0.3)
+
+# FindAllMarkers ----
+
+seurat_markers_all <- FindAllMarkers(
+    seurat_object,
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)

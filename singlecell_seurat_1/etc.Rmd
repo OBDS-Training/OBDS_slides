@@ -666,7 +666,7 @@ ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2")), aes(PC_1, PC_2)) +
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
-ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2", "RNA_snn_res.0.5")), aes(PC_1, PC_2, color = RNA_snn_res.0.5)) +
+ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2", "RNA_snn_res.0.3")), aes(PC_1, PC_2, color = RNA_snn_res.0.3)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
@@ -743,7 +743,7 @@ The interpretability of clusters relies on the ability to identify features acti
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
-ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.5")), aes(UMAP_1, UMAP_2, color = RNA_snn_res.0.5)) +
+ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.3")), aes(UMAP_1, UMAP_2, color = RNA_snn_res.0.3)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
@@ -773,6 +773,22 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 
 - `FeaturePlot()` is similar to `DimPlot()` but specialises in coloring data points with feature data (rather than cell metadata).
 
+- `DoHeatmap()` conveniently summarises the top markers for each cluster in a single view.
+
+---
+
+# Heat map of cluster markers
+
+```{r, include=TRUE, echo=FALSE, fig.height=7, fig.width=10}
+markers_top10_clusters <- seurat_markers_all %>%
+    group_by(cluster) %>%
+    top_n(n = 10, wt = avg_log2FC)
+DoHeatmap(
+    seurat_object,
+    features = markers_top10_clusters$gene
+)
+```
+
 ---
 
 # Exercise
@@ -792,6 +808,9 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 - Visualise the expression of the top 4 marker for cluster 3 on a UMAP layout.
 
 - Visualise the expression of those same 4 marker as a violin plot.
+
+- Use `DoHeatmap()` to visualise the top 10 (positive) markers for each cluster.
+  Hint: you may want to use the function `dplyr::group_by()`.
 
 ---
 
