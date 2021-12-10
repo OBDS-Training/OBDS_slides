@@ -613,6 +613,8 @@ DimPlot(..., reduction = "pca", ...)
 
 - `Reductions()` returns the names of the available dimensionality reduction results.
 
+- `ElbowPlot()` describes the amount of variance explained by the top principal components.
+
 ---
 
 # Exercise
@@ -702,13 +704,16 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 ## Clustering
 
-- First, compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- First, visualise the amount of variance explained the top principal components (number of your choice).
+  How many principal components would you use for downstream analyses?
+
+- Then, compute the graph of nearest neighbours using the function `FindNeighbors()`.
   Which principal components are used by default?
   Instead, ask the function to use principal components 1 through 20.
 
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
 
-- Then, compute cluster labels.
+- Finally, compute cluster labels.
   What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
   Do you expect more or fewer clusters following that change?
