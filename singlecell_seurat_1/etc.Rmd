@@ -476,11 +476,6 @@ Motivations:
 
 - Driving force for dimensionality reduction and clustering.
 
-`FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
-Subsequently, `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
-
-- Heteroscedasticity: feature with higher mean expression naturally have room for larger variance.
-
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4}
 ggplot(FetchData(seurat_object, vars = "RPL22", slot = "data"), aes(RPL22)) +
@@ -498,6 +493,11 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
     cowplot::theme_cowplot()
 ```
 ]
+
+`FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
+Subsequently, `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
+
+Heteroscedasticity: feature with higher mean expression naturally have room for larger variance.
 
 ---
 
@@ -625,7 +625,6 @@ knitr::include_graphics("img/overview-analysis-clustering.png")
 Although we process individual cells, patterns only emerge when we identify and consider groups of related cells.
 
 - e.g., cell types, sub-types, activation states.
-
 - even continuous trajectories measured as pseudotime often rely on known stages and bottlenecks.
 
 .pull-left[
@@ -642,6 +641,12 @@ ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2", "RNA_snn_res.0.5")), ae
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
+]
+
+.center[
+There is no "correct" clustering.
+
+Clustering should be seen as a tool used to interpret data at different resolutions.
 ]
 
 ---
