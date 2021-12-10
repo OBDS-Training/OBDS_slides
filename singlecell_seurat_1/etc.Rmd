@@ -595,6 +595,7 @@ DimPlot(..., reduction = "pca", ...)
 - Run a principal component analysis on the Seurat object.
   Which features are used by the method in the default settings?
   How could you change this?
+  How do you read the message output of the function `RunPCA()`?
 
 ---
 
