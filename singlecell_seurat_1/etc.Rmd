@@ -779,7 +779,8 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 
 # Heat map of cluster markers
 
-```{r, include=TRUE, echo=FALSE, fig.height=7, fig.width=10}
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=7, fig.width=10}
+Idents(seurat_object) <- "RNA_snn_res.0.3"
 markers_top10_clusters <- seurat_markers_all %>%
     group_by(cluster) %>%
     top_n(n = 10, wt = avg_log2FC)
