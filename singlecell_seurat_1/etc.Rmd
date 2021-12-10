@@ -546,7 +546,7 @@ knitr::include_graphics("img/overview-analysis-dimensionality.png")
 
 By nature, omics data sets survey a large number of features (e.g., tens of thousands of known genes in the human genome).
 
-- High dimensionality prohibitively costly in time to generate and visualise all features.
+- High dimensionality is prohibitively costly in time to generate and visualise all (pairs of) features.
 
 - Dimensionality reduction techniques identify/compute a smaller number of dimensions that summarise major axes of variation in the data.
 
