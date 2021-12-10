@@ -523,6 +523,12 @@ Many methods for downstream analysis work better when features are brought back 
   Use the `"vst"` method and select the 2,000 most variable features.
   What does this subsetting do, and what are our motivations for doing it?
 
+- What is the function to display the name of variable features in a Seurat object (first ten)?
+  How can you control which assay the variable features are pull from?
+
+- Use the function `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
+  How would you use this plot?
+
 - Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
 
 ---
