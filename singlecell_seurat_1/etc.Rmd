@@ -817,7 +817,9 @@ DoHeatmap(
 
 # Further reading
 
-- TODO
+- [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html)
+
+and many more tutorials in the [Seurat documentation website](https://satijalab.org/seurat/index.html).
 
 ---
 
