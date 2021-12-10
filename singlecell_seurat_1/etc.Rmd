@@ -759,6 +759,21 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 
 ---
 
+# Heat map of cluster markers
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=7, fig.width=10}
+Idents(seurat_object) <- "RNA_snn_res.0.3"
+markers_top10_clusters <- seurat_markers_all %>%
+    group_by(cluster) %>%
+    top_n(n = 10, wt = avg_log2FC)
+DoHeatmap(
+    seurat_object,
+    features = markers_top10_clusters$gene
+)
+```
+
+---
+
 # Identifying cluster markers in Seurat
 
 - `FindAllMarkers()` tests features for differential expression between each cell identity and all other cell identities.
@@ -774,21 +789,6 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 - `FeaturePlot()` is similar to `DimPlot()` but specialises in coloring data points with feature data (rather than cell metadata).
 
 - `DoHeatmap()` conveniently summarises the top markers for each cluster in a single view.
-
----
-
-# Heat map of cluster markers
-
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=7, fig.width=10}
-Idents(seurat_object) <- "RNA_snn_res.0.3"
-markers_top10_clusters <- seurat_markers_all %>%
-    group_by(cluster) %>%
-    top_n(n = 10, wt = avg_log2FC)
-DoHeatmap(
-    seurat_object,
-    features = markers_top10_clusters$gene
-)
-```
 
 ---
 
