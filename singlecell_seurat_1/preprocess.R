@@ -50,3 +50,11 @@ seurat_object <- RunPCA(seurat_object, features = VariableFeatures(object = seur
 # RunUMAP ----
 
 seurat_object <- RunUMAP(seurat_object, dims = 1:10)
+
+# FindNeighbors ----
+
+seurat_object <- FindNeighbors(seurat_object, dims = 1:10)
+
+# FindClusters ----
+
+seurat_object <- FindClusters(seurat_object, resolution = 0.5)
