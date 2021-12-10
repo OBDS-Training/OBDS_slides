@@ -658,17 +658,15 @@ Although we process individual cells, patterns only emerge when we identify and 
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
-ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2")), aes(PC_1, PC_2)) +
-    geom_point(size = 0.2) +
-    cowplot::theme_cowplot()
+Idents(seurat_object) <- "orig.ident"
+UMAPPlot(seurat_object)
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
-ggplot(FetchData(seurat_object, vars = c("PC_1", "PC_2", "RNA_snn_res.0.3")), aes(PC_1, PC_2, color = RNA_snn_res.0.3)) +
-    geom_point(size = 0.2) +
-    cowplot::theme_cowplot()
+Idents(seurat_object) <- "RNA_snn_res.0.3"
+UMAPPlot(seurat_object, label = TRUE, label.size = 8)
 ```
 ]
 
@@ -689,6 +687,8 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
   Subsequent steps will only consider those nearest neighbours, saving time and memory.
 
 - `FindClusters()` identifies clusters using an algorithm that processes a graph of shared nearest neighbours (SNN).
+
+- `DimPlot(..., label = TRUE, ...)` adds active identities as labels at the average coordinate of each group of cells.
 
 ## Accessing results
 
