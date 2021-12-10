@@ -403,7 +403,7 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
   
   + `"RC"` (relative counts), `"LogNormalize"` without the "Log".
 
-## [sctransform](https://github.com/ChristophH/sctransform/)
+## sctransform
 
 - `SCTransform()` implements a new normalisation strategy that replaces the commands `NormalizeData()`, `ScaleData()`, and `FindVariableFeatures()`.
 
