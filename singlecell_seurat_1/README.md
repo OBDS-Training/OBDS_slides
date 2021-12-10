@@ -91,24 +91,13 @@ Requirements:
 | Single-cell genomics                          | 10:00 |
 | Import data and create a Seurat object        | 10:15 |
 | **Morning Break**                             | 10:50 |
-| Quality control and visualisation             | 11:00 |
+| Quality control, visualisation and filtering  | 11:00 |
+| Normalisation                                 | 12:00 |
 | **Lunch Break**                               | 12:30 |
-|                                               | 00:00 |
+| Highly variable features and scaling          | 13:30 |
+| Dimensionality reduction and visualisation    | 14:15 |
 | **Afternoon Break**                           | 14:50 |
-|                                               | 00:00 |
+| Clustering                                    | 15:00 |
+| Cluster markers and visualisation             | 15:15 |
+| End-of-day GitHub wrap-up                     | 15:45 |
 | **Day End**                                   | 16:00 |
-
-
-| Activity                                                       |  Time |
-|----------------------------------------------------------------|-------|
-| Lecture slides                                                 |  9:30 |
-| Download data                                                  | 10:30 |
-| **Morning Break**                                              | 10:50 |
-| Generate Seurat object                                         | 11:00 |
-| Quality control                                                | 11:30 |
-| **Lunch Break**                                                | 12:30 |
-| Normalisation and dimensionality reduction (gene expression)   | 13:30 |
-| Clustering (gene expression)                                   | 14:20 |
-| **Afternoon Break**                                            | 14:50 |
-| DE analysis                                                    | 15:00 |
-| **Day End**                                                    | 16:00 |
