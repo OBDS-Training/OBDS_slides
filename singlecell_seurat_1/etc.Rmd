@@ -609,7 +609,7 @@ DimPlot(seurat_object, reduction = "umap")
 DimPlot(..., reduction = "pca", ...)
 ```
 
-  + Other specialised functions are available, e.g. `TSNEPlot()`, `UMAPPlot()`.
+- Other specialised functions are available, e.g. `TSNEPlot()`, `UMAPPlot()`.
 
 - `Reductions()` returns the names of the available dimensionality reduction results.
 
@@ -759,11 +759,39 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 
 ---
 
+# Identifying cluster markers in Seurat
+
+- `FindAllMarkers()` tests features for differential expression between each cell identity and all other cell identities.
+
+- `FindMarkers()` performs a single comparison between two sets of cells.
+
+  + If only one group of cells is given, it is implied that the second group comprises every other cell in the data set.
+
+- `FindConservedMarkers()` takes an additional grouping variable from the cell metadata (e.g., batch),
+  performs differential expression for each cluster within each level of the grouping variable, 
+  and identifies markers that are robust for each cell identity across the groups.
+
+- `FeaturePlot()` is similar to `DimPlot()` but specialises in coloring data points with feature data (rather than cell metadata).
+
+---
+
 # Exercise
 
 ## Identify cluster markers
 
-TODO
+- Identify positive markers for all clusters,
+  filtering markers that are detected in at least 25% of the cluster,
+  and with a log fold-change greater than `0.25`.
+  How do you control the set of clusters that are used?
+
+- How do you read the contents of the object `seurat_markers_all`?
+  How do you know which features are the markers of each cluster?
+
+- Filter and display the top 10 markers for cluster 3.
+
+- Visualise the expression of the top 4 marker for cluster 3 on a UMAP layout.
+
+- Visualise the expression of those same 4 marker as a violin plot.
 
 ---
 
