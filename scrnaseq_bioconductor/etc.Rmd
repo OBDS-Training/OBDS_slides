@@ -384,6 +384,56 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 ---
 
+# Bioconductor workflow - Dimensionality reduction
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-dimensionality.png")
+```
+
+---
+
+# Dimensionality reduction in Bioconductor
+
+The package `r BiocStyle::Biocpkg("scater")` provides wrappers for several common dimensionality reduction methods.
+
+Those include:
+
+- `scater::runPCA()`
+
+- `scater::runTSNE()`
+
+- `scater::runUMAP()`
+
+## Important notes
+
+- Those methods generally use only a subset most variable features, not the entire dataset.
+- By default, `runTSNE()` performs a PCA step first, the result of which the first 50 PCs are used as input for the t-SNE algorithm.
+- By default, `runUMAP()` performs a PCA step first, of which the first 50 PCs are used as input into the UMAP algorithm.
+
+---
+
+# Exercise
+
+## Dimensionality reduction
+
+- Apply PCA to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
+
+**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+
+- Apply UMAP on the output of the PCA.
+
+**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
+
+- Visualise the layout of cells produced by each of those dimensionality reduction methods.
+  Considering coloring points with quality control metrics.
+
+## Bonus point
+
+- use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+
+---
+
 # Clustering
 
 - `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
@@ -393,25 +443,6 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 # Differential expression
 
 - `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
-
----
-
-# Dimensionality reduction in Bioconductor
-
-The package `r BiocStyle::Biocpkg("scater")` provides wrappers for several common dimensionality reduction methods.
-Those include:
-
-.x-large-list[
-- `scater::runPCA()`
-- `scater::runTSNE()`
-- `scater::runUMAP()`
-]
-
-## Important notes:
-
-- Those methods generally use only a subset most variable features, not the entire dataset.
-- By default, `runTSNE()` performs a PCA step first, the result of which the first 50 PCs are used as input for the t-SNE algorithm.
-- By default, `runUMAP()` performs a PCA step first, of which the first 50 PCs are used as input into the UMAP algorithm.
 
 ---
 
@@ -507,27 +538,6 @@ shiny::runApp(app, port=1234)
 .footnote[
 <https://youtu.be/0crFZLwAJOE>
 ]
-
----
-
-# Exercise step 5. Dimensionality reduction
-
-- Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
-
-- Start with PCA.
-
-**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
-
-- Continue with UMAP or t-SNE.
-
-**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
-
-- Visualise the layout of cells produced by each of those dimensionality reduction methods.
-  Considering coloring points with quality control metrics.
-
-## Bonus point
-
-- use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
 
 ---
 
