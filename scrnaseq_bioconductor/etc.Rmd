@@ -171,7 +171,7 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 
 ---
 
-# Bioconductor single-cell workflow - Overview
+# Bioconductor workflow - Overview
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
@@ -180,7 +180,7 @@ knitr::include_graphics("img/overview-analysis.png")
 
 ---
 
-# Bioconductor single-cell workflow - Import
+# Bioconductor workflow - Import
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
@@ -225,7 +225,7 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ---
 
-# Bioconductor single-cell workflow - QC & filtering
+# Bioconductor workflow - Quality control and filtering
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
@@ -240,15 +240,15 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 ## Quality-control
 
-- `scater::perCellQCMetrics()` and `scater::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples).
+- `scater::perCellQCMetrics()` and `scater::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples), and returns them as columns of a `DataFrame`.
 
-- `scater::addPerCellQC()` and `scater::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively, rather than returning them as a new `DataFrame`.
+- `scater::addPerCellQC()` and `scater::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively.
 
 ## Visualisation
 
-- `scater::plotScater()` and other functions can help you visualise quality metrics.
+- `scater::plotScater()` and other functions `scater::plot...()` can help you visualise different aspects of the data set.
 
-- `r BiocStyle::CRANpkg("ggplot2")` gives you the greatest flexibility to visualise information stored in the `colData()` and `rowData()` (you will need to convert from `DataFrame` to `data.frame`).
+... but you can also use `r BiocStyle::CRANpkg("ggplot2")` to visualise information stored as `DataFrame` in the `colData()` and `rowData()` (Note: you will first need to convert from `DataFrame` to `data.frame`).
 
 ---
 
@@ -274,6 +274,15 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 ---
 
+# Bioconductor workflow - Normalisation
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-qc-filter.png")
+```
+
+---
+
 # scran: Methods for single-cell RNA-seq data analysis
 
 The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")` provide a range of methods focused on the normalisation and preprocessing of single-cell gene expression data.
@@ -289,6 +298,21 @@ Some examples are presented below.
 - `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
 
 `r NoCite(bib, "lun2016workflow")`
+
+---
+
+# Exercise step 3. Normalisation
+
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
+
+**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
+  What is the return value?
+  Where can you find the normalised counts?
+
+- Plot the variance against the mean of each gene.
+
+**Note:** how can you tell whether the normalisation was effective?
+  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
 
 ---
 
@@ -444,21 +468,6 @@ shiny::runApp(app, port=1234)
 .footnote[
 <https://youtu.be/0crFZLwAJOE>
 ]
-
----
-
-# Exercise step 3. Normalisation
-
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
-
-**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
-  What is the return value?
-  Where can you find the normalised counts?
-
-- Plot the variance against the mean of each gene.
-
-**Note:** how can you tell whether the normalisation was effective?
-  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
 
 ---
 
