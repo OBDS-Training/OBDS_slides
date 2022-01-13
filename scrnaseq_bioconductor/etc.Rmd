@@ -362,6 +362,28 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 
 ---
 
+# Exercise
+
+## Feature selection
+
+Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
+
+- Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
+  What is the output?
+
+- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
+
+**Note:** How do you interpret those different values?
+
+- Use `scran::getTopHVGs()` to identify highly variable genes.
+
+**Note:** what is the output?
+  How many genes do you identify?
+  Where are those genes located in the mean-variance plot?
+  What happens to this plot if you set more stringent thresholds to define highly variable genes?
+
+---
+
 # Clustering
 
 - `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
@@ -485,26 +507,6 @@ shiny::runApp(app, port=1234)
 .footnote[
 <https://youtu.be/0crFZLwAJOE>
 ]
-
----
-
-# Exercise step 4. Feature selection
-
-Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
-
-- Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
-  What is the output?
-
-- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
-
-**Note:** How do you interpret those different values?
-
-- Use `scran::getTopHVGs()` to identify highly variable genes.
-
-**Note:** what is the output?
-  How many genes do you identify?
-  Where are those genes located in the mean-variance plot?
-  What happens to this plot if you set more stringent thresholds to define highly variable genes?
 
 ---
 
