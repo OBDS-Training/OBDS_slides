@@ -300,42 +300,6 @@ The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")
 
 ---
 
-# Exercise
-
-## Normalisation
-
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
-
-**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
-  What is the return value?
-  Where can you find the normalised counts?
-
-- Plot the variance against the mean of each gene.
-
-**Note:** how can you tell whether the normalisation was effective?
-  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
-
-- When would you rather use `scater::computeSumFactors()` instead?
-
----
-
-# TODO
-
-### Feature selection
-
-- `scran::modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
-- `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
-
-### Clustering
-
-- `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
-
-### Differential expression
-
-- `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
-
----
-
 # scran: Deconvoluting size factors from cell pools
 
 .pull-left[
@@ -357,6 +321,56 @@ knitr::include_graphics("https://media.springernature.com/full/springer-static/i
 `r Citet(bib, "lun2016pooling")`
 ]
 ]
+
+---
+
+# Exercise
+
+## Normalisation
+
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
+
+**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
+  What is the return value?
+  Where can you find the normalised counts?
+
+- Plot the variance against the mean of each gene.
+
+**Note:** how can you tell whether the normalisation was effective?
+  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
+
+- When would you rather use `scater::computeSumFactors()` instead?
+
+---
+
+# Bioconductor workflow - Feature selection
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-variable-features.png")
+```
+
+---
+
+# Feature selection
+
+The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflow to identify and select features that display a high amount of biological variance.
+
+- `scran::modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
+
+- `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
+
+---
+
+# Clustering
+
+- `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
+
+---
+
+# Differential expression
+
+- `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
 
 ---
 
