@@ -1,0 +1,61 @@
+layout: true
+
+<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
+
+<div class="my-footer"><span>
+Kevin Rue-Albrecht
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Single-cell RNA-seq analysis using Bioconductor
+</span></div> 
+
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE,
+  include = FALSE
+)
+options(width = 90)
+stopifnot(require(tidyverse))
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+- Understand the differences between Bioconductor and CRAN.
+
+- Describe common Bioconductor data structures for single-cell data sets.
+
+- Understand the relationship with other single-cell software
+  (e.g. [Seurat](https://satijalab.org/seurat/), [Scanpy](https://scanpy.readthedocs.io/en/stable/)).
+
+## Learning objectives
+
+- Write a workflow that analyses single-cell RNA-sequencing data using Bioconductor packages.
+
+- Import single-cell data from files into the R session.
+
+- Perform basic quality control and filter cells and features.
+
+- Normalise single-cell data and inspect the results.
+
+- Apply clustering methods and visualise the results.
+
+- Identify markers for each cluster and visualise their expression.

@@ -1,0 +1,81 @@
+---
+title: 'Single-cell RNA-seq analysis using Bioconductor'
+subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2022-02-09 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, child='goals_and_objectives.Rmd'}
+```
+
+---
+
+# Prerequisites
+
+- An account on the CCB cluster.
+
+- A clone of the shared GitHub repository for this course.
+
+---
+
+# Set up
+
+- Checkout and pull the main branch of the shared repository.
+
+> We have added some files to get you started.
+
+- Create a new branch in the Git repository. Use your username and the date to make it unique.
+
+- Make a copy of the file `template.Rmd` for this lesson. Use your username to make it unique.
+
+> e.g. `cp template.Rmd template_kevinrue.Rmd`
+
+- Open your copy of the notebook in RStudio.
+
+- Follow along, running and writing code from the notebook as mentioned during the lesson.
+
+## Note
+
+At the end of the day, you will have a chance to commit and push your own notebook to GitHub.
+_Do not_ work in the template solution notebook, to avoid Git conflicts.
+
+---
+
+```{r, child='import.Rmd'}
+```
+
+---
+
+# Exercise
+
+## Import scRNA-seq data and create a SingleCellExperiment object
+
+Input files are located in `/project/obds/shared/resources/4_r_single_cell/bioconductor_singlecell`.
+
+- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+
+**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
+  Check the difference without using the `samples` argument.
+
+- Print a summary representation of the object.
+  What can you tell about the contents of the object?
+
+- What can you tell from the object metadata?
+
+**Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
+
+---
+
+```{r, child='etc.Rmd'}
+```
