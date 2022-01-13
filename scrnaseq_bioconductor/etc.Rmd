@@ -393,7 +393,7 @@ knitr::include_graphics("img/overview-analysis-dimensionality.png")
 
 ---
 
-# Dimensionality reduction in Bioconductor
+# Dimensionality reduction
 
 The package `r BiocStyle::Biocpkg("scater")` provides wrappers for several common dimensionality reduction methods.
 
@@ -463,7 +463,7 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 
 ---
 
-# Exercise step
+# Exercise
 
 ## Clustering
 
