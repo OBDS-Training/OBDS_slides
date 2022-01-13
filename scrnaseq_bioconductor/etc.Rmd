@@ -495,7 +495,7 @@ knitr::include_graphics("img/overview-analysis-markers.png")
 
 ---
 
-# Identify cluster markers
+# Identifying cluster markers
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for identifying cluster markers.
 
