@@ -1,7 +1,7 @@
 # Bioconductor resources and help
 
 ```{r, include=TRUE, echo=FALSE, out.height="100px", out.width="350px", fig.align="center"}
-knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
+knitr::include_graphics("img/bioconductor_logo_cmyk.jpeg")
 ```
 
 - Main website: <https://www.bioconductor.org/>
@@ -21,6 +21,7 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
+## TODO: download local copy of image
 knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
 ```
 
@@ -36,6 +37,7 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 ## SummarizedExperiment.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## TODO: download local copy of image
 knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
 ```
 
@@ -48,6 +50,7 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 ## SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## TODO: download local copy of image
 knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
 ```
 
@@ -61,6 +64,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 # SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## TODO: download local copy of image
 knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
 ```
 
@@ -74,6 +78,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
+## TODO: download local copy of image
 knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/Workflow.png")
 ```
 ]
@@ -220,7 +225,16 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ---
 
-# Quality-control and preprocessing using Bioconductor
+# Bioconductor single-cell workflow - QC & filtering
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-qc-filter.png")
+```
+
+---
+
+# Computing metrics for quality control
 
 The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused on the preprocessing and quality control of single-cell gene expression data.
 
@@ -228,32 +242,63 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 - `scater::perCellQCMetrics()` and `scater::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples).
 
-## Normalisation
+- `scater::addPerCellQC()` and `scater::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively, rather than returning them as a new `DataFrame`.
 
-- `scater::logNormCounts()` computes log-transformed normalized expression values.
-  This includes the computation of size factors using `scater::librarySizeFactors()`.
+## Visualisation
 
-`r NoCite(bib, "lun2016workflow")`
+- `scater::plotScater()` and other functions can help you visualise quality metrics.
+
+- `r BiocStyle::CRANpkg("ggplot2")` gives you the greatest flexibility to visualise information stored in the `colData()` and `rowData()` (you will need to convert from `DataFrame` to `data.frame`).
+
+---
+
+# Exercise
+
+## Quality control
+
+- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
+
+**Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+
+**Note:** what is the return value?
+  where are the quality metrics stored?
+  what is the difference with `scater::perCellQCMetrics()`?
+
+- Visualise quality metrics; use `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Would you remove any cell?
+
+**Note:** we have imported a matrix prefiltered by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) using a certain set of criteria (which ones?); what other criteria can you think of, which may be useful for filterering cells?
+
+- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ---
 
 # scran: Methods for single-cell RNA-seq data analysis
 
-The package `r BiocStyle::Biocpkg("scran")` provides a range of methods focused on the normalisation and preprocessing of single-cell gene expression data.
+The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")` provide a range of methods focused on the normalisation and preprocessing of single-cell gene expression data.
 Some examples are presented below.
 
-.pull-left[
-### Normalisation
+## scater
+
+- `scater::logNormCounts()` computes log-transformed normalized expression values.
+  This includes the computation of size factors using `scater::librarySizeFactors()`.
+
+## scran
 
 - `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
+
+`r NoCite(bib, "lun2016workflow")`
+
+---
+
+# TODO
 
 ### Feature selection
 
 - `scran::modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
 - `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
-]
 
-.pull-right[
 ### Clustering
 
 - `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
@@ -261,7 +306,6 @@ Some examples are presented below.
 ### Differential expression
 
 - `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
-]
 
 ---
 
@@ -400,26 +444,6 @@ shiny::runApp(app, port=1234)
 .footnote[
 <https://youtu.be/0crFZLwAJOE>
 ]
-
----
-
-# Exercise step 2. Quality control
-
-- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
-
-**Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
-
-**Note:** what is the return value?
-  where are the quality metrics stored?
-  what is the difference with `scater::perCellQCMetrics()`?
-
-- Visualise quality metrics; use `r BiocStyle::CRANpkg("ggplot2")`.
-
-- Would you remove any cell?
-
-**Note:** we have imported a matrix prefiltered by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) using a certain set of criteria (which ones?); what other criteria can you think of, which may be useful for filterering cells?
-
-- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ---
 
