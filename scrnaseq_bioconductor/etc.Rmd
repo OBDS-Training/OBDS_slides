@@ -434,19 +434,16 @@ Those include:
 
 ---
 
+# Bioconductor workflow - Clustering
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-clustering.png")
+```
+
+---
+
 # Clustering
-
-- `scran::quickCluster()` provides a convenient wrapper to quickly define clusters of a minimum size.
-
----
-
-# Differential expression
-
-- `scran::findMarkers()` finds candidate marker genes for groups of cells (e.g., clusters).
-
----
-
-# Cluster cells
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for clustering single-cell data.
 
@@ -466,7 +463,39 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 
 ---
 
-# Cluster markers
+# Exercise step
+
+## Clustering
+
+- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+
+- Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
+
+- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
+
+- Visualise the assigned cluster on your preferred dimensionality reduction layout.
+
+**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
+  They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
+
+## Bonus point
+
+- Test different numbers of principal components and compare results.
+
+- Try `scran::quickCluster()`; identify key parameters and compare results.
+
+---
+
+# Bioconductor workflow - Cluster markers
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-markers.png")
+```
+
+---
+
+# Identify cluster markers
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for identifying cluster markers.
 
@@ -479,16 +508,17 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 ---
 
-# More single-cell methods available in Bioconductor
+# Exercise
 
-## scater
+## Cluster markers
 
-- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
+- Use `scran::findMarkers()` to identify markers for each cluster.
 
-## scran
+- Visualise the expression of selected markers:
 
-- `scran::bootstrapCluster()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
-- `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
+  + as a dot plot, optionally with a violin layer.
+  
+  + on a dimensionality reduction layout.
 
 ---
 
@@ -541,37 +571,17 @@ shiny::runApp(app, port=1234)
 
 ---
 
-# Exercise step 6. Clustering
+# More single-cell methods available in Bioconductor
 
-- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+## scater
 
-- Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
+- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
 
-- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
+## scran
 
-- Visualise the assigned cluster on your preferred dimensionality reduction layout.
+- `scran::bootstrapCluster()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
+- `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
 
-**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
-  They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
-
-## Bonus point
-
-- Test different numbers of principal components and compare results.
-
-- Try `scran::quickCluster()`; identify key parameters and compare results.
-
----
-
-# Exercise step 7. Cluster markers
-
-- Use `scran::findMarkers()` to identify markers for each cluster.
-
-- Visualise the expression of selected markers:
-
-  + as a dot plot, optionally with a violin layer.
-  
-  + on a dimensionality reduction layout.
-  
 ---
 
 # Exercise step 8. iSEE
