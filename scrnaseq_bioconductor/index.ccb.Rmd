@@ -45,35 +45,12 @@ knit: pagedown::chrome_print
 
 - Follow along, running and writing code from the notebook as mentioned during the lesson.
 
-## Note
+## Notes
 
 At the end of the day, you will have a chance to commit and push your own notebook to GitHub.
 _Do not_ work in the template solution notebook, to avoid Git conflicts.
 
----
-
-```{r, child='import.Rmd'}
-```
-
----
-
-# Exercise
-
-## Import scRNA-seq data and create a SingleCellExperiment object
-
-Input files are located in `/project/obds/shared/resources/4_r_single_cell/bioconductor_singlecell`.
-
-- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
-
-**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
-  Check the difference without using the `samples` argument.
-
-- Print a summary representation of the object.
-  What can you tell about the contents of the object?
-
-- What can you tell from the object metadata?
-
-**Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
+The input files are located in `/project/obds/shared/resources/4_r_single_cell/bioconductor_singlecell`.
 
 ---
 
