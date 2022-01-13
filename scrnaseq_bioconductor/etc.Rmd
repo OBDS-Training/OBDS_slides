@@ -175,6 +175,15 @@ knitr::include_graphics("img/overview-analysis.png")
 
 ---
 
+# Bioconductor single-cell workflow - Import
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-import.png")
+```
+
+---
+
 # Import single-cell data using Bioconductor
 
 The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities for reading and preprocessing single-cell data.
@@ -208,49 +217,6 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 - What can you tell from the object metadata?
 
 **Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
-
----
-
-# Empty droplets
-
-.pull-left[
-```{r, include=TRUE, echo=FALSE, out.height='500px'}
-knitr::include_graphics("https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png")
-```
-]
-
-.pull-right[
-.x-large-list[
-- To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
-
-- This leads to a higher probability of a cell and a bead ending up in the same droplet.
-
-- However, this also leads to a large number of 'empty' droplets with just a bead and some ambient RNA or a dead cell.
-]
-]
-
----
-
-# Empty droplets
-
-Below is an example of a challenging cell-calling scenario mixing:
-
-- 300 high RNA content 293T cells
-- 2000 low RNA content PBMC cells
-
-On the left is the cell calling result with the cell calling algorithm prior to Cell Ranger 3.0 and on the right is the current Cell Ranger 3.0 result. You can see that low RNA content cells are successfully identified by the new algorithm.
-
-.pull-left[
-```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-old-cell-calling.png")
-```
-]
-
-.pull-right[
-```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://support.10xgenomics.com/img/single-cell-gex/knee-plot-new-cell-calling.png")
-```
-]
 
 ---
 
