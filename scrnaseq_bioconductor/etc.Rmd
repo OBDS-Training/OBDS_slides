@@ -283,10 +283,9 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 ---
 
-# scran: Methods for single-cell RNA-seq data analysis
+# Normalisation strategies 
 
-The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")` provide a range of methods focused on the normalisation and preprocessing of single-cell gene expression data.
-Some examples are presented below.
+The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")` host methods for the most common and popular normalisation strategies.
 
 ## scater
 
@@ -301,7 +300,9 @@ Some examples are presented below.
 
 ---
 
-# Exercise step 3. Normalisation
+# Exercise
+
+## Normalisation
 
 - Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
 
@@ -313,6 +314,8 @@ Some examples are presented below.
 
 **Note:** how can you tell whether the normalisation was effective?
   Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
+
+- When would you rather use `scuttle::computeSumFactors()` instead?
 
 ---
 
