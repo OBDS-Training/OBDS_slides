@@ -522,6 +522,15 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 ---
 
+# Bioconductor workflow - Interactive visualisation
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+## Source: Kevin Rue-Albrecht (Illustrator)
+knitr::include_graphics("img/overview-analysis-interactive.png")
+```
+
+---
+
 # iSEE - interactive SummarizedExperiment Explorer
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
@@ -571,20 +580,9 @@ shiny::runApp(app, port=1234)
 
 ---
 
-# More single-cell methods available in Bioconductor
+# Exercise
 
-## scater
-
-- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
-
-## scran
-
-- `scran::bootstrapCluster()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
-- `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
-
----
-
-# Exercise step 8. iSEE
+## Interactive visualisation
 
 - Use `iSEE::iSEE()` to launch an interactive web-application to visualise the contents of the `SingleCellExperiment` object.
 
@@ -598,6 +596,19 @@ iSEE::iSEE(sce, initial = list(
   RowDataTable(PanelWidth=8L)
 ))
 ```
+
+---
+
+# More single-cell methods available in Bioconductor
+
+## scater
+
+- `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
+
+## scran
+
+- `scran::bootstrapCluster()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
+- `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
 
 ---
 
