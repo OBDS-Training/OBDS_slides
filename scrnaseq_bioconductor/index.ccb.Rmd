@@ -50,7 +50,7 @@ knit: pagedown::chrome_print
 At the end of the day, you will have a chance to commit and push your own notebook to GitHub.
 _Do not_ work in the template solution notebook, to avoid Git conflicts.
 
-The input files are located in `/project/obds/shared/resources/4_r_single_cell/bioconductor_singlecell`.
+The input files obtained from [1k PBMCs from a Healthy Donor (v3 chemistry)](https://www.10xgenomics.com/resources/datasets/1-k-pbm-cs-from-a-healthy-donor-v-3-chemistry-3-standard-3-0-0) are located in `/project/obds/shared/resources/4_r_single_cell/bioconductor_singlecell`.
 
 ---
 
