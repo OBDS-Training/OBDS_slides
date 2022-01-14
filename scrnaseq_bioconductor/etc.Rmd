@@ -21,8 +21,8 @@ knitr::include_graphics("img/bioconductor_logo_cmyk.jpeg")
 # The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
-## TODO: download local copy of image
-knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+## Source: https://www.nature.com/articles/nmeth.3252
+knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
 .footnote[
@@ -37,8 +37,8 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 ## SummarizedExperiment.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## TODO: download local copy of image
-knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+## Source: https://www.nature.com/articles/nmeth.3252
+knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
 .small-text[
@@ -50,8 +50,8 @@ knitr::include_graphics("https://media.springernature.com/lw685/springer-static/
 ## SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## TODO: download local copy of image
-knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
+## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
+knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
 .small-text[
@@ -64,8 +64,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 # SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## TODO: download local copy of image
-knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png")
+## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
+knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
 .footnote[
@@ -78,8 +78,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
-## TODO: download local copy of image
-knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/Workflow.png")
+## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
+knitr::include_graphics("img/workflow-osca.png")
 ```
 ]
 
@@ -107,7 +107,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 
 <br/>
 
-![Schematic representation of the Bioconductor SingleCellExperiment](https://raw.githubusercontent.com/Bioconductor/OSCABase/images/images/SingleCellExperiment.png)
+![Schematic representation of the Bioconductor SingleCellExperiment](img/singlecellexperiment-osca.png)
 
 .small-text[
 **Source:** https://osca.bioconductor.org/data-infrastructure.html
@@ -149,7 +149,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/Bioconductor/OSCABase
 <br/>
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-knitr::include_graphics("https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fnmeth.3252/MediaObjects/41592_2015_Article_BFnmeth3252_Fig2_HTML.jpg?as=webp")
+knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
 .small-text[
@@ -314,7 +314,8 @@ The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13059-016-0947-7/MediaObjects/13059_2016_947_Fig3_HTML.gif?as=webp")
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0947-7#citeas
+knitr::include_graphics("img/scran-fig3.png")
 ```
 
 .right[
@@ -534,7 +535,8 @@ knitr::include_graphics("img/overview-analysis-interactive.png")
 # iSEE - interactive SummarizedExperiment Explorer
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
-knitr::include_graphics("https://f1000researchdata.s3.amazonaws.com/manuscripts/16293/6bf85f9d-8352-4a78-a8da-456f05f5c4c9_figure1.gif")
+## Source: https://f1000research.com/articles/7-741
+knitr::include_graphics("img/isee-f1000-fig1.gif")
 ```
 
 ---
