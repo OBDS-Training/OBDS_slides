@@ -34,6 +34,7 @@ knit: pagedown::chrome_print
 - Checkout and pull the main branch of the shared repository.
 
 > We have added some files to get you started.
+
 - Create a new branch in the Git repository. Use your username and the date to make it unique.
 
 - Make a copy of the file `template.Rmd` for this lesson. Use your username to make it unique.
