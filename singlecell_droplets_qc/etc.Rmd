@@ -369,18 +369,20 @@ See `?celda::decontX()` for more information.
 
 ## Ambient RNA
 
-- Run `celda::decontX()`.
+- Run `celda::decontX()` (continue using the data after excluding empty droplets and doublets).
 
 - Visualize the UMAP layout created by `decontX`; use `plotDimReduceCluster()`.
 
 - Visualize the percentage of contamination estimated by `decontX` in each cell.
   Use the `plotDecontXContamination()` function.
 
-**Note:** Does any cluster display higher (estimated) levels of ambient RNA?
+.center[
+**Does any cluster display higher (estimated) levels of ambient RNA?**
+]
 
 - Visualize the log-normalised expression of marker genes on a UMAP layout faceted by gene; use `plotDimReduceFeature()`.
 
-**Note:** Use either markers genes expected from literature or computationally identified for this data set.
+**Note:** For instance, use _CD3D_, _CD3E_, _GNLY_, _LYZ_, _S100A8_, _S100A9_, _CD79A_, _CD79B_, and _MS4A1_.
 
 - Visualise the percentage of cells with detectable expression of marker genes before and after decontamination as a bar plot; use `plotDecontXMarkerPercentage()`.
 
