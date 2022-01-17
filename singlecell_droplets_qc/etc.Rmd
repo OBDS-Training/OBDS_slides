@@ -177,7 +177,7 @@ knitr::include_graphics("img/doubletfinder-fig1.jpeg")
 
   + Normalise, scale, variable features, dimensionality reduction.
 
-- Sweep combiantions of parameters pN and pK. identify optimal pK parameter
+- Sweep combinations of parameters pN and pK. identify optimal pK parameter
 
 - Estimate proportion of homotypic doublets
 
