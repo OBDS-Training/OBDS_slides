@@ -72,7 +72,7 @@ knitr::include_graphics("img/ssh-key-pair.png")
 ```
 
 .center[
-_We need to set an SSH key pair between RStudio Cloud and GitHub._
+_We need to set an SSH key pair between the CCB cluster and GitHub._
 ]
 
 ---
