@@ -86,11 +86,11 @@ A table including the probability that each cell is an empty droplet.
 
 ---
 
-# Exercises
+# Exercise
 
 ## Empty droplets
 
-- Import the raw Cell Ranger matrix for 1,000 cells into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+- Import the raw matrix into <i class="fab fa-r-project"></i>; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
 - Remove droplets without any count at all.
 
