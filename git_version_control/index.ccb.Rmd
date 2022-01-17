@@ -162,5 +162,5 @@ $ git clone --help
 
 ---
 
-```{r child='exercises-after-setup.Rmd'}
+```{r child='etc.Rmd'}
 ```

@@ -33,6 +33,7 @@ Other pieces of information can be configured (e.g., preferred text editor), but
 
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
+
 ```{bash, eval=FALSE, echo=TRUE}
 $ git clone git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git
 ```
