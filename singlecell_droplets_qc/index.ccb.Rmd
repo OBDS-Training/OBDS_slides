@@ -1,9 +1,9 @@
 ---
-title: 'Empty droplets, doublets and ambient RNA in single-cell droplet data'
+title: 'Empty droplets, doublets and ambient RNA'
 subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-06-23 (updated: `r Sys.Date()`)"
+date: "2022-02-10 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -16,59 +16,8 @@ output:
 knit: pagedown::chrome_print
 ---
 
-layout: true
-
-<div class="my-header"><img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%"></div>
-
-<div class="my-footer"><span>
-Kevin Rue-Albrecht
-&emsp;&emsp;&emsp;
-Empty droplets, doublets and ambient RNA in single-cell droplet data
-</span></div> 
-
-```{r setup, include = FALSE}
-stopifnot(requireNamespace("htmltools"))
-htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE, error = FALSE, include = FALSE
-)
-options(width = 90)
-stopifnot(require(base))
+```{r, child='goals_and_objectives.Rmd'}
 ```
-
-```{r, load_refs, include=FALSE, cache=FALSE}
-options(htmltools.dir.version = FALSE)
-library(RefManageR)
-BibOptions(
-  max.names = 3,
-  check.entries = FALSE,
-  bib.style = "authoryear",
-  cite.style = "authoryear",
-  style = "markdown",
-  hyperlink = "to.doc",
-  dashed = TRUE)
-bib <- ReadBib("bibliography.bib")
-```
-
----
-
-# Lesson goals and objectives
-
-## Learning goals
-
-- Understand the origin of empty droplets, doublets, and ambient signal in single-cell data.
-
-- Describe methods and metrics for identifying artefacts.
-
-## Learning objectives
-
-- Import single-cell data from files into the R session.
-
-- Apply methods to identify empty droplets.
-
-- Apply methods to identify doublets.
-
-- Apply methods to remove ambient noise from single-cell data.
 
 ---
 
@@ -120,7 +69,7 @@ The resulting file structure should look like the following:
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
 # Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
-knitr::include_graphics("img/10x-barcoded gel beads.png")
+knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 ```
 ]
 
@@ -233,7 +182,7 @@ This will massively speed up downstream steps, while removing unquestionable emp
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
 # Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
-knitr::include_graphics("img/10x-barcoded gel beads.png")
+knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 ```
 ]
 
@@ -272,7 +221,8 @@ knitr::include_graphics("img/10x-barcoded gel beads.png")
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
-knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/11ab5a3c-8f8a-4e8d-a333-7e9feedb846a/fx1_lrg.jpg")
+## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
+knitr::include_graphics("img/doubletfinder-fig1.jpeg")
 ```
 ]
 
@@ -302,7 +252,8 @@ knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-knitr::include_graphics("https://marlin-prod.literatumonline.com/cms/attachment/5dd42233-d6f7-43fd-99bf-b3f00e5dccaf/fx2_lrg.jpg")
+## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
+knitr::include_graphics("img/doubletfinder-fig2.jpeg")
 ```
 ]
 
