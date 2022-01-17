@@ -81,9 +81,9 @@ _We need to set an SSH key pair between RStudio Cloud and GitHub._
 
 ## Setting up the SSH key pair
 
-This key pair will allow your RStudio Cloud project to push and pull code through the GitHub API.
+This key pair will allow your clone of the repository to push and pull code through the GitHub API.
 
-- In your RStudio Cloud project, open the Terminal.
+- Open the Terminal, and log into the CCB cluster.
 
 - Create an SSH key pair.
 
