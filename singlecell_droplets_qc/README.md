@@ -1,36 +1,72 @@
-# Contents
+# Assessing doublets and background in single-cell data
 
-## General
+## Instructor(s)
 
-- [x] Learning objectives
+<!--
+Instructors should be listed in the order:
+- Speaker
+- Helper
+-->
 
-## Empty droplets
+- Kevin Rue-Albrecht (@kevinrue)
+- Devika Agarwal (@deevdevil88)
 
-- [x] Experimental origin.
-- [x] Theoretical identification.
-- [x] Computational methods.
-- [x] Key parameters of computational methods.
+Past instructors:
 
-## Doublets
+- Lucy Garner (@lucygarner)
 
-- [x] Experimental origin.
-- [x] Theoretical identification.
-- [x] Computational methods.
-- [x] Key parameters of computational methods.
+## Lesson goals and objectives
 
-## Ambient RNA
+<!--
+Refer to:
+https://github.com/Bioconductor/BioC2019/blob/master/docs/workshop-syllabus.md#a-note-about-learning-goals-and-objectives-bloom
+https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/
+-->
 
-- [x] Experimental origin.
-- [x] Theoretical identification.
-- [x] Computational methods.
-- [x] Key parameters of computational methods.
+### Learning goals
 
-## Conclusion
+<!--
+High-level "big picture" objectives of the learning process.
+-->
 
-- [x] Further reading
-- [x] References
+- Understand the origin of doublets and background signal in single-cell data.
+- Describe methods and metrics for identifying artefacts.
 
-## Setup
+### Learning objectives
 
-- [ ] Create a folder `week_/___/` in the cohort shared folder
-- [ ] Upload input data files in that folder
+<!--
+More concrete and measurable outputs.
+-->
+
+- Import single-cell data from files into the R session.
+- Apply methods to identify doublets.
+- Apply methods to remove background noise from single-cell data.
+
+## Pre-requisites
+
+- A clone of the shared GitHub repository for this course.
+- A working installation of [R](https://www.r-project.org/) (≥ 4.0) including the [renv](https://rstudio.github.io/renv/articles/renv.html) package.
+- A working installation of [RStudio](https://rstudio.com/).
+
+## Data sets
+
+- Publicly available data sets distributed by [10X Genomics](https://www.10xgenomics.com/resources/datasets/).
+  + A raw matrix prior to filtering.
+  + A filtered matrix for the same data set, produced by by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)
+
+## Time outline
+
+| Activity                                      |  Time |
+|-----------------------------------------------|-------|
+| Setup                                         |  9:30 |
+| Lecture: Doublets                             | 10:00 |
+| Import raw data                               | 10:30 |
+| **Morning Break**                             | 10:50 |
+| Run `scDblFinder`                             | 11:00 |
+| Visualise doublets                            | 12:00 |
+| **Lunch Break**                               | 12:30 |
+| Lecture: Background RNA                       | 13:30 |
+| Apply `decontX`                               | 14:00 |
+| **Afternoon Break**                           | 14:50 |
+| Visualise the effect of decontamination       | 15:00 |
+| **Day End**                                   | 16:00 |
