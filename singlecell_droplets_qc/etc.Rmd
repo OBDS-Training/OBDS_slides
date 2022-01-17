@@ -289,6 +289,8 @@ knitr::include_graphics("img/ambient_rna_origin.png")
 ]
 
 .pull-right[
+- Cells damaged during library preparation can release their cytoplasmic contents (e.g., RNA transcripts) into the ambient medium.
+
 - In droplet-based microfluidic devices, ambient RNA can be incorporated into droplets along with oligonucleotide-barcoded beads and cells.
 
 - Both native mRNA from the cell and contaminating ambient RNA will be barcoded and counted within a droplet.
