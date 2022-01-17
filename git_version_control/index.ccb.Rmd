@@ -83,7 +83,7 @@ _We need to set an SSH key pair between the CCB cluster and GitHub._
 
 This key pair will allow your clone of the repository to push and pull code through the GitHub API.
 
-- Open the Terminal, and log into the CCB cluster.
+- Open the Terminal application, and log into the CCB cluster.
 
 - Create an SSH key pair.
 
