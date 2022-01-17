@@ -267,7 +267,7 @@ See `?scDblFinder::scDblFinder()` for more details.
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
 
-- Remove doublets from the data sets.
+- Remove doublets from the data set.
 
 ## Bonus point
 
