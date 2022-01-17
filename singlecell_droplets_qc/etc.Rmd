@@ -260,7 +260,7 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 ## Doublets
 
-- Continue using the data set after excluding empty droplets.
+Continue using the data set after you excluded empty droplets.
 
 - Run `scDblFinder::scDblFinder()`.
 
@@ -321,7 +321,7 @@ knitr::include_graphics("img/decontx_Fig1_HTML.png")
 - Function `celda::decontX()`
 
 - **Only
-the expression profile of “real” cells after cell calling are required to run DecontX.**
+the expression profile of "real" cells after cell calling (i.e., removing empty droplets and doublets) are required to run DecontX.**
 
 - **Empty cell droplet information (low expression cell barcodes before cell calling) are
 not needed.**
