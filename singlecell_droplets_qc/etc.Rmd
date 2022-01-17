@@ -256,7 +256,7 @@ See `?scDblFinder::scDblFinder()` for more details.
 
 ---
 
-# Exercises
+# Exercise
 
 ## Doublets
 
@@ -365,7 +365,7 @@ See `?celda::decontX()` for more information.
 
 ---
 
-# Exercises
+# Exercise
 
 ## Ambient RNA
 
