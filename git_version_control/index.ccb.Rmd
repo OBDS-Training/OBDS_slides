@@ -40,7 +40,6 @@ More concrete and measurable outputs.
 -->
 
 - Set up an SSH key pair on GitHub.
-- Set up a GitHub Personal Access Token.
 - Configure Git.
 - _Clone_ your own copy of the shared repository for this course.
 - Edit files and _commit_ your changes.
