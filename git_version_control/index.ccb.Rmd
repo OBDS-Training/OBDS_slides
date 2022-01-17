@@ -114,26 +114,24 @@ _(See next slides to navigate to that page more naturally.)_
 
 Use SSH to open a terminal on the HPC cluster.
 
-The system executable of `git` on your default `PATH` is a rather old version.
-What is the path to the system `git`?
-What version of `git` is it?
+The system executable of `git` is a rather old version.
+Instead, a more recent version of `git` was installed as a module on the CCB cluster.
+
+- Check that the module `git` is loaded.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ module list
+```
+
+- What is the path to the `git` executable?
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ which git
-$ git --version
 ```
 
-Instead, we will use the `module` command to put a more recent version of `git` on our `PATH`.
+- What version of `git` is it?
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ module avail git
-$ module load git/2.31.1
-```
-
-Examine your `PATH` variable, the path to the new `git` executable, and the version of this new `git` executable.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ which git
 $ git --version
 ```
 
