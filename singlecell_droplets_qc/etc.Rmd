@@ -103,7 +103,7 @@ This will massively speed up downstream steps, while removing unquestionable emp
   Which droplets would you consider empty?
 
 - Draw plots comparing empty droplets and other droplets
-  (e.g., library size, PCA).
+  (e.g., library size, mitochondrial content, PCA).
 
 - Import the filtered Cell Ranger matrix for 1,000 cells and compare their set of filtered cells.
 
