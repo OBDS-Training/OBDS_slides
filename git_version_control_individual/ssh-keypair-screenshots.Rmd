@@ -1,0 +1,19 @@
+# Exercise
+
+## Setting up the SSH key pair
+
+```{r, fig.align='center', out.height='350px'}
+# Screenshot
+knitr::include_graphics("img/github-add-ssh-key.png")
+```
+
+---
+
+# Exercise
+
+## Setting up the SSH key pair
+
+```{r, fig.align='center', out.height='350px'}
+# Screenshot
+knitr::include_graphics("img/github-add-ssh-key-form.png")
+```

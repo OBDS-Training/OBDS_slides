@@ -156,13 +156,13 @@ The `git commit` sub-command can be used to add changes currently in the _stagin
 - The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git commit -m "Added a file for kevin rue"
+$ git commit -m "Added empty .gitignore file"
 ```
 
 ```
-[kevin 41121a3] Added a file for kevin rue
- 1 file changed, 1 insertion(+)
- create mode 100644 week2day1-git/kevinrue.md
+[main 81acf15] Added empty .gitignore file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
 ```
 
 .center[
@@ -171,7 +171,7 @@ $ git commit -m "Added a file for kevin rue"
 
 ---
 
-# Share your changes with others
+# Push commits to a remote
 
 The `git push` sub-command can be used to send local changes to a remote repository.
 
@@ -184,268 +184,53 @@ $ git remote -v
 ```
 
 ```
-origin	git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git (fetch)
-origin	git@github.com:OBDS-Training/OBDS_Training_Jan_2022.git (push)
+origin	git@github.com:kevinrue/OBDS_May_2022.git (fetch)
+origin	git@github.com:kevinrue/OBDS_May_2022.git (push)
 ```
 
-When everything is in place, you can tell <i class="fab fa-git"></i> to push a branch (e.g. `my_branch`) to a given remote (e.g. `origin`):
+When everything is in place, you can tell <i class="fab fa-git"></i> to push new commits from the local clone to a remote.
+When calling `git push` without any other argument,
+the default is to push from the current branch to the corresponding branch on the remote named `origin`.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git push origin my_branch
+$ git push
 ```
 
 .center[
-**Do not run this yet, we will do it in a moment, with a difference.**
+(Output on the next slide)
 ]
-
----
-
-# Synchronise branches between remotes
-
-We have seen this illustration earlier, to discuss how branches allow multiple contributors to work independently.
-
-```{r, fig.align='center', out.height='450px', out.width='500px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-no-conflict.png")
-```
 
 ---
 
 # Push a new branch to a remote
 
-The first time you push a branch, you should use the `--set-upstream` flag (or `-u` in short), and <i class="fab fa-git"></i> will display more information.
-
 ```{bash, eval=FALSE, echo=TRUE}
-$ git push -u origin kevin
+$ git push
 ```
 
 .small-code[
 ```
-Enumerating objects: 8, done.
-Counting objects: 100% (8/8), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (5/5), 417 bytes | 417.00 KiB/s, done.
-Total 5 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-remote: 
-remote: Create a pull request for 'kevin' on GitHub by visiting:
-remote:      https://github.com/OBDS-Training/OBDS_Training_Jan_2022/pull/new/kevin
-remote: 
-To github.com:OBDS-Training/OBDS_Training_Jan_2022.git
- * [new branch]      kevin -> kevin
-Branch 'kevin' set up to track remote branch 'kevin' from 'origin'.
+[main 81acf15] Added empty .gitignore file
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
+(base) [albrecht@cbrglogin3 OBDS_May_2022]$ git remote -v
+origin	git@github.com:kevinrue/OBDS_May_2022.git (fetch)
+origin	git@github.com:kevinrue/OBDS_May_2022.git (push)
+(base) [albrecht@cbrglogin3 OBDS_May_2022]$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 40 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 306 bytes | 61.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:kevinrue/OBDS_May_2022.git
+   4df0fa7..81acf15  main -> main
 ```
 ]
 
 .center[
 **How do you read the command? What do you think is done, according to the output?**
 ]
-
----
-
-# Incorporate changes to the base branch
-
-The `git merge` sub-command can be used to merge branches.
-However, we are not going to use it, at least not explicitly at the command line.
-
-- We do not want to create different (i.e., conflicting) histories on the `master` branch.
-- We will use <i class="fab fa-github"></i> GitHub to manage the `master` branch centrally.
-- Every other repository will only ever `pull` the `master` branch from <i class="fab fa-github"></i> GitHub.
-- No one will ever directly `push` their `master` branch to <i class="fab fa-github"></i> GitHub.
-
-```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge.png")
-```
-
-**Do not do this:** To incorporate the changes from branch `kevin` into branch `master` locally, one could run:
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git checkout master
-$ git merge kevin
-```
-
----
-
-# Create pull requests on <i class="fab fa-github"></i> GitHub
-
-## Recently pushed branches
-
-On the page of the repository (<https://github.com/OBDS-Training/OBDS_Training_Jan_2022>), branches that were recently pushed are highlighted, with a button "Compare & pull request".
-
-- Unless a pull request already exists for that branch.
-
-```{r, fig.align='center', out.height='75px', out.width='800px'}
-# Screenshot
-knitr::include_graphics("img/github-compare-and-pull-request.png")
-```
-
----
-
-# Create pull requests on <i class="fab fa-github"></i> GitHub
-
-<i class="fab fa-github"></i> GitHub also offers a page dedicated to creating pull requests.
-
-```{r, fig.align='center', out.height='500px', out.width='800px'}
-# Screenshot
-knitr::include_graphics("img/github-new-pull-request.png")
-```
-
----
-
-# Create pull requests on <i class="fab fa-github"></i> GitHub
-
-## Comparing changes and opening a pull request
-
-```{r, fig.align='center', out.height='375px', out.width='800px'}
-# Screenshot
-knitr::include_graphics("img/github-compare-changes.png")
-```
-
----
-
-# Create pull requests on <i class="fab fa-github"></i> GitHub
-
-## Title and description
-
-```{r, fig.align='center', out.height='450px', out.width='800px'}
-# Screenshot
-knitr::include_graphics("img/github-open-pull-request.png")
-```
-
----
-
-# Create pull requests on <i class="fab fa-github"></i> GitHub
-
-## Monitor the status of a pull request
-
-```{r, fig.align='center', out.height='400px', out.width='550px'}
-# Screenshot
-knitr::include_graphics("img/github-pull-request.png")
-```
-
-.center[
-**What do you think is happening here?**
-]
-
----
-
-# Review a pull request
-
-Often considered cumbersome, in practice manual reviews offer another chance to catch issues and provide feedback, before the changes are applied to the target branch.
-
-```{r, fig.align='center', out.height='375px', out.width='600px'}
-# Screenshot
-knitr::include_graphics("img/github-pull-request-review.png")
-```
-
-.center[
-**In this setup, a pull request can only be applied if the reviewer selects the "Approve" radio button.**
-]
-
----
-
-# Merge a pull request
-
-```{r, fig.align='center', out.height='500px', out.width='600px'}
-# Screenshot
-knitr::include_graphics("img/github-merge-pull-request.png")
-```
-
----
-
-# Merge a pull request
-
-## Commit message
-
-```{r, fig.align='center', out.height='200px', out.width='600px'}
-# Screenshot
-knitr::include_graphics("img/github-merge-commit.png")
-```
-
-.center[
-**Merging a pull request creates a new commit. This commit needs its own commit message.**
-]
-
----
-
-# Merge a pull request
-
-## Delete branches successfully merged
-
-```{r, fig.align='center', out.height='75px', out.width='600px'}
-# Screenshot
-knitr::include_graphics("img/github-delete-branch-merged.png")
-```
-
-- The target branch now contains all the changes that were made on the branch that was merged.
-- The merged branch does not have any more value.
-
-```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge.png")
-```
-
-.center[
-**In this scenario, which branches would you delete and when?**
-]
-
----
-
-# Merge a pull request
-
-## Deleted branches
-
-```{r, fig.align='center', out.height='60px', out.width='900px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/github-branch-deleted.png")
-```
-
-- Deleting branches that were merged does not delete their commit(s).
-- Branches are merely pointers to certain commits.
-
-```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge-delete.png")
-```
-
-.center[
-**Can you tell what the difference with the previous slide is?**
-]
-
----
-
-# Delete a branch locally
-
-We deleted the branch on <i class="fab fa-github"></i> GitHub, but it still exists locally.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git branch -a
-```
-
-```
- * kevin
-   master
-   remotes/origin/HEAD -> origin/master
-   remotes/origin/kevin
-   remotes/origin/master
-```
-
-To delete a branch locally, we need to move to another branch (often, `master`) first.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git fetch --prune   # remove local links to any branch deleted on the remote
-$ git branch -D kevin # "politely" remove the local copy of the branch
-$ git branch -D kevin # "force" remove the local copy of the branch
-$ git branch -a
-```
-
-```
- * master
-   remotes/origin/HEAD -> origin/master
-   remotes/origin/master
-```
 
 ---
 
@@ -476,24 +261,14 @@ The `git log` sub-command can be used to display the history of commits in the r
 
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
-  $ git log --all --graph --oneline
-  *   9d330e3 (HEAD -> master, origin/master, origin/HEAD) Merge pull request #2 from OBDS-Training/david
-  |\  
-  | * cae231c Add page for David Sims
-  * |   dc19047 Merge pull request #1 from OBDS-Training/kevin
-  |\ \  
-  | |/  
-  | * 0c4eacc Added a file for <username>
-  | * 28d3852 Add an example file in the git sub-directory
-  | * 5d0241c Reorder steps for pull request
-  | * a430b66 Add usage to README
-  |/  
-  * e49981e Add README.md
+$ git log --all --graph --oneline
+* 81acf15 (HEAD -> main, origin/main, origin/HEAD) Added empty .gitignore file
+* 4df0fa7 Initial commit
 ```
 ]
 
 .center[
-**How do you read this commit history? Would you recommend anything to the authors?**
+**How do you read this commit history?**
 ]
 
 ---
@@ -503,20 +278,16 @@ The `git log` sub-command can be used to display the history of commits in the r
 The `git show` sub-command can be used to examine individual past commits.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git show 28d3852
-commit 28d38521da4d75625b5062f61cd6c1bdb6429e6d
-Author: Kevin Rue-Albrecht <kevinrue67@gmail.com>
-Date:   Wed Apr 7 17:16:13 2021 +0100
+$ git show 81acf15
+commit 81acf150152602ef2e64dca30b5b2796d4e131a0 (HEAD -> main, origin/main, origin/HEAD)
+Author: Kevin Rue-Albrecht <kevinrue@users.noreply.github.com>
+Date:   Thu Mar 3 16:22:03 2022 +0000
 
-    Add an example file in the git sub-directory
+    Added empty .gitignore file
 
-diff --git a/git/kevinrue.md b/git/kevinrue.md
+diff --git a/.gitignore b/.gitignore
 new file mode 100644
-index 0000000..468faf4
---- /dev/null
-+++ b/git/kevinrue.md
-@@ -0,0 +1 @@
-+# Kevin Rue-Albrecht
+index 0000000..e69de29
 ```
 
 .center[
@@ -537,29 +308,18 @@ The `git diff` sub-command can be used to compare two states of the repository.
 .pull-left[
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
-$ git diff 5d0241c 0c4eacc
-diff --git a/git/kevinrue.md b/git/kevinrue.md
+$ git diff 4df0fa7 81acf15
+diff --git a/.gitignore b/.gitignore
 new file mode 100644
-index 0000000..468faf4
---- /dev/null
-+++ b/git/kevinrue.md
-@@ -0,0 +1 @@
-+# Kevin Rue-Albrecht
-diff --git a/git/username.md b/git/username.md
-new file mode 100644
-index 0000000..468faf4
---- /dev/null
-+++ b/git/username.md
-@@ -0,0 +1 @@
-+# Kevin Rue-Albrecht
+index 0000000..e69de29
 ```
 ]
 ]
 
 .pull-right[
 ```{r, fig.align='center', out.height='200px', out.width='500px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/git-diff.png")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-diff.svg")
 ```
 ]
 
@@ -571,7 +331,7 @@ The `git revert` sub-command can be used to undo everything that was done in a p
 
 ```{r, fig.align='center', out.height='400px', out.width='700px'}
 # In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/git-revert.png")
+knitr::include_graphics("img/git-revert.svg")
 ```
 
 ---
@@ -588,7 +348,7 @@ The `git reset` sub-command can be used to reset the repository history to an ea
 
 ```{r, fig.align='center', out.height='350px', out.width='800px'}
 # In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/git-reset.png")
+knitr::include_graphics("img/git-reset.svg")
 ```
 
 .center[
@@ -650,6 +410,21 @@ knitr::include_graphics("img/git-reset.png")
 
 - <i class="fab fa-git"></i> glossary: <https://git-scm.com/docs/gitglossary>
 - Oh s**t <i class="fab fa-git"></i>: <https://ohshitgit.com/>
+
+---
+
+# Credits
+
+```{r, out.height='300px'}
+knitr::include_graphics("img/TheCarpentries.svg")
+# Source: https://carpentries.org/
+```
+
+.center[
+Version Control with Git
+
+<https://swcarpentry.github.io/git-novice/>
+]
 
 ---
 
