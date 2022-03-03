@@ -1,0 +1,12 @@
+# Credits
+
+```{r, out.height='300px'}
+knitr::include_graphics("img/TheCarpentries.svg")
+# Source: https://carpentries.org/
+```
+
+.center[
+Version Control with Git
+
+<https://swcarpentry.github.io/git-novice/>
+]
