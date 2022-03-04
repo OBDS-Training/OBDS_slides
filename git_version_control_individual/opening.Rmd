@@ -158,6 +158,15 @@ knitr::include_graphics("img/atlassian-clone.svg")
 
 ---
 
+# (Avoid) Conflicts between remote repositories
+
+```{r, fig.align='center', , out.height='500px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/clones-conflict.svg")
+```
+
+---
+
 # Summary: version tracking software
 
 - Keep track of changes (i.e., differences or _diffs_).
