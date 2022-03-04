@@ -124,7 +124,7 @@ knitr::include_graphics("img/branch-and-merge.svg")
 
 - Branches can contain any number of commits before being merged.
 
-- Branches do not have to be merged; they can be abandoned and deleted.
+- Branches do not have to be merged; they can be abandoned and deleted (great for experimenting).
 
 ---
 
