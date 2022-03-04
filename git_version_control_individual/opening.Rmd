@@ -109,6 +109,25 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 
 ---
 
+# Branching and merging
+
+```{r, fig.align='center', out.height='300px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/branch-and-merge.svg")
+```
+
+- Branching allows you to work on different things independently from each other.
+
+- Merging combines the changes made on a branch to those made on another branch.
+
+  + Typically, "feature" branches are merged to the main branch.
+
+- Branches can contain any number of commits before being merged.
+
+- Branches do not have to be merged; they can be abandoned and deleted.
+
+---
+
 # Tracking simultaneous changes to multiple files 
 
 ```{r, fig.align='center', out.height='250px', out.width='800px'}
