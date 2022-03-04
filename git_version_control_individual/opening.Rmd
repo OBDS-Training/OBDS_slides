@@ -146,6 +146,8 @@ knitr::include_graphics("img/atlassian-clone.svg")
 - Commits are first made locally.
 
 - Commits can then be _pushed_ and _pulled_ from one clone to another.
+
+- Remote repositories must be accessible through a public URL to interact with them.
 ]
 
 ## Note
