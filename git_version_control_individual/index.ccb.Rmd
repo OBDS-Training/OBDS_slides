@@ -44,7 +44,7 @@ More concrete and measurable outputs.
 - _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
 - _Clone_ a copy of the repository on the CCB cluster.
 - Create and edit files to the repository on the CCB cluster, and _commit_ those changes.
-- _Push_ your changes to the GitHub clone of the repository.
+- _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
 - Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
 - _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the CCB clone of the repository.
 - Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the CCB cluster.
