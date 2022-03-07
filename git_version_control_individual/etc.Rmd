@@ -196,9 +196,29 @@ the default is to push from the current branch to the corresponding branch on th
 $ git push
 ```
 
+---
+
+# Exercise
+
+## Push commits to a remote
+
+- Run `git push`.
+
 .center[
-(Output on the next slide)
+**How do you read the output message? (example below)**
 ]
+
+```
+$ git push
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 40 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 289 bytes | 96.00 KiB/s, done.
+Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:kevinrue/OBDS_May_2022.git
+   81acf15..9e2b638  main -> main
+```
 
 ---
 
@@ -206,13 +226,28 @@ $ git push
 
 ## On <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='400px', out.width='800px'}
-# In-house illustration made using Adobe Illustrator
+```{r, fig.align='center', out.height='325px', out.width='800px'}
+# Screenshot (Kevin Rue-Albrecht)
 knitr::include_graphics("img/github-network-graph.png")
 ```
 
 .center[
 **How do you read this graph?**
+]
+
+---
+
+# View a commit
+
+## On <i class="fab fa-github"></i> GitHub
+
+```{r, fig.align='center', out.height='250px', out.width='800px'}
+# Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/github-commit-view.png")
+```
+
+.center[
+**How do you read this page?**
 ]
 
 ---
@@ -238,6 +273,22 @@ $ git log --all --graph --oneline
 .center[
 **How do you read this commit history?**
 ]
+
+---
+
+# Exercise
+
+## Edit files on <i class="fab fa-github"></i> GitHub
+
+Files can be created and edited directly on <i class="fab fa-github"></i> GitHub.
+Only one file can be edited at a time.
+Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
+
+---
+
+## 
+
+Those changes will need to be _pulled_
 
 ---
 
