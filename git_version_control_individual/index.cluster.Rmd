@@ -42,12 +42,12 @@ More concrete and measurable outputs.
 - Set up an SSH key pair.
 - Configure Git.
 - _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
-- _Clone_ a copy of the repository on the CCB cluster.
-- Create and edit files to the repository on the CCB cluster, and _commit_ those changes.
+- _Clone_ a copy of the repository on the teaching cluster.
+- Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
 - _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
 - Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
-- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the CCB clone of the repository.
-- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the CCB cluster.
+- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
+- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
 
 ---
 
@@ -55,7 +55,7 @@ More concrete and measurable outputs.
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
-- An account on the CCB cluster.
+- An account on the teaching cluster.
 
 ---
 
@@ -65,7 +65,7 @@ More concrete and measurable outputs.
 
 - Open a terminal application on your computer.
 
-- Connect to the CCB cluster over SSH.
+- Connect to the teaching cluster over SSH.
 
 ---
 
@@ -82,7 +82,7 @@ knitr::include_graphics("img/ssh-key-pair.png")
 ```
 
 .center[
-_We need to set an SSH key pair between the CCB cluster and GitHub._
+_We need to set an SSH key pair between the teaching cluster and GitHub._
 ]
 
 ---
@@ -93,7 +93,7 @@ _We need to set an SSH key pair between the CCB cluster and GitHub._
 
 This key pair will allow your clone of the repository to push and pull code through the GitHub API.
 
-- In the Terminal application, on the CCB cluster, create an SSH key pair.
+- In the Terminal application, on the teaching cluster, create an SSH key pair.
 
   + `ssh-keygen -t rsa -b 4096`
   
@@ -118,18 +118,9 @@ _(See next slides to navigate to that page more naturally.)_
 
 ---
 
-# Using <i class="fab fa-git"></i> as an HPC module
+# Using <i class="fab fa-git"></i>
 
 Use SSH to open a terminal on the HPC cluster.
-
-The system executable of `git` is a rather old version.
-Instead, a more recent version of `git` was installed as a module on the CCB cluster.
-
-- Check that the module `git` is loaded.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ module list
-```
 
 - What is the path to the `git` executable?
 
