@@ -276,22 +276,6 @@ $ git log --all --graph --oneline
 
 ---
 
-# Exercise
-
-## Edit files on <i class="fab fa-github"></i> GitHub
-
-Files can be created and edited directly on <i class="fab fa-github"></i> GitHub.
-Only one file can be edited at a time.
-Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
-
----
-
-## 
-
-Those changes will need to be _pulled_
-
----
-
 # View past commits
 
 The `git show` sub-command can be used to examine individual past commits.
@@ -341,6 +325,22 @@ index 0000000..e69de29
 knitr::include_graphics("img/git-diff.svg")
 ```
 ]
+
+---
+
+# Exercise
+
+## Edit files on <i class="fab fa-github"></i> GitHub
+
+Files can be created and edited directly on <i class="fab fa-github"></i> GitHub.
+Only one file can be edited at a time.
+Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
+
+---
+
+## 
+
+Those changes will need to be _pulled_
 
 ---
 
