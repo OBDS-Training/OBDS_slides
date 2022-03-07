@@ -202,38 +202,6 @@ $ git push
 
 ---
 
-# Push a new branch to a remote
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git push
-```
-
-.small-code[
-```
-[main 81acf15] Added empty .gitignore file
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 .gitignore
-(base) [albrecht@cbrglogin3 OBDS_May_2022]$ git remote -v
-origin	git@github.com:kevinrue/OBDS_May_2022.git (fetch)
-origin	git@github.com:kevinrue/OBDS_May_2022.git (push)
-(base) [albrecht@cbrglogin3 OBDS_May_2022]$ git push
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 40 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 306 bytes | 61.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-To github.com:kevinrue/OBDS_May_2022.git
-   4df0fa7..81acf15  main -> main
-```
-]
-
-.center[
-**How do you read the command? What do you think is done, according to the output?**
-]
-
----
-
 # The repository history
 
 ## On <i class="fab fa-github"></i> GitHub
