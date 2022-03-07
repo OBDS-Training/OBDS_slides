@@ -328,17 +328,34 @@ knitr::include_graphics("img/git-diff.svg")
 
 ---
 
-# Exercise
-
-## Edit files on <i class="fab fa-github"></i> GitHub
+# Edit files on <i class="fab fa-github"></i> GitHub
 
 Files can be created and edited directly on <i class="fab fa-github"></i> GitHub.
 Only one file can be edited at a time.
 Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
 
+## Exercise
+
+On <i class="fab fa-github"></i> GitHub, navigate to the file `README.md`,
+and click the pencil above the file on the right.
+
+```{r, fig.align='center', out.height='300px', out.width='600px'}
+# Source: Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/github-readme-view.png")
+```
+
 ---
 
-## 
+# Editing a file on <i class="fab fa-github"></i> GitHub
+
+```{r, fig.align='center', out.height='500px', out.width='600px'}
+# Source: Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/github-readme-edit.png")
+```
+
+---
+
+# Pull changes from a remote repository
 
 Those changes will need to be _pulled_
 
