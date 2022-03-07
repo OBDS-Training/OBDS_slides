@@ -353,11 +353,56 @@ knitr::include_graphics("img/github-readme-view.png")
 knitr::include_graphics("img/github-readme-edit.png")
 ```
 
+.center[
+**Click the green button `Commit changes` when you are ready.**
+]
+
 ---
 
 # Pull changes from a remote repository
 
-Those changes will need to be _pulled_
+Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
+
+- This does not (cannot!) automatically update the files in your clone on the teaching cluster.
+
+- The changes need to be _pulled_ from <i class="fab fa-github"></i> GitHub to the clone.
+
+## Exercise
+
+- Compare the history of the repository on <i class="fab fa-github"></i> GitHub
+  and your clone on the teaching cluster.
+
+```{r, fig.align='center', out.height='250px', out.width='650px'}
+# Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/github-network-graph2.png")
+```
+
+---
+
+# Exercise
+
+## Pull changes from a remote repository
+
+In your Terminal on the cluster, run `git pull`.
+
+.center[
+**How do you read the message output? (example below)**
+]
+
+```
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 718 bytes | 17.00 KiB/s, done.
+From github.com:kevinrue/OBDS_May_2022
+   81acf15..73f7a57  main       -> origin/main
+Updating 81acf15..73f7a57
+Fast-forward
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+```
 
 ---
 
@@ -369,27 +414,6 @@ The `git revert` sub-command can be used to undo everything that was done in a p
 # In-house illustration made using Adobe Illustrator
 knitr::include_graphics("img/git-revert.svg")
 ```
-
----
-
-# Reset to earlier commits
-
-.center[
-**!!! DANGER ZONE !!!**
-]
-
-The `git reset` sub-command can be used to reset the repository history to an earlier commit.
-
-- This is a dangerous and destructive action that can creates conflicting histories.
-
-```{r, fig.align='center', out.height='350px', out.width='800px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/git-reset.svg")
-```
-
-.center[
-**What do you think will happen when Kevin and David pushed their `master` branch?**
-]
 
 ---
 
