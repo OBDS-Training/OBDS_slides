@@ -135,21 +135,19 @@ knitr::include_graphics("img/clones-conflict.svg")
 
 ---
 
-# Summary: version tracking software
+# Summary
 
-- Keep track of changes (i.e., differences or _diffs_).
+- A _repository_ is a directory on a computer in which files are tracked.
 
-  + Effectively creating different _versions_ of our files, from a base document.
+- Files in a repository are tracked: changes are detected and recorded.
 
-- Allows users to decide which changes are made to the next version.
+- Users decide when changes are recorded.
 
   + Each record of changes is called a _commit_.
 
-- The complete history of _commits_ for a given project makes up a _repository_.
+- The complete history of _commits_ makes up the history of a _repository_.
 
-- Copies of a _repository_ can be kept in sync across different computers (i.e. _remotes_).
-
-  + Each copy of the repository is called a _clone_.
+- A _repository_ can be _cloned_ and synchronised across different computers (i.e. _remotes_).
 
 ---
 
