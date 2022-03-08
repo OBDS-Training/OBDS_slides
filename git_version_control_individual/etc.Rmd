@@ -536,8 +536,8 @@ knitr::include_graphics("img/carpentries-merge.svg")
 Creating branches will result in your work being spread in mutually exclusive versions of your files, e.g.
 
 - The main branch contains the code from your latest lab meeting.
-- Another branch with changes that fix a bug.
-- Another branch with code that generates a new figure.
+- Another branch contains updates that fix a bug.
+- Another branch includes code that generates a new figure.
 ]
 
 To generate a new version of your code that contains the code from your latest lab meeting,
