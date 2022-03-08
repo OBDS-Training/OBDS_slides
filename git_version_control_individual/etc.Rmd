@@ -113,10 +113,11 @@ touch .gitignore
 
 # Track new files
 
-The `git add` sub-command can be used to add new files to the set of files tracked by <i class="fab fa-git"></i>.
+The `git add` sub-command can be used to add new sets of changes to the _staging area_.
 
-- As long as <i class="fab fa-git"></i> is not explicitly told to track new files, those files will exist in the _directory_ but not in the _repository_.
-- In other words, the file will exist, but changes to that file will not be tracked, and we will not be able to restore past versions of that file.
+- The _staging area_ is used to prepare the set of changes recorded in the next _commit_.
+- The command adds filenames to the staging area, but only the changes in those files will be recorded.
+- In this case, we add a new file to the staging area, so the whole contents of the new file constitute the changes (relative to no file).
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git add .gitignore
@@ -142,11 +143,12 @@ Changes to be committed:
 
 We just ran `git add`, which added a set of changes to the _staging area_.
 
-- The _staging area_ contains the set of changes that will be recorded in the next _commit_.
-- You may add to the _staging area_ only a subset of the changes that you have made in the repository since the latest _commit_.
-- The _staging area_ can include changes made to multiple files.
+Then, we ran `git status`, as it is always a good idea to inspect the state of the repository to ensure everything is as expected before taking any further action.
 
 The `git commit` sub-command can be used to add changes currently in the _staging area_ in the next _commit_ of the _repository_.
+
+- The contents of the _staging area_ are added to a new _commit_ in the repository.
+- The _staging area_ itself is cleared, ready for the next set of changes to process.
 
 ```{r, fig.align='center', out.height='200px', out.width='800px'}
 # Source: https://swcarpentry.github.io/git-novice/04-changes/index.html
@@ -157,7 +159,7 @@ knitr::include_graphics("img/carpentries-git-staging-area.svg")
 
 # Record a set of changes 
 
-The `git commit` sub-command can be used to add changes currently in the _staging area_ in the next _commit_ of the _repository_.
+The `git commit` sub-command can be used to record the changes that are currently in the _staging area_ in the next _commit_ of the _repository_.
 
 - The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
 
