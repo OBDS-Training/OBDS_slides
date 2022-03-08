@@ -48,7 +48,7 @@ LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Comm
 
 # Track changes using version control
 
-## Versions and changes
+## Example on a single file
 
 ```{r, fig.align='center', out.height='200px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
@@ -57,13 +57,14 @@ knitr::include_graphics("img/carpentries-play-changes.svg")
 
 #### Process
 
-- Start with a base version of the document.
-- Then, record changes that you make along the way (i.e. checkpoints).
+- Initialise the base version of the document.
+- Make changes to the document.
+- Take snapshots of the document at key moments
+- Annotate those snapshot with a description of the changes.
 
 #### Result
 
-- You can rewind to any version of the document (up to the base version).
-- You can play back each change that you made (up to the most recent version).
+- You can examine the history of changes and restore any snapshot of the document.
 
 ---
 
