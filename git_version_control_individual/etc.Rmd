@@ -467,9 +467,18 @@ knitr::include_graphics("img/carpentries-merge.svg")
 ]
 
 .pull-right[
-Branches represent more versions of your code to maintain.
-TODO
+Creating branches will result in your work being spread in mutually exclusive versions of your files, e.g.
+
+- The main branch contains the code from your latest lab meeting.
+- Another branch with changes that fix a bug.
+- Another branch with code that generates a new figure.
 ]
+
+To generate a new version of your code that contains the code from your latest lab meeting,
+**and** the bug fix, **and** the new figure, you need to _merge_ branches together.
+
+Merging two branches creates a new _commit_ in the repository history.
+Downstream of the merging point, the new branch contains the changes made in both upstream branches.
 
 ---
 
