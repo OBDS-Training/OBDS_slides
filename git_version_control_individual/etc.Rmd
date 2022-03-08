@@ -632,6 +632,8 @@ Once merged, branches should be "deleted".
 knitr::include_graphics("img/git-branch-delete.svg")
 ```
 
+The name of the branch can then be re-used to create a new branch with that name.
+
 ---
 
 # Further reading
