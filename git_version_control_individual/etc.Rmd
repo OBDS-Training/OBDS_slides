@@ -384,7 +384,7 @@ Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 - Compare the history of the repository on <i class="fab fa-github"></i> GitHub
   and your clone of of the repository.
 
-```{r, fig.align='center', out.height='250px', out.width='650px'}
+```{r, fig.align='center', out.height='250px', out.width='600px'}
 # Screenshot (Kevin Rue-Albrecht)
 knitr::include_graphics("img/github-network-graph2.png")
 ```
