@@ -429,9 +429,7 @@ knitr::include_graphics("img/git-revert.svg")
 
 ---
 
-# Changes can be made independently
-
-## Different versions
+# Branches of history
 
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
@@ -441,20 +439,25 @@ knitr::include_graphics("img/carpentries-versions.svg")
 ]
 
 .pull-right[
-Changes are separate from the document itself.
+So far, your repository has followed a linear timeline.
 
-- You can play back different sets of changes on the base document.
+What if:
 
-- Those changes result in different versions of that document.
+- You want to write (and test) two mutually exclusive changes to your code,
+  and track those changes until you decide one to keep and one to discard.
 
-For example, different users make independent changes on the same document.
+- You do not want to commit draft code to the main branch of your repository.
 ]
+
+Then:
+
+- You can initiate new _branches_ in the history of your repository.
+
+- Changes upstream of the branching point are shared; downstream changes are specific to each branch.
 
 ---
 
-# Independent changes can be incorporated
-
-## Merge sets of changes
+# Merging branches of history
 
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
@@ -464,9 +467,8 @@ knitr::include_graphics("img/carpentries-merge.svg")
 ]
 
 .pull-right[
-Unless changes affect the same lines of the document (i.e., conflicts):
-
-- Changes can be _merged_ into the same base document.
+Branches represent more versions of your code to maintain.
+TODO
 ]
 
 ---
