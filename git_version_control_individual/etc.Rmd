@@ -544,7 +544,7 @@ To generate a new version of your code that contains the code from your latest l
 **and** the bug fix, **and** the new figure, you need to _merge_ branches together.
 
 Merging two branches creates a new _commit_ in the repository history.
-Downstream of the merging point, the new branch contains the changes made in both upstream branches.
+Downstream of the merging point, the files contain the changes made in both upstream branches.
 
 ---
 
