@@ -572,9 +572,13 @@ knitr::include_graphics("img/branch-and-merge.svg")
 The `git branch` sub-command can be used to inspect and create branches in a repository.
 
 - This does not automatically synchronise remote clones of the repository.
+
   + You will need to _push_ those branches to the remote clones.
+  
 - You can only create branches with named that are not already used (locally).
+
   + You will need to delete branches if you want to re-use their names.
+  
 - The branching point is the latest commit on the current branch.
 
 The `git checkout` sub-command is used to switch between branches.
