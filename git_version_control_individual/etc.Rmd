@@ -284,6 +284,8 @@ $ git log --all --graph --oneline
 **How do you read this commit history?**
 ]
 
+- Compare with `git log` without any argument.
+
 ---
 
 # View past commits
