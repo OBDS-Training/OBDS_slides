@@ -588,8 +588,42 @@ create **and** switch to that new branch.
 
 ```{r, fig.align='center', out.height='150px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/branch.svg")
+knitr::include_graphics("img/git-branch.svg")
 ```
+
+---
+
+# Merging a branch
+
+The `git merge` sub-command can be used to merge two branches.
+
+Most frequently, "feature" branches are merge to the main branch.
+
+```
+git checkout main     # checkout the "receiving" branch
+git merge new_branch  # merge the "feature" branch to the current branch
+```
+
+This creates a new commit.
+From that point, files contain the changes made in the two parent branches.
+
+```{r, fig.align='center', out.height='150px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-merge.svg")
+```
+
+---
+
+# Deleting a branch
+
+Once merged, branches should be "deleted".
+
+- If the branch was merged, only the name is deleted, not the commits.
+
+  + The commits are part of the history of the other branch.
+    Thus, commits are kept as long as one branch in the repository contains them.
+
+- If the branch was not merged, the commits on that branch are lost.
 
 ---
 
