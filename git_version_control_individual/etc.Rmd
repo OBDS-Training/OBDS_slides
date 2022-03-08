@@ -586,6 +586,11 @@ The `git checkout` sub-command is used to switch between branches.
 Frequently, `git checkout -b name_of_new_branch` is used to simultaneously
 create **and** switch to that new branch.
 
+```{r, fig.align='center', out.height='150px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/branch.svg")
+```
+
 ---
 
 # Further reading
