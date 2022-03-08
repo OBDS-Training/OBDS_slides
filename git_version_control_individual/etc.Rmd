@@ -479,7 +479,7 @@ knitr::include_graphics("img/summary-workflow-pull-push.svg")
 
 - Do not track confidential information
 
-  + e.g. passwords
+  + e.g., login, passwords
 ]
 
 ---
