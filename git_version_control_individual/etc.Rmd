@@ -342,8 +342,8 @@ knitr::include_graphics("img/git-diff.svg")
 
 # Edit files on <i class="fab fa-github"></i> GitHub
 
-Files can be created and edited directly on <i class="fab fa-github"></i> GitHub.
-Only one file can be edited at a time.
+Files can be created and edited directly on <i class="fab fa-github"></i> GitHub,
+though only one file can be edited at a time in this way.
 Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
 
 ## Exercise
