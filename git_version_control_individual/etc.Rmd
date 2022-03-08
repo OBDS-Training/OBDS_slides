@@ -618,12 +618,19 @@ knitr::include_graphics("img/git-merge.svg")
 
 Once merged, branches should be "deleted".
 
-- If the branch was merged, only the name is deleted, not the commits.
+- Except the main branch!
+
+- If the branch was merged, only the name  of the branch is deleted, not the commits.
 
   + The commits are part of the history of the other branch.
     Thus, commits are kept as long as one branch in the repository contains them.
 
 - If the branch was not merged, the commits on that branch are lost.
+
+```{r, fig.align='center', out.height='150px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-branch-delete.svg")
+```
 
 ---
 
