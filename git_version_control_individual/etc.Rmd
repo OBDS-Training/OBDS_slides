@@ -417,6 +417,67 @@ knitr::include_graphics("img/git-revert.svg")
 
 ---
 
+# Changes can be made independently
+
+## Different versions
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+knitr::include_graphics("img/carpentries-versions.svg")
+```
+]
+
+.pull-right[
+Changes are separate from the document itself.
+
+- You can play back different sets of changes on the base document.
+
+- Those changes result in different versions of that document.
+
+For example, different users make independent changes on the same document.
+]
+
+---
+
+# Independent changes can be incorporated
+
+## Merge sets of changes
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+knitr::include_graphics("img/carpentries-merge.svg")
+```
+]
+
+.pull-right[
+Unless changes affect the same lines of the document (i.e., conflicts):
+
+- Changes can be _merged_ into the same base document.
+]
+
+---
+
+# Branching and merging
+
+```{r, fig.align='center', out.height='300px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/branch-and-merge.svg")
+```
+
+- Branching allows you to work on different things independently from each other.
+
+- Merging combines the changes made on a branch to those made on another branch.
+
+  + Typically, "feature" branches are merged to the main branch.
+
+- Branches can contain any number of commits before being merged.
+
+- Branches do not have to be merged; they can be abandoned and deleted (great for experimenting).
+
+---
+
 # Final advice
 
 .center[
