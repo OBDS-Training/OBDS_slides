@@ -1,6 +1,6 @@
 # Exercise
 
-## Setting up the SSH key pair
+## Accessing the SSH keys settings on <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='350px'}
 # Screenshot
@@ -11,7 +11,7 @@ knitr::include_graphics("img/github-add-ssh-key.png")
 
 # Exercise
 
-## Setting up the SSH key pair
+## Adding a new SSH key on <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='350px'}
 # Screenshot
