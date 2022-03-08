@@ -416,6 +416,72 @@ Fast-forward
  1 file changed, 3 insertions(+)
 ```
 
+Have a look at `git status` and `git log`, and compare with the history of the repository on <i class="fab fa-github"></i> GitHub.
+
+---
+
+# Summary so far
+
+- You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
+
+- You have made a _clone_ of the repository on the teaching cluster.
+
+- You have _committed_ changes to files on the teaching cluster.
+
+- You have _pushed_ those commits from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+
+- You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
+
+- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to the teaching cluster.
+
+```{r, fig.align='center', out.height='250px', out.width='600px'}
+# Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/summary-workflow-pull-push.svg")
+```
+
+---
+
+# What to track?
+
+.center[
+**Can you identify the reasoning underlying each of the following pieces of advice?**
+]
+
+.pull-left[
+- Track:
+
+  + source code (e.g., scripts).
+  
+  + README file(s)
+  
+  + LICENSE file, if any
+  
+- Optionally track:
+
+  + `.gitignore` file(s)
+  
+  + Configuration file(s)
+
+- Do not track output files.
+]
+
+.pull-right[
+- Do not track very large files (e.g., data).
+
+  + Use [git-lfs](https://git-lfs.github.com/) if you must.
+
+  + Host elsewhere
+  (e.g.,
+  [figshare](https://figshare.com/),
+  [zenodo](https://zenodo.org/)).
+  
+  + Download data at runtime.
+
+- Do not track confidential information
+
+  + e.g. passwords
+]
+
 ---
 
 # Revert changes
@@ -501,46 +567,20 @@ knitr::include_graphics("img/branch-and-merge.svg")
 
 ---
 
-# Final advice
+# Create a branch
 
-.center[
-**Can you identify the reasoning underlying each of the following pieces of advice?**
-]
+The `git branch` sub-command can be used to inspect and create branches in a repository.
 
-.pull-left[
-- Track:
+- This does not automatically synchronise remote clones of the repository.
+  + You will need to _push_ those branches to the remote clones.
+- You can only create branches with named that are not already used (locally).
+  + You will need to delete branches if you want to re-use their names.
+- The branching point is the latest commit on the current branch.
 
-  + source code (e.g., scripts).
-  
-  + README file(s)
-  
-  + LICENSE file, if any
-  
-- Optionally track:
+The `git checkout` sub-command is used to switch between branches.
 
-  + `.gitignore` file(s)
-  
-  + Configuration file(s)
-
-- Do not track output files.
-]
-
-.pull-right[
-- Do not track very large files (e.g., data).
-
-  + Use [git-lfs](https://git-lfs.github.com/) if you must.
-
-  + Host elsewhere
-  (e.g.,
-  [figshare](https://figshare.com/),
-  [zenodo](https://zenodo.org/)).
-  
-  + Download data at runtime.
-
-- Do not track confidential information
-
-  + e.g. passwords
-]
+Frequently, `git checkout -b name_of_new_branch` is used to simultaneously
+create **and** switch to that new branch.
 
 ---
 
