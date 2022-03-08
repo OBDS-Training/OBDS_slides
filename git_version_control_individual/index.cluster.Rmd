@@ -120,9 +120,7 @@ _(See next slides to navigate to that page more naturally.)_
 
 ---
 
-# Using <i class="fab fa-git"></i>
-
-Use SSH to open a terminal on the HPC cluster.
+# Using <i class="fab fa-git"></i> on the teaching cluster
 
 - What is the path to the `git` executable?
 
@@ -130,10 +128,10 @@ Use SSH to open a terminal on the HPC cluster.
 $ which git
 ```
 
-- What version of `git` is it?
+- Does the `git` command work?
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git --version
+$ git
 ```
 
 ---
