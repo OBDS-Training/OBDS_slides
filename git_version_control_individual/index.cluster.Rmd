@@ -120,22 +120,6 @@ _(See next slides to navigate to that page more naturally.)_
 
 ---
 
-# Using <i class="fab fa-git"></i> on the teaching cluster
-
-- What is the path to the `git` executable?
-
-```{bash, eval=FALSE, echo=TRUE}
-$ which git
-```
-
-- Does the `git` command work?
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git
-```
-
----
-
 # Getting started with <i class="fab fa-git"></i>
 
 The `git` command has many sub-commands, options, and flags.
