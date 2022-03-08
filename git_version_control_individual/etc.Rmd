@@ -97,6 +97,12 @@ nothing to commit, working tree clean
 touch .gitignore
 ```
 
+- Optionally, add a line to that file, e.g.
+
+```
+# This file list file patterns to ignore from version control
+```
+
 - Run `git status` again.
 
 .center[
