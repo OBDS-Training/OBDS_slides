@@ -266,7 +266,8 @@ To github.com:kevinrue/OBDS_May_2022.git
 ```
 
 Alternatively, we could have used the following command to explicitly push
-(the current branch) to the branch called `main` on the remote called `origin`.
+(the current branch) to the branch called `main` on the remote called `origin`
+(for the same result).
 
 ```
 git push origin main
