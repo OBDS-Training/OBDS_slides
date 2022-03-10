@@ -59,7 +59,7 @@ knitr::include_graphics("img/carpentries-play-changes.svg")
 
 - Initialise the base version of the document.
 - Make changes to the document.
-- Take snapshots of the document at key moments
+- Take snapshots of the document at key moments.
 - Annotate those snapshot with a description of the changes.
 
 #### Result
