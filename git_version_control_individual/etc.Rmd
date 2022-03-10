@@ -477,10 +477,18 @@ Have a look at `git status` and `git log`, and compare with the history of the r
 
 - You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to the teaching cluster.
 
+.pull-left[
 ```{r, fig.align='center', out.height='250px', out.width='600px'}
 # Screenshot (Kevin Rue-Albrecht)
 knitr::include_graphics("img/summary-workflow-pull-push.svg")
 ```
+]
+
+.pull-right[
+Adding, committing, and pushing/pulling changes cover 99% of the <i class="fab fa-git"></i> commands you will use.
+
+However, you need to be aware of other <i class="fab fa-git"></i> commands to manage and undo mistakes.
+]
 
 ---
 
