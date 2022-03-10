@@ -195,6 +195,12 @@ $ git commit -m "Added empty .gitignore file"
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
 ]
 
+- The commit was made in the clone of the repository on the teaching cluster.
+
+  + The <i class="fab fa-github"></i> GitHub clone of the repository does not about it yet.
+
+  + You need to _push_ those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+
 ---
 
 # Push commits to a remote
