@@ -64,7 +64,7 @@ knitr::include_graphics("img/carpentries-play-changes.svg")
 
 #### Result
 
-- You can examine the history of changes and restore any snapshot of the document.
+- You can browse the history of changes and restore any snapshot of the document.
 
 ---
 
