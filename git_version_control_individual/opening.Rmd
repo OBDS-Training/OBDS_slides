@@ -130,7 +130,7 @@ knitr::include_graphics("img/atlassian-clone.svg")
 
 ```{r, fig.align='center', , out.height='500px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/clones-conflict.svg")
+knitr::include_graphics("img/git-clones-conflict.svg")
 ```
 
 ---
