@@ -141,7 +141,7 @@ knitr::include_graphics("img/git-clones-conflict.svg")
 
 - Files in a repository are tracked: changes are detected and recorded.
 
-- Users decide when changes are recorded.
+- Users decide which files are tracked and when changes are recorded.
 
   + Each record of changes is called a _commit_.
 
