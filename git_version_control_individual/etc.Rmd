@@ -195,11 +195,22 @@ $ git commit -m "Added empty .gitignore file"
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
 ]
 
-- The commit was made in the clone of the repository on the teaching cluster.
+---
 
-  + The <i class="fab fa-github"></i> GitHub clone of the repository does not about it yet.
+# Remotes
 
-  + You need to _push_ those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+You have made a _commit_ in the clone of the repository on the teaching cluster.
+
+- The <i class="fab fa-github"></i> GitHub clone of the repository does not about it yet.
+
+- You need to _push_ those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+
+```{r, fig.align='center', out.height='300px', out.width='800px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-push.svg")
+```
+
+The histories
 
 ---
 
@@ -252,6 +263,13 @@ Writing objects: 100% (2/2), 289 bytes | 96.00 KiB/s, done.
 Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
 To github.com:kevinrue/OBDS_May_2022.git
    81acf15..9e2b638  main -> main
+```
+
+Alternatively, we could have used the following command to explicitly push
+(the current branch) to the branch called `main` on the remote called `origin`.
+
+```
+git push origin main
 ```
 
 ---
