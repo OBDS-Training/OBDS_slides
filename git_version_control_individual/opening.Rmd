@@ -111,7 +111,7 @@ knitr::include_graphics("img/atlassian-clone.svg")
 
 - Each contributor has a copy (i.e., _clone_) of the repository on their own computer.
 
-- Commits are first made locally.
+- Commits are first made in one clone.
 
 - Commits can then be _pushed_ and _pulled_ from one clone to another.
 
