@@ -79,8 +79,8 @@ $ git status
 ```
 
 ```
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
 ```
@@ -108,6 +108,24 @@ touch .gitignore
 .center[
 **What does the command return this time? How do you interpret it?**
 ]
+
+---
+
+# Untracked files
+
+Here is an example output of `git status`, after adding a new file `.gitignore`.
+
+```
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
 
 ---
 
