@@ -331,7 +331,7 @@ $ git log --all --graph --oneline
 
 ---
 
-# View past commits
+# View a commit
 
 The `git show` sub-command can be used to examine individual past commits.
 
