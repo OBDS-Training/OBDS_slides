@@ -181,6 +181,10 @@ cd /project/obds/$USER/git
 ```
 
 Now, clone the repository into that `git` subdirectory.
+
+.center[
+**Why is a `git` subdirectory best practices?**
+]
 ]
 
 ---
