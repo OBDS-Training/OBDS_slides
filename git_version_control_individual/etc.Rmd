@@ -133,7 +133,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 The `git add` sub-command can be used to add new sets of changes to the _staging area_.
 
-- The _staging area_ is used to prepare the set of changes recorded in the next _commit_.
+- The _staging area_ is used to prepare the set of changes that will be recorded in the next _commit_.
 - The command adds filenames to the staging area, but only the changes in those files will be recorded.
 - In this case, we add a new file to the staging area, so the whole contents of the new file constitute the changes (relative to no file).
 
