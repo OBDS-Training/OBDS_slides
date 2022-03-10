@@ -574,7 +574,7 @@ What if:
 
 - You want to write (and test) two mutually exclusive changes to your code,
   and track those changes until you decide one to keep and one to discard.
-
+- You need to backup work in progress while urgently fixing a bug.
 - You do not want to commit draft code to the main branch of your repository.
 ]
 
