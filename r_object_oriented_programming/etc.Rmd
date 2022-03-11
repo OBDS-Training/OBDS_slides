@@ -164,6 +164,10 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 ```
 ]
 
+.center[
+**What are advantages of bundling attributes and methods together?**
+]
+
 ---
 
 # Inheritance
@@ -171,10 +175,6 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 - Child classes inherit all the attributes and methods of their parent class(es).
 
 - Child class can add their own new attributes and methods.
-
-- Designing and documenting how to use classes is the responsibility of software developers.
-
-- Learning to use those classes through the documentation is the responsibility of users.
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='700px'}
@@ -189,15 +189,25 @@ knitr::include_graphics("img/class-bird-attributes-methods.svg")
 ```
 ]
 
+.center[
+**How much time do you think is saved when _developing_ new classes by inheritance?**
+]
+
+.center[
+**How much time do you think is saved when _learning_ classes developed by inheritance?**
+]
+
 ---
 
 # Abstraction
 
-- Expose only high level methods.
+- Expose only high-level methods.
 
-- Keep implementation details internal.
+- Keep details of low-level implementation internal.
 
-- Internal implementation can be changed without affecting other objects.
+- As a result, the internal implementation can be changed without affecting other objects.
+
+- Do not overwhelm users with more information than they need to be aware of.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
 knitr::include_graphics("img/class-abstraction.svg")
