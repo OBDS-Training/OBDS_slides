@@ -5,7 +5,7 @@ This is but one type of programming paradigm.
 
 .pull-left[
 ```{r, include=TRUE, fig.align='center'}
-## Source: http://www.hexainclude.com/procedure-oriented-programming-language/
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/functional-programming.svg")
 ```
 ]
@@ -59,12 +59,14 @@ knitr::include_graphics("img/object-oriented-programming.svg")
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='700px'}
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/class-animal-inheritance.svg")
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='250px'}
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/class-animal-attributes-methods.svg")
 ```
 ]
@@ -91,14 +93,6 @@ knitr::include_graphics("img/class-object-relationship.jpeg")
 # Object Oriented Programming (OOP)
 
 .pull-left[
-## Why Object Oriented Programming?
-
-- Better code reusability.
-- Better security mechanisms.
-- More flexibility and scalability.
-]
-
-.pull-right[
 ## In procedural programming:
 
 - Decompose the problem into sub-problems.
@@ -112,15 +106,27 @@ knitr::include_graphics("img/class-object-relationship.jpeg")
 - Objects can communicate and interact with each other.
 ]
 
+.pull-right[
+## Why Object Oriented Programming?
+
+- Better code reusability.
+- Better security mechanisms.
+- More flexibility and scalability.
+
+.center[
+**Do you have any other thought?**
+]
+]
+
 ---
 
-# The four pillars of object oriented programming
+# The four pillars of object-oriented programming
 
-The OOP paradigm follows four principles.
+The four guiding principles of object-oriented programming.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## Source: https://medium.com/swlh/the-four-pillars-of-object-oriented-programming-8ce8a26b32eb
-knitr::include_graphics("img/oop-four-pillars.png")
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/oop-four-pillars.svg")
 ```
 
 ???

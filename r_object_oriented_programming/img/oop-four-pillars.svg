@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 755.8 409.3" style="enable-background:new 0 0 755.8 409.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#D4EDF9;}
+	.st1{font-family:'ArialMT';}
+	.st2{font-size:24px;}
+	.st3{fill:#F8CADB;}
+	.st4{fill:#FCD6B9;}
+	.st5{fill:#E2DEF0;}
+	.st6{fill:#FFFFFF;}
+	.st7{fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M313.3,104.9H47.4c-10,0-18.1-8.1-18.1-18.1V40.9c0-10,8.1-18.1,18.1-18.1h265.9c10,0,18.1,8.1,18.1,18.1v45.8
+	C331.4,96.8,323.3,104.9,313.3,104.9z"/>
+<text transform="matrix(1 0 0 1 98.9668 56.5014)"><tspan x="0" y="0" class="st1 st2">INHERITANCE</tspan><tspan x="-44.1" y="28.8" class="st1 st2">(Sharing of information)</tspan></text>
+<path class="st3" d="M708.4,104.9H442.5c-10,0-18.1-8.1-18.1-18.1V40.9c0-10,8.1-18.1,18.1-18.1h265.9c10,0,18.1,8.1,18.1,18.1v45.8
+	C726.5,96.8,718.4,104.9,708.4,104.9z"/>
+<text transform="matrix(1 0 0 1 474.0992 56.5012)"><tspan x="0" y="0" class="st1 st2">ENCAPSULATION</tspan><tspan x="-32" y="28.8" class="st1 st2">(Grouping of information)</tspan></text>
+<path class="st4" d="M313.3,386.4H47.4c-10,0-18.1-8.1-18.1-18.1v-45.8c0-10,8.1-18.1,18.1-18.1h265.9c10,0,18.1,8.1,18.1,18.1v45.8
+	C331.4,378.3,323.3,386.4,313.3,386.4z"/>
+<text transform="matrix(1 0 0 1 94.9646 338.0371)"><tspan x="0" y="0" class="st1 st2">ABSTRACTION</tspan><tspan x="-32.7" y="28.8" class="st1 st2">(Hiding of information)</tspan></text>
+<path class="st5" d="M708.4,386.4H442.5c-10,0-18.1-8.1-18.1-18.1v-45.8c0-10,8.1-18.1,18.1-18.1h265.9c10,0,18.1,8.1,18.1,18.1
+	v45.8C726.5,378.3,718.4,386.4,708.4,386.4z"/>
+<text transform="matrix(1 0 0 1 477.439 338.0371)"><tspan x="0" y="0" class="st1 st2">POLYMORPHISM</tspan><tspan x="-43.4" y="28.8" class="st1 st2">(Redefining of information)</tspan></text>
+<path d="M510.8,245.6H244.9c-10,0-18.1-8.1-18.1-18.1v-45.8c0-10,8.1-18.1,18.1-18.1h265.9c10,0,18.1,8.1,18.1,18.1v45.8
+	C528.9,237.5,520.8,245.6,510.8,245.6z"/>
+<text transform="matrix(1 0 0 1 264.5432 197.2694)"><tspan x="0" y="0" class="st6 st1 st2">OBJECT-ORIENTED</tspan><tspan x="20" y="28.8" class="st6 st1 st2">PROGRAMMING</tspan></text>
+<line class="st7" x1="239" y1="163.6" x2="214.7" y2="104.9"/>
+<line class="st7" x1="516.8" y1="163.6" x2="541.1" y2="104.9"/>
+<line class="st7" x1="541.1" y1="304.4" x2="516.8" y2="245.6"/>
+<line class="st7" x1="214.7" y1="304.4" x2="239" y2="245.6"/>
+</svg>
