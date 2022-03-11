@@ -48,39 +48,13 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Checkout and pull the main branch of the shared repository.
+- Start a new RStudio project in `/project/obds/$USER/projects/object_oriented_programming`.
 
-- Create and launch a new RStudio project in `/project/obds/$USER/projects/object_oriented_programming_ggplot2`.
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to your project.
-  Use your username in the filename to make it unique, e.g.
+- Make symbolic link from the RStudio project to the template notebook.
 
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/git/week2day4-object_oriented_programming/template.Rmd \
->   /project/obds/$USER/projects/object_oriented_programming_ggplot2/object_oriented_programming-kevinrue.Rmd
-> ```
-
-]
-
-- Similarly, make a copy of the file `template.Rmd` for the `ggplot2` lesson from the Git repository to your project.
-  Use your username in the filename to make it unique, e.g.
-
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/git/week2day4-ggplot2/template.Rmd \
->   /project/obds/$USER/projects/object_oriented_programming_ggplot2/ggplot2-kevinrue.Rmd
-> ```
-
-]
-
-- Open your copy of the notebook for the object-oriented programming lesson in RStudio.
-
-- Follow along, running code from the notebook as mentioned during the lesson.
+- Open the notebook and follow along, editing and running the code as needed.
 
 ---
 
