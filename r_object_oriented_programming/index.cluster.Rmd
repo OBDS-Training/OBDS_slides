@@ -48,7 +48,9 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Start a new RStudio project in `/project/obds/$USER/projects/object_oriented_programming`.
+- Launch RStudio Server on the teaching cluster.
+
+- Start a new RStudio project called `week2day4-object_oriented_programming`.
 
 - Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
