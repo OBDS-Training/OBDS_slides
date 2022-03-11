@@ -31,7 +31,7 @@ High-level "big picture" objectives of the learning process.
 
 - Understand what version control is and when to use it.
 - Identify where git stores information.
-- Practice how to record changes in git.
+- Practice how to record changes in <i class="fab fa-git"></i>.
 
 ### Learning objectives
 
@@ -40,7 +40,7 @@ More concrete and measurable outputs.
 -->
 
 - Set up an SSH key pair.
-- Configure Git.
+- Configure <i class="fab fa-git"></i>.
 - _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
 - _Clone_ a copy of the repository on the teaching cluster.
 - Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
@@ -82,7 +82,7 @@ knitr::include_graphics("img/ssh-key-pair.png")
 ```
 
 .center[
-_We need to set an SSH key pair between the teaching cluster and GitHub._
+_We need to set an SSH key pair between the teaching cluster and <i class="fab fa-github"></i> GitHub._
 ]
 
 ---
@@ -91,7 +91,7 @@ _We need to set an SSH key pair between the teaching cluster and GitHub._
 
 ## Setting up the SSH key pair
 
-This key pair will allow your clone of the repository to push and pull code through the GitHub API.
+This key pair will allow your clone of the repository to push and pull code through the <i class="fab fa-github"></i> GitHub API.
 
 - In the Terminal application, logged in the teaching cluster, create an SSH key pair.
 
@@ -105,7 +105,7 @@ This key pair will allow your clone of the repository to push and pull code thro
 
   + `cat ~/.ssh/id_rsa.pub`
 
-- Add the public key to your GitHub account.
+- Add the public key to your <i class="fab fa-github"></i> GitHub account.
 
   + <https://github.com/settings/ssh/new>
 
@@ -130,7 +130,7 @@ How many sub-commands do you see?
 $ git
 ```
 
-The `--version` flag asks `git` to print the version of the `git` executable that is used.
+The `--version` flag asks the `git` command to print the version of the `git` executable that is used.
 The <i class="fab fa-git"></i> program is generally backward compatible, but you may observe subtle differences in the way different version of <i class="fab fa-git"></i> display information.
 
 ```{bash, eval=FALSE, echo=TRUE}
