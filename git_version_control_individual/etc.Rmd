@@ -127,6 +127,11 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
+```{r, fig.align='center', out.height='200px', out.width='800px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-untracked.svg")
+```
+
 ---
 
 # Track new files

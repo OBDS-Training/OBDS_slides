@@ -30,19 +30,19 @@ More concrete and measurable outputs.
 -->
 
 - Set up an SSH key pair.
-- Configure Git.
-- _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
-- _Clone_ a copy of the repository on the CCB cluster.
-- Create and edit files to the repository on the CCB cluster, and _commit_ those changes.
+- Configure git.
+- _Initialise_ a personal repository for this course, on GitHub.
+- _Clone_ a copy of the repository on the teaching cluster.
+- Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
 - _Push_ your changes to the GitHub clone of the repository.
-- Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
-- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the CCB clone of the repository.
-- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the CCB cluster.
+- Edit files on the GitHub clone of the repository.
+- _Pull_ updates from the GitHub clone to the clone of the repository on the teaching cluster.
+- Examine the _log_ of the shared repository, on GitHub and on the teaching cluster.
 
 ## Pre-requisites
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
-- An account on the CCB cluster.
+- A [GitHub](https://github.com/) account.
+- An account on the teaching cluster.
 
 ## Data sets
 
@@ -52,13 +52,22 @@ N/A
 
 | Activity                                      |  Time |
 |-----------------------------------------------|-------|
-| What is version control and why use it        |  9:30 |
-| Getting started with `git`                    |  9:45 |
-| Setting up `git`                              | 10:00 |
-| Clone the shared repository                   | 10:15 |
-| The `.git` sub-directory                      | 10:30 |
-| Check the repository status                   | 10:40 |
+| Setup                                         |  9:30 |
+| Introduction to version control               |  9:45 |
+| Set up SSH key pairs                          | 10:00 |
+| Configure git for the first time              | 10:15 |
+| Initialise a repository on GitHub             | 10:30 |
+| `git clone`                                   | 10:45 |
 | **Morning Break**                             | 10:50 |
+| The `.git` sub-directory                      | 11:10 |
+| The `.gitignore` file                         | 11:15 |
+| `git status`                                  | 11:20 |
+| Editing files                                 | 11:25 |
+| `git add`                                     | 11:30 |
+| The staging area                              | 11:35 |
+| `git commit`                                  | 11:40 |
+
+
 | Working on branches                           | 11:00 |
 | Create a branch                               | 11:15 |
 | Make & track changes                          | 11:30 |
