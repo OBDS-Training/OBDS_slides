@@ -144,11 +144,11 @@ Note: Individually described in next few slides
 
 # Encapsulation
 
-- Objects can keep their data private.
+- Attributes and methods are bundled together in objects.
 
-- The contents of an object can only be accessed by public methods.
+- Users interact with objects through their public methods.
 
-- Improves security.
+- In turn, public methods perform the requested action using private attributes and methods.
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
