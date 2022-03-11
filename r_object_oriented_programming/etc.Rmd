@@ -241,11 +241,13 @@ knitr::include_graphics("img/class-polymorphism.svg")
 
 - <i class="fab fa-r-project"></i> has no less than _three_ implementations of OOP:
 
-  + S3, the original class system in base <i class="fab fa-r-project"></i>.
+  + *S3*, the original class system in base <i class="fab fa-r-project"></i>.
   
-  + S4, implemented in the `r BiocStyle::CRANpkg("methods")` package.
+  + *S4*, implemented in the `r BiocStyle::CRANpkg("methods")` package,
+    and popular in the [Bioconductor](https://bioconductor.org/) project.
   
-  + R6, implemented in the `r BiocStyle::CRANpkg("R6")` package.
+  + *R6*, implemented in the `r BiocStyle::CRANpkg("R6")` package,
+    and popular in the [tidyverse](https://www.tidyverse.org/) project.
 
 In this lesson, we focus on S3, to understand classes of objects that we frequently come across in base <i class="fab fa-r-project"></i>.
 
