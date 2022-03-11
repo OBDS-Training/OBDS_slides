@@ -6,7 +6,7 @@ This is but one type of programming paradigm.
 .pull-left[
 ```{r, include=TRUE, fig.align='center'}
 ## Source: http://www.hexainclude.com/procedure-oriented-programming-language/
-knitr::include_graphics("img/functional-programming.png")
+knitr::include_graphics("img/functional-programming.svg")
 ```
 ]
 
