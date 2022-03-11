@@ -3,7 +3,7 @@ title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-git
 subtitle: 'Using individual repositories on the teaching cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-01-24 (updated: `r Sys.Date()`)"
+date: "2022-05-09 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
