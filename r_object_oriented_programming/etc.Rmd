@@ -71,7 +71,7 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 
 ---
 
-# Analogy
+# Objects are instances of a class
 
 - A _class_ is the generic description of an object
   
