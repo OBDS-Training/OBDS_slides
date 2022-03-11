@@ -259,7 +259,7 @@ Everything is an object in <i class="fab fa-r-project"></i>.
 For example, character vectors are objects.
 
 .pull-left[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 character_object <- "A"
 character_object
 str(character_object)
@@ -269,7 +269,7 @@ attributes(character_object)
 ]
 
 .pull-right[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 character_object2 <- c("A", "B", "C")
 character_object2
 str(character_object2)
@@ -283,7 +283,7 @@ attributes(character_object2)
 # Factors are objects, too
 
 .pull-left[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 factor_object <- factor(c("A", "B", "C"))
 factor_object
 str(factor_object)
@@ -292,7 +292,7 @@ class(factor_object)
 ]
 
 .pull-right[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 attributes(factor_object)
 attr(factor_object, "levels")
 attr(factor_object, "class")
@@ -304,7 +304,7 @@ attr(factor_object, "class")
 # Data frames are objects
 
 .pull-left[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 dataframe_object <- data.frame(
   numbers = c(1, 2, 3),
   strings = c("A", "B", "C")
@@ -315,7 +315,7 @@ class(dataframe_object)
 ]
 
 .pull-right[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 str(dataframe_object)
 attributes(dataframe_object)
 ```
@@ -326,7 +326,7 @@ attributes(dataframe_object)
 # And matrices are objects
 
 .pull-left[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 matrix_object <- matrix(
   data = c(1, 2, 3, 4, 5, 6, 7, 8),
   nrow = 2
@@ -336,7 +336,7 @@ matrix_object
 ]
 
 .pull-right[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 class(matrix_object)
 str(matrix_object)
 attributes(matrix_object)
@@ -355,7 +355,7 @@ Methods are ordinary functions that use a special naming convention: `generic.cl
 options(width = 60)
 ```
 
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 methods("print") %>% head(14)
 ```
 
@@ -363,7 +363,7 @@ methods("print") %>% head(14)
 ]
 
 .pull-right[
-```{r, include=TRUE}
+```{r, echo=TRUE, include=TRUE}
 print.factor(factor_object)
 print.factor(character_object)
 print.default(character_object)
