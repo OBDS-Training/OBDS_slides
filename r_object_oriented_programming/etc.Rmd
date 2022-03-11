@@ -168,6 +168,13 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 
 # Inheritance
 
+- Child classes inherit all the attributes and methods of their parent class(es).
+
+- Child class can add their own new attributes and methods.
+
+- Designing classes is the responsibility of software developers;
+  Understanding those classes is the responsibility of users.
+
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='700px'}
 ## Source: Kevin Rue-Albrecht (Adobe Illustrator)
@@ -180,10 +187,6 @@ knitr::include_graphics("img/class-animal-inheritance.svg")
 knitr::include_graphics("img/class-bird-attributes-methods.svg")
 ```
 ]
-
-- Child classes inherit all the attributes and methods of their parent class(es).
-
-- Child class can add their own new attributes and methods.
 
 ---
 
