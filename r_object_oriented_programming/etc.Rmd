@@ -4,7 +4,7 @@ We often see programming as applying functions to variables in our workspace.
 This is but one type of programming paradigm.
 
 .pull-left[
-```{r, include=TRUE, fig.align='center', out.height='400px'}
+```{r, include=TRUE, fig.align='center'}
 ## Source: http://www.hexainclude.com/procedure-oriented-programming-language/
 knitr::include_graphics("img/functional-programming.png")
 ```
@@ -34,14 +34,14 @@ However:
 
 # Object-oriented programming
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px'}
 ## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/object-oriented-programming.svg")
 ```
 
 - Data are stored in _objects_ that undergo successive transformations.
 - Different _classes_ of objects are designed to contain different data types.
-- Functions specialised in the handling of different classes are called _methods_.
+- Functions specialised in the handling of certain classes are called _methods_.
 
 ---
 
