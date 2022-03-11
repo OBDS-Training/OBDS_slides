@@ -152,8 +152,8 @@ Note: Individually described in next few slides
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
-## Source: http://www.personal.psu.edu/users/a/g/ags5311/blogs/ExtendedText.html
-knitr::include_graphics("img/oop-encapsulation.png")
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/oop-encapsulation.svg")
 ```
 ]
 
