@@ -12,7 +12,7 @@ Object Oriented Programming in <i class="fab fa-r-project"></i>
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE, error = FALSE,
+  message = FALSE, warning = FALSE, error = FALSE, echo = FALSE,
   include = FALSE
 )
 stopifnot(require(tidyverse))
