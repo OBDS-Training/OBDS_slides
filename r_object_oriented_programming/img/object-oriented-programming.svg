@@ -29,11 +29,13 @@
 </g>
 <g>
 	<polygon class="st3" points="123.8,289.9 71.3,289.9 45.1,309.2 71.3,328.5 123.8,328.5 150,309.2 	"/>
-	<text transform="matrix(1 0 0 1 72.2005 305.1931)"><tspan x="0" y="0" class="st4 st0 st5">Method-2</tspan><tspan x="1.7" y="14.4" class="st4 st0 st5">(class-A)</tspan></text>
+	<text transform="matrix(1 0 0 1 72.2005 305.1931)" class="st4 st0 st5">Method-2</text>
+	<text transform="matrix(1 0 0 1 73.9005 319.5931)" class="st4 st0 st5">(class-A)</text>
 </g>
 <g>
 	<polygon class="st3" points="123.8,174.4 71.3,174.4 45.1,193.8 71.3,213.1 123.8,213.1 150,193.8 	"/>
-	<text transform="matrix(1 0 0 1 72.2005 189.7668)"><tspan x="0" y="0" class="st4 st0 st5">Method-1</tspan><tspan x="1.7" y="14.4" class="st4 st0 st5">(class-A)</tspan></text>
+	<text transform="matrix(1 0 0 1 72.2005 189.7668)" class="st4 st0 st5">Method-1</text>
+	<text transform="matrix(1 0 0 1 73.9005 204.1668)" class="st4 st0 st5">(class-A)</text>
 </g>
 <g>
 	<g>
@@ -44,15 +46,18 @@
 	</g>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 146.716 247.48)"><tspan x="0" y="0" class="st4 st0 st5">Object-1.2</tspan><tspan x="4" y="14.4" class="st4 st0 st5">(class-A)</tspan></text>
+	<text transform="matrix(1 0 0 1 146.716 247.48)" class="st4 st0 st5">Object-1.2</text>
+	<text transform="matrix(1 0 0 1 150.716 261.88)" class="st4 st0 st5">(class-A)</text>
 	<rect x="133.7" y="228.8" class="st3" width="81.3" height="45.3"/>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 151.1442 132.0536)"><tspan x="0" y="0" class="st4 st0 st5">Object-1</tspan><tspan x="-1" y="14.4" class="st4 st0 st5">(class-A)</tspan></text>
+	<text transform="matrix(1 0 0 1 151.1442 132.0536)" class="st4 st0 st5">Object-1</text>
+	<text transform="matrix(1 0 0 1 150.1442 146.4536)" class="st4 st0 st5">(class-A)</text>
 	<rect x="133.2" y="113.4" class="st3" width="81.3" height="45.3"/>
 </g>
 <g>
-	<text transform="matrix(1 0 0 1 151.7201 362.9062)"><tspan x="0" y="0" class="st6 st0 st5">Object-2</tspan><tspan x="-1" y="14.4" class="st6 st0 st5">(class-B)</tspan></text>
+	<text transform="matrix(1 0 0 1 151.7201 362.9062)" class="st6 st0 st5">Object-2</text>
+	<text transform="matrix(1 0 0 1 150.7201 377.3062)" class="st6 st0 st5">(class-B)</text>
 	<rect x="133.7" y="344.2" class="st7" width="81.3" height="45.3"/>
 </g>
 <g>
@@ -65,10 +70,12 @@
 </g>
 <g>
 	<polygon class="st8" points="369.1,289.9 316.7,289.9 290.5,309.2 316.7,328.5 369.1,328.5 395.3,309.2 	"/>
-	<text transform="matrix(1 0 0 1 317.5697 305.1931)"><tspan x="0" y="0" class="st9 st0 st5">Method-2</tspan><tspan x="1.7" y="14.4" class="st9 st0 st5">(class-B)</tspan></text>
+	<text transform="matrix(1 0 0 1 317.5697 305.1931)" class="st9 st0 st5">Method-2</text>
+	<text transform="matrix(1 0 0 1 319.2697 319.5931)" class="st9 st0 st5">(class-B)</text>
 </g>
 <polygon class="st8" points="369.1,174.4 316.7,174.4 290.5,193.8 316.7,213.1 369.1,213.1 395.3,193.8 "/>
-<text transform="matrix(1 0 0 1 317.5697 189.7668)"><tspan x="0" y="0" class="st9 st0 st5">Method-1</tspan><tspan x="1.7" y="14.4" class="st9 st0 st5">(class-B)</tspan></text>
+<text transform="matrix(1 0 0 1 317.5697 189.7668)" class="st9 st0 st5">Method-1</text>
+<text transform="matrix(1 0 0 1 319.2697 204.1668)" class="st9 st0 st5">(class-B)</text>
 <g>
 	<g>
 		<line class="st2" x1="419.8" y1="174.8" x2="419.8" y2="206.7"/>
@@ -77,26 +84,30 @@
 		</g>
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 396.5133 132.0536)"><tspan x="0" y="0" class="st9 st0 st5">Object-3</tspan><tspan x="-1" y="14.4" class="st9 st0 st5">(class-B)</tspan></text>
+<text transform="matrix(1 0 0 1 396.5133 132.0536)" class="st9 st0 st5">Object-3</text>
+<text transform="matrix(1 0 0 1 395.5133 146.4536)" class="st9 st0 st5">(class-B)</text>
 <rect x="378.5" y="113.4" class="st8" width="81.3" height="45.3"/>
-<text transform="matrix(1 0 0 1 392.0851 247.4801)"><tspan x="0" y="0" class="st9 st0 st5">Object-3.2</tspan><tspan x="4" y="14.4" class="st9 st0 st5">(class-B)</tspan></text>
+<text transform="matrix(1 0 0 1 392.0851 247.4801)" class="st9 st0 st5">Object-3.2</text>
+<text transform="matrix(1 0 0 1 396.0851 261.8801)" class="st9 st0 st5">(class-B)</text>
 <rect x="379.1" y="228.8" class="st8" width="81.3" height="45.3"/>
-<text transform="matrix(1 0 0 1 397.0892 362.9062)"><tspan x="0" y="0" class="st6 st0 st5">Object-4</tspan><tspan x="-1" y="14.4" class="st6 st0 st5">(class-B)</tspan></text>
+<text transform="matrix(1 0 0 1 397.0892 362.9062)" class="st6 st0 st5">Object-4</text>
+<text transform="matrix(1 0 0 1 396.0892 377.3062)" class="st6 st0 st5">(class-B)</text>
 <rect x="379.1" y="344.2" class="st7" width="81.3" height="45.3"/>
 <polygon class="st3" points="584.3,149 531.9,149 505.7,168.3 531.9,187.6 584.3,187.6 610.6,168.3 "/>
-<text transform="matrix(1 0 0 1 532.7805 164.3087)"><tspan x="0" y="0" class="st4 st0 st5">Method-1</tspan><tspan x="1.7" y="14.4" class="st4 st0 st5">(class-B)</tspan></text>
+<text transform="matrix(1 0 0 1 532.7805 164.3087)" class="st4 st0 st5">Method-1</text>
+<text transform="matrix(1 0 0 1 534.4805 178.7087)" class="st4 st0 st5">(class-A)</text>
 <g>
 	<g>
 		<line class="st3" x1="477.1" y1="174.4" x2="526.3" y2="212.2"/>
 		<g>
 			<path class="st4" d="M529,217.2c-0.4,0.5-1.2,0.6-1.7,0.2c-0.2-0.2-0.4-0.4-0.4-0.6l-0.5-4.1c-0.1,0-0.2,0-0.3,0l-1.5,3.5
 				l-0.1,0.3c-0.2,0.4-0.7,0.7-1.2,0.6c-0.7-0.1-1.1-0.7-1-1.4c0-0.3,0.1-0.5,0.3-0.7l0,0l0.3-0.2l0,0l0,0l0,0l2.9-2.3
-				c-0.1-0.1-0.1-0.2-0.1-0.3l-4.1,0.5c-0.1,0-0.1,0-0.2,0c-0.7-0.1-1.1-0.7-1-1.4c0.1-0.7,0.7-1.1,1.4-1c0.1,0,0.1,0,0.2,0l0,0
-				l0.3,0.1l0,0l0,0l3.4,1.4c0,0,0-0.1,0.1-0.1c0,0,0.1-0.1,0.1-0.1l-2.3-3l-0.2-0.2c0,0-0.1-0.1-0.1-0.1c-0.3-0.6,0-1.3,0.7-1.6
-				c0.6-0.3,1.3,0,1.6,0.7c0,0.1,0,0.1,0.1,0.2l0,0.2l0.5,3.9c0.1,0,0.2,0,0.3,0l1.5-3.5l0.1-0.3l0,0c0,0,0-0.1,0.1-0.1
-				c0.4-0.5,1.2-0.6,1.7-0.2c0.5,0.4,0.6,1.2,0.2,1.7c0,0-0.1,0.1-0.1,0.1l0,0l0,0l-0.2,0.1l-0.1,0l-3,2.3c0.1,0.1,0.1,0.2,0.1,0.3
-				l3.8-0.5l0.2,0c0.5,0,1,0.3,1.2,0.7c0.3,0.6,0,1.3-0.7,1.6c-0.3,0.1-0.5,0.1-0.8,0.1l0,0l-0.3-0.1l-3.5-1.5c0,0,0,0.1-0.1,0.1
-				c0,0-0.1,0.1-0.1,0.1l2.3,3l0,0l0.2,0.2C529.3,216.2,529.3,216.8,529,217.2z"/>
+				c-0.1-0.1-0.1-0.2-0.1-0.3l-4.1,0.5c-0.1,0-0.1,0-0.2,0c-0.7-0.1-1.1-0.7-1-1.4s0.7-1.1,1.4-1c0.1,0,0.1,0,0.2,0l0,0l0.3,0.1l0,0
+				l0,0l3.4,1.4c0,0,0-0.1,0.1-0.1l0.1-0.1l-2.3-3l-0.2-0.2l-0.1-0.1c-0.3-0.6,0-1.3,0.7-1.6c0.6-0.3,1.3,0,1.6,0.7
+				c0,0.1,0,0.1,0.1,0.2v0.2l0.5,3.9c0.1,0,0.2,0,0.3,0l1.5-3.5l0.1-0.3l0,0c0,0,0-0.1,0.1-0.1c0.4-0.5,1.2-0.6,1.7-0.2
+				c0.5,0.4,0.6,1.2,0.2,1.7l-0.1,0.1l0,0l0,0l-0.2,0.1h-0.1l-3,2.3c0.1,0.1,0.1,0.2,0.1,0.3l3.8-0.5h0.2c0.5,0,1,0.3,1.2,0.7
+				c0.3,0.6,0,1.3-0.7,1.6c-0.3,0.1-0.5,0.1-0.8,0.1l0,0l-0.3-0.1l-3.5-1.5c0,0,0,0.1-0.1,0.1l-0.1,0.1l2.3,3l0,0l0.2,0.2
+				C529.3,216.2,529.3,216.8,529,217.2z"/>
 		</g>
 	</g>
 </g>
@@ -118,5 +129,11 @@
 	</g>
 </g>
 <rect x="715.7" y="29.9" class="st11" width="334.4" height="359.7"/>
-<text transform="matrix(1 0 0 1 715.6797 59.3086)"><tspan x="0" y="0" class="st12 st13"># Main Program</tspan><tspan x="0" y="38.4" class="st12 st13">Object-1 = ...</tspan><tspan x="0" y="57.6" class="st12 st13">Object-1.2 = Method-1(Object-1)</tspan><tspan x="0" y="76.8" class="st12 st13">Object-2 = Method-2(Object-1.2)</tspan><tspan x="0" y="153.6" class="st12 st13">Object-3 = ...</tspan><tspan x="0" y="172.8" class="st12 st13">Object-3.2 = Method-1(Object-3)</tspan><tspan x="0" y="192" class="st12 st13">Object-4 = Method-2(Object-3.2)</tspan></text>
+<text transform="matrix(1 0 0 1 715.6797 59.3086)" class="st12 st13"># Main Program</text>
+<text transform="matrix(1 0 0 1 715.6797 97.7086)" class="st12 st13">Object-1 = ...</text>
+<text transform="matrix(1 0 0 1 715.6797 116.9086)" class="st12 st13">Object-1.2 = Method-1(Object-1)</text>
+<text transform="matrix(1 0 0 1 715.6797 136.1086)" class="st12 st13">Object-2 = Method-2(Object-1.2)</text>
+<text transform="matrix(1 0 0 1 715.6797 212.9086)" class="st12 st13">Object-3 = ...</text>
+<text transform="matrix(1 0 0 1 715.6797 232.1086)" class="st12 st13">Object-3.2 = Method-1(Object-3)</text>
+<text transform="matrix(1 0 0 1 715.6797 251.3086)" class="st12 st13">Object-4 = Method-2(Object-3.2)</text>
 </svg>
