@@ -172,8 +172,9 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 
 - Child class can add their own new attributes and methods.
 
-- Designing classes is the responsibility of software developers;
-  Understanding those classes is the responsibility of users.
+- Designing and documenting how to use classes is the responsibility of software developers.
+
+- Learning to use those classes through the documentation is the responsibility of users.
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='700px'}
