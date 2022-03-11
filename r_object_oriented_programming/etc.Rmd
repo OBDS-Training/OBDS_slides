@@ -11,16 +11,24 @@ knitr::include_graphics("img/functional-programming.png")
 ]
 
 .pull-right[
-- Divide and conquer
+- Divide and conquer.
 
-- Readable
+- Reuse code.
 
-- Sustainable
+- Readable?
 
-- Easier to debug
+- Sustainable?
 
-- Reuse code
+- Easier to debug?
 ]
+
+However:
+
+- New tasks, new types of inputs, new combinations of inputs and arguments, ...
+
+  + Complexity grows.
+
+- New functions require new function names.
 
 ---
 
