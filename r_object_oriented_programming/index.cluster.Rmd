@@ -40,9 +40,9 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An account on the CCB cluster.
+- An account on the teaching cluster.
 
-- A clone of the shared GitHub repository for this course.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ---
 
