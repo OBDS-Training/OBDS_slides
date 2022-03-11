@@ -346,7 +346,7 @@ attr(matrix_object, "dim")
 
 ---
 
-# S3 method dispatch
+# S3 method dispatch is polymorphism in base <i class="fab fa-r-project"></i>
 
 Methods are ordinary functions that use a special naming convention: `generic.class`:
 
