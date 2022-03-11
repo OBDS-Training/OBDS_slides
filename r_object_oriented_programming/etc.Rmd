@@ -205,13 +205,17 @@ knitr::include_graphics("img/class-bird-attributes-methods.svg")
 
 - Keep details of low-level implementation internal.
 
-- As a result, the internal implementation can be changed without affecting other objects.
+- As a result, the private methods and attributes can be changed without affecting users.
 
 - Do not overwhelm users with more information than they need to be aware of.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
 knitr::include_graphics("img/class-abstraction.svg")
 ```
+
+.center[
+**How much do think users should know about the details of the internal implementation?**
+]
 
 ---
 
