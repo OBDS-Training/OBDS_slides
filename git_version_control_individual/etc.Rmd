@@ -200,6 +200,11 @@ $ git commit -m "Added empty .gitignore file"
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
 ]
 
+```{r, fig.align='center', out.height='175px', out.width='800px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-commit.svg")
+```
+
 ---
 
 # Remotes
