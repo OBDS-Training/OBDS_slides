@@ -63,25 +63,25 @@ N/A
 | The `.gitignore` file                         | 11:15 |
 | `git status`                                  | 11:20 |
 | Editing files                                 | 11:25 |
-| `git add`                                     | 11:30 |
-| The staging area                              | 11:35 |
+| `git add`                                     | 11:35 |
+| The staging area                              | 11:45 |
 | `git commit`                                  | 11:40 |
-
-
-| Working on branches                           | 11:00 |
-| Create a branch                               | 11:15 |
-| Make & track changes                          | 11:30 |
-| The staging area                              | 12:00 |
-| Record changes                                | 12:15 |
+| Remotes                                       | 11:50 |
+| `git push`                                    | 11:55 |
+| The history of a repository on GitHub         | 12:05 |
+| `git log`                                     | 12:15 |
+| `git show`                                    | 12:20 |
+| `git diff`                                    | 12:25 |
 | **Lunch Break**                               | 12:30 |
-| Share changes with others                     | 13:30 |
-| Incorporate changes to the base branch        | 13:45 |
-| Create a pull request                         | 14:00 |
-| Review a pull request                         | 14:15 |
-| Merge a pull request                          | 14:30 |
+| Edit a file on GitHub                         | 13:30 |
+| Pull changes from a remote clone              | 13:45 |
+| Summary and advice                            | 14:00 |
+| `git revert`                                  | 14:15 |
+| `git reset`                                   | 14:20 |
+| `git branch`                                  | 14:25 |
+| `git merge`                                   | 14:35 |
+| Delete a branch                               | 14:45 |
 | **Afternoon Break**                           | 14:50 |
-| Browse the repository history                 | 15:00 |
-| View past commits and differences.            | 15:15 |
-| Revert changes                                | 15:30 |
-| Reset a repository to an earlier commit       | 15:45 |
+| Use git to save files from week 1             | 15:10 |
+| Open discussion                               | 15:45 |
 | **Day End**                                   | 16:00 |
