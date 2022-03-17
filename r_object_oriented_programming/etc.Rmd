@@ -401,9 +401,9 @@ The whole point of method dispatch is that <i class="fab fa-r-project"></i> uses
 
 - [The S3 object system](http://adv-r.had.co.nz/S3.html), in _Advanced R_ by Hadley Wickham
 
-- [The S4 object system](http://adv-r.had.co.nz/S4.html)
+- [The S4 object system](http://adv-r.had.co.nz/S4.html), in _Advanced R_ by Hadley Wickham
 
-- [Advanced R - R6](https://adv-r.hadley.nz/r6.html)
+- [R6](https://adv-r.hadley.nz/r6.html), in _Advanced R_ by Hadley Wickham
 
 ---
 
