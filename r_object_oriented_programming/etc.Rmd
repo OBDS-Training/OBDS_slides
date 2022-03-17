@@ -395,20 +395,23 @@ The whole point of method dispatch is that <i class="fab fa-r-project"></i> uses
 
 ---
 
-# More class systems in <i class="fab fa-r-project"></i>
+# Further reading
 
-- [S4](http://adv-r.had.co.nz/S4.html)
+## Class systems in <i class="fab fa-r-project"></i>
 
-- [R6](https://adv-r.hadley.nz/r6.html)
+- [The S3 object system](http://adv-r.had.co.nz/S3.html), in _Advanced R_ by Hadley Wickham
+
+- [The S4 object system](http://adv-r.had.co.nz/S4.html)
+
+- [Advanced R - R6](https://adv-r.hadley.nz/r6.html)
 
 ---
 
 # References
 
-- [The S3 object system](http://adv-r.had.co.nz/S3.html), in _Advanced R_ by Hadley Wickham
-
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
+NoCite(bib, "r2021")
 PrintBibliography(bib)
 ```
 ]
