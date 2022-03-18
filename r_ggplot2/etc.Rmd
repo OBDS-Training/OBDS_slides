@@ -352,7 +352,7 @@ plot1 + plot2
 # Plot grids - patchwork
 
 ```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
-library(gridExtra)
+library(patchwork)
 plot1 / plot2
 ```
 
@@ -361,7 +361,7 @@ plot1 / plot2
 # Plot grids - patchwork
 
 ```{r, include=TRUE, fig.height=6, fig.width=10, fig.align='center'}
-library(gridExtra)
+library(patchwork)
 (plot1 + plot2) / (plot2 + plot1)
 ```
 
@@ -371,7 +371,7 @@ library(gridExtra)
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 library(gridExtra)
-grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
+gridExtra::grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
 ```
 
 ---
