@@ -200,7 +200,7 @@ ggplot(   )
 - Fill each bar with colors, proportionally to the count of each genus.
   (Copy-paste and extend the code chunk above.)
 
-> From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
+From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
 
 ```{r}
 
