@@ -329,11 +329,30 @@ the diet that leads to the highest mean increase in weight.
 
 ---
 
+# Plot grids - Combine plots
+
+```{r, include=TRUE}
+plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
+plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
+```
+
+.pull-left[
+```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+plot1
+```
+]
+
+.pull-right[
+```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+plot2
+```
+]
+
+---
+
 # Plot grids - cowplot
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
-plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
-plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
 library(cowplot)
 cowplot::plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
 ```
