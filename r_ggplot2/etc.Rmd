@@ -213,7 +213,7 @@ Themes are a powerful way to customize the non-data components of your plots, e.
 
 ```{r, include=TRUE, results='hide'}
 ggplot(...) + 
-  ... +
+  geom_point(...) +
   theme(
     axis.ticks = element_line(size = 2),
     axis.text.x = element_text(face = "italic", hjust = 1),
