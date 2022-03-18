@@ -534,7 +534,7 @@ sample_info
 > - N: spread of cancer to nearby lymph nodes
 > - M: metastasis (spread of cancer to other parts of the body)
 
-- Convert the relevant columns to the factor type.
+- Convert the four columns above to the factor type.
 
 ```{r}
 sample_info <- sample_info %>%
