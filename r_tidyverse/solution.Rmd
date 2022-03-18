@@ -242,12 +242,12 @@ tibble_joined
 
 ```{r}
 iris_raw %>% 
-    group_by(Species) %>% 
+    group_by(species) %>% 
     summarise(
-        min = min(Sepal.Length),
-        mean = mean(Sepal.Length),
-        median = median(Sepal.Length),
-        max = max(Sepal.Length)
+        min = min(sepal_length),
+        mean = mean(sepal_length),
+        median = median(sepal_length),
+        max = max(sepal_length)
     )
 ```
 
@@ -258,7 +258,7 @@ iris_raw %>%
 
 ```{r}
 iris_raw %>% 
-    group_by(Species) %>% 
+    group_by(species) %>% 
     summarise(across(where(is.double), mean))
 ```
 
@@ -267,33 +267,33 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(Species) %>% 
-    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
-    filter(Sepal.Length < 6)
+    group_by(species) %>% 
+    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
+    filter(sepal_length < 6)
 ```
 
-- Sort the latest table (after filtering) by descending `Sepal.Length`.
+- Sort the latest table (after filtering) by descending `sepal_length`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(Species) %>% 
-    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
-    filter(Sepal.Length < 6) %>% 
-    arrange(desc(Sepal.Length))
+    group_by(species) %>% 
+    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
+    filter(sepal_length < 6) %>% 
+    arrange(desc(sepal_length))
 ```
 
-- From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
+- From the latest table (sorted), extract the `sepal_length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(Species) %>% 
-    summarise(across(tidyselect::starts_with("Sepal."), mean)) %>% 
-    filter(Sepal.Length < 6) %>% 
-    arrange(desc(Sepal.Length)) %>% 
-    pull(Sepal.Length, name = Species)
+    group_by(species) %>% 
+    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
+    filter(sepal_length < 6) %>% 
+    arrange(desc(sepal_length)) %>% 
+    pull(sepal_length, name = species)
 ```
 
 # Exercise
@@ -304,57 +304,57 @@ iris_raw %>%
 
 Let's make the silly assumption that iris sepals are rectangular in shape.
 
-- Using `iris_raw`, compute a new column named `Sepal.Area`, which is the product of `Sepal.Length` and `Sepal.Width`.
+- Using `iris_raw`, compute a new column named `sepal_area`, which is the product of `sepal_length` and `sepal_width`.
 
 ```{r}
 iris_raw %>% 
     mutate(
-        Sepal.Area = Sepal.Length * Sepal.Width
+        sepal_area = sepal_length * sepal_width
     )
 ```
 
-- Subset the result to the columns named `Species` and `Sepal.Area`.
+- Subset the result to the columns named `species` and `sepal_area`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
     mutate(
-        Sepal.Area = Sepal.Length * Sepal.Width
+        sepal_area = sepal_length * sepal_width
     ) %>% 
-    select(Species, Sepal.Area)
+    select(species, sepal_area)
 ```
 
-- Subset the result to display the top 5 observations by `Sepal.Area`.
+- Subset the result to display the top 5 observations by `sepal_area`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
     mutate(
-        Sepal.Area = Sepal.Length * Sepal.Width
+        sepal_area = sepal_length * sepal_width
     ) %>% 
-    select(Species, Sepal.Area) %>% 
-    slice_max(Sepal.Area, n = 5)
+    select(species, sepal_area) %>% 
+    slice_max(sepal_area, n = 5)
 ```
 
 ## Bonus point
 
-- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `Sepal.Area` colored by species.
+- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `sepal_area` colored by species.
   You might also want to facet the plot by species.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_for_ggplot <- iris_raw %>% 
     mutate(
-        Sepal.Area = Sepal.Length * Sepal.Width
+        sepal_area = sepal_length * sepal_width
     ) %>% 
-    select(Species, Sepal.Area)
+    select(species, sepal_area)
 iris_for_ggplot
 ```
 
 ```{r}
-ggplot(iris_for_ggplot, aes(Sepal.Area, fill = Species)) +
+ggplot(iris_for_ggplot, aes(sepal_area, fill = species)) +
     geom_histogram() +
-    facet_wrap(~Species, ncol = 1)
+    facet_wrap(~species, ncol = 1)
 ```
 
 # Exercise
@@ -379,7 +379,7 @@ iris_long
 
 **What information have we lost in the process? What could we do to remedy the issue?**
 
-The identity of each observation is lost; e.g., we cannot tell which value of `Sepal.Length` is associated with which value of `Sepal.Width`.
+The identity of each observation is lost; e.g., we cannot tell which value of `sepal_length` is associated with which value of `sepal_width`.
 
 ```{r}
 # Copy the code chunk above and refine to address the issue
@@ -399,7 +399,7 @@ iris_long2
 
 ```{r}
 iris_long2 %>% 
-      pivot_wider(id_cols = c(specimen, Species, variable), names_from = variable, values_from = value) %>% 
+      pivot_wider(id_cols = c(specimen, species, variable), names_from = variable, values_from = value) %>% 
   select(-specimen)
 ```
 
