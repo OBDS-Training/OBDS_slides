@@ -315,7 +315,7 @@ the diet that leads to the highest mean increase in weight.
   (i.e, one plot and one bar per taxonomic order).
 - Change the angle and font size of the text for the x-axis ticks (not the axis titles).
   Justify the text of those x-axis ticks as right-aligned.
-- Change the text and font size of the title for both x and y axes.
+- Change the value and font size of the title for both x and y axes.
 - Fill each bar with colors, proportionally to the count of each genus.
 
 > From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
@@ -429,7 +429,7 @@ ggsave(
 
 - Export the new plot in a PDF file, and open it in a PDF viewer (e.g. Adobe Acrobat Reader DC).
 
-> You will likely need a few attempts to fine-tune the width and height of the output file.
+You will likely need a few attempts to fine-tune the width and height of the output file.
 
 ---
 

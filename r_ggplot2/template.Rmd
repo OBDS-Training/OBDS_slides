@@ -16,19 +16,21 @@ library(gridExtra)
 
 # Exercise
 
-## Specify the dataset.
-
 Use `library(ggplot2)` to load the package.
 
 ```{r}
 library(ggplot2)
 ```
 
+## Specify the dataset.
+
 What does `ggplot(diamonds)` do?
 
 ```{r}
 ggplot(diamonds)
 ```
+
+> Answer:
 
 ## Add the aesthetics.
 
@@ -37,6 +39,8 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 ```{r}
 ggplot(diamonds, aes(x = carat, y = price))
 ```
+
+> Answer:
 
 ## Add geometric objects
 
@@ -48,14 +52,15 @@ ggplot(diamonds, aes(x = carat, y = price))
 ```
 
 - Color data points by `cut`.
-  Re-use and extend the code chunk above.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
   
 ```
 
-- Add a smoothed mean trendline to the plot above.
+- Add a smoothed mean trend line.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -63,7 +68,7 @@ ggplot(diamonds, aes(x = carat, y = price))
 
 ```
 
-- Save the latest plot as `obds_diamonds`.
+- Assign that last plot to an object called `obds_diamonds`.
 
 ```{r}
 
@@ -74,7 +79,7 @@ ggplot(diamonds, aes(x = carat, y = price))
 
 # Exercise
 
-## Predict the difference between these two plots
+Predict the difference between these two plots
 
 ### Plot 1
 
@@ -92,11 +97,13 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_smooth()
 ```
 
+> Answer:
+
 # Exercise
 
-## Time series
+## Trend lines
 
-Using the built-in `ChickWeight` data set:
+Using the `ChickWeight` data set:
 
 - Create a scatter plot of weight (y-axis) over time (x-axis).
 
@@ -106,6 +113,7 @@ ggplot(   )
 ```
 
 - Color by diet.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -113,6 +121,7 @@ ggplot(   )
 ```
 
 - Add a linear mean trend line for each diet.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -120,11 +129,13 @@ ggplot(   )
 
 ```
 
-- Which diet leads to the highest mean increase in weight?
+At this point you should be able to visually identify
+the diet that leads to the highest mean increase in weight.
 
-> 
+> Answer:
 
 - Facet a ribbon of sub-plots, one per diet.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -133,7 +144,7 @@ ggplot(   )
 
 ```
 
-- Save the last plot as `obds_chickweight`.
+- Assign that last plot to an object called `obds_chickweight`.
 
 ```{r}
 
@@ -146,23 +157,24 @@ ggplot(   )
 
 ## Bar plot
 
-- Load and display the `ggplot2::msleep` data set.
+- Load the `ggplot2::msleep` data set.
 
 ```{r}
 
 
 ```
 
-- Draw a bar plot of number of observations by taxonomic order.
+- Draw a bar plot of number of observations (i.e., rows) for each taxonomic order
+  (i.e, one plot and one bar per taxonomic order).
 
 ```{r}
 ggplot(   )
 
 ```
 
-- Change the angle and font size of the x-axis tick labels.
-
-> You will probably want to justify the text labels as right-aligned.
+- Change the angle and font size of the text for the x-axis ticks (not the axis titles).
+  Justify the text of those x-axis ticks as right-aligned.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -172,7 +184,8 @@ ggplot(   )
 
 ```
 
-- Change the label and font size of the axes.
+- Change the value and font size of the title for both x and y axes.
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -185,8 +198,9 @@ ggplot(   )
 ```
 
 - Fill each bar with colors, proportionally to the count of each genus.
+  (Copy-paste and extend the code chunk above.)
 
-> You may need to iteratively resize the labels of the ticks and axes.
+> From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
 
 ```{r}
 
@@ -200,6 +214,7 @@ ggplot(   )
 
 - Reduce the legend key size.
   (Recommendation: use `unit(2, "mm")`).
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -213,7 +228,8 @@ ggplot(   )
 ```
 
 - Force the legend to be display in 3 columns.
- (Recommendation: use `guide_legend(...)`).
+  (Recommendation: use `guide_legend(...)`).
+  (Copy-paste and extend the code chunk above.)
 
 ```{r}
 
@@ -243,7 +259,7 @@ ggplot(   )
 
 ```
 
-- Save the last plot as `obds_msleep`.
+- Assign that last plot to an object called `obds_msleep`.
 
 ```{r}
 
@@ -262,7 +278,7 @@ ggplot(   )
 
 ## Plotting grid
 
-- Collate the plots that we saved through the day, as a single plot.
+- Collate the plots that we assigend to objects through the day, as a single plot.
 
   + Plots: `obds_diamonds`, `obds_chickweight`, `obds_msleep`.
   
@@ -283,14 +299,7 @@ super_plot <- cowplot::plot_grid(
   
   
 )
-```
-
-- Save the new plot in a PDF file.
-
-> You will likely need a few attempts to fine-tune the width and height of the output file.
-
-```{r}
-ggsave("final_plot.pdf", super_plot, width = 12, height = 12)
+super_plot
 ```
 
 Using `patchwork`.
@@ -300,6 +309,8 @@ library(patchwork)
 
 ```
 
+Using `gridExtra`.
+
 ```{r, fig.height=12, fig.width=12}
 library(gridExtra)
 
@@ -307,6 +318,14 @@ library(gridExtra)
 
 
 
+```
+
+- Export the new plot in a PDF file, and open it in a PDF viewer (e.g. Adobe Acrobat Reader DC).
+
+You will likely need a few attempts to fine-tune the width and height of the output file.
+
+```{r}
+ggsave(   )
 ```
 
 # Exercise
