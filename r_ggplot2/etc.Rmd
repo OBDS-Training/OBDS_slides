@@ -335,7 +335,7 @@ the diet that leads to the highest mean increase in weight.
 plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
 plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
 library(cowplot)
-plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
+cowplot::plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
 ```
 
 ---
@@ -349,20 +349,29 @@ plot1 + plot2
 
 ---
 
-# Plot grids - gridExtra
+# Plot grids - patchwork
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
 library(gridExtra)
-grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
+plot1 / plot2
+```
+
+---
+
+# Plot grids - patchwork
+
+```{r, include=TRUE, fig.height=6, fig.width=10, fig.align='center'}
+library(gridExtra)
+(plot1 + plot2) / (plot2 + plot1)
 ```
 
 ---
 
 # Plot grids - gridExtra
 
-```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
+```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 library(gridExtra)
-plot1 / plot2
+grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
 ```
 
 ---
