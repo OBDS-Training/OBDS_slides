@@ -31,9 +31,15 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Open your copy of the notebook for this lesson in RStudio.
+- Launch RStudio Server on the teaching cluster.
 
-- Follow along, running code from the notebook as mentioned during the lesson.
+- Start a new RStudio project called `ggplot2`.
+
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
+
+- Make symbolic link from the RStudio project to the template notebook.
+
+- Open the notebook and follow along, editing and running the code as needed.
 
 ---
 
