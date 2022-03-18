@@ -202,14 +202,14 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 
 ## Read and write files
 
-- Read data from the file `iris.csv` using `readr`.
+- Read data from the file `iris.csv`.
   Assign the data imported from the file to an object called `iris_raw`.
 
 .center[
 **What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
 ]
 
-- Display the value of `iris_raw`.
+- Print the value of `iris_raw`.
 
 .center[
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
@@ -221,7 +221,7 @@ The `r BiocStyle::CRANpkg("readr")` package is mostly known for its functions to
 **What function do you use? What options are available for that function?**
 ]
 
-- Inspect the file itself.
+- Inspect the `iris.tsv` file.
   You can use `file.edit()` to open the file in the RStudio editor.
 
 .center[
@@ -352,13 +352,11 @@ Columns are treated sequentially, a single call to `mutate()` can create columns
 .small-code[
 ```{r, include=TRUE}
 iris %>% mutate(
-  ID = rep(1:50, times = 3),
+  ID = seq(1, nrow(iris)),
   Flower.ID = paste0(Species, ID)
-) %>% group_by(Species) %>% slice_head(n = 3)
+  ) %>% slice_head()
 ```
 ]
-
-Notice how `group_by()` is used here to display the first three flower for each species.
 
 ---
 
@@ -517,10 +515,32 @@ tibble_joined
 
 # Combine two tables using shared information
 
+.pull-left[
+## tibble_1
+
+.small-code[
+```{r, include=TRUE, echo=FALSE}
+tibble_1
+```
+]
+]
+
+.pull-right[
+## tibble_2
+
+.small-code[
+```{r, include=TRUE, echo=FALSE}
+tibble_2
+```
+]
+]
+
+.small-code[
 ```{r, include=TRUE}
 tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
 tibble_joined
 ```
+]
 
 ---
 
