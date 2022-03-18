@@ -31,26 +31,15 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Checkout and pull the main branch of the shared repository.
+- Launch RStudio Server on the teaching cluster.
 
-- Create and launch a new RStudio project in `/project/obds/$USER/projects/tidyverse`.
+- Start a new RStudio project called `object_oriented_programming`.
 
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to your project.
-  Use your username in the filename to make it unique, e.g
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
-.small-code[
+- Make symbolic link from the RStudio project to the template notebook.
 
-> ```
-> cp \
->   /project/obds/$USER/git/week2day5-tidyverse/template.Rmd \
->   /project/obds/$USER/projects/tidyverse/tidyverse-kevinrue.Rmd
-> ```
-
-]
-
-- Open your copy of the notebook for this lesson in RStudio.
-
-- Follow along, running code from the notebook as mentioned during the lesson.
+- Open the notebook and follow along, editing and running the code as needed.
 
 ---
 
