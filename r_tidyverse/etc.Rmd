@@ -697,7 +697,7 @@ The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to
 
 - `str_length`: query the length of a string.
 
-- `str_to_lower` / `str_to_lower`: convert case of a string.
+- `str_to_lower` / `str_to_upper`: convert case of a string.
 
 ---
 
