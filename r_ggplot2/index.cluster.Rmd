@@ -25,7 +25,7 @@ knit: pagedown::chrome_print
 
 - An account on the teaching cluster.
 
-- A clone of the shared GitHub repository for this course.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ---
 
