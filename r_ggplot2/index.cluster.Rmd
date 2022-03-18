@@ -3,7 +3,7 @@ title: 'Introduction to `r BiocStyle::CRANpkg("ggplot2")`'
 subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-01-27 (updated: `r Sys.Date()`)"
+date: "2022-05-12 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
