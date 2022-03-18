@@ -212,11 +212,13 @@ Themes are a powerful way to customize the non-data components of your plots, e.
 - background - `element_rect(fill, colour, size, linetype, color, ...)`
 
 ```{r, include=TRUE, results='hide'}
-theme(
-  axis.ticks = element_line(size = 2),
-  axis.text.x = element_text(face = "italic", hjust = 1),
-  plot.background = element_rect(fill = "grey90", colour = "black")
-)
+ggplot(...) + 
+  ... +
+  theme(
+    axis.ticks = element_line(size = 2),
+    axis.text.x = element_text(face = "italic", hjust = 1),
+    plot.background = element_rect(fill = "grey90", colour = "black")
+  )
 ```
 
 You can get details of the current theme using `theme_get()`.
