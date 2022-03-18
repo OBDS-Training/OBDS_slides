@@ -550,15 +550,15 @@ tibble_joined
 
 ### Exercise 1
 
-- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `sepal_length`: mean, median, minimum, maximum.
 
 ### Exercise 2
 
 - For each species of iris, compute the mean of every column that is numeric.
   **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
-- Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
-- Sort the latest table (after filtering) by descending `Sepal.Length`.
-- From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
+- Filter the table above to retain only species of iris with an average sepal length less than `6`.
+- Sort the table above by descending `sepal_length`.
+- From the table above, extract the `sepal_length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ---

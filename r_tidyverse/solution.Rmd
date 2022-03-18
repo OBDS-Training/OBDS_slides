@@ -230,6 +230,8 @@ tibble_2 <- tibble(
 tibble_2
 ```
 
+**How would you describe how to join these two tibbles?**
+
 ```{r}
 tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
 tibble_joined
@@ -241,7 +243,7 @@ tibble_joined
 
 ### Exercise 1
 
-- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `Sepal.Length`: mean, median, minimum, maximum.
+- Using `iris_raw`, for each species of iris, compute the following summary statistics for the `sepal_length`: mean, median, minimum, maximum.
 
 ```{r}
 iris_raw %>% 
@@ -275,7 +277,7 @@ iris_raw %>%
     filter(sepal_length < 6)
 ```
 
-- Sort the latest table by descending `sepal_length`.
+- Sort the table above by descending `sepal_length`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
