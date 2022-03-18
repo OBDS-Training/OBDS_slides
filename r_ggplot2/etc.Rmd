@@ -125,9 +125,9 @@ diamonds
 
 # Exercise
 
-## Specify the dataset.
-
 Use `library(ggplot2)` to load the package.
+
+## Specify the dataset.
 
 What does `ggplot(diamonds)` do?
 
