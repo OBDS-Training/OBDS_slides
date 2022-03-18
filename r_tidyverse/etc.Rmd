@@ -354,7 +354,7 @@ Columns are treated sequentially, a single call to `mutate()` can create columns
 iris %>% mutate(
   ID = seq(1, nrow(iris)),
   Flower.ID = paste0(Species, ID)
-  ) %>% slice_head()
+  ) %>% slice_head(n = 6)
 ```
 ]
 
