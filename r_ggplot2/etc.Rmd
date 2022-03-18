@@ -311,26 +311,20 @@ the diet that leads to the highest mean increase in weight.
 ## Bar plot
 
 - Load the `ggplot2::msleep` data set.
-
-- Draw a bar plot of number of observations (i.e., rows) for each taxonomic order (i.e., one bar per taxonomic order).
-
+- Draw a bar plot of number of observations (i.e., rows) for each taxonomic order
+  (i.e, one plot and one bar per taxonomic order).
 - Change the angle and font size of the text for the x-axis ticks (not the axis titles).
   Justify the text of those x-axis ticks as right-aligned.
-
 - Change the text and font size of the title for both x and y axes.
-
 - Fill each bar with colors, proportionally to the count of each genus.
 
 > From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
 
 - Reduce the legend key size.
   (Recommendation: use `unit(2, "mm")`).
-
 - Force the legend to be display in 3 columns.
   (Recommendation: use `guide_legend(...)`).
-
 - Add a contour of thin black lines to the bars.
-
 - Assign that last plot to an object called `obds_msleep`.
 
 ---
