@@ -239,36 +239,46 @@ iris_raw %>%
 
 ### Exercise 2
 
-- For each species of iris, compute the mean of every column that starts with `"Sepal."`.
-  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
+- For each species of iris, compute the mean of every column that is numeric.
+  **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
 
 ```{r}
 iris_raw %>% 
     
+  
 ```
 
-- Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
-
-```{r}
-# Copy the code chunk above and extend with more pipes
-iris_raw %>% 
-    
-```
-
-- Sort the latest table (after filtering) by descending `Sepal.Length`.
+- Filter the table above to retain only species of iris with an average sepal length less than `6`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
     
+    
+    
 ```
 
-- From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
+- Sort the latest table by descending `sepal_length`.
+
+```{r}
+# Copy the code chunk above and extend with more pipes
+iris_raw %>% 
+    
+    
+    
+    
+```
+
+- From the table above, extract the `sepal_length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
+    
+    
+    
+    
     
 ```
 
@@ -280,14 +290,14 @@ iris_raw %>%
 
 Let's make the silly assumption that iris sepals are rectangular in shape.
 
-- Using `iris_raw`, compute a new column named `Sepal.Area`, which is the product of `Sepal.Length` and `Sepal.Width`.
+- Using `iris_raw`, compute a new column named `sepal_area`, which is the product of `sepal_length` and `sepal_width`.
 
 ```{r}
 iris_raw %>% 
     
 ```
 
-- Subset the result to the columns named `Species` and `Sepal.Area`.
+- Subset the result to the columns named `species` and `sepal_area`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -295,7 +305,7 @@ iris_raw %>%
     
 ```
 
-- Subset the result to display the top 5 observations by `Sepal.Area`.
+- Subset the result to display the top 5 observations by `sepal_area`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -305,8 +315,9 @@ iris_raw %>%
 
 ## Bonus point
 
-- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `Sepal.Area` colored by species.
-  You might also want to facet the plot by species.
+- Make a histogram of `sepal_area` colored by species.
+
+You might also want to facet the plot by species.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -332,7 +343,7 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 
 - the value
 
-**Hint:** you want to pivot all the columns that start with `"Sepal"` or `"Petal"`.
+**Hint:** you want to pivot all the columns that start are numeric.
 
 ```{r}
 iris_long <- iris_raw %>% 
@@ -342,7 +353,7 @@ iris_long
 
 **What information have we lost in the process? What could we do to remedy the issue?**
 
-
+> Answer:
 
 ```{r}
 # Copy the code chunk above and refine to address the issue
@@ -360,8 +371,11 @@ iris_long2
 **Hint:** you will only be able to restore the wide format if you kept track of the identity of each flower in the long format.
 
 ```{r}
-iris_long2 %>% 
-    
+# Copy the code chunk above and refine to address the issue
+iris_long2 <- iris_raw %>% 
+  
+  
+
 ```
 
 # Demo
@@ -412,7 +426,7 @@ iris_species %>%
 ## Join multiple strings and remove whitespaces
 
 ```{r}
-words <- c("I ", " Am ", "legend")
+words <- c("A ", " few ", "words")
 words
 ```
 

@@ -554,13 +554,10 @@ tibble_joined
 
 ### Exercise 2
 
-- For each species of iris, compute the mean of every column that starts with `"Sepal."`.
-  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
-
+- For each species of iris, compute the mean of every column that is numeric.
+  **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
 - Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
-
 - Sort the latest table (after filtering) by descending `Sepal.Length`.
-
 - From the latest table (sorted), extract the `Sepal.Length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
@@ -574,16 +571,17 @@ tibble_joined
 
 Let's make the silly assumption that iris sepals are rectangular in shape.
 
-- Using `iris_raw`, compute a new column named `Sepal.Area`, which is the product of `Sepal.Length` and `Sepal.Width`.
+- Using `iris_raw`, compute a new column named `sepal_area`, which is the product of `sepal_length` and `sepal_width`.
 
-- Subset the result to the columns named `Species` and `Sepal.Area`.
+- Subset the result to the columns named `species` and `sepal_area`.
 
-- Subset the result to display the top 5 observations by `Sepal.Area`.
+- Subset the result to display the top 5 observations by `sepal_area`.
 
 ## Bonus point
 
-- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `Sepal.Area` colored by species.
-  You might also want to facet the plot by species.
+- Make a histogram of `sepal_area` colored by species.
+
+You might also want to facet the plot by species.
   
 ---
 
@@ -620,7 +618,7 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 
 - the value
 
-**Hint:** you want to pivot all the columns that start with `"Sepal"` or `"Petal"`.
+**Hint:** you want to pivot all the columns that start are numeric.
 ]
 
 .pull-right[
@@ -733,7 +731,7 @@ iris_species %>% unique()
 The `str_c()` function joins two or more strings, and the `str_trim()` function removes whitespaces for either end of a string.
 
 ```{r, include=TRUE}
-words <- c("I ", " Am ", "legend")
+words <- c("A ", " few ", "words")
 ```
 
 Remove whitespaces.

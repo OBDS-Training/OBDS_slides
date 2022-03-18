@@ -256,16 +256,16 @@ iris_raw %>%
 
 ### Exercise 2
 
-- For each species of iris, compute the mean of every column that starts with `"Sepal."`.
-  **Hint:** use the `dplyr::across()` and `tidyselect::starts_with()` functions.
+- For each species of iris, compute the mean of every column that is numeric.
+  **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
 
 ```{r}
 iris_raw %>% 
     group_by(species) %>% 
-    summarise(across(where(is.double), mean))
+    summarise(across(where(is.numeric), mean))
 ```
 
-- Filter the latest table (summarised) to retain only species of iris with an average sepal length less than `6`.
+- Filter the table above to retain only species of iris with an average sepal length less than `6`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -275,7 +275,7 @@ iris_raw %>%
     filter(sepal_length < 6)
 ```
 
-- Sort the latest table (after filtering) by descending `sepal_length`.
+- Sort the latest table by descending `sepal_length`.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -286,7 +286,7 @@ iris_raw %>%
     arrange(desc(sepal_length))
 ```
 
-- From the latest table (sorted), extract the `sepal_length` column as a numeric vector.
+- From the table above, extract the `sepal_length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
 
 ```{r}
@@ -341,8 +341,9 @@ iris_raw %>%
 
 ## Bonus point
 
-- Use `r BiocStyle::CRANpkg("ggplot2")` to make a histogram of `sepal_area` colored by species.
-  You might also want to facet the plot by species.
+- Make a histogram of `sepal_area` colored by species.
+
+You might also want to facet the plot by species.
 
 ```{r}
 # Copy the code chunk above and extend with more pipes
@@ -372,17 +373,19 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 
 - the value
 
-**Hint:** you want to pivot all the columns that start with `"Sepal"` or `"Petal"`.
+**Hint:** you want to pivot all the columns that start are numeric.
 
 ```{r}
 iris_long <- iris_raw %>% 
-  pivot_longer(c(starts_with("Sepal"), starts_with("Petal")), names_to = "variable")
+  pivot_longer(where(is.numeric), names_to = "variable")
 iris_long
 ```
 
 **What information have we lost in the process? What could we do to remedy the issue?**
 
-The identity of each observation is lost; e.g., we cannot tell which value of `sepal_length` is associated with which value of `sepal_width`.
+> Answer:
+> The identity of each observation is lost;
+> e.g., we cannot tell which value of `sepal_length` is associated with which value of `sepal_width`.
 
 ```{r}
 # Copy the code chunk above and refine to address the issue
@@ -454,7 +457,7 @@ iris_species %>%
 ## Join multiple strings and remove whitespaces
 
 ```{r}
-words <- c("I ", " Am ", "legend")
+words <- c("A ", " few ", "words")
 words
 ```
 
