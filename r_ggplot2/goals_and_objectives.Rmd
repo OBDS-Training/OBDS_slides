@@ -43,7 +43,7 @@ NoCite(bib, "ggplot2book")
 
 - Identify the key differences between `ggplot` objects and base R graphics.
 
-- Understand the concept of tidy data.
+- Introduce the concept of tidy data.
 
 ## Learning objectives
 
