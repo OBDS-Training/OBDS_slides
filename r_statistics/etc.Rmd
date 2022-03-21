@@ -1017,13 +1017,8 @@ Measures of central tendency include:
 .large-list[
 - the arithmetic mean
 - the median
-- the mode<sup>1</sup>
+- ...
 ]
-]
-
-.footnote[
-1. R does not have a standard in-built function to calculate the mode of a data series.
-  The `mode()` function exists but has a completely unrelated purpose; it allows users to get or set the type or _storage mode_ of an object.
 ]
 
 ---
