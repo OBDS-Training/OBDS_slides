@@ -259,6 +259,7 @@ In the context of PCA:
 Optionally:
 
 - First, center data.
+  + Always best, unless you have a good reason not to.
 
 - If comparing different units, scale data.
   + i.e., using correlation matrix instead of covariance matrix<sup>1</sup>
