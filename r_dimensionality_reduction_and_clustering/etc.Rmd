@@ -806,7 +806,7 @@ knitr::include_graphics("img/tsne-swiss-roll.png")
 
 Finds a way to project data into a low-dimension space (here, 1-D line), so that the clustering in the high-dimension space (here, 2-D scatter plot) is preserved.
 
-```{r, include=TRUE, echo=FALSE, fig.align="center", out.height="300px"}
+```{r, include=TRUE, echo=FALSE, fig.align="center", out.height="300px", out.width='400px'}
 ## Source: https://younesse.net/assets/Slides/Visualization/Visualization.html
 knitr::include_graphics("img/tSNE_step0.png")
 ```
