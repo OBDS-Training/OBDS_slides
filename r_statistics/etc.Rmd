@@ -917,11 +917,9 @@ knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg
 
 <br/>
 
-$$p = \frac{{15 \choose 12} {27 \choose 4}} {42 \choose 16} = \frac{15!~27!~16!~4!}{12!~3!~4!~23!~42!}= 2.853916~e^{-30}$$
+<!-- Source: https://en.wikipedia.org/wiki/Fisher%27s_exact_test -->
 
-```{r, include=TRUE, echo=FALSE, out.height="50px", fig.align='center'}
-knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg/dd800d46585be53665dfbb75291aeee58a279cd9")
-```
+$$p = \frac{{a+b \choose a} {c+d \choose c}} {n \choose a+c} = \frac{{a+b \choose b}{c+d \choose d}}{n \choose b+d}= \frac{(a+b)!~(c+d)!~(a+c)!~(b+d)!}{a!~b!~c!~d!~n!}$$
 
 ---
 
