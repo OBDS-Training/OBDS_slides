@@ -880,14 +880,14 @@ lm(y ~ x, test_data) %>% summary()
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/fisher-test-table.png")
+knitr::include_graphics("img/fisher-test-table.svg")
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/fisher-test-venn.png")
+knitr::include_graphics("img/fisher-test-venn.svg")
 ```
 ]
 
