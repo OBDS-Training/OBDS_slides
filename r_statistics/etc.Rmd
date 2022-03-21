@@ -1232,6 +1232,20 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 ---
 
+# Multiple-testing correction in <i class="fab fa-r-project"></i>
+
+The `p.adjust()` function can run a number of methods for multiple testing correction.
+
+The `p.adjust.methods` object list the available methods.
+
+The function takes a vector of p-values and the name of a method.
+
+```{r, include=TRUE, eval=FALSE}
+p.adjust(p_values, method = "bonferroni")
+```
+
+---
+
 # Exercise
 
 ## Testing & Multiple testing correction
