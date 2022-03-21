@@ -1,7 +1,7 @@
 ---
 title: "Example code for dimensionality reduction and clustering in R"
 author: "Kevin Rue-Albrecht"
-date: "09/06/2021"
+date: "21/03/2022"
 output: html_document
 ---
 

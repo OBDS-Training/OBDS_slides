@@ -1229,31 +1229,6 @@ Do you agree that 3 is the optimal number of clusters for this data set?
 
 ---
 
-# Git wrap-up
-
-- Copy your notebook for this lesson in the Git repository, e.g.
-
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/projects/dimensionality_reduction_clustering/dimensionality_reduction_clustering-kevinrue.Rmd \
->   /project/obds/$USER/git/week3day2-dimensionality_reduction_clustering/
-> ```
-
-]
-
-- Create a new branch in the Git repository.
-  Use the date and your username in the branch name to make it unique, e.g. `git checkout -b week3day2-kevinrue`.
-
-- Commit, push, open a pull request, get it approved, and merge it.
-
-- Delete your merged branch on GitHub.
-
-- Check out the main branch locally, pull, and delete your merged branch locally.
-
----
-
 # References
 
 .small-text[
