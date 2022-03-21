@@ -256,18 +256,12 @@ In the context of PCA:
 
 # PCA
 
-Optionally:
-
 - First, center data.
   + Always best, unless you have a good reason not to.
 
 - If comparing different units, scale data.
   + i.e., using correlation matrix instead of covariance matrix<sup>1</sup>
   + Genes have very different dynamic ranges!
-
-.footnote[
-**See also:** [Towards data science](https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22), "Correlation matrix and covariance matrix"
-]
 
 --
 
@@ -287,6 +281,8 @@ Optionally:
 - The idea is to select a smaller number of dimensions by taking the first $k$ out of $n$
 eigenvectors that explain as much of the variability of the data as possible.
 - How to choose k?
+
+**See also:** [Towards data science](https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22), "Correlation matrix and covariance matrix"
 
 ---
 
