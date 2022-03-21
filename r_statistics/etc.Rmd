@@ -911,10 +911,6 @@ and assuming the null hypothesis that genes in the pathway are equally likely to
 what is the probability that these 15 teenagers who are differentially expressed
 would be so unevenly distributed between the pathway of interest and unrelated biological functions?
 
-```{r, include=TRUE, echo=FALSE, out.height="100px", fig.align='center'}
-knitr::include_graphics("https://wikimedia.org/api/rest_v1/media/math/render/svg/355286b9e9fdc48395ff99ab24694092ee8f5b49")
-```
-
 <br/>
 
 <!-- Source: https://en.wikipedia.org/wiki/Fisher%27s_exact_test -->
