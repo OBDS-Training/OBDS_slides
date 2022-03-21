@@ -1069,14 +1069,14 @@ kmeans_scree %>%
   + **Divisive:** starts with all observations in one cluster and then recursively split each cluster to form a hierarchy.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, out.height="300px", fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height='250px', out.width='300px', fig.align='center'}
 ## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
 knitr::include_graphics("img/hierarchical-clustering-scatter.png")
 ```
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, out.height="300px", fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height='250px', out.width='300px', fig.align='center'}
 ## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
 knitr::include_graphics("img/hierarchical-clustering-dendrogram.png")
 ```
