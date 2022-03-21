@@ -318,11 +318,20 @@ plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 knitr::include_graphics("img/binomial-coins.svg")
 ```
 
-- Two mutually exclusive outcomes: $P(H) = 1 - P(T)$
+.pull-left[
+- Two mutually exclusive outcomes
+  + $P(H) = 1 - P(T)$
+- Size of experiment
+  + e.g., coins tossed, balls drawn.
+- Model number of occurrences of a specific outcome.
+]
 
-- Size of experiment (e.g., number of coins tossed)
-
-- Model: number of occurrences of a specific outcome.
+.pull-right[
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/binomial-balls.svg")
+```
+]
 
 ---
 
