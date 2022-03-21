@@ -120,6 +120,12 @@ Filtering for feature selection is needed to:
 
 - Reduce memory usage and computational cost/time.
 
+```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4, fig.width=6}
+set.seed(1)
+mat <- matrix(c(rnorm(12*4, 0, 10), rnorm(12*4, 0, 1)), nrow = 8, ncol = 12, byrow = TRUE)
+ComplexHeatmap::Heatmap(mat, name = "values")
+```
+
 ---
 
 # Dimensionality reduction
