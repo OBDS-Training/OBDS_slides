@@ -415,6 +415,18 @@ ggplot(scree_table, aes(PC, var_cumsum)) +
 
 ---
 
+# PCA - Loadings / Rotation matrix
+
+```{r, include=TRUE,echo=TRUE}
+# Earlier: pca <- prcomp(matrix)
+# Now: visualise loadings for the first five genes and principal components
+pca$rotation[1:5, 1:5]
+```
+
+$PC1_{(cell)} = 0.1255530 \times ENS00000129824_{(cell)}\ +\ ...$
+
+---
+
 # Visualize top genes
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
