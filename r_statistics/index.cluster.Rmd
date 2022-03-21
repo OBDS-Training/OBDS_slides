@@ -1,0 +1,47 @@
+---
+title: 'Statistics'
+subtitle: '<i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2022-01-31 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, child='setup_and_goals.Rmd'}
+```
+
+---
+
+# Prerequisites
+
+- An account on the teaching cluster.
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
+
+---
+
+# Set up
+
+- Launch RStudio Server on the teaching cluster.
+
+- Start a new RStudio project called `object_oriented_programming`.
+
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
+
+- Make symbolic link from the RStudio project to the template notebook.
+
+- Open the notebook and follow along, editing and running the code as needed.
+
+---
+
+```{r, child='etc.Rmd'}
+```
