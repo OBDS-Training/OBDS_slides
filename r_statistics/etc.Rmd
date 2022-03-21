@@ -899,17 +899,15 @@ Further reading: [Towards data science](https://towardsdatascience.com/fishers-e
 
 # Fisher's Exact Test
 
-|               |  DE | Not DE| Total|
-|:--------------|----:|------:|-----:|
-|In pathway     |  12 |     3 |   15 |
-|Not in pathway |   4 |    23 |   27 |
-|Total          |  16 |    26 |   42 |
+|               |    DE | Not DE |  Total |
+|:--------------|------:|-------:|-------:|
+|In pathway     |   $a$ |    $b$ |  $a+b$ |
+|Not in pathway |   $c$ |    $d$ |  $c+d$ |
+|Total          | $a+c$ |  $b+d$ | $a+b+c+d$ $(=n)$ |
 
-Knowing that 16 of these 42 teenagers are studying,
-and that 15 of the 42 are in the biological pathway of interest,
-and assuming the null hypothesis that genes in the pathway are equally likely to be differentially expressed,
-what is the probability that these 15 teenagers who are differentially expressed
-would be so unevenly distributed between the pathway of interest and unrelated biological functions?
+.center[
+**What is the probability of observing a given distribution?**
+]
 
 <br/>
 
