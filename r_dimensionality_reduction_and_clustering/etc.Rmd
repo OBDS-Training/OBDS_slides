@@ -737,7 +737,7 @@ The `prcomp()` function allows you to standardise the data as part of the princi
 
 - Color data points according to their class label.
 
-Save the PCA plot as an object named `pca_iris_species`.
+- Store the PCA plot as an object named `pca_iris_species`.
 
 ---
 

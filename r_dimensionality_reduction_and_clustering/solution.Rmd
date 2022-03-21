@@ -76,7 +76,7 @@ ggplot(pca_iris_dataframe, aes(PC1, PC2)) +
 
 - Color data points according to their class label.
 
-Save the PCA plot as an object named `pca_iris_species`.
+- Store the PCA plot as an object named `pca_iris_species`.
 
 ```{r}
 pca_iris_dataframe$Species <- iris$Species
