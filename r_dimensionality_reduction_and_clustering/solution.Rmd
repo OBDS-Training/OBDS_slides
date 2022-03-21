@@ -39,7 +39,7 @@ head(iris_features)
 
 The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
 
-- Apply PCA while centering and scaling the variables (i.e., measurements).
+- Apply PCA while centering and scaling the matrix of features.
 
 ```{r}
 pca_iris <- prcomp(iris_features, center = TRUE, scale. = TRUE)
