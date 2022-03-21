@@ -53,7 +53,9 @@ Either of those sources could be either:
 
 - Considered a confounding covariate
 
-... depending on your research question.
+.center[
+**Signal and noise both depend on your research question.**
+]
 
 ---
 
