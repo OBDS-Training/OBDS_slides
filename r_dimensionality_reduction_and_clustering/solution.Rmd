@@ -220,7 +220,7 @@ ggplot(tsne_iris_dataframe, aes(TSNE1, TSNE2)) +
 
 - Color data points according to their class label.
 
-Save the t-SNE plot as an object named 
+- Store the UMAP plot as an object named `tsne_iris_species`.
 
 ```{r}
 tsne_iris_dataframe$Species <- iris$Species
@@ -234,7 +234,7 @@ tsne_iris_species <- ggplot(tsne_iris_dataframe, aes(TSNE1, TSNE2, color = Speci
 tsne_iris_species
 ```
 
-- Combine PCA, UMAP and t-SNE in a single figure.
+- Combine PCA, UMAP and t-SNE plots in a single figure.
 
 ```{r, fig.height=6, fig.width=6}
 cowplot::plot_grid(

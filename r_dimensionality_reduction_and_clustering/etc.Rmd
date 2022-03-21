@@ -913,7 +913,7 @@ tsne_out$Y %>%
 
 - Color data points according to their class label.
 
-Save the t-SNE plot as an object named `tsne_iris_species`.
+- Store the UMAP plot as an object named `tsne_iris_species`.
 
 - Combine PCA, UMAP and t-SNE plots in a single figure.
 
