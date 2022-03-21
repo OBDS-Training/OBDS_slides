@@ -829,7 +829,7 @@ knitr::include_graphics("img/tSNE_step0.png")
 - Better preservation of the global structure in the data.
 
 .center[
-**No wrong choice. It doesn't hurt to run both and pick the best-looking one.**
+**There is no wrong choice. It doesn't hurt to run both and pick the best-looking one.**
 ]
 
 .footnote[
