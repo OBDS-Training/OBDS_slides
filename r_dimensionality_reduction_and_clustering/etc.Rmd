@@ -768,7 +768,7 @@ knitr::include_graphics("img/non-linear-dim-red.png")
 
 - Linear dimensionality reduction techniques like PCA (in blue) will fit their model as best as they can.
 
-- Non-linear techniques are able to more accurately capture non-linear patterns in the data.
+- But non-linear techniques will be able to accurately capture deviations non-linear patterns.
 
   + e.g., self organising map (SOM), t-SNE, UMAP.
 
