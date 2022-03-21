@@ -841,6 +841,12 @@ ggplot(test_data, aes(x = x, y = y)) +
 - What is the intercept?
 ]
 
+Null hypotheses:
+
+- The slope is equal to 0.
+
+- The intercept is equal to 0.
+
 --
 
 .pull-right[
