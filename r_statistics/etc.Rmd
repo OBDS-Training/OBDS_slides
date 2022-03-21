@@ -143,8 +143,6 @@ slide_mean <- 0; slide_sd <- 1;
 
 Standard normal distribution with mean `r slide_mean` and standard deviation `r slide_sd`.
 
---
-
 ```{r}
 x <- tibble(
   quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
