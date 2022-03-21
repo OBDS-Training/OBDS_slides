@@ -419,7 +419,9 @@ ggplot(scree_table, aes(PC, var_cumsum)) +
 pca$rotation[1:5, 1:5]
 ```
 
-$PC1_{(cell)} = 0.1255530 \times ENS00000129824_{(cell)}\ +\ ...$
+Meaning that for each cell:
+
+$PC1_{(cell)} = 0.1255530 \times ENS00000129824_{(cell)}\ - 0.1293194 \times\ ...$
 
 ---
 
