@@ -399,6 +399,15 @@ plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 
 Quantiles are the values at a selected set of evenly-spaced locations in the distribution.
 
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/quantiles-quartiles.svg")
+```
+
+---
+
+# Example - Quantiles of a normal distribution
+
 For instance, the minimum value, the value that separates the lowest 10% values in the distribution, 20%, and so on, until the maximum value.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=6, fig.width=9}
