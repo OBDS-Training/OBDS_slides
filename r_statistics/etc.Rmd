@@ -1138,8 +1138,9 @@ Distribution of $p$-values in an RNA-seq differential expression experiment
 - False positive (type I error)
 - False negative (type I error)
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
-knitr::include_graphics("https://www.huber.embl.de/msmb/figure/chap14-mt-awpvhist-1.png")
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='300px'}
+## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
+knitr::include_graphics("img/huber-fdr.png")
 ```
 ]
 
@@ -1148,16 +1149,18 @@ knitr::include_graphics("https://www.huber.embl.de/msmb/figure/chap14-mt-awpvhis
 Bonferroni correction
 ]
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
-knitr::include_graphics("https://www.huber.embl.de/msmb/figure/chap14-mt-bonferroni-1.png")
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
+## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
+knitr::include_graphics("img/huber-bonferroni.png")
 ```
 
 .center[
 Benjamini-Hochberg procedure
 ]
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
-knitr::include_graphics("https://www.huber.embl.de/msmb/figure/chap14-mt-BH-1.png")
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
+## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
+knitr::include_graphics("img/huber-bh.png")
 ```
 ]
 
