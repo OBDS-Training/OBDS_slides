@@ -319,8 +319,10 @@ knitr::include_graphics("img/binomial-coins.svg")
 .pull-left[
 - Two mutually exclusive outcomes
   + $P(H) = 1 - P(T)$
+
 - Size of experiment
   + e.g., coins tossed, balls drawn.
+
 - Model number of occurrences of a specific outcome.
 ]
 
