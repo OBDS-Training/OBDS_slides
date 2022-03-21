@@ -193,6 +193,12 @@ plotReducedDim(object = allen, dimred = "PCA", colour_by = "driver_1_s")
 ```
 ]
 
+.center[
+```{r, include=TRUE, eval=FALSE}
+pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
+```
+]
+
 ---
 
 # PCA example
@@ -269,6 +275,7 @@ In the context of PCA:
 **Spectral decomposition = Eigen decomposition**
 - More intuitive, but computationally slower
 ]
+
 .pull-right[
 **Singular Value Decomposition (SVD)**
 - Equivalent, faster
@@ -414,8 +421,7 @@ ggplot(scree_table, aes(PC, var_cumsum)) +
 # PCA - Loadings / Rotation matrix
 
 ```{r, include=TRUE,echo=TRUE}
-# Earlier: pca <- prcomp(matrix)
-# Now: visualise loadings for the first five genes and principal components
+# Visualise loadings for the first five genes and principal components
 pca$rotation[1:5, 1:5]
 ```
 
@@ -720,10 +726,10 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
 
 The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
 
-- Apply PCA while centering and scaling the variables (i.e., measurements).
+- Apply PCA while centering and scaling the values of the features.
 
 - Examine the PCA output.
-  How does each principal component relate to each variable?
+  Display the loading of each feature on each principal component.
 
 Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
 
