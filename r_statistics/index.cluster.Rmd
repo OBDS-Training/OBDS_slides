@@ -33,7 +33,7 @@ knit: pagedown::chrome_print
 
 - Launch RStudio Server on the teaching cluster.
 
-- Start a new RStudio project called `object_oriented_programming`.
+- Start a new RStudio project called `statistics`.
 
 - Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
