@@ -2,7 +2,9 @@
 
 ```{r}
 allen <- ReprocessedAllenData()
-allen_counts <- assay(allen, "tophat_counts")
+allen <- scater::logNormCounts(x = allen, exprs_values = "tophat_counts")
+allen <- scater::runPCA(allen)
+allen <- scater::runUMAP(allen)
 ```
 
 .pull-left[
@@ -26,7 +28,7 @@ knitr::kable(x, format = "html", escape = F)
 ## Information
 
 ```{r, include=TRUE, echo=FALSE}
-x <- log(allen_counts + 1)
+x <- log(assay(allen, "tophat_counts") + 1)
 keep_rows <-  head(order(rowVars(x), decreasing = TRUE), 50)
 set.seed(10)
 keep_columns <- sample(ncol(x), 20)
@@ -140,6 +142,33 @@ Unsupervised learning helps finding groups of homogeneous items
 
 - Many approaches to do this (e.g. PCA, t-SNE, UMAP)
 
+.pull-left[
+.x-small-table[
+```{r, include=TRUE, echo=FALSE}
+nrow <- 10
+ncol <- 5
+rownames <- paste("gene", seq_len(nrow))
+colnames <- paste("sample", seq_len(ncol))
+x <- matrix(data = rbinom(nrow*ncol, 10E3, 1E-4), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
+knitr::kable(x, format = "html", escape = F)
+```
+]
+]
+
+.pull-right[
+.x-small-table[
+```{r, include=TRUE, echo=FALSE}
+nrow <- 5
+ncol <- 2
+rownames <- paste("sample", seq_len(nrow))
+colnames <- paste("dim", seq_len(ncol))
+x <- matrix(data = rnorm(nrow*ncol, 0, 10), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
+knitr::kable(x, format = "html", escape = F)
+```
+]
+
+]
+
 ---
 
 # Principal component analysis (PCA)
@@ -160,8 +189,6 @@ Unsupervised learning helps finding groups of homogeneous items
 <br/>
 
 ```{r, include=TRUE, echo=FALSE}
-allen <- scater::logNormCounts(x = allen, exprs_values = "tophat_counts")
-allen <- scater::runPCA(allen)
 plotReducedDim(object = allen, dimred = "PCA", colour_by = "driver_1_s")
 ```
 ]
