@@ -241,7 +241,8 @@ cowplot::plot_grid(
   pca_iris_species,
   umap_iris_species,
   tsne_iris_species,
-  ncol = 2)
+  ncol = 2
+)
 ```
 
 # Exercise
@@ -396,7 +397,10 @@ hdbscan_plot
 
 ```{r, fig.height=3, fig.width=6}
 cowplot::plot_grid(
-  dbscan_plot, hdbscan_plot, ncol = 2)
+  dbscan_plot,
+    hdbscan_plot,
+    ncol = 2
+)
 ```
 
 # Exercise

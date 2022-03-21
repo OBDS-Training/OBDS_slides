@@ -1,0 +1,528 @@
+---
+title: "Example code for dimensionality reduction and clustering in R"
+author: "Kevin Rue-Albrecht"
+date: "09/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+library(umap)
+library(Rtsne)
+library(dendextend)
+library(dbscan)
+```
+
+# Exercise
+
+## Setup
+
+- Import the `iris` data set.
+
+```{r}
+
+```
+
+- Separate the matrix of measurements in a new object named `iris_features`.
+
+```{r}
+iris_features <- 
+head(iris_features)
+```
+
+# Exercise
+
+## Apply Principal Components Analysis (PCA)
+
+The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
+
+- Apply PCA while centering and scaling the matrix of features.
+
+```{r}
+pca_iris <- prcomp(   )
+pca_iris
+```
+
+- Examine the PCA output.
+  Display the loading of each feature on each principal component.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+- Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
+
+```{r}
+pca_iris_dataframe <- 
+head(pca_iris_dataframe)
+```
+
+- Visualise the PCA projection using `ggplot2::geom_point()`.
+
+```{r}
+ggplot(pca_iris_dataframe,   ) +
+  
+  
+```
+
+### Bonus point
+
+- Color data points according to their class label.
+
+- Store the PCA plot as an object named `pca_iris_species`.
+
+```{r}
+
+head(pca_iris_dataframe)
+```
+
+```{r}
+pca_iris_species <- ggplot(pca_iris_dataframe,    ) +
+  
+  
+pca_iris_species
+```
+
+# Exercise
+
+## Variable loading
+
+- Color a scatter plot of PC1 and PC2 by the value of the variable most strongly associated with the first principal component.
+
+What do you observe?
+
+```{r}
+
+head(pca_iris_dataframe)
+```
+
+```{r}
+ggplot(pca_iris_dataframe,    ) +
+  
+  
+
+```
+
+> Answer:
+> 
+> 
+
+## Variance explained
+
+- Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
+
+```{r}
+explained_variance_ratio <- 
+explained_variance_ratio
+```
+
+- Visualise the variance explained by each principal component using `ggplot2::geom_col()`.
+
+```{r}
+variance_dataframe <- data.frame(
+  
+  
+)
+head(variance_dataframe)
+```
+
+```{r}
+ggplot(variance_dataframe,    ) +
+  
+  
+  
+```
+
+# Exercise
+
+## UMAP
+
+- Apply UMAP on the output of the PCA.
+
+```{r}
+umap_iris <- umap(   )
+umap_iris
+```
+
+- Inspect the UMAP output.
+
+```{r}
+
+```
+
+- Visualise the UMAP projection using `ggplot2::geom_point()`.
+
+```{r}
+umap_iris_dataframe <- 
+
+head(umap_iris_dataframe)
+```
+
+```{r}
+ggplot(umap_iris_dataframe,    ) +
+  
+  
+```
+
+### Bonus point
+
+- Color data points according to their class label.
+
+- Store the UMAP plot as an object named `umap_iris_species`.
+
+```{r}
+
+head(umap_iris_dataframe)
+```
+
+```{r}
+umap_iris_species <- ggplot(umap_iris_dataframe,    ) +
+  
+  
+umap_iris_species
+```
+
+# Exercise
+
+## t-SNE
+
+- Apply t-SNE and inspect the output.
+
+```{r}
+tsne_iris <- Rtsne(   )
+str(tsne_iris)
+```
+
+- Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
+
+```{r}
+tsne_iris_dataframe <- 
+
+head(tsne_iris_dataframe)
+```
+
+- Visualise the t-SNE projection.
+
+```{r}
+ggplot(tsne_iris_dataframe,    ) +
+  
+  
+```
+
+### Bonus points
+
+- Color data points according to their class label.
+
+- Store the UMAP plot as an object named `tsne_iris_species`.
+
+```{r}
+
+head(tsne_iris_dataframe)
+```
+
+```{r}
+tsne_iris_species <- ggplot(tsne_iris_dataframe,    ) +
+  
+  
+tsne_iris_species
+```
+
+- Combine PCA, UMAP and t-SNE plots in a single figure.
+
+```{r, fig.height=6, fig.width=6}
+cowplot::plot_grid(
+  
+  
+  
+  
+)
+```
+
+# Exercise
+
+## Hierarchical clustering
+
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
+
+```{r}
+dist_iris <- dist(   )
+hclust_iris_ward <- hclust(   )
+hclust_iris_ward
+```
+
+- Plot the clustering tree.
+
+```{r}
+plot(   )
+```
+
+How many clusters would you call from a visual inspection of the tree?
+
+> Answer:
+> 
+> 
+
+- **Bonus point:** Color leaves by known species (use `dendextend`).
+
+```{r}
+iris_hclust_dend <- as.dendrogram(   )
+labels_colors(iris_hclust_dend) <- 
+plot(iris_hclust_dend,    )
+```
+
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
+
+```{r}
+iris_hclust_ward_labels <- cutree(   )
+iris_hclust_ward_labels
+```
+
+- Repeat clustering using 3 other agglomeration methods:
+
+  + `complete`
+  + `average`
+  + `single`
+
+```{r}
+# complete
+hclust_iris_complete <- hclust(   )
+iris_hclust_complete_labels <- cutree(   )
+iris_hclust_complete_labels
+```
+
+```{r}
+# average
+hclust_iris_average <- hclust(   )
+iris_hclust_average_labels <- cutree(   )
+iris_hclust_average_labels
+```
+
+```{r}
+# single
+hclust_iris_single <- hclust(   )
+iris_hclust_single_labels <- cutree(   )
+iris_hclust_single_labels
+```
+
+- Compare clustering results on scatter plots of the data.
+
+```{r}
+iris_clusters_dataframe <- iris
+iris_clusters_dataframe$hclust_average <- as.factor(   )
+iris_clusters_dataframe$hclust_complete <- as.factor(   )
+iris_clusters_dataframe$hclust_single <- as.factor(   )
+iris_clusters_dataframe$hclust_ward <- as.factor(   )
+```
+
+```{r, fig.height=8, fig.width=10}
+plot_average <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+plot_complete <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+plot_single <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+plot_ward <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+cowplot::plot_grid(
+  
+  
+  
+  
+)
+```
+
+# Exercise
+
+## dbscan
+
+- Apply `dbscan` to the `iris_features` data set.
+
+```{r}
+dbscan_iris <- dbscan(   )
+dbscan_iris
+```
+
+- Visualise the `dbscan` cluster label on a scatter plot of the data.
+
+```{r}
+iris_clusters_dataframe$dbscan <- as.factor(   )
+head(iris_clusters_dataframe)
+```
+
+```{r}
+dbscan_plot <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+dbscan_plot
+```
+
+## hdbscan
+
+- Apply `hdbscan` to the `iris_features` data set.
+
+```{r}
+hdbscan_iris <- hdbscan(    )
+hdbscan_iris
+```
+
+- Visualise the `hdbscan` cluster label on a scatter plot of the data.
+
+```{r}
+iris_clusters_dataframe$hdbscan <- as.factor(   )
+head(iris_clusters_dataframe)
+```
+
+```{r}
+hdbscan_plot <- ggplot(iris_clusters_dataframe,    ) +
+  
+  
+hdbscan_plot
+```
+
+## Bonus point
+
+- Combine the plots of `dbscan` and `hdbscan` into a single plot.
+
+```{r, fig.height=3, fig.width=6}
+cowplot::plot_grid(
+  
+  
+  
+)
+```
+
+# Exercise
+
+## K-means clustering
+
+- Apply $K$-means clustering with $K$ set to 3 clusters.
+
+```{r}
+kmeans_iris <- kmeans(   )
+kmeans_iris
+```
+
+- Inspect the output.
+
+```{r}
+
+```
+
+- Extract the cluster labels.
+
+```{r}
+
+```
+
+- Extract the coordinates of the cluster centers.
+
+```{r}
+
+```
+
+- Construct a data frame that combines the `iris` dataset and the cluster label.
+
+```{r}
+iris_labelled <- iris
+iris_labelled$Kmeans <- as.factor(   )
+head(iris_labelled)
+```
+
+- Plot the data set as a scatter plot.
+
+  + Color by cluster label.
+
+```{r}
+ggplot(iris_labelled,    ) +
+  
+  
+```
+
+### Bonus point
+
+- Add cluster centers as points in the plot.
+
+```{r}
+iris_means_centers <- as.data.frame(   )
+iris_means_centers$Kmeans <- as.factor(   )
+head(iris_means_centers)
+```
+
+
+```{r}
+ggplot(iris_labelled,    ) +
+  
+  
+  
+```
+
+# Exercise
+
+## Cross-tabulation with ground truth
+
+- Cross-tabulate cluster labels with known labels.
+
+```{r}
+table(   )
+```
+
+How many observations are mis-classified by $K$-means clustering?
+
+> Answer:
+> 
+> 
+> 
+> 
+> 
+
+## Elbow plot
+
+- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
+
+```{r}
+
+```
+
+```{r}
+get_mean_totss_for_k <- function(k, data) {
+  kmeans_out <- kmeans(data, k)
+  return(kmeans_out$tot.withinss)
+}
+k_range <- 2:10
+kmean_totwithinss <- vapply(   )
+kmean_totwithinss
+```
+
+```{r}
+kmean_totwithinss_dataframe <- data.frame(
+  K = ,
+  totss = 
+)
+head(kmean_totwithinss_dataframe)
+```
+
+```{r}
+ggplot(kmean_totwithinss_dataframe,    ) +
+  
+  
+```
+
+Do you agree that 3 is the optimal number of clusters for this data set?
+
+> Answer:
+> 
+> 
+> 
+> 
