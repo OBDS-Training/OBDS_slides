@@ -596,6 +596,8 @@ tibble(
 
 When parametric assumptions are not met, non-parametric tests equivalent should be used.
 
+<br/>
+
 .large-table[
 |Parametric test              |Non-parametric equivalent |
 |:----------------------------|:-------------------------|
@@ -627,8 +629,8 @@ Non-parametric tests make fewer assumptions, as such:
 
 ```{r, include=TRUE}
 set.seed(10)
-x <- rnorm(n = 100, mean = 0, sd = 1)
-y <- rnorm(n = 100, mean = 1, sd = 1)
+x <- rnorm(n = 1000, mean = 0, sd = 1)
+y <- rnorm(n = 1000, mean = 1, sd = 1)
 ```
 
 ```{r, include=TRUE, echo=FALSE, fig.height=5}
@@ -671,8 +673,8 @@ t.test(y, x)
 
 ```{r, include=TRUE}
 set.seed(10)
-x <- runif(n = 100, min = 1, max = 11)
-y <- runif(n = 100, min = 3, max = 13)
+x <- runif(n = 1000, min = 1, max = 11)
+y <- runif(n = 1000, min = 3, max = 13)
 ```
 
 ```{r, include=TRUE, echo=FALSE, fig.height=5}
@@ -718,7 +720,7 @@ For each sample, the two measurements are related to one another; e.g. patients 
 .small-code[
 ```{r, include=TRUE}
 set.seed(10)
-n_sample <- 100
+n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
 y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
 ```
@@ -1165,17 +1167,6 @@ Benjamini-Hochberg procedure
 knitr::include_graphics("https://www.huber.embl.de/msmb/figure/chap14-mt-BH-1.png")
 ```
 ]
-
-???
-
-BH: Assuming no effect whatsoever, the p-values are expected to be uniformly distributed between 0 and 1.
-That is, if you rank p-values in increasing order, you should see them increase uniformly from 0 to 1.
-But if there is an effect, the associated p-values will be lower than expected by chance.
-This is what the BH procedure is about:
-
-- First, order the p-values in increasing order
-- For a choice of FDR, find the largest p-value that is less than expected by chance
-- Reject hypotheses until that p-value
 
 ---
 
