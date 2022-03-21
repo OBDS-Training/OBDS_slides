@@ -404,6 +404,13 @@ Quantiles are the values at a selected set of evenly-spaced locations in the dis
 knitr::include_graphics("img/quantiles-quartiles.svg")
 ```
 
+Quantiles are not always observed values.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/quantiles-ties.svg")
+```
+
 ---
 
 # Example - Quantiles of a normal distribution

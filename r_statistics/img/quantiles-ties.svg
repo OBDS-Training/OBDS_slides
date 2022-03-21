@@ -12,28 +12,30 @@
 <text transform="matrix(0.948 0 0 1 195.5581 43.5558)" class="st0 st1">3</text>
 <text transform="matrix(1 0 0 1 221.4281 43.5557)" class="st0 st1">4</text>
 <text transform="matrix(1 0 0 1 247.4713 43.5561)" class="st0 st1">5</text>
-<text transform="matrix(0.948 0 0 1 273.6881 43.5557)" class="st0 st1">6</text>
+<text transform="matrix(0.948 0 0 1 273.6885 43.5558)" class="st0 st1">6</text>
 <text transform="matrix(1 0 0 1 299.558 43.5561)" class="st0 st1">7</text>
 <text transform="matrix(1 0 0 1 325.6012 43.556)" class="st0 st1">8</text>
-<text transform="matrix(0.948 0 0 1 351.8181 43.5561)" class="st0 st1">9</text>
+<text transform="matrix(0.948 0 0 1 351.8184 43.5558)" class="st0 st1">9</text>
 <text transform="matrix(1 0 0 1 374.351 43.5559)" class="st0 st1">10</text>
 <text transform="matrix(1 0 0 1 400.3946 43.556)" class="st0 st1">11</text>
-<text transform="matrix(0.948 0 0 1 426.7849 43.5561)" class="st0 st1">12</text>
-<rect x="147.8" y="54.5" width="74.9" height="8.7"/>
-<rect x="227.5" y="54.5" width="74" height="8.7"/>
-<rect x="306.4" y="54.5" width="73.2" height="8.7"/>
-<rect x="384.5" y="54.5" width="73.9" height="8.7"/>
-<text transform="matrix(0.948 0 0 1 452.8286 43.5559)" class="st0 st1">13</text>
+<text transform="matrix(0.948 0 0 1 426.7852 43.5558)" class="st0 st1">12</text>
 <rect x="137.7" y="29.2" class="st2" width="18.3" height="18.3"/>
-<rect x="215.9" y="29.2" class="st2" width="18.3" height="18.3"/>
-<rect x="292.4" y="29.2" class="st2" width="18.3" height="18.3"/>
-<rect x="372.6" y="29.2" class="st2" width="18.3" height="18.3"/>
-<rect x="451.1" y="29.2" class="st2" width="18.3" height="18.3"/>
+<rect x="424.1" y="29.2" class="st2" width="18.3" height="18.3"/>
 <text transform="matrix(1 0 0 1 139.0898 94.054)" class="st0 st1">0%</text>
-<text transform="matrix(1 0 0 1 213.0524 94.0539)" class="st0 st1">25%</text>
-<text transform="matrix(1 0 0 1 292.1151 94.054)" class="st0 st1">50%</text>
-<text transform="matrix(1 0 0 1 369.7914 94.3659)" class="st0 st1">75%</text>
-<text transform="matrix(1 0 0 1 444.9033 94.0539)" class="st0 st1">100%</text>
+<text transform="matrix(1 0 0 1 201.3712 94.0539)" class="st0 st1">25%</text>
+<text transform="matrix(1 0 0 1 279.5018 94.054)" class="st0 st1">50%</text>
+<text transform="matrix(1 0 0 1 355.6698 94.0534)" class="st0 st1">75%</text>
+<text transform="matrix(1 0 0 1 424.071 94.3649)" class="st0 st1">100%</text>
 <text transform="matrix(1 0 0 1 56.7095 43.7002)" class="st0 st1">Values</text>
 <text transform="matrix(1 0 0 1 28.0341 88.6856)" class="st0 st1">Probabilities</text>
+<rect x="220.5" y="54.5" width="60.9" height="8.7"/>
+<rect x="296.4" y="54.5" width="60.9" height="8.7"/>
+<rect x="372.3" y="54.5" width="60.9" height="8.7"/>
+<rect x="144.6" y="54.5" width="60.9" height="8.7"/>
+<text transform="matrix(1 0 0 1 203.5997 16.3456)" class="st0 st1">3.5</text>
+<rect x="200.2" y="2" class="st2" width="24.5" height="18.3"/>
+<text transform="matrix(1 0 0 1 279.0789 16.3456)" class="st0 st1">6.5</text>
+<rect x="275.6" y="2" class="st2" width="24.5" height="18.3"/>
+<text transform="matrix(1 0 0 1 357.8983 16.3456)" class="st0 st1">9.5</text>
+<rect x="354.5" y="2" class="st2" width="24.5" height="18.3"/>
 </svg>
