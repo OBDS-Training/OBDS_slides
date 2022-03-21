@@ -840,24 +840,6 @@ knitr::include_graphics("img/tSNE_step0.png")
 
 ---
 
-# Exercise
-
-## UMAP
-
-- Apply UMAP on the output of the PCA.
-
-- Inspect the UMAP output.
-
-- Visualise the UMAP projection using `ggplot2::geom_point()`.
-
-### Bonus point
-
-- Color data points according to their class label.
-
-- Store the UMAP plot as an object named `umap_iris_species`.
-
----
-
 # Expression data example
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
@@ -896,6 +878,24 @@ tsne_out$Y %>%
   theme_cowplot()
 ```
 ]
+
+---
+
+# Exercise
+
+## UMAP
+
+- Apply UMAP on the output of the PCA.
+
+- Inspect the UMAP output.
+
+- Visualise the UMAP projection using `ggplot2::geom_point()`.
+
+### Bonus point
+
+- Color data points according to their class label.
+
+- Store the UMAP plot as an object named `umap_iris_species`.
 
 ---
 
