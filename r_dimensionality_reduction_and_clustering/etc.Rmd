@@ -771,7 +771,7 @@ What do you observe?
 
 - Color data points according to their class label.
 
-Save the UMAP plot as an object named `umap_plot`.
+- Store the UMAP plot as an object named `umap_iris_species`.
 
 ---
 
