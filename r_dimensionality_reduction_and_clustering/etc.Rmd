@@ -714,9 +714,7 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
 
 - Import the `iris` data set.
 
-- Separate measurements from class labels.
-
-  + Store the matrix of measurements in a separate object named `iris_features`.
+- Separate the matrix of measurements in a new object named `iris_features`.
 
 ---
 

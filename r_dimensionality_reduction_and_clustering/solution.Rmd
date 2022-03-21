@@ -1,0 +1,523 @@
+---
+title: "Example code for dimensionality reduction and clustering in R"
+author: "Kevin Rue-Albrecht"
+date: "09/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+library(umap)
+library(Rtsne)
+library(dendextend)
+library(dbscan)
+```
+
+# Exercise
+
+## Setup
+
+- Import the `iris` data set.
+
+```{r}
+data("iris")
+```
+
+- Separate the matrix of measurements in a new object named `iris_features`.
+
+```{r}
+iris_features <- iris %>% select(-Species)
+head(iris_features)
+```
+
+# Exercise
+
+## Apply Principal Components Analysis (PCA)
+
+The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
+
+- Apply PCA while centering and scaling the variables (i.e., measurements).
+
+```{r}
+pca_iris <- prcomp(iris_features, center = TRUE, scale. = TRUE)
+pca_iris
+```
+
+- Examine the PCA output.
+  How does each principal component relate to each variable?
+
+```{r}
+str(pca_iris)
+```
+
+```{r}
+pca_iris$rotation
+```
+
+> Each value in the matrix above represents the weight of the corresponding variable on the corresponding principal component.
+> Higher (absolute) weight represent a higher importance of the variable on the principal component.
+
+Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
+
+```{r}
+pca_iris_dataframe <- as.data.frame(pca_iris$x)
+head(pca_iris_dataframe)
+```
+
+- Visualise the PCA projection using `ggplot2::geom_point()`.
+
+```{r}
+ggplot(pca_iris_dataframe, aes(PC1, PC2)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+### Bonus point
+
+- Color data points according to their class label.
+
+Save the PCA plot as an object named `pca_iris_species`.
+
+```{r}
+pca_iris_dataframe$Species <- iris$Species
+head(pca_iris_dataframe)
+```
+
+```{r}
+pca_iris_species <- ggplot(pca_iris_dataframe, aes(PC1, PC2, color = Species)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+pca_iris_species
+```
+
+# Exercise
+
+## Variable loading
+
+- Color a scatter plot of PC1 and PC2 by the value of the variable most strongly associated with the first principal component.
+
+What do you observe?
+
+```{r}
+pca_iris_dataframe$Petal.Width <- iris$Petal.Width
+head(pca_iris_dataframe)
+```
+
+```{r}
+pca_iris_petal_width <- ggplot(pca_iris_dataframe, aes(PC1, PC2, color = Petal.Width)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+pca_iris_petal_width
+```
+
+> The plot reveals a gradient of the variable along PC1.
+> This is what one would expect for a variable with a high loading on that principal component.
+
+## Variance explained
+
+- Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
+
+```{r}
+explained_variance_ratio <- pca_iris$sdev ^ 2 / sum(pca_iris$sdev ^ 2)
+explained_variance_ratio
+```
+
+- Visualise the variance explained by each principal component using `ggplot2::geom_col()`.
+
+```{r}
+variance_dataframe <- data.frame(
+  PC = seq_along(explained_variance_ratio),
+  variance_ratio = explained_variance_ratio
+)
+head(variance_dataframe)
+```
+
+```{r}
+ggplot(variance_dataframe, aes(PC, variance_ratio)) +
+  geom_col() +
+  ylim(0, 1) +
+  cowplot::theme_cowplot()
+```
+
+# Exercise 
+
+## UMAP
+
+- Apply UMAP on the output of the PCA.
+
+```{r}
+umap_iris <- umap(d = pca_iris$x)
+umap_iris
+```
+
+- Inspect the UMAP output.
+
+```{r}
+str(umap_iris)
+```
+
+- Visualise the UMAP projection using `ggplot2::geom_point()`.
+
+```{r}
+umap_iris_dataframe <- as.data.frame(umap_iris$layout)
+colnames(umap_iris_dataframe) <- paste0("UMAP", seq_len(ncol(umap_iris_dataframe)))
+head(umap_iris_dataframe)
+```
+
+```{r}
+ggplot(umap_iris_dataframe, aes(UMAP1, UMAP2)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+### Bonus point
+
+- Color data points according to their class label.
+
+Save the UMAP plot as an object named `umap_iris_species`.
+
+```{r}
+umap_iris_dataframe$Species <- iris$Species
+head(umap_iris_dataframe)
+```
+
+```{r}
+umap_iris_species <- ggplot(umap_iris_dataframe, aes(UMAP1, UMAP2, color = Species)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+umap_iris_species
+```
+
+# Exercise
+
+## t-SNE
+
+- Apply t-SNE and inspect the output.
+
+```{r}
+tsne_iris <- Rtsne(pca_iris$x, check_duplicates = FALSE)
+str(tsne_iris)
+```
+
+- Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
+
+```{r}
+tsne_iris_dataframe <- as.data.frame(tsne_iris$Y)
+colnames(tsne_iris_dataframe) <- paste0("TSNE", seq_len(ncol(tsne_iris_dataframe)))
+head(tsne_iris_dataframe)
+```
+
+- Visualise the t-SNE projection.
+
+```{r}
+ggplot(tsne_iris_dataframe, aes(TSNE1, TSNE2)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+### Bonus points
+
+- Color data points according to their class label.
+
+Save the t-SNE plot as an object named 
+
+```{r}
+tsne_iris_dataframe$Species <- iris$Species
+head(tsne_iris_dataframe)
+```
+
+```{r}
+tsne_iris_species <- ggplot(tsne_iris_dataframe, aes(TSNE1, TSNE2, color = Species)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+tsne_iris_species
+```
+
+- Combine PCA, UMAP and t-SNE in a single figure.
+
+```{r, fig.height=6, fig.width=6}
+cowplot::plot_grid(
+  pca_iris_species,
+  umap_iris_species,
+  tsne_iris_species,
+  ncol = 2)
+```
+
+# Exercise
+
+## Hierarchical clustering
+
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
+
+```{r}
+dist_iris <- dist(iris_features, method = "euclidean")
+hclust_iris_ward <- hclust(dist_iris, method = "ward.D2")
+hclust_iris_ward
+```
+
+- Plot the clustering tree.
+
+How many clusters would you call from a visual inspection of the tree?
+
+```{r}
+plot(hclust_iris_ward, labels = FALSE)
+```
+
+> Visually: two major clusters.
+> One could argue for three, maybe four, clusters, depending on follow-up analyses.
+
+- Bonus point: Color leaves by known species (use `dendextend`).
+
+```{r}
+iris_hclust_dend <- as.dendrogram(hclust_iris_ward)
+labels_colors(iris_hclust_dend) <- as.numeric(iris$Species)
+plot(iris_hclust_dend, main = "A color for every Species")
+```
+
+- Cut the tree in 3 clusters and extract the cluster labels.
+
+```{r}
+iris_hclust_ward_labels <- cutree(hclust_iris_ward, k = 3)
+iris_hclust_ward_labels
+```
+
+- Repeat clustering using 3 other agglomeration methods:
+
+  + `complete`
+  + `average`
+  + `single`
+
+```{r}
+# complete
+hclust_iris_complete <- hclust(dist_iris, method = "complete")
+iris_hclust_complete_labels <- cutree(hclust_iris_complete, k = 3)
+iris_hclust_complete_labels
+```
+
+```{r}
+# average
+hclust_iris_average <- hclust(dist_iris, method = "average")
+iris_hclust_average_labels <- cutree(hclust_iris_average, k = 3)
+iris_hclust_average_labels
+```
+
+```{r}
+# single
+hclust_iris_single <- hclust(dist_iris, method = "single")
+iris_hclust_single_labels <- cutree(hclust_iris_single, k = 3)
+iris_hclust_single_labels
+```
+
+- Compare clustering results on scatter plots of the data.
+
+```{r}
+iris_clusters_dataframe <- iris
+iris_clusters_dataframe$hclust_average <- as.factor(iris_hclust_average_labels)
+iris_clusters_dataframe$hclust_complete <- as.factor(iris_hclust_complete_labels)
+iris_clusters_dataframe$hclust_single <- as.factor(iris_hclust_single_labels)
+iris_clusters_dataframe$hclust_ward <- as.factor(iris_hclust_ward_labels)
+```
+
+```{r, fig.height=8, fig.width=10}
+plot_average <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = hclust_average)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+plot_complete <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = hclust_complete)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+plot_single <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = hclust_single)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+plot_ward <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = hclust_ward)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+cowplot::plot_grid(
+  plot_average,
+  plot_complete,
+  plot_single,
+  plot_ward, ncol = 2
+)
+```
+
+# Exercise
+
+## dbscan
+
+- Apply `dbscan` to the `iris_features` data set.
+
+```{r}
+dbscan_iris <- dbscan(iris_features, eps = 0.75, minPts = 2)
+dbscan_iris
+```
+
+- Visualise the `dbscan` cluster label on a scatter plot of the data.
+
+```{r}
+iris_clusters_dataframe$dbscan <- as.factor(dbscan_iris$cluster)
+head(iris_clusters_dataframe)
+```
+
+```{r}
+dbscan_plot <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = dbscan)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+dbscan_plot
+```
+
+## hdbscan
+
+- Apply `hdbscan` to the `iris_features` data set.
+
+```{r}
+hdbscan_iris <- hdbscan(iris_features, minPts = 3)
+hdbscan_iris
+```
+
+- Visualise the `hdbscan` cluster label on a scatter plot of the data.
+
+```{r}
+iris_clusters_dataframe$hdbscan <- as.factor(hdbscan_iris$cluster)
+head(iris_clusters_dataframe)
+```
+
+```{r}
+hdbscan_plot <- ggplot(iris_clusters_dataframe, aes(Sepal.Length, Sepal.Width, color = hdbscan)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+hdbscan_plot
+```
+
+## Bonus point
+
+- Combine the plots of `dbscan` and `hdbscan` into a single plot.
+
+```{r, fig.height=3, fig.width=6}
+cowplot::plot_grid(
+  dbscan_plot, hdbscan_plot, ncol = 2)
+```
+
+# Exercise
+
+## K-means clustering
+
+- Apply $K$-means clustering with $K$ set to 3 clusters.
+
+```{r}
+kmeans_iris <- kmeans(iris_features, 3)
+kmeans_iris
+```
+
+- Inspect the output.
+
+```{r}
+str(kmeans_iris)
+```
+
+- Extract the cluster labels.
+
+```{r}
+kmeans_iris$cluster
+```
+
+- Extract the cluster centers.
+
+```{r}
+kmeans_iris$centers
+```
+
+- Construct a data frame that combines the `iris` dataset and the cluster label.
+
+```{r}
+iris_labelled <- iris
+iris_labelled$Kmeans <- as.factor(kmeans_iris$cluster)
+head(iris_labelled)
+```
+
+- Plot the data set as a scatter plot.
+
+  + Color by cluster label.
+
+```{r}
+ggplot(iris_labelled, aes(Sepal.Length, Sepal.Width, color = Kmeans)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+### Bonus point
+
+- Add cluster centers to the plot.
+
+```{r}
+iris_means_centers <- as.data.frame(kmeans_iris$centers)
+iris_means_centers$Kmeans <- as.factor(seq_len(nrow(iris_means_centers)))
+head(iris_means_centers)
+```
+
+
+```{r}
+ggplot(iris_labelled, aes(Sepal.Length, Sepal.Width, color = Kmeans)) +
+  geom_point() +
+  geom_point(data = iris_means_centers, shape = "+", size = 20, show.legend = FALSE) +
+  cowplot::theme_cowplot()
+```
+
+# Exercise
+
+## Cross-tabulation with ground truth
+
+- Cross-tabulate cluster labels with known labels.
+
+How many observations are mis-classified by $K$-means clustering?
+
+```{r}
+table(iris_labelled$Species, iris_labelled$Kmeans)
+```
+
+> Considering that cluster 3 contains exclusively setosa observations,
+> cluster 2 contains mostly virginica observations,
+> we can say that 16 observations are mis-classified:
+> - 2 versicolor observations are classified with virginica observations in cluster 2
+> - 14 virginica observations are classified with versicolor observations in cluster 1
+
+## Elbow plot
+
+- Plot the "total within-cluster sum of squares" for K ranging from 2 to 10.
+
+```{r}
+kmeans_iris$tot.withinss
+```
+
+```{r}
+get_mean_totss_for_k <- function(k, data) {
+  kmeans_out <- kmeans(data, k)
+  return(kmeans_out$tot.withinss)
+}
+k_range <- 2:10
+kmean_totwithinss <- vapply(k_range, get_mean_totss_for_k, FUN.VALUE = numeric(1), data = iris_features)
+kmean_totwithinss
+```
+
+```{r}
+kmean_totwithinss_dataframe <- data.frame(
+  K = k_range,
+  totss = kmean_totwithinss
+)
+head(kmean_totwithinss_dataframe)
+```
+
+```{r}
+ggplot(kmean_totwithinss_dataframe, aes(K, totss)) +
+  geom_point() +
+  cowplot::theme_cowplot()
+```
+
+Do you agree that 3 is the optimal number of clusters for this data set?
+
+> Without any other information than this elbow plot,
+> it would be natural to claim that 4 clusters provide a reasonable compromise
+> to minimise the total sum of squares within clusters
+> while minimising over-clustering.
