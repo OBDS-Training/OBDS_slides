@@ -757,21 +757,14 @@ What do you observe?
 
 ---
 
-# Exercise
+# Non-linear dimensionality reduction techniques
 
-## UMAP
-
-- Apply UMAP on the output of the PCA.
-
-- Inspect the UMAP output.
-
-- Visualise the UMAP projection using `ggplot2::geom_point()`.
-
-### Bonus point
-
-- Color data points according to their class label.
-
-- Store the UMAP plot as an object named `umap_iris_species`.
+.pull-left[
+```{r, include=TRUE, echo=FALSE}
+## Source: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction
+knitr::include_graphics("img/non-linear-dim-red.png")
+```
+]
 
 ---
 
@@ -790,9 +783,9 @@ What do you observe?
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("https://miro.medium.com/max/260/1*vNMeKlFkTs9gb_6B93s-yA.png")
+## Source: https://medium.com/@violante.andre/an-introduction-to-t-sne-with-python-example-47e6ae7dc58f
+knitr::include_graphics("img/tsne-swiss-roll.png")
 ```
-
 ]
 
 .footnote[
@@ -808,7 +801,8 @@ knitr::include_graphics("https://miro.medium.com/max/260/1*vNMeKlFkTs9gb_6B93s-y
 Finds a way to project data into a low-dimension space (here, 1-D line), so that the clustering in the high-dimension space (here, 2-D scatter plot) is preserved.
 
 ```{r, include=TRUE, echo=FALSE, fig.align="center", out.height="300px"}
-knitr::include_graphics("https://younesse.net/assets/Slides/Visualization/tSNE_step0.png")
+## Source: https://younesse.net/assets/Slides/Visualization/Visualization.html
+knitr::include_graphics("img/tSNE_step0.png")
 ```
 
 .footnote[
@@ -817,6 +811,44 @@ knitr::include_graphics("https://younesse.net/assets/Slides/Visualization/tSNE_s
 1. [StatQuest](https://statquest.org/statquest-t-sne-clearly-explained/), "t-SNE, clearly explained!".
 2. [younesse.net](https://younesse.net/assets/Slides/Visualization/Visualization.html), "Dimensionality reduction & visualization of representations".
 ]
+
+---
+
+# UMAP
+
+- Concept comparable to t-SNE.
+
+- Faster than t-SNE, especially for large data sets.
+
+- Better preservation of the global structure in the data.
+
+.center[
+**No wrong choice. It doesn't hurt to run both and pick the best-looking one.**
+]
+
+.footnote[
+**See also:**
+
+1. [Understanding UMAP](https://pair-code.github.io/understanding-umap/)
+]
+
+---
+
+# Exercise
+
+## UMAP
+
+- Apply UMAP on the output of the PCA.
+
+- Inspect the UMAP output.
+
+- Visualise the UMAP projection using `ggplot2::geom_point()`.
+
+### Bonus point
+
+- Color data points according to their class label.
+
+- Store the UMAP plot as an object named `umap_iris_species`.
 
 ---
 
@@ -947,7 +979,8 @@ iris %>%
 4. Repeat (2) and (3) until convergence, or for a maximum number of iterations allowed.
 
 ```{r, include=TRUE, echo=FALSE, fig.align="center"}
-knitr::include_graphics("https://stanford.edu/~cpiech/cs221/img/kmeansViz.png")
+## Source: https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
+knitr::include_graphics("img/kmeans-steps.png")
 ```
 
 ---
@@ -1036,6 +1069,7 @@ kmeans_scree %>%
   + **Divisive:** starts with all observations in one cluster and then recursively split each cluster to form a hierarchy.
   
 ```{r, include=TRUE, echo=FALSE, out.height="300px", fig.align='center'}
+## Source:
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/UPGMA_Dendrogram_Hierarchical.svg/1200px-UPGMA_Dendrogram_Hierarchical.svg.png")
 ```
 
