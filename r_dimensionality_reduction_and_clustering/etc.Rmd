@@ -1147,9 +1147,9 @@ knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 
 How many clusters would you call from a visual inspection of the tree?
 
-- Bonus point: Color leaves by known species (use `dendextend`).
+- **Bonus point:** Color leaves by known species (use `dendextend`).
 
-- Cut the tree in 3 clusters and extract the cluster labels.
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
 
 - Repeat clustering using 3 other agglomeration methods:
 
@@ -1191,7 +1191,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 - Extract the cluster labels.
 
-- Extract the cluster centers.
+- Extract the coordinates of the cluster centers.
 
 - Construct a data frame that combines the `iris` dataset and the cluster label.
 
@@ -1201,7 +1201,7 @@ How many clusters would you call from a visual inspection of the tree?
 
 ### Bonus point
 
-- Add cluster centers to the plot.
+- Add cluster centers as points in the plot.
 
 ---
 

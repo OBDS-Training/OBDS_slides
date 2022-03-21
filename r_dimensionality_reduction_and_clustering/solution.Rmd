@@ -259,16 +259,17 @@ hclust_iris_ward
 
 - Plot the clustering tree.
 
-How many clusters would you call from a visual inspection of the tree?
-
 ```{r}
 plot(hclust_iris_ward, labels = FALSE)
 ```
 
-> Visually: two major clusters.
-> One could argue for three, maybe four, clusters, depending on follow-up analyses.
+How many clusters would you call from a visual inspection of the tree?
 
-- Bonus point: Color leaves by known species (use `dendextend`).
+> Answer:
+> - Visually: two major clusters.
+> - One could argue for three - maybe four - clusters, depending on follow-up analyses.
+
+- **Bonus point:** Color leaves by known species (use `dendextend`).
 
 ```{r}
 iris_hclust_dend <- as.dendrogram(hclust_iris_ward)
@@ -276,7 +277,7 @@ labels_colors(iris_hclust_dend) <- as.numeric(iris$Species)
 plot(iris_hclust_dend, main = "A color for every Species")
 ```
 
-- Cut the tree in 3 clusters and extract the cluster labels.
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
 
 ```{r}
 iris_hclust_ward_labels <- cutree(hclust_iris_ward, k = 3)
@@ -421,7 +422,7 @@ str(kmeans_iris)
 kmeans_iris$cluster
 ```
 
-- Extract the cluster centers.
+- Extract the coordinates of the cluster centers.
 
 ```{r}
 kmeans_iris$centers
@@ -447,7 +448,7 @@ ggplot(iris_labelled, aes(Sepal.Length, Sepal.Width, color = Kmeans)) +
 
 ### Bonus point
 
-- Add cluster centers to the plot.
+- Add cluster centers as points in the plot.
 
 ```{r}
 iris_means_centers <- as.data.frame(kmeans_iris$centers)
@@ -469,14 +470,15 @@ ggplot(iris_labelled, aes(Sepal.Length, Sepal.Width, color = Kmeans)) +
 
 - Cross-tabulate cluster labels with known labels.
 
-How many observations are mis-classified by $K$-means clustering?
-
 ```{r}
 table(iris_labelled$Species, iris_labelled$Kmeans)
 ```
 
+How many observations are mis-classified by $K$-means clustering?
+
+> Answer:
 > Considering that cluster 3 contains exclusively setosa observations,
-> cluster 2 contains mostly virginica observations,
+> and cluster 2 contains mostly virginica observations,
 > we can say that 16 observations are mis-classified:
 > - 2 versicolor observations are classified with virginica observations in cluster 2
 > - 14 virginica observations are classified with versicolor observations in cluster 1
@@ -515,6 +517,7 @@ ggplot(kmean_totwithinss_dataframe, aes(K, totss)) +
 
 Do you agree that 3 is the optimal number of clusters for this data set?
 
+> Answer:
 > Without any other information than this elbow plot,
 > it would be natural to claim that 4 clusters provide a reasonable compromise
 > to minimise the total sum of squares within clusters
