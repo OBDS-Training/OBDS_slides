@@ -1067,11 +1067,20 @@ kmeans_scree %>%
 - Either a bottom-up ('agglomerative') or a top-down ('divisive') approach.
   + **Agglomerative:** each cell is initially assigned to its own cluster and pairs of clusters are subsequently merged to create a hierarchy.
   + **Divisive:** starts with all observations in one cluster and then recursively split each cluster to form a hierarchy.
-  
+
+.pull-left[
 ```{r, include=TRUE, echo=FALSE, out.height="300px", fig.align='center'}
-## Source:
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/UPGMA_Dendrogram_Hierarchical.svg/1200px-UPGMA_Dendrogram_Hierarchical.svg.png")
+## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
+knitr::include_graphics("img/hierarchical-clustering-scatter.png")
 ```
+]
+
+.pull-right[
+```{r, include=TRUE, echo=FALSE, out.height="300px", fig.align='center'}
+## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
+knitr::include_graphics("img/hierarchical-clustering-dendrogram.png")
+```
+]
 
 ---
 
