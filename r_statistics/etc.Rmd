@@ -143,6 +143,8 @@ slide_mean <- 0; slide_sd <- 1;
 
 Standard normal distribution with mean `r slide_mean` and standard deviation `r slide_sd`.
 
+--
+
 ```{r}
 x <- tibble(
   quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
@@ -229,6 +231,8 @@ slide_mean <- 50; slide_sd <- 100;
 
 Normal distribution parameterised with mean `r slide_mean` and standard deviation `r slide_sd`.
 
+--
+
 ```{r}
 x <- tibble(
   quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
@@ -304,6 +308,21 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
 ```{r, include=TRUE, echo=FALSE, fig.width=12, fig.height=7}
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 ```
+
+---
+
+# The binomial distribution
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/binomial-coins.svg")
+```
+
+- Two mutually exclusive outcomes: $P(H) = 1 - P(T)$
+
+- Size of experiment (e.g., number of coins tossed)
+
+- Model: number of occurrences of a specific outcome.
 
 ---
 
@@ -529,8 +548,8 @@ help(pairwise.t.test)
 ## General principles of hypothesis testing
 
 ```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='700px', fig.align='center'}
-# Source: Illustrator
-knitr::include_graphics("img/hypothesis-testing.png")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/hypothesis-testing.svg")
 ```
 
 ---
@@ -829,15 +848,15 @@ lm(y ~ x, test_data) %>% summary()
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-table.png")
-# Source: Kevin Rue-Albrecht
 ```
 ]
 
 .pull-right[
 ```{r, include=TRUE, echo=FALSE}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-venn.png")
-# Source: Kevin Rue-Albrecht
 ```
 ]
 
