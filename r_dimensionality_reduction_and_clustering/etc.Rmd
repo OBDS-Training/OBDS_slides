@@ -761,12 +761,10 @@ What do you observe?
 
 In many cases, the relationship between features is not linear.
 
-.pull-left[
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ## Source: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction
 knitr::include_graphics("img/non-linear-dim-red.png")
 ```
-]
 
 - Linear dimensionality reduction techniques like PCA (in blue) will fit their model as best as they can.
 
