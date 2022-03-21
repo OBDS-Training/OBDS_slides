@@ -922,23 +922,25 @@ tsne_out$Y %>%
 # Clustering
 
 - Technique for grouping of given data points and classification into groups.
-  + In theory, points with similar properties or features should belong to the same group.
-  + Points with dissimilar properties or features should belong to different groups.
-  + Method of unsupervised learning (no known labels), common technique used in many fields.
-- Yields valuable insights from data by seeing what groups fall into after clustering
+  + In theory, points with similar features should belong to the same group.
+  + Points with dissimilar features should belong to different groups.
+  + Method of unsupervised learning (no known labels).
+
+- Yields valuable insights from seeing what groups fall into after clustering
+
 - Many methods (e.g. K-means clustering, hierarchical clustering)
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=6}
+```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=5}
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
-    geom_point() +
+    geom_point(size = 2) +
     cowplot::theme_cowplot() +
     labs(x = "variable 1", y = "variable 2")
 ```
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=6}
+```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=5}
 iris %>% 
     mutate(
         Cluster = Species %>% 
@@ -949,7 +951,7 @@ iris %>%
             )
     ) %>% 
     ggplot(aes(Sepal.Length, Sepal.Width, color = Cluster)) +
-    geom_point() +
+    geom_point(size = 2) +
     cowplot::theme_cowplot() +
     labs(x = "variable 1", y = "variable 2")
 ```
