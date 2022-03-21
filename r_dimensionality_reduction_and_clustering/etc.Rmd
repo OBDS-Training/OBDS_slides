@@ -716,7 +716,7 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
   
   + Optionally, store the class labels in a vector named `iris_species`.
 
-> Note: the last bit is not necessary, as we can always refer to `iris$Species`.
+Note: the last bit is not necessary, as we can always refer to `iris$Species`.
 
 ---
 
