@@ -96,8 +96,8 @@ Coordinates on a genomic scale.
 ## Ranges and operations
 
 ```{r, include=TRUE, echo=FALSE, out.width='800px'}
-## Source: https://www.bioconductor.org/help/course-materials/2015/SeattleApr2015/B_GenomicRanges.html
-knitr::include_graphics("img/genomic-ranges.png")
+## Source: https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges/index.html
+knitr::include_graphics("img/genomic-ranges.svg")
 ```
 ]
 
