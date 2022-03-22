@@ -59,17 +59,15 @@ Adapted from: [Introduction to R / Bioconductor (2019)](https://www.bioconductor
 
 ---
 
-# Bioconductor release 3.14
+# Bioconductor release 3.14 (October 27, 2021)
 
 - Contents
-
   + 2083 software packages
   + 408 experiment data packages
   + 904 annotation packages
   + 29 workflows
 
 - Updates
-
   + 89 new software packages
   + 13 new data experiment packages
   + 10 new annotation packages
@@ -77,12 +75,10 @@ Adapted from: [Introduction to R / Bioconductor (2019)](https://www.bioconductor
   + no new books
 
 - Compatibility
-
    + Bioconductor 3.14 is compatible with R 4.1.1
    + Supported on Linux, 32- and 64-bit Windows, and Intel 64-bit macOS 10.13 (High Sierra) or higher
-   + This release will include an updated Bioconductor Docker container.
 
-Source: <https://bioconductor.org/news/bioc_3_13_release/>
+Source: <https://bioconductor.org/news/bioc_3_14_release/>
 
 ---
 
