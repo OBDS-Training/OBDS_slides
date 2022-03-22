@@ -507,11 +507,15 @@ What do those functions do?
 ## Assembling a SummarizedExperiment object
 
 - Import the matrix in the file `counts.csv`.
+  Call it `assay_counts`.
 
 - Import the data frames in the files `sample_metadata.csv` and `gene_metadata.csv`.
-
-- Use the `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
+  Call them `sample_metadata` and `gene_metadata`.
+  
+- Use the function `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
   Call it `demo_se`.
+  
+  + Assign the matrix to an assay named `counts`.
 
 ---
 

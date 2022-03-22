@@ -612,7 +612,7 @@ gene_metadata <- read.csv("data/summarized_experiment/gene_metadata.csv", row.na
 head(gene_metadata)
 ```
 
-- Use the `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
+- Use the function `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
   Call it `demo_se`.
   
   + Assign the matrix to an assay named `counts`.
