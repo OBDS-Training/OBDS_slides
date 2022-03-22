@@ -300,7 +300,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 - Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
 
 - Import the file in your <i class="fab fa-r-project"></i> session using the function `rtracklayer::import()`.
-  Assign the object to the variable name `gtf_data`.
+  Assign value to an object called `gtf_data`.
 
 - What are the metadata columns available in the object?
 
@@ -308,7 +308,7 @@ knitr::include_graphics("img/biocviews-annotation.png")
 
 - How many transcripts do the annotations describe for that gene?
 
-- Subset the annotations to exons, and split by transcript.
+- Subset the annotations to exons, and use the `split()` function to separate exons from different transcripts.
   What is the class of the object that is returned?
 
 ---

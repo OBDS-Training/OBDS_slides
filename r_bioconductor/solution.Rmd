@@ -325,8 +325,8 @@ if (!file.exists("data/Homo_sapiens.GRCh38.104.gtf.gz")) {
 library(rtracklayer)
 ```
 
-- Import the file in your <i class="fab fa-r-project"></i> session using the function `rtracklayer::import()`.
-  Assign the object to the variable name `gtf_data`.
+- Import the file in your R session using the function `rtracklayer::import()`.
+  Assign value to an object called `gtf_data`.
 
 ```{r}
 gtf_data <- rtracklayer::import("data/Homo_sapiens.GRCh38.104.gtf.gz")
@@ -355,7 +355,7 @@ gtf_ACTB$transcript_id %>%
     length()
 ```
 
-- Subset the annotations to exons, and split by transcript.
+- Subset the annotations to exons, and use the `split()` function to separate exons from different transcripts.
   What is the class of the object that is returned?
 
 ```{r}
