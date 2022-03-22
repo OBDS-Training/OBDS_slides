@@ -246,7 +246,9 @@ demo_granges
 
 **What genomics file format does this remind you of?**
 
+> Answer:
 > BED or GTF file: genomic coordinates, accompanied with metadata.
+
 # Demo
 
 ## Accessing the contents of GRanges objects
