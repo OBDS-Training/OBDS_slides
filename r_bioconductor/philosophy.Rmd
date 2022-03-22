@@ -50,7 +50,7 @@ Credits: [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help
 # Bioconductor packages in a workflow
 
 ```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='800px'}
-knitr::include_graphics("img/workflow-steps-packages.png")
+knitr::include_graphics("img/bioc-sequencing-ecosystem.svg")
 ```
 
 .footnote[
