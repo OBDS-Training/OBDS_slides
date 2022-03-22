@@ -345,7 +345,7 @@ The `OrgDb` family of packages provide annotations that link several types of id
 
 - Load the package `r BiocStyle::Biocpkg("org.Hs.eg.db")`.
 
-Each `OrgDb` package contains an object of the same name.
+Each `OrgDb` package contains an object of the same name as the package.
 
 - What is the class of the object?
 - Use the `columns()` method to discover which sorts of annotations can be extracted
