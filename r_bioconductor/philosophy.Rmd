@@ -54,7 +54,7 @@ knitr::include_graphics("img/bioc-sequencing-ecosystem.svg")
 ```
 
 .footnote[
-Credits: [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
+Adapted from: [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
 ]
 
 ---
