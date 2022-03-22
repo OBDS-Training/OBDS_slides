@@ -416,12 +416,14 @@ AnnotationDbi::select(org.Hs.eg.db, human_symbols, c("ENTREZID", "ENSEMBL"), "SY
 
   + What happens if you do not specify `AnnotationDbi`?
 
+> Answer:
 > Depending on the order in which you attached packages to your R session,
 > you may see the error message:
 > ```
 > no applicable method for 'select' applied to an object of class
 > "c('OrgDb', 'AnnotationDb', 'envRefClass', '.environment', 'refClass', 'environment', 'refObject', 'AssayData')"
 > ```
+
 - Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
 
 ```{r}
@@ -458,8 +460,10 @@ mart <- useMart("ENSEMBL_MART_ENSEMBL", host = "https://may2021.archive.ensembl.
 mart
 ```
 
+> Answer:
 > In practice, users choose a host for reproducibility.
 > Otherwise, the latest information is returned, which may change without notice.
+
 - Use the `listDatasets()` function to list the datasets available in the selected BioMart database.
   What is the identifier of the database that contains information for _Homo sapiens_?
 
@@ -467,7 +471,7 @@ mart
 listDatasets(mart) %>% head()
 ```
 
-- Use again the `useMart()` function to replace the `mart` object by a new one that points to information for _Homo sapiens_.
+- Use again the `useMart()` function, and replace the `mart` object by a new one that points to information for _Homo sapiens_.
 
 ```{r}
 mart <- useMart(
