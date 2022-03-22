@@ -580,9 +580,11 @@ mcols(demo_se)
 metadata(demo_se)
 ```
 
-
 What do those functions do?
-]
+
+> Answer:
+> Those are accessor functions.
+> Each of them returns a component of the object.
 
 # Exercise
 
