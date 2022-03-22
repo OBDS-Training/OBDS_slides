@@ -4,19 +4,18 @@
 knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
 ```
 
-- Main website: <https://www.bioconductor.org/>
-
-- Support site: <https://support.bioconductor.org/>
-
-- Courses & Conferences materials: <https://www.bioconductor.org/help/course-materials/>
-
-- YouTube videos: <https://www.youtube.com/user/bioconductor>
-
-- Books: <http://www.bioconductor.org/books/release/>
-
-- Slack workspace: <https://bioc-community.herokuapp.com/>
-
-- ... and more! Can you think of others? <i class="far fa-smile"></i>
+| Resource | Location |
+|:--------:||:-------:|
+| Main website | <https://www.bioconductor.org/> |
+| Support site | <https://support.bioconductor.org/> |
+| Courses & Conferences materials | <https://www.bioconductor.org/help/course-materials/> | 
+| YouTube videos | <https://www.youtube.com/user/bioconductor> |
+| Books | <http://www.bioconductor.org/books/release/> |
+| Slack workspace | <https://bioc-community.herokuapp.com/> |
+ 
+.center[
+**... and more! Can you think of others?**
+]
 
 ---
 
