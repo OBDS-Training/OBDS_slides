@@ -30,6 +30,7 @@ library(scater)
 
 When would you consult the vignette? When would the reference manual be helpful?
 
+> Answer:
 > The vignette is great at showcasing the set of functions in a package
 > in the context of a typical workflow. This is much most convenient for new users
 > and users who wish to refresh their knowledge of the package and best practices.

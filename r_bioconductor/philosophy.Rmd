@@ -21,6 +21,10 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 
 # Project objectives
 
+```{r, include=TRUE, echo=FALSE, out.height="100px", out.width="350px", fig.align="center"}
+knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconductor_logo_cmyk.jpg")
+```
+
 .center[
 **Analysis and comprehension of high-throughput genomic data**
 ]
