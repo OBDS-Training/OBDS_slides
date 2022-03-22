@@ -67,15 +67,15 @@ To give you an idea, what the system administrators did essentially comes down t
 
 ```{r, include=TRUE, echo=TRUE, eval=FALSE}
 install.packages("BiocManager")
-BiocManager::install("Biostrings")
+BiocManager::install(c("Biostrings", "S4Vectors"))
 ```
 
 The package `r BiocStyle::CRANpkg("BiocManager")` is the only official Bioconductor package on CRAN.
 It provides functions to install, update, and more generally manage your library of Bioconductor (and CRAN) packages.
 
 The function `BiocManager::install()` can install packages from Bioconductor, CRAN, and even GitHub.
-Here, we demonstrate it with a single package name.
-However, it was used to install a whole set of Bioconductor packages and their dependencies.
+Here, we demonstrate it with a vector of two package names.
+However, it can be used to install a single package name as a character value.
 
 - Run the function `BiocManager::valid()`.
   What does it do?
