@@ -145,8 +145,8 @@ BiocManager::valid()
 library(Biostrings)
 ```
 
-- The `Biostrings` package provides the object `DNA_ALPHABET`.
-  Print the object in the console and use the help page to explain the value of the object.
+- The package provides the object `DNA_ALPHABET`.
+  Print the object in the console and use the help page to explain the contents of the object.
 
 ```{r}
 DNA_ALPHABET
@@ -156,7 +156,7 @@ DNA_ALPHABET
 help(DNA_ALPHABET)
 ```
 
-- The `Biostrings` package provides the function `IlluminaQuality()`.
+- The package provides the function `IlluminaQuality()`.
   Run some code from the "Examples" section of the help page, and describe what the function does.
   
 ```{r, eval=FALSE}
@@ -168,7 +168,7 @@ IlluminaQuality(0:40)
 ```
 
 - Access the package vignette(s).
-  How many vignette does the `Biostrings` package include?
+  How many vignette does the package include?
 
 ```{r, eval=FALSE}
 browseVignettes("Biostrings")
@@ -216,7 +216,7 @@ An E-box (enhancer box) is a DNA response element found in some eukaryotes that 
 
 The E-box motif is `"CANNTG"`.
 
-- Extract the sequence of chromosome Y.
+- Extract the sequence of chromosome Y from the `genome` object above.
 
 ```{r}
 chrY <- genome$chrY

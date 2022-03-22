@@ -16,14 +16,14 @@ knitr::include_graphics("img/biocmanager-update.png")
 
 - Load the `r BiocStyle::Biocpkg("Biostrings")` package.
 
-- The `r BiocStyle::Biocpkg("Biostrings")` package provides the object `DNA_ALPHABET`.
+- The package provides the object `DNA_ALPHABET`.
   Print the object in the console and use the help page to explain the contents of the object.
 
-- The `r BiocStyle::Biocpkg("Biostrings")` package provides the function `IlluminaQuality()`.
+- The package provides the function `IlluminaQuality()`.
   Run some code from the "Examples" section of the help page, and describe what the function does.
 
 - Access the package vignette(s).
-  How many vignette does the `r BiocStyle::Biocpkg("Biostrings")` package include?
+  How many vignette does the package include?
 
 - Import sequences in the file `TruSeq3-PE-2.fa`.
   What is the class of the object?
@@ -68,7 +68,7 @@ An E-box (enhancer box) is a DNA response element found in some eukaryotes that 
 
 The E-box motif is `"CANNTG"`.
 
-- Extract the sequence of chromosome Y.
+- Extract the sequence of chromosome Y from the `genome` object above.
 
 - Find out the appropriate method in the `r BiocStyle::Biocpkg("Biostrings")` and count the number of E-box motifs present on chromosome Y.
 
