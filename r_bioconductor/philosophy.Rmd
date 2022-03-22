@@ -41,9 +41,9 @@ knitr::include_graphics("https://www.bioconductor.org/images/logo/jpg/bioconduct
 
   + Flow cytometry, proteomics, images, ...
 
-.footnote[
-Credits: [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan
-]
+???
+
+Source: [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan
 
 ---
 
@@ -132,8 +132,9 @@ Source: <https://bioconductor.org/news/bioc_3_14_release/>
 **When would you consult the vignette? When would the reference manual be helpful?**
 ]
 
-.footnote[
-Credits: [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
+???
+
+Source: [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/L1.3-starting-an-analysis.html) by Martin Morgan
 ]
 
 ---
