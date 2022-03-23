@@ -626,6 +626,20 @@ demo_se <- SummarizedExperiment(
 demo_se
 ```
 
+# Demo
+
+## Inheritance and coercion
+
+```{r}
+demo_dataframe <- data.frame(A = c(1, 2), B = c(3, 4))
+demo_dataframe
+```
+
+```{r}
+demo_DataFrame <- as(demo_dataframe, "DataFrame")
+demo_DataFrame
+```
+
 # Exercise
 
 ## SummarizedExperiment extensions
