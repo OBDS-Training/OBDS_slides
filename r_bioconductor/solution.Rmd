@@ -671,7 +671,7 @@ slotNames(demo_deseq)
 slotNames(demo_se)
 ```
 
-- Which slots of the `DESeqDataSet` object can access using accessor functions (e.g. `assays()`) ?
+- Which components of the `DESeqDataSet` object can you access using accessor functions (e.g., `assays()`) ?
   Do all of those accessors work on the original `demo_se` object?
 
 ```{r}
