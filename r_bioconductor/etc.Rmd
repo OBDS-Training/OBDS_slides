@@ -797,7 +797,7 @@ The function `options()` can be used to get or set global options of the current
 
 The function reports the URLs from which to install Bioconductor and CRAN packages.
 
-- In an `.Rprofile` file -- either in your home directory or in the root of your RStudio project -- add the following line and restart the <i class="fab fa-r-project"></i> session.
+- Set the `repos` option to the value of `BiocManager::repositories()`.
 
 ```{r, include=TRUE}
 options(repos = BiocManager::repositories())

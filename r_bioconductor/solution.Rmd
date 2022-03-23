@@ -132,8 +132,8 @@ BiocManager::valid()
 > Answer:
 > It checks if all the Bioconductor packages in the library are up-to-date:
 > 
-> - if yes, it returns `TRUE`.
-> - if no, it prints the command that should be run to update the library.
+> - If yes, it returns `TRUE`.
+> - If no, it prints the command that should be run to update the library.
 
 # Exercise
 
@@ -247,7 +247,7 @@ demo_granges
 **What genomics file format does this remind you of?**
 
 > Answer:
-> BED or GTF file: genomic coordinates, accompanied with metadata.
+> - BED or GTF file: genomic coordinates, accompanied with metadata.
 
 # Demo
 
@@ -417,7 +417,7 @@ AnnotationDbi::select(org.Hs.eg.db, human_symbols, c("ENTREZID", "ENSEMBL"), "SY
   + What happens if you do not specify `AnnotationDbi`?
 
 > Answer:
-> Depending on the order in which you attached packages to your R session,
+> - Depending on the order in which you attached packages to your R session,
 > you may see the error message:
 > ```
 > no applicable method for 'select' applied to an object of class
@@ -461,8 +461,8 @@ mart
 ```
 
 > Answer:
-> In practice, users choose a host for reproducibility.
-> Otherwise, the latest information is returned, which may change without notice.
+> - In practice, users choose a host for reproducibility.
+> - Otherwise, the latest information is returned, which may change without notice.
 
 - Use the `listDatasets()` function to list the datasets available in the selected BioMart database.
   What is the identifier of the database that contains information for _Homo sapiens_?
@@ -583,8 +583,8 @@ metadata(demo_se)
 What do those functions do?
 
 > Answer:
-> Those are accessor functions.
-> Each of them returns a component of the object.
+> - Those are accessor functions.
+> - Each of them returns a component of the object.
 
 # Exercise
 
@@ -688,8 +688,10 @@ dispersionFunction(demo_deseq)
 # dispersionFunction(demo_se) # error
 ```
 
-> The methods `design()` and `dispersionFunction()` only work on `DESeqDataSet` objects.
-> They do not work on the original `SummarizedExperiment` object.
+> Answer:
+> - The methods `design()` and `dispersionFunction()` only work on `DESeqDataSet` objects.
+> - They do not work on the original `SummarizedExperiment` object.
+
 # Exercise
 
 ## SingleCellExperiment
@@ -719,7 +721,9 @@ demo_sce <- as(demo_se, "SingleCellExperiment")
 demo_sce
 ```
 
+> Answer:
 > Additional information include `reducedDimNames`, `mainExpName`, and `altExpNames`.
+
 - Use the methods `reducedDimNames()`, `reducedDims()`, and `reducedDim()` on the object `demo_sce`.
   What do they do?
 
@@ -729,9 +733,11 @@ reducedDims(demo_sce)
 # reducedDim(demo_sce) # error
 ```
 
-> `reducedDimNames()` displays the names of dimensionality reduction results available.
-> `reducedDims()` returns the list of dimensionality reduction results available.
-> `reducedDim()` returns a single dimensionality reduction result, by default the first one, if any. If there are none, it throws an error.
+> Answer:
+> - `reducedDimNames()` displays the names of dimensionality reduction results available.
+> - `reducedDims()` returns the list of dimensionality reduction results available.
+> - `reducedDim()` returns a single dimensionality reduction result, by default the first one, if any. If there are none, it throws an error.
+
 - **Bonus point:** Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
   Display and inspect the updated object.
 
@@ -828,7 +834,7 @@ BiocManager::repositories()
 
 The function reports the URLs from which to install Bioconductor and CRAN packages.
 
-- In an `.Rprofile` file -- either in your home directory or in the root of your RStudio project -- add the following line and restart the <i class="fab fa-r-project"></i> session.
+- Set the `repos` option to the value of `BiocManager::repositories()`.
 
 ```{r}
 options(repos = BiocManager::repositories())
@@ -842,6 +848,7 @@ options(repos = BiocManager::repositories())
 options("repos")
 ```
 
+> Answer:
 > Now, the `repos` option is set to the value of `BiocManager::repositories()`.
 > It means that even the base R function `install.packages()` will search for packages
 > on the Bioconductor repositories, not only CRAN.
