@@ -519,6 +519,33 @@ What do those functions do?
 
 ---
 
+# Inheritance and coercion
+
+The `as()` function can be used to convert an object between classes that are related through inheritance.
+This is called _coercing_ the object to another class.
+
+For instance:
+
+.pull-left[
+.small-code[
+```{r, include=TRUE}
+demo_dataframe <- data.frame(A = c(1, 2), B = c(3, 4))
+demo_dataframe
+```
+]
+]
+
+.pull-right[
+.small-code[
+```{r, include=TRUE}
+demo_DataFrame <- as(demo_dataframe, "DataFrame")
+demo_DataFrame
+```
+]
+]
+
+---
+
 # Exercise
 
 ## SummarizedExperiment extensions
