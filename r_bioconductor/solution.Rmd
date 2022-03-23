@@ -639,8 +639,6 @@ library(DESeq2)
 - Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
   Call the object `demo_deseq`.
 
-> Solution: `demo_deseq <- as(demo_se, "DESeqDataSet")`.
-
 ```{r}
 demo_deseq <- as(demo_se, "DESeqDataSet")
 demo_deseq
