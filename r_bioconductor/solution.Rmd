@@ -658,7 +658,8 @@ demo_deseq <- as(demo_se, "DESeqDataSet")
 demo_deseq
 ```
 
-- What are the slots available in the `DESeqDataSet` object?
+- What are the slots of information present in the `DESeqDataSet` object?
+  Use the function `slotNames()`.
 
 ```{r}
 slotNames(demo_deseq)
