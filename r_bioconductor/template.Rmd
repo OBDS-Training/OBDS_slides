@@ -16,7 +16,6 @@ library(org.Hs.eg.db)
 library(biomaRt)
 library(SummarizedExperiment)
 library(tximeta)
-library(tximportData)
 library(DESeq2)
 library(SingleCellExperiment)
 library(ExperimentHub)
@@ -565,7 +564,7 @@ demo_se <- SummarizedExperiment(
   colData = demo_coldata)
 ```
 
-```{r, include=TRUE}
+```{r, include=TRUE,}
 demo_se
 ```
 
