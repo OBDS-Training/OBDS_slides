@@ -1,7 +1,7 @@
 ---
 title: "Example code for introduction to Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "09/09/2021"
+date: "23/03/2022"
 output: html_document
 ---
 
@@ -51,6 +51,7 @@ When would you consult the vignette? When would the reference manual be helpful?
 > In contrast, the manual simply collates the manual pages of the package.
 > This is most useful for users who wish to check the arguments of any given function
 > in the package, without having to launch an R session and access the help page itself.
+
 # Demo
 
 ## Bioconductor uses the S4 class system
@@ -478,7 +479,8 @@ listDatasets(mart) %>% head()
 mart <- useMart(
   biomart = "ENSEMBL_MART_ENSEMBL",
   dataset = "hsapiens_gene_ensembl",
-  host = "https://may2021.archive.ensembl.org")
+  host = "https://may2021.archive.ensembl.org"
+)
 mart
 ```
 
@@ -495,7 +497,8 @@ getBM(
   attributes = c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "strand"),
   filters = "hgnc_symbol",
   values = human_symbols,
-  mart = mart)
+  mart = mart
+)
 ```
 
 # Demo
@@ -853,6 +856,7 @@ options("repos")
 > Now, the `repos` option is set to the value of `BiocManager::repositories()`.
 > It means that even the base R function `install.packages()` will search for packages
 > on the Bioconductor repositories, not only CRAN.
+
 # Advanced
 
 ## Import SummarizedExperiment objects using tximeta
