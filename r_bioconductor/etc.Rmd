@@ -544,6 +544,14 @@ demo_DataFrame
 ]
 ]
 
+<br/>
+
+- If the new class is simpler, some information may be lost
+  (e.g., coercing to a parent class).
+
+- If the new class is more complex, new components may be filled with automatically computed or default values.
+  (e.g., coercing to child class).
+
 ---
 
 # Exercise
