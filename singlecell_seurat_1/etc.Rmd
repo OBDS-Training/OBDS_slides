@@ -488,7 +488,7 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 # SCTransform
 
 ```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
-## Source: https://cite-seq.com/cell-hashing/
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
 knitr::include_graphics("img/sctransform-fig1.png")
 ```
 
@@ -496,6 +496,20 @@ knitr::include_graphics("img/sctransform-fig1.png")
 
   + Groups 1-3 still display a relationship between sequencing depth and gene expression
     after log-normalisation.
+
+---
+
+# SCTransform
+
+```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/sctransform-fig3.png")
+```
+
+- All groups of genes show minimal correlation between Pearson residuals and sequencing depth.
+
+- Residuals represent effectively standardized expression values that are not influenced by technical metrics.
+
 
 ---
 

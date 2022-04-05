@@ -44,7 +44,7 @@ library(S4Vectors)
 # SCTransform
 
 ```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
-## Source: https://cite-seq.com/cell-hashing/
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
 knitr::include_graphics("img/sctransform-fig1.png")
 ```
 
