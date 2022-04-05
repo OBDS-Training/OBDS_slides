@@ -247,6 +247,8 @@ seurat_after_qc
 dim(seurat_after_qc) - dim(seurat_object)
 ```
 
+> Answer:
+> 
 > 896 cells were removed in this step.
 
 # Exercise
@@ -292,6 +294,8 @@ seurat_after_qc <- FindVariableFeatures(
 )
 ```
 
+> Answer:
+> 
 > Reason 1:
 > A number of downstream steps will work exclusively on the set of variable features.
 > Only variable features will be present in the subsequent scaled data matrix.
@@ -302,7 +306,7 @@ seurat_after_qc <- FindVariableFeatures(
 > Seurat stores the scaled data matrix and a lot of downstream results in dense matrices -- as opposed to sparse matrices -- which use much more memory.
 > Limiting the amount of features to work is one way of reducing the memory footprint and requirements for an analysis.
 
-- What is the function to display the name of variable features in a Seurat object (first ten)?
+- What is the function to display the name of variable features in a Seurat object (e.g., first 10)?
   How can you control which assay the variable features are pull from?
 
 ```{r}
@@ -322,6 +326,8 @@ VariableFeatures(seurat_after_qc)[1:10]
 VariableFeaturePlot(seurat_after_qc)
 ```
 
+> Answer:
+> 
 > This plot can help decide whether the number of variable features selected is suitable for the data set at hand.
 > Ideally, variable features should appear as outliers relative to the trend set by the majority of features in the data set.
 
@@ -352,6 +358,8 @@ seurat_after_qc <- ScaleData(
 seurat_after_qc <- RunPCA(seurat_after_qc)
 ```
 
+> Answer:
+> 
 > The help page of the function `RunPCA` states that if `features=NULL` (the default),
 > only variable features for the assay are used.
 > In other words, `VariableFeatures(seurat_after_qc)` gives you that list of features.

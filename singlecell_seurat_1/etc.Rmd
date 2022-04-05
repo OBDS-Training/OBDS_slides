@@ -630,7 +630,7 @@ Many methods for downstream analysis work better when features are brought back 
   Use the `"vst"` method and select the 2,000 most variable features.
   What does this subsetting do, and what are our motivations for doing it?
 
-- What is the function to display the name of variable features in a Seurat object (first ten)?
+- What is the function to display the name of variable features in a Seurat object (e.g., first 10)?
   How can you control which assay the variable features are pull from?
 
 - Use the function `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
@@ -652,6 +652,7 @@ knitr::include_graphics("img/overview-analysis-dimensionality.png")
 # Dimensionality reduction
 
 By nature, omics data sets survey a large number of features (e.g., tens of thousands of known genes in the human genome).
+Dimensionality refers to the number of features measured for each cell.
 
 - High dimensionality is prohibitively costly in time to generate and visualise all (pairs of) features.
 

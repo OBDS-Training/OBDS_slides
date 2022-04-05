@@ -226,6 +226,7 @@ seurat_after_qc
 dim(   ) - dim(   )
 ```
 
+> Answer:
 > 
 
 # Exercise
@@ -271,15 +272,17 @@ seurat_after_qc <- FindVariableFeatures(
 )
 ```
 
+> Answer:
 > 
 
-- What is the function to display the name of variable features in a Seurat object (first ten)?
+- What is the function to display the name of variable features in a Seurat object (e.g., first 10)?
   How can you control which assay the variable features are pull from?
 
 ```{r}
 
 ```
 
+> Answer:
 > 
 
 - Use the function `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
@@ -289,6 +292,7 @@ seurat_after_qc <- FindVariableFeatures(
 VariableFeaturePlot(   )
 ```
 
+> Answer:
 > 
 
 - Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
@@ -301,6 +305,7 @@ seurat_after_qc <- ScaleData(
 )
 ```
 
+> Answer:
 > 
 
 # Exercise
@@ -316,6 +321,7 @@ seurat_after_qc <- ScaleData(
 seurat_after_qc <- RunPCA(   )
 ```
 
+> Answer:
 > 
 
 - List the names of dimensionality reduction results available in the Seurat object.
