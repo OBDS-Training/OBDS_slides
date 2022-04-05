@@ -485,7 +485,7 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 
 ---
 
-# SCTransform
+# SCTransform (SCT) - Without
 
 ```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
@@ -499,7 +499,7 @@ knitr::include_graphics("img/sctransform-fig1.png")
 
 ---
 
-# SCTransform
+# SCTransform (SCT) - Result
 
 ```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
@@ -510,6 +510,19 @@ knitr::include_graphics("img/sctransform-fig3.png")
 
 - Residuals represent effectively standardized expression values that are not influenced by technical metrics.
 
+---
+
+# SCTransform (SCT) - Method
+
+```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/sctransform-fig2.png")
+```
+
+- Generalized linear models to fit model parameters for each gene in the transcriptome.
+- Two rounds of regression: kernel (regularisation), then negative binomial.
+- Pearson residuals of the NB treated as variance-stabilised normalised expression levels
+  + Positive residuals = more UMI observed than expected from mean and sequencing depth
 
 ---
 

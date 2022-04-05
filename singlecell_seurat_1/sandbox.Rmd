@@ -41,14 +41,14 @@ library(S4Vectors)
 
 ---
 
-# SCTransform
+# SCTransform (SCT) - Method
 
 ```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
-knitr::include_graphics("img/sctransform-fig1.png")
+knitr::include_graphics("img/sctransform-fig2.png")
 ```
 
-- Traditional log-normalisation only normalises low/medium-abundance genes effectively.
-
-  + Groups 1-3 still display a relationship between sequencing depth and gene expression
-    after log-normalisation.
+- Generalized linear models to fit model parameters for each gene in the transcriptome.
+- Two rounds of regression: kernel (regularisation), then negative binomial.
+- Pearson residuals of the NB treated as variance-stabilised normalised expression levels
+  + Positive residuals = more UMI observed than expected from mean and sequencing depth
