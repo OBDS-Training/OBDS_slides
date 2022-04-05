@@ -124,6 +124,35 @@ Source: https://cite-seq.com/
 
 ---
 
+# Cell hashing
+
+```{r, include=TRUE, echo=FALSE, out.height="250px", out.width="600px"}
+## Source: https://cite-seq.com/cell-hashing/
+knitr::include_graphics("img/hashing_protocol.png")
+```
+
+.pull-left[
+## Experimental
+
+- Tag samples with distinct HTO.
+
+- Pool ("multiplex") samples.
+
+- Sequence HTO and GEX (gene expression).
+]
+
+.pull-right[
+## Computational
+
+- Quantify HTO and GEX.
+
+- De-multiplex samples in each pool.
+
+- Analyse GEX of cells identified.
+]
+
+---
+
 # Seurat workflow - Overview
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
