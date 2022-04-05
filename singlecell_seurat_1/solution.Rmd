@@ -387,6 +387,7 @@ PCAPlot(seurat_after_qc)
 - Make a scatterplot of the first and second PCA components yourself using `ggplot2`.
 
 ```{r}
+# Use this code chunk to prepare a data.frame for ggplot2
 pca_data <- FetchData(seurat_after_qc, vars = c("PC_1", "PC_2"))
 head(pca_data)
 ```
@@ -404,6 +405,8 @@ ggplot(pca_data, aes(PC_1, PC_2)) +
 ElbowPlot(seurat_after_qc, ndims = 100)
 ```
 
+> Answer:
+> 
 > In this case, the first 20 components seem to capture most of the variance in the data set.
 
 - Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
@@ -425,6 +428,8 @@ UMAPPlot(seurat_after_qc)
 seurat_after_qc <- FindNeighbors(seurat_after_qc, dims = 1:20)
 ```
 
+> Answer:
+> 
 > The help page states that the function `FindNeighbors()` uses principal components 1 through 10, by default.
 
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?

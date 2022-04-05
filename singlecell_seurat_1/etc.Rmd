@@ -760,7 +760,7 @@ UMAPPlot(seurat_object, label = TRUE, label.size = 8)
 .center[
 There is no "correct" clustering.
 
-Clustering should be seen as a tool used to interpret data at different resolutions.
+Clustering should be seen as a tool used to interpret data at certain resolutions.
 ]
 
 ---

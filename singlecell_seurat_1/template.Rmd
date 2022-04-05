@@ -341,6 +341,7 @@ PCAPlot(   )
 - Make a scatterplot of the first and second PCA components yourself using `ggplot2`.
 
 ```{r}
+# Use this code chunk to prepare a data.frame for ggplot2
 pca_data <- FetchData(   )
 head(pca_data)
 ```
@@ -379,6 +380,8 @@ UMAPPlot(seurat_after_qc)
 seurat_after_qc <- FindNeighbors(   )
 ```
 
+> Answer:
+> 
 > The help page states that the function `FindNeighbors()` uses principal components 1 through 10, by default.
 
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
