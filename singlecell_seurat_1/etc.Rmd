@@ -556,6 +556,8 @@ Motivations:
 - Driving force for dimensionality reduction and clustering.
 
 .pull-left[
+## Boring ...
+
 ```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(FetchData(seurat_object, vars = "RPL22", slot = "data"), aes(RPL22)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
@@ -565,6 +567,8 @@ ggplot(FetchData(seurat_object, vars = "RPL22", slot = "data"), aes(RPL22)) +
 ]
 
 .pull-right[
+## Exciting !
+
 ```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
