@@ -118,10 +118,6 @@ knitr::include_graphics("img/cite-seq-protocol.png")
 **Antibodies bind to proteins (detection), barcodes are sequenced (quantification)**
 ]
 
-???
-
-Source: https://cite-seq.com/
-
 ---
 
 # Cell hashing
@@ -149,6 +145,10 @@ knitr::include_graphics("img/hashing_protocol.png")
 - De-multiplex samples in each pool.
 
 - Analyse GEX of cells identified.
+]
+
+.center[
+**Basically the same principle as CITE-seq.**
 ]
 
 ---
