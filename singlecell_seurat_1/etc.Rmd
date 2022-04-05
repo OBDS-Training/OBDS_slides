@@ -102,6 +102,28 @@ knitr::include_graphics("img/cellranger_count_output.png")
 
 ---
 
+# CITE-seq / Feature barcoding
+
+```{r, include=TRUE, echo=FALSE, out.height="60px", out.width="400px"}
+## Source: https://cite-seq.com/
+knitr::include_graphics("img/cite-seq-antibody.png")
+```
+
+```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
+## Source: https://cite-seq.com/
+knitr::include_graphics("img/cite-seq-protocol.png")
+```
+
+.center[
+**Antibodies bind to proteins (detection), barcodes are sequenced (quantification)**
+]
+
+???
+
+Source: https://cite-seq.com/
+
+---
+
 # Seurat workflow - Overview
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
@@ -803,52 +825,6 @@ DoHeatmap(
 - [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html)
 
 and many more tutorials in the [Seurat documentation website](https://satijalab.org/seurat/index.html).
-
----
-
-# Advanced
-
-## Feature barcoding
-
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
-## Source: http://en.biomarker.com.cn/platforms/10x-genomics
-knitr::include_graphics("img/feature-barcoding.png")
-```
-]
-
-.pull-right[
-- Poly(dT)VN captures RNA molecules.
-
-- Additional capture sequences for other targets.
-
-- Targets must be barcoded with a complementary oligonucleotide.
-]
-
----
-
-# Git wrap-up
-
-- Copy your notebook for this lesson in the Git repository, e.g.
-
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/projects/seurat_1/seurat_1-kevinrue.Rmd \
->   /project/obds/$USER/git/week4day1-seurat_1/
-> ```
-]
-
-- Create a new branch in the Git repository.
-  Use the date and your username in the branch name to make it unique, e.g. `git checkout -b week4day1-kevinrue`.
-
-- Commit, push, open a pull request, get it approved, and merge it.
-
-- Delete your merged branch on GitHub.
-
-- Check out the main branch locally, pull, and delete your merged branch locally.
-
 
 ---
 
