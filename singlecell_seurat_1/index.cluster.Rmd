@@ -3,7 +3,7 @@ title: 'Single-cell analysis using Seurat, part 1'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-02-07 (updated: `r Sys.Date()`)"
+date: "2022-05-23 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -16,7 +16,7 @@ output:
 knit: pagedown::chrome_print
 ---
 
-```{r, child='setup_and_goals.Rmd'}
+```{r, child='goals_and_objectives.Rmd'}
 ```
 
 ---
