@@ -49,7 +49,7 @@ knit: pagedown::chrome_print
 
 - Launch RStudio Server on the teaching cluster.
 
-- Start a new RStudio project called `dimensionality_and_clustering`.
+- Start a new RStudio project called `seurat_1`.
 
 - Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
