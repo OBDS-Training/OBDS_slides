@@ -13,7 +13,8 @@ stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 knitr::opts_chunk$set(
   message = FALSE, warning = FALSE, error = FALSE,
-  include = FALSE
+  include = FALSE,
+  fig.align = "center"
 )
 options(width = 90)
 library(tidyverse)

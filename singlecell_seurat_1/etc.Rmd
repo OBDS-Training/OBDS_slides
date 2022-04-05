@@ -10,7 +10,7 @@ knitr::include_graphics("img/overview-workflow.png")
 # Partitioning and barcoding
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+```{r, include=TRUE, echo=FALSE, out.height='200px'}
 ## Source: https://www.10xgenomics.com/instruments/chromium-controller
 knitr::include_graphics("img/overview-graphic-chromium-svg.svg")
 ```
@@ -29,7 +29,7 @@ knitr::include_graphics("img/overview-graphic-chromium-svg.svg")
 --
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+```{r, include=TRUE, echo=FALSE, out.height='200px'}
 ## Source: https://www.10xgenomics.com/products/single-cell-gene-expression
 knitr::include_graphics("img/barcoding.jpeg")
 ```
@@ -61,7 +61,7 @@ Cells are loaded in a limiting dilution on the 10x Chromium controller, so that:
 
 - The rate of GEMs that contain doublets (or more) is as small as technically possible.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
+```{r, include=TRUE, echo=FALSE, out.height='300px'}
 ## Source: https://www.technologynetworks.com/genomics/product-news/10x-genomics-extends-their-application-portfolio-305346
 knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-305346-640x360.jpeg")
 ```
@@ -72,7 +72,7 @@ knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-30
 
 ## Cell Ranger (10x Genomics)
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px'}
+```{r, include=TRUE, echo=FALSE, out.height='200px'}
 ## Source: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count
 knitr::include_graphics("img/cellranger_count.png")
 ```
@@ -155,7 +155,7 @@ knitr::include_graphics("img/hashing_protocol.png")
 
 # Seurat workflow - Overview
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis.png")
 ```
@@ -164,7 +164,7 @@ knitr::include_graphics("img/overview-analysis.png")
 
 # Seurat workflow - Create a Seurat object
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-import.png")
 ```
@@ -326,7 +326,7 @@ See `help("Seurat-methods")`.
 
 # Seurat workflow - Quality control and filtering
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-qc-filter.png")
 ```
@@ -418,7 +418,7 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ", slot = 
 
 # Seurat workflow - Normalisation
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-normalise.png")
 ```
@@ -497,7 +497,7 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 
 # Seurat workflow - Variable features and scaling
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-variable-scaling.png")
 ```
@@ -513,7 +513,7 @@ Motivations:
 - Driving force for dimensionality reduction and clustering.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4}
+```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(FetchData(seurat_object, vars = "RPL22", slot = "data"), aes(RPL22)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
@@ -522,7 +522,7 @@ ggplot(FetchData(seurat_object, vars = "RPL22", slot = "data"), aes(RPL22)) +
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4}
+```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
@@ -539,7 +539,7 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 - `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4}
+```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(HVFInfo(seurat_object), aes(mean, variance)) +
   geom_point() +
   scale_x_log10() +
@@ -548,7 +548,7 @@ ggplot(HVFInfo(seurat_object), aes(mean, variance)) +
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4, warning=FALSE}
+```{r, include=TRUE, echo=FALSE, fig.height=4, warning=FALSE}
 VariableFeaturePlot(seurat_object)
 ```
 ]
@@ -591,7 +591,7 @@ Many methods for downstream analysis work better when features are brought back 
 
 # Seurat workflow - Dimensionality reduction
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-dimensionality.png")
 ```
@@ -614,7 +614,7 @@ By nature, omics data sets survey a large number of features (e.g., tens of thou
     etc.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 Seurat::DoHeatmap(
     object = seurat_object,
     features = head(VariableFeatures(seurat_object), 100)
@@ -623,7 +623,7 @@ Seurat::DoHeatmap(
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 Idents(seurat_object) <- "orig.ident"
 DimPlot(seurat_object, reduction = "umap")
 ```
@@ -677,7 +677,7 @@ DimPlot(..., reduction = "pca", ...)
 
 # Seurat workflow - Clustering
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-clustering.png")
 ```
@@ -692,14 +692,14 @@ Although we process individual cells, patterns only emerge when we identify and 
 - even continuous trajectories measured as pseudotime often rely on known stages and bottlenecks.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 Idents(seurat_object) <- "orig.ident"
 UMAPPlot(seurat_object)
 ```
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 Idents(seurat_object) <- "RNA_snn_res.0.3"
 UMAPPlot(seurat_object, label = TRUE, label.size = 8)
 ```
@@ -758,7 +758,7 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 # Seurat workflow - Cluster markers
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px', out.width='400px'}
+```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-markers.png")
 ```
@@ -774,7 +774,7 @@ The interpretability of clusters relies on the ability to identify features acti
 - Clustering, marker identification, and downstream analyses often form an iterative process to achieve sensible and interpretable results.
 
 .pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.3")), aes(UMAP_1, UMAP_2, color = RNA_snn_res.0.3)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
@@ -782,7 +782,7 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.3"))
 ]
 
 .pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=5}
+```{r, include=TRUE, echo=FALSE, fig.height=5}
 ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_1, UMAP_2, color = CD3E)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
@@ -793,7 +793,7 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_
 
 # Heat map of cluster markers
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=7, fig.width=10}
+```{r, include=TRUE, echo=FALSE, fig.height=7, fig.width=10}
 Idents(seurat_object) <- "RNA_snn_res.0.3"
 markers_top10_clusters <- seurat_markers_all %>%
     group_by(cluster) %>%
