@@ -23,40 +23,39 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An account on the CCB cluster.
+- An account on the teaching cluster.
 
-- A clone of the shared GitHub repository for this course.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ## Lessons
 
+- Introduction to base <i class="fab fa-r-project"></i>.
+
+- Introduction to object oriented programming in <i class="fab fa-r-project"></i>.
+
 - Introduction to `r BiocStyle::CRANpkg("ggplot2")`.
+
+- Introduction to tidyverse.
+
+- Statistics in <i class="fab fa-r-project"></i>.
+
+- Dimensionality reduction and clustering in <i class="fab fa-r-project"></i>.
+
+- Differential expression for RNA-seq.
 
 ---
 
 # Set up
 
-- Checkout and pull the main branch of the shared repository.
+- Launch RStudio Server on the teaching cluster.
 
-- Create and launch a new RStudio project in `/project/obds/$USER/projects/seurat_1`.
+- Start a new RStudio project called `dimensionality_and_clustering`.
 
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to your project.
-  Use your username in the filename to make it unique, e.g
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
-.small-code[
+- Make symbolic link from the RStudio project to the template notebook.
 
-> ```
-> cp \
->   /project/obds/$USER/git/week4day1-seurat_1/template.Rmd \
->   /project/obds/$USER/projects/seurat_1/seurat_1-kevinrue.Rmd
-> ```
-
-]
-
-- Open your copy of the notebook for this lesson in RStudio.
-
-- Follow along, running code from the notebook as mentioned during the lesson.
-
-The input files obtained from [1k PBMCs from a Healthy Donor (v3 chemistry)](https://www.10xgenomics.com/resources/datasets/1-k-pbm-cs-from-a-healthy-donor-v-3-chemistry-3-standard-3-0-0) are located in `/project/obds/shared/resources/4_r_single_cell/singlecell_seuratday1`.
+- Open the notebook and follow along, editing and running the code as needed.
 
 ---
 
