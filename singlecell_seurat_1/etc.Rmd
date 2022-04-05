@@ -613,13 +613,14 @@ DimPlot(..., reduction = "pca", ...)
 
 - Use `PCAPlot()` or `DimPlot()` to produce a scatterplot of the first and second PCA components.
 
-- Extract the first and second PCA components from the Seurat object as a `data.frame`.
-
 ## Bonus
 
 - Make a scatterplot of the first and second PCA components yourself using `r BiocStyle::CRANpkg("ggplot2")`.
 
-- Run the UMAP technique on the first 20 principal components stored in the Seurat object and visualise the result as a scatterplot.
+- Visualise the amount of variance explained the top principal components (number of your choice).
+  How many principal components would you use for downstream analyses?
+
+- Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
 
 ---
 
@@ -687,12 +688,9 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 ## Clustering
 
-- First, visualise the amount of variance explained the top principal components (number of your choice).
-  How many principal components would you use for downstream analyses?
-
-- Then, compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- Compute the graph of nearest neighbours using the function `FindNeighbors()`.
   Which principal components are used by default?
-  Instead, specify the number of components that you have chosen.
+  Instead, specify the number of principal components that you have chosen earlier.
 
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
 
