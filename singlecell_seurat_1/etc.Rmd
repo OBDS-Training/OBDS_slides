@@ -586,6 +586,8 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 - `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
 
 .pull-left[
+## Actual variance
+
 ```{r, include=TRUE, echo=FALSE, fig.height=4}
 ggplot(HVFInfo(seurat_object), aes(mean, variance)) +
   geom_point() +
@@ -595,6 +597,8 @@ ggplot(HVFInfo(seurat_object), aes(mean, variance)) +
 ]
 
 .pull-right[
+## Standardised variance
+
 ```{r, include=TRUE, echo=FALSE, fig.height=4, warning=FALSE}
 VariableFeaturePlot(seurat_object)
 ```
