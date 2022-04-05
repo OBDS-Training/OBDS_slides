@@ -21,7 +21,8 @@ library(tidyverse)
 library(Seurat)
 ```
 
-- Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory in an object named `read10x_data`.
+- Use the function `Read10X()` to import data in the directory `filtered_feature_bc_matrix/` 
+  as an object named `read10x_data`.
   What class of object does the function return?
 
 ```{r}
@@ -34,9 +35,11 @@ read10x_data <- Read10X(
 class(read10x_data)
 ```
 
+> Answer:
+> 
 > The function returns a `dgCMatrix`, which is a type of sparse matrix.
 
-- Have a look at the object and its structure (first 15 rows and 6 columns).
+- Have a look at the object and its structure (e.g., first 15 rows and 6 columns).
   What is a sparse matrix and how does it store data?
 
 ```{r}
@@ -47,6 +50,8 @@ read10x_data[1:15, 1:6]
 str(read10x_data)
 ```
 
+> Answer:
+> 
 > A sparse matrix stores only non-zero values.
 > In a `dgCMatrix`, eah non-zero value is stored as:
 > 
@@ -63,6 +68,8 @@ str(read10x_data)
 dim(read10x_data)
 ```
 
+> Answer:
+> 
 > 33,538 features and 5,155 barcodes.
 
 - Create a Seurat object using the function `CreateSeuratObject()`
@@ -83,6 +90,8 @@ seurat_object <- CreateSeuratObject(
 seurat_object
 ```
 
+> Answer:
+> 
 > 19,037 features and 5,100 barcodes are left in the Seurat object.
 
 - How many features and cells were filtered out when you created the Seurat object?
@@ -91,6 +100,8 @@ seurat_object
 dim(seurat_object) - dim(read10x_data)
 ```
 
+> Answer:
+> 
 > 14,501 features and 55 barcodes were filtered out.
 
 # Exercise
@@ -117,6 +128,8 @@ Assays(object = seurat_object)
 GetAssayData(object = seurat_object)[1:6, 1:6]
 ```
 
+> Answer:
+> 
 > The only required argument is the Seurat object.
 > All other arguments are optional,
 > because the default assay is already "RNA" and the default slot is "data".
@@ -128,6 +141,8 @@ GetAssayData(object = seurat_object)[1:6, 1:6]
 head(seurat_object[[]])
 ```
 
+> Answer:
+> 
 > At this point, we see the column names `orig.ident`, `nCount_RNA`, and `nFeature_RNA`.
 
 - Fetch one column of metadata using `[[`.
@@ -137,6 +152,8 @@ head(seurat_object[[]])
 head(seurat_object[["nCount_RNA"]])
 ```
 
+> Answer:
+> 
 > The `[[` symbol returns a `data.frame`.
 
 - Instead,fetch the same column of metadata using `$`.
@@ -146,6 +163,8 @@ head(seurat_object[["nCount_RNA"]])
 head(seurat_object$nCount_RNA)
 ```
 
+> Answer:
+> 
 > The `$` symbol returns a named vector.
 
 - Use the function `FetchData()` to access the library size and expression of the feature named `"LYZ"` (first six rows).
@@ -155,19 +174,27 @@ head(seurat_object$nCount_RNA)
 FetchData(object = seurat_object, vars = c("nCount_RNA", "LYZ"))[1:6, ]
 ```
 
+> Answer:
+> 
 > The function `FetchData()` returns a `data.frame`.
 
 # Demo
 
 ## Common operations on Seurat objects
 
+`WhichCells()` returns the names of cells that match a logical expression.
+
 ```{r}
 WhichCells(seurat_object, expression = LYZ > 300)
 ```
 
+`VariableFeatures()` returns the names of variable features (for a given assay, if computed).
+
 ```{r}
 VariableFeatures(seurat_object)
 ```
+
+`subset()` returns a new Seurat object restricted to certain features and cells.
 
 ```{r}
 subset(
@@ -188,7 +215,8 @@ subset(
 VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"))
 ```
 
-- Use the function `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
+- Use the function `PercentageFeatureSet()` to compute the fraction of reads
+  assigned to mitochondrial genes in each cell.
   Store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
   Visualise this new metric alongside the previous two in a new violin plot.
 

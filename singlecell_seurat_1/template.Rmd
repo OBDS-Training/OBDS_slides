@@ -21,7 +21,8 @@ library(tidyverse)
 
 ```
 
-- Use the function `Read10X()` to import data in the `filtered_feature_bc_matrix/` directory in an object named `read10x_data`.
+- Use the function `Read10X()` to import data in the directory `filtered_feature_bc_matrix/` 
+  as an object named `read10x_data`.
   What class of object does the function return?
 
 ```{r}
@@ -34,9 +35,10 @@ read10x_data <- Read10X(
 
 ```
 
+> Answer:
 > 
 
-- Have a look at the object and its structure (first 15 rows and 6 columns).
+- Have a look at the object and its structure (e.g., first 15 rows and 6 columns).
   What is a sparse matrix and how does it store data?
 
 ```{r}
@@ -47,6 +49,7 @@ read10x_data <- Read10X(
 
 ```
 
+> Answer:
 > 
 
 - How many features and barcodes (i.e., cells) are present in the data set?
@@ -55,6 +58,7 @@ read10x_data <- Read10X(
 
 ```
 
+> Answer:
 > 
 
 - Create a Seurat object using the function `CreateSeuratObject()`
@@ -75,6 +79,7 @@ seurat_object <- CreateSeuratObject(
 seurat_object
 ```
 
+> Answer:
 > 
 
 - How many features and cells were filtered out when you created the Seurat object?
@@ -109,6 +114,7 @@ dim(   ) - dim(   )
 
 ```
 
+> Answer:
 > 
 
 - Display the entire data.frame of per-cell metadata (first six rows).
@@ -118,6 +124,7 @@ dim(   ) - dim(   )
 
 ```
 
+> Answer:
 > 
 
 - Fetch one column of metadata using `[[`.
@@ -127,6 +134,7 @@ dim(   ) - dim(   )
 
 ```
 
+> Answer:
 > 
 
 - Instead,fetch the same column of metadata using `$`.
@@ -136,6 +144,7 @@ dim(   ) - dim(   )
 
 ```
 
+> Answer:
 > 
 
 - Use the function `FetchData()` to access the library size and expression of the feature named `"LYZ"` (first six rows).
@@ -151,13 +160,19 @@ FetchData(   )
 
 ## Common operations on Seurat objects
 
+`WhichCells()` returns the names of cells that match a logical expression.
+
 ```{r}
 WhichCells(seurat_object, expression = LYZ > 500)
 ```
 
+`VariableFeatures()` returns the names of variable features (for a given assay, if computed).
+
 ```{r}
 VariableFeatures(seurat_object)
 ```
+
+`subset()` returns a new Seurat object restricted to certain features and cells.
 
 ```{r}
 subset(
@@ -178,7 +193,8 @@ subset(
 VlnPlot(   )
 ```
 
-- Use the function `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
+- Use the function `PercentageFeatureSet()` to compute the fraction of reads
+  assigned to mitochondrial genes in each cell.
   Store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
   Visualise this new metric alongside the previous two in a new violin plot.
 

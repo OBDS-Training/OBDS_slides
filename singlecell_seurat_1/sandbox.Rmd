@@ -41,33 +41,14 @@ library(S4Vectors)
 
 ---
 
-# Cell hashing
+# SCTransform
 
-```{r, include=TRUE, echo=FALSE, out.height="250px", out.width="600px"}
+```{r, include=TRUE, echo=FALSE, out.height="400px", out.width="600px"}
 ## Source: https://cite-seq.com/cell-hashing/
-knitr::include_graphics("img/hashing_protocol.png")
+knitr::include_graphics("img/sctransform-fig1.png")
 ```
 
-.pull-left[
-## Experimental
+- Traditional log-normalisation only normalises low/medium-abundance genes effectively.
 
-- Tag samples with distinct HTO.
-
-- Pool ("multiplex") samples.
-
-- Sequence HTO and GEX (gene expression).
-]
-
-.pull-right[
-## Computational
-
-- Quantify HTO and GEX.
-
-- De-multiplex samples in each pool.
-
-- Analyse GEX of cells identified.
-]
-
-.center[
-**Basically the same principle as CITE-seq.**
-]
+  + Groups 1-3 still display a relationship between sequencing depth and gene expression
+    after log-normalisation.
