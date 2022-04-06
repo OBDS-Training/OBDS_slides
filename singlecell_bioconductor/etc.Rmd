@@ -625,8 +625,11 @@ iSEE::iSEE(sce, initial = initial_panel_list)
 
 ## scran
 
-- `scran::bootstrapCluster()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
 - `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
+
+## bluster
+
+- `bluster::bootstrapStability()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
 
 ---
 
