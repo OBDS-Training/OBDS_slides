@@ -277,28 +277,31 @@ sce_umap
 ## Bonus point
 
 - Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+  Name the output `sce_denoise`.
+  How many components remain after denoising?
+  Visualise a UMAP of the denoised PCA and compare.
 
 ```{r}
-sce_d <- scran::denoisePCA(   )
-ncol(reducedDim(sce_d, "PCA"))
+sce_denoise <- scran::denoisePCA(   )
+
 ```
 
 ```{r}
-sce_d <- scater::runUMAP(sce_d, dimred = 'PCA', external_neighbors=TRUE)
-reducedDimNames(sce_d)
+sce_denoise <- scater::runUMAP(   )
+
 ```
 
 ```{r}
-sce_d_umap <- reducedDim(x = sce_d, type = "UMAP") %>%
-    as.data.frame() %>%
-    as_tibble() %>%
-    bind_cols(colData(sce_d) %>% as_tibble()) %>%
-    ggplot() +
-    geom_point(aes(V1, V2, color=subsets_MT_percent)) +
-    cowplot::theme_cowplot()
+sce_denoise_umap <- 
+
+
+
+
+
+
 plot_grid(
     sce_umap + theme(legend.position = "bottom"),
-    sce_d_umap + theme(legend.position = "bottom"),
+    sce_denoise_umap + theme(legend.position = "bottom"),
     nrow = 1)
 ```
 
