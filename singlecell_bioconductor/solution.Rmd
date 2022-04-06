@@ -165,7 +165,9 @@ cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 > 
 > When normalisation should be performed independently within individual clusters.
 
-# Exercise step 4. Feature selection
+# Exercise
+
+## Feature selection
 
 Select features for downstream analyses, e.g. highly variable genes; use `scran`.
 
@@ -178,21 +180,32 @@ dec <- scran::modelGeneVar(sce)
 dec
 ```
 
+> Answer:
+> 
+> A `DataFrame`, with one row per feature.
+
 - Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
 
-**Note:** How do you interpret those different values?
+How do you interpret those different values?
 
 ```{r}
-dec %>% as_tibble() %>%
-    ggplot() +
+ggplot(as_tibble(dec)) +
     geom_point(aes(mean, total), color = "black") +
     geom_point(aes(mean, bio), color = "blue") +
     geom_point(aes(mean, tech), color = "red")
 ```
 
+> Answer:
+> 
+> - Total variance = empirically calculated.
+> - Technical variance = mean trend fitted
+> - Biological = (total variance) - (technical variance)
+> 
+> Yes, biological variance can be negative (less variable than expected for that mean expression).
+
 - Use `scran::getTopHVGs()` to identify highly variable genes.
 
-**Note:** what is the output?
+What is the output?
   How many genes do you identify?
   Where are those genes located in the mean vs. (biological) variance plot?
 
@@ -200,7 +213,6 @@ dec %>% as_tibble() %>%
 hvg <- scran::getTopHVGs(dec, prop=0.1)
 length(hvg)
 ```
-
 
 ```{r}
 dec %>%
@@ -212,6 +224,12 @@ dec %>%
     ggplot() +
     geom_point(aes(mean, bio, color = hvg))
 ```
+
+> Answer:
+> 
+> Output of `scran::getTopHVGs()` is a character vector of feature identifiers.
+> 
+> The genes are located at the highest values of variance (toward the top of the plot).
 
 # Exercise step 5. Dimensionality reduction
 

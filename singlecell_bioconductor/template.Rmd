@@ -152,30 +152,35 @@ cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 > 
 > 
 
-# Exercise step 4. Feature selection
+# Exercise
 
-Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
+## Feature selection
+
+Select features for downstream analyses, e.g. highly variable genes; use `scran`.
 
 - Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
   What is the output?
 
 ```{r}
 library(scran)
-dec <- scran::modelGeneVar(sce)
+dec <- scran::modelGeneVar(   )
 dec
 ```
 
 - Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
 
-**Note:** How do you interpret those different values?
+How do you interpret those different values?
 
 ```{r}
-dec %>% as_tibble() %>%
-    ggplot() +
+ggplot(as_tibble(dec)) +
     geom_point(aes(mean, total), color = "black") +
     geom_point(aes(mean, bio), color = "blue") +
     geom_point(aes(mean, tech), color = "red")
 ```
+
+> Answer:
+> 
+> 
 
 - Use `scran::getTopHVGs()` to identify highly variable genes.
 
@@ -199,6 +204,10 @@ dec %>%
     ggplot() +
     geom_point(aes(mean, bio, color = hvg))
 ```
+
+> Answer:
+> 
+> 
 
 # Exercise step 5. Dimensionality reduction
 
