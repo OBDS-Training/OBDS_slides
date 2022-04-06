@@ -433,12 +433,11 @@ Those include:
 
 - Apply PCA; use `r BiocStyle::Biocpkg("scater")` or `r BiocStyle::Biocpkg("BiocSingular")`.
   Set a seed to control reproducibility.
+  List the names of dimensionality reduction results available.
 
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
-
-**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 - Visualise the layout of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.

@@ -235,13 +235,14 @@ length(hvg)
 
 - Apply PCA; use `scater` or `BiocSingular`.
   Set a seed to control reproducibility.
+  List the names of dimensionality reduction results available.
 
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 ```{r}
 set.seed(1234)
 sce <- scater::runPCA(   )
-reducedDimNames(sce)
+
 ```
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
