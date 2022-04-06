@@ -148,6 +148,7 @@ rowData(sce) %>%
 ## Normalisation
 
 - Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle` and/or `scran`.
+  Display the names of the assays available after that step.
 
 **Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
   What is the return value?
@@ -157,6 +158,11 @@ rowData(sce) %>%
 sce <- scuttle::logNormCounts(sce)
 assayNames(sce)
 ```
+
+> Answer:
+> 
+> The return value of `scuttle::logNormCounts()` is a `SingleCellExperiment` object.
+> The normalised counts are stored as a new assay called `"logcounts"`.
 
 - Plot the variance against the mean of each gene.
 
@@ -186,7 +192,7 @@ cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 
 > Answer:
 > 
-> Relatively flat relationship between variance and mean.
+> After normalisation, the relationship between variance and mean is relatively flat (i.e., inexistant).
 
 - When would you rather use `scuttle::computePooledFactors` instead?
 

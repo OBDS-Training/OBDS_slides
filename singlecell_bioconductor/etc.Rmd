@@ -330,6 +330,7 @@ knitr::include_graphics("img/scran-fig3.png")
 ## Normalisation
 
 - Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
+  Display the names of the assays available after that step.
 
 **Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
   What is the return value?

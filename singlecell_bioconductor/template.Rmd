@@ -117,15 +117,19 @@ sce <- scater::addPerFeatureQC(   )
 # Exercise step 3. Normalisation
 
 - Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle` and/or `scran`.
+  Display the names of the assays available after that step.
 
 **Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
   What is the return value?
   Where can you find the normalised counts?
 
 ```{r}
-sce <- scater::logNormCounts(   )
+sce <- scuttle::logNormCounts(   )
 assayNames(sce)
 ```
+
+> Answer:
+> 
 
 - Plot the variance against the mean of each gene.
 
