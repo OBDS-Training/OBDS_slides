@@ -236,19 +236,19 @@ knitr::include_graphics("img/overview-analysis-qc-filter.png")
 
 # Computing metrics for quality control
 
-The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused on the preprocessing and quality control of single-cell gene expression data.
+The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused on the preprocessing and quality control of single-cell gene expression data.
 
 ## Quality-control
 
-- `scater::perCellQCMetrics()` and `scater::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples), and returns them as columns of a `DataFrame`.
+- `scuttle::perCellQCMetrics()` and `scuttle::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples), and returns them as columns of a `DataFrame`.
 
-- `scater::addPerCellQC()` and `scater::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively.
+- `scuttle::addPerCellQC()` and `scuttle::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively.
 
 ## Visualisation
 
 - `scater::plotScater()` and other functions `scater::plot...()` can help you visualise different aspects of the data set.
 
-... but you can also use `r BiocStyle::CRANpkg("ggplot2")` to visualise information stored as `DataFrame` in the `colData()` and `rowData()` (Note: you will first need to convert from `DataFrame` to `data.frame`).
+... but you can also use `r BiocStyle::CRANpkg("ggplot2")` to visualise information stored as `DataFrame` in the `colData()` and `rowData()` (Note: you will first need to convert from `DataFrame` to `data.frame` or `tibble`).
 
 ---
 
@@ -256,19 +256,19 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 ## Quality control
 
-- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
 
-  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
   + What is the return value?
-  where are the quality metrics stored?
-  what is the difference with `scater::perCellQCMetrics()`?
+    Where are the quality metrics stored?
+    What is the difference with `scuttle::perCellQCMetrics()`?
 
 - Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
 
 - Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
 
-- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ---
 

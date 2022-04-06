@@ -13,9 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(   )
 ```
 
-# Exercise step 1. Import the filtered matrix
+# Exercise
 
-- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
+## Import scRNA-seq data and create a SingleCellExperiment object
+
+- Import the filtered matrix into R; use `DropletUtils`.
 
 **Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
   Check the difference without using the `samples` argument.
@@ -39,15 +41,17 @@ sce <-
 
 ```
 
-# Exercise step 2. Quality control
+# Exercise
+
+## Quality control
 
 - Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
 
-  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
   + What is the return value?
-  where are the quality metrics stored?
-  what is the difference with `scater::perCellQCMetrics()`?
+    Where are the quality metrics stored?
+    What is the difference with `scuttle::perCellQCMetrics()`?
 
 ```{r}
 is.mito <- 
@@ -59,7 +63,7 @@ sce <-
 
 ```
 
-- Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
+- Visualise quality metrics (three violin plots); use `ggplot2`.
 
 ```{r}
 plot1 <- colData(sce) %>%
@@ -87,7 +91,7 @@ sce <- sce[   ,   ]
 sce
 ```
 
-- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ```{r}
 sce <- scater::addPerFeatureQC(sce)

@@ -21,7 +21,9 @@ library(scran)
 library(iSEE)
 ```
 
-# Exercise step 1. Import the filtered matrix
+# Exercise
+
+## Import scRNA-seq data and create a SingleCellExperiment object
 
 - Import the filtered matrix into R; use `DropletUtils`.
 
@@ -49,15 +51,17 @@ sce
 metadata(sce)
 ```
 
-# Exercise step 2. Quality control
+# Exercise
 
-- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
+## Quality control
 
-  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `scuttle` and/or `scater`.
+
+  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
   + What is the return value?
-  where are the quality metrics stored?
-  what is the difference with `scater::perCellQCMetrics()`?
+    Where are the quality metrics stored?
+    What is the difference with `scuttle::perCellQCMetrics()`?
 
 ```{r}
 is.mito <- grepl("^MT-", rowData(sce)$Symbol)
@@ -69,7 +73,7 @@ sce <- scater::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
 colnames(colData(sce))
 ```
 
-- Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
+- Visualise quality metrics (three violin plots); use `ggplot2`.
 
 ```{r}
 plot1 <- colData(sce) %>%
@@ -97,7 +101,7 @@ sce <- sce[, sce$sum > 4500 & sce$subsets_MT_percent < 15 & sce$detected > 1500]
 sce
 ```
 
-- Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ```{r}
 sce <- scater::addPerFeatureQC(sce)
