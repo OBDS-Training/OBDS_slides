@@ -264,7 +264,7 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
     Where are the quality metrics stored?
     What is the difference with `scuttle::perCellQCMetrics()`?
 
-- Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
+- Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `r BiocStyle::CRANpkg("ggplot2")`.
 
 - Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
 

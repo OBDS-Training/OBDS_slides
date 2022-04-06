@@ -77,7 +77,7 @@ metadata(sce)
 - Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `scuttle` and/or `scater`.
 
   + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
-
+  
   + What is the return value?
     Where are the quality metrics stored?
     What is the difference with `scuttle::perCellQCMetrics()`?
@@ -86,13 +86,23 @@ metadata(sce)
 is.mito <- grepl("^MT-", rowData(sce)$Symbol)
 table(is.mito)
 ```
-
+    
 ```{r}
-sce <- scater::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
+sce <- scuttle::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
 colnames(colData(sce))
 ```
 
-- Visualise quality metrics (three violin plots); use `ggplot2`.
+> Answer:
+>
+> The return value of `scater::addPerCellQC()` is a `SingleCellExperiment` object.
+> The quality metrics are stored in the `colData` component of the object.
+> - `sum` = total UMI counts in the main experiment
+> - `detected` = number of features detected
+> - `percent.top_50` = fraction of UMI assigned to the 50 most abundant features
+> - `subsets_MT_sum` = total UMI across mitochondrial genes
+> - `total` = total UMI across main and alternative experiments
+
+- Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `ggplot2`.
 
 ```{r}
 plot1 <- colData(sce) %>%

@@ -69,7 +69,10 @@ sce <-
 
 ```
 
-- Visualise quality metrics (three violin plots); use `ggplot2`.
+> Answer:
+>
+
+- Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `ggplot2`.
 
 ```{r}
 plot1 <- colData(sce) %>%
@@ -104,7 +107,7 @@ sce <- scater::addPerFeatureQC(   )
 ```
 
 ```{r}
-## ggplot2 chunk
+## ggplot2
 
 
 
