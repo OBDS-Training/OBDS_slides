@@ -326,6 +326,10 @@ sce_denoise <- scran::denoisePCA(sce, dec, subset.row=hvg)
 ncol(reducedDim(sce_denoise, "PCA"))
 ```
 
+> Answer:
+> 
+> The denoise PCA returned 5 principal components.
+
 ```{r}
 sce_denoise <- scater::runUMAP(sce_denoise, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce_denoise)

@@ -286,6 +286,9 @@ sce_denoise <- scran::denoisePCA(   )
 
 ```
 
+> Answer:
+> 
+
 ```{r}
 sce_denoise <- scater::runUMAP(   )
 
