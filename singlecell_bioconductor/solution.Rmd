@@ -53,9 +53,9 @@ metadata(sce)
 
 - Compute and visualise quality control metrics; use `scater`.
 
-**Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
 
-**Note:** what is the return value?
+  + What is the return value?
   where are the quality metrics stored?
   what is the difference with `scater::perCellQCMetrics()`?
 
@@ -72,16 +72,25 @@ colnames(colData(sce))
 - Visualise quality metrics; use `ggplot2`.
 
 ```{r}
-colData(sce) %>%
-    as_tibble() %>%
+plot1 <- colData(sce) %>%
+    as_tibble() %>% 
     ggplot() +
-    geom_point(aes(detected, sum)) +
-    labs(x = "Number of genes detected", y = "UMI sum")
+    geom_violin(aes(Sample, sum)) +
+    labs(x = "Total UMI", y = "Value")
+plot2 <- colData(sce) %>%
+    as_tibble() %>% 
+    ggplot() +
+    geom_violin(aes(Sample, detected)) +
+    labs(x = "Genes detected", y = "Value")
+plot3 <- colData(sce) %>%
+    as_tibble() %>% 
+    ggplot() +
+    geom_violin(aes(Sample, subsets_MT_percent)) +
+    labs(x = "Percentage mitochondrial", y = "Value")
+cowplot::plot_grid(plot1, plot2, plot3, nrow = 1)
 ```
 
 - Would you remove any cell?
-
-**Note:** we have imported a matrix prefiltered by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) using a certain set of criteria (which ones?); what other criteria can you think of, which may be useful for filterering cells?
 
 - Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 

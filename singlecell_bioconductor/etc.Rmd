@@ -256,19 +256,17 @@ The package `r BiocStyle::Biocpkg("scater")` provides several utilities focused 
 
 ## Quality control
 
-- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
 
-**Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
+  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
 
-**Note:** what is the return value?
+  + What is the return value?
   where are the quality metrics stored?
   what is the difference with `scater::perCellQCMetrics()`?
 
-- Visualise quality metrics; use `r BiocStyle::CRANpkg("ggplot2")`.
+- Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
 
-- Would you remove any cell?
-
-**Note:** we have imported a matrix prefiltered by [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) using a certain set of criteria (which ones?); what other criteria can you think of, which may be useful for filterering cells?
+- Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
 
 - Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
