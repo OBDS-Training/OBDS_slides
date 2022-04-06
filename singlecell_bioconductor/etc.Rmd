@@ -200,7 +200,7 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ## Utilities and quality control
 
-- `DropletUtils::barcodeRanks()` ccomputes barcode rank statistics and identify the knee and inflection points on the total count curve.
+- `DropletUtils::barcodeRanks()` computes barcode rank statistics and identify the knee and inflection points on the total count curve.
 - `DropletUtils::emptyDrops()` is designed to distinguish between empty droplets and cells by testing each barcode’s expression profile for significant deviation from the ambient profile.
 - `DropletUtils::swappedDrops()` removes the effects of barcode swapping.
   It takes a list of paths to individual samples and returns a list with an item called `cleaned`, itself a list of sparse matrices, after removing swapped molecules.
