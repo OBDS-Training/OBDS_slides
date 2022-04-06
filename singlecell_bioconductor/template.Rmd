@@ -1,7 +1,7 @@
 ---
-title: "Example code for single-cell analysis using Bioconductor"
+title: "Template code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "06/22/2021"
+date: "04/06/2022"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ library(   )
 
 - Import the filtered matrix into R; use `DropletUtils`.
 
-**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
+**Note:** use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
   Check the difference without using the `samples` argument.
 
 ```{r}
@@ -32,6 +32,9 @@ sce <-
 ```{r}
 
 ```
+
+> Answer:
+>
   
 - What can you tell from the object metadata?
 
@@ -40,6 +43,9 @@ sce <-
 ```{r}
 
 ```
+
+> Answer:
+>
 
 # Exercise
 
@@ -94,14 +100,15 @@ sce
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ```{r}
-sce <- scater::addPerFeatureQC(sce)
+sce <- scater::addPerFeatureQC(   )
 ```
 
 ```{r}
-rowData(sce) %>%
-    as_tibble() %>%
-    ggplot() +
-    geom_point(aes(detected / 100 * ncol(sce), log10(mean)))
+## ggplot2 chunk
+
+
+
+
 ```
 
 # Exercise step 3. Normalisation
@@ -113,7 +120,7 @@ rowData(sce) %>%
   Where can you find the normalised counts?
 
 ```{r}
-sce <- scater::logNormCounts(sce)
+sce <- scater::logNormCounts(   )
 assayNames(sce)
 ```
 

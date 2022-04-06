@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "06/22/2021"
+date: "04/06/2022"
 output: html_document
 ---
 
@@ -27,7 +27,7 @@ library(iSEE)
 
 - Import the filtered matrix into R; use `DropletUtils`.
 
-**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
+**Note:** use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
   Check the difference without using the `samples` argument.
 
 ```{r}
@@ -42,7 +42,21 @@ sce <- DropletUtils::read10xCounts(samples = c(
 ```{r}
 sce
 ```
-  
+
+> Answer:
+>
+> - Class of object.
+> - Dimensions (features, cells)
+> - names of metadata fields available
+> - names of assays available
+> - names of features (row names)
+> - names of feature metadata columns available
+> - names of cells (column names)
+> - names of cell metadata columns available
+> - names of dimensionality reduction matrices available
+> - name of the default experiment
+> - names of alternative experiments available
+
 - What can you tell from the object metadata?
 
 **Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
@@ -50,6 +64,11 @@ sce
 ```{r}
 metadata(sce)
 ```
+
+> Answer:
+>
+> If the `samples=` argument was used in `DropletUtils::read10xCounts()`,
+> the `Samples` metadata field tracks the path to the data files for each sample.
 
 # Exercise
 

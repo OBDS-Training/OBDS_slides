@@ -213,7 +213,7 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 - Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
-**Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
+**Note:** use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
   Check the difference without using the `samples` argument.
 
 - Print the object.
