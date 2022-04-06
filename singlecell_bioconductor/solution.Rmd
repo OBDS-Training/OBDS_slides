@@ -31,6 +31,7 @@ library(iSEE)
   Check the difference without using the `samples` argument.
 
 ```{r}
+library(DropletUtils)
 sce <- DropletUtils::read10xCounts(samples = c(
     "filtered" = "data/filtered_feature_bc_matrix"
 ))
@@ -88,6 +89,7 @@ table(is.mito)
 ```
     
 ```{r}
+library(scuttle)
 sce <- scuttle::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
 colnames(colData(sce))
 ```
