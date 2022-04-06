@@ -438,6 +438,7 @@ Those include:
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
+  List the names of dimensionality reduction results available each time.
 
 - Visualise the layout of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.

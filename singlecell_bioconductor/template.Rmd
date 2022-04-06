@@ -246,17 +246,18 @@ sce <- scater::runPCA(   )
 ```
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
+  List the names of dimensionality reduction results available each time.
 
 **Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 ```{r}
 sce <- scater::runUMAP(   )
-reducedDimNames(sce)
+
 ```
 
 ```{r}
 sce <- scater::runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
-reducedDimNames(sce)
+
 ```
 
 - Visualise the layout of cells produced by each of those dimensionality reduction methods.
