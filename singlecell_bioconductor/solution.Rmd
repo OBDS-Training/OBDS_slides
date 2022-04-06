@@ -96,7 +96,7 @@ colnames(colData(sce))
 
 > Answer:
 >
-> The return value of `scater::addPerCellQC()` is a `SingleCellExperiment` object.
+> The return value of `scuttle::addPerCellQC()` is a `SingleCellExperiment` object.
 > The quality metrics are stored in the `colData` component of the object.
 > - `sum` = total UMI counts in the main experiment
 > - `detected` = number of features detected
@@ -135,7 +135,7 @@ sce
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ```{r}
-sce <- scater::addPerFeatureQC(sce)
+sce <- scuttle::addPerFeatureQC(sce)
 ```
 
 ```{r}

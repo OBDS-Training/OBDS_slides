@@ -52,7 +52,7 @@ sce <-
 
 ## Quality control
 
-- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `scuttle` and/or `scater`.
 
   + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
@@ -105,7 +105,7 @@ sce
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
 ```{r}
-sce <- scater::addPerFeatureQC(   )
+sce <- scuttle::addPerFeatureQC(   )
 ```
 
 ```{r}
