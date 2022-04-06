@@ -884,12 +884,13 @@ DoHeatmap(
 
 ## Identify cluster markers
 
-- Identify positive markers for all clusters,
+- Use the function `FindAllMarkers()` to identify
+  positive markers for all clusters,
   filtering markers that are detected in at least 25% of the cluster,
   and with a log fold-change greater than `0.25`.
-  How do you control the set of clusters that are used?
   Assign the result to an object named `seurat_markers_all`.
-  What is the class of that object?  
+  What is the class of that object?
+  How do you control the set of clusters that are used? 
 
 - How do you read the contents of the object `seurat_markers_all`?
   How do you know which features are the markers of each cluster?
@@ -899,6 +900,7 @@ DoHeatmap(
 - Visualise the expression of the top 4 marker for cluster 3 on a UMAP layout.
 
 - Visualise the expression of those same 4 marker as a violin plot.
+  Do you have any particular preference between the two types of plots?
 
 - Use `DoHeatmap()` to visualise the top 10 (positive) markers for each cluster.
   Hint: you may want to use the function `dplyr::group_by()`.

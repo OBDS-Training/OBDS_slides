@@ -448,6 +448,8 @@ Graphs(seurat_after_qc)
 seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 ```
 
+> Answer:
+> 
 > The `resolution` argument has a default value of `0.8`.
 > 
 > A smaller resolution intuitively implies fewer clusters.
@@ -465,6 +467,8 @@ seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 UMAPPlot(seurat_after_qc)
 ```
 
+> Answer:
+> 
 > Overall, good agreement.
 > In particular, cluster labels appear quite homogeneous in areas of the UMAP plot.
 > Also, there is not obvious over-clustering.
@@ -491,6 +495,8 @@ seurat_markers_all <- FindAllMarkers(
 class(seurat_markers_all)
 ```
 
+> Answer:
+> 
 > The function `FindAllMarkers()` returns a `data.frame`.
 >
 > The function uses the active identity in the Seurat object as a grouping variable.
@@ -504,6 +510,8 @@ class(seurat_markers_all)
 head(seurat_markers_all)
 ```
 
+> Answer:
+> 
 > Each row represents a putative marker for one cluster.
 > The columns `gene` and `cluster` indicate the name of the feature that is a putative marker for that stated cluster.
 > The columns `p_val` and `avg_log2FC` provide differential expression statistics,
@@ -535,6 +543,8 @@ VlnPlot(
 )
 ```
 
+> Answer:
+> 
 > Scatterplots are prone to overplotting, which can sometimes be problematic as it unfairly hides data points behind others.
 > It is also more challenging to compare the overall distribution of values in each cluster.
 >
