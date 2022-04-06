@@ -211,24 +211,22 @@ dec %>%
 
 # Exercise step 5. Dimensionality reduction
 
-- Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
-
-- Start with PCA.
+- Apply PCA; use `scater` or `BiocSingular`.
 
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 ```{r}
 set.seed(1234)
-sce <- scater::runPCA(sce, ncomponents=25, subset_row=hvg)
+sce <- scater::runPCA(   )
 reducedDimNames(sce)
 ```
 
-- Continue with UMAP or t-SNE.
+- Apply UMAP and t-SNE successively on the output of the PCA.
 
 **Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 ```{r}
-sce <- scater::runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
+sce <- scater::runUMAP(   )
 reducedDimNames(sce)
 ```
 
@@ -253,7 +251,7 @@ sce_umap
   
 ## Bonus point
 
-- use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+- Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
 
 ```{r}
 sce_d <- scran::denoisePCA(sce, dec, subset.row=hvg)
@@ -279,9 +277,11 @@ plot_grid(
     nrow = 1)
 ```
 
-# Exercise step 6. Clustering
+# Exercise
 
-- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+## Clustering
+
+Cluster cells using `scran`.
 
 - Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
 
@@ -290,11 +290,12 @@ output <- scran::getClusteredPCs(reducedDim(sce, "PCA"))
 metadata(output)$chosen
 ```
 
-- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
+- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with that "ideal" number of PCs.
+  Assign the cluster label to a cell metadata column named `"label"`.
 
 ```{r, message=FALSE}
-g <- scran::buildSNNGraph(t(reducedDim(sce, "PCA")), d = 13)
-colData(sce)[["label"]] <- factor(igraph::cluster_louvain(g)$membership)
+g <-    
+colData(sce)[["label"]] <- 
 ```
 
 - Visualise the assigned cluster on your preferred dimensionality reduction layout.

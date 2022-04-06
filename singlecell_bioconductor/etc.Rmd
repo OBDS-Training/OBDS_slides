@@ -430,11 +430,11 @@ Those include:
 
 ## Dimensionality reduction
 
-- Apply PCA to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
+- Apply PCA; use `r BiocStyle::Biocpkg("scater")` or `r BiocStyle::Biocpkg("BiocSingular")`.
 
 **Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
-- Apply UMAP on the output of the PCA.
+- Apply UMAP and t-SNE successively on the output of the PCA.
 
 **Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
@@ -443,7 +443,7 @@ Those include:
 
 ## Bonus point
 
-- use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+- Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
 
 ---
 
@@ -458,7 +458,8 @@ knitr::include_graphics("img/overview-analysis-clustering.png")
 
 # Clustering
 
-The package `r BiocStyle::Biocpkg("scran")` provides several methods for clustering single-cell data.
+The packages `r BiocStyle::Biocpkg("scran")` and `r BiocStyle::Biocpkg("BiocNeighbors")` provides several methods for clustering single-cell data.
+The CRAN package `r BiocStyle::CRANpkg("igraph")` provides powerful methods for graph-based clustering.
 
 - `scran::quickCluster()` clusters similar cells using either log-expression values or ranks.
 - `scran::buildSNNGraph()` builds a shared nearest-neighbour graph using cells as nodes.
@@ -470,7 +471,7 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for cluster
 ## Example
 
 ```{r, include=TRUE, eval=FALSE}
-g <- buildSNNGraph(sce, use.dimred = 'PCA')
+g <- scran::buildSNNGraph(sce, use.dimred = 'PCA')
 colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membership)
 ```
 
@@ -480,11 +481,12 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 
 ## Clustering
 
-- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
+Cluster cells using `scran`.
 
 - Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
 
-- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with the "ideal" number of PCs.
+- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with that "ideal" number of PCs.
+  Assign the cluster label to a cell metadata column named `"label"`.
 
 - Visualise the assigned cluster on your preferred dimensionality reduction layout.
 
@@ -494,7 +496,6 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 ## Bonus point
 
 - Test different numbers of principal components and compare results.
-
 - Try `scran::quickCluster()`; identify key parameters and compare results.
 
 ---
