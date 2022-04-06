@@ -201,9 +201,9 @@ ggplot(as_tibble(dec)) +
 
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
-**Note:** what is the output?
-  How many genes do you identify?
-  Where are those genes located in the mean vs. (biological) variance plot?
+What is the output?
+How many genes do you identify?
+Where are those genes located in the mean vs. (biological) variance plot?
 
 ```{r}
 hvg <- scran::getTopHVGs(dec, prop=0.1)

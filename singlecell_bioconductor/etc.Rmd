@@ -380,9 +380,9 @@ How do you interpret those different values?
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
-  How many genes do you identify?
-  Where are those genes located in the mean-variance plot?
-  What happens to this plot if you set more stringent thresholds to define highly variable genes?
+How many genes do you identify?
+Where are those genes located in the mean-variance plot?
+What happens to this plot if you set more stringent thresholds to define highly variable genes?
 
 ---
 
