@@ -301,7 +301,7 @@ See `help("Idents", package = "SeuratObject")`.
 
 - `WhichCells()` returns the names of cells that match a logical expression.
 
-> e.g. `WhichCells(seurat_object, expression = LYZ > 300)`
+  + e.g. `WhichCells(seurat_object, expression = LYZ > 300)`
 
 - `VariableFeatures()` returns the names of variable features (for a given assay, if computed).
 
