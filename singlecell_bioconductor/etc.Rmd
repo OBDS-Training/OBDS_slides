@@ -622,31 +622,6 @@ iSEE::iSEE(sce, initial = list(
 
 ---
 
-# Git wrap-up
-
-- Copy your notebook for this lesson in the Git repository, e.g.
-
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/projects/bioconductor_singlecell/bioconductor_singlecell-kevinrue.Rmd \
->   /project/obds/$USER/git/week4day3-bioconductor_singlecell/
-> ```
-
-]
-
-- Create a new branch in the Git repository.
-  Use the date and your username in the branch name to make it unique, e.g. `git checkout -b week4day3-kevinrue`.
-
-- Commit, push, open a pull request, get it approved, and merge it.
-
-- Delete your merged branch on GitHub.
-
-- Check out the main branch locally, pull, and delete your merged branch locally.
-
----
-
 # References
 
 .small-text[
