@@ -340,7 +340,7 @@ knitr::include_graphics("img/scran-fig3.png")
 **Note:** how can you tell whether the normalisation was effective?
   Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
 
-- When would you rather use `scater::computeSumFactors()` instead?
+- When would you rather use `scuttle::computePooledFactors` instead?
 
 ---
 

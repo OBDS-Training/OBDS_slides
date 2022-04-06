@@ -114,29 +114,19 @@ rowData(sce) %>%
     geom_point(aes(detected / 100 * ncol(sce), log10(mean)))
 ```
 
-# Exercise step 3. Normalisation
+# Exercise
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scater` and/or `scran`.
+## Normalisation
 
-**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle` and/or `scran`.
+
+**Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
   What is the return value?
   Where can you find the normalised counts?
 
 ```{r}
-sce <- scater::logNormCounts(sce)
+sce <- scuttle::logNormCounts(sce)
 assayNames(sce)
-```
-
-```{r}
-library(DelayedMatrixStats)
-keep_assay <- "logcounts"
-x <- DelayedArray(assay(sce, keep_assay))
-plot_data <- tibble(
-    mean = DelayedMatrixStats::rowMeans2(x),
-    variance = DelayedMatrixStats::rowVars(x)
-)
-ggplot(plot_data, aes(mean, variance)) +
-    geom_point()
 ```
 
 - Plot the variance against the mean of each gene.
@@ -145,11 +135,34 @@ ggplot(plot_data, aes(mean, variance)) +
   Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
 
 ```{r}
-message("TODO")
+library(DelayedMatrixStats)
+#
+x <- DelayedArray(assay(sce, "counts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_counts <- ggplot(plot_data, aes(mean, variance)) +
+    geom_point()
+#
+x <- DelayedArray(assay(sce, "logcounts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_logcounts <- ggplot(plot_data, aes(mean, variance)) +
+    geom_point()
+cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 ```
 
-- When would you rather use `scran::computeSumFactors()` instead?
+> Answer:
+> 
+> Relatively flat relationship between variance and mean.
 
+- When would you rather use `scuttle::computePooledFactors` instead?
+
+> Answer:
+> 
 > When normalisation should be performed independently within individual clusters.
 
 # Exercise step 4. Feature selection

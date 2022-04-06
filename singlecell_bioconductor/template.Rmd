@@ -106,9 +106,9 @@ rowData(sce) %>%
 
 # Exercise step 3. Normalisation
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle` and/or `scran`.
 
-**Note:** use `scater::logNormCounts()` to compute log-normalised counts.
+**Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
   What is the return value?
   Where can you find the normalised counts?
 
@@ -117,30 +117,40 @@ sce <- scater::logNormCounts(sce)
 assayNames(sce)
 ```
 
-```{r}
-library(DelayedMatrixStats)
-keep_assay <- "logcounts"
-x <- DelayedArray(assay(sce, keep_assay))
-plot_data <- tibble(
-    mean = DelayedMatrixStats::rowMeans2(x),
-    variance = DelayedMatrixStats::rowVars(x)
-)
-ggplot(plot_data, aes(mean, variance)) +
-    geom_point()
-```
-
 - Plot the variance against the mean of each gene.
 
 **Note:** how can you tell whether the normalisation was effective?
   Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
 
 ```{r}
-message("TODO")
+library(DelayedMatrixStats)
+#
+x <- DelayedArray(assay(sce, "counts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_counts <- ggplot(   ) +
+    geom_point()
+#
+x <- DelayedArray(assay(sce, "logcounts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_logcounts <- ggplot(   ) +
+    geom_point()
+cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 ```
 
-- When would you rather use `scran::computeSumFactors()` instead?
+> Answer:
+> 
 
-> When normalisation should be performed independently within individual clusters.
+- When would you rather use `scuttle::computePooledFactors` instead?
+
+> Answer:
+> 
+> 
 
 # Exercise step 4. Feature selection
 
