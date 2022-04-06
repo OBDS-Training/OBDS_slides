@@ -51,7 +51,7 @@ metadata(sce)
 
 # Exercise step 2. Quality control
 
-- Compute and visualise quality control metrics; use `scater`.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scater")`.
 
   + Identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
 
@@ -69,7 +69,7 @@ sce <- scater::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
 colnames(colData(sce))
 ```
 
-- Visualise quality metrics; use `ggplot2`.
+- Visualise quality metrics (three violin plots); use `r BiocStyle::CRANpkg("ggplot2")`.
 
 ```{r}
 plot1 <- colData(sce) %>%
@@ -90,7 +90,12 @@ plot3 <- colData(sce) %>%
 cowplot::plot_grid(plot1, plot2, plot3, nrow = 1)
 ```
 
-- Would you remove any cell?
+- Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
+
+```{r}
+sce <- sce[, sce$sum > 4500 & sce$subsets_MT_percent < 15 & sce$detected > 1500]
+sce
+```
 
 - Similarly, use `scater::perFeatureQCMetrics()` or `scater::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
