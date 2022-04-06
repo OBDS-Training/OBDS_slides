@@ -380,9 +380,12 @@ gg_cluster <- reducedDim(x = sce, type = "UMAP") %>%
 gg_cluster
 ```
 
-# Exercise step 7. Cluster markers
+# Exercise
+
+## Cluster markers
 
 - Use `scran::findMarkers()` to identify markers for each cluster.
+  Display the metadata of markers for the first cluster.
 
 ```{r}
 markers <- scran::findMarkers(x = sce, sce$label)
@@ -393,7 +396,7 @@ rowData(sce)[rownames(markers[[1]]),] %>%
 
 - Visualise the expression of selected markers:
 
-  + as a dot plot, optionally with a violin layer.
+  + As a dot plot, optionally with a violin layer.
 
 ```{r}
 marker_id <- rownames(markers$`1`)[1]
@@ -409,7 +412,8 @@ colData(sce) %>%
     scale_color_viridis_c()
 ```
 
-  + on a dimensionality reduction layout.
+  + On a dimensionality reduction layout.
+    Compare with the cluster labels.
 
 ```{r}
 gg_marker <- reducedDim(x = sce, type = "UMAP") %>%

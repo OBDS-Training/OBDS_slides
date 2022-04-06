@@ -527,12 +527,14 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 ## Cluster markers
 
 - Use `scran::findMarkers()` to identify markers for each cluster.
+  Display the metadata of markers for the first cluster.
 
 - Visualise the expression of selected markers:
 
-  + as a dot plot, optionally with a violin layer.
+  + As a dot plot, optionally with a violin layer.
   
-  + on a dimensionality reduction layout.
+  + On a dimensionality reduction layout.
+    Compare with the cluster labels.
 
 ---
 

@@ -254,7 +254,7 @@ sce_umap
 - Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
 
 ```{r}
-sce_d <- scran::denoisePCA(sce, dec, subset.row=hvg)
+sce_d <- scran::denoisePCA(   )
 ncol(reducedDim(sce_d, "PCA"))
 ```
 
@@ -338,11 +338,10 @@ for (d in c(5, 10, 13, 15)) {
 plot_grid(plotlist = snn_plots, ncol = 2)
 ```
 
-
 - Try `scran::quickCluster()`; identify key parameters and compare results.
 
 ```{r}
-sce$quickCluster <- scran::quickCluster(sce)
+sce$quickCluster <- scran::quickCluster(   )
 
 gg_cluster <- reducedDim(x = sce, type = "UMAP") %>%
     as.data.frame() %>%
@@ -355,47 +354,50 @@ gg_cluster <- reducedDim(x = sce, type = "UMAP") %>%
 gg_cluster
 ```
 
-# Exercise step 7. Cluster markers
+# Exercise
+
+## Cluster markers
 
 - Use `scran::findMarkers()` to identify markers for each cluster.
+  Display the metadata of markers for the first cluster.
 
 ```{r}
-markers <- scran::findMarkers(x = sce, sce$label)
-rowData(sce)[rownames(markers[[1]]),] %>% 
-    as.data.frame() %>% 
-    head()
+markers <- scran::findMarkers(   )
+
+
+
 ```
 
 - Visualise the expression of selected markers:
 
-  + as a dot plot, optionally with a violin layer.
+  + As a dot plot, optionally with a violin layer.
 
 ```{r}
-marker_id <- rownames(markers$`1`)[1]
-marker_id <- "ENSG00000196154"
-marker_name <- rowData(sce)[marker_id, "Symbol"]
-colData(sce) %>%
-    as_tibble() %>%
-    mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
-    ggplot(aes(label, marker)) +
-    geom_violin(aes(fill = label)) +
-    geom_point() +
-    labs(title = marker_id, subtitle = marker_name) +
-    scale_color_viridis_c()
+marker_id <-    
+marker_name <-    
+
+
+
+
+
+
+
+
 ```
 
-  + on a dimensionality reduction layout.
+  + On a dimensionality reduction layout.
+    Compare with the cluster labels.
 
 ```{r}
-gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
-    as.data.frame() %>%
-    as_tibble() %>%
-    mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
-    ggplot() +
-    geom_point(aes(V1, V2, color=marker)) +
-    scale_color_viridis_c() +
-    labs(title = marker_id, subtitle = marker_name) +
-    cowplot::theme_cowplot()
+gg_marker <-  
+
+
+
+
+
+
+
+
 plot_grid(gg_marker, gg_snn)
 ```
 
