@@ -39,8 +39,6 @@ bib <- ReadBib("bibliography.bib")
 
 ## Learning goals
 
-- Understand the differences between Bioconductor and CRAN.
-
 - Describe common Bioconductor data structures for single-cell data sets.
 
 - Understand the relationship with other single-cell software
