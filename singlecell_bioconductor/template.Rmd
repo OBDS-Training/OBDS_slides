@@ -199,7 +199,7 @@ ggplot(as_tibble(dec)) +
 > 
 > 
 
-- Use `scran::getTopHVGs()` to identify highly variable genes.
+- Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 **Note:** what is the output?
   How many genes do you identify?

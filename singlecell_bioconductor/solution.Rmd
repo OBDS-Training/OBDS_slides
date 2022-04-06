@@ -240,7 +240,7 @@ ggplot(as_tibble(dec)) +
 > 
 > Yes, biological variance can be negative (less variable than expected for that mean expression).
 
-- Use `scran::getTopHVGs()` to identify highly variable genes.
+- Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
   How many genes do you identify?
