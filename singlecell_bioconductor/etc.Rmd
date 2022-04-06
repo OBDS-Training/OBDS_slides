@@ -283,16 +283,18 @@ knitr::include_graphics("img/overview-analysis-normalise.png")
 
 # Normalisation strategies 
 
-The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("scran")` host methods for the most common and popular normalisation strategies.
+The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran")` host methods for the most common and popular normalisation strategies.
 
-## scater
+## scuttle
 
-- `scater::logNormCounts()` computes log-transformed normalized expression values.
+- `scuttle::logNormCounts()` computes log-transformed normalized expression values.
   This includes the computation of size factors using `scater::librarySizeFactors()`.
 
 ## scran
 
 - `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
+
+  + This function is now superseded by `scuttle::computePooledFactors`.
 
 `r NoCite(bib, "lun2016workflow")`
 
