@@ -440,7 +440,7 @@ Those include:
 - Apply UMAP and t-SNE successively on the output of the PCA.
   List the names of dimensionality reduction results available each time.
 
-- Visualise the layout of cells produced by each of those dimensionality reduction methods.
+- Visualise the scatterplot of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.
 
 ## Bonus point

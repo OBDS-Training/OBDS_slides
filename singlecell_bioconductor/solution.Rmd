@@ -299,7 +299,7 @@ sce <- scater::runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
 
-- Visualise the layout of cells produced by each of those dimensionality reduction methods.
+- Visualise the scatterplot of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.
   
 ```{r}
