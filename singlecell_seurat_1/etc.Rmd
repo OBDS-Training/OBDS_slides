@@ -234,7 +234,7 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 
 - `FetchData()` is a generalised version of `[[` that returns multiple pieces of per-cell information as a `data.frame` (e.g., feature expression, dimensionality reduction coordinates, metadata).
 
-You need to find out the names of the variables available in the various components of your own Seurat object.
+  + You need to find out the names of the variables available in the various components of your own Seurat object.
 
 - `$` is used to access one column of cell metadata as a `vector`.
 
