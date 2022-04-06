@@ -254,7 +254,7 @@ from experimental conditions to cluster labels.
   
 - Clustering at different resolutions produce different set of labels (i.e., different "identities").
 
-Seurat stores the "active" identity of cells in a dedicated slot of the object.
+  + Seurat stores the "active" identity of cells in a dedicated slot of the object.
 
 - `Idents()` returns the "active" identity of the cells.
 
