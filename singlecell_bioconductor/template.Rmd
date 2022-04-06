@@ -184,6 +184,9 @@ dec <- scran::modelGeneVar(   )
 dec
 ```
 
+> Answer:
+> 
+
 - Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
 
 How do you interpret those different values?
@@ -197,7 +200,6 @@ ggplot(as_tibble(dec)) +
 
 > Answer:
 > 
-> 
 
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
@@ -206,20 +208,21 @@ How many genes do you identify?
 Where are those genes located in the mean vs. (biological) variance plot?
 
 ```{r}
-hvg <- scran::getTopHVGs(dec, prop=0.1)
+hvg <- scran::getTopHVGs(   )
 length(hvg)
 ```
 
 
 ```{r}
-dec %>%
-    as_tibble() %>%
-    mutate(
-        gene_id = rownames(dec),
-        hvg = gene_id %in% hvg
-    ) %>%
-    ggplot() +
-    geom_point(aes(mean, bio, color = hvg))
+## ggplot2
+
+
+
+
+
+
+
+
 ```
 
 > Answer:
