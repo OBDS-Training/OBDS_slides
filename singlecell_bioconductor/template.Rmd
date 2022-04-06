@@ -10,35 +10,25 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, message=FALSE}
-library(tidyverse)
-library(cowplot)
-library(DropletUtils)
-library(SummarizedExperiment)
-library(DelayedMatrixStats)
-library(uwot)
-library(Rtsne)
-library(scran)
-library(iSEE)
+library(   )
 ```
 
 # Exercise step 1. Import the filtered matrix
 
-- Import the filtered matrix into R; use `DropletUtils`.
+- Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
 **Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
   Check the difference without using the `samples` argument.
 
 ```{r}
-sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = "data/filtered_feature_bc_matrix"
-))
+sce <- 
 ```
 
 - Print the object.
   What can you tell about its contents?
   
 ```{r}
-sce
+
 ```
   
 - What can you tell from the object metadata?
@@ -46,12 +36,12 @@ sce
 **Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
 
 ```{r}
-metadata(sce)
+
 ```
 
 # Exercise step 2. Quality control
 
-- Compute and visualise quality control metrics; use `scater`.
+- Compute and visualise quality control metrics; use `r BiocStyle::Biocpkg("scater")`.
 
 **Note:** identify mitochondrial genes and pass those to the `subsets` argument of the `scater::addPerCellQC()` function.
 
@@ -60,16 +50,16 @@ metadata(sce)
   what is the difference with `scater::perCellQCMetrics()`?
 
 ```{r}
-is.mito <- grepl("^MT-", rowData(sce)$Symbol)
-table(is.mito)
+is.mito <- 
+
 ```
 
 ```{r}
-sce <- scater::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
-colnames(colData(sce))
+sce <- 
+
 ```
 
-- Visualise quality metrics; use `ggplot2`.
+- Visualise quality metrics; use `r BiocStyle::CRANpkg("ggplot2")`.
 
 ```{r}
 colData(sce) %>%
@@ -98,7 +88,7 @@ rowData(sce) %>%
 
 # Exercise step 3. Normalisation
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scater` and/or `scran`.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")` and/or `r BiocStyle::Biocpkg("scran")`.
 
 **Note:** use `scater::logNormCounts()` to compute log-normalised counts.
   What is the return value?
@@ -136,7 +126,7 @@ message("TODO")
 
 # Exercise step 4. Feature selection
 
-Select features for downstream analyses, e.g. highly variable genes; use `scran`.
+Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
 
 - Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
   What is the output?
@@ -184,7 +174,7 @@ dec %>%
 
 # Exercise step 5. Dimensionality reduction
 
-- Apply dimensionality reduction to compact the data and further reduce noise; use `scater`.
+- Apply dimensionality reduction to compact the data and further reduce noise; use `r BiocStyle::Biocpkg("scater")`.
 
 - Start with PCA.
 
@@ -254,7 +244,7 @@ plot_grid(
 
 # Exercise step 6. Clustering
 
-- Cluster cells; use `scran`.
+- Cluster cells; use `r BiocStyle::Biocpkg("scran")`.
 
 - Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
 

@@ -216,8 +216,8 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 **Note:** use the `samples` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
   Check the difference without using the `samples` argument.
 
-- Print a summary representation of the object.
-  What can you tell about the contents of the object?
+- Print the object.
+  What can you tell about its contents?
 
 - What can you tell from the object metadata?
 
