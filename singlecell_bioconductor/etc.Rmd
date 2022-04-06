@@ -396,15 +396,27 @@ knitr::include_graphics("img/overview-analysis-dimensionality.png")
 
 # Dimensionality reduction
 
-The package `r BiocStyle::Biocpkg("scater")` provides wrappers for several common dimensionality reduction methods.
+The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("BiocSingular")` provide several common dimensionality reduction methods.
 
 Those include:
 
-- `scater::runPCA()`
+.pull-left[
+- `scater::runPCA()` / `BiocSingular::runPCA()`
 
 - `scater::runTSNE()`
 
 - `scater::runUMAP()`
+]
+
+.pull-right[
+- `BiocSingular::runSVD()`
+
+- `BiocSingular::runExactSVD()`
+
+- `BiocSingular::runIrlbaSVD()`
+
+- `BiocSingular::runRandomSVD()`
+]
 
 ## Important notes
 
