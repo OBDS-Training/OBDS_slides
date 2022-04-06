@@ -428,7 +428,9 @@ gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
 plot_grid(gg_marker, gg_snn)
 ```
 
-# Exercise step 8. iSEE
+# Exercise
+
+## Interactive visualisation
 
 - Use `iSEE::iSEE()` to launch an interactive web-application to visualise the contents of the `SingleCellExperiment` object.
 
@@ -445,10 +447,11 @@ if (interactive()) {
 - Preconfigure the application to start with a subset of panels, e.g.
 
 ```{r}
-app <- iSEE::iSEE(sce, initial = list(
+initial_panel_list <- list(
   ReducedDimensionPlot(PanelWidth=4L),
   RowDataTable(PanelWidth=8L)
-))
+)
+app <- iSEE::iSEE(sce, initial = initial_panel_list)
 if (interactive()) {
   shiny::runApp(app)
 }

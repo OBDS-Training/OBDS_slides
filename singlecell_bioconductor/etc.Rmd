@@ -608,10 +608,11 @@ shiny::runApp(app, port=1234)
 - Preconfigure the application to start with a subset of panels, e.g.
 
 ```{r, eval=FALSE, include=TRUE}
-iSEE::iSEE(sce, initial = list(
+initial_panel_list <- list(
   ReducedDimensionPlot(PanelWidth=4L),
   RowDataTable(PanelWidth=8L)
-))
+)
+iSEE::iSEE(sce, initial = initial_panel_list)
 ```
 
 ---
