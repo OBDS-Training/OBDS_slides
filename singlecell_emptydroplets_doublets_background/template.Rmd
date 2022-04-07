@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell droplet quality control"
 author: "Kevin Rue-Albrecht"
-date: "17/01/2022"
+date: "07/04/2021"
 output: html_document
 ---
 
@@ -22,9 +22,11 @@ library(scater)
 
 ## Empty droplets
 
-- Import the raw matrix into <i class="fab fa-r-project"></i>; use `DropletUtils`.
+- Import the raw matrix into R; use `DropletUtils`.
+  Make a `SingleCellExperiment` object called `sce`.
 
 ```{r}
+library(DropletUtils)
 sce <- 
   
   
@@ -48,13 +50,21 @@ out <-
 out
 ```
 
-**Note:**
-  How do you read the output?
-  Which droplets would you consider empty?
+How do you read the output? Which droplets would you consider empty?
 
-> The output is a table with a row for each GEL barcode and columns for various pieces of information.
-> - `Total` represents the total UMI count.
-> - `FDR` is the corrected p-value indicating the probability that a droplet is empty (i.e., originate from the null distribution).
+> Answer:
+> 
+> 
+
+- Remove empty droplets from the data sets.
+  Call the new object `sce_filtered_emptydrops`.
+
+```{r}
+sce_filtered_emptydrops <- 
+sce_filtered_emptydrops
+```
+
+## Bonus point
 
 - Draw plots comparing empty droplets and other droplets
   (e.g., library size, mitochondrial content, PCA).
@@ -115,13 +125,6 @@ compare_table <- tibble(
 table(compare_table)
 ```
 
-- Remove empty droplets from the data sets.
-
-```{r}
-sce_filtered_emptydrops <- 
-sce_filtered_emptydrops
-```
-
 # Exercise
 
 ## Doublets
@@ -135,13 +138,23 @@ sce_scdblfinder <-
 table(   )
 ```
 
-**Note:**
-  How do you read the output?
-  Which droplets would you consider doublets?
+How do you read the output? Which droplets would you consider doublets?
 
-> The output is a SingleCellExperiment object.
-> In the colData (cell metadata), new columns store information about each barcode.
-> In particular, `sce_scdblfinder$scDblFinder.class` indicates the predicted class of each droplet: singlet or doublet.
+> Answer:
+> 
+>
+>
+>
+
+- Remove doublets from the data set.
+  Call the new object `sce_filtered_scdblfinder`.
+
+```{r}
+sce_filtered_scdblfinder <- 
+sce_filtered_scdblfinder
+```
+
+## Bonus point
 
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
@@ -184,15 +197,6 @@ ggplot(   ) +
   
   
 ```
-
-- Remove doublets from the data set.
-
-```{r}
-sce_filtered_scdblfinder <- 
-sce_filtered_scdblfinder
-```
-
-## Bonus point
 
 - Compare results with the output of `chris-mcginnis-ucsf/DoubletFinder`
 
