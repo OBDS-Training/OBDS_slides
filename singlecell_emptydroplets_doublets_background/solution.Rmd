@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell droplet quality control"
 author: "Kevin Rue-Albrecht"
-date: "07/04/2021"
+date: "07/04/2022"
 output: html_document
 ---
 
@@ -50,7 +50,7 @@ out <- DropletUtils::emptyDrops(assay(sce, "counts"))
 out
 ```
 
-How do you read the output? Which droplets would you consider empty?
+**How do you read the output? Which droplets would you consider empty?**
 
 > Answer:
 > 
@@ -140,7 +140,7 @@ sce_scdblfinder <- scDblFinder(sce_filtered_emptydrops)
 table(sce_scdblfinder$scDblFinder.class, useNA = "ifany")
 ```
 
-How do you read the output? Which droplets would you consider doublets?
+**How do you read the output? Which droplets would you consider doublets?**
 
 > Answer:
 > 
@@ -290,6 +290,8 @@ plotDecontXContamination(sce_decontX)
 
 **Does any cluster display higher (estimated) levels of ambient RNA?**
 
+> Answer:
+> 
 > Cells in cluster 3 (see previous plot) show a highlevel of contamination (close to 1 for most cells).
 
 - Visualize the log-normalised expression of marker genes on a UMAP layout faceted by gene; use `plotDimReduceFeature()`.
