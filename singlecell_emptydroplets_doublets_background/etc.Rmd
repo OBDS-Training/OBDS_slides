@@ -390,30 +390,6 @@ See `?celda::decontX()` for more information.
 
 ---
 
-# Git wrap-up
-
-- Copy your notebook for this lesson in the Git repository, e.g.
-
-.small-code[
-
-> ```
-> cp \
->   /project/obds/$USER/projects/emptydroplets_doublets_background/emptydroplets_doublets_background-kevinrue.Rmd \
->   /project/obds/$USER/git/week4day4-emptydroplets_doublets_background/
-> ```
-]
-
-- Create a new branch in the Git repository.
-  Use the date and your username in the branch name to make it unique, e.g. `git checkout -b week4day4-kevinrue`.
-
-- Commit, push, open a pull request, get it approved, and merge it.
-
-- Delete your merged branch on GitHub.
-
-- Check out the main branch locally, pull, and delete your merged branch locally.
-
----
-
 # References
 
 .small-p[
