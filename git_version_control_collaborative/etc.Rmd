@@ -93,7 +93,7 @@ nothing to commit, working tree clean
 
 ```{r, fig.align='center', out.height='300px', out.width='400px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/branch-conflict.svg")
+knitr::include_graphics("img/git-branch-conflict.svg")
 ```
 
 .center[
@@ -108,7 +108,7 @@ knitr::include_graphics("img/branch-conflict.svg")
 
 ```{r, fig.align='center', out.height='300px', out.width='400px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/branch-conflict-show.svg")
+knitr::include_graphics("img/git-branch-conflict-push.svg")
 ```
 
 .center[
@@ -354,8 +354,8 @@ However, we are not going to use it, at least not explicitly at the command line
 - No one will ever directly `push` their `master` branch to <i class="fab fa-github"></i> GitHub.
 
 ```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge.png")
+# Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-branch-merge.svg")
 ```
 
 **Do not do this:** To incorporate the changes from branch `kevin` into branch `master` locally, one could run:
@@ -482,8 +482,8 @@ knitr::include_graphics("img/github-delete-branch-merged.png")
 - The merged branch does not have any more value.
 
 ```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge.png")
+# Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-branch-merge.svg")
 ```
 
 .center[
@@ -505,8 +505,8 @@ knitr::include_graphics("img/github-branch-deleted.png")
 - Branches are merely pointers to certain commits.
 
 ```{r, fig.align='center', out.height='200px', out.width='600px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-merge-delete.png")
+# Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-branch-merge-delete.svg")
 ```
 
 .center[
