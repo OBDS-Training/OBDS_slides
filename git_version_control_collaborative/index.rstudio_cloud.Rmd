@@ -96,8 +96,8 @@ This RStudio Cloud project will be your workplace for the course.
 # SSH key pairs
 
 ```{r, fig.align='center', out.height='400px', out.width='600px'}
-# Source: https://note.nguyenanhung.com/
-knitr::include_graphics("img/ssh-key-pair.png")
+# Source: Adobe Illustrator
+knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
 .center[

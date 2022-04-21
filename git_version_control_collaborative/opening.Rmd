@@ -148,8 +148,8 @@ knitr::include_graphics("img/commit-multiple-files.png")
 
 .pull-left[
 ```{r, fig.align='center', , out.height='300px'}
-# Source: https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone
-knitr::include_graphics("img/atlassian-clone.svg")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-clone-collaboration.svg")
 ```
 ]
 

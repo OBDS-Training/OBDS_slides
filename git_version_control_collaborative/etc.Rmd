@@ -92,8 +92,8 @@ nothing to commit, working tree clean
 ## Conflict of histories
 
 ```{r, fig.align='center', out.height='300px', out.width='400px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-conflict.png")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/branch-conflict.svg")
 ```
 
 .center[
@@ -107,8 +107,8 @@ knitr::include_graphics("img/branch-conflict.png")
 ## Conflict of histories
 
 ```{r, fig.align='center', out.height='300px', out.width='400px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/branch-conflict-show.png")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/branch-conflict-show.svg")
 ```
 
 .center[
@@ -122,7 +122,7 @@ knitr::include_graphics("img/branch-conflict-show.png")
 ## Work independently
 
 ```{r, fig.align='center', out.height='400px', out.width='400px'}
-# In-house illustration made using Adobe Illustrator
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/branch-no-conflict.png")
 ```
 
@@ -304,7 +304,7 @@ $ git push origin my_branch
 We have seen this illustration earlier, to discuss how branches allow multiple contributors to work independently.
 
 ```{r, fig.align='center', out.height='450px', out.width='500px'}
-# In-house illustration made using Adobe Illustrator
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/branch-no-conflict.png")
 ```
 

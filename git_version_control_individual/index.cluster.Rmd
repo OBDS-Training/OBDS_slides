@@ -167,8 +167,8 @@ $ git clone git@github.com:kevinrue/OBDS_May_2022.git
 
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
-# Source: https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone
-knitr::include_graphics("img/atlassian-clone.svg")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-clone-collaboration.svg")
 ```
 ]
 
