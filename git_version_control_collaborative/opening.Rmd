@@ -127,8 +127,8 @@ Unless changes affect the same lines of the document (i.e., conflicts):
 # Tracking simultaneous changes to multiple files 
 
 ```{r, fig.align='center', out.height='250px', out.width='800px'}
-# In-house illustration made using Adobe Illustrator
-knitr::include_graphics("img/commit-multiple-files.png")
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/commit-multiple-files.SVG")
 ```
 
 #### Process

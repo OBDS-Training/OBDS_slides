@@ -123,7 +123,7 @@ knitr::include_graphics("img/git-branch-conflict-push.svg")
 
 ```{r, fig.align='center', out.height='400px', out.width='400px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/branch-no-conflict.png")
+knitr::include_graphics("img/git-branch-no-conflict.svg")
 ```
 
 We will discuss later how to incorporate changes made on branches back into the `master` branch.
@@ -305,7 +305,7 @@ We have seen this illustration earlier, to discuss how branches allow multiple c
 
 ```{r, fig.align='center', out.height='450px', out.width='500px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/branch-no-conflict.png")
+knitr::include_graphics("img/git-branch-no-conflict.svg")
 ```
 
 ---
