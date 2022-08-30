@@ -1,0 +1,20 @@
+---
+title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+subtitle: 'Using individual repositories on RStudio Cloud'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2022-09-26 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r child='layout.Rmd'}
+```
