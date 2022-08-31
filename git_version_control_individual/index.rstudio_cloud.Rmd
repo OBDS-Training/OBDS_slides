@@ -63,3 +63,30 @@ More concrete and measurable outputs.
 
 ```{r child='opening.Rmd'}
 ```
+
+---
+
+# RStudio Cloud projects
+
+```{r, fig.align='center', out.height='375px'}
+# Screenshot
+knitr::include_graphics("img/rstudio-cloud-projects.png")
+```
+
+---
+
+# Exercise
+
+## Setting up an RStudio Cloud project
+
+This RStudio Cloud project will be your workplace for the course.
+
+- Navigate to <https://rstudio.cloud/> and sign in.
+
+- Navigate to the Space `OBDS_September_2022`.
+
+- Create a new RStudio project
+
+  + "New Project" > "New RStudio Project".
+
+- Name the project with your own name (e.g., `Kevin Rue`).
