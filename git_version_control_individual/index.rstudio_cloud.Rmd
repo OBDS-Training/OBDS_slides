@@ -172,3 +172,8 @@ The following slides illustrate how to navigate to the page below more naturally
 
 ```{r child='github-pat-screenshots.Rmd'}
 ```
+
+---
+
+```{r child='get-started.Rmd'}
+```

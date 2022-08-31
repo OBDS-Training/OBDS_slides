@@ -120,27 +120,7 @@ _(See next slides to navigate to that page more naturally.)_
 
 ---
 
-# Getting started with <i class="fab fa-git"></i>
-
-The `git` command has many sub-commands, options, and flags.
-You can run `git` alone to list the sub-commands and a short description of each.
-How many sub-commands do you see?
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git
-```
-
-The `--version` flag asks the `git` command to print the version of the `git` executable that is used.
-The <i class="fab fa-git"></i> program is generally backward compatible, but you may observe subtle differences in the way different version of <i class="fab fa-git"></i> display information.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git --version
-```
-
-You can access more detailed help for any sub-command using the `--help` flag.
-
-```{bash, eval=FALSE, echo=TRUE}
-$ git clone --help
+```{r child='get-started.Rmd'}
 ```
 
 ---
