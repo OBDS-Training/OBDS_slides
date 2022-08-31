@@ -177,3 +177,40 @@ The following slides illustrate how to navigate to the page below more naturally
 
 ```{r child='get-started.Rmd'}
 ```
+
+---
+
+```{r child='git-configure.Rmd'}
+```
+
+---
+
+```{r child='create-github-repository.Rmd'}
+```
+
+---
+
+# Exercise
+
+## Clone the repository
+
+The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git clone git@github.com:kevinrue/OBDS_Training_September_2022.git
+```
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-clone-collaboration.svg")
+```
+]
+
+.pull-right[
+Use the `ls` command to list the contents of the working directory.
+
+.center[
+**Do you need new files or directories?**
+]
+]
