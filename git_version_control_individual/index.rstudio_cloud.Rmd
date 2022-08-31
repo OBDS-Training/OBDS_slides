@@ -214,3 +214,8 @@ Use the `ls` command to list the contents of the working directory.
 **Do you need new files or directories?**
 ]
 ]
+
+---
+
+```{r child='etc.Rmd'}
+```
