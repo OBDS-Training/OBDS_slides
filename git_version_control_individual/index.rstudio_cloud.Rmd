@@ -217,5 +217,39 @@ Use the `ls` command to list the contents of the working directory.
 
 ---
 
+```{r child='main.Rmd'}
+```
+
+---
+
+# Summary so far
+
+- You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
+
+- You have made a _clone_ of the repository in your RStudio Cloud project.
+
+- You have _committed_ changes to files in your RStudio Cloud project.
+
+- You have _pushed_ those commits from your RStudio Cloud project to <i class="fab fa-github"></i> GitHub.
+
+- You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
+
+- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to your RStudio Cloud project.
+
+.pull-left[
+```{r, fig.align='center', out.height='250px', out.width='600px'}
+# Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/summary-workflow-pull-push.svg")
+```
+]
+
+.pull-right[
+Adding, committing, and pushing/pulling changes cover 99% of the <i class="fab fa-git"></i> commands you will use.
+
+However, you need to be aware of other <i class="fab fa-git"></i> commands to manage and undo mistakes.
+]
+
+---
+
 ```{r child='etc.Rmd'}
 ```
