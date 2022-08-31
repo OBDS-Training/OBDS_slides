@@ -58,3 +58,8 @@ More concrete and measurable outputs.
 - Membership to the <i class="fab fa-github"></i> GitHub organisation [OBDS-Training](https://github.com/OBDS-Training).
 
 - An [RStudio Cloud](https://rstudio.cloud/) account.
+
+---
+
+```{r child='opening.Rmd'}
+```
