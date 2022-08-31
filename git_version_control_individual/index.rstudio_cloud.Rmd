@@ -136,3 +136,39 @@ _(See next slides to navigate to that page more naturally.)_
 
 ```{r child='ssh-keypair-screenshots.Rmd'}
 ```
+
+---
+
+```{r child='github-pat-intro.Rmd'}
+```
+
+---
+
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+The following slides illustrate how to navigate to the page below more naturally.
+
+- Navigate to <https://github.com/settings/tokens/new>.
+
+- Set note to "OBDS September 2022".
+
+- Leave expiration to 30 days. _Do not_ tick any of the boxes.
+
+- Generate the token and copy it.
+
+- Back in your RStudio Cloud project, create a file called `.Renviron` in your home directory:
+
+  + In the R console, type `file.edit("~/.Renviron")`.
+  
+- In that file, add the line `GITHUB_PAT="<paste token here>"`.
+
+- Restart the R sesion, and check that the environment variable is set.
+
+  + In the menu bar: "Session" > "Restart R", and in the R console: `Sys.getenv("GITHUB_PAT")`.
+
+---
+
+```{r child='github-pat-screenshots.Rmd'}
+```

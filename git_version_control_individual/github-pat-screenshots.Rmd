@@ -1,0 +1,44 @@
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+```{r, fig.align='center', out.height='400px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-settings.png")
+```
+
+---
+
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+```{r, fig.align='center', out.height='450px', out.width='700px'}
+# Screenshot
+knitr::include_graphics("img/github-developer-settings.png")
+```
+
+---
+
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+```{r, fig.align='center', out.height='450px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-personal-access-tokens.png")
+```
+
+---
+
+# Exercise
+
+## Setting up a GitHub Personal Access Token
+
+```{r, fig.align='center', out.height='400px', out.width='800px'}
+# Screenshot
+knitr::include_graphics("img/github-personal-access-tokens-form.png")
+```
+
+Click "Generate token" at the bottom of the page.
+Copy the token from the next page - you will not get another look at this token in any way in the future!
