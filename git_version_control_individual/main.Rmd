@@ -220,7 +220,8 @@ You have made a _commit_ in the clone of the repository on the teaching cluster.
 knitr::include_graphics("img/git-push.svg")
 ```
 
-The histories
+The histories of clones are not automatically synchronised.
+All too often, the resolution of <i class="fab fa-git"></i> conflicts requires human intervention.
 
 ---
 
