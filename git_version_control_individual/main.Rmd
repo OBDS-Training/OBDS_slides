@@ -223,7 +223,7 @@ knitr::include_graphics("img/git-push.svg")
 The histories of clones are not automatically synchronised.
 
 .center[
-**Can you guess why?**
+**Can you guess reasons why?**
 ]
 
 ---
