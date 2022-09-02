@@ -221,7 +221,10 @@ knitr::include_graphics("img/git-push.svg")
 ```
 
 The histories of clones are not automatically synchronised.
-All too often, the resolution of <i class="fab fa-git"></i> conflicts requires human intervention.
+
+.center[
+**Can you guess why?**
+]
 
 ---
 
