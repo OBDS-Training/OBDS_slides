@@ -103,7 +103,7 @@ knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
 .center[
-_We need to set an SSH key pair between RStudio Cloud and GitHub._
+_We need to set an SSH key pair between RStudio Cloud and <i class="fab fa-github"></i> GitHub._
 ]
 
 ---
