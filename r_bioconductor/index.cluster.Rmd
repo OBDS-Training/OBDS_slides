@@ -3,7 +3,7 @@ title: 'Introduction to Bioconductor'
 subtitle: '<i class="fab fa-r-project"></i> for genomics data science'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-05-18 (updated: `r Sys.Date()`)"
+date: "2022-10-19 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -39,7 +39,7 @@ knit: pagedown::chrome_print
 
 - Launch RStudio Server on the teaching cluster.
 
-- Start a new RStudio project called `dimensionality_and_clustering`.
+- Start a new RStudio project called `bioconductor`.
 
 - Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 

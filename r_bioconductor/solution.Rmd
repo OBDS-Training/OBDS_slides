@@ -328,14 +328,14 @@ gtf_data
 - What are the metadata columns available in the object?
 
 ```{r}
-mcols(gtf_data)
+colnames(mcols(gtf_data))
 ```
 
 - Use the function `subset()` to filter the annotations for the gene `ACTB`.
 
 ```{r}
 gtf_ACTB <- subset(gtf_data, gene_name == "ACTB")
-gtf_ACTB
+nrow(gtf_ACTB)
 ```
 
 - How many transcripts do the annotations describe for that gene?
