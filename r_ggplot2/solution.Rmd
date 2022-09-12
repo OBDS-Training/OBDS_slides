@@ -283,6 +283,7 @@ super_plot <- cowplot::plot_grid(
   first_row, second_row,
   nrow = 2
 )
+super_plot
 ```
 
 Using `patchwork`.
