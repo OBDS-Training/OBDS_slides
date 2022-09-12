@@ -913,7 +913,7 @@ tsne_out$Y %>%
 
 - Color data points according to their class label.
 
-- Store the UMAP plot as an object named `tsne_iris_species`.
+- Store the t-SNE plot as an object named `tsne_iris_species`.
 
 - Combine PCA, UMAP and t-SNE plots in a single figure.
 
@@ -986,7 +986,7 @@ iris %>%
 3. Compute new centroid coordinates.
 4. Repeat (2) and (3) until convergence, or for a maximum number of iterations allowed.
 
-```{r, include=TRUE, echo=FALSE, fig.align="center"}
+```{r, include=TRUE, echo=FALSE, fig.align="center", out.height='400px', out.width='600px'}
 ## Source: https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
 knitr::include_graphics("img/kmeans-steps.png")
 ```

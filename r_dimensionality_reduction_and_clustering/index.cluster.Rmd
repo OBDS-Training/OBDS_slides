@@ -3,7 +3,7 @@ title: 'Dimensionality reduction and clustering'
 subtitle: 'in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2021-05-17 (updated: `r Sys.Date()`)"
+date: "2022-10-18 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]

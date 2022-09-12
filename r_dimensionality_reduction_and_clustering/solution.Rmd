@@ -220,7 +220,7 @@ ggplot(tsne_iris_dataframe, aes(TSNE1, TSNE2)) +
 
 - Color data points according to their class label.
 
-- Store the UMAP plot as an object named `tsne_iris_species`.
+- Store the t-SNE plot as an object named `tsne_iris_species`.
 
 ```{r}
 tsne_iris_dataframe$Species <- iris$Species
