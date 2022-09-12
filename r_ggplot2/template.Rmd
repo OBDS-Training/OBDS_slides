@@ -286,7 +286,7 @@ From this point onwards, you may need to iteratively resize the text of the tick
 
 Using `cowplot`.
 
-```{r}
+```{r, fig.height=12, fig.width=12}
 library(cowplot)
 first_row <- cowplot::plot_grid(
   

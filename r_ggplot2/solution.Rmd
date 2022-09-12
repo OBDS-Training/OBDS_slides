@@ -271,7 +271,7 @@ obds_msleep <- ggplot(msleep, aes(order)) +
 
 Using `cowplot`.
 
-```{r}
+```{r, fig.height=12, fig.width=12}
 first_row <- cowplot::plot_grid(
   obds_diamonds, obds_chickweight,
   ncol = 2
