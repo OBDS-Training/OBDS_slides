@@ -107,22 +107,26 @@ tibble(x = 1:5, y = 1, z = x ^ 2 + y)
 
 ```{r}
 iris %>%
-    select(Sepal.Length, Sepal.Width)
+    select(Sepal.Length, Sepal.Width) %>% 
+    slice_head(n = 6)
 ```
 
 ```{r}
 iris %>%
-    select(starts_with("Petal") | ends_with("Width"))
+    select(starts_with("Petal") | ends_with("Width")) %>% 
+    slice_head(n = 6)
 ```
 
 ```{r}
 iris %>%
-    select(!ends_with("Width"))
+    select(!ends_with("Width")) %>% 
+    slice_head(n = 6)
 ```
 
 ```{r}
 iris %>%
-    select(!c(Sepal.Length, Petal.Length))
+    select(!c(Sepal.Length, Petal.Length)) %>% 
+    slice_head(n = 6)
 ```
 
 # Demo
