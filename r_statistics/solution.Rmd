@@ -209,8 +209,8 @@ Two normal distributions.
 
 ```{r}
 set.seed(10)
-x <- rnorm(n = 100, mean = 0, sd = 1)
-y <- rnorm(n = 100, mean = 1, sd = 1)
+x <- rnorm(n = 1000, mean = 0, sd = 1)
+y <- rnorm(n = 1000, mean = 1, sd = 1)
 ```
 
 ```{r}
@@ -248,8 +248,8 @@ Two uniform distributions
 
 ```{r}
 set.seed(10)
-x <- runif(n = 100, min = 1, max = 11)
-y <- runif(n = 100, min = 3, max = 13)
+x <- runif(n = 1000, min = 1, max = 11)
+y <- runif(n = 1000, min = 3, max = 13)
 ```
 
 ```{r}
@@ -285,7 +285,7 @@ For each sample, the two measurements are related to one another; e.g. patients 
 
 ```{r}
 set.seed(10)
-n_sample <- 100
+n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
 y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
 ```

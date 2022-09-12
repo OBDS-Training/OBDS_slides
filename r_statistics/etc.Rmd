@@ -832,7 +832,7 @@ test_data <- tibble(
   y = 10 + 2.5 * x + rnorm(n = 50, mean = 0, sd = 0.5))
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=4}
+```{r, include=TRUE, echo=FALSE, out.width='300px', out.height='200px', fig.width=6, fig.height=4}
 ggplot(test_data, aes(x = x, y = y)) +
   geom_point() +
   stat_smooth(method = "glm", se = FALSE) +
