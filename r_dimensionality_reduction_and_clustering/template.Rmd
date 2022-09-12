@@ -147,6 +147,7 @@ ggplot(variance_dataframe,    ) +
 - Apply UMAP on the output of the PCA.
 
 ```{r}
+set.seed(1) # Set a seed for reproducible results
 umap_iris <- umap(   )
 umap_iris
 ```
@@ -196,6 +197,7 @@ umap_iris_species
 - Apply t-SNE and inspect the output.
 
 ```{r}
+set.seed(1) # Set a seed for reproducible results
 tsne_iris <- Rtsne(   )
 str(tsne_iris)
 ```
@@ -410,6 +412,7 @@ cowplot::plot_grid(
 - Apply $K$-means clustering with $K$ set to 3 clusters.
 
 ```{r}
+set.seed(1) # Set a seed for reproducible results
 kmeans_iris <- kmeans(   )
 kmeans_iris
 ```
@@ -515,6 +518,7 @@ head(kmean_totwithinss_dataframe)
 
 ```{r}
 ggplot(kmean_totwithinss_dataframe,    ) +
+  
   
   
 ```
