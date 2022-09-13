@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell droplet quality control"
 author: "Kevin Rue-Albrecht"
-date: "07/04/2022"
+date: "13/09/2022"
 output: html_document
 ---
 
@@ -46,6 +46,7 @@ sce
 - Run `DropletUtils::emptyDrops()`.
 
 ```{r}
+set.seed(1)
 out <- 
 out
 ```
@@ -136,6 +137,7 @@ Continue using the data set after you excluded empty droplets.
 - Run `scDblFinder::scDblFinder()`.
 
 ```{r}
+set.seed(1)
 sce_scdblfinder <- 
 table(   )
 ```
@@ -271,6 +273,7 @@ table(doublets_table)
 
 ```{r, message=FALSE}
 
+set.seed(1)
 sce_decontX <- 
 ```
 
