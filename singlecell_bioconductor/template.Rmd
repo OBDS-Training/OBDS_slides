@@ -206,6 +206,7 @@ ggplot(as_tibble(dec)) +
 What is the output?
 How many genes do you identify?
 Where are those genes located in the mean vs. (biological) variance plot?
+What happens to this plot if you set more stringent thresholds to define highly variable genes?
 
 ```{r}
 hvg <- scran::getTopHVGs(   )
@@ -247,8 +248,6 @@ sce <- scater::runPCA(   )
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
   List the names of dimensionality reduction results available each time.
-
-**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 ```{r}
 sce <- scater::runUMAP(   )

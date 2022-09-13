@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "04/06/2022"
+date: "13/10/2022"
 output: html_document
 ---
 
@@ -245,6 +245,8 @@ ggplot(as_tibble(dec)) +
 What is the output?
 How many genes do you identify?
 Where are those genes located in the mean vs. (biological) variance plot?
+What happens to this plot if you set more stringent thresholds to define highly variable genes?
+
 
 ```{r}
 hvg <- scran::getTopHVGs(dec, prop=0.1)
@@ -286,8 +288,6 @@ reducedDimNames(sce)
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
   List the names of dimensionality reduction results available each time.
-
-**Note:** UMAP and t-SNE are typically given the output of PCA as their own input, to further reduce the dimensionality for ease of visualisation.
 
 ```{r}
 sce <- scater::runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)

@@ -20,7 +20,7 @@ knitr::include_graphics("img/bioconductor_logo_cmyk.jpeg")
 
 # The Bioconductor SummarizedExperiment
 
-```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height="450px", out.width="600px", fig.align='center'}
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```

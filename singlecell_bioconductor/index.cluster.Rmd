@@ -3,7 +3,7 @@ title: 'Single-cell RNA-seq analysis using Bioconductor'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-05-25 (updated: `r Sys.Date()`)"
+date: "2022-10-26 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
