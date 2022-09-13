@@ -160,7 +160,7 @@ knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
 ## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
-knitr::include_graphics("img/doubletfinder-fig1.jpeg")
+knitr::include_graphics("img/doubletfinder-abstract.jpg")
 ```
 ]
 
@@ -191,7 +191,7 @@ knitr::include_graphics("img/doubletfinder-fig1.jpeg")
 .pull-right[
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
-knitr::include_graphics("img/doubletfinder-fig2.jpeg")
+knitr::include_graphics("img/doubletfinder-box1.jpg")
 ```
 ]
 
