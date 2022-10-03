@@ -7,7 +7,7 @@ knitr::include_graphics("img/tidyverse.png")
 
 ---
 
-# Packages of the tidyverse
+# Core packages of the tidyverse
 
 .pull-left[
 
