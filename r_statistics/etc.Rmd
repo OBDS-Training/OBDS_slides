@@ -117,6 +117,7 @@ The base R functions `mean()` and `sd()` compute the mean and standard deviation
 To demonstrate, let us first generate a vector of random, normally distributed, values.
 
 ```{r, include=TRUE}
+set.seed(1)
 x <- rnorm(n = 100, mean = 2, sd = 5)
 ```
 
@@ -467,11 +468,11 @@ ggplot() +
 
 For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
-- Plot the cumulative distribution function in the range $[-5, 5]$.
+- Plot the cumulative distribution function in the range $[-5, 5]$ in 0.1 increment.
 
 - Plot the inverse cumulative distribution function for quantiles in 0.01 increment.
 
-- Plot the density function in the range $[-5, 5]$.
+- Plot the density function in the range $[-5, 5]$ in 0.1 increment.
 
 - What is the probability of observing a value greater than 2?
 
@@ -630,7 +631,7 @@ Non-parametric tests make fewer assumptions, as such:
 ## Two normal distributions
 
 ```{r, include=TRUE}
-set.seed(10)
+set.seed(1)
 x <- rnorm(n = 1000, mean = 0, sd = 1)
 y <- rnorm(n = 1000, mean = 1, sd = 1)
 ```
@@ -674,7 +675,7 @@ t.test(y, x)
 ## Two uniform distributions
 
 ```{r, include=TRUE}
-set.seed(10)
+set.seed(1)
 x <- runif(n = 1000, min = 1, max = 11)
 y <- runif(n = 1000, min = 3, max = 13)
 ```
@@ -721,7 +722,7 @@ For each sample, the two measurements are related to one another; e.g. patients 
 .pull-left[
 .small-code[
 ```{r, include=TRUE}
-set.seed(10)
+set.seed(1)
 n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
 y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
@@ -777,7 +778,7 @@ knitr::include_graphics("img/anova.png")
 .pull-left[
 .small-code[
 ```{r, include=TRUE}
-set.seed(10)
+set.seed(1)
 n_sample <- 1000
 x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
 x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
@@ -826,7 +827,7 @@ Describe a continuous response variable as a function of one or more predictor v
 
 .pull-left[
 ```{r}
-set.seed(10)
+set.seed(1)
 test_data <- tibble(
   x = rnorm(n = 50, mean = 0, sd = 1),
   y = 10 + 2.5 * x + rnorm(n = 50, mean = 0, sd = 0.5))
@@ -945,7 +946,7 @@ fisher.test(x_table)
 ## Two uniform distributions
 
 ```{r, include=TRUE}
-set.seed(10)
+set.seed(1)
 n_size <- 10E3
 x <- runif(n = n_size, min = 1, max = 11)
 y <- runif(n = n_size, min = 3, max = 13)
@@ -1171,7 +1172,7 @@ knitr::include_graphics("img/huber-bh.png")
 # Multiple-testing correction
 
 ```{r}
-set.seed(10)
+set.seed(1)
 n_tests <- 1000
 compute_p_value <- function(dummy) {
   x <- rnorm(n = 100, mean = 0, sd = 1)

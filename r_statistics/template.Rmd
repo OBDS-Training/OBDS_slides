@@ -1,7 +1,7 @@
 ---
 title: "Template code for R statistics"
 author: "Kevin Rue-Albrecht"
-date: "14/06/2021"
+date: "03/10/2021"
 output: html_document
 ---
 
@@ -20,6 +20,7 @@ The base R functions `mean()` and `sd()` compute the mean and standard deviation
 To demonstrate, let us first generate a vector of random, normally distributed, values.
 
 ```{r}
+set.seed(1)
 x <- rnorm(n = 100, mean = 2, sd = 5)
 ```
 
@@ -36,11 +37,11 @@ sd(x)
 
 **What are optional arguments for those functions?**
 
-
+> Answer:
 
 **Why do you think the mean and standard deviation are not exactly those that we would expect?**
 
-
+> Answer:
 
 # Exercise
 
@@ -49,6 +50,7 @@ sd(x)
 - Generate a vector of 1,000 normally distributed values with mean 10 and standard deviation 5.
 
 ```{r}
+set.seed(1)
 
 
 ```
@@ -96,6 +98,7 @@ sd(x)
   How does the distribution compare with more data points?
 
 ```{r}
+set.seed(1)
 
 
 ```
@@ -104,7 +107,7 @@ sd(x)
 
 For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
-- Plot the cumulative distribution function in the range $[-5, 5]$.
+- Plot the cumulative distribution function in the range $[-5, 5]$ in 0.1 increment.
 
 ```{r}
 
@@ -120,7 +123,7 @@ For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
 ```
 
-- Plot the density function in the range $[-5, 5]$.
+- Plot the density function in the range $[-5, 5]$ in 0.1 increment.
 
 ```{r}
 
@@ -208,7 +211,7 @@ help(pairwise.t.test)
 Two normal distributions.
 
 ```{r}
-set.seed(10)
+set.seed(1)
 x <- rnorm(n = 1000, mean = 0, sd = 1)
 y <- rnorm(n = 1000, mean = 1, sd = 1)
 ```
@@ -247,7 +250,7 @@ t.test(y, x)
 Two uniform distributions
 
 ```{r}
-set.seed(10)
+set.seed(1)
 x <- runif(n = 1000, min = 1, max = 11)
 y <- runif(n = 1000, min = 3, max = 13)
 ```
@@ -284,7 +287,7 @@ wilcox.test(value ~ group, test_data, alternative = "less")
 For each sample, the two measurements are related to one another; e.g. patients measured before and after a treatment.
 
 ```{r}
-set.seed(10)
+set.seed(1)
 n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
 y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
@@ -314,7 +317,7 @@ t.test(x, y, paired = TRUE)
 ## Analysis of Variance (ANOVA)
 
 ```{r}
-set.seed(10)
+set.seed(1)
 n_sample <- 1000
 x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
 x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
@@ -353,7 +356,7 @@ summary(out)
 ## Linear models
 
 ```{r}
-set.seed(10)
+set.seed(1)
 test_data <- tibble(
   x = rnorm(n = 50, mean = 0, sd = 1),
   y = 10 + 2.5 * x + rnorm(n = 50, mean = 0, sd = 0.5))
@@ -403,7 +406,7 @@ fisher.test(x_table)
 Two uniform distributions.
 
 ```{r}
-set.seed(10)
+set.seed(1)
 n_size <- 10E3
 x <- runif(n = n_size, min = 1, max = 11)
 y <- runif(n = n_size, min = 3, max = 13)
@@ -508,7 +511,7 @@ qqnorm(x)
 For 1,000 iterations, generate two vectors of normally distributed values with mean 0 and standard deviation 1, and run a t-test to compare the two.
 
 ```{r}
-set.seed(10)
+set.seed(1)
 n_tests <- 1000
 compute_p_value <- function(dummy) {
   x <- rnorm(n = 100, mean = 0, sd = 1)
