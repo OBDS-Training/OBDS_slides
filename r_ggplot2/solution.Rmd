@@ -31,6 +31,10 @@ ggplot(diamonds)
 ```
 
 > Answer:
+> The `ggplot()` function alone initializes a `ggplot` object.
+> Without further arguments declaring aesthetics,
+> or commands adding layers to the object,
+> this results in a blank plot.
 
 ## Add the aesthetics.
 
@@ -41,6 +45,10 @@ ggplot(diamonds, aes(x = carat, y = price))
 ```
 
 > Answer:
+> Declaring aesthetics allows the `ggplot()` function to add axes to the
+> `ggplot` object.
+> In particular, each of those axes automatically adjusts its range
+> to the values observed in the data set for those variables.
 
 ## Add geometric objects
 
@@ -97,6 +105,13 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 ```
 
 > Answer:
+> In the first plot,
+> the colour aesthetic is shared by all layers, including the smoothed line,
+> resulting in one smoothed line for each level of `cut`.
+> In the second plot,
+> the colour aesthetic is applied only to the layer of data points,
+> resulting in coloured points and only a single smoothed line
+> computed across all the data points.
 
 # Exercise
 
