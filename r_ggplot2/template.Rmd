@@ -1,7 +1,7 @@
 ---
 title: "Example code for ggplot2"
 author: "Kevin Rue-Albrecht"
-date: "09/06/2021"
+date: "03/10/2022"
 output: html_document
 ---
 
@@ -200,8 +200,6 @@ ggplot(   )
 - Fill each bar with colors, proportionally to the count of each genus.
   (Copy-paste and extend the code chunk above.)
 
-From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
-
 ```{r}
 
 
@@ -211,6 +209,8 @@ From this point onwards, you may need to iteratively resize the text of the tick
 
 
 ```
+
+From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
 
 - Reduce the legend key size.
   (Recommendation: use `unit(2, "mm")`).
