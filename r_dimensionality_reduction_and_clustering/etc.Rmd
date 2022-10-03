@@ -30,7 +30,7 @@ knitr::kable(x, format = "html", escape = F)
 ```{r, include=TRUE, echo=FALSE}
 x <- log(assay(allen, "tophat_counts") + 1)
 keep_rows <-  head(order(rowVars(x), decreasing = TRUE), 50)
-set.seed(10)
+set.seed(1)
 keep_columns <- sample(ncol(x), 20)
 Heatmap(
   matrix = x[keep_rows, keep_columns],
@@ -205,7 +205,7 @@ pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
 
 .pull-left[
 ```{r, include=TRUE, echo=FALSE}
-set.seed(24)
+set.seed(1)
 df <- data.frame(
   x = rnorm(n = 100, mean = 0, sd = 1)
 ) %>% 
@@ -866,7 +866,7 @@ as_tibble(pca$x) %>%
 ## t-SNE
 
 ```{r, include=TRUE, echo=FALSE, fig.height=5, fig.align='center'}
-set.seed(10)
+set.seed(1)
 tsne_out <- Rtsne(X = pca$x, perplexity = 1)
 tsne_out$Y %>% 
   as_tibble() %>% 
@@ -996,7 +996,7 @@ knitr::include_graphics("img/kmeans-steps.png")
 # K-Means Clustering - How many clusters?
 
 ```{r, include=TRUE, echo=FALSE, fig.align="center"}
-set.seed(10)
+set.seed(1)
 keep_rows <-  head(order(rowVars(log10(assay(airway, "counts") + 1)), decreasing = TRUE), 500)
 keep_samples <- colnames(airway)
 airway_counts <- log10(assay(airway, "counts") + 1)[keep_rows, keep_samples]
@@ -1016,7 +1016,10 @@ airway_counts %>%
   ggplot(aes(PC1, PC2, color = cluster)) +
   geom_point(size = 3) +
   facet_wrap(~k) +
-  theme_cowplot()
+  theme_cowplot() +
+  theme(
+      panel.border = element_rect(color = "black")
+  )
 ```
 
 ---
@@ -1142,14 +1145,17 @@ knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 
 - Perform hierarchical clustering on the `iris_features` data set,
   using the `euclidean` distance and method `ward.D2`.
+  Use the functions `dist()` and `hclust()`.
 
 - Plot the clustering tree.
+  Use the function `plot()`.
 
 How many clusters would you call from a visual inspection of the tree?
 
 - **Bonus point:** Color leaves by known species (use `dendextend`).
 
 - Cut the tree in 3 clusters and extract the cluster label for each flower.
+  Use the function `cutree()`.
 
 - Repeat clustering using 3 other agglomeration methods:
 

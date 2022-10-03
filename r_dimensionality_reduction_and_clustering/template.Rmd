@@ -1,7 +1,7 @@
 ---
 title: "Example code for dimensionality reduction and clustering in R"
 author: "Kevin Rue-Albrecht"
-date: "21/03/2022"
+date: "03/10/2022"
 output: html_document
 ---
 
@@ -253,6 +253,7 @@ cowplot::plot_grid(
 
 - Perform hierarchical clustering on the `iris_features` data set,
   using the `euclidean` distance and method `ward.D2`.
+  Use the functions `dist()` and `hclust()`.
 
 ```{r}
 dist_iris <- dist(   )
@@ -261,6 +262,7 @@ hclust_iris_ward
 ```
 
 - Plot the clustering tree.
+  Use the function `plot()`.
 
 ```{r}
 plot(   )
@@ -281,6 +283,7 @@ plot(iris_hclust_dend,    )
 ```
 
 - Cut the tree in 3 clusters and extract the cluster label for each flower.
+  Use the function `cutree()`.
 
 ```{r}
 iris_hclust_ward_labels <- cutree(   )
