@@ -1130,6 +1130,24 @@ pheatmap(log10(assay(airway, "counts")[keep_rows, ] + 1))
 
 ---
 
+# Density-based clustering
+
+- Two parameters:
+  + Minimum number of points to initiate a cluster.
+  + Maximum distance to search for neigbouring points.
+- Core points have at least $minPoints-1$ neigbours within $epsilon$ distance.
+- Border points are located within $epsilon$ of a core point
+  (without being a core point themselves).
+- Outlier points are further than $epsilon$ from any other point.
+
+
+```{r, include=TRUE, echo=FALSE, out.height='350px', fig.align='center'}
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/dbscan.svg")
+```
+
+---
+
 # Comparing clustering algorithms on toy datasets
 
 ```{r, include=TRUE, echo=FALSE}
