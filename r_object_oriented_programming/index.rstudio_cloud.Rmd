@@ -23,23 +23,27 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An account on the teaching cluster.
+- An [RStudio Cloud](https://rstudio.cloud/) account.
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
+- A clone of the shared GitHub repository for this course.
+
+## Lessons
+
+- Introduction to base <i class="fab fa-r-project"></i>.
+
+- Introduction to `r BiocStyle::CRANpkg("ggplot2")`.
 
 ---
 
 # Set up
 
-- Launch RStudio Server on the teaching cluster.
+- Create a directory named `r_oop`.
 
-- Start a new RStudio project called `object_oriented_programming`.
+- Make a copy of the file `template.Rmd` for this lesson from the Git repository to the new directory.
 
-- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
+- Open your copy of the template notebook for this lesson in RStudio.
 
-- Make symbolic link from the RStudio project to the template notebook.
-
-- Open the notebook and follow along, editing and running the code as needed.
+- Follow along, running code from the notebook as mentioned during the lesson.
 
 ---
 

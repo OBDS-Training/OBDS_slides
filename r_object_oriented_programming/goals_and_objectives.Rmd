@@ -31,3 +31,20 @@ BibOptions(
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
 ```
+
+---
+
+# Lesson goals and objectives
+
+## Learning goals
+
+- Understand the concept of object-oriented programming.
+- Describe the S3 class system in <i class="fab fa-r-project"></i>.
+- Explain method dispatch in the S3 class system.
+- Develop good practices to name objects and functions in your <i class="fab fa-r-project"></i> workspace.
+
+## Learning objectives
+
+- Create objects of various S3 classes.
+- Inspect their contents.
+- Apply methods to objects of various classes.
