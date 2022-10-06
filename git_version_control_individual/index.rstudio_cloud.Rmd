@@ -55,11 +55,9 @@ More concrete and measurable outputs.
 
 # Pre-requisites
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
-
-- Membership to the <i class="fab fa-github"></i> GitHub organisation [OBDS-Training](https://github.com/OBDS-Training).
-
 - An [RStudio Cloud](https://rstudio.cloud/) account.
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ---
 
