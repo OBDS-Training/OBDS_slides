@@ -168,7 +168,7 @@ The `git merge` sub-command can be used to merge two branches.
 
 Most frequently, "feature" branches are merge to the main branch.
 
-```
+```{bash, eval=FALSE, echo=TRUE}
 git checkout main     # checkout the "receiving" branch
 git merge new_branch  # merge the "feature" branch to the current branch
 ```
@@ -186,6 +186,11 @@ knitr::include_graphics("img/git-merge.svg")
 # Deleting a branch
 
 Once merged, branches should be "deleted".
+
+```{bash, eval=FALSE, echo=TRUE}
+git branch -d new_branch # safely delete
+git branch -D new_branch # force delete
+```
 
 - Except the main branch!
 
