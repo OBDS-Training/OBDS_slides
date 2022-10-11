@@ -116,7 +116,7 @@ This key pair will allow your RStudio Cloud project to push and pull code throug
 
 - Create an SSH key pair.
 
-  + `ssh-keygen -t rsa -b 4096`
+  + `ssh-keygen -t ecdsa -b 521`
   
   + _Do_ set a passphrase to protect your key pair.
 
