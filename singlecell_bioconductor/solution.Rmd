@@ -435,7 +435,7 @@ gg_cluster
   Display the metadata of markers for the first cluster.
 
 ```{r}
-markers <- scran::findMarkers(x = sce, sce$label)
+markers <- scran::findMarkers(x = sce, sce$label, direction = "up")
 rowData(sce)[rownames(markers[[1]]),] %>% 
     as.data.frame() %>% 
     head()
@@ -447,7 +447,7 @@ rowData(sce)[rownames(markers[[1]]),] %>%
 
 ```{r}
 marker_id <- rownames(markers$`1`)[1]
-marker_id <- "ENSG00000196154"
+marker_id <- "ENSG00000271503"
 marker_name <- rowData(sce)[marker_id, "Symbol"]
 colData(sce) %>%
     as_tibble() %>%
@@ -467,8 +467,9 @@ gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
     as.data.frame() %>%
     as_tibble() %>%
     mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
+    slice_sample(prop = 1) %>% 
     ggplot() +
-    geom_point(aes(V1, V2, color=marker)) +
+    geom_point(aes(V1, V2, color=marker), size = 0.1) +
     scale_color_viridis_c() +
     labs(title = marker_id, subtitle = marker_name) +
     cowplot::theme_cowplot()
@@ -483,6 +484,7 @@ plot_grid(gg_marker, gg_snn)
 
 ```{r}
 library(iSEE)
+panelDefaults(Downsample = TRUE)
 app <- iSEE(sce)
 if (interactive()) {
   shiny::runApp(app)
@@ -496,7 +498,8 @@ if (interactive()) {
 ```{r}
 initial_panel_list <- list(
   ReducedDimensionPlot(PanelWidth=4L),
-  RowDataTable(PanelWidth=8L)
+  RowDataTable(PanelWidth=8L),
+    ReducedDimensionPlot(PanelWidth=4L)
 )
 app <- iSEE::iSEE(sce, initial = initial_panel_list)
 if (interactive()) {
