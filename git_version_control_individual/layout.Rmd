@@ -5,7 +5,7 @@ layout: true
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
+Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
 </span></div> 
 
 ```{r setup, include = FALSE}

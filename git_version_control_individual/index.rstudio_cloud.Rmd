@@ -1,5 +1,5 @@
 ---
-title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
 subtitle: 'Using individual repositories on RStudio Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
