@@ -137,17 +137,19 @@ knitr::include_graphics("img/git-clones-conflict.svg")
 
 # Summary
 
-- A _repository_ is a directory on a computer in which files are tracked.
+- A _repository_ is a directory on a computer in which files are tracked together.
 
 - Files in a repository are tracked: changes are detected and recorded.
 
-- Users decide which files are tracked and when changes are recorded.
+- Users manually decide which files are tracked and when changes are recorded.
 
   + Each record of changes is called a _commit_.
 
-- The complete history of _commits_ makes up the history of a _repository_.
+- The complete history of _commits_ makes up the _log_ of a _repository_.
 
-- A _repository_ can be _cloned_ and synchronised across different computers (i.e. _remotes_).
+- A _repository_ can be _cloned_ across different computers (i.e. _remotes_).
+
+- _Commits_ can be _pushed_ and _pulled_ between _clones_ of a _repository_.
 
 ---
 
