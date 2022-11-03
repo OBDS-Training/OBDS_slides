@@ -61,7 +61,7 @@ More concrete and measurable outputs.
 
 # Set up
 
-- launch the Git Bash application.
+- Launch the Git Bash application.
 
 ---
 
