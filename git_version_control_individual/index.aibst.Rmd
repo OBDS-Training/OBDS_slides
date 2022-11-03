@@ -78,7 +78,7 @@ knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
 .center[
-_We need to set an SSH key pair between your computer and <i class="fab fa-github"></i> GitHub._
+_We need to set an SSH key pair between your Windows computer and <i class="fab fa-github"></i> GitHub._
 ]
 
 ---
@@ -89,7 +89,7 @@ _We need to set an SSH key pair between your computer and <i class="fab fa-githu
 
 This key pair will allow your clone of the repository to push and pull code through the <i class="fab fa-github"></i> GitHub API.
 
-- In the Terminal application, logged in the teaching cluster, create an SSH key pair.
+- In the Git Bash application, logged in the teaching cluster, create an SSH key pair.
 
   + `ssh-keygen -t ecdsa -b 521`
   
