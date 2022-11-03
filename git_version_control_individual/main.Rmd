@@ -94,7 +94,7 @@ nothing to commit, working tree clean
 - Create a file named `.gitignore` in your repository.
 
 ```bash
-touch .gitignore
+nano .gitignore
 ```
 
 - Optionally, add a line to that file, e.g.
@@ -187,11 +187,11 @@ The `git commit` sub-command can be used to record the changes that are currentl
 - The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git commit -m "Added empty .gitignore file"
+$ git commit -m "Added .gitignore file"
 ```
 
 ```
-[main 81acf15] Added empty .gitignore file
+[main 81acf15] Added .gitignore file
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 .gitignore
 ```

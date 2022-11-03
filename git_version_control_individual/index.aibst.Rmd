@@ -1,0 +1,206 @@
+---
+title: 'Version control with <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
+subtitle: 'Using individual repositories on Microsoft Windows'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2022-11-07 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r child='layout.Rmd'}
+```
+
+---
+
+# Learning Goals & Objectives
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+-->
+
+- Understand what version control is and when to use it.
+- Identify where git stores information.
+- Practice how to record changes in <i class="fab fa-git"></i>.
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+-->
+
+- Set up an SSH key pair.
+- Configure <i class="fab fa-git"></i>.
+- _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
+- _Clone_ a copy of the repository on the teaching cluster.
+- Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
+- _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
+- Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
+- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
+- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
+
+---
+
+# Pre-requisites
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
+
+- A computer with Microsoft Windows.
+
+---
+
+# Set up
+
+- Open a Git Bash terminal application.
+
+---
+
+```{r child='opening.Rmd'}
+```
+
+---
+
+# SSH key pairs
+
+```{r, fig.align='center', out.height='400px', out.width='600px'}
+# Source: https://note.nguyenanhung.com/
+knitr::include_graphics("img/ssh-key-pair.svg")
+```
+
+.center[
+_We need to set an SSH key pair between your computer and <i class="fab fa-github"></i> GitHub._
+]
+
+---
+
+# Exercise
+
+## Setting up the SSH key pair
+
+This key pair will allow your clone of the repository to push and pull code through the <i class="fab fa-github"></i> GitHub API.
+
+- In the Terminal application, logged in the teaching cluster, create an SSH key pair.
+
+  + `ssh-keygen -t ecdsa -b 521`
+  
+  + Accept the default location for the key (leave field empty and press the Return key)
+  
+  + _Do_ set a passphrase to protect your key pair.
+
+- Display the public key and copy it.
+
+  + `cat ~/.ssh/id_rsa.pub`
+
+- Add the public key to your <i class="fab fa-github"></i> GitHub account.
+
+  + <https://github.com/settings/ssh/new>
+
+.center[
+_(See next slides to navigate to that page more naturally.)_
+]
+
+---
+
+```{r child='ssh-keypair-screenshots.Rmd'}
+```
+
+---
+
+```{r child='get-started.Rmd'}
+```
+
+---
+
+```{r child='git-configure.Rmd'}
+```
+
+---
+
+```{r child='create-github-repository.Rmd'}
+```
+
+---
+
+# Exercise
+
+## Clone the repository
+
+The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
+
+```{bash, eval=FALSE, echo=TRUE}
+$ git clone git@github.com:kevinrue/OBDS_May_2022.git
+```
+
+.pull-left[
+```{r, fig.align='center', out.height='300px'}
+# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/git-clone-collaboration.svg")
+```
+]
+
+.pull-right[
+But first, create a `Git` subdirectory in your home directory (i.e., `C:\Users\username`).
+
+Launch a Git Bash terminal and run:
+
+```bash
+cd ~
+mkdir Git
+cd Git
+```
+
+Now, clone the repository as shown above.
+
+.center[
+**Why is a `Git` subdirectory best practices?**
+]
+]
+
+---
+
+```{r child='main.Rmd'}
+```
+
+---
+
+# Summary so far
+
+- You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
+
+- You have made a _clone_ of the repository on the teaching cluster.
+
+- You have _committed_ changes to files on the teaching cluster.
+
+- You have _pushed_ those commits from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+
+- You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
+
+- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to the teaching cluster.
+
+.pull-left[
+```{r, fig.align='center', out.height='250px', out.width='600px'}
+# Screenshot (Kevin Rue-Albrecht)
+knitr::include_graphics("img/summary-workflow-pull-push.svg")
+```
+]
+
+.pull-right[
+Adding, committing, and pushing/pulling changes cover 99% of the <i class="fab fa-git"></i> commands you will use.
+
+However, you need to be aware of other <i class="fab fa-git"></i> commands to manage and undo mistakes.
+]
+
+---
+
+```{r child='etc.Rmd'}
+```
