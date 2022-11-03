@@ -7,7 +7,7 @@ On each computer where we use <i class="fab fa-git"></i>, we need to configure a
 
 These two settings should apply _globally_ (i.e. to all our projects on this computer).
 
-In the Terminal, the `git config` sub-command can be used to get and set those settings.
+In the Bash terminal, the `git config` sub-command can be used to get and set those settings.
 
 #### Getting
 
