@@ -89,7 +89,7 @@ _We need to set an SSH key pair between your Windows computer and <i class="fab 
 
 This key pair will allow your clone of the repository to push and pull code through the <i class="fab fa-github"></i> GitHub API.
 
-- In the Git Bash application, logged in the teaching cluster, create an SSH key pair.
+- Launch the Git Bash application and create an SSH key pair as follows:
 
   + `ssh-keygen -t ecdsa -b 521`
   
@@ -177,15 +177,15 @@ Now, clone the repository as shown above.
 
 - You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
 
-- You have made a _clone_ of the repository on the teaching cluster.
+- You have made a _clone_ of the repository on your Windows computer.
 
-- You have _committed_ changes to files on the teaching cluster.
+- You have _committed_ changes to files on your Windows computer.
 
-- You have _pushed_ those commits from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+- You have _pushed_ those commits from your Windows computer to <i class="fab fa-github"></i> GitHub.
 
 - You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
 
-- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to the teaching cluster.
+- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to your Windows computer.
 
 .pull-left[
 ```{r, fig.align='center', out.height='250px', out.width='600px'}

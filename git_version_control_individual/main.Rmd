@@ -454,7 +454,7 @@ knitr::include_graphics("img/github-network-graph2.png")
 
 ## Pull changes from a remote repository
 
-In a Terminal, set the working directory inside your clone of the repository, and run `git pull`.
+In the Bash Terminal, set the working directory inside your clone of the repository, and run `git pull`.
 
 .center[
 **How do you read the message output? (example below)**
