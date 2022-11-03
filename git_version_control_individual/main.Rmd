@@ -236,7 +236,7 @@ The `git push` sub-command can be used to send local changes to a remote reposit
 
 - The local repository must have configured the address of the remote repository.
 - When you create a repository as a _clone_ of a remote repository,
-  this is done automatically (the remote `origin` is recorded during initialisation).
+  this is done automatically (the remote `origin` is created during initialisation).
 
 Before we push, the `git remote` command can be used to inspect, add, and remove remote repositories from the local repository configuration.
 
