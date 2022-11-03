@@ -92,19 +92,20 @@ nothing to commit, working tree clean
 
 ## Make changes
 
-- Create a file named `.gitignore` in your repository.
+Create a file named `.gitignore` in your repository
+using the `nano` command line text editor in the Bash terminal:
 
 ```bash
 nano .gitignore
 ```
 
-- Optionally, add a line to that file, e.g.
+Add a commented line to that file, starting with `#` (hashtag), e.g.
 
 ```
 # This file list file patterns to ignore from version control
 ```
 
-- Run `git status` again.
+Run `git status` again.
 
 .center[
 **What does the command return this time? How do you interpret it?**
