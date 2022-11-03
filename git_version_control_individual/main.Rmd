@@ -1,6 +1,7 @@
 # The `.git` subdirectory
 
 Change directory to your new local clone of the repository, and list its contents.
+For instance:
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ cd OBDS_May_2022
