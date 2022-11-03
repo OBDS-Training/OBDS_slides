@@ -28,9 +28,6 @@
       }
     ]
   },
-  "Bioconductor": {
-    "Version": "3.15"
-  },
   "Packages": {
     "ALL": {
       "Package": "ALL",
@@ -3424,10 +3421,8 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.15.1",
+      "Version": "0.16.0",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c38694b67e7f7091f7d073b3766258cc",
       "Requirements": []
     },
     "reprex": {
