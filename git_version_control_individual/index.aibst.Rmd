@@ -42,12 +42,12 @@ More concrete and measurable outputs.
 - Set up an SSH key pair.
 - Configure <i class="fab fa-git"></i>.
 - _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
-- _Clone_ a copy of the repository on the teaching cluster.
-- Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
+- _Clone_ a copy of the repository on your Windows computer.
+- Create and edit files in the repository on your Windows computer, and _commit_ those changes.
 - _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
 - Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
-- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
-- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
+- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on your Windows computer.
+- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on your Windows computer.
 
 ---
 
