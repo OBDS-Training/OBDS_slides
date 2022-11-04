@@ -180,9 +180,12 @@ Credits: Charlotte George
 The functions `seqnames()`, `start()`, and `end()` access the components of the same name.
 
 .pull-left[
+.small-code[
 ```{r, include=TRUE}
 seqnames(demo_granges)
+as.character(seqnames(demo_granges))
 ```
+]
 ]
 
 .pull-right[
@@ -376,13 +379,15 @@ from the object.
 
 # EnsDb packages
 
+.small-p[
 The `EnsDb` family of packages provide annotations that encapsulate individual versions of the Ensembl annotations in Bioconductor packages.
 
-- Once the package is installed, annotations are available locally, without the need to query the online Ensembl backend.
+- Once the package is installed, annotations are stored locally, without the need for internet.
 
-- The series of packages seems to have end at Ensembl version 86 (!)
+- The series of packages seems to have ended at Ensembl version 86 (!)
 
 - Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way for the different types of annotation packages.
+]
 
 ```{r}
 options(width = 130)
@@ -444,7 +449,7 @@ Family of packages that each provide one release of transcript annotations from 
 
 # The Bioconductor SummarizedExperiment
 
-```{r, include=TRUE, echo=FALSE, out.height="450px", fig.align='center'}
+```{r, include=TRUE, echo=FALSE, out.height="450px", out.width="600px", fig.align='center'}
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```
