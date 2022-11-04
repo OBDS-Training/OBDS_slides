@@ -37,6 +37,12 @@ x <- 4
 sqrt(x)
 ```
 
+```{r}
+iris %>% 
+  ggplot(aes(Sepal.Length, Sepal.Width)) +
+  geom_point()
+```
+
 # Demo
 
 ## The tidyverse philosophy

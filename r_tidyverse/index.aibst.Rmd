@@ -1,0 +1,48 @@
+---
+title: 'The tidyverse'
+subtitle: '<i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "University of Oxford (for the African Institute of Biomedical Science and Technology)"
+date: "2022-10-14 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, rladies-fonts, "my-theme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r, child='setup_and_goals.Rmd'}
+```
+
+---
+# Prerequisites
+
+- A computer with [Microsoft Windows](https://www.microsoft.com/en-gb/windows?r=1).
+
+- A working installation of [<i class="fab fa-r-project"></i>](https://cran.r-project.org/).
+
+- A working installation of [RStudio Desktop](https://posit.co/download/rstudio-desktop/).
+
+---
+
+# Set up
+
+- Launch RStudio Desktop on your Windows computer.
+
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
+
+- Make a symbolic link to your copy of the notebook in the RStudio project for this week.
+
+- Download the input data files from Microsoft Teams.
+
+- Open the notebook and follow along, editing and running the code as needed.
+
+---
+
+```{r, child='etc.Rmd'}
+```
