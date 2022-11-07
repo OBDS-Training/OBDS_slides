@@ -99,7 +99,7 @@ This key pair will allow your clone of the repository to push and pull code thro
 
 - Display the public key and copy it.
 
-  + `cat ~/.ssh/id_rsa.pub`
+  + `cat ~/.ssh/id_ecdsa.pub`
 
 - Add the public key to your <i class="fab fa-github"></i> GitHub account.
 

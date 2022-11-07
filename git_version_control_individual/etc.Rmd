@@ -144,7 +144,7 @@ The `git branch` sub-command can be used to inspect and create branches in a rep
 
   + You will need to _push_ those branches to the remote clones.
   
-- You can only create branches with named that are not already used (locally).
+- You can only create branches with names that are not already used (locally).
 
   + You will need to delete branches if you want to re-use their names.
   
@@ -166,7 +166,7 @@ knitr::include_graphics("img/git-branch.svg")
 
 The `git merge` sub-command can be used to merge two branches.
 
-Most frequently, "feature" branches are merge to the main branch.
+Most frequently, "feature" branches are merged to the main branch.
 
 ```{bash, eval=FALSE, echo=TRUE}
 git checkout main     # checkout the "receiving" branch
@@ -194,7 +194,7 @@ git branch -D new_branch # force delete
 
 - Except the main branch!
 
-- If the branch was merged, only the name  of the branch is deleted, not the commits.
+- If the branch was merged, only the name of the branch is deleted, not the commits.
 
   + The commits are part of the history of the other branch.
     Thus, commits are kept as long as one branch in the repository contains them.

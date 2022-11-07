@@ -122,7 +122,7 @@ This key pair will allow your RStudio Cloud project to push and pull code throug
 
 - Display the public key and copy it.
 
-  + `cat ~/.ssh/id_rsa.pub`
+  + `cat ~/.ssh/id_ecdsa.pub`
 
 - Add the public key to your GitHub account.
 
