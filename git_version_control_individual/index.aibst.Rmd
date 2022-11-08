@@ -53,9 +53,11 @@ More concrete and measurable outputs.
 
 # Pre-requisites
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
-
 - A computer with Microsoft Windows.
+
+- The [Git Bash](https://git-scm.com/downloads) application.
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
 ---
 
