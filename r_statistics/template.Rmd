@@ -585,6 +585,44 @@ cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(
 
 # Exercise
 
+## Statistical tests
+
+### Wilcoxon test
+
+- Run a Wilcoxon test to compare the vectors `1:10` and `5:14`.
+
+```{r}
+wilcox.test(x = 1:10, y = 5:14)
+```
+
+**What is the p-value?**
+
+> Answer:
+> 
+
+### T-test
+
+- Import the data in the file `gene_exprs.csv`.
+
+```{r}
+df <- read.csv(   )
+df
+```
+
+
+- Run a t-test to compare the gene expression values between the two groups.
+
+```{r}
+t.test(   )
+```
+
+**What is the p-value?**
+
+> Answer:
+> 
+
+# Exercise
+
 ## Testing & Multiple testing correction
 
 Given an Excel file that contains a matrix of log-normalised counts (`logcounts`) and experimental metadata (`cell_info`),

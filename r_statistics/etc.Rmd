@@ -1324,6 +1324,16 @@ Start by importing the `logcounts` table and converting it to a matrix.
 
 # Exercise
 
+## Illustration
+
+```{r, include=TRUE, echo=FALSE}
+knitr::include_graphics("img/apply-gene-expression.svg")
+```
+
+---
+
+# Exercise
+
 ## Over-representation analysis (ORA)
 
 Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,

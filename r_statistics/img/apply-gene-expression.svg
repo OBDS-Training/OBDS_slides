@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 664.5 354" style="enable-background:new 0 0 664.5 354;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st1{font-family:'MyriadPro-Regular';}
+	.st2{font-size:12px;}
+	.st3{fill:none;stroke:#E30613;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#009FE3;stroke-miterlimit:10;}
+</style>
+<rect x="76.6" y="111.8" class="st0" width="334" height="194.8"/>
+<text transform="matrix(1 0 0 1 89.5934 104.3952)" class="st1 st2">sample1</text>
+<text transform="matrix(1 0 0 1 140.6277 104.3949)" class="st1 st2">sample2</text>
+<text transform="matrix(1 0 0 1 208.1973 104.3952)" class="st1 st2">...</text>
+<rect x="84" y="119.2" class="st3" width="154.2" height="14.8"/>
+<rect x="250.2" y="119.2" class="st4" width="154.2" height="14.8"/>
+<text transform="matrix(1 0 0 1 31.7747 130.5759)" class="st1 st2">gene1</text>
+<text transform="matrix(1 0 0 1 31.2091 154.5281)" class="st1 st2">gene2</text>
+<text transform="matrix(1 0 0 1 43.2729 174.0252)" class="st1 st2">...</text>
+<rect x="446.2" y="111.8" class="st0" width="171.3" height="194.8"/>
+<text transform="matrix(1 0 0 1 463.7722 130.576)" class="st1 st2">sample1</text>
+<text transform="matrix(1 0 0 1 463.7612 154.5278)" class="st1 st2">sample2</text>
+<text transform="matrix(1 0 0 1 477.3764 172.6451)" class="st1 st2">...</text>
+<text transform="matrix(1 0 0 1 466.2876 103.0157)" class="st1 st2">sample</text>
+<text transform="matrix(1 0 0 1 551.0005 103.0154)" class="st1 st2">group</text>
+<text transform="matrix(1 0 0 1 562.0099 130.5757)" class="st1 st2">A</text>
+<text transform="matrix(1 0 0 1 561.7164 154.5278)" class="st1 st2">A</text>
+<text transform="matrix(1 0 0 1 561.9561 172.6451)" class="st1 st2">...</text>
+<rect x="556.9" y="119.2" class="st3" width="19" height="90"/>
+<rect x="556.9" y="211.3" class="st4" width="19" height="90"/>
+<text transform="matrix(1 0 0 1 184.8802 42.9004)" class="st1 st2">Gene expression matrix</text>
+<text transform="matrix(1 0 0 1 487.8177 42.9005)" class="st1 st2">Sample metadata</text>
+</svg>
