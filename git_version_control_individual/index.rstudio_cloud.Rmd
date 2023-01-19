@@ -3,7 +3,7 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: 'Using individual repositories on RStudio Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-10-10 (updated: `r Sys.Date()`)"
+date: "2023-01-30 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -81,9 +81,9 @@ knitr::include_graphics("img/rstudio-cloud-projects.png")
 
 This RStudio Cloud project will be your workplace for the course.
 
-- Navigate to <https://rstudio.cloud/> and sign in.
+- Navigate to <https://posit.cloud/> and sign in.
 
-- Navigate to the Space `OBDS_September_2022`.
+- Navigate to the Space `OBDS_Winter_2023`.
 
 - Create a new RStudio project
 
@@ -117,6 +117,8 @@ This key pair will allow your RStudio Cloud project to push and pull code throug
 - Create an SSH key pair.
 
   + `ssh-keygen -t ecdsa -b 521`
+  
+  + Do _not_ change the default file path to save the key.
   
   + _Do_ set a passphrase to protect your key pair.
 
@@ -214,7 +216,7 @@ For this, select `SSH` on GitHub.
 Use the `ls` command to list the contents of the working directory.
 
 .center[
-**Do you need new files or directories?**
+**Do you see new files or directories?**
 ]
 ]
 

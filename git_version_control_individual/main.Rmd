@@ -93,10 +93,11 @@ nothing to commit, working tree clean
 ## Make changes
 
 Create a file named `.gitignore` in your repository
-using the `nano` command line text editor in the Bash terminal:
+using the `nano` or `vi` command line text editors in the Bash terminal:
 
 ```bash
 nano .gitignore
+vi .gitignore
 ```
 
 Add a commented line to that file, starting with `#` (hashtag), e.g.
