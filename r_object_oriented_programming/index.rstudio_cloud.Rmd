@@ -3,7 +3,7 @@ title: 'Object Oriented Programming (OOP)'
 subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-10-13 (updated: `r Sys.Date()`)"
+date: "2023-02-02 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -25,21 +25,15 @@ knit: pagedown::chrome_print
 
 - An [RStudio Cloud](https://rstudio.cloud/) account.
 
-- A clone of the shared GitHub repository for this course.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ## Lessons
 
 - Introduction to base <i class="fab fa-r-project"></i>.
 
-- Introduction to `r BiocStyle::CRANpkg("ggplot2")`.
-
 ---
 
 # Set up
-
-- Create a directory named `r_oop`.
-
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to the new directory.
 
 - Open your copy of the template notebook for this lesson in RStudio.
 
