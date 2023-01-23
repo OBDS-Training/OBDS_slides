@@ -53,7 +53,7 @@ More concrete and measurable outputs.
 
 ---
 
-# Pre-requisites
+# Prerequisites
 
 - An [RStudio Cloud](https://rstudio.cloud/) account.
 
