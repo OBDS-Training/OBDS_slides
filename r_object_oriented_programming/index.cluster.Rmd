@@ -1,6 +1,6 @@
 ---
 title: 'Object Oriented Programming (OOP)'
-subtitle: '<i class="fab fa-r-project"></i>'
+subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-02-02 (updated: `r Sys.Date()`)"

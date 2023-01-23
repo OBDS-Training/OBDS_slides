@@ -1,6 +1,6 @@
 ---
 title: 'Object Oriented Programming (OOP)'
-subtitle: '<i class="fab fa-r-project"></i>'
+subtitle: '<i class="fab fa-r-project"></i> on Posit Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-02-02 (updated: `r Sys.Date()`)"
@@ -23,7 +23,7 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An [RStudio Cloud](https://rstudio.cloud/) account.
+- A [Posit Cloud](https://posit.cloud/) account.
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 

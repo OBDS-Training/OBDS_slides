@@ -1,6 +1,6 @@
 ---
 title: 'Introduction to `r BiocStyle::CRANpkg("ggplot2")`'
-subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
+subtitle: '<i class="fab fa-r-project"></i> on Posit Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-02-02 (updated: `r Sys.Date()`)"
@@ -23,7 +23,7 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An account on the teaching cluster.
+- A [Posit Cloud](https://posit.cloud/) account.
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
@@ -31,15 +31,9 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Launch RStudio Server on the teaching cluster.
+- Open your copy of the template notebook for this lesson in RStudio.
 
-- Start a new RStudio project called `ggplot2`.
-
-- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
-
-- Make symbolic link from the RStudio project to the template notebook.
-
-- Open the notebook and follow along, editing and running the code as needed.
+- Follow along, running code from the notebook as mentioned during the lesson.
 
 ---
 
