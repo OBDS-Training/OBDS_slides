@@ -3,7 +3,7 @@ title: 'Object Oriented Programming (OOP)'
 subtitle: '<i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-10-13 (updated: `r Sys.Date()`)"
+date: "2023-02-02 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
