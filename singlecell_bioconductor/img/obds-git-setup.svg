@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 841.9 301.7" style="enable-background:new 0 0 841.9 301.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'ArialMT';}
+	.st1{font-size:12px;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-ItalicMT';}
+	.st4{fill:#E30613;}
+	.st5{font-size:16px;}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_2_);}
+	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#24292F;}
+</style>
+<text transform="matrix(1 0 0 1 284.3495 63.7421)" class="st0 st1">Git/</text>
+<g>
+	<g>
+		<text transform="matrix(1 0 0 1 294.1059 81.6771)" class="st0 st1">Repository/</text>
+		<text transform="matrix(1 0 0 1 314.4311 98.6121)" class="st0 st1">Subdirectory1/</text>
+		<text transform="matrix(1 0 0 1 314.9351 132.4822)" class="st0 st1">Subdirectory2/</text>
+		<text transform="matrix(1 0 0 1 335.5693 115.5469)" class="st0 st1">Script.R</text>
+		<text transform="matrix(1 0 0 1 339.6342 149.4169)" class="st0 st1">Notebook.Rmd</text>
+	</g>
+	<rect x="272.2" y="69.6" class="st2" width="155.7" height="88.3"/>
+</g>
+<text transform="matrix(1 0 0 1 36.5486 63.7424)" class="st0 st1">GitHub</text>
+<g>
+	<g>
+		<text transform="matrix(1 0 0 1 44.1059 81.6771)" class="st0 st1">Username/Repository</text>
+		<text transform="matrix(1 0 0 1 64.4311 98.6121)" class="st0 st1">Subdirectory1/</text>
+		<text transform="matrix(1 0 0 1 64.9351 132.4822)" class="st0 st1">Subdirectory2/</text>
+		<text transform="matrix(1 0 0 1 85.5693 115.5469)" class="st0 st1">Script.R</text>
+		<text transform="matrix(1 0 0 1 89.6342 149.4169)" class="st0 st1">Notebook.Rmd</text>
+	</g>
+	<rect x="22.2" y="69.6" class="st2" width="155.7" height="88.3"/>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="266.1" y1="115.6" x2="183.9" y2="115.6"/>
+		<g>
+			<path d="M272.2,115.6c-2.8-1.1-6.4-2.9-8.5-4.8l1.7,4.8l-1.7,4.8C265.8,118.4,269.3,116.6,272.2,115.6z"/>
+		</g>
+		<g>
+			<path d="M177.8,115.6c2.8-1.1,6.4-2.9,8.5-4.8l-1.7,4.8l1.7,4.8C184.2,118.4,180.7,116.6,177.8,115.6z"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 207.4326 99.3781)" class="st0 st1">git pull</text>
+<text transform="matrix(1 0 0 1 204.5586 140.897)" class="st0 st1">git push</text>
+<text transform="matrix(1 0 0 1 560.4186 83.6771)" class="st0 st1">Working_directory/</text>
+<text transform="matrix(1 0 0 1 580.7438 100.6336)" class="st0 st1">Subdirectory1/</text>
+<text transform="matrix(1 0 0 1 581.2479 168.4606)" class="st0 st1">Subdirectory2/</text>
+<text transform="matrix(1 0 0 1 601.882 151.5041)" class="st3 st1">Script.R</text>
+<text transform="matrix(1 0 0 1 603.5861 202.3746)" class="st3 st1">Notebook.Rmd</text>
+<rect x="538.5" y="69.6" class="st2" width="179" height="193.6"/>
+<text transform="matrix(1 0 0 1 602.386 117.5905)" class="st4 st0 st1">input_file</text>
+<text transform="matrix(1 0 0 1 603.1304 134.5474)" class="st4 st0 st1">output_file</text>
+<text transform="matrix(1 0 0 1 450.6975 99.3781)" class="st0 st1">symbolic links</text>
+<g>
+	<g>
+		<line class="st2" x1="439.6" y1="112.1" x2="485.7" y2="112.1"/>
+		<g>
+			<path d="M433.5,112.1c2.8,1.1,6.4,2.9,8.5,4.8l-1.7-4.8l1.7-4.8C439.9,109.2,436.4,111,433.5,112.1z"/>
+		</g>
+	</g>
+</g>
+<line class="st2" x1="485.7" y1="112.1" x2="485.7" y2="147.2"/>
+<line class="st2" x1="485.7" y1="147.2" x2="589" y2="147.2"/>
+<g>
+	<g>
+		<line class="st2" x1="439.6" y1="143.9" x2="473.4" y2="143.9"/>
+		<g>
+			<path d="M433.5,143.9c2.8,1.1,6.4,2.9,8.5,4.8l-1.7-4.8l1.7-4.8C439.9,141,436.4,142.8,433.5,143.9z"/>
+		</g>
+	</g>
+</g>
+<line class="st2" x1="473.4" y1="144.7" x2="473.4" y2="198.8"/>
+<line class="st2" x1="473.4" y1="198.8" x2="589" y2="198.8"/>
+<g id="SmnEjf.tif">
+</g>
+<g>
+	<g>
+		<line class="st2" x1="758.6" y1="147.2" x2="728.6" y2="147.2"/>
+		<g>
+			<path d="M764.6,147.2c-2.8-1.1-6.4-2.9-8.5-4.8l1.7,4.8l-1.7,4.8C758.3,150.1,761.8,148.3,764.6,147.2z"/>
+		</g>
+		<g>
+			<path d="M722.5,147.2c2.8-1.1,6.4-2.9,8.5-4.8l-1.7,4.8l1.7,4.8C728.9,150.1,725.4,148.3,722.5,147.2z"/>
+		</g>
+	</g>
+</g>
+<g id="klF0fV.tif">
+</g>
+<rect x="258.9" y="39.3" class="st2" width="568.1" height="245"/>
+<text transform="matrix(1 0 0 1 517.528 25.9551)" class="st0 st5">Computer</text>
+<rect x="15" y="40.1" class="st2" width="177.5" height="244.2"/>
+<text transform="matrix(1 0 0 1 83.4476 28.3312)" class="st0 st5">Internet</text>
+<text transform="matrix(1 0 0 1 604.4974 185.4174)" class="st4 st0 st1">input_file</text>
+<text transform="matrix(1 0 0 1 603.5863 219.3311)" class="st4 st0 st1">output_file</text>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="123.9003" y1="660.3087" x2="123.9593" y2="660.2497" gradientTransform="matrix(721.094 0 0 -482.937 -88570.6562 319019.75)">
+	<stop  offset="0" style="stop-color:#CBCED0"/>
+	<stop  offset="1" style="stop-color:#84838B"/>
+</linearGradient>
+<path class="st6" d="M794.4,160.7c-11.7,0-21.3-6.4-21.3-14.2c0-7.9,9.5-14.2,21.3-14.2c11.7,0,21.3,6.4,21.3,14.2
+	C815.7,154.4,806.1,160.7,794.4,160.7z M797.7,137.8c-8.9,0-16.2,4.4-16.2,9.7s7.2,9.7,16.2,9.7c8.9,0,15.5-3,15.5-9.7
+	C813.2,140.8,806.6,137.8,797.7,137.8z"/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="123.9251" y1="660.5309" x2="123.984" y2="660.4719" gradientTransform="matrix(398 0 0 -406.124 -48533 268400.0625)">
+	<stop  offset="0" style="stop-color:#276DC3"/>
+	<stop  offset="1" style="stop-color:#165CAA"/>
+</linearGradient>
+<path class="st7" d="M805.5,154.3c0,0,1.3,0.4,2,0.8c0.3,0.1,0.7,0.4,1,0.7c0.3,0.3,0.5,0.7,0.5,0.7l5.1,8.6l-8.2,0l-3.8-7.2
+	c0,0-0.8-1.3-1.3-1.7c-0.4-0.3-0.6-0.4-1-0.4c-0.3,0-1.9,0-1.9,0l0,9.4l-7.3,0v-23.9h14.6c0,0,6.6,0.1,6.6,6.4
+	C811.9,153.9,805.5,154.3,805.5,154.3z M802.4,146.3l-4.4,0l0,4.1l4.4,0c0,0,2,0,2-2.1C804.4,146.2,802.4,146.3,802.4,146.3z"/>
+<path class="st8" d="M103.8,185.4c-15.7,0-28.4,12.8-28.4,28.6c0,12.6,8.1,23.3,19.4,27.1c1.4,0.3,1.9-0.6,1.9-1.4
+	c0-0.7,0-2.9,0-5.3c-7.9,1.7-9.5-3.4-9.5-3.4c-1.3-3.3-3.1-4.2-3.1-4.2c-2.6-1.8,0.2-1.8,0.2-1.8c2.9,0.2,4.4,2.9,4.4,2.9
+	c2.5,4.4,6.6,3.1,8.3,2.4c0.2-1.8,1-3.1,1.8-3.8c-6.3-0.7-12.9-3.1-12.9-14.1c0-3.1,1.1-5.7,2.9-7.7c-0.3-0.7-1.3-3.6,0.3-7.6
+	c0,0,2.4-0.8,7.8,2.9c2.3-0.6,4.7-0.9,7.1-0.9c2.4,0,4.8,0.3,7.1,0.9c5.4-3.7,7.8-2.9,7.8-2.9c1.6,3.9,0.6,6.9,0.3,7.6
+	c1.8,2,2.9,4.5,2.9,7.7c0,11-6.6,13.4-13,14.1c1,0.9,1.9,2.6,1.9,5.3c0,3.8,0,6.9,0,7.9c0,0.8,0.5,1.7,1.9,1.4
+	c11.3-3.8,19.4-14.5,19.4-27.1C132.1,198.2,119.4,185.4,103.8,185.4z"/>
+</svg>
