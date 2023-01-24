@@ -41,7 +41,7 @@ knit: pagedown::chrome_print
 
 - Open your copy of the template notebook for this lesson in RStudio.
 
-- Follow along, running code from the notebook as mentioned during the lesson.
+- Follow along, editing and running code the code as needed.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px'}
 ## Source: Adobe Illustrator (Kevin Rue-Albrecht)
