@@ -23,9 +23,9 @@ knit: pagedown::chrome_print
 
 # Prerequisites
 
-- An [RStudio Cloud](https://rstudio.cloud/) account.
+- A [Posit Cloud](https://posit.cloud/) account.
 
-- A clone of the shared GitHub repository for this course.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ## Lessons
 
@@ -37,11 +37,7 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Launch the RStudio project that you previously created on RStudio Cloud.
-
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to your project.
-
-- Open your copy of the notebook for this lesson in RStudio.
+- Open your copy of the template notebook for this lesson in RStudio.
 
 - Follow along, running code from the notebook as mentioned during the lesson.
 
