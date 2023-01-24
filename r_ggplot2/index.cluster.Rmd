@@ -41,6 +41,11 @@ knit: pagedown::chrome_print
 
 - Open the notebook and follow along, editing and running the code as needed.
 
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/obds-git-setup.svg")
+```
+
 ---
 
 ```{r, child='etc.Rmd'}
