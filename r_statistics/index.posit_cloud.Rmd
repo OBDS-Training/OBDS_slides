@@ -1,9 +1,9 @@
 ---
 title: 'Statistics'
-subtitle: '<i class="fab fa-r-project"></i>'
+subtitle: '<i class="fab fa-r-project"></i> on Posit Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-01-31 (updated: `r Sys.Date()`)"
+date: "2023-02-06 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -16,7 +16,7 @@ output:
 knit: pagedown::chrome_print
 ---
 
-```{r, child='setup_and_goals.Rmd'}
+```{r, child='goals_and_objectives.Rmd'}
 ```
 
 ---
@@ -38,6 +38,11 @@ knit: pagedown::chrome_print
 - Open your copy of the notebook for this lesson in RStudio.
 
 - Follow along, running code from the notebook as mentioned during the lesson.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px'}
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/obds-git-setup.svg")
+```
 
 ---
 
