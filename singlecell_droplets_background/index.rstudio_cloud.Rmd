@@ -1,9 +1,9 @@
 ---
 title: 'Empty droplets, doublets and ambient RNA'
-subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
+subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i> (Posit Cloud)'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-10-27 (updated: `r Sys.Date()`)"
+date: "2023-02-23 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -47,13 +47,14 @@ knit: pagedown::chrome_print
 
 # Set up
 
-- Create a directory named `singlecell_droplets`.
-
-- Make a copy of the file `template.Rmd` for this lesson from the Git repository to the new directory.
-
 - Open your copy of the template notebook for this lesson in RStudio.
 
-- Follow along, running code from the notebook as mentioned during the lesson.
+- Follow along, editing and running code the code as needed.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='400px'}
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/obds-git-setup.svg")
+```
 
 ---
 

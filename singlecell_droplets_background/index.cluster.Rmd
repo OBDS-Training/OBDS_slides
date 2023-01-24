@@ -1,9 +1,9 @@
 ---
 title: 'Empty droplets, doublets and ambient RNA'
-subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
+subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i> (CCB cluster)'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2022-10-27 (updated: `r Sys.Date()`)"
+date: "2023-02-23 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]

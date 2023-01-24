@@ -55,7 +55,7 @@ knit: pagedown::chrome_print
 
 - Make symbolic link from the RStudio project to the template notebook.
 
-- Open the notebook and follow along, editing and running the code as 
+- Open the notebook and follow along, editing and running the code as needed.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
 ## Source: Adobe Illustrator (Kevin Rue-Albrecht)
