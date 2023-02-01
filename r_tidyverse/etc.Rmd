@@ -513,7 +513,7 @@ tibble_joined
 
 ---
 
-# Combine two tables using shared information
+# Left join and right join
 
 .pull-left[
 ## tibble_1
@@ -549,6 +549,48 @@ left_join(tibble_1, tibble_2, by = "ID")
 .small-code[
 ```{r, include=TRUE}
 right_join(tibble_1, tibble_2, by = "ID")
+```
+]
+]
+
+---
+
+# Inner join and full join
+
+.pull-left[
+## tibble_1
+
+.small-code[
+```{r, include=TRUE, echo=FALSE}
+tibble_1
+```
+]
+]
+
+.pull-right[
+## tibble_2
+
+.small-code[
+```{r, include=TRUE, echo=FALSE}
+tibble_2
+```
+]
+]
+
+.pull-left[
+### Inner join
+.small-code[
+```{r, include=TRUE}
+inner_join(tibble_1, tibble_2, by = "ID")
+```
+]
+]
+
+.pull-right[
+### Full join
+.small-code[
+```{r, include=TRUE}
+full_join(tibble_1, tibble_2, by = "ID")
 ```
 ]
 ]
