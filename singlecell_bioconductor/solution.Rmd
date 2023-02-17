@@ -33,7 +33,7 @@ library(iSEE)
 ```{r}
 library(DropletUtils)
 sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = "data/filtered_feature_bc_matrix"
+    "filtered" = "data/10x_pbmc5k_nextgem/filtered_feature_bc_matrix"
 ))
 ```
 
