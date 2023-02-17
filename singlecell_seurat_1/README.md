@@ -70,7 +70,8 @@ Even better, we add a page to this repository, that lists all data sets used; an
 Realistically, a list describing data sets that we will make them download on the day.
 -->
 
-- [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor (Next GEM)](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/5k_pbmc_v3_nextgem)
+- Slides: [1k PBMCs from a Healthy Donor (v3 chemistry)](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_1k_v3)
+- Exercises: [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor (Next GEM)](https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/5k_pbmc_v3_nextgem)
 
 ## Time outline
 

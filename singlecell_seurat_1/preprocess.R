@@ -4,7 +4,7 @@ library(ggplot2)
 # Read10X ----
 
 read10x_data <- Read10X(
-    data.dir = "data/filtered_feature_bc_matrix"
+    data.dir = "data/10x_pbmc1k_v3/filtered_feature_bc_matrix"
 )
 
 # CreateSeuratObject ----
