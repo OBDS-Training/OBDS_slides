@@ -16,6 +16,7 @@ library(Seurat)
 library(DoubletFinder)
 library(celda)
 library(scater)
+library(sessioninfo)
 ```
 
 # Exercise
@@ -245,22 +246,22 @@ seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.01, nExp = nExp_poi, 
 ```
 
 ```{r}
-table(seu$DF.classifications_0.25_0.01_12)
+table(seu$DF.classifications_0.25_0.01_53)
 ```
 
 ```{r, message=FALSE}
-seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.01, nExp = nExp_poi.adj, reuse.pANN = "DF.classifications_0.25_0.01_12", sct = FALSE)
+seu <- doubletFinder_v3(seu, PCs = 1:10, pN = 0.25, pK = 0.01, nExp = nExp_poi.adj, reuse.pANN = "DF.classifications_0.25_0.01_53", sct = FALSE)
 ```
 
 ```{r}
-table(seu$DF.classifications_0.25_0.01_12)
+table(seu$DF.classifications_0.25_0.01_53)
 ```
 
 ```{r}
 doublets_table <- data.frame(
   row.names = colnames(sce_filtered_emptydrops),
   scDblFinder = factor(sce_scdblfinder$scDblFinder.class, c("singlet", "doublet")),
-  DoubletFinder = factor(seu$DF.classifications_0.25_0.01_12, c("Singlet", "Doublet"))
+  DoubletFinder = factor(seu$DF.classifications_0.25_0.01_53, c("Singlet", "Doublet"))
 )
 table(doublets_table)
 ```
@@ -379,4 +380,10 @@ plotDecontXMarkerExpression(
   groupClusters = cellTypeMappings,
   ncol = 3
 )
+```
+
+# Session info
+
+```{r}
+session_info()
 ```
