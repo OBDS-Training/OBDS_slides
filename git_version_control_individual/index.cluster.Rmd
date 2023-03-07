@@ -10,7 +10,6 @@ output:
     lib_dir: libs
     nature:
       highlightStyle: github
-      highlightLines: true
       countIncrementalSlides: false
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
