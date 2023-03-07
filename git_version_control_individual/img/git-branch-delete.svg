@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 549.9 162.2" style="enable-background:new 0 0 549.9 162.2;" xml:space="preserve">
 <style type="text/css">
@@ -9,6 +9,8 @@
 	.st3{font-size:20px;}
 	.st4{font-size:14px;}
 	.st5{fill:#D04544;}
+	.st6{fill:#7F7F7F;}
+	.st7{fill:none;stroke:#000000;stroke-miterlimit:10;}
 </style>
 <circle class="st0" cx="38.1" cy="56.5" r="9.3"/>
 <circle class="st0" cx="119.4" cy="56.5" r="9.3"/>
@@ -54,4 +56,6 @@
 <text transform="matrix(1 0 0 1 305.0564 69.1064)" class="st0 st2 st4">merge</text>
 <text transform="matrix(1 0 0 1 153.5619 72.0457)" class="st0 st2 st4">branch</text>
 <text transform="matrix(1 0 0 1 220.0862 121.3344)" class="st0 st2 st4">commit</text>
+<text transform="matrix(1 0 0 1 440.2928 113.9003)" class="st6 st2 st4">new branch</text>
+<line class="st7" x1="434.5" y1="109.4" x2="516.7" y2="109.4"/>
 </svg>
