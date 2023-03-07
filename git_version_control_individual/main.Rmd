@@ -318,6 +318,8 @@ knitr::include_graphics("img/github-network-graph.png")
 knitr::include_graphics("img/github-commit-view.png")
 ```
 
+<br/>
+
 .center[
 **How do you read this page?**
 ]
