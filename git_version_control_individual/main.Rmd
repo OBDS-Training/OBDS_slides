@@ -301,6 +301,8 @@ git push origin main
 knitr::include_graphics("img/github-network-graph.png")
 ```
 
+<br/>
+
 .center[
 **How do you read this graph?**
 ]
