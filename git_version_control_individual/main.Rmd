@@ -336,6 +336,8 @@ The `git log` sub-command can be used to display the history of commits in the r
 - The `--oneline` (i.e., "one line") forces <i class="fab fa-git"></i> to summarise each commit as a single line.
   + This limits the information displayed, but helps with the visualisation.
 
+<br/>
+
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
 $ git log --all --graph --oneline
@@ -347,6 +349,8 @@ $ git log --all --graph --oneline
 .center[
 **How do you read this commit history?**
 ]
+
+<br/>
 
 - Compare with `git log` without any argument.
 
