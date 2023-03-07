@@ -103,7 +103,7 @@ vi .gitignore
 Add a commented line to that file, starting with `#` (hashtag), e.g.
 
 ```
-# This file list file patterns to ignore from version control
+# This file list paths and patterns to ignore from version control
 ```
 
 Run `git status` again.
