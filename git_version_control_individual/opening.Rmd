@@ -113,18 +113,18 @@ knitr::include_graphics("img/git-clone-collaboration.svg")
 
 - Each contributor has a copy (i.e., _clone_) of the repository on their own computer.
 
-- Commits are first made in one clone.
+- Commits are first made in one _clone_.
 
-- Commits can then be _pushed_ and _pulled_ from one clone to another.
+- Commits can then be _pushed_ and _pulled_ from one _clone_ to another.
 
-- Remote repositories must be accessible through a public URL to interact with them.
+- _Remote_ repositories must be accessible through a public URL to interact with them.
 ]
 
 ## Note
 
-- Clones do not communicate automatically with each other; they are not always synchronised.
+- _Clones_ do not communicate automatically with each other; they are not always synchronised.
 
-- Contributors generally interact with a "central" repository online (e.g., GitHub); not directly with each other's clone.
+- Contributors generally interact with a "central" repository online (e.g., GitHub); not directly with each other's _clone_.
 
 ---
 
@@ -139,11 +139,11 @@ knitr::include_graphics("img/git-clones-conflict.svg")
 
 # Summary
 
-- A _repository_ is a directory on a computer in which files are tracked together.
+- A _repository_ is a directory on a computer in which files are _tracked_ together.
 
-- Files in a repository are tracked: changes are detected and recorded.
+- Files in a repository are _tracked_: changes are detected and recorded.
 
-- Users manually decide which files are tracked and when changes are recorded.
+- Users manually decide which files are _tracked_ and when changes are recorded (i.e., _committed_).
 
   + Each record of changes is called a _commit_.
 
