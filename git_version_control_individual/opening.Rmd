@@ -149,7 +149,7 @@ knitr::include_graphics("img/git-clones-conflict.svg")
 
 - The complete history of _commits_ makes up the _log_ of a _repository_.
 
-- A _repository_ can be _cloned_ across different computers (i.e. _remotes_).
+- A _repository_ can be _cloned_ across different computers (i.e., _remotes_).
 
 - _Commits_ can be _pushed_ and _pulled_ between _clones_ of a _repository_.
 
