@@ -447,7 +447,7 @@ knitr::include_graphics("img/github-readme-edit.png")
 
 Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 
-- This does not (cannot!) automatically update the files in your clone(s) on clusters and personal computers.
+- This does not (cannot!) automatically update the files in your _clone(s)_ on clusters and personal computers.
 
 - The changes need to be _pulled_ from <i class="fab fa-github"></i> GitHub to the clone.
 
@@ -467,7 +467,7 @@ knitr::include_graphics("img/github-network-graph2.png")
 
 ## Pull changes from a remote repository
 
-In the Bash Terminal, set the working directory inside your clone of the repository, and run `git pull`.
+In the Bash Terminal, set the working directory inside your _clone_ of the _repository_, and run `git pull`.
 
 .center[
 **How do you read the message output? (example below)**
