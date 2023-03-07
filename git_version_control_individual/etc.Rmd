@@ -57,6 +57,8 @@ knitr::include_graphics("img/git-revert.svg")
 The `git reset` sub-command can be used to reset the history of the repository
 to an earlier commit, deleting every subsequent commit.
 
+<br/>
+
 ```{r, fig.align='center', out.height='400px'}
 # In-house illustration made using Adobe Illustrator
 knitr::include_graphics("img/git-reset.svg")
