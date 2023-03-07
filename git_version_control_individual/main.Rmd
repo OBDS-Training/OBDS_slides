@@ -212,9 +212,9 @@ knitr::include_graphics("img/git-commit.svg")
 
 # Remotes
 
-You have made a _commit_ in the clone of the repository on the teaching cluster.
+You have made a _commit_ in the _clone_ of the _repository_ on the teaching cluster.
 
-- The <i class="fab fa-github"></i> GitHub clone of the repository does not about it yet.
+- The <i class="fab fa-github"></i> GitHub _clone_ of the _repository_ does not about it yet.
 
 - You need to _push_ those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
 
@@ -233,13 +233,13 @@ The histories of clones are not automatically synchronised.
 
 # Push commits to a remote
 
-The `git push` sub-command can be used to send local changes to a remote repository.
+The `git push` sub-command can be used to send local changes to a _remote_ repository.
 
-- The local repository must have configured the address of the remote repository.
-- When you create a repository as a _clone_ of a remote repository,
+- The local repository must have configured the address of the _remote_ repository.
+- When you create a repository as a _clone_ of a _remote_ repository,
   this is done automatically (the remote `origin` is created during initialisation).
 
-Before we push, the `git remote` command can be used to inspect, add, and remove remote repositories from the local repository configuration.
+Before we push, the `git remote` command can be used to inspect, add, and remove links to _remote_ repositories from the local repository configuration.
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git remote -v
@@ -250,9 +250,9 @@ origin	git@github.com:kevinrue/OBDS_May_2022.git (fetch)
 origin	git@github.com:kevinrue/OBDS_May_2022.git (push)
 ```
 
-When everything is in place, you can tell <i class="fab fa-git"></i> to push new commits from the local clone to a remote.
+When everything is in place, you can tell <i class="fab fa-git"></i> to push new commits from the local clone to a _remote_.
 When calling `git push` without any other argument,
-the default is to push from the current branch to the corresponding branch on the remote named `origin`.
+the default is to push from the current local branch to the corresponding branch on the _remote_ named `origin`.
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git push
