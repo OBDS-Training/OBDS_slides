@@ -22,6 +22,8 @@ knitr::include_graphics("img/phd101212s.gif")
 
 - Go back to any version at any time.
 
+<br/>
+
 **What do _you_ expect from a tool to track changes?**
 ]
 
