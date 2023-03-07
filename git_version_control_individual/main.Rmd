@@ -390,6 +390,8 @@ The `git diff` sub-command can be used to compare two states of the repository.
 - It is also possible to compare the current state of files in the repository - including uncommitted changes - to any commit of the repository.
   + This is often used to examine the changes that you have made since the most recent commit.
 
+<br/>
+
 .pull-left[
 .small-code[
 ```{bash, eval=FALSE, echo=TRUE}
@@ -402,7 +404,7 @@ index 0000000..e69de29
 ]
 
 .pull-right[
-```{r, fig.align='center', out.height='200px', out.width='500px'}
+```{r, fig.align='center', out.height='125px', out.width='475px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-diff.svg")
 ```
