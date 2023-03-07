@@ -32,7 +32,7 @@ knitr::include_graphics("img/github-new-repository-form.png")
 
 The new repository - if initialised with a README file - should appear as follows.
 
-```{r, out.height='400px', out.width='700px'}
+```{r, out.height='400px', out.width='675px'}
 knitr::include_graphics("img/github-new-repository-view.png")
 # Source: Kevin Rue-Albrecht (screenshot)
 ```
