@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1203.4 595.3" style="enable-background:new 0 0 1203.4 595.3;" xml:space="preserve">
 <style type="text/css">
@@ -14,6 +14,7 @@
 	.st8{fill:none;stroke:#000000;stroke-miterlimit:10;}
 	.st9{font-family:'Courier';}
 	.st10{font-size:16px;}
+	.st11{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;stroke-dasharray:3.1588,3.1588;}
 </style>
 <rect x="455.7" y="26.7" class="st0" width="277.6" height="220"/>
 <circle class="st1" cx="501.4" cy="128.3" r="9.3"/>
@@ -99,4 +100,13 @@
 		</g>
 	</g>
 </g>
+<circle class="st5" cx="1006.7" cy="419.5" r="9.3"/>
+<g>
+	<g>
+		<line class="st0" x1="934.6" y1="419.5" x2="936.1" y2="419.5"/>
+		<line class="st11" x1="939.3" y1="419.5" x2="988.2" y2="419.5"/>
+		<line class="st0" x1="989.8" y1="419.5" x2="991.3" y2="419.5"/>
+	</g>
+</g>
+<path class="st1" d="M997.4,419.5c-3.1,1.1-6,2.7-8.5,4.8l1.7-4.8l-1.7-4.8C991.4,416.8,994.3,418.4,997.4,419.5z"/>
 </svg>
