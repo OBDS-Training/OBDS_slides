@@ -178,6 +178,8 @@ git merge new_branch  # merge the "feature" branch to the current branch
 This creates a new commit.
 From that point, files contain the changes made in the two parent branches.
 
+<br/>
+
 ```{r, fig.align='center', out.height='150px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-merge.svg")
