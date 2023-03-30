@@ -13,9 +13,7 @@ format: html
 library(tidyverse)
 ```
 
-# Integrated exercise
-
-## Gene expression
+## Exercise
 
 ### Part 1
 
@@ -49,11 +47,7 @@ ggplot(exprs_assay_long, aes(exprs)) +
   cowplot::theme_cowplot()
 ```
 
----
-
-# Integrated exercise
-
-## Gene expression
+## Exercise
 
 ### Part 2
 
@@ -95,11 +89,7 @@ exprs_sampleinfo <- sample_info %>%
 exprs_sampleinfo
 ```
 
----
-
-# Integrated exercise
-
-## Gene expression
+## Exercise
 
 ### Part 3
 
