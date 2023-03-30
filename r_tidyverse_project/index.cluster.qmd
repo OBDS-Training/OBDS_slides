@@ -1,0 +1,37 @@
+---
+title: 'tidyverse project'
+subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2023-06-09 (updated: `r Sys.Date()`)"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/quarto.png
+    css: styles.css
+    footer: <https://quarto.org>
+# output:
+#   xaringan::moon_reader:
+#     css: [default, metropolis, rladies-fonts, "my-theme.css"]
+#     lib_dir: libs
+#     nature:
+#       highlightStyle: github
+#       highlightLines: true
+#       countIncrementalSlides: false
+# uncomment this line to produce HTML and PDF in RStudio:
+# knit: pagedown::chrome_print
+---
+
+```{r, child='goals_and_objectives.qmd'}
+```
+
+<!--
+Docs:
+- https://quarto.org/docs/get-started/hello/rstudio.html
+- https://quarto.org/docs/presentations/revealjs/
+- https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd
+- https://quarto.org/docs/reference/formats/presentations/revealjs.html#slides
+-->
