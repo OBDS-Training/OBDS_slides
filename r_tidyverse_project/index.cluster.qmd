@@ -4,6 +4,7 @@ subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-06-09 (updated: `r Sys.Date()`)"
+date-format: long
 format:
   revealjs: 
     slide-number: true
