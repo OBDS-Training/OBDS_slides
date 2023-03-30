@@ -10,9 +10,10 @@ format:
     chalkboard: 
       buttons: false
     preview-links: auto
-    logo: images/quarto.png
+    logo: img/ox_brand1_pos.gif
     css: styles.css
-    footer: <https://quarto.org>
+    fontsize: 1.1em
+    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse 
 # output:
 #   xaringan::moon_reader:
 #     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -35,3 +36,29 @@ Docs:
 - https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd
 - https://quarto.org/docs/reference/formats/presentations/revealjs.html#slides
 -->
+
+## Prerequisites
+
+- An account on the teaching cluster.
+
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster.
+
+- Start a new RStudio project called `tidyverse_project`.
+
+- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
+
+- Make a symbolic link from the RStudio project to the template notebook.
+
+- Open the notebook and follow along, editing and running the code as needed.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/obds-git-setup.svg")
+```
+
+```{r, child='etc.qmd'}
+```

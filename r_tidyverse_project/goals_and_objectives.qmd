@@ -20,6 +20,7 @@ BibOptions(
   hyperlink = "to.doc",
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
+NoCite(bib, "R")
 ```
 
 ## Lesson goals and objectives
@@ -44,7 +45,3 @@ This can range from 3 to 8 bullet points.
 - Process data using tidyverse functions.
 - Visualise data and results.
 - Export results to files.
-
-Footer:
-Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse
-<img src="img/ox_brand1_pos.gif" alt="Oxford University Logo" align="right" height="90%">

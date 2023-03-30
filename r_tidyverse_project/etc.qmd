@@ -1,0 +1,9 @@
+## Further reading
+
+- TODO
+
+## References
+
+```{r, include=TRUE, echo=FALSE, results="asis"}
+PrintBibliography(bib)
+```
