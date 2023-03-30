@@ -1,5 +1,5 @@
 ---
-title: 'tidyverse project'
+title: 'tidyverse integrated exercise'
 subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
@@ -13,8 +13,9 @@ format:
     preview-links: auto
     logo: img/ox_brand1_pos.gif
     css: styles.css
-    fontsize: 1.1em
-    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse 
+    fontsize: 1.5em
+    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse
+# renderthis::to_pdf("index.cluster.html")
 # output:
 #   xaringan::moon_reader:
 #     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -36,6 +37,7 @@ Docs:
 - https://quarto.org/docs/presentations/revealjs/
 - https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd
 - https://quarto.org/docs/reference/formats/presentations/revealjs.html#slides
+- https://quarto.org/docs/output-formats/html-themes.html
 -->
 
 ## Prerequisites

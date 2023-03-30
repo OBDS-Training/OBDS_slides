@@ -25,6 +25,8 @@ NoCite(bib, "R")
 
 ## Lesson goals and objectives
 
+<br/>
+
 ### Learning goals
 
 <!--
@@ -33,6 +35,8 @@ This should be no more than 3 bullet points.
 -->
 
 - Apply tidyverse functions in the context of a large workflow.
+
+<br/>
 
 ### Learning objectives
 

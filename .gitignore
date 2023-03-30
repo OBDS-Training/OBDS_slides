@@ -4,7 +4,9 @@
 .Ruserdata
 .DS_Store
 *.html
+*.tex
 *.pdf
+*.log
 data/
 libs/
 index_files/
