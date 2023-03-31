@@ -1,5 +1,5 @@
 ---
-title: 'tidyverse integrated exercise'
+title: 'Integrated exercise using the <i class="fab fa-r-project"></i> tidyverse'
 subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"

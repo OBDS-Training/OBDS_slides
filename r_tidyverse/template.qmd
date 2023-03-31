@@ -2,16 +2,19 @@
 title: "Solution: Introduction to the tidyverse"
 author: "Kevin Rue-Albrecht"
 date: "2023-06-08"
-output: html_document
+date-format: long
+format: html
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#| label: load-packages
+#| include: false
+
 library(tidyverse)
 library(ggplot2)
 ```
 
-# Demo
+## Demo
 
 - Load the tidyverse
 
@@ -25,9 +28,9 @@ library(tidyverse)
 library(ggplot2)
 ```
 
-# Demo
+## Demo
 
-# The pipe operator
+### The pipe operator
 
 ```{r}
 x <- 4
@@ -45,9 +48,9 @@ iris %>%
   geom_point()
 ```
 
-# Demo
+## Demo
 
-## The tidyverse philosophy
+### The tidyverse philosophy
 
 ```{r}
 iris %>%
@@ -55,74 +58,63 @@ iris %>%
     slice_head(n = 3)
 ```
 
-# Exercise
+## Exercise
 
-## Read and write files
+### Read and write files
 
 - Read data from the file `iris.csv`.
   Assign the data imported from the file to an object called `iris_raw`.
 
 ```{r}
-iris_raw <- read_csv("data/iris.csv")
+iris_raw <- 
 ```
 
 **What do you learn about the data from the messages displayed in the R console while the contents of the file are parsed and imported into your R session?**
 
 > Answer:
-> - Number of rows and columns in the data set.
-> - Delimiter used to parse the file.
-> - Name and type of individual columns.
-> - Hints about some functions and options that can be used.
 
 - Print the value of `iris_raw`.
 
 ```{r}
-iris_raw
+
 ```
 
 **What is the class of the data? What are the dimensions of the dataset? What is the type of data stored in each column?**
 
 > Answer:
-> - Data are loaded as a `tibble`.
-> - Data set is 150 rows and 5 columns.
-> - Column types are: double, double, double, double, character.
 
 - Write the dataset to a file named `iris.tsv`, separating fields with the tabulation character.
 
 ```{r}
-write_tsv(iris_raw[, 1:4], "iris.tsv")
+
 ```
 
 **What function do you use? What options are available for that function?**
 
 > Answer:
-> - `write.tsv()` is the ideal choice here.
-> - Options can be found on the man page, using `?write.tsv`.
 
 - Inspect the `iris.tsv` file.
   You can use `file.edit()` to open the file in the RStudio editor.
 
 ```{r, eval=FALSE}
-file.edit("iris.tsv")
+file.edit(   )
 ```
 
 **Are you satisfied with the contents and appearance of the file?**
 
 > Answer:
-> - The file is as expected.
-> - Not the nicest to read, due to column names wider than values.
 
-# Demo
+## Demo
 
-## Making a tibble
+### Making a tibble
 
 ```{r}
 tibble(x = 1:5, y = 1, z = x ^ 2 + y)
 ```
 
-# Demo
+## Demo
 
-## Subset the columns of a table
+### Subset the columns of a table
 
 ```{r}
 iris %>%
@@ -148,9 +140,9 @@ iris %>%
     slice_head(n = 6)
 ```
 
-# Demo
+## Demo
 
-## Create and update columns in a table
+### Create and update columns in a table
 
 ```{r}
 iris %>%
@@ -161,9 +153,9 @@ iris %>%
     slice_head(n = 6)
 ```
 
-# Demo
+## Demo
 
-## Subset observations in a table
+### Subset observations in a table
 
 ```{r}
 iris %>%
@@ -171,9 +163,9 @@ iris %>%
     as_tibble()
 ```
 
-# Demo
+## Demo
 
-## Compute summary statistics
+### Compute summary statistics
 
 Without grouping
 
@@ -190,9 +182,9 @@ iris %>%
     summarise(Sepal.Length.mean = mean(Sepal.Length))
 ```
 
-# Demo
+## Demo
 
-## Sort observations
+### Sort observations
 
 ```{r}
 iris %>%
@@ -200,9 +192,9 @@ iris %>%
     as_tibble()
 ```
 
-# Demo
+## Demo
 
-## Extract a single column as a vector
+### Extract a single column as a vector
 
 Without names
 
@@ -220,9 +212,9 @@ iris %>%
     head(5)
 ```
 
-# Demo
+## Demo
 
-## Combine two tables using shared information
+### Combine two tables using shared information
 
 ```{r}
 tibble_1 <- tibble(
@@ -249,34 +241,34 @@ tibble_joined <- left_join(tibble_1, tibble_2, by = "ID")
 tibble_joined
 ```
 
-# Exercise
+## Exercise
 
-## Manipulate data
+### Manipulate data
 
-### Exercise 1
+#### Exercise 1
 
 - Using `iris_raw`, for each species of iris, compute the following summary statistics for the `sepal_length`: mean, median, minimum, maximum.
 
 ```{r}
 iris_raw %>% 
-    group_by(species) %>% 
-    summarise(
-        min = min(sepal_length),
-        mean = mean(sepal_length),
-        median = median(sepal_length),
-        max = max(sepal_length)
-    )
+
+
+
+
+
+
+
 ```
 
-### Exercise 2
+#### Exercise 2
 
 - For each species of iris, compute the mean of every column that is numeric.
   **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
 
 ```{r}
 iris_raw %>% 
-    group_by(species) %>% 
-    summarise(across(where(is.numeric), mean))
+
+
 ```
 
 - Filter the table above to retain only species of iris with an average sepal length less than `6`.
@@ -284,9 +276,9 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(species) %>% 
-    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
-    filter(sepal_length < 6)
+
+
+
 ```
 
 - Sort the table above by descending `sepal_length`.
@@ -294,10 +286,10 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(species) %>% 
-    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
-    filter(sepal_length < 6) %>% 
-    arrange(desc(sepal_length))
+
+
+
+
 ```
 
 - From the table above, extract the `sepal_length` column as a numeric vector.
@@ -306,18 +298,18 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    group_by(species) %>% 
-    summarise(across(tidyselect::starts_with("sepal_"), mean)) %>% 
-    filter(sepal_length < 6) %>% 
-    arrange(desc(sepal_length)) %>% 
-    pull(sepal_length, name = species)
+
+
+
+
+
 ```
 
-# Exercise
+## Exercise
 
-## Manipulate data
+### Manipulate data
 
-### Exercise 3
+#### Exercise 3
 
 Let's make the silly assumption that iris sepals are rectangular in shape.
 
@@ -325,9 +317,9 @@ Let's make the silly assumption that iris sepals are rectangular in shape.
 
 ```{r}
 iris_raw %>% 
-    mutate(
-        sepal_area = sepal_length * sepal_width
-    )
+
+
+
 ```
 
 - Subset the result to the columns named `species` and `sepal_area`.
@@ -335,10 +327,10 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    mutate(
-        sepal_area = sepal_length * sepal_width
-    ) %>% 
-    select(species, sepal_area)
+
+
+
+
 ```
 
 - Subset the result to display the top 5 observations by `sepal_area`.
@@ -346,14 +338,14 @@ iris_raw %>%
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_raw %>% 
-    mutate(
-        sepal_area = sepal_length * sepal_width
-    ) %>% 
-    select(species, sepal_area) %>% 
-    slice_max(sepal_area, n = 5)
+
+
+
+
+
 ```
 
-## Bonus point
+#### Bonus point
 
 - Make a histogram of `sepal_area` colored by species.
 
@@ -362,22 +354,22 @@ You might also want to facet the plot by species.
 ```{r}
 # Copy the code chunk above and extend with more pipes
 iris_for_ggplot <- iris_raw %>% 
-    mutate(
-        sepal_area = sepal_length * sepal_width
-    ) %>% 
-    select(species, sepal_area)
+
+
+
+
 iris_for_ggplot
 ```
 
 ```{r}
-ggplot(iris_for_ggplot, aes(sepal_area, fill = species)) +
-    geom_histogram() +
-    facet_wrap(~species, ncol = 1)
+ggplot(iris_for_ggplot,   ) +
+
+
 ```
 
-# Exercise
+## Exercise
 
-## Pivot data from wide to long
+### Pivot data from wide to long
 
 Reshape the `iris_raw` dataset in a tidy format where one observation is represented by:
 
@@ -391,7 +383,7 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 
 ```{r}
 iris_long <- iris_raw %>% 
-  pivot_longer(where(is.numeric), names_to = "variable")
+
 iris_long
 ```
 
@@ -404,14 +396,14 @@ iris_long
 ```{r}
 # Copy the code chunk above and refine to address the issue
 iris_long2 <- iris_raw %>% 
-  rownames_to_column("specimen") %>% 
-  pivot_longer(c(starts_with("Sepal"), starts_with("Petal")), names_to = "variable")
+
+
 iris_long2
 ```
 
-# Exercise
+## Exercise
 
-## Pivot data from long to wide
+### Pivot data from long to wide
 
 - Reshape the tidy format of the iris data set into the original wide format.
 
@@ -419,24 +411,24 @@ iris_long2
 
 ```{r}
 iris_long2 %>% 
-      pivot_wider(id_cols = c(specimen, species), names_from = variable, values_from = value) %>% 
-  select(-specimen)
+ 
+
 ```
 
-# Demo
+## Demo
 
-## Split a column value into multiple columns
+### Split a column value into multiple columns
 
 ```{r}
 iris %>% 
-    separate(Sepal.Length, c("Sepal.Length.unit", "Sepal.Length.decimal"), sep = "[.]") %>%
-    select(c("Sepal.Length.unit", "Sepal.Length.decimal")) %>%
-    as_tibble()
+
+
+
 ```
 
-# Demo
+## Demo
 
-## Combine multiple columns into a single value
+### Combine multiple columns into a single value
 
 ```{r}
 iris %>% 
@@ -445,9 +437,9 @@ iris %>%
   as_tibble()
 ```
 
-# Demo
+## Demo
 
-## Extract substrings
+### Extract substrings
 
 ```{r}
 iris_species <- iris %>%
@@ -466,9 +458,9 @@ iris_species %>%
     unique()
 ```
 
-# Demo
+## Demo
 
-## Join multiple strings and remove whitespaces
+### Join multiple strings and remove whitespaces
 
 ```{r}
 words <- c("A ", " few ", "words")

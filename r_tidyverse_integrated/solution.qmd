@@ -1,5 +1,5 @@
 ---
-title: "Solution code for tidyverse integrated exercise"
+title: 'Solution: Integrated exercise using the <i class="fab fa-r-project"></i> tidyverse'
 author: "Kevin Rue-Albrecht"
 date: "2023-03-30"
 date-format: long
