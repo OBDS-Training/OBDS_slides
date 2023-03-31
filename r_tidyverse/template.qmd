@@ -96,7 +96,9 @@ iris_raw <-
 - Inspect the `iris.tsv` file.
   You can use `file.edit()` to open the file in the RStudio editor.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 file.edit(   )
 ```
 

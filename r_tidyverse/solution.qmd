@@ -105,7 +105,9 @@ write_tsv(iris_raw[, 1:4], "iris.tsv")
 - Inspect the `iris.tsv` file.
   You can use `file.edit()` to open the file in the RStudio editor.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 file.edit("iris.tsv")
 ```
 
