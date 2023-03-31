@@ -4,8 +4,8 @@ layout: true
 
 <div class="my-footer"><span>
 Kevin Rue-Albrecht
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-The <i class="fab fa-r-project"></i> tidyverse
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Introduction to the <i class="fab fa-r-project"></i> tidyverse
 </span></div>
 
 ```{r setup, include = FALSE}

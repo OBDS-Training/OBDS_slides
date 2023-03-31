@@ -1,9 +1,9 @@
 ---
-title: 'The tidyverse'
+title: 'Introduction to the tidyverse'
 subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-02-03 (updated: `r Sys.Date()`)"
+date: "2023-06-08 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
