@@ -421,9 +421,9 @@ iris_long2 %>%
 
 ```{r}
 iris %>% 
-
-
-
+    separate(Sepal.Length, c("Sepal.Length.unit", "Sepal.Length.decimal"), sep = "[.]") %>%
+    select(c("Sepal.Length.unit", "Sepal.Length.decimal")) %>%
+    as_tibble()
 ```
 
 ## Demo
