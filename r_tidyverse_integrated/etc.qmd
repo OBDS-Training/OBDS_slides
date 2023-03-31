@@ -46,9 +46,7 @@ We provide you with an Excel file that contains gene expression data for the nin
   Remove labels as well as ticks for the x-axis.
   Remove the panel grid and background.
 
-### Bonus point
-
-- In the heat map, group samples by sex.
+- Repeat the heat map, grouping samples by sex.
 
 ## Further reading
 

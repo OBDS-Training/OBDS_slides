@@ -1,5 +1,5 @@
 ---
-title: "Solution: Introduction to the tidyverse"
+title: "Template: Introduction to the tidyverse"
 author: "Kevin Rue-Albrecht"
 date: "2023-06-08"
 date-format: long
