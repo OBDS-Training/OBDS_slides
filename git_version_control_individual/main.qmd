@@ -197,6 +197,8 @@ The `git commit` sub-command can be used to add changes currently in the _stagin
 - The contents of the _staging area_ are added to a new _commit_ in the repository.
 - The _staging area_ itself is cleared, ready for the next set of changes to process.
 
+<br/>
+
 ```{r, fig.align='center', out.height='200px', out.width='800px'}
 # Source: https://swcarpentry.github.io/git-novice/04-changes/index.html
 knitr::include_graphics("img/carpentries-git-staging-area.svg")
