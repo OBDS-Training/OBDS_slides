@@ -144,17 +144,21 @@ _(See next slides to navigate to that page more naturally.)_
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git clone git@github.com:kevinrue/OBDS_May_2022.git
+git clone git@github.com:kevinrue/OBDS_May_2022.git
 ```
 
-.pull-left[
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, fig.align='center', out.height='300px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-clone-collaboration.svg")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 But first, create a `git` subdirectory in your personal OBDS directory and change directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
@@ -164,10 +168,14 @@ cd /project/obds/$USER/git
 
 Now, clone the repository into that `git` subdirectory.
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **Why is a `git` subdirectory best practices?**
-]
-]
+:::
+:::
+
+::::
 
 ```{r child='main.qmd'}
 ```
