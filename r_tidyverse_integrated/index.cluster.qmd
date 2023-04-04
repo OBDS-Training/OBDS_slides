@@ -14,18 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse
-# renderthis::to_pdf("index.cluster.html")
-# output:
-#   xaringan::moon_reader:
-#     css: [default, metropolis, rladies-fonts, "my-theme.css"]
-#     lib_dir: libs
-#     nature:
-#       highlightStyle: github
-#       highlightLines: true
-#       countIncrementalSlides: false
-# uncomment this line to produce HTML and PDF in RStudio:
-# knit: pagedown::chrome_print
+    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse -- OBDS Training Programme
 ---
 
 ```{r, child='goals_and_objectives.qmd'}
