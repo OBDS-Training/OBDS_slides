@@ -1,5 +1,5 @@
 ---
-title: 'Integrated exercise using the <i class="fab fa-r-project"></i> tidyverse'
+title: 'Integrated tidyverse exercise'
 subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- The <i class="fab fa-r-project"></i> tidyverse -- OBDS Training Programme
+    footer: Kevin Rue-Albrecht -- Integrated tidyverse exercise
 ---
 
 ```{r, child='goals_and_objectives.qmd'}
