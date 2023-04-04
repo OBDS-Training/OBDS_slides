@@ -4,30 +4,34 @@ Change directory to your new local clone of the repository, and list its content
 For instance:
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ cd OBDS_May_2022
-$ ls -a
+cd OBDS_May_2022
+ls -a
 ```
 
 ```
 .  ..  .git  README.md
 ```
 
+<br/>
+
 Git uses the `.git` sub-directory to store all the information about the project history.
 You can have a brief look for yourself if you wish.
 Make sure that you do not alter or remove anything in that sub-directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ ls -a .git/
+ls -a .git/
 ```
+
+<br/>
 
 #### Result
 
 - Deleting the `.git` sub-directory is effectively discarding the _history_ of changes made to the repository.
 - However, deleting the `.git` sub-directory does not affect the _current state_ of the other sub-directories and files that make up your project (e.g., `README.md`).
 
-.center[
+::: {style="text-align: center;"}
 **Changes are stored separately from the files themselves.**
-]
+:::
 
 ## Ignore files
 
@@ -37,20 +41,23 @@ Each line in those file specifies a file name or pattern that <i class="fab fa-g
 
 - Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the _index_, but keep the file itself).
 
-.pull-left[
-### .gitignore
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
 ```
+## .gitignore
+
  .DS_Store
  data/
  *fastq.gz
  *sam
  *bam
 ```
+:::
 
-**Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
-]
-
-.pull-right[
+::: {.column width="50%"}
 ```
 my-project/
 |_ .gitignore
@@ -65,14 +72,22 @@ my-project/
 |_ scripts/
   |_ fastq_to_bam.sh
 ```
-]
+:::
+
+::::
+
+<br/>
+
+**Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
 
 ## Status of a repository
 
 The `git status` sub-command can be used to check whether the repository is up-to-date.
 
+<br/>
+
 ```{bash, eval=FALSE, echo=TRUE}
-$ git status
+git status
 ```
 
 ```
@@ -94,17 +109,26 @@ nano .gitignore
 vi .gitignore
 ```
 
+<br/>
+
 Add a commented line to that file, starting with `#` (hashtag), e.g.
 
-```
+```{bash}
+#| eval: false
+#| echo: true
+
 # This file list paths and patterns to ignore from version control
 ```
 
+<br/>
+
 Run `git status` again.
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **What does the command return this time? How do you interpret it?**
-]
+:::
 
 ## Untracked files
 
@@ -121,6 +145,11 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
+
+<br/>
+
+The message indicates that a new file named `.gitignore` is detected in the repository.
+It also indicates that the command `git add` may be used to track the file.
 
 ```{r, fig.align='center', out.height='200px', out.width='800px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)

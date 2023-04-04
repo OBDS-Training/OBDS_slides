@@ -85,7 +85,7 @@ More concrete and measurable outputs.
 
 - Connect to the teaching cluster over SSH.
 
-```{r child='opening.qmd'}
+```{r, child='opening.qmd'}
 ```
 
 ## SSH key pairs
@@ -125,16 +125,16 @@ This key pair will allow your clone of the repository to push and pull code thro
 _(See next slides to navigate to that page more naturally.)_
 :::
 
-```{r child='ssh-keypair-screenshots.qmd'}
+```{r, child='ssh-keypair-screenshots.qmd'}
 ```
 
-```{r child='get-started.qmd'}
+```{r, child='get-started.qmd'}
 ```
 
-```{r child='git-configure.qmd'}
+```{r, child='git-configure.qmd'}
 ```
 
-```{r child='create-github-repository.qmd'}
+```{r, child='create-github-repository.qmd'}
 ```
 
 ## Exercise
@@ -177,7 +177,7 @@ Now, clone the repository into that `git` subdirectory.
 
 ::::
 
-```{r child='main.qmd'}
+```{r, child='main.qmd'}
 ```
 
 ## Summary so far
@@ -207,5 +207,5 @@ Adding, committing, and pushing/pulling changes cover 99% of the <i class="fab f
 However, you need to be aware of other <i class="fab fa-git"></i> commands to manage and undo mistakes.
 ]
 
-```{r child='etc.qmd'}
+```{r, child='etc.qmd'}
 ```
