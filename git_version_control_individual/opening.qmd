@@ -48,9 +48,9 @@ Other examples:
 Google Docs [version history](https://support.google.com/docs/answer/190843?hl=en),
 LibreOffice [Recording and Displaying Changes](https://help.libreoffice.org/Common/Recording_and_Displaying_Changes).
 
-.center[
+::: {style="text-align: center;"}
 **In your opinion, what are pros/cons of track changes in this way?**
-]
+:::
 
 ## Track changes using version control
 
@@ -74,7 +74,7 @@ knitr::include_graphics("img/carpentries-play-changes.svg")
 
 ## A history of changes implies versions of files
 
-```{r, fig.align='center', out.height='400px'}
+```{r, fig.align='center', out.height='500px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-workflow-overview.svg")
 ```
