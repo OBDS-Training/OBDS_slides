@@ -1,3 +1,17 @@
+## Overview
+
+Today's lesson is one large exercise.
+
+You are expected you to use <i class="fab fa-r-project"></i> and `tidyverse` functions seen in previous lessons to assemble a workflow and complete the following analysis:
+
+- Import gene expression data from an Excel file.
+
+- Import sample metadata from an Excel file and combine with the gene expression data.
+
+- Identify the gene with the largest absolute difference in expression between male and female patients.
+
+- Visualise data at various stages of the analysis.
+
 ## Exercise
 
 ### Part 1
