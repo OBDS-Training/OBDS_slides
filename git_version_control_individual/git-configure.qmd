@@ -5,22 +5,28 @@ On each computer where we use <i class="fab fa-git"></i>, we need to configure a
 - our name
 - our email address
 
-These two settings should apply _globally_ (i.e. to all our projects on this computer).
+Typically, these two settings are applied _globally_ (i.e. to all our projects on this computer).
 
 In the Bash terminal, the `git config` sub-command can be used to get and set those settings.
+
+<br/>
 
 #### Getting
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git config --global user.name
-$ git config --global user.email
+git config --global user.name
+git config --global user.email
 ```
+
+<br/>
 
 #### Setting
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git config --global user.name "Kevin Rue-Albrecht"
-$ git config --global user.email "kevinrue@users.noreply.github.com"
+git config --global user.name "Kevin Rue-Albrecht"
+git config --global user.email "kevinrue@users.noreply.github.com"
 ```
+
+<br/>
 
 Other pieces of information can be configured (e.g., preferred text editor), but those are optional.
