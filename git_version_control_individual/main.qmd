@@ -164,6 +164,8 @@ The `git add` sub-command can be used to add new sets of changes to the _staging
 - The command adds filenames to the staging area, but only the changes in those files will be recorded.
 - In this case, we add a new file to the staging area, so the whole contents of the new file constitute the changes (relative to no file).
 
+<br/>
+
 ```{bash, eval=FALSE, echo=TRUE}
 $ git add .gitignore
 $ git status
@@ -178,9 +180,11 @@ Changes to be committed:
 	new file:   .gitignore
 ```
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **What changed in `git status` after running `git add`?**
-]
+:::
 
 ## The staging area
 
