@@ -39,7 +39,7 @@ Docs:
 
 - Launch RStudio Server on the teaching cluster.
 
-- Start a new RStudio project called `tidyverse_project`.
+- Start a new RStudio project called `tidyverse_integrated`.
 
 - Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
 
