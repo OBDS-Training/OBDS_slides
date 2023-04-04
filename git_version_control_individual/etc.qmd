@@ -1,4 +1,4 @@
-# What to track?
+## What to track?
 
 .center[
 **Can you identify the reasoning underlying each of the following pieces of advice?**
@@ -39,9 +39,7 @@
   + e.g., login, passwords
 ]
 
----
-
-# Revert changes
+## Revert changes
 
 The `git revert` sub-command can be used to undo everything that was done in a particular commit, without the need to edit any of the files manually.
 
@@ -50,9 +48,7 @@ The `git revert` sub-command can be used to undo everything that was done in a p
 knitr::include_graphics("img/git-revert.svg")
 ```
 
----
-
-# Reset the commit history
+## Reset the commit history
 
 The `git reset` sub-command can be used to reset the history of the repository
 to an earlier commit, deleting every subsequent commit.
@@ -64,9 +60,7 @@ to an earlier commit, deleting every subsequent commit.
 knitr::include_graphics("img/git-reset.svg")
 ```
 
----
-
-# Branches of history
+## Branches of history
 
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
@@ -92,9 +86,7 @@ Then:
 
 - Changes upstream of the branching point are shared; downstream changes are specific to each branch.
 
----
-
-# Merging branches of history
+## Merging branches of history
 
 .pull-left[
 ```{r, fig.align='center', out.height='300px'}
@@ -117,9 +109,7 @@ To generate a new version of your code that contains the code from your latest l
 Merging two branches creates a new _commit_ in the repository history.
 Downstream of the merging point, the files contain the changes made in both upstream branches.
 
----
-
-# Branching and merging
+## Branching and merging
 
 ```{r, fig.align='center', out.height='300px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
@@ -136,9 +126,7 @@ knitr::include_graphics("img/branch-and-merge.svg")
 
 - Branches do not have to be merged; they can be abandoned and deleted (great for experimenting).
 
----
-
-# Create a branch
+## Create a branch
 
 The `git branch` sub-command can be used to inspect and create branches in a repository.
 
@@ -162,9 +150,7 @@ create **and** switch to that new branch.
 knitr::include_graphics("img/git-branch.svg")
 ```
 
----
-
-# Merging a branch
+## Merging a branch
 
 The `git merge` sub-command can be used to merge two branches.
 
@@ -185,9 +171,7 @@ From that point, files contain the changes made in the two parent branches.
 knitr::include_graphics("img/git-merge.svg")
 ```
 
----
-
-# Deleting a branch
+## Deleting a branch
 
 Once merged, branches should be "deleted".
 
@@ -217,22 +201,18 @@ knitr::include_graphics("img/git-branch-delete.svg")
 
 The name of the branch can then be re-used to create a new branch with that name.
 
----
+## Further reading
 
-# Further reading
-
-## Novice
+### Novice
 
 - Software Carpentry: <https://swcarpentry.github.io/git-novice/>
 
-## Advanced
+### Advanced
 
 - <i class="fab fa-git"></i> glossary: <https://git-scm.com/docs/gitglossary>
 - Oh s**t <i class="fab fa-git"></i>: <https://ohshitgit.com/>
 
----
-
-# Credits
+## Credits
 
 ```{r, out.height='300px'}
 knitr::include_graphics("img/TheCarpentries.svg")
@@ -245,9 +225,7 @@ Version Control with Git
 <https://swcarpentry.github.io/git-novice/>
 ]
 
----
-
-# References
+## References
 
 ```{r refs, results="asis"}
 NoCite(bib, "bryan2017versioncontrol")

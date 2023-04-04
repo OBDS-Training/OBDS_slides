@@ -1,4 +1,4 @@
-# Getting started with <i class="fab fa-git"></i>
+## Getting started with <i class="fab fa-git"></i>
 
 The `git` command has many sub-commands, options, and flags.
 You can run `git` alone to list the sub-commands and a short description of each.

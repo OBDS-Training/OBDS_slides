@@ -1,28 +1,3 @@
-```{r setup, include = FALSE}
-stopifnot(requireNamespace("htmltools"))
-htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE, error = FALSE,
-  include = FALSE
-)
-stopifnot(require(magrittr))
-```
-
-```{r, load_refs, include=FALSE, cache=FALSE}
-options(htmltools.dir.version = FALSE)
-library(RefManageR)
-BibOptions(
-  check.entries = FALSE,
-  bib.style = "authoryear",
-  cite.style = "authoryear",
-  max.names = 2,
-  style = "markdown",
-  hyperlink = "to.doc",
-  dashed = TRUE)
-bib <- ReadBib("bibliography.bib")
-NoCite(bib, "R")
-```
-
 ## Lesson goals and objectives
 
 <br/>

@@ -1,4 +1,4 @@
-# Configure <i class="fab fa-git"></i>
+## Configure <i class="fab fa-git"></i>
 
 On each computer where we use <i class="fab fa-git"></i>, we need to configure at least two pieces of information:
 

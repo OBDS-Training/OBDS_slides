@@ -1,4 +1,4 @@
-# The `.git` subdirectory
+## The `.git` subdirectory
 
 Change directory to your new local clone of the repository, and list its contents.
 For instance:
@@ -29,9 +29,7 @@ $ ls -a .git/
 **Changes are stored separately from the files themselves.**
 ]
 
----
-
-# Ignore files
+## Ignore files
 
 One or more special files named `.gitignore` can be placed in your project.
 
@@ -40,7 +38,7 @@ Each line in those file specifies a file name or pattern that <i class="fab fa-g
 - Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the _index_, but keep the file itself).
 
 .pull-left[
-## .gitignore
+### .gitignore
 ```
  .DS_Store
  data/
@@ -69,9 +67,7 @@ my-project/
 ```
 ]
 
----
-
-# Status of a repository
+## Status of a repository
 
 The `git status` sub-command can be used to check whether the repository is up-to-date.
 
@@ -86,11 +82,9 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Make changes
+### Make changes
 
 Create a file named `.gitignore` in your repository
 using the `nano` or `vi` command line text editors in the Bash terminal:
@@ -112,9 +106,7 @@ Run `git status` again.
 **What does the command return this time? How do you interpret it?**
 ]
 
----
-
-# Untracked files
+## Untracked files
 
 Here is an example output of `git status`, after adding a new file `.gitignore`.
 
@@ -135,9 +127,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 knitr::include_graphics("img/git-untracked.svg")
 ```
 
----
-
-# Track new files
+## Track new files
 
 The `git add` sub-command can be used to add new sets of changes to the _staging area_.
 
@@ -163,9 +153,7 @@ Changes to be committed:
 **What changed in `git status` after running `git add`?**
 ]
 
----
-
-# The staging area
+## The staging area
 
 We just ran `git add`, which added a set of changes to the _staging area_.
 
@@ -181,9 +169,7 @@ The `git commit` sub-command can be used to add changes currently in the _stagin
 knitr::include_graphics("img/carpentries-git-staging-area.svg")
 ```
 
----
-
-# Record a set of changes 
+## Record a set of changes 
 
 The `git commit` sub-command can be used to record the changes that are currently in the _staging area_ in the next _commit_ of the _repository_.
 
@@ -208,9 +194,7 @@ $ git commit -m "Added .gitignore file"
 knitr::include_graphics("img/git-commit.svg")
 ```
 
----
-
-# Remotes
+## Remotes
 
 You have made a _commit_ in the _clone_ of the _repository_ on the teaching cluster.
 
@@ -229,9 +213,7 @@ The histories of clones are not automatically synchronised.
 **Can you guess reasons why?**
 ]
 
----
-
-# Push commits to a remote
+## Push commits to a remote
 
 The `git push` sub-command can be used to send local changes to a _remote_ repository.
 
@@ -258,11 +240,9 @@ the default is to push from the current local branch to the corresponding branch
 $ git push
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Push commits to a remote
+### Push commits to a remote
 
 - Run `git push`.
 
@@ -290,11 +270,9 @@ Alternatively, we could have used the following command to explicitly push
 git push origin main
 ```
 
----
+## The repository history
 
-# The repository history
-
-## On <i class="fab fa-github"></i> GitHub
+### On <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='325px', out.width='800px'}
 # Screenshot (Kevin Rue-Albrecht)
@@ -307,11 +285,9 @@ knitr::include_graphics("img/github-network-graph.png")
 **How do you read this graph?**
 ]
 
----
+## View a commit
 
-# View a commit
-
-## On <i class="fab fa-github"></i> GitHub
+### On <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='250px', out.width='800px'}
 # Screenshot (Kevin Rue-Albrecht)
@@ -324,9 +300,7 @@ knitr::include_graphics("img/github-commit-view.png")
 **How do you read this page?**
 ]
 
----
-
-# The repository history
+## The repository history
 
 The `git log` sub-command can be used to display the history of commits in the repository.
 
@@ -354,9 +328,7 @@ $ git log --all --graph --oneline
 
 - Compare with `git log` without any argument.
 
----
-
-# View a commit
+## View a commit
 
 The `git show` sub-command can be used to examine individual past commits.
 
@@ -379,9 +351,7 @@ index 0000000..e69de29
 **How do you read this output history? What changes were recorded?**
 ]
 
----
-
-# View differences between commits
+## View differences between commits
 
 The `git diff` sub-command can be used to compare two states of the repository.
 
@@ -410,15 +380,13 @@ knitr::include_graphics("img/git-diff.svg")
 ```
 ]
 
----
-
-# Edit files on <i class="fab fa-github"></i> GitHub
+## Edit files on <i class="fab fa-github"></i> GitHub
 
 Files can be created and edited directly on <i class="fab fa-github"></i> GitHub,
 though only one file can be edited at a time in this way.
 Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
 
-## Exercise
+### Exercise
 
 On <i class="fab fa-github"></i> GitHub, navigate to the file `README.md`,
 and click the pencil above the file on the right.
@@ -428,9 +396,7 @@ and click the pencil above the file on the right.
 knitr::include_graphics("img/github-readme-view.png")
 ```
 
----
-
-# Editing a file on <i class="fab fa-github"></i> GitHub
+## Editing a file on <i class="fab fa-github"></i> GitHub
 
 ```{r, fig.align='center', out.height='500px', out.width='600px'}
 # Source: Screenshot (Kevin Rue-Albrecht)
@@ -441,9 +407,7 @@ knitr::include_graphics("img/github-readme-edit.png")
 **Click the green button `Commit changes` when you are ready.**
 ]
 
----
-
-# Pull changes from a remote repository
+## Pull changes from a remote repository
 
 Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 
@@ -451,7 +415,7 @@ Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 
 - The changes need to be _pulled_ from <i class="fab fa-github"></i> GitHub to the clone.
 
-## Exercise
+### Exercise
 
 - Compare the history of the repository on <i class="fab fa-github"></i> GitHub
   and your clone of of the repository.
@@ -461,11 +425,9 @@ Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 knitr::include_graphics("img/github-network-graph2.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Pull changes from a remote repository
+### Pull changes from a remote repository
 
 In the Bash Terminal, set the working directory inside your _clone_ of the _repository_, and run `git pull`.
 
