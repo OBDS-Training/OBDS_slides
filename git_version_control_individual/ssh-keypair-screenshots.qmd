@@ -2,7 +2,7 @@
 
 ### Setting up the SSH key pair on <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='350px'}
+```{r, fig.align='center', out.height='450px', out.width='1000px'}
 # Screenshot
 knitr::include_graphics("img/github-add-ssh-key.png")
 ```
@@ -11,7 +11,7 @@ knitr::include_graphics("img/github-add-ssh-key.png")
 
 ### Setting up the SSH key pair on <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='350px'}
+```{r, fig.align='center', out.height='450px', out.width='1000px'}
 # Screenshot
 knitr::include_graphics("img/github-add-ssh-key-form.png")
 ```

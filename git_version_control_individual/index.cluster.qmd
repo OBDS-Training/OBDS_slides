@@ -90,14 +90,14 @@ More concrete and measurable outputs.
 
 ## SSH key pairs
 
-```{r, fig.align='center', out.height='400px', out.width='600px'}
+```{r, fig.align='center', out.height='500px', out.width='600px'}
 # Source: https://note.nguyenanhung.com/
 knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
-.center[
+::: {style="text-align: center;"}
 _We need to set an SSH key pair between the teaching cluster and <i class="fab fa-github"></i> GitHub._
-]
+:::
 
 ## Exercise
 
@@ -121,9 +121,9 @@ This key pair will allow your clone of the repository to push and pull code thro
 
   + <https://github.com/settings/ssh/new>
 
-.center[
+::: {style="text-align: center;"}
 _(See next slides to navigate to that page more naturally.)_
-]
+:::
 
 ```{r child='ssh-keypair-screenshots.qmd'}
 ```

@@ -99,14 +99,16 @@ knitr::include_graphics("img/commit-multiple-files.svg")
 
 ## Collaborate with remote repositories
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, fig.align='center', , out.height='300px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-clone-collaboration.svg")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ### Git Clones
 
 - Each contributor has a copy (i.e., _clone_) of the repository on their own computer.
@@ -116,7 +118,9 @@ knitr::include_graphics("img/git-clone-collaboration.svg")
 - Commits can then be _pushed_ and _pulled_ from one _clone_ to another.
 
 - _Remote_ repositories must be accessible through a public URL to interact with them.
-]
+:::
+
+::::
 
 ### Note
 
