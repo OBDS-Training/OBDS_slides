@@ -1,10 +1,14 @@
 ## What to track?
 
-.center[
+::: {style="text-align: center;"}
 **Can you identify the reasoning underlying each of the following pieces of advice?**
-]
+:::
 
-.pull-left[
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
 - Track:
 
   + source code (e.g., scripts).
@@ -12,6 +16,8 @@
   + README file(s)
   
   + LICENSE file, if any
+
+<br/>
   
 - Optionally track:
 
@@ -19,10 +25,12 @@
   
   + Configuration file(s)
 
-- Do not track output files.
-]
+<br/>
 
-.pull-right[
+- Do not track output files.
+:::
+
+::: {.column width="50%"}
 - Do not track very large files (e.g., data).
 
   + Use [git-lfs](https://git-lfs.github.com/) if you must.
@@ -34,10 +42,14 @@
   
   + Download data at runtime.
 
+<br/>
+
 - Do not track confidential information
 
   + e.g., login, passwords
-]
+:::
+
+::::
 
 ## Revert changes
 
@@ -62,14 +74,16 @@ knitr::include_graphics("img/git-reset.svg")
 
 ## Branches of history
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, fig.align='center', out.height='300px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
 knitr::include_graphics("img/carpentries-versions.svg")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 So far, your repository has followed a linear timeline.
 
 What if:
@@ -78,7 +92,9 @@ What if:
   and track those changes until you decide one to keep and one to discard.
 - You need to backup work in progress while urgently fixing a bug.
 - You do not want to commit draft code to the main branch of your repository.
-]
+:::
+
+::::
 
 Then:
 
@@ -88,20 +104,24 @@ Then:
 
 ## Merging branches of history
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, fig.align='center', out.height='300px'}
 # Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
 knitr::include_graphics("img/carpentries-merge.svg")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 Creating branches will result in your work being spread in mutually exclusive versions of your files, e.g.
 
 - The main branch contains the code from your latest lab meeting.
 - Another branch includes code that generates a new figure.
 - Another branch contains updates that fix a bug.
-]
+:::
+
+::::
 
 To generate a new version of your code that contains the code from your latest lab meeting,
 **and** the bug fix, **and** the new figure, you need to _merge_ branches together.
@@ -154,12 +174,16 @@ knitr::include_graphics("img/git-branch.svg")
 
 The `git merge` sub-command can be used to merge two branches.
 
+<br/>
+
 Most frequently, "feature" branches are merged to the main branch.
 
 ```{bash, eval=FALSE, echo=TRUE}
 git checkout main     # checkout the "receiving" branch
 git merge new_branch  # merge the "feature" branch to the current branch
 ```
+
+<br/>
 
 This creates a new commit.
 From that point, files contain the changes made in the two parent branches.
@@ -194,10 +218,9 @@ git branch -D new_branch # force delete
 knitr::include_graphics("img/git-branch-delete.svg")
 ```
 
-.center[
-
+::: {style="text-align: center;"}
 **What is the difference with the previous illustration?**
-]
+:::
 
 The name of the branch can then be re-used to create a new branch with that name.
 
@@ -219,11 +242,11 @@ knitr::include_graphics("img/TheCarpentries.svg")
 # Source: https://carpentries.org/
 ```
 
-.center[
+::: {style="text-align: center;"}
 Version Control with Git
 
 <https://swcarpentry.github.io/git-novice/>
-]
+:::
 
 ## References
 
@@ -232,10 +255,10 @@ NoCite(bib, "bryan2017versioncontrol")
 PrintBibliography(bib)
 ```
 
-???
-
+::: {.notes}
 Extras:
 
 - Install `git`
 - `git init` (as opposed to `git clone`)
 - `git merge` vs `git rebase`
+:::
