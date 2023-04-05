@@ -339,16 +339,16 @@ knitr::include_graphics("img/github-network-graph.png")
 
 ### On <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='250px', out.width='800px'}
+```{r, fig.align='center', out.height='300px', out.width='900px'}
 # Screenshot (Kevin Rue-Albrecht)
 knitr::include_graphics("img/github-commit-view.png")
 ```
 
 <br/>
 
-.center[
+::: {style="text-align: center;"}
 **How do you read this page?**
-]
+:::
 
 ## The repository history
 
@@ -362,17 +362,18 @@ The `git log` sub-command can be used to display the history of commits in the r
 
 <br/>
 
-.small-code[
 ```{bash, eval=FALSE, echo=TRUE}
-$ git log --all --graph --oneline
+git log --all --graph --oneline
+```
+
+```
 * 81acf15 (HEAD -> main, origin/main, origin/HEAD) Added empty .gitignore file
 * 4df0fa7 Initial commit
 ```
-]
 
-.center[
+::: {style="text-align: center;"}
 **How do you read this commit history?**
-]
+:::
 
 <br/>
 
@@ -385,7 +386,10 @@ The `git show` sub-command can be used to examine individual past commits.
 <br/>
 
 ```{bash, eval=FALSE, echo=TRUE}
-$ git show 81acf15
+git show 81acf15
+```
+
+```
 commit 81acf150152602ef2e64dca30b5b2796d4e131a0 (HEAD -> main, origin/main, origin/HEAD)
 Author: Kevin Rue-Albrecht <kevinrue@users.noreply.github.com>
 Date:   Thu Mar 3 16:22:03 2022 +0000
@@ -397,9 +401,11 @@ new file mode 100644
 index 0000000..e69de29
 ```
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **How do you read this output history? What changes were recorded?**
-]
+:::
 
 ## View differences between commits
 
