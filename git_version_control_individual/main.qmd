@@ -104,8 +104,11 @@ nothing to commit, working tree clean
 Create a file named `.gitignore` in your repository
 using the `nano` or `vi` command line text editors in the Bash terminal:
 
+<br/>
+
 ```bash
 nano .gitignore
+# or
 vi .gitignore
 ```
 
@@ -208,7 +211,9 @@ knitr::include_graphics("img/carpentries-git-staging-area.svg")
 
 The `git commit` sub-command can be used to record the changes that are currently in the _staging area_ in the next _commit_ of the _repository_.
 
-- The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes. 
+- The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes.
+
+<br/>
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git commit -m "Added .gitignore file"
@@ -220,9 +225,11 @@ $ git commit -m "Added .gitignore file"
  create mode 100644 .gitignore
 ```
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
-]
+:::
 
 ```{r, fig.align='center', out.height='175px', out.width='800px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
