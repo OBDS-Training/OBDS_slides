@@ -418,29 +418,36 @@ The `git diff` sub-command can be used to compare two states of the repository.
 
 <br/>
 
-.pull-left[
-.small-code[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{bash, eval=FALSE, echo=TRUE}
-$ git diff 4df0fa7 81acf15
+git diff 4df0fa7 81acf15
+```
+
+```
 diff --git a/.gitignore b/.gitignore
 new file mode 100644
 index 0000000..e69de29
 ```
-]
-]
+:::
 
-.pull-right[
-```{r, fig.align='center', out.height='125px', out.width='475px'}
+::: {.column width="50%"}
+```{r, fig.align='center', out.height='200px', out.width='500px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-diff.svg")
 ```
-]
+:::
+
+::::
 
 ## Edit files on <i class="fab fa-github"></i> GitHub
 
 Files can be created and edited directly on <i class="fab fa-github"></i> GitHub,
 though only one file can be edited at a time in this way.
 Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
+
+<br/>
 
 ### Exercise
 
@@ -459,9 +466,9 @@ knitr::include_graphics("img/github-readme-view.png")
 knitr::include_graphics("img/github-readme-edit.png")
 ```
 
-.center[
+::: {style="text-align: center;"}
 **Click the green button `Commit changes` when you are ready.**
-]
+:::
 
 ## Pull changes from a remote repository
 
@@ -487,12 +494,20 @@ knitr::include_graphics("img/github-network-graph2.png")
 
 In the Bash Terminal, set the working directory inside your _clone_ of the _repository_, and run `git pull`.
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **How do you read the message output? (example below)**
-]
+:::
+
+```{bash}
+#| eval: false
+#| echo: true
+
+git pull
+```
 
 ```
-$ git pull
 remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (3/3), done.
@@ -505,5 +520,7 @@ Fast-forward
  README.md | 3 +++
  1 file changed, 3 insertions(+)
 ```
+
+<br/>
 
 Have a look at `git status` and `git log`, and compare with the history of the repository on <i class="fab fa-github"></i> GitHub.
