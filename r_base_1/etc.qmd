@@ -1,0 +1,62 @@
+## What <i class="fab fa-r-project"></i> is
+
+<i class="fab fa-r-project"></i>? is a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: mathematical modelling, statistical tests, time series analysis, classification, clustering, etc 
+
+## The inception of <i class="fab fa-r-project"></i>
+
+- Developed in 1995 by [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)) & [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka).
+- Based on *S* ([Wikipedia](https://en.wikipedia.org/wiki/S_(programming_language)))
+- Focused on user friendly data analysis, stats and visualization 
+
+## Why <i class="fab fa-r-project"></i> is used
+
+- 100% free and as a result, has a large support community.
+- Huge community of programmers who constantly develop and distribute new functionality through <i class="fab fa-r-project"></i> packages.
+- Incredibly versatile. 
+- <i class="fab fa-r-project"></i> scripts are transparent, shareable, and reproducible.
+
+## Base <i class="fab fa-r-project"></i>
+
+- Base <i class="fab fa-r-project"></i> is made up of a small set of packagess maintained by [R Core](https://www.r-project.org/contributors.html).
+- <i class="fab fa-r-project"></i> GUI provides a minimal graphical user interface.
+- [Posit](https://posit.co/) (formerly known as RStudio) is the company that develops RStudio products.
+- [Posit products](https://posit.co/products/) (e.g., RStudio) provide integrated development environments (IDE).
+- <i class="fab fa-r-project"></i> and RStudio products have been around for several years.
+  However, they are constantly being updated with new features and bug-fixes;
+  take note of the version of <i class="fab fa-r-project"></i> and <i class="fab fa-r-project"></i> packages that you are using.
+
+## <i class="fab fa-r-project"></i> packages
+
+- <i class="fab fa-r-project"></i> packages are add-ons that encapsulate collections of functions written by members of the broader (you and me).
+- They add new functionality.
+- They can include code, data, and documentation.
+
+<i class="fab fa-r-project"></i> packages can be downloaded and installed from various repositories:
+
+- CRAN (<https://cran.r-project.org/>)
+- Bioconductor (<https://www.bioconductor.org/>)
+- GitHub (<https://github.com/>)
+
+## Installing packages
+
+- On the CCB server, packages are managed by the administrators.
+  Email <genmail@molbiol.ox.ac.uk> and ask for the package to be installed.
+- In a regular <i class="fab fa-r-project"></i> session, use the function `install.packages()`, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("tidyverse")
+```
+
+- You can also install <i class="fab fa-r-project"></i> packages in a [Conda](https://docs.conda.io/en/latest/) environment.
+
+Installed packages must be attached to the <i class="fab fa-r-project"></i> session to access their functionality.
+
+- Use the function `library()` to attach a package to the current <i class="fab fa-r-project"></i> session, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+library(tidyverse)
+```

@@ -1,0 +1,26 @@
+## Lesson goals and objectives
+
+<br/>
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe what <i class="fab fa-r-project"></i> is.
+- Describe what Posit, RStudio Server, and RStudio Desktop are.
+- Describe what <i class="fab fa-r-project"></i> packages are.
+
+<br/>
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Use RStudio Server on the teaching cluster.
+- Write and evaluate code in the <i class="fab fa-r-project"></i> console and in <i class="fab fa-r-project"></i> scripts.
