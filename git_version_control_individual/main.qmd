@@ -251,9 +251,9 @@ knitr::include_graphics("img/git-push.svg")
 
 The histories of clones are not automatically synchronised.
 
-.center[
+::: {style="text-align: center;"}
 **Can you guess reasons why?**
-]
+:::
 
 ## Push commits to a remote
 
@@ -262,6 +262,8 @@ The `git push` sub-command can be used to send local changes to a _remote_ repos
 - The local repository must have configured the address of the _remote_ repository.
 - When you create a repository as a _clone_ of a _remote_ repository,
   this is done automatically (the remote `origin` is created during initialisation).
+
+<br/>
 
 Before we push, the `git remote` command can be used to inspect, add, and remove links to _remote_ repositories from the local repository configuration.
 
@@ -273,6 +275,8 @@ $ git remote -v
 origin	git@github.com:kevinrue/OBDS_May_2022.git (fetch)
 origin	git@github.com:kevinrue/OBDS_May_2022.git (push)
 ```
+
+<br/>
 
 When everything is in place, you can tell <i class="fab fa-git"></i> to push new commits from the local clone to a _remote_.
 When calling `git push` without any other argument,
@@ -288,9 +292,11 @@ $ git push
 
 - Run `git push`.
 
-.center[
+::: {style="text-align: center;"}
 **How do you read the output message? (example below)**
-]
+:::
+
+<br/>
 
 ```
 $ git push
@@ -304,6 +310,8 @@ To github.com:kevinrue/OBDS_May_2022.git
    81acf15..9e2b638  main -> main
 ```
 
+<br/>
+
 Alternatively, we could have used the following command to explicitly push
 (the current branch) to the branch called `main` on the remote called `origin`
 (for the same result).
@@ -316,16 +324,16 @@ git push origin main
 
 ### On <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='325px', out.width='800px'}
+```{r, fig.align='center', out.height='400px', out.width='900px'}
 # Screenshot (Kevin Rue-Albrecht)
 knitr::include_graphics("img/github-network-graph.png")
 ```
 
 <br/>
 
-.center[
+::: {style="text-align: center;"}
 **How do you read this graph?**
-]
+:::
 
 ## View a commit
 
