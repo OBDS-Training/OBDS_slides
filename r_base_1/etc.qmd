@@ -1,26 +1,30 @@
 ## What <i class="fab fa-r-project"></i> is
 
-<i class="fab fa-r-project"></i>? is a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: mathematical modelling, statistical tests, time series analysis, classification, clustering, etc 
+<i class="fab fa-r-project"></i>? is a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: mathematical modelling, statistical tests, time series analysis, classification, clustering, etc.
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/r-console.png")
+```
 
 ## The inception of <i class="fab fa-r-project"></i>
 
 - Developed in 1995 by [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)) & [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka).
-- Based on *S* ([Wikipedia](https://en.wikipedia.org/wiki/S_(programming_language)))
-- Focused on user friendly data analysis, stats and visualization 
+- Based on *S* ([Wikipedia](https://en.wikipedia.org/wiki/S_(programming_language))).
+- Focused on user friendly data analysis, stats and visualization.
 
 ## Why <i class="fab fa-r-project"></i> is used
 
-- 100% free and as a result, has a large support community.
-- Huge community of programmers who constantly develop and distribute new functionality through <i class="fab fa-r-project"></i> packages.
+- 100% free.
+- Huge community of programmers who constantly develop and distribute new functionality.
 - Incredibly versatile. 
 - <i class="fab fa-r-project"></i> scripts are transparent, shareable, and reproducible.
 
 ## Base <i class="fab fa-r-project"></i>
 
 - Base <i class="fab fa-r-project"></i> is made up of a small set of packagess maintained by [R Core](https://www.r-project.org/contributors.html).
-- <i class="fab fa-r-project"></i> GUI provides a minimal graphical user interface.
-- [Posit](https://posit.co/) (formerly known as RStudio) is the company that develops RStudio products.
-- [Posit products](https://posit.co/products/) (e.g., RStudio) provide integrated development environments (IDE).
+- <i class="fab fa-r-project"></i> itself does not have a graphical user interface (GUI).
+- RStudio is an integrated development environments (IDE) developed by [Posit](https://posit.co/) (formerly known as RStudio).
 - <i class="fab fa-r-project"></i> and RStudio products have been around for several years.
   However, they are constantly being updated with new features and bug-fixes;
   take note of the version of <i class="fab fa-r-project"></i> and <i class="fab fa-r-project"></i> packages that you are using.
@@ -33,9 +37,9 @@
 
 <i class="fab fa-r-project"></i> packages can be downloaded and installed from various repositories:
 
-- CRAN (<https://cran.r-project.org/>)
-- Bioconductor (<https://www.bioconductor.org/>)
-- GitHub (<https://github.com/>)
+- CRAN (<https://cran.r-project.org/>) -- General purpose
+- Bioconductor (<https://www.bioconductor.org/>) -- Bioinformatics
+- GitHub (<https://github.com/>) -- Not only <i class="fab fa-r-project"></i>
 
 ## Installing packages
 
@@ -51,6 +55,10 @@ install.packages("tidyverse")
 
 - You can also install <i class="fab fa-r-project"></i> packages in a [Conda](https://docs.conda.io/en/latest/) environment.
 
+<br/>
+
+### Using packages
+
 Installed packages must be attached to the <i class="fab fa-r-project"></i> session to access their functionality.
 
 - Use the function `library()` to attach a package to the current <i class="fab fa-r-project"></i> session, e.g.
@@ -59,4 +67,16 @@ Installed packages must be attached to the <i class="fab fa-r-project"></i> sess
 #| eval: false
 #| echo: true
 library(tidyverse)
+```
+
+## RStudio
+
+RStudio is an integrated development environment for <i class="fab fa-r-project"></i>.
+It is available in two formats: [RStudio Desktop](https://posit.co/download/rstudio-desktop/) is a regular desktop application while [RStudio Server](https://posit.co/download/rstudio-server/) runs on a remote server and allows accessing RStudio using a web browser.
+
+```{r}
+#| fig-align: center
+#| out-width: 900px
+#| out-height: 500px
+knitr::include_graphics("img/rstudio.png")
 ```
