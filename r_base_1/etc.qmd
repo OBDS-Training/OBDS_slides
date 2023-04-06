@@ -230,3 +230,17 @@ knitr::include_graphics("img/rstudio-project.png")
 - Browse the `Packages` pane, look for the `r BiocStyle::Biocpkg("edgeR")` package and find the help page for the function `edgeR::decideTestsDGE()`.
 
 # Coffee break
+
+## Session 2
+
+<br/>
+
+### Overview
+
+- Basic data types.
+- Objects and functions.
+- Creating objects.
+- Creating vectors.
+- Indexing and subsetting.
+- Matrices, arrays, and lists.
+
