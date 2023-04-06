@@ -176,3 +176,21 @@ Other context-dependent panes include:
 #| out-height: 500px
 knitr::include_graphics("img/rstudio-cbrg.png")
 ```
+
+## RStudio projects
+
+RStudio projects divide your work into multiple environments, each with its own working working directory, workspace, history, and files.
+
+```{r}
+#| fig-align: center
+#| out-width: 850px
+#| out-height: 500px
+knitr::include_graphics("img/rstudio-project.png")
+```
+
+## Create an RStudio project
+
+- Open the `New Project Wizard`.
+- Select `New Directory`.
+- Choose a parent directory in which to create the directory of your project (e.g., `r_week1`).
+- Type the name of the directory for your project (e.g., `base_r_1`).
