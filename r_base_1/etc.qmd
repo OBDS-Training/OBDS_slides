@@ -336,3 +336,39 @@ x
 
 - Most of the time, the name of the object alone does the same thing as `print()`.
 - In some cases, the `print()` function offers additional options controlling the format in which the value is displayed (e.g., dates and times).
+
+## Scalars
+
+A *scalar* is an object that contains a single value of a basic data type (e.g., character, numeric), e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+a <- 4
+a
+b <- "Kevin"
+b
+x <- TRUE
+x
+```
+
+## Vectors
+
+A *vector* is a collection of scalars stored as a single object, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+a <- c('a', 'b', 'c')
+a
+b <- c(1, 2, 3)
+b
+```
+
+<br/>
+
+Note:
+
+- Vectors are ordered.
+- All the scalars in a single vector must be the same data type.
+  - If scalars of different data types are given, they will be coerced to the most general data type in the set: `logical` < `integer` < `numeric` < `character`.
