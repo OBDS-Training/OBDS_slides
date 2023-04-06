@@ -978,3 +978,27 @@ df[1:2]
 df[c(1, 3)]
 ```
 
+## Indexing data frames (continued)
+
+As for matrices, single brackets can be used with a comma symbol '`,`' to index data frames by row and column, e.g.
+
+<br/>
+
+### Indexing by row
+
+```{r}
+#| echo: true
+#| eval: true
+df[1, ]
+df[1:2, ]
+```
+
+<br/>
+
+### Indexing by row and column
+
+```{r}
+#| echo: true
+#| eval: true
+df[c(2, 3), c("A", "B")]
+```
