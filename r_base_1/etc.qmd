@@ -80,3 +80,43 @@ It is available in two formats: [RStudio Desktop](https://posit.co/download/rstu
 #| out-height: 500px
 knitr::include_graphics("img/rstudio.png")
 ```
+
+## RStudio main panels
+
+The RStudio application is usually divided in four quadrants:
+
+1. Source editor
+2. <i class="fab fa-r-project"></i> Console
+3. Environment / History / Connections / ...
+4. Files / Plots / Packages / Help / ...
+
+## RStudio Source Editor
+
+- The source editor allow you to open and edit files (not only <i class="fab fa-r-project"></i> scripts).
+- Individual lines of code can be evaluated in the <i class="fab fa-r-project"></i> console using the `Run` button or the keys `Control` + `Enter` (Windows) / `Command` + `Enter` (macOS).
+  - The cursor can be anywhere in the line of code to evaluate.
+- Multiple lines of code can be evaluated in the <i class="fab fa-r-project"></i> console by selecting them and using the same actions as above.
+  - The *entire* line must selected to evaluate it all.
+  - Selecting part of a line evaluates only the selected part.
+- An entire <i class="fab fa-r-project"></i> script can be evaluated using the `Source` button, or `Control` + `Shift` + `Enter` (Windows) / `Command` + `Shift` + `Enter` (macOS).
+
+## Commenting your code
+
+<br/>
+
+```{r}
+#| eval: false
+#| echo: true
+# read data from input file
+input_data <- read.csv("input_data.csv")
+
+print(input_data) # display input data
+```
+
+<br/>
+
+- The hash symbol `#` can be used to add comments in your code.
+- Anything on the line after the `#` will *not* be evaluated.
+  - Lines that start with `#` are entirely ignored.
+- On macOS, `#` is obtained using `Alt` + `3`.
+- You can select multiple lines of code and press `Control` + `Shift` + `C` (Windows) / `Command` + `Shift` + `C` (macOS) to comment them all in one action.
