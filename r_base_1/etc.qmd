@@ -381,3 +381,17 @@ Note:
 x <- c(TRUE, 1L, 1.2, "1")
 x
 ```
+
+## Adding elements to a vector
+
+The function `c()` can also be used to add one or more elements to an existing vector, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+v <- c("A", "B", "C")
+v
+v <- c(v, "X", "Y", "Z")
+v
+```
+
