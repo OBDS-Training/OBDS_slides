@@ -636,5 +636,57 @@ z2
 
 ::::
 
-## Dimensions
+## Matrices type
 
+Matrices can each only contain values of a single data type.
+
+As vectors, if multiple data types are given, all values will be coerced to the most general data type, e.g.
+
+
+```{r}
+#| echo: true
+#| eval: true
+matrix(
+    data = c(
+        1, 2, 3, 4, 5,
+        "a", "b", "c", "d", "e"
+    ),
+    ncol = 2
+)
+```
+
+## Setting column and row names
+
+The functions `colnames()` and `rownames()` can be used to get or replace row and column names, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+m <- matrix(data = 1:20, nrow = 4, ncol = 5, byrow = FALSE)
+m
+rownames(m)
+colnames(m)
+rownames(m) <- paste0("row_", 1:nrow(m))
+colnames(m) <- paste0("column_", 1:ncol(m))
+m
+rownames(m)
+colnames(m)
+```
+
+## Dimension names
+
+The function `dimnames()` can also be used to get of replace row and column names simultaneously, as a list of two character vectors, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+m <- matrix(data = 1:20, nrow = 4, ncol = 5, byrow = FALSE)
+m
+dimnames(m)
+dimnames(m) <- list(
+    paste0("row_", 1:nrow(m)),
+    paste0("column_", 1:ncol(m))
+)
+m
+dimnames(m)
+```
