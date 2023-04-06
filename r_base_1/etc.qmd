@@ -446,3 +446,51 @@ numbers <- 1:10
 numbers
 numbers * 4
 ```
+
+## Named vectors
+
+<i class="fab fa-r-project"></i> objects can have attributes;
+additional information associated with the object but stored separately from the main data.
+
+Vectors can have an optional attribute called `names` which is intended to store a name for each element in the vector, e.g.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Without names
+
+```{r}
+#| echo: true
+#| eval: true
+profile <- c("Kevin", "Rue")
+profile
+attributes(profile)
+```
+:::
+
+::: {.column width="50%"}
+#### With names
+
+```{r}
+#| echo: true
+#| eval: true
+# With names
+profile <- c(first = "Kevin", last = "Rue")
+profile
+attributes(profile)
+```
+:::
+
+::::
+
+Names may also be set on an existing vector, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+# With names
+profile <- c("Kevin", "Rue")
+profile
+names(profile) <- c("first", "last")
+profile
+```
