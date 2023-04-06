@@ -1130,3 +1130,4 @@ factor(x = c("high", "low", "high", "low"), levels = c("low", "high"), ordered =
 
 Even when unordered, the first level is used as *reference* in statistical analyses (e.g., linear models).
 
+As vectors, factors can be stored as columns in data frames.
