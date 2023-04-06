@@ -287,3 +287,21 @@ An operator is a symbol that tells the compiler to perform specific mathematical
   - `<=` (lower than)
   - `!=` (different from)
 
+## Objects and Functions
+
+Everything in <i class="fab fa-r-project"></i> is an object.
+
+<br/>
+
+- An *object* is a value; a number, a data set, a file name, or even a function.
+
+<br/>
+
+- A *function* is a procedure that typically takes one or more objects as inputs, computes something using those objects, and returns an object.
+
+<br/>
+
+Note:
+
+- Some functions do not require any argument.
+- Some functions do not return any argument.
