@@ -244,3 +244,46 @@ knitr::include_graphics("img/rstudio-project.png")
 - Indexing and subsetting.
 - Matrices, arrays, and lists.
 
+## Basic data types
+
+### Character
+
+Single or double quotation marks, e.g.
+
+`'a'`, `'hello'`, `'123'` or `"a"`, `"hello"`, `"123"`
+
+### Numeric
+
+`4`, `1.333`, `123`
+
+### Integer
+
+Integers suffixed with `L`, e.g.
+
+`1L` ,`5L`, `1234L`
+
+### Logical
+
+`TRUE`, `FALSE`
+
+### Complex
+
+`1 + 4i`
+
+## Operators
+
+An operator is a symbol that tells the compiler to perform specific mathematical or logical manipulations.
+
+- For numeric data types: `+` (add), `-` (subtract), `/` (divide), `*` (multiply).
+- For logical data types:
+  - `&` (and)
+  - `|` (or)
+  - `!` (not).
+- Relational operators:
+  - `>` (strictly greater than)
+  - `<` (strictly less than)
+  - `==` (equal to)
+  - `>=` (greater than)
+  - `<=` (lower than)
+  - `!=` (different from)
+
