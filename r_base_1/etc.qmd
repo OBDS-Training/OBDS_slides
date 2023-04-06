@@ -369,6 +369,15 @@ b
 
 Note:
 
+- The function `c()` stands for 'combine'.
+  Typically, it takes any number of scalars and combines them into a vector.
 - Vectors are ordered.
 - All the scalars in a single vector must be the same data type.
-  - If scalars of different data types are given, they will be coerced to the most general data type in the set: `logical` < `integer` < `numeric` < `character`.
+  - If scalars of different data types are given, they will be coerced to the most general data type in the set: `logical` < `integer` < `numeric` < `character`, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+x <- c(TRUE, 1L, 1.2, "1")
+x
+```
