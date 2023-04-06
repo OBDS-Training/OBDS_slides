@@ -572,5 +572,9 @@ For instance:
 #| eval: true
 opts <- options()
 options("width" = 150)
-matrix(data = 1:200, nrow = 10, ncol = 20)
+matrix(data = 1:200, nrow = 10, ncol = 20, byrow = FALSE)
 ```
+
+<br/>
+
+Technically, a matrix is nothing more than a 1-dimensional vector wrapped over multiple rows and columns (i.e., dimensions).
