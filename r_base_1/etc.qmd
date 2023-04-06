@@ -1126,8 +1126,41 @@ Levels can be ordered to reflect relative values, e.g.
 factor(x = c("high", "low", "high", "low"), levels = c("low", "high"), ordered = TRUE)
 ```
 
-<br/>
+Furthermore:
 
-Even when unordered, the first level is used as *reference* in statistical analyses (e.g., linear models).
+- Even when unordered, the first level is used as *reference* in statistical analyses (e.g., linear models).
+- As vectors, factors can be stored as columns in data frames.
 
-As vectors, factors can be stored as columns in data frames.
+## Factor levels
+
+```{r}
+#| echo: true
+#| eval: true
+f <- factor(x = c("high", "low", "high", "low"), levels = c("low", "high"), ordered = TRUE)
+f
+```
+
+The function `levels()` can be used to access and edit the levels of a factor, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+f1 <- f # make a working copy
+levels(f1)
+levels(f1) <- c("low", "medium", "high")
+levels(f1)
+f1
+```
+
+::: {style="text-align: center;"}
+**Can you spot the issue above, though?**
+:::
+
+In this case, it is safer to create a new factor with appropriate levels:
+
+```{r}
+#| echo: true
+#| eval: true
+f2 <- f
+factor(f2, levels = c("low", "medium", "high"))
+```
