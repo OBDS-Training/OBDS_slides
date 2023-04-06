@@ -1002,3 +1002,40 @@ df[1:2, ]
 #| eval: true
 df[c(2, 3), c("A", "B")]
 ```
+
+## Subsetting data frames
+
+```{r}
+#| echo: true
+#| eval: true
+data("iris")
+summary(iris)
+colnames(iris)
+```
+
+<br/>
+
+Use indexing to subset the `iris` data frame for observations that meet specific criteria, e.g.
+
+```{r}
+#| echo: true
+#| eval: false
+iris[iris$Species == "setosa", ]
+iris[iris$Sepal.Length > 5, ]
+iris[iris["Sepal.Length"] > 5, ] # compare with line above
+iris[iris$Sepal.Length > 5 & iris$Petal.Length > 2, ] # multiple conditions
+
+iris[iris$Species %in% c("setosa", "versicolor"), ]
+iris[iris$Species == "setosa" | iris$Species == "versicolor", ] # compare with line above
+
+iris[grep("set|ver", iris$Species), ]
+grep("set|ver", iris$Species) #  inspect what happened in line above
+```
+
+## The `subset()` function
+
+```{r}
+#| echo: true
+#| eval: true
+subset(iris, Species %in% c("setosa", "versicolor") & Sepal.Length > 5.5)
+```
