@@ -928,3 +928,53 @@ Miscellaneous
 - `str()` displays the internal structure of a data frame.
 - `summary()` returns a summary of each column in a data frame.
 - `View()` opens a data frame in an interactive viewer.
+
+## Indexing data frames
+
+```{r}
+#| echo: true
+#| eval: true
+df <- data.frame(
+    A = c(1L, 2L, 3L),
+    B = c("A", "B", "C"),
+    C = c(TRUE, FALSE, TRUE),
+    D = c(1.1, 2.2, 3.3)
+)
+```
+
+<br/>
+
+### Single column
+
+The dollar operator `$` conveniently auto-completes column names.
+
+```{r}
+#| echo: true
+#| eval: true
+df$A
+```
+
+The double square brackets `[[]]` returns the *contents* of a column, given its name as a character scalar or its position as an integer.
+
+```{r}
+#| echo: true
+#| eval: true
+df[["A"]]
+df[[1]]
+```
+
+## Indexing data frames (continued)
+
+### Multiple columns
+
+The single square brackets `[]` returns a new data frame that contains one or more columns, given their name as a character vector or their position as an integer vector. 
+
+```{r}
+#| echo: true
+#| eval: true
+df["A"]
+df[c("A", "B")]
+df[1:2]
+df[c(1, 3)]
+```
+
