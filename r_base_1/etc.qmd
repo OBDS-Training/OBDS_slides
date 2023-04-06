@@ -135,6 +135,7 @@ A number of additional panes appear in this panel, depending on your context.
 The most important panes are:
 
 - `Environment` details the objects that exist in your current <i class="fab fa-r-project"></i> session.
+  - You can clear your environment using the brush icon.
 - `History` lists the lines of code that were executed in this environment.
 
 Other context-dependent panes include:
@@ -144,3 +145,17 @@ Other context-dependent panes include:
   - The `r BiocStyle::CRANpkg("learnr")` package must be installed for this pane to work.
 
 The `Connections` pane is a core pane gives access to a variety of other tools for working with databases in <i class="fab fa-r-project"></i>.
+
+## The RStudio Files/Plots/Packages/Help/Viewer panel
+
+Some additional panes appear in this panel, depending on your context.
+
+- The `Files` pane can be used to navigates the filesystem.
+- The `Plots` pane displays plots produced by evaluated code.
+- The `Packages` pane details packages installed in your <i class="fab fa-r-project"></i> library.
+- The `Help` pane displays help pages.
+- The `Viewer` pane displays more complex documents (e.g., vignettes).
+
+Other context-dependent panes include:
+
+- The `Presentation` pane displays presentations produced like this one.
