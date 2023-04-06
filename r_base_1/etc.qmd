@@ -545,3 +545,16 @@ letters == "."
 letters[letters == "."] <- "..."
 letters
 ```
+
+## Exercise
+
+- Assign the values 1 to 200 to a vector named `a`.
+- Multiply each element of the vector by 123 and assign the result to a new object named `b`.
+- Print the value of the 44^th^ element of the vector `b`.
+- Assign the first fifteen elements of `b` and assign them to a new vector named `b_sub`.
+- Add the numbers `24108` and `24231` to the object `b_sub`.
+- Assign the values `'actb'`, `100`, `3.4` to a vector named `m`.
+- Print the second element of `m`. Is it what you would expect? Why?
+- Multiply the second element of `m` by `4`. What happens? Why?
+- Make a vector `c` that contains four *named* character scalars.
+- Display the names of the elements in `c`.
