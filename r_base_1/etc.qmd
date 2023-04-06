@@ -690,3 +690,36 @@ dimnames(m) <- list(
 m
 dimnames(m)
 ```
+
+## Frequently used functions on matrices
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Dimensions
+
+- `nrow()` returns the number of rows in a matrix.
+- `ncol()` returns the number of columns in a matrix.
+- `dim()` returns the dimensions of a matrix (rows, columns).
+:::
+
+::: {.column width="50%"}
+Subset
+
+- `head()` returns the first rows of a matrix.
+- `tail()` returns the last rows of a matrix.
+:::
+
+::::
+
+Names
+
+- `rownames()` returns the names of the rows in a matrix.
+- `colnames()` returns the names of the rows in a matrix.
+- `dimnames()` returns the names of the dimensions in a matrix (rows, columns).
+
+Miscellaneous
+
+- `str()` displays the internal structure of a matrix.
+- `summary()` returns a summary of each column in a matrix.
+- `View()` opens a matrix in an interactive viewer.
