@@ -1068,3 +1068,35 @@ Remove
 iris$new_sepal_length <- NULL
 head(iris)
 ```
+
+## Warnings
+
+- Certains symbols (including space) are automatically replaced by the dot symbol `.`.
+- Duplicate column names are automatically de-duplicated using suffixes.
+
+```{r}
+#| echo: true
+#| eval: true
+df <- data.frame(
+    "column$1" = c(1, 2, 3),
+    "column 2" = c(4, 5, 6),
+    "column.2" = c(4, 5, 6)
+)
+df
+```
+
+- <i class="fab fa-r-project"></i> attempts to match partial column names if unambiguous, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+df <- data.frame(
+    A1 = c(1, 2, 3),
+    A2 = c("A", "B", "C"),
+    B1 = c(TRUE, FALSE, TRUE)
+)
+df
+df$A
+df$B
+```
+
