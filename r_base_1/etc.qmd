@@ -76,7 +76,7 @@ It is available in two formats: [RStudio Desktop](https://posit.co/download/rstu
 
 ```{r}
 #| fig-align: center
-#| out-width: 900px
+#| out-width: 700px
 #| out-height: 500px
 knitr::include_graphics("img/rstudio.png")
 ```
