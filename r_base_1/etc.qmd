@@ -494,3 +494,54 @@ profile
 names(profile) <- c("first", "last")
 profile
 ```
+
+## Indexing vectors
+
+The square brackets `[]` can be used to access values at specific positions in vectors, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+letters
+letters[14]
+```
+
+Multiple indices may be given to extract multiple values, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+letters[14:16]
+letters[c(1, 5, 12)]
+```
+
+## Replacing elements of a vector
+
+Indexing and assignment can be used together to replace values in a vector, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+letters
+letters[14] <- "..."
+letters
+```
+
+Multiple indices may be given to replace multiple values, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+letters[c(1, 5, 12)] <- "."
+letters
+```
+
+Indexing and operators can be combined to replace values conditionally, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+letters == "."
+letters[letters == "."] <- "..."
+letters
+```
