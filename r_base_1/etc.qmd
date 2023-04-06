@@ -562,10 +562,9 @@ letters
 ## Matrices
 
 Matrices are rectangular objects that contain values of a single data type.
-
 They have rows and columns, indexed from position 1.
 
-For instance:
+The function `matrix()` creates a new matrix from a vector of data, e.g.
 
 ```{r}
 opts <- options()
@@ -575,7 +574,8 @@ options("width" = 150)
 ```{r}
 #| echo: true
 #| eval: true
-matrix(data = 1:200, nrow = 10, ncol = 20, byrow = FALSE)
+m <- matrix(data = 1:200, nrow = 10, ncol = 20, byrow = FALSE)
+m
 ```
 
 ```{r}
@@ -583,10 +583,58 @@ opts <- options()
 options(opts)
 ```
 
-<br/>
+Additional arguments control the number of rows and columns, and whether the values in the vector should be used to fill the matrix by row or by column.
 
 Technically, a matrix is nothing more than a 1-dimensional vector wrapped over multiple rows and columns (i.e., dimensions).
+The function `dim()` returns the number of rows and columns (in that order), e.g.
 
-The function `matrix()` creates a new matrix from a vector of data.
+```{r}
+#| echo: true
+#| eval: true
+dim(m)
+```
 
-Additional arguments control the number of rows and columns, and whether the values in the vector should be used to fill the matrix by row or by column.
+## Combine matrices
+
+The functions `cbind()` and `rbind()` can be used to *bind* matrices and/or vectors together, into bigger matrices, e.g.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### cbind
+
+```{r}
+#| echo: true
+#| eval: true
+x <- 1:5
+x
+y <- 6:10
+y
+z <- cbind(x, y)
+z
+z2 <- cbind(z, z)
+z2
+```
+:::
+
+::: {.column width="50%"}
+#### rbind
+
+```{r}
+#| echo: true
+#| eval: true
+x <- 1:5
+x
+y <- 6:10
+y
+z <- rbind(x, y)
+z
+z2 <- rbind(z, z)
+z2
+```
+:::
+
+::::
+
+## Dimensions
+
