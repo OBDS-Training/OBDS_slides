@@ -228,3 +228,5 @@ knitr::include_graphics("img/rstudio-project.png")
 :::
 
 - Browse the `Packages` pane, look for the `r BiocStyle::Biocpkg("edgeR")` package and find the help page for the function `edgeR::decideTestsDGE()`.
+
+# Coffee break
