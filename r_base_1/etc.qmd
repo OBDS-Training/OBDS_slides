@@ -860,3 +860,38 @@ You're up:
   - What were their combined total box office?
 - What is the name of the movie that made less than $50 million dollars *and* was a documentary?
 
+# Lunch break
+
+## Session 3
+
+<br/>
+
+### Overview
+
+- Data frames
+- Subsetting data frames
+- Factors
+- Reading data from a file
+- Writing data to a file
+
+## Data frames
+
+Data frames are two-dimensional structures that can contain different data types in each column.
+
+- Typically, rows represent *observations* and columns represent *variables*.
+- Column names cannot be empty.
+- Row names should be unique (if present).
+- Each column must be the same length.
+
+For instance:
+
+```{r}
+#| echo: true
+#| eval: true
+data.frame(
+    A = c(1L, 2L, 3L),
+    B = c("A", "B", "C"),
+    C = c(TRUE, FALSE, TRUE),
+    D = c(1.1, 2.2, 3.3)
+)
+```
