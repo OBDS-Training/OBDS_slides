@@ -305,3 +305,34 @@ Note:
 
 - Some functions do not require any argument.
 - Some functions do not return any argument.
+
+## Creating new objects
+
+New objects can be created using the *assignment* operator `<-`.
+The operator assign a *value* (on the right) to a *name* (on the left), e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+x <- 100
+```
+
+The assignment operator can be typed using `Alt` + `-`.
+
+<br/>
+
+### Printing objects
+
+The value of objects can be displayed using the `print()` function, or simply typing their name, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+print(x)
+x
+```
+
+<br/>
+
+- Most of the time, the name of the object alone does the same thing as `print()`.
+- In some cases, the `print()` function offers additional options controlling the format in which the value is displayed (e.g., dates and times).
