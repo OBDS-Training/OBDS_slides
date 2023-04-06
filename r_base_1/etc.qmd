@@ -558,3 +558,19 @@ letters
 - Multiply the second element of `m` by `4`. What happens? Why?
 - Make a vector `c` that contains four *named* character scalars.
 - Display the names of the elements in `c`.
+
+## Matrices
+
+Matrices are rectangular objects that contain values of a single data type.
+
+They have rows and columns, indexed from position 1.
+
+For instance:
+
+```{r}
+#| echo: true
+#| eval: true
+opts <- options()
+options("width" = 150)
+matrix(data = 1:200, nrow = 10, ncol = 20)
+```
