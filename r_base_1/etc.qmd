@@ -395,3 +395,39 @@ v <- c(v, "X", "Y", "Z")
 v
 ```
 
+## More ways to create vectors
+
+`C(...)`
+
+```{r}
+#| echo: true
+#| eval: true
+c(1, 5, 9)
+```
+
+`from:to`
+
+```{r}
+#| echo: true
+#| eval: true
+1:5
+```
+
+`seq(from, to, by, length.out, ...)`
+
+```{r}
+#| echo: true
+#| eval: true
+seq(from = 1, to = 5, by = 2)
+seq(from = 0, to = 10, length.out = 6)
+```
+
+`rep(x, times, each, length.out)`
+
+```{r}
+#| echo: true
+#| eval: true
+rep(x = c(1, 2), times = 2)
+rep(x = c(1, 2), each = 2)
+rep(x = c(1, 2), times = 2, each = 2)
+```
