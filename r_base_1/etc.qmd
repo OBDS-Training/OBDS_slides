@@ -1100,3 +1100,33 @@ df$A
 df$B
 ```
 
+## Factors
+
+Factors are vectors that represent categorical data, where each value can only be one of a set of allowed values, called *levels*, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+factor(x = c("A", "B", "B", "A"), levels = c("A", "B"))
+```
+
+- Any value that is not a valid levels is automatically replaced by `NA` (not available), e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+factor(x = c("A", "B", "C", "A"), levels = c("A", "B"))
+```
+
+Levels can be ordered to reflect relative values, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+factor(x = c("high", "low", "high", "low"), levels = c("low", "high"), ordered = TRUE)
+```
+
+<br/>
+
+Even when unordered, the first level is used as *reference* in statistical analyses (e.g., linear models).
+
