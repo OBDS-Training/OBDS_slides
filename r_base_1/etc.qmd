@@ -1037,5 +1037,34 @@ grep("set|ver", iris$Species) #  inspect what happened in line above
 ```{r}
 #| echo: true
 #| eval: true
-subset(iris, Species %in% c("setosa", "versicolor") & Sepal.Length > 5.5)
+subset(iris, Species %in% c("setosa", "versicolor") & Sepal.Length > 6.5)
+```
+
+## Adding and editing columns in data frames
+
+Add
+
+```{r}
+#| echo: true
+#| eval: true
+iris$new_sepal_length <- iris$Sepal.Length * 5
+head(iris)
+```
+
+Edit
+
+```{r}
+#| echo: true
+#| eval: true
+iris$new_sepal_length <- iris$new_sepal_length / 5
+head(iris)
+```
+
+Remove
+
+```{r}
+#| echo: true
+#| eval: true
+iris$new_sepal_length <- NULL
+head(iris)
 ```
