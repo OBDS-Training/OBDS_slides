@@ -819,3 +819,44 @@ l[1:2]
 #| eval: true
 l[c(1, 3)]
 ```
+
+## Exercise
+
+- Assign a matrix that contains the integers 1 to 9 in three rows and three columns (filled by column) to an object named `m1`.
+- Extract the number `8` using indexing by row and column.
+- Assign a matrix that contains the integers 1 to 12 in three rows and four columns (filled by row) to an object named `m2`.
+- Add column and row names to the matrix `m2` (you choose the names).
+- Assign an array that contains the integers 1 to 24 along dimensions of lengths 4, 2 and 3 to an object named `a`.
+- Extract the number `15` using indexing by the three dimensions.
+- Extract the matrix in the last dimension of the array and assign to a new object named `last_matrix`.
+- Assign a list of five items of different data types to a list named `l`.
+- Extract the elements at position 3 and 5 of `l` as a single new list.
+
+## Exercise (bonus)
+
+Run the code below to initialise data for this exercise.
+
+```{r}
+#| echo: true
+#| eval: false
+movie <- c(
+    "Whatever Works", "It Follows", "Love and Mercy", "The Goonies", "Jiro Dreams of Sushi", "There Will be Blood", "Moon",
+    "Spice World", "Serenity", "Finding Vivian Maier")
+year <- c("2009", "2015", "2015", "1985", "2012", "2007", "2009", "1988", "2005", "2014")
+boxoffice <- c(35, 15, 15, 62, 3, 10, 321, 79, 39, 1.5)
+genre <- c("Comedy", "Horror", "Drama", "Adventure", "Drama", "SciFi", "Comedy", "Documentary", "SciFi", "Documentary")
+```
+
+<br/>
+
+You're up:
+
+- What is the name of the 10^th^ movie?
+- What are the genres of the first four movies?
+- In the movie names, 'Spice World' should be 'The Naked Gun’.
+  Correct the name.
+- What were the names of the movies made before the year 1990?
+- What were the names of the movies in the 'Comedy' genre?
+  - What were their combined total box office?
+- What is the name of the movie that made less than $50 million dollars *and* was a documentary?
+
