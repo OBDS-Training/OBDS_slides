@@ -90,7 +90,7 @@ The RStudio application is usually divided in four quadrants:
 3. Environment / History / Connections / ...
 4. Files / Plots / Packages / Help / ...
 
-## RStudio Source Editor
+## The RStudio Source Editor
 
 - The source editor allow you to open and edit files (not only <i class="fab fa-r-project"></i> scripts).
 - Individual lines of code can be evaluated in the <i class="fab fa-r-project"></i> console using the `Run` button or the keys `Control` + `Enter` (Windows) / `Command` + `Enter` (macOS).
@@ -120,3 +120,10 @@ print(input_data) # display input data
   - Lines that start with `#` are entirely ignored.
 - On macOS, `#` is obtained using `Alt` + `3`.
 - You can select multiple lines of code and press `Control` + `Shift` + `C` (Windows) / `Command` + `Shift` + `C` (macOS) to comment them all in one action.
+
+## The RStudio <i class="fab fa-r-project"></i> console
+
+- In the <i class="fab fa-r-project"></i> console, the prompt `>` indicates that the console is awaiting the next command.
+- You can type code directly in the <i class="fab fa-r-project"></i> console and press `Enter` to evaluate it in the current environment.
+- If incomplete code was submitted, the prompt `+` indicates that the console is awaiting more code to complete the current command.
+- Press `Esc` to erase the code that you are currently typing in the <i class="fab fa-r-project"></i> console (the cursor must be in the <i class="fab fa-r-project"></i> console).
