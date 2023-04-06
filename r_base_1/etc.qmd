@@ -764,3 +764,58 @@ Multiple indices can be given to access multiple values, e.g.
 a[1, 2:3, 1]
 a[, 2:3, 1]
 ```
+
+## Lists
+
+Lists are the most flexible objects in <i class="fab fa-r-project"></i>;
+each element can be literally *anything*, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+l <- list(1:10, "Hello, world!", c(TRUE, FALSE), c(0.05, 0.01))
+l
+```
+
+<br/>
+
+The double square brackets `[[]]` can be used to access individual elements, e.g.
+
+```{r}
+#| echo: true
+#| eval: true
+l[[1]]
+l[[2]]
+l[[3]]
+l[[4]]
+```
+
+## Indexing lists
+
+The *double* square brackets `[[]]` can only extract a *single* element from a list.
+
+Meanwhile, the single square bracket `[]` returns a list of elements, given their respective indices, e.g.
+
+<br/>
+
+```{r}
+#| echo: true
+#| eval: true
+l <- list(1:10, "Hello, world!", c(TRUE, FALSE), c(0.05, 0.01))
+```
+
+<br/>
+
+```{r}
+#| echo: true
+#| eval: true
+l[1:2]
+```
+
+<br/>
+
+```{r}
+#| echo: true
+#| eval: true
+l[c(1, 3)]
+```
