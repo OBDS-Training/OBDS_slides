@@ -568,13 +568,25 @@ They have rows and columns, indexed from position 1.
 For instance:
 
 ```{r}
-#| echo: true
-#| eval: true
 opts <- options()
 options("width" = 150)
+```
+
+```{r}
+#| echo: true
+#| eval: true
 matrix(data = 1:200, nrow = 10, ncol = 20, byrow = FALSE)
+```
+
+```{r}
+opts <- options()
+options(opts)
 ```
 
 <br/>
 
 Technically, a matrix is nothing more than a 1-dimensional vector wrapped over multiple rows and columns (i.e., dimensions).
+
+The function `matrix()` creates a new matrix from a vector of data.
+
+Additional arguments control the number of rows and columns, and whether the values in the vector should be used to fill the matrix by row or by column.
