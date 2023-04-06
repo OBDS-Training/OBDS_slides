@@ -1164,3 +1164,63 @@ In this case, it is safer to create a new factor with appropriate levels:
 f2 <- f
 factor(f2, levels = c("low", "medium", "high"))
 ```
+
+## Reading data from files
+
+Several base <i class="fab fa-r-project"></i> functions can read data from text files in various formats (e.g., CSV, TSV), e.g.
+
+```{r}
+#| echo: true
+#| eval: false
+read.table(file, header = FALSE, sep = "", ...)
+read.csv(file, header = TRUE, sep = ",", ...)
+read.delim(file, header = TRUE, sep = "\t", ...)
+```
+
+In particular:
+
+- The argument `sep=` can be used to specify a field delimiter.
+- Those functions return data read from the input file as a `data.frame` object that must be assigned to a name in the current environment before it can be used, e.g.
+
+```{r}
+#| echo: true
+#| eval: false
+raw_data <- read.csv("data.csv")
+```
+
+## Writing data to files
+
+Similarly, several functions are designed to write the contents of `data.frame` objects to text file in various formats, e.g.
+
+```{r}
+#| echo: true
+#| eval: false
+write.table(x, file = "", append = FALSE, quote = TRUE, sep = " ", ...)
+write.csv(...)
+```
+
+The string `"\t"` can be used to use the tabulation character as a field delimiter, e.g.
+
+```{r}
+#| echo: true
+#| eval: false
+x <- data.frame(
+    A = c(1, 2, 3),
+    B = C("A", "B", "C")
+)
+write.table(x, file = "results.tsv", sep = "\t")
+```
+
+## Exercise
+
+- Assign data from the file `coding_gene_region.bed` to an object named `gene_data`.
+- Display the dimensions of the data frame and the type of data in each column.
+- Set column names to: `chr`, `start`, `end`, `name`, `score`, and `strand`.
+- Prove that you have (re)named the columns.
+- Display the value at row 30, column 3.
+- Assign the column named `start` to a new object named `start_position`.
+- Calculate the length of each gene and assign that value to a new column named `length`.
+- Prove that you have added the new column.
+- Assign rows where the gene length is between 100kb and 200kb to a new object named `filtered_gene_data`.
+- Export `filtered_gene_data` to a file named `filtered_gene_regions.tsv`, using tabulation as a field delimiter.
+  Include column names but not row names.
