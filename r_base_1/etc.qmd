@@ -127,3 +127,20 @@ print(input_data) # display input data
 - You can type code directly in the <i class="fab fa-r-project"></i> console and press `Enter` to evaluate it in the current environment.
 - If incomplete code was submitted, the prompt `+` indicates that the console is awaiting more code to complete the current command.
 - Press `Esc` to erase the code that you are currently typing in the <i class="fab fa-r-project"></i> console (the cursor must be in the <i class="fab fa-r-project"></i> console).
+
+## The RStudio Environment panel
+
+A number of additional panes appear in this panel, depending on your context.
+
+The most important panes are:
+
+- `Environment` details the objects that exist in your current <i class="fab fa-r-project"></i> session.
+- `History` lists the lines of code that were executed in this environment.
+
+Other context-dependent panes include:
+
+- `Git` facilitates work in <i class="fab fa-git"></i> repositories.
+- `Tutorial` facilitates access to tutorials.
+  - The `r BiocStyle::CRANpkg("learnr")` package must be installed for this pane to work.
+
+The `Connections` pane is a core pane gives access to a variety of other tools for working with databases in <i class="fab fa-r-project"></i>.
