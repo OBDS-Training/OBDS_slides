@@ -895,3 +895,36 @@ data.frame(
     D = c(1.1, 2.2, 3.3)
 )
 ```
+
+## Frequently used functions on data frames
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Dimensions
+
+- `nrow()` returns the number of rows in a data frame.
+- `ncol()` returns the number of columns in a data frame.
+- `dim()` returns the dimensions of a data frame (rows, columns).
+:::
+
+::: {.column width="50%"}
+Subset
+
+- `head()` returns the first rows of a data frame.
+- `tail()` returns the last rows of a data frame.
+:::
+
+::::
+
+Names
+
+- `rownames()` returns the names of the rows in a data frame.
+- `colnames()` returns the names of the rows in a data frame.
+- `dimnames()` returns the names of the dimensions in a data frame (rows, columns).
+
+Miscellaneous
+
+- `str()` displays the internal structure of a data frame.
+- `summary()` returns a summary of each column in a data frame.
+- `View()` opens a data frame in an interactive viewer.
