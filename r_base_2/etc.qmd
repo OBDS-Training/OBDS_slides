@@ -62,3 +62,35 @@ Note:
 - The *working directory* is a location in the computer's *filesystem* (i.e., hard drive).
 - The *workspace* is an environment in the computer's *memory* (i.e., RAM).
 
+## Saving workspaces to .RData files
+
+It is possible to store one or more objects from the workspace to an `.RData` file.
+
+The `save()` function writes an external representation of <i class="fab fa-r-project"></i> objects to the specified file, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+a <- 1
+b <- "A"
+save(a, b, file = "workspace.RData")
+```
+
+The file can only be read using the `load()` function to restore those objects into an <i class="fab fa-r-project"></i> session.
+It is not possible to read that type of file with any other program.
+
+```{r}
+#| eval: false
+#| echo: true
+load("workspace.RData")
+```
+
+The function `save.image()` takes only a file path and writes *all* the objects in the workspace to the specified file, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+a <- 1
+b <- "A"
+save.image(file = "workspace.RData")
+```
