@@ -129,3 +129,39 @@ Note:
 - The object is saved to the file *without* its name.
 - The object can be assigned to a name, which can be the original name of the object or a new one.
 - If not assigned, the object is simply printed in the <i class="fab fa-r-project"></i> console.
+
+## Saving and loading -- Summary
+
+The workspace, stored in memory, is temporary and discarded when the <i class="fab fa-r-project"></i> is closed.
+
+A range of functions are available to save objects from your <i class="fab fa-r-project"></i> workspace to files, and restore those objects later.
+
+You may choose different functions in different scenarios.
+
+<br/>
+
+::: {style="text-align: center;"}
+**When would you use each of the following functions?**
+:::
+
+```{r}
+#| eval: false
+#| echo: true
+# write object 'x' to a tab separated file
+write.table(x, file = "mydata.txt", sep = "\t")
+
+# save objects 'a' and 'b' to an RData file
+save(a, b, file = "workspace.RData")
+
+# save all objects in the workspace to an RData file
+save.image(file = "workspace.RData")
+
+# save a single object to an RDS file
+saveRDS(a, file = "a.rds")
+```
+
+<br/>
+
+::: {style="text-align: center;"}
+**How would you import data from each of those files?**
+:::
