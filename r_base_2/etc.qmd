@@ -214,3 +214,43 @@ dir.create("new_directory")
 - Create a new directory and set the working directory in that new directory.
 - Restore objects saved in the `.RData` file to your workspace.
 - Restore the object saved in the RDS file to your workspace under a different name.
+
+## R Markdown
+
+R Markdown combines text, code, and results in a single document.
+
+It has many appealing features that make it an essential tool for data analysts, researchers, and scientists:
+
+- Allows users to write reports, presentations, and interactive documents using R code.
+- Supports various output formats including HTML, PDF, and Word.
+- Provides flexibility to customize document styles and layouts.
+- Streamlines the process of creating reproducible research.
+
+## Create a new R Markdown file
+
+- Open the `New R Markdown` wizard.
+- Type a title of your choice and your full name in the form.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-width: 500px
+#| out-height: 500px
+knitr::include_graphics("img/rmd_file.png")
+```
+:::
+
+::: {.column width="50%"}
+### Structure
+
+- Header in [YAML syntax](https://yaml.org/) enclosed between two lines `---`.
+- Code blocks enclosed between start line ` ```{...} ` and end line ` ``` `.
+  - Different programming languages are supported, e.g. `{r}` indicates an <i class="fab fa-r-project"></i> code block.
+  - Code block options can be set, e.g. `include=FALSE`.
+  - Code blocks can be named, e.g. `cars`.
+- Regular text using [Markdown syntax](https://www.markdownguide.org/basic-syntax/).
+:::
+
+::::

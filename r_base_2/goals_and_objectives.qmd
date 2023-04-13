@@ -9,8 +9,8 @@ High-level "big picture" objectives of the learning process.
 This should be no more than 3 bullet points.
 -->
 
-- Describe workspace management in <i class="fab fa-r-project"></i> sessions.
-- 
+- Describe best practice in workspace management.
+- Describe R Markdown.
 
 <br/>
 
@@ -21,4 +21,5 @@ More concrete and measurable outputs.
 This can range from 3 to 8 bullet points.
 -->
 
-- 
+- Save and restore objects to and from files.
+- Write R scripts and R Markdown files.
