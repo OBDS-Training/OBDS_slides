@@ -576,7 +576,13 @@ The function `is.na()` takes a vector and returns a logical vector indicating wh
 is.na(c(1, 2, NA, NA, 5))
 ```
 
-<br/>
+The function `anyNA()` returns `TRUE` if any value is `NA` in the argument, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+anyNA(c(1, 2, NA, NA, 5))
+```
 
 Note:
 
