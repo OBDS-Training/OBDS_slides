@@ -361,3 +361,47 @@ multiply <- function(a, b) {
     return(result)
 }
 ```
+
+## Summarising data
+
+#### Descriptive Statistics
+
+```{r}
+#| eval: false
+#| echo: true
+sum()
+mean()
+median()
+min()
+max()
+```
+
+<br/>
+
+#### Matrices and data frames
+
+```{r}
+#| eval: false
+#| echo: true
+## Matrices, data frames
+rowMeans()
+colMeans()
+```
+
+<br/>
+
+#### Miscellaneous
+
+```{r}
+#| eval: false
+#| echo: true
+# Sorting
+sort()
+order()
+
+# Combining data frames
+merge()
+
+# Summarising groups of data
+aggregate()
+```
