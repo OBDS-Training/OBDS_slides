@@ -362,7 +362,7 @@ multiply <- function(a, b) {
 }
 ```
 
-## Summarising data
+## Summarising data in base <i class="fab fa-r-project"></i>
 
 #### Descriptive Statistics
 
@@ -404,4 +404,45 @@ merge()
 
 # Summarising groups of data
 aggregate()
+```
+
+## Demo
+
+### Summarising data in base <i class="fab fa-r-project"></i>
+
+```{r}
+#| eval: true
+#| echo: true
+x <- c(10, 5, 8, 3, 5)
+x
+```
+
+```{r}
+#| eval: true
+#| echo: true
+sum(x)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+mean(x)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+median(x)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+max(x)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+min(x)
 ```
