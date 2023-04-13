@@ -533,3 +533,49 @@ m3
 :::
 
 ::::
+
+## Missing values
+
+Missing values are represented by the value `NA`.
+
+Many functions will behave differently in the presence of `NA` values, e.g.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+mean(c(1, 2, 3))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+mean(c(1, 2, NA))
+```
+:::
+
+::::
+
+Some functions can be told to ignore `NA` values, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+mean(c(1, 2, NA), na.rm = TRUE)
+```
+
+<br/>
+
+Note:
+
+- The value `NA` is different from `NaN`, a value used to represent impossible values, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+0/0
+```
