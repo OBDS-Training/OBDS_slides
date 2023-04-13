@@ -254,3 +254,35 @@ knitr::include_graphics("img/rmd_file.png")
 :::
 
 ::::
+
+## Rendering R Markdown files
+
+The `Knit` button can be used to render R Markdown files into its default output format.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-width: 500px
+#| out-height: 500px
+knitr::include_graphics("img/rmd_file.png")
+```
+:::
+
+::: {.column width="50%"}
+
+### More ways to render
+
+- The arrow icon next to the `Knit` button can be used to select alternate output formats.
+-  The function `rmarkdown::render()` can also be used to render files from the <i class="fab fa-r-project"></i> console, giving access to many more options.
+
+```{r}
+#| fig-align: center
+#| out-width: 400px
+#| out-height: 300px
+knitr::include_graphics("img/rmd_html.png")
+```
+:::
+
+::::
