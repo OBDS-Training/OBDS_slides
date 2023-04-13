@@ -19,7 +19,7 @@ Note:
 
 ## The working directory
 
-The *working directory* is the location on the computer running the <i class="fab fa-r-project"></i> session relative to which commands are executed.
+The *working directory* is the location on the computer running the <i class="fab fa-r-project"></i> session relative to which commands are evaluated.
 
 - Some commands are not affected by the working directory.
 
@@ -38,3 +38,11 @@ Any *absolute* file path given to a command will *not* be impacted by the workin
 #| echo: true
 write.csv(x = my_data, file = "/project/obds/shared/data.csv")
 ```
+
+<br/>
+
+Note:
+
+- The *working directory* is a location in the computer's *filesystem* (i.e., hard drive).
+- The *workspace* is an environment in the computer's *memory* (i.e., RAM).
+
