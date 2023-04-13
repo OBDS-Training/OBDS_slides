@@ -1,0 +1,24 @@
+## Lesson goals and objectives
+
+<br/>
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe workspace management in <i class="fab fa-r-project"></i> sessions.
+- 
+
+<br/>
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- 

@@ -1,0 +1,40 @@
+## Workspace management in <i class="fab fa-r-project"></i> sessions
+
+The *workspace* is the current <i class="fab fa-r-project"></i> environment that contains all the user-defined objects (including functions) in the current session. 
+
+As you define new objects and functions, these new objects are stored in the workspace.
+
+When you close RStudio, you may see a message asking you "Save workspace image to .RData?"
+
+- Agreeing saves all the objects currently in your workspace to a file on your computer;
+  this is useful if you expect to restore the workspace in a later session.
+- Declining discards your workspace; this is useful if you like to start <i class="fab fa-r-project"></i> with an empty, clean workspace.
+
+<br/>
+
+Note:
+
+- Saving a workspace does *not* save the commands that you used to generate it.
+- It is much more important to save scripts than to save workspaces.
+
+## The working directory
+
+The *working directory* is the location on the computer running the <i class="fab fa-r-project"></i> session relative to which commands are executed.
+
+- Some commands are not affected by the working directory.
+
+Any *relative* file path given to a command will be relative to the working directory, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+my_data <- read.csv(file = "data.csv")
+```
+
+Any *absolute* file path given to a command will *not* be impacted by the working directory, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+write.csv(x = my_data, file = "/project/obds/shared/data.csv")
+```
