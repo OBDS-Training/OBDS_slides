@@ -62,7 +62,7 @@ Note:
 - The *working directory* is a location in the computer's *filesystem* (i.e., hard drive).
 - The *workspace* is an environment in the computer's *memory* (i.e., RAM).
 
-## Saving workspaces to .RData files
+## Saving and loading workspaces
 
 It is possible to store one or more objects from the workspace to an `.RData` file.
 
@@ -85,6 +85,10 @@ It is not possible to read that type of file with any other program.
 load("workspace.RData")
 ```
 
+Note:
+
+- The objects are restored under their original name in the workspace where they were saved, overwriting any object with the same name in the workspace where they are restored. Beware!
+
 The function `save.image()` takes only a file path and writes *all* the objects in the workspace to the specified file, e.g.
 
 ```{r}
@@ -94,3 +98,34 @@ a <- 1
 b <- "A"
 save.image(file = "workspace.RData")
 ```
+
+## Saving and loading individual objects
+
+<br/>
+
+The function `saveRDS()` saves a a single object to the specified file, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+a <- 1
+saveRDS(object = a, file = "a.rds")
+```
+
+<br/>
+
+The function `readRDS()` imports an object saved in an RDS file, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+a_restored <- readRDS(file = "a.rds")
+```
+
+<br/>
+
+Note:
+
+- The object is saved to the file *without* its name.
+- The object can be assigned to a name, which can be the original name of the object or a new one.
+- If not assigned, the object is simply printed in the <i class="fab fa-r-project"></i> console.
