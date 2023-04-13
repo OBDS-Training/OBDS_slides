@@ -286,3 +286,5 @@ knitr::include_graphics("img/rmd_html.png")
 :::
 
 ::::
+
+# Coffee break
