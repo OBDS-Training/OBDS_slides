@@ -446,3 +446,60 @@ max(x)
 #| echo: true
 min(x)
 ```
+
+## Demo
+
+### Matrices and data frames
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<br/>
+
+<br/>
+
+<br/>
+
+`colSums()` computes the sum of each column.
+
+`rowSums()` computes the sum of each row.
+
+`colMeans()` computes the mean of each column.
+
+`rowMeans()` computes the mean of each row.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+m <- matrix(1:12, nrow = 3, ncol = 4)
+m
+```
+
+```{r}
+#| eval: true
+#| echo: true
+colSums(m)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+rowSums(m)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+colMeans(m)
+```
+
+```{r}
+#| eval: true
+#| echo: true
+rowMeans(m)
+```
+:::
+
+::::
