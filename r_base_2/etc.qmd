@@ -364,7 +364,7 @@ multiply <- function(a, b) {
 
 ## Summarising data in base <i class="fab fa-r-project"></i>
 
-#### Descriptive Statistics
+#### Descriptive statistics
 
 ```{r}
 #| eval: false
@@ -593,3 +593,18 @@ Note:
 #| echo: true
 0/0
 ```
+
+## Exercise
+
+### Descriptive statistics
+
+- Use `readRDS()` to load the file `/project/obds/shared/resources/r/base_r_2/matrix.rds` and assign the object to the name `m`.
+- Compute the sum of values in each row and add those values as a new column in the matrix.
+- Run the command `data("ToothGrowth")` to load the builtin data set `ToothGrowth`.
+- Open the help page for the `ToothGrowth` data set, to learn more about it.
+- What is the class of the `ToothGrowth` object?
+- What type of data is stored in each column of the `ToothGrowth` data set?
+- What is the mean tooth length across all observations in the data set?
+- What is maximum value of tooth length?
+- What is minimum value of tooth length?
+- Can you use the functions `rowSums()` and `colSums()` on the `ToothGrowth` object?
