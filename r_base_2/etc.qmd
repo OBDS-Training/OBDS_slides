@@ -322,3 +322,42 @@ Functions are called using their name and round brackets `()` surrounding their 
 two_by_three <- multiply(2, 3)
 two_by_three
 ```
+
+## Reminder about brackets
+
+<br/>
+
+Remember:
+
+- Square brackets `[]` are used for indexing, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+vector[1:3]
+data_frame[1:3, c("column1", "column3")]
+```
+
+<br/>
+
+- Round brackets `()` are used for function arguments, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+c(1, 2, 3)
+data.frame(column1 = c(1, 2, 3), column2 = c("A", "B", "C"))
+```
+
+<br/>
+
+- Curly brackets `{}` are used to surround the block of code executed when a function is called, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+multiply <- function(a, b) {
+    result <- a * b
+    return(result)
+}
+```
