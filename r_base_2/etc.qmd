@@ -568,6 +568,14 @@ Some functions can be told to ignore `NA` values, e.g.
 mean(c(1, 2, NA), na.rm = TRUE)
 ```
 
+The function `is.na()` takes a vector and returns a logical vector indicating whether each value is `NA`.
+
+```{r}
+#| eval: true
+#| echo: true
+is.na(c(1, 2, NA, NA, 5))
+```
+
 <br/>
 
 Note:
