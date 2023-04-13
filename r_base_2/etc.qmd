@@ -288,3 +288,37 @@ knitr::include_graphics("img/rmd_html.png")
 ::::
 
 # Coffee break
+
+## Functions
+
+An <i class="fab fa-r-project"></i> function is a block of code that performs a specific task and can be called and executed by providing input parameters.
+
+Base <i class="fab fa-r-project"></i> provides many functions to get started with the most common and simplest tasks, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+c(1, 2, 3)
+matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2)
+x <- read.table(file = "data.txt")
+```
+
+New functions can be defined using the `function()` function, curly brackets `{}`, and the `return()` function, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+multiply <- function(a, b) {
+    result <- a * b
+    return(result)
+}
+```
+
+Functions are called using their name and round brackets `()` surrounding their arguments, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+two_by_three <- multiply(2, 3)
+two_by_three
+```
