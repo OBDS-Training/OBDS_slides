@@ -609,7 +609,7 @@ Note:
 - What is minimum value of tooth length?
 - Can you use the functions `rowSums()` and `colSums()` on the `ToothGrowth` object?
 
-## Sorting
+## Sorting vectors
 
 <br/>
 
@@ -646,4 +646,28 @@ Among many other uses, the return value of `order()` can be used to sort vectors
 #| echo: true
 v <- c("c", "b", "a", "d", "e")
 v[order(v)]
+```
+
+## Sorting data frames
+
+The columns of data frames being vectors, the function `order()` can also be used to sort the rows of a data.frame, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+df <- data.frame(
+    A = c(2, 1, 3),
+    B = c("b", "a", "c")
+)
+df
+```
+
+<br/>
+
+```{r}
+#| eval: true
+#| echo: true
+o <- order(df$B)
+o
+df[o, ]
 ```
