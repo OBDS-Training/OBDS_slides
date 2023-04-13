@@ -658,14 +658,17 @@ order(v, decreasing = TRUE)
 
 ## Sorting data frames
 
-The columns of data frames being vectors, the function `order()` can also be used to sort the rows of a data.frame, e.g.
+The columns of data frames being vectors, the function `order()` can also be used to sort the rows of a data.frame.
+
+The function `order()` can even take multiple vectors, in which case it breaks ties in the earlier vectors using values in the later vectors, e.g.
 
 ```{r}
 #| eval: true
 #| echo: true
 df <- data.frame(
-    A = c(2, 1, 3),
-    B = c("b", "a", "c")
+    value = c(5, 2, 1, 3, 6, 4),
+    group = c("b", "a", "c", "e", "d", "f"),
+    batch = factor(c("A", "B", "A", "B", "A", "B"))
 )
 df
 ```
@@ -675,7 +678,7 @@ df
 ```{r}
 #| eval: true
 #| echo: true
-o <- order(df$B)
+o <- order(df$batch, df$group)
 o
 df[o, ]
 ```
