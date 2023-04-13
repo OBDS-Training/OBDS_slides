@@ -608,3 +608,42 @@ Note:
 - What is maximum value of tooth length?
 - What is minimum value of tooth length?
 - Can you use the functions `rowSums()` and `colSums()` on the `ToothGrowth` object?
+
+## Sorting
+
+<br/>
+
+The function `sort()` takes a vector and returns it with its values sorted in increasing order, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+sort(c(3,5,1,4,2))
+```
+
+The argument `decreasing=` can be set to `TRUE` to sort values in decreasing order, e.g. 
+
+```{r}
+#| eval: true
+#| echo: true
+sort(c(3,5,1,4,2), decreasing = TRUE)
+```
+
+<br/>
+
+Alternatively, the function `order()` can be used to return the index of values in increasing order.
+
+```{r}
+#| eval: true
+#| echo: true
+order(c("c", "b", "a", "d", "e"))
+```
+
+Among many other uses, the return value of `order()` can be used to sort vectors using indexing, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+v <- c("c", "b", "a", "d", "e")
+v[order(v)]
+```
