@@ -648,6 +648,14 @@ v <- c("c", "b", "a", "d", "e")
 v[order(v)]
 ```
 
+The function `order()` also accepts an argument `decreasing=`, which takes a logical value.
+
+```{r}
+#| eval: true
+#| echo: true
+order(v, decreasing = TRUE)
+```
+
 ## Sorting data frames
 
 The columns of data frames being vectors, the function `order()` can also be used to sort the rows of a data.frame, e.g.
