@@ -165,3 +165,33 @@ saveRDS(a, file = "a.rds")
 ::: {style="text-align: center;"}
 **How would you import data from each of those files?**
 :::
+
+## Miscellaneous commands for workspace management
+
+<br/>
+
+The commands below are useful to get information and manage the workspace and working directory.
+
+<br/>
+
+```{r}
+#| eval: false
+#| echo: true
+# list the names of objects in the workspace
+ls()
+
+# remove objects from the workspace
+rm(a, b)
+
+# remove all objects from the workspace
+rm(list = ls())
+
+# get working directory
+getwd()
+
+# set working directory
+setwd("/project/obds/shared")
+
+# list files in the working directory
+list.files()
+```
