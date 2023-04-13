@@ -503,3 +503,33 @@ rowMeans(m)
 :::
 
 ::::
+
+## Combining vectors and matrices
+
+```{r}
+#| eval: true
+#| echo: true
+m1 <- cbind(1:2, 3:4)
+m1
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+m2 <- cbind(m1, row_sum = rowSums(m1))
+m2
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+m3 <- rbind(m2, col_sum = colSums(m2))
+m3
+```
+:::
+
+::::
