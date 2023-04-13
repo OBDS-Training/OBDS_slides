@@ -39,6 +39,22 @@ Any *absolute* file path given to a command will *not* be impacted by the workin
 write.csv(x = my_data, file = "/project/obds/shared/data.csv")
 ```
 
+The current working directory can be displayed using the function `getwd()`, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+getwd()
+```
+
+The working directory can be set using the function `setwd()`, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+setwd("/project/obds/shared")
+```
+
 <br/>
 
 Note:
