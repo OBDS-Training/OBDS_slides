@@ -194,4 +194,23 @@ setwd("/project/obds/shared")
 
 # list files in the working directory
 list.files()
+
+# create a new directory
+dir.create("new_directory")
 ```
+
+## Exercise
+
+### Workspace management
+
+- Open a new <i class="fab fa-r-project"></i> script and write code to create three new objects (any type, any name, any value).
+- Save your <i class="fab fa-r-project"></i> script.
+- Save all objects in your workspace to an `.RData` file.
+- Write one object in your workspace to a file using `saveRDS()`.
+- Remove one object from your workspace.
+- Prove that the object was removed.
+- Remove all objects from your workspace.
+- Display your working directory.
+- Create a new directory and set the working directory in that new directory.
+- Restore objects saved in the `.RData` file to your workspace.
+- Restore the object saved in the RDS file to your workspace under a different name.
