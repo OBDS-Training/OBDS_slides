@@ -1107,3 +1107,20 @@ repeat {
   print(paste("Missed, try again!"))
 }
 ```
+
+## Conditions
+
+Parts of code can be executed conditionally, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+value <- 3
+if (value < 5) {
+    print("value is lower than 5")
+} else if (value == 5) {
+    print("value is equal to 5")
+} else {
+    print("value is greater than 5")
+}
+```
