@@ -1110,7 +1110,9 @@ repeat {
 
 ## Conditions
 
-Parts of code can be executed conditionally, e.g.
+<br/>
+
+Parts of code can be executed conditionally using the keywords `if`, `else if`, and `else`, e.g.
 
 ```{r}
 #| eval: true
@@ -1123,4 +1125,14 @@ if (value < 5) {
 } else {
     print("value is greater than 5")
 }
+```
+
+<br/>
+
+The function `ifelse(test, yes, no)` returns a value with the same shape as `test` which is filled with elements selected from either `yes` or `no` depending on whether the element of `test` is `TRUE` or `FALSE`, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+ifelse(test = c(TRUE, TRUE, FALSE, FALSE), yes = "Pass", no = "Fail")
 ```
