@@ -1033,3 +1033,25 @@ values <- c(1, 2, 3, 4, 5, 6)
 groups <- c("A", "A", "A", "B", "B", "B")
 tapply(X = values, INDEX = groups, FUN = sum)
 ```
+
+## Exercise
+
+### Apply
+
+#### Part 1
+
+- Create a vector of integers from 1 to 10.
+- Compute the square of each value in the vector using either `lapply()` or `sapply()`.
+- Compare the outputs of `lapply()` and `sapply()` in the previous step.
+
+#### Part 2
+
+- Create a list of four elements, each element being a vector of type either numeric or logical.
+- Compute the sum of each vector in the list using either `lapply()` or `sapply()`.
+
+#### Part 3
+
+- Use `sapply()` on the list that you created in part 2, to repeat each element of each vector three times.
+  - i.e., `1, 2, 3` should become `1, 1, 1, 2, 2, 2, 3, 3, 3`
+
+# Coffee break
