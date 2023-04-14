@@ -853,3 +853,35 @@ survey_data <- data.frame(
 - Compute the standard deviation of the column `Solar.R` in the aggregated data generated in the previous step.
 
 # Lunch break
+
+## User defined functions
+
+New functions can be created and assigned to names in the workspace, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+print1_return2 <- function(arg1, input2, ...) {
+    ## comment 
+    print(arg1)
+    return(input2)
+}
+```
+
+Once assigned, the function can be called and given arguments using round brackets `()`, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+output <- print1_return2(1, "a", TRUE, 1.05)
+output
+```
+
+<br/>
+
+Note:
+
+- The symbol `...` is called *ellipsis*.
+- The ellipsis can be used to let a function accept additional arguments which may or may not be used (read the help page of the relevant function for more details).
+- Commenting functions is good practice to rapidly remember what a function does.
+- Assigning functions to names based on verbs is good practice for readability.
