@@ -948,7 +948,6 @@ The `apply()` function takes a matrix `X=`, the selected dimension `MARGIN=`, an
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 m <- matrix(1:12, nrow = 3, ncol = 4)
 m
 ```
@@ -965,7 +964,6 @@ Sum of each row.
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 apply(X = m, MARGIN = 1, FUN = sum)
 ```
 :::
@@ -978,7 +976,6 @@ Mean of each column.
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 apply(X = m, MARGIN = 2, FUN = mean)
 ```
 :::
@@ -998,7 +995,6 @@ Each element of the return value is the result of applying `FUN=` to the corresp
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 lapply(X = 1:4, FUN = sqrt)
 ```
 :::
@@ -1010,7 +1006,6 @@ lapply(X = 1:4, FUN = sqrt)
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 sapply(X = 1:4, FUN = sqrt)
 ```
 
@@ -1021,9 +1016,20 @@ sapply(X = 1:4, FUN = sqrt)
 ```{r}
 #| eval: true
 #| echo: true
-#| message: true
 vapply(X = 1:4, FUN = sqrt, FUN.VALUE = numeric(1))
 ```
 :::
 
 ::::
+
+## Apply functions to ragged arrays
+
+The `tapply()` function can be used to apply a function to groups of values in a vector, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+values <- c(1, 2, 3, 4, 5, 6)
+groups <- c("A", "A", "A", "B", "B", "B")
+tapply(X = values, INDEX = groups, FUN = sum)
+```
