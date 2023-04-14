@@ -1055,3 +1055,35 @@ tapply(X = values, INDEX = groups, FUN = sum)
   - i.e., `1, 2, 3` should become `1, 1, 1, 2, 2, 2, 3, 3, 3`
 
 # Coffee break
+
+## Loops
+
+Loops are programming constructs that allows users to execute a set of instructions repeatedly.
+
+There are different types of loops: `for`, `while`, and `repeat`.
+
+<br/>
+
+The `for` loop defines a loop variable that iterates over elements of a vector, executing instructions a finite number of times, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+for (i in 1:3) {
+    print(i)
+}
+```
+
+<br/>
+
+The `while` loop defines a condition that allows the loop to iterate as long as the condition evaluates to `TRUE`, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+i <- 0
+while (i < 5) {
+    print(i)
+    i <- i + 2
+}
+```
