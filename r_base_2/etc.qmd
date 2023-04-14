@@ -789,7 +789,7 @@ The `aggregate()` function can be used to compute summary statistics on groups o
 head(iris)
 ```
 
-The function `aggregate()` takes a data frame, a list of grouping variables, and a function to compute on each group of values in each column of the data frame.
+The function `aggregate()` takes a data frame `x=`, a list of grouping variables `by=`, and a function `FUN=` to compute on each group of values in each column of the data frame.
 
 ```{r}
 #| eval: true
@@ -797,3 +797,10 @@ The function `aggregate()` takes a data frame, a list of grouping variables, and
 aggregate(x = iris, by = list(species = iris$Species), FUN = mean)
 ```
 
+The `aggregate()` function handles additional arguments to the function `FUN=`, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+aggregate(x = iris, by = list(species = iris$Species), FUN = mean, na.rm = TRUE)
+```
