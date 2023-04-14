@@ -1005,13 +1005,24 @@ lapply(X = 1:4, FUN = sqrt)
 
 ::: {.column width="50%"}
 
-`sapply()` is a user-friendly version and wrapper of `lapply()` by default returning a vector or matrix where suitable, e.g.
+`sapply(X, FUN, ...)` is a user-friendly version and wrapper of `lapply()` by default returning a vector or matrix where suitable, e.g.
 
 ```{r}
 #| eval: true
 #| echo: true
 #| message: true
 sapply(X = 1:4, FUN = sqrt)
+```
+
+<br/>
+
+`vapply(X, FUN, FUN.VALUE, ...)` is similar to `sapply()`, but has a pre-specified type of return value, so it can be safer (and sometimes faster) to use.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+vapply(X = 1:4, FUN = sqrt, FUN.VALUE = numeric(1))
 ```
 :::
 
