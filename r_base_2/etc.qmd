@@ -861,10 +861,11 @@ New functions can be created and assigned to names in the workspace, e.g.
 ```{r}
 #| eval: true
 #| echo: true
-print1_return2 <- function(arg1, input2, ...) {
+cost_groceries <- function(apples, pears, oranges, ...) {
     ## comment 
-    print(arg1)
-    return(input2)
+    message("apples: ", apples, ", pears: ", pears, ", oranges: ", oranges)
+    total <- apples * 0.5 + pears * 0.75 + oranges * 1
+    return(total)
 }
 ```
 
@@ -873,15 +874,52 @@ Once assigned, the function can be called and given arguments using round bracke
 ```{r}
 #| eval: true
 #| echo: true
-output <- print1_return2(1, "a", TRUE, 1.05)
+#| message: true
+output <- cost_groceries(1, 2, 3, 4)
 output
 ```
 
-<br/>
-
 Note:
 
+- Unnamed arguments are given in the the order of the function definition.
 - The symbol `...` is called *ellipsis*.
 - The ellipsis can be used to let a function accept additional arguments which may or may not be used (read the help page of the relevant function for more details).
 - Commenting functions is good practice to rapidly remember what a function does.
 - Assigning functions to names based on verbs is good practice for readability.
+
+## Setting default values for function arguments
+
+When creating a function, any argument can be given a default value that will be used when undefined in later calls to the function, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+cost_groceries <- function(apples, pears = 0, oranges = 0, ...) {
+    ## comment 
+    message("apples: ", apples, ", pears: ", pears, ", oranges: ", oranges)
+    total <- apples * 0.5 + pears * 0.75 + oranges * 1
+    return(total)
+}
+```
+
+Arguments without default values are required, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+#| error: true
+cost_groceries(pears = 1, oranges = 2)
+```
+
+Remember that unnamed arguments are given in the the order of the function definition, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+cost_groceries(pears = 1, 3, oranges = 2)
+```
+
+<br/>
+
+Best practice is to give arguments in the order of the function definition where possible.

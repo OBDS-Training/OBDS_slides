@@ -23,9 +23,6 @@ format:
 #| include: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE
-)
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
