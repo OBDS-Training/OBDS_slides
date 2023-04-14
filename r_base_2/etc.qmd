@@ -731,3 +731,50 @@ Alternatively, the arguments `by.x=` and `by.y=` can be used, whether the column
 #| echo: true
 merge(x = df1, y = df2, by.x = "sample", by.y = "sample")
 ```
+
+## Combining partially overlapping data frames
+
+The `merge()` function argument `all=` controls whether to discard rows that do not match between the two data frames being combined (the default), or preserve those rows and insert `NA` values to fill missing information, e.g.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+df1 <- data.frame(
+    value = c(1, 2, 3, 5),
+    sample = c("A", "B", "C", "E")
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+df2 <- data.frame(
+    sample = c("A", "B", "C", "D"),
+    group = c("control", "control", "treated", "treated")
+)
+```
+
+:::
+
+::::
+
+The default, `all = FALSE`.
+
+```{r}
+#| eval: true
+#| echo: true
+merge(x = df1, y = df2, by = "sample", all = FALSE)
+```
+
+Alternatively, `all = TRUE`.
+
+```{r}
+#| eval: true
+#| echo: true
+merge(x = df1, y = df2, by = "sample", all = TRUE)
+```
