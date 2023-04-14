@@ -804,3 +804,15 @@ The `aggregate()` function handles additional arguments to the function `FUN=`, 
 #| echo: true
 aggregate(x = iris, by = list(species = iris$Species), FUN = mean, na.rm = TRUE)
 ```
+
+## Exercise
+
+### Sorting
+
+- Load the `airquality` data set.
+- Open the help page for this data set.
+- Examine the data set.
+- Display the column names of the `airquality` data frame.
+- Sort the data frame by increasing value in the `Ozone` column.
+- Sort the data frame by `Month` in increasing order and `Temp` in decreasing order.
+- Write the latest sorted data frame to a text file format of your choice.
