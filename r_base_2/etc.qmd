@@ -807,7 +807,7 @@ aggregate(x = iris, by = list(species = iris$Species), FUN = mean, na.rm = TRUE)
 
 ## Exercise
 
-### Sorting
+### Sorting data frames
 
 - Load the `airquality` data set.
 - Open the help page for this data set.
@@ -816,3 +816,27 @@ aggregate(x = iris, by = list(species = iris$Species), FUN = mean, na.rm = TRUE)
 - Sort the data frame by increasing value in the `Ozone` column.
 - Sort the data frame by `Month` in increasing order and `Temp` in decreasing order.
 - Write the latest sorted data frame to a text file format of your choice.
+
+## Exercise
+
+### Merging data frames
+
+Run the code below to create two data frames.
+
+```{r}
+#| eval: true
+#| echo: true
+buildings <- data.frame(
+    site = c(1, 2, 3),
+    name = c("b1", "b2", "b3"))
+
+survey_data <- data.frame(
+    survey = c("A", "A", "A", "B", "B", "B"),
+    location = c(1, 2, 3, 2, 3, 1),
+    efficiency = c(51, 64, 70, 71, 80, 58))
+```
+
+<br/>
+
+- What is the shared information in these two data frames?
+- Use the `merge()` function to combine the two data frames by the shared information into a new data frame called `buildings_survey`.
