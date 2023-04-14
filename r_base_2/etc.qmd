@@ -937,3 +937,48 @@ Note:
 
 - To find the hypotenuse, add the squares of the other sides, then take the square root, i.e. $\sqrt{a^2 + b^2}$
 
+## Applying functions on matrices
+
+The `apply()` function can be used to apply a function on each of the rows or columns of a matrix.
+
+The `apply()` function takes a matrix `X=`, the selected dimension `MARGIN=`, and the function `FUN=` to apply along that dimension, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+m <- matrix(1:12, nrow = 3, ncol = 4)
+m
+```
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### By row
+
+Sum of each row.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+apply(X = m, MARGIN = 1, FUN = sum)
+```
+:::
+
+::: {.column width="50%"}
+### By column
+
+Mean of each column.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+apply(X = m, MARGIN = 2, FUN = mean)
+```
+:::
+
+::::
