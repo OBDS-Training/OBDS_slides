@@ -941,6 +941,8 @@ Note:
 
 The `apply()` function can be used to apply a function on each of the rows or columns of a matrix.
 
+<br/>
+
 The `apply()` function takes a matrix `X=`, the selected dimension `MARGIN=`, and the function `FUN=` to apply along that dimension, e.g.
 
 ```{r}
