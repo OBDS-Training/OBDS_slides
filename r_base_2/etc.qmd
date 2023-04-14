@@ -778,3 +778,22 @@ Alternatively, `all = TRUE`.
 #| echo: true
 merge(x = df1, y = df2, by = "sample", all = TRUE)
 ```
+
+## Summarising groups of data
+
+The `aggregate()` function can be used to compute summary statistics on groups of rows in a data frame, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+head(iris)
+```
+
+The function `aggregate()` takes a data frame, a list of grouping variables, and a function to compute on each group of values in each column of the data frame.
+
+```{r}
+#| eval: true
+#| echo: true
+aggregate(x = iris, by = list(species = iris$Species), FUN = mean)
+```
+
