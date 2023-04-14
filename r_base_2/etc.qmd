@@ -1136,3 +1136,33 @@ The function `ifelse(test, yes, no)` returns a value with the same shape as `tes
 #| echo: true
 ifelse(test = c(TRUE, TRUE, FALSE, FALSE), yes = "Pass", no = "Fail")
 ```
+
+## Exercise
+
+### Loops and conditions
+
+- Write a `for` loop that iterates over the integers 1 to 7 and prints the number raised to the power of three.
+- Write a `for` loop that iterates over the names of the columns in the builtin data set `iris` and prints each column name together with the number of characters in that column name.
+  - Example output: `Sepal.Length: 12`
+  - Hint: use the functions `print()`, `paste0()`, and `nchar()`.
+  - Remember to read the help page of each function to learn more about them.
+- Use the `ifelse()` function to print the name of colours that are made up of four characters in the vector `my_colours` below.
+
+```{r}
+#| eval: true
+#| echo: true
+my_colours <- c("red", "orange", "purple", "yellow", "pink", "blue")
+```
+
+## Further reading
+
+- Writing functions and loops:
+  - <https://ourcodingclub.github.io/tutorials/funandloops>
+- Errors and Warnings:
+  - <https://statisticsglobe.com/errors-warnings-r>
+
+## References
+
+```{r refs, results="asis"}
+PrintBibliography(bib)
+```
