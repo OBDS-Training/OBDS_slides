@@ -840,3 +840,14 @@ survey_data <- data.frame(
 
 - What is the shared information in these two data frames?
 - Use the `merge()` function to combine the two data frames by the shared information into a new data frame called `buildings_survey`.
+
+## Exercise
+
+### Summarising groups of data
+
+- Compute the mean of each numeric column each month in the `airquality` data frame.
+  - Make sure `NA` values are removed.
+- Compute the mean of the `Solar.R` column each month.
+  - Make sure the grouping column is called `Month` in the return value.
+  - Make sure `NA` values are removed.
+- Compute the standard deviation of the column `Solar.R` in the aggregated data generated in the previous step.
