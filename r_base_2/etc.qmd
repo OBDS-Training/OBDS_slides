@@ -923,3 +923,17 @@ cost_groceries(pears = 1, 3, oranges = 2)
 <br/>
 
 Best practice is to give arguments in the order of the function definition where possible.
+
+## Exercise
+
+### Writing a function
+
+- Write a function to calculate the hypotenuse of a triangle given the length of the other two sides.
+- Run the function you have created with different values.
+
+<br/>
+
+Note:
+
+- To find the hypotenuse, add the squares of the other sides, then take the square root, i.e. $\sqrt{a^2 + b^2}$
+
