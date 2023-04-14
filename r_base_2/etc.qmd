@@ -1087,3 +1087,23 @@ while (i < 5) {
     i <- i + 2
 }
 ```
+
+## The repeat loop
+
+The `repeat` loop iterates until the `break` keyword is encountered.
+
+This type of loop is mainly intended for interactive prompte, e.g.
+
+```{r}
+#| eval: false
+#| echo: true
+repeat {
+  x <- readline(prompt = "Guess the secret number: ")
+  x <- as.numeric(x)
+  if (x == 10) {
+      print(paste("You found the secret number!"))
+    break
+  }
+  print(paste("Missed, try again!"))
+}
+```
