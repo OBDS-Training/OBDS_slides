@@ -682,3 +682,52 @@ o <- order(df$batch, df$group)
 o
 df[o, ]
 ```
+
+## Combining data frames
+
+The function `merge()` can be used to combine two data frames using information they have in common.
+
+The `merge()` function takes the two data frames to combine and the names of columns to use for merging (i.e., where shared information is found), e.g.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+df1 <- data.frame(
+    value = c(1, 2, 3, 4),
+    sample = c("A", "B", "C", "D")
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: true
+#| echo: true
+df2 <- data.frame(
+    sample = c("A", "B", "C", "D"),
+    group = c("control", "control", "treated", "treated")
+)
+```
+
+:::
+
+::::
+
+The `by=` argument can be used if the columns have exactly the same name in the two data frames.
+
+```{r}
+#| eval: true
+#| echo: true
+merge(x = df1, y = df2, by = "sample")
+```
+
+Alternatively, the arguments `by.x=` and `by.y=` can be used, whether the columns have different names or not.
+
+```{r}
+#| eval: true
+#| echo: true
+merge(x = df1, y = df2, by.x = "sample", by.y = "sample")
+```
