@@ -984,3 +984,35 @@ apply(X = m, MARGIN = 2, FUN = mean)
 :::
 
 ::::
+
+## Apply functions to vetors and lists
+
+The function `lapply()`, `sapply()`, and `vapply()` can be used to apply functions to iterable objects such as vectors and lists.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+`lapply(X, FUN, ...)` returns a list of the same length as `X=`.
+Each element of the return value is the result of applying `FUN=` to the corresponding element in `X=`, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+lapply(X = 1:4, FUN = sqrt)
+```
+:::
+
+::: {.column width="50%"}
+
+`sapply()` is a user-friendly version and wrapper of `lapply()` by default returning a vector or matrix where suitable, e.g.
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: true
+sapply(X = 1:4, FUN = sqrt)
+```
+:::
+
+::::
