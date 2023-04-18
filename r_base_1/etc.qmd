@@ -42,9 +42,9 @@ rownames(ip)
 
 - <i class="fab fa-r-project"></i> itself does not have a graphical user interface (GUI).
 - RStudio is an [open-source](https://github.com/rstudio/rstudio) integrated development environments (IDE) developed by [Posit](https://posit.co/) (formerly known as RStudio).
-- <i class="fab fa-r-project"></i> and RStudio products have been around for several years.
+- <i class="fab fa-r-project"></i> and RStudio products have been around for many years.
   However, they are constantly being updated with new features and bug-fixes;
-  take note of the version of <i class="fab fa-r-project"></i> and <i class="fab fa-r-project"></i> packages that you are using.
+  take note of the version of <i class="fab fa-r-project"></i> and the <i class="fab fa-r-project"></i> packages that you are using.
 
 ## <i class="fab fa-r-project"></i> packages
 
@@ -61,7 +61,7 @@ rownames(ip)
 ## Installing packages
 
 - On the CCB server, packages are managed by the administrators.
-  Email <genmail@molbiol.ox.ac.uk> and ask for the package to be installed.
+  Email <help@imm.ox.ac.uk> and ask for the package to be installed.
 - In a regular <i class="fab fa-r-project"></i> session, use the function `install.packages()`, e.g.
 
 ```{r}
