@@ -3,27 +3,49 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: 'Using individual repositories on Posit Cloud'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-01-30 (updated: `r Sys.Date()`)"
-output:
-  xaringan::moon_reader:
-    css: [default, metropolis, rladies-fonts, "my-theme.css"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-# uncomment this line to produce HTML and PDF in RStudio:
-knit: pagedown::chrome_print
+date: "2023-04-26 (updated: `r Sys.Date()`)"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Kevin Rue-Albrecht -- Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
 ---
 
-```{r child='layout.Rmd'}
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(
+  message = FALSE, warning = FALSE, error = FALSE, include = TRUE, echo = FALSE,
+  fig.align='center', out.height='500px'
+)
+options(width = 90)
+stopifnot(require(base))
 ```
 
----
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
 
-# Learning Goals & Objectives
+## Learning Goals & Objectives (Posit Cloud)
 
-### Learning goals
+#### Learning goals
 
 <!--
 High-level "big picture" objectives of the learning process.
@@ -33,57 +55,49 @@ High-level "big picture" objectives of the learning process.
 - Identify where git stores information.
 - Practice how to record changes in <i class="fab fa-git"></i>.
 
-### Learning objectives
+#### Learning objectives
 
 <!--
 More concrete and measurable outputs.
 -->
 
-- Create an RStudio Cloud project.
+- Create an RStudio project on Posit Cloud.
 - Set up an SSH key pair on <i class="fab fa-github"></i> GitHub.
 - Set up a GitHub Personal Access Token.
 - Configure <i class="fab fa-git"></i>.
 - _Initialise_ a personal repository on <i class="fab fa-github"></i> GitHub for this course.
-- _Clone_ a copy of the repository in your RStudio Cloud project.
-- Create and edit files in the repository in your RStudio Cloud project, and _commit_ those changes.
+- _Clone_ a copy of the repository in your RStudio project.
+- Create and edit files in the repository in your RStudio project, and _commit_ those changes.
 - _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
 - Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
-- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository into your RStudio Cloud project.
-- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and in your RStudio Cloud project.
+- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository into your RStudio project.
+- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and in your RStudio project.
 
----
+## Prerequisites (Posit Cloud)
 
-# Prerequisites
-
-- An [RStudio Cloud](https://rstudio.cloud/) account.
+- A [Posit Cloud](https://posit.cloud/) account.
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
----
-
-```{r child='opening.Rmd'}
+```{r child='opening.qmd'}
 ```
 
----
-
-# RStudio Cloud projects
+## RStudio projects (Posit Cloud)
 
 ```{r, fig.align='center', out.height='375px'}
 # Screenshot
 knitr::include_graphics("img/rstudio-cloud-projects.png")
 ```
 
----
+## Exercise (Posit Cloud)
 
-# Exercise
+### Setting up an RStudio project
 
-## Setting up an RStudio Cloud project
-
-This RStudio Cloud project will be your workplace for the course.
+This RStudio project on Posit Cloud will be your workplace for the course.
 
 - Navigate to <https://posit.cloud/> and sign in.
 
-- Navigate to the Space `OBDS_Winter_2023`.
+- Navigate to the Space that you were invited to for this course.
 
 - Create a new RStudio project
 
@@ -91,9 +105,7 @@ This RStudio Cloud project will be your workplace for the course.
 
 - Name the project with your own name (e.g., `Kevin Rue`).
 
----
-
-# SSH key pairs
+## SSH key pairs (Posit Cloud)
 
 ```{r, fig.align='center', out.height='400px', out.width='600px'}
 # Source: Adobe Illustrator
@@ -101,24 +113,22 @@ knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
 .center[
-_We need to set an SSH key pair between RStudio Cloud and <i class="fab fa-github"></i> GitHub._
+_We need to set an SSH key pair between the RStudio project and <i class="fab fa-github"></i> GitHub._
 ]
 
----
+## Exercise (Posit Cloud)
 
-# Exercise
+### Setting up the SSH key pair
 
-## Setting up the SSH key pair
+This key pair will allow your RStudio project to push and pull code through the GitHub API.
 
-This key pair will allow your RStudio Cloud project to push and pull code through the GitHub API.
-
-- In your RStudio Cloud project, open the Terminal.
+- In your RStudio project, open the Terminal.
 
 - Create an SSH key pair.
 
   + `ssh-keygen -t ecdsa -b 521`
   
-  + Accept the default location for the key (leave eld empty and press the Return key)
+  + Accept the default location for the key (leave the field empty and press the Return key)
   
   + _Do_ set a passphrase to protect your key pair.
 
@@ -134,33 +144,27 @@ This key pair will allow your RStudio Cloud project to push and pull code throug
 _(See next slides to navigate to that page more naturally.)_
 ]
 
----
-
-```{r child='ssh-keypair-screenshots.Rmd'}
+```{r child='ssh-keypair-screenshots.qmd'}
 ```
 
----
-
-```{r child='github-pat-intro.Rmd'}
+```{r child='github-pat-intro.qmd'}
 ```
 
----
+## Exercise (Posit Cloud)
 
-# Exercise
-
-## Setting up a GitHub Personal Access Token
+### Setting up a GitHub Personal Access Token
 
 The following slides illustrate how to navigate to the page below more naturally.
 
 - Navigate to <https://github.com/settings/tokens/new>.
 
-- Set note to "OBDS September 2022".
+- Set a memorable note, e.g. "OBDS Spring 2023".
 
 - Leave expiration to 30 days. _Do not_ tick any of the boxes.
 
 - Generate the token and copy it.
 
-- Back in your RStudio Cloud project, create a file called `.Renviron` in your home directory:
+- Back in your RStudio project, create a file called `.Renviron` in your home directory:
 
   + In the R console, type `file.edit("~/.Renviron")`.
   
@@ -170,31 +174,21 @@ The following slides illustrate how to navigate to the page below more naturally
 
   + In the menu bar: "Session" > "Restart R", and in the R console: `Sys.getenv("GITHUB_PAT")`.
 
----
-
-```{r child='github-pat-screenshots.Rmd'}
+```{r child='github-pat-screenshots.qmd'}
 ```
 
----
-
-```{r child='get-started.Rmd'}
+```{r child='get-started.qmd'}
 ```
 
----
-
-```{r child='git-configure.Rmd'}
+```{r child='git-configure.qmd'}
 ```
 
----
-
-```{r child='create-github-repository.Rmd'}
+```{r child='create-github-repository.qmd'}
 ```
 
----
+## Exercise (Posit Cloud)
 
-# Exercise
-
-## Clone the repository
+### Clone the repository
 
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
@@ -220,26 +214,22 @@ Use the `ls` command to list the contents of the working directory.
 ]
 ]
 
----
-
-```{r child='main.Rmd'}
+```{r child='main.qmd'}
 ```
 
----
-
-# Summary so far
+## Summary so far (Posit Cloud)
 
 - You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
 
-- You have made a _clone_ of the repository in your RStudio Cloud project.
+- You have made a _clone_ of the repository in your RStudio project.
 
-- You have _committed_ changes to files in your RStudio Cloud project.
+- You have _committed_ changes to files in your RStudio project.
 
-- You have _pushed_ those commits from your RStudio Cloud project to <i class="fab fa-github"></i> GitHub.
+- You have _pushed_ those commits from your RStudio project to <i class="fab fa-github"></i> GitHub.
 
 - You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
 
-- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to your RStudio Cloud project.
+- You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to your RStudio project.
 
 .pull-left[
 ```{r, fig.align='center', out.height='250px', out.width='600px'}
@@ -256,5 +246,5 @@ However, you need to be aware of other <i class="fab fa-git"></i> commands to ma
 
 ---
 
-```{r child='etc.Rmd'}
+```{r child='etc.qmd'}
 ```

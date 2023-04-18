@@ -1,39 +1,33 @@
-# Exercise
+## Exercise
 
-## Setting up a GitHub Personal Access Token
+### Setting up a GitHub Personal Access Token
 
 ```{r, fig.align='center', out.height='400px', out.width='800px'}
 # Screenshot
 knitr::include_graphics("img/github-settings.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Setting up a GitHub Personal Access Token
+### Setting up a GitHub Personal Access Token
 
 ```{r, fig.align='center', out.height='450px', out.width='700px'}
 # Screenshot
 knitr::include_graphics("img/github-developer-settings.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Setting up a GitHub Personal Access Token
+### Setting up a GitHub Personal Access Token
 
 ```{r, fig.align='center', out.height='450px', out.width='800px'}
 # Screenshot
 knitr::include_graphics("img/github-personal-access-tokens.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Setting up a GitHub Personal Access Token
+### Setting up a GitHub Personal Access Token
 
 ```{r, fig.align='center', out.height='400px', out.width='800px'}
 # Screenshot

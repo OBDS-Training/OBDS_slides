@@ -1,4 +1,4 @@
-# GitHub Personal Access Tokens
+## GitHub Personal Access Tokens
 
 When installing packages directly from GitHub, you may run into this type of error.
 
