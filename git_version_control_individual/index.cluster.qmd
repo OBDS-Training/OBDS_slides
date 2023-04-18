@@ -71,13 +71,13 @@ More concrete and measurable outputs.
 - _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
 - Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
 
-## Prerequisites
+## Prerequisites (CCB cluster)
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 
 - An account on the teaching cluster.
 
-## Set up
+## Set up (CCB cluster)
 
 - Connect to the University VPN.
 
@@ -88,7 +88,7 @@ More concrete and measurable outputs.
 ```{r, child='opening.qmd'}
 ```
 
-## SSH key pairs
+## SSH key pairs (CCB cluster)
 
 ```{r, fig.align='center', out.height='500px', out.width='600px'}
 # Source: https://note.nguyenanhung.com/
@@ -99,7 +99,7 @@ knitr::include_graphics("img/ssh-key-pair.svg")
 _We need to set an SSH key pair between the teaching cluster and <i class="fab fa-github"></i> GitHub._
 :::
 
-## Exercise
+## Exercise (CCB cluster)
 
 ### Setting up the SSH key pair
 
@@ -137,7 +137,7 @@ _(See next slides to navigate to that page more naturally.)_
 ```{r, child='create-github-repository.qmd'}
 ```
 
-## Exercise
+## Exercise (CCB cluster)
 
 ### Clone the repository
 
@@ -180,7 +180,7 @@ Now, clone the repository into that `git` subdirectory.
 ```{r, child='main.qmd'}
 ```
 
-## Summary so far
+## Summary so far (CCB cluster)
 
 - You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
 
