@@ -116,7 +116,7 @@ knitr::include_graphics("img/class-object-relationship.jpeg")
 - More flexibility and scalability.
 
 ::: {style="text-align: center;"}
-**#Do you have any other thought?**
+**Do you have any other thought?**
 :::
 :::
 
@@ -251,7 +251,7 @@ knitr::include_graphics("img/class-polymorphism.svg")
   + *R6*, implemented in the `r BiocStyle::CRANpkg("R6")` package,
     and popular in the [tidyverse](https://www.tidyverse.org/) project.
 
-In this lesson, we focus on S3, to understand classes of objects that we frequently come across in base <i class="fab fa-r-project"></i>.
+In this lesson, we focus on S3, to understand classes of objects that we come across in base <i class="fab fa-r-project"></i>.
 
 ## The S3 class system in <i class="fab fa-r-project"></i>
 
@@ -261,11 +261,27 @@ For example, character vectors are objects.
 :::: {.columns}
 
 ::: {.column width="50%"}
+
 ```{r, echo=TRUE, include=TRUE}
 character_object <- "A"
 character_object
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 str(character_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 class(character_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 attributes(character_object)
 ```
 :::
@@ -274,8 +290,23 @@ attributes(character_object)
 ```{r, echo=TRUE, include=TRUE}
 character_object2 <- c("A", "B", "C")
 character_object2
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 str(character_object2)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 class(character_object2)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 attributes(character_object2)
 ```
 :::
@@ -290,15 +321,35 @@ attributes(character_object2)
 ```{r, echo=TRUE, include=TRUE}
 factor_object <- factor(c("A", "B", "C"))
 factor_object
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 str(factor_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 class(factor_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
+attributes(factor_object)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
-attributes(factor_object)
 attr(factor_object, "levels")
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 attr(factor_object, "class")
 ```
 :::
@@ -316,13 +367,23 @@ dataframe_object <- data.frame(
   strings = c("A", "B", "C")
   )
 dataframe_object
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 class(dataframe_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
+str(dataframe_object)
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
-str(dataframe_object)
 attributes(dataframe_object)
 ```
 :::
@@ -341,13 +402,28 @@ matrix_object <- matrix(
   )
 matrix_object
 ```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
+class(matrix_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
+str(matrix_object)
+```
 :::
 
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
-class(matrix_object)
-str(matrix_object)
 attributes(matrix_object)
+```
+
+<br/>
+
+```{r, echo=TRUE, include=TRUE}
 attr(matrix_object, "dim")
 ```
 :::
@@ -368,8 +444,6 @@ options(width = 60)
 ```{r, echo=TRUE, include=TRUE}
 methods("print") %>% head(14)
 ```
-
-**Note:** this is why it is bad practice to use the character `.` in the name of objects and custom functions.
 :::
 
 ::: {.column width="50%"}
@@ -382,10 +456,16 @@ print.default(character_object)
 
 ::::
 
+**Note:** this is why it is bad practice to use the character `.` in the name of objects and custom functions.
+
+<br/>
+
 ::: {style="text-align: center;"}
 **You can call methods directly, but you shouldn't!**
 Instead, use `print(object)`.
 :::
+
+<br/>
 
 The whole point of method dispatch is that <i class="fab fa-r-project"></i> uses the class of the object to determine the method to use.
 
