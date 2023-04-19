@@ -139,13 +139,19 @@ diamonds
 
 Use `library(ggplot2)` to load the package.
 
+<br/>
+
 ### Specify the dataset.
 
 What does `ggplot(diamonds)` do?
 
+<br/>
+
 ### Add the aesthetics.
 
 What does `ggplot(diamonds, aes(x = carat, y = price))` do?
+
+<br/>
 
 ### Add geometric objects
 
@@ -158,25 +164,35 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 ### Spot (and predict) the difference!
 
+<br/>
+
 #### Plot 1
 
 ```{r, include=TRUE, eval=FALSE}
+#| echo: true
+#| eval: false
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point() +
   geom_smooth()
 ```
 
+<br/>
+
 #### Plot 2
 
 ```{r, include=TRUE, eval=FALSE}
+#| echo: true
+#| eval: false
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point(aes(colour = cut)) +
   geom_smooth()
 ```
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **Predict the difference between these two plots**
-]
+:::
 
 ## Answer
 
