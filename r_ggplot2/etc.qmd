@@ -91,7 +91,9 @@ print(plot1)
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| echo: false
+#| fig-align: center
 knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
 # Source: https://makeameme.org/meme/plots-plots-everywhere
 ```
@@ -514,6 +516,8 @@ ggplot(mpg, aes(cty, hwy, color = year)) +
 
 ## References
 
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
+#| echo: false
+#| results: asis
 PrintBibliography(bib)
 ```
