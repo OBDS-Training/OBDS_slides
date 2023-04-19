@@ -1,5 +1,7 @@
 ## Lesson goals and objectives
 
+<br/>
+
 ### Learning goals
 
 - Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.

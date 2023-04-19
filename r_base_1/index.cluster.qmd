@@ -1,6 +1,6 @@
 ---
 title: 'Introduction to base <i class="fab fa-r-project"></i>'
-subtitle: '<i class="fab fa-r-project"></i> on the CCB cluster'
+subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-06-05 (updated: `r Sys.Date()`)"
@@ -19,17 +19,18 @@ format:
 # renderthis::to_pdf("index.cluster.html")
 ---
 
-```{r setup}
+```{r}
+#| label: setup
 #| include: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE
-)
+options(width = 120)
 ```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
+```{r}
+#| label: load_refs
 #| include: false
+#| cache: false
 options(htmltools.dir.version = FALSE)
 library(RefManageR)
 BibOptions(
@@ -44,17 +45,9 @@ bib <- ReadBib("bibliography.bib")
 NoCite(bib, "R")
 ```
 
-```{r, child='goals_and_objectives.qmd'}
+```{r}
+#| child: "goals_and_objectives.qmd"
 ```
-
-<!--
-Docs:
-- https://quarto.org/docs/get-started/hello/rstudio.html
-- https://quarto.org/docs/presentations/revealjs/
-- https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd
-- https://quarto.org/docs/reference/formats/presentations/revealjs.html#slides
-- https://quarto.org/docs/output-formats/html-themes.html
--->
 
 ## Prerequisites
 
@@ -64,5 +57,6 @@ Docs:
 
 - Launch RStudio Server on the teaching cluster.
 
-```{r, child='etc.qmd'}
+```{r}
+#| child: "etc.qmd"
 ```
