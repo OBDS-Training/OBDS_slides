@@ -168,7 +168,7 @@ What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 #### Plot 1
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
 #| echo: true
 #| eval: false
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
@@ -180,7 +180,7 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
 
 #### Plot 2
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
 #| echo: true
 #| eval: false
 ggplot(diamonds, aes(x = carat, y = price)) +
@@ -196,10 +196,14 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 ## Answer
 
+<br/>
+
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point() +
   geom_smooth()
@@ -209,7 +213,9 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point(aes(colour = cut)) +
   geom_smooth()
