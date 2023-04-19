@@ -46,7 +46,7 @@ NoCite(bib, "ggplot2book")
 ```
 
 ```{r}
-#| child: "goals_and_objectives.qmd"
+#| child: goals_and_objectives.qmd
 ```
 
 ## Prerequisites
@@ -62,5 +62,5 @@ NoCite(bib, "ggplot2book")
 - Open the notebook and follow along, editing and running the code as needed.
 
 ```{r}
-#| child: "etc.qmd"
+#| child: etc.qmd
 ```

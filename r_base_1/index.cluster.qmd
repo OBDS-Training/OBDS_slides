@@ -46,7 +46,7 @@ NoCite(bib, "R")
 ```
 
 ```{r}
-#| child: "goals_and_objectives.qmd"
+#| child: goals_and_objectives.qmd
 ```
 
 ## Prerequisites
@@ -58,5 +58,5 @@ NoCite(bib, "R")
 - Launch RStudio Server on the teaching cluster.
 
 ```{r}
-#| child: "etc.qmd"
+#| child: etc.qmd
 ```
