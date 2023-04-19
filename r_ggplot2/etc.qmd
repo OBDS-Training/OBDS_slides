@@ -4,8 +4,6 @@
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 900px
 knitr::include_graphics("img/data-visualisation.png")
 # Source: https://www.autodesk.com/autodesk-university/article/Turn-Revit-Data-Useful-Information-Visualization-Techniques-and-Workflows-2019
 ```
@@ -15,11 +13,7 @@ knitr::include_graphics("img/data-visualisation.png")
 <br/>
 
 ```{r}
-## GIF image seems to need include=TRUE
-#| include: true
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 900px
 knitr::include_graphics("img/plot-same-mean.gif")
 # Source: https://www.variancereduction.com/single-post/2017/06/12/same-stats-different-graphs-the-importance-of-data-visualization
 ```
@@ -30,8 +24,6 @@ knitr::include_graphics("img/plot-same-mean.gif")
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
-#| out-width: 900px
 knitr::include_graphics("img/plots-plots-everywhere.jpg")
 # Source: https://makeameme.org/meme/plots-plots-everywhere
 ```
@@ -133,6 +125,8 @@ Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
 diamonds
 ```
 
+<br/>
+
 **Note:** refer to the man page for more information about each column.
 
 ## Exercise
@@ -141,19 +135,19 @@ Use `library(ggplot2)` to load the package.
 
 <br/>
 
-### Specify the dataset.
+#### Specify the dataset.
 
 What does `ggplot(diamonds)` do?
 
 <br/>
 
-### Add the aesthetics.
+#### Add the aesthetics.
 
 What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
 <br/>
 
-### Add geometric objects
+#### Add geometric objects
 
 - Add data points showing `carat` on the x-axis and `price` on the y-axis.
 - Color data points by `cut`.
@@ -228,13 +222,17 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 ## Themes
 
+<br/>
+
 Themes are a powerful way to customize the non-data components of your plots, e.g.
 
 - axis ticks - `element_line(colour, size, linetype, ...)`
 - axis text - `element_text(family, face, colour, size, hjust, ...)`
 - background - `element_rect(fill, colour, size, linetype, color, ...)`
 
-```{r, include=TRUE, results='hide'}
+```{r}
+#| echo: true
+#| results: hide
 theme(
   axis.ticks = element_line(size = 2),
   axis.text.x = element_text(face = "italic", hjust = 1),
@@ -246,25 +244,34 @@ You can get details of the current theme using `theme_get()`.
 
 A number of presets are available, e.g. `theme_classic()`, `theme_minimal()`, `theme_bw()`.
 
+<br/>
+
 **Note:** you can combine a preset theme with further customisation, e.g. `theme_minimal() + theme(...)`.
 
 ## Preset themes
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 base_plot <- ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point()
 ```
 
+<br/>
+
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 base_plot + theme_classic()
 ```
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 base_plot + theme_dark()
 ```
 :::
@@ -273,7 +280,9 @@ base_plot + theme_dark()
 
 ## Customise the theme
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 base_plot +
   labs(title = "Diamond price and carat values",
   x = "Carat", y = "Price") +
@@ -286,7 +295,9 @@ base_plot +
 
 Wrap a 1-dimensional 'ribbon' of plots over dimensions using `facet_wrap(~variable)`:
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point() +
   facet_wrap(~cut, nrow = 2)
@@ -296,7 +307,9 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 Arrange plots by row and column following two variables using `facet_grid(row ~ column)`
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point() +
   facet_grid(cut ~ color)
@@ -311,6 +324,8 @@ Using the `ChickWeight` data set:
 - Create a scatter plot of weight (y-axis) over time (x-axis).
 - Color by diet.
 - Add a linear mean trend line for each diet.
+
+<br/>
 
 At this point you should be able to visually identify
 the diet that leads to the highest mean increase in weight.
@@ -341,21 +356,28 @@ From this point onwards, you may need to iteratively resize the text of the tick
 
 ## Plot grids - Combine plots
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
 plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
 ```
 
+<br/>
+
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 plot1
 ```
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
 plot2
 ```
 :::
@@ -364,35 +386,55 @@ plot2
 
 ## Plot grids - cowplot
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 12
 library(cowplot)
 cowplot::plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
 ```
 
 ## Plot grids - patchwork
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 12
 library(patchwork)
 plot1 + plot2
 ```
 
 ## Plot grids - patchwork
 
-```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 5
 library(patchwork)
 plot1 / plot2
 ```
 
 ## Plot grids - patchwork
 
-```{r, include=TRUE, fig.height=6, fig.width=10, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 10
 library(patchwork)
 (plot1 + plot2) / (plot2 + plot1)
 ```
 
 ## Plot grids - gridExtra
 
-```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 12
 library(gridExtra)
 gridExtra::grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
 ```
@@ -401,7 +443,9 @@ gridExtra::grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
 
 The `ggsave()` function can be used to export a plot to a file.
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 ggsave(
   filename,
   plot = last_plot(),
@@ -409,7 +453,9 @@ ggsave(
 )
 ```
 
-### Notes
+<br/>
+
+Note:
 
 - The first argument is the `filename`, not the `plot`!
 - If `plot` is not given, the latest plot generated is used.
@@ -446,7 +492,10 @@ You will likely need a few attempts to fine-tune the width and height of the out
 
 Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=6}
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-height: 6
 ggplot(mpg, aes(cty, hwy, color = year)) +
   geom_abline(slope = 1, intercept = 0) +
   geom_point(size = 0.5) +
@@ -465,8 +514,6 @@ ggplot(mpg, aes(cty, hwy, color = year)) +
 
 ## References
 
-.small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
 PrintBibliography(bib)
 ```
-]
