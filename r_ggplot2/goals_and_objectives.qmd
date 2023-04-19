@@ -1,0 +1,14 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+- Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
+- Identify the key differences between `ggplot` objects and base R graphics.
+- Introduce the concept of tidy data.
+
+### Learning objectives
+
+- Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
+- Overlay multiple layers for the same data on a single plot.
+- Use faceting and plotting grids.
+- Customise plot themes.

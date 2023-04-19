@@ -1,59 +1,82 @@
-# Plots - Visualise and comprehend data
+## Plots - Visualise and comprehend data
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+<br/>
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 900px
 knitr::include_graphics("img/data-visualisation.png")
 # Source: https://www.autodesk.com/autodesk-university/article/Turn-Revit-Data-Useful-Information-Visualization-Techniques-and-Workflows-2019
 ```
 
----
+## Plots - Beyond summary statistics
 
-# Plots - Beyond summary statistics
+<br/>
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+## GIF image seems to need include=TRUE
+#| include: true
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 900px
 knitr::include_graphics("img/plot-same-mean.gif")
 # Source: https://www.variancereduction.com/single-post/2017/06/12/same-stats-different-graphs-the-importance-of-data-visualization
 ```
 
----
+## Plots, plots everywhere!
 
-# Plots, plots everywhere!
+<br/>
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 900px
 knitr::include_graphics("img/plots-plots-everywhere.jpg")
 # Source: https://makeameme.org/meme/plots-plots-everywhere
 ```
 
----
+## Plotting in base <i class="fab fa-r-project"></i>
 
-# Plotting in base <i class="fab fa-r-project"></i>
-
-```{r, include=TRUE}
+```{r}
+#| echo: true
 head(iris$Sepal.Length)
 ```
 
-```{r, include=TRUE, fig.align='center', fig.height=4, fig.width=8}
+```{r}
+#| echo: true
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 900px
 hist(x = iris$Sepal.Length, breaks = 25, xlab = "Sepal Length",
-  main = "Histogram of sepal lengths", col = "grey90", border = "red",
-  xlim = c(4, 8), cex.lab = 1.5, cex.axis = 1.5, cex.main = 2)
+    main = "Histogram of sepal lengths", col = "grey90", border = "red",
+    xlim = c(4, 8), cex.lab = 1.5, cex.axis = 1.5, cex.main = 2)
 ```
 
----
+## Tidy data
 
-# Tidy data
+<br/>
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 head(iris)
 ```
 
+<br/>
+
 ```{r, include=TRUE}
+#| echo: true
 summary(iris)
 ```
 
----
+## Plotting tidy data with `r BiocStyle::CRANpkg("ggplot2")`
 
-# Plotting tidy data with `r BiocStyle::CRANpkg("ggplot2")`
-
-```{r, include=TRUE, fig.align='center', fig.height=4.5, fig.width=8}
+```{r}
+#| echo: true
+#| message: false
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 900px
 library(ggplot2)
 plot1 <- ggplot(iris, aes(x = Sepal.Length)) +
   geom_histogram(fill = "grey", color = "black") +
@@ -62,34 +85,29 @@ plot1 <- ggplot(iris, aes(x = Sepal.Length)) +
 print(plot1)
 ```
 
----
+## `r BiocStyle::CRANpkg("ggplot2")`
 
-# `r BiocStyle::CRANpkg("ggplot2")`
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 - Currently the most popular plotting framework in <i class="fab fa-r-project"></i>
-
 - Uses tidy data (part of the `r BiocStyle::CRANpkg("tidyverse")`)
-
-  + e.g. `data.frame`, `datatable`, `tibble`
-  
-  + One row = one data point
-  
-  + One column = one property of data points, e.g. position on x axis, color, size
-
+  - e.g. `data.frame`, `datatable`, `tibble`
+  - One row = one data point
+  - One column = one property of data points, e.g. position on x axis, color, size
 - Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 knitr::include_graphics("img/rstudio-cheatsheet-ggplot.png")
 # Source: https://makeameme.org/meme/plots-plots-everywhere
 ```
-]
+:::
 
----
+::::
 
-# Geometric objects
+## Geometric objects
 
 A **layer** combines **data**, **aesthetic** mapping, a **geom** (geometric object), a **stat** (statistical transformation), and a **position** adjustment.
 Typically, you will create layers using a `geom_*` function,
@@ -98,60 +116,49 @@ occasionally overriding the default **position** and **stat** if needed.
 Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
 
 - `geom_point()` - scatter plot, requires `x` and `y`.
-
 - `geom_histogram()` - histogram, requires `x` (continuous).
-
 - `geom_bar()` - histogram, requires `x` (categorical).
-
 - `geom_col()` - histogram, requires `x` and `y`.
-
 - `geom_boxplot()` - boxplot, requires `x` and/or `y`.
-
 - `geom_line()` - connect consecutive observations with line, requires `x` and `y`.
 
 **Note:** refer to man pages for optional and alternative aesthetics for each **geom**.
 
----
+## Exercise with the built-in `diamonds` dataset
 
-# Exercise with the built-in `diamonds` dataset
+<br/>
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 diamonds
 ```
 
 **Note:** refer to the man page for more information about each column.
 
----
-
-# Exercise
+## Exercise
 
 Use `library(ggplot2)` to load the package.
 
-## Specify the dataset.
+### Specify the dataset.
 
 What does `ggplot(diamonds)` do?
 
-## Add the aesthetics.
+### Add the aesthetics.
 
 What does `ggplot(diamonds, aes(x = carat, y = price))` do?
 
-## Add geometric objects
+### Add geometric objects
 
 - Add data points showing `carat` on the x-axis and `price` on the y-axis.
-
 - Color data points by `cut`.
-
 - Add a smoothed mean trend line.
-
 - Assign that last plot to an object called `obds_diamonds`.
 
----
+## Exercise
 
-# Exercise
+### Spot (and predict) the difference!
 
-## Spot (and predict) the difference!
-
-### Plot 1
+#### Plot 1
 
 ```{r, include=TRUE, eval=FALSE}
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
@@ -159,7 +166,7 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_smooth()
 ```
 
-### Plot 2
+#### Plot 2
 
 ```{r, include=TRUE, eval=FALSE}
 ggplot(diamonds, aes(x = carat, y = price)) +
@@ -171,44 +178,38 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 **Predict the difference between these two plots**
 ]
 
----
+## Answer
 
-# Answer
+:::: {.columns}
 
-.pull-left[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point() +
   geom_smooth()
 ```
-]
 
 **Note:** Colour aesthetic is passed to both `geom_point()` and `geom_smooth()`.
-]
+:::
 
-.pull-right[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point(aes(colour = cut)) +
   geom_smooth()
 ```
-]
 
 **Note:** Colour aesthetic is only known to `geom_point()`.
-]
+:::
 
----
+::::
 
-# Themes
+## Themes
 
 Themes are a powerful way to customize the non-data components of your plots, e.g.
 
 - axis ticks - `element_line(colour, size, linetype, ...)`
-
 - axis text - `element_text(family, face, colour, size, hjust, ...)`
-
 - background - `element_rect(fill, colour, size, linetype, color, ...)`
 
 ```{r, include=TRUE, results='hide'}
@@ -225,30 +226,30 @@ A number of presets are available, e.g. `theme_classic()`, `theme_minimal()`, `t
 
 **Note:** you can combine a preset theme with further customisation, e.g. `theme_minimal() + theme(...)`.
 
----
-
-# Preset themes
+## Preset themes
 
 ```{r, include=TRUE}
 base_plot <- ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   geom_point()
 ```
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.align='center'}
 base_plot + theme_classic()
 ```
-]
+:::
 
-.pull-left[
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.align='center'}
 base_plot + theme_dark()
 ```
-]
+:::
 
----
+::::
 
-# Customise the theme
+## Customise the theme
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 base_plot +
@@ -259,9 +260,7 @@ base_plot +
   plot.title = element_text(hjust = 0.5, size = 20))
 ```
 
----
-
-# Facets - Wrap
+## Facets - Wrap
 
 Wrap a 1-dimensional 'ribbon' of plots over dimensions using `facet_wrap(~variable)`:
 
@@ -271,9 +270,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_wrap(~cut, nrow = 2)
 ```
 
----
-
-# Facets - Grid
+## Facets - Grid
 
 Arrange plots by row and column following two variables using `facet_grid(row ~ column)`
 
@@ -283,32 +280,25 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   facet_grid(cut ~ color)
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Trend lines
+### Trend lines
 
 Using the `ChickWeight` data set:
 
 - Create a scatter plot of weight (y-axis) over time (x-axis).
-
 - Color by diet.
-
 - Add a linear mean trend line for each diet.
 
 At this point you should be able to visually identify
 the diet that leads to the highest mean increase in weight.
 
 - Facet a ribbon of sub-plots, one per diet.
-
 - Assign that last plot to an object called `obds_chickweight`.
 
----
+## Exercise
 
-# Exercise
-
-## Bar plot
+### Bar plot
 
 - Load the `ggplot2::msleep` data set.
 - Draw a bar plot of number of observations (i.e., rows) for each taxonomic order
@@ -327,75 +317,65 @@ From this point onwards, you may need to iteratively resize the text of the tick
 - Add a contour of thin black lines to the bars.
 - Assign that last plot to an object called `obds_msleep`.
 
----
-
-# Plot grids - Combine plots
+## Plot grids - Combine plots
 
 ```{r, include=TRUE}
 plot1 <- base_plot + theme_classic() + labs(title = "Theme classic")
 plot2 <- base_plot + theme_dark() + labs(title = "Theme dark")
 ```
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
 plot1
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.height=4, fig.width=5, fig.align='center'}
 plot2
 ```
-]
+:::
 
----
+::::
 
-# Plot grids - cowplot
+## Plot grids - cowplot
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 library(cowplot)
 cowplot::plot_grid(plot1, plot2, labels = c("A", "B"), ncol = 2, nrow = 1)
 ```
 
----
-
-# Plot grids - patchwork
+## Plot grids - patchwork
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 library(patchwork)
 plot1 + plot2
 ```
 
----
-
-# Plot grids - patchwork
+## Plot grids - patchwork
 
 ```{r, include=TRUE, fig.height=6, fig.width=5, fig.align='center'}
 library(patchwork)
 plot1 / plot2
 ```
 
----
-
-# Plot grids - patchwork
+## Plot grids - patchwork
 
 ```{r, include=TRUE, fig.height=6, fig.width=10, fig.align='center'}
 library(patchwork)
 (plot1 + plot2) / (plot2 + plot1)
 ```
 
----
-
-# Plot grids - gridExtra
+## Plot grids - gridExtra
 
 ```{r, include=TRUE, fig.height=5, fig.width=12, fig.align='center'}
 library(gridExtra)
 gridExtra::grid.arrange(plot1, plot2, ncol = 2, nrow = 1)
 ```
 
----
-
-# Export a plot to file
+## Export a plot to file
 
 The `ggsave()` function can be used to export a plot to a file.
 
@@ -407,57 +387,40 @@ ggsave(
 )
 ```
 
-## Notes
+### Notes
 
 - The first argument is the `filename`, not the `plot`!
-
 - If `plot` is not given, the latest plot generated is used.
-
 - The extension of `filename` is used to automatically generate the right kind of file.
 
----
+## Exercise
 
-# Exercise
-
-## Plotting grid
+### Plotting grid
 
 - Collate the plots that we assigend to objects through the day, as a single plot.
-
-  + Plots: `obds_diamonds`, `obds_chickweight`, `obds_msleep`.
-  
-  + Methods: `cowplot::plot_grid()`, `patchwork`, `gridExtra::grid.arrange()`.
-
+  - Plots: `obds_diamonds`, `obds_chickweight`, `obds_msleep`.
+  - Methods: `cowplot::plot_grid()`, `patchwork`, `gridExtra::grid.arrange()`.
 - Export the new plot in a PDF file, and open it in a PDF viewer (e.g. Adobe Acrobat Reader DC).
 
 You will likely need a few attempts to fine-tune the width and height of the output file.
 
----
+## Summary
 
-# Summary
-
-## Key points
+### Key points
 
 - `r BiocStyle::CRANpkg("ggplot2")` uses **tidy** data (it is part of the `r BiocStyle::CRANpkg("tidyverse")`).
-
 - **Geoms** define _how_ data are represented (e.g., points, lines, bars).
-
 - **Aesthetics** define the mapping between columns of data and properties of the **geom** (e.g., x, y, color, size).
-
 - **Themes** control aspects of the plot that are not related to data (e.g., background, fonts).
-
 - **Faceting** is built in `r BiocStyle::CRANpkg("ggplot2")` to subdivide a plot by faceting variables.
-
 - Other packages provide tools for **arranging plots in a grid** (e.g., `r BiocStyle::CRANpkg("cowplot")`, `r BiocStyle::CRANpkg("patchwork")`, `r BiocStyle::CRANpkg("gridExtra")`).
 
 - The function `ggsave()` can be used to **export a plot to a range of file formats** (e.g. PDF, PNG).
-
 - A [ggplot2 cheatsheet](https://www.rstudio.com/resources/cheatsheets/) is available from the RStudio website.
 
----
+## Exercise
 
-# Exercise
-
-## Pair programming
+### Pair programming
 
 Explore the data set `ggplot2::mpg` and generate the most informative plot that you can!
 
@@ -468,21 +431,17 @@ ggplot(mpg, aes(cty, hwy, color = year)) +
   facet_wrap(~manufacturer)
 ```
 
----
+## Further reading
 
-# Further reading
-
-## ggplot2
+### ggplot2
 
 - Introduction and Cheatsheet: <https://ggplot2.tidyverse.org/>
 
-## gridExtra
+### gridExtra
 
 - Arranging multiple grobs on a page:  <https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html>
 
----
-
-# References
+## References
 
 .small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}

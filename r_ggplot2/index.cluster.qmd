@@ -1,0 +1,65 @@
+---
+title: 'Introduction to `r BiocStyle::CRANpkg("ggplot2")`'
+subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2023-06-07 (updated: `r Sys.Date()`)"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Kevin Rue-Albrecht -- Introduction to `ggplot2`
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
+---
+
+```{r}
+#| label: setup
+#| include: false
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 200)
+```
+
+```{r}
+#| label: load_refs
+#| include: false
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+NoCite(bib, "ggplot2book")
+```
+
+```{r}
+#| child = "goals_and_objectives.qmd"
+```
+
+## Prerequisites
+
+- An account on the teaching cluster.
+- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster.
+- Start a new RStudio project called `ggplot2`.
+- Make a copy of the template notebook for this lesson in your RStudio project.
+- Open the notebook and follow along, editing and running the code as needed.
+
+```{r}
+#| child = "etc.qmd"
+```
