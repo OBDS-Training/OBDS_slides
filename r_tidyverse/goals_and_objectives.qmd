@@ -1,0 +1,26 @@
+## Lesson goals and objectives
+
+<br/>
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe tidy data.
+- Appreciate that scripts can combine base R and tidyverse.
+- Assemble iteratively longer workflows using the tidyverse pipe.
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Import and manipulate tidy data using packages from the tidyverse.
+- Compute summary statistics on groups of observations in data frames.
+- Filter data frames to select observations that meet certain criteria.
+- Combine information from multiple data frames using matching information in certain columns.

@@ -4,11 +4,21 @@
 
 ### Learning goals
 
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
 - Describe how to build and display figures using `r BiocStyle::CRANpkg("ggplot2")`.
 - Identify the key differences between `ggplot` objects and base R graphics.
 - Introduce the concept of tidy data.
 
 ### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
 
 - Use the `r BiocStyle::CRANpkg("ggplot2")` package to generate figures from various data sets.
 - Overlay multiple layers for the same data on a single plot.

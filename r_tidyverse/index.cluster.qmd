@@ -1,9 +1,9 @@
 ---
-title: 'Introduction to `r BiocStyle::CRANpkg("ggplot2")`'
+title: 'Introduction to the tidyverse'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-06-07 (updated: `r Sys.Date()`)"
+date: "2023-06-08 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- Introduction to `ggplot2`
+    footer: Kevin Rue-Albrecht -- Introduction to the tidyverse
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
@@ -26,6 +26,7 @@ format:
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
+stopifnot(require(magrittr))
 ```
 
 ```{r}
@@ -42,7 +43,7 @@ BibOptions(
   hyperlink = "to.doc",
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
-NoCite(bib, "ggplot2book")
+NoCite(bib, "tidyverse")
 ```
 
 ```{r}
@@ -56,7 +57,7 @@ NoCite(bib, "ggplot2book")
 ## Set up
 
 - Launch RStudio Server on the teaching cluster.
-- Start a new RStudio project called `ggplot2`.
+- Start a new RStudio project called `tidyverse`.
 - Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.
 
