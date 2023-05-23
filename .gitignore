@@ -7,7 +7,7 @@
 *.tex
 *.pdf
 *.log
-data/
+data
 libs/
 index_files/
 figure-html/

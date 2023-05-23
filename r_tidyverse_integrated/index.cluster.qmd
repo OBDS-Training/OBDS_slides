@@ -20,16 +20,18 @@ format:
 ---
 
 ```{r setup, include = FALSE}
+#| label: setup
+#| include: false
+#| cache: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-knitr::opts_chunk$set(
-  message = FALSE, warning = FALSE, error = FALSE,
-  include = FALSE
-)
+options(width = 120)
 stopifnot(require(magrittr))
 ```
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
+#| label: load_refs
+#| include: false
 options(htmltools.dir.version = FALSE)
 library(RefManageR)
 BibOptions(
@@ -44,7 +46,8 @@ bib <- ReadBib("bibliography.bib")
 NoCite(bib, "R")
 ```
 
-```{r, child='goals_and_objectives.qmd'}
+```{r}
+#| child: goals_and_objectives.qmd
 ```
 
 <!--
@@ -60,24 +63,13 @@ Docs:
 
 - An account on the teaching cluster.
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
-
 ## Set up
 
 - Launch RStudio Server on the teaching cluster.
-
 - Start a new RStudio project called `tidyverse_integrated`.
-
-- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
-
-- Make a symbolic link from the RStudio project to the template notebook.
-
+- Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
-## Source: Adobe Illustrator (Kevin Rue-Albrecht)
-knitr::include_graphics("img/obds-git-setup.svg")
-```
-
-```{r, child='etc.qmd'}
+```{r}
+#| child: etc.qmd
 ```
