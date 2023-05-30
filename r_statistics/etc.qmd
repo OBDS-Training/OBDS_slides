@@ -835,6 +835,8 @@ lm(y ~ x, test_data)
 
 ## Linear models - summary
 
+<br/>
+
 ```{r}
 #| echo: true
 lm(y ~ x, test_data) %>% summary()
@@ -865,9 +867,12 @@ knitr::include_graphics("img/fisher-test-venn.svg")
 
 ::::
 
-Further reading: [Towards data science](https://towardsdatascience.com/fishers-exact-test-in-r-independence-test-for-a-small-sample-56965db48e87)
+Further reading:
+[Towards data science](https://towardsdatascience.com/fishers-exact-test-in-r-independence-test-for-a-small-sample-56965db48e87)
 
 ## Fisher's Exact Test
+
+<br/>
 
 |               |    DE | Not DE |  Total |
 |:--------------|------:|-------:|-------:|
@@ -875,20 +880,25 @@ Further reading: [Towards data science](https://towardsdatascience.com/fishers-e
 |Not in pathway |   $c$ |    $d$ |  $c+d$ |
 |Total          | $a+c$ |  $b+d$ | $a+b+c+d$ $(=n)$ |
 
+<br/>
+
 ::: {style="text-align: center;"}
 **What is the probability of observing a given distribution?**
 :::
 
 <br/>
 
-<!-- Source: https://en.wikipedia.org/wiki/Fisher%27s_exact_test -->
-
 $$p = \frac{{a+b \choose a} {c+d \choose c}} {n \choose a+c} = \frac{{a+b \choose b}{c+d \choose d}}{n \choose b+d}= \frac{(a+b)!~(c+d)!~(a+c)!~(b+d)!}{a!~b!~c!~d!~n!}$$
+
+::: {.notes}
+Source: <https://en.wikipedia.org/wiki/Fisher%27s_exact_test>
+:::
 
 ## Fisher's Exact Test
 
-::: {style="text-align: center;"}
-```{r include=TRUE, echo=FALSE}
+<br/>
+
+```{r}
 x_table <- matrix(data = c(12, 4, 3, 23),
   nrow = 2,
   dimnames = list(
@@ -897,27 +907,32 @@ x_table <- matrix(data = c(12, 4, 3, 23),
   ))
 knitr::kable(x_table)
 ```
-:::
 
-```{r, include=TRUE}
+<br/>
+
+```{r}
+#| echo: true
 fisher.test(x_table)
 ```
 
 ## Beware of interpreting inadequate tests!
+
+<br/>
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 ### Two uniform distributions
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 set.seed(1)
 n_size <- 10E3
 x <- runif(n = n_size, min = 1, max = 11)
 y <- runif(n = n_size, min = 3, max = 13)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
@@ -933,7 +948,8 @@ gg
 ::: {.column width="50%"}
 ### Parametric (unpaired) t-test
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 t.test(value ~ group, test_data)
 ```
 :::
