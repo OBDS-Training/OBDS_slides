@@ -1063,7 +1063,8 @@ The Quantile-Quantile Plots (QQ plot) contrasts the quantiles of the observed di
 ::: {.column width="50%"}
 ### Normal distribution
 
-```{r, include=TRUE, echo=TRUE, fig.height=5}
+```{r}
+#| echo: true
 x <- rnorm(n = 5000, mean = 5, sd = 3)
 qqnorm(x)
 ```
@@ -1072,7 +1073,8 @@ qqnorm(x)
 ::: {.column width="50%"}
 ### Log-normal distribution
 
-```{r, include=TRUE, echo=TRUE, fig.height=5}
+```{r}
+#| echo: true
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
 qqnorm(x)
 ```
@@ -1103,7 +1105,7 @@ qqnorm(x)
 
 ::::
 
-### News
+### Newspaper
 
 > Green jelly beans linked to acne!
   95% confidence!
@@ -1123,7 +1125,10 @@ Distribution of $p$-values in an RNA-seq differential expression experiment
 - False positive (type I error)
 - False negative (type I error)
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='300px'}
+```{r}
+#| fig-align: center
+#| out-width: 300px
+#| out-height: 300px
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-fdr.png")
 ```
@@ -1135,7 +1140,10 @@ knitr::include_graphics("img/huber-fdr.png")
 Bonferroni correction
 :::
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
+```{r}
+#| fig-align: center
+#| out-width: 200px
+#| out-height: 200px
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-bonferroni.png")
 ```
@@ -1144,7 +1152,10 @@ knitr::include_graphics("img/huber-bonferroni.png")
 Benjamini-Hochberg procedure
 :::
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
+```{r}
+#| fig-align: center
+#| out-width: 200px
+#| out-height: 200px
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-bh.png")
 ```
@@ -1175,7 +1186,8 @@ result_table <- tibble(
 ::: {.column width="50%"}
 Let us carry `r n_tests` tests between two normal distributions of mean 0 and standard deviation 1.
 
-```{r, include=TRUE, echo=FALSE, fig.height=3}
+```{r}
+#| fig-height: 3
 data_table <- tibble(
   x = rnorm(n = 100, mean = 0, sd = 1),
   y = rnorm(n = 100, mean = 0, sd = 1)
@@ -1185,38 +1197,44 @@ ggplot(data_table) +
   geom_jitter(aes(name, value), width = 0.1)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=3}
+```{r}
+#| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(pvalue), fill = "grey", color = "black", breaks = seq(0, 1, 0.05)) +
   scale_x_continuous(limits = c(0, 1)) +
   labs(title = "Raw p-value")
 ```
 
-```{r, include=TRUE, echo=FALSE, results='asis'}
+```{r}
+#| results: asis
 cat(sprintf("There are %i out of %i raw p-values smaller than 0.05", sum(result_table$pvalue < 0.05), n_tests))
 ```
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, echo=FALSE, fig.height=3}
+```{r}
+#| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(BH), fill = "grey", color = "black", bins = 20) +
   coord_cartesian(xlim = c(0, 1)) +
   labs(title = "BH correction")
 ```
 
-```{r, include=TRUE, echo=FALSE, results='asis'}
+```{r}
+#| results: asis
 cat(sprintf("There are %i BH-corrected p-values smaller than 0.05", sum(result_table$BH < 0.05)))
 ```
 
 ```{r, include=TRUE, echo=FALSE, fig.height=3}
+#| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(bonferroni), fill = "grey", color = "black", bins = 20) +
   coord_cartesian(xlim = c(0, 1)) +
   labs(title = "bonferroni correction")
 ```
 
-```{r, include=TRUE, echo=FALSE, results='asis'}
+```{r}
+#| results: asis
 cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(result_table$bonferroni < 0.05)))
 ```
 :::
