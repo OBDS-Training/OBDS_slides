@@ -1,37 +1,22 @@
-# <i class="fab fa-r-project"></i> is built for statistics
+## <i class="fab fa-r-project"></i> is built for statistics
 
 - <i class="fab fa-r-project"></i> includes a number of common statistical distributions:
-
-  + The Normal Distribution
-  
-  + The Binomial Distribution
-  
-  + The Poisson Distribution
-  
-  + ...
-
---
-
+  - The Normal Distribution
+  - The Binomial Distribution
+  - The Poisson Distribution
+  - ...
 - <i class="fab fa-r-project"></i> implements a range of statistical tests:
+  - Student's t-Test
+  - Pearson's Chi-squared Test for Count Data
+  - Wilcoxon Rank Sum and Signed Rank Tests
+  - ...
 
-  + Student's t-Test
-  
-  + Pearson's Chi-squared Test for Count Data
-  
-  + Wilcoxon Rank Sum and Signed Rank Tests
-  
-  + ...
+## <i class="fab fa-r-project"></i> Functions for Probability Distributions
 
----
+:::: {.columns}
 
-# <i class="fab fa-r-project"></i> Functions for Probability Distributions
-
-<!-- Sources
-https://www.stat.umn.edu/geyer/old/5101/rlook.html
--->
-
-.pull-left[
-.xx-small-table[
+::: {.column width="60%"}
+::: {.small-table}
 |Distribution                   |Probability |Quantile    |Density     |Random      |
 |:------------------------------|:-----------|:-----------|:-----------|:-----------|
 |Beta                           |`pbeta`     |`qbeta`     |`dbeta`     |`rbeta`     |
@@ -54,89 +39,90 @@ https://www.stat.umn.edu/geyer/old/5101/rlook.html
 |Weibull                        |`pweibull`  |`qweibull`  |`dweibull`  |`rweibull`  |
 |Wilcoxon Rank Sum Statistic    |`pwilcox`   |`qwilcox`   |`dwilcox`   |`rwilcox`   |
 |Wilcoxon Signed Rank Statistic |`psignrank` |`qsignrank` |`dsignrank` |`rsignrank` |
-]
-]
+:::
+:::
 
-.pull-right[
-.small-text[
+::: {.column width="40%"}
 - Each distribution has a root name, e.g. `norm`
-
 - Every distribution has four functions.
-
 - The root name is prefixed by one of the letters:
+  - `p` for "probability", the cumulative distribution function (c. d. f.)
+  - `q` for "quantile", the inverse c. d. f.
+  - `d` for "density", the density function (p. f. or p. d. f.)
+  - `r` for "random", a random variable having the specified distribution
 
-  + `p` for "probability", the cumulative distribution function (c. d. f.)
-  
-  + `q` for "quantile", the inverse c. d. f.
-  
-  + `d` for "density", the density function (p. f. or p. d. f.)
-  
-  + `r` for "random", a random variable having the specified distribution
-]
-]
+:::
 
----
+::::
 
-# The normal distribution
+::: {.notes}
+Source: <https://www.stat.umn.edu/geyer/old/5101/rlook.html>
+:::
 
-## Notation
+## The normal distribution
 
-$${\mathcal {N}}(\mu ,\sigma ^{2})$$
---
+### Notation
 
-## Parameters
+$${\mathcal{N}}(\mu ,\sigma^{2})$$
+
+<br/>
+
+### Parameters
 
 - ${\mu \in \mathbb {R} }$ = mean (location)
-
 - ${ \sigma ^{2}>0}$ = variance (squared scale)
 
---
+<br/
 
-## Properties
+### Properties
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 - Median: ${ \mu }$
 
 - Mode: ${ \mu }$
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - Variance: ${ \sigma ^{2} }$
-]
+:::
 
---
+::::
 
 - Probability density function (PDF): ${\displaystyle {\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}}$
 
----
-
-# Mean and standard deviation
+## Mean and standard deviation
 
 The base R functions `mean()` and `sd()` compute the mean and standard deviation of a distribution
 
 To demonstrate, let us first generate a vector of random, normally distributed, values.
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 set.seed(1)
 x <- rnorm(n = 100, mean = 2, sd = 5)
 ```
 
+<br/>
+
 We can then use that vector to demonstrate the functions.
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 mean(x)
 sd(x)
 ```
 
-.center[
+<br/>
+
+::: {style="text-align: center;"}
 **What are optional arguments for those functions?**
 
 **Why do you think the mean and standard deviation are not exactly those that we would expect?**
-]
+:::
 
----
-
-# The standard normal distribution
+## The standard normal distribution
 
 ```{r}
 slide_mean <- 0; slide_sd <- 1;
@@ -157,7 +143,7 @@ gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
     aes(x = x, label = label), y = 0, alpha = 0.5,
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("pnorm(q = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("pnorm(q = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the cumulative distribution function (c. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -175,7 +161,7 @@ gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
     aes(y = y, label = label), x = 0, alpha = 0.5,
     data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("qnorm(p = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("qnorm(p = probabilities, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the inverse c. d. f.") +
   cowplot::theme_cowplot()
 ```
@@ -193,7 +179,7 @@ gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
     aes(x = x, label = label), y = 0, alpha = 0.5,
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("dnorm(x = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("dnorm(x = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the density function (p. f. or p. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -220,17 +206,13 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 ```
 
----
-
-# A parameterised normal distribution
+## A parameterised normal distribution
 
 ```{r}
 slide_mean <- 50; slide_sd <- 100;
 ```
 
 Normal distribution parameterised with mean `r slide_mean` and standard deviation `r slide_sd`.
-
---
 
 ```{r}
 x <- tibble(
@@ -245,7 +227,7 @@ gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
     aes(x = x, label = label), y = 0, alpha = 0.5,
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("pnorm(q = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("pnorm(q = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the cumulative distribution function (c. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -263,7 +245,7 @@ gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
     aes(y = y, label = label), x = 0, alpha = 0.5,
     data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("qnorm(p = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("qnorm(p = probabilities, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the inverse c. d. f.") +
   cowplot::theme_cowplot()
 ```
@@ -281,7 +263,7 @@ gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
     aes(x = x, label = label), y = 0, alpha = 0.5,
     data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
   labs(
-    title = sprintf("dnorm(x = quantile, mean = %s, sd = %s)", slide_mean, slide_sd),
+    title = sprintf("dnorm(x = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
     subtitle = "the density function (p. f. or p. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -308,35 +290,33 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 ```
 
----
-
-# The binomial distribution
+## The binomial distribution
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/binomial-coins.svg")
 ```
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 - Two mutually exclusive outcomes
-  + $P(H) = 1 - P(T)$
-
+  - $P(H) = 1 - P(T)$
 - Size of experiment
-  + e.g., coins tossed, balls drawn.
-
+  - e.g., coins tossed, balls drawn.
 - Model number of occurrences of a specific outcome.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/binomial-balls.svg")
 ```
-]
+:::
 
----
+::::
 
-# A parameterised binomial distribution
+## A parameterised binomial distribution
 
 ```{r}
 slide_size <- 50; slide_prob <- 0.1;
@@ -352,7 +332,7 @@ x <- tibble(
 )
 gg1 <- ggplot(x) + geom_point(aes(quantile, pbinom)) +
   labs(
-    title = sprintf("pbinom(q = quantile, size = %s, prob = %s)", slide_size, slide_prob),
+    title = sprintf("pbinom(q = quantiles, size = %s, prob = %s)", slide_size, slide_prob),
     subtitle = "the cumulative distribution function (c. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -364,7 +344,7 @@ x <- tibble(
 )
 gg2 <- ggplot(x) + geom_point(aes(quantile, qbinom)) +
   labs(
-    title = sprintf("qbinom(p = quantile, size = %s, prob = %s)", slide_size, slide_prob),
+    title = sprintf("qbinom(p = probabilities, size = %s, prob = %s)", slide_size, slide_prob),
     subtitle = "the inverse c. d. f.") +
   cowplot::theme_cowplot()
 ```
@@ -376,7 +356,7 @@ x <- tibble(
 )
 gg3 <- ggplot(x) + geom_point(aes(quantile, dbinom)) +
   labs(
-    title = sprintf("dbinom(x = quantile, size = %s, prob = %s)", slide_size, slide_prob),
+    title = sprintf("dbinom(x = quantiles, size = %s, prob = %s)", slide_size, slide_prob),
     subtitle = "the density function (p. f. or p. d. f.)") +
   cowplot::theme_cowplot()
 ```
@@ -396,9 +376,7 @@ gg4 <- ggplot(x, aes(rbinom)) + geom_histogram(bins = 30, color = "black", fill 
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 ```
 
----
-
-# Quantiles
+## Quantiles
 
 Quantiles are the values at a selected set of evenly-spaced locations in the distribution.
 
@@ -414,9 +392,7 @@ Quantiles are not always observed values.
 knitr::include_graphics("img/quantiles-ties.svg")
 ```
 
----
-
-# Example - Quantiles of a normal distribution
+## Example - Quantiles of a normal distribution
 
 For instance, the minimum value, the value that separates the lowest 10% values in the distribution, 20%, and so on, until the maximum value.
 
@@ -438,82 +414,68 @@ ggplot() +
   cowplot::theme_cowplot()
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Generate and summarise a distribution
+### Generate and summarise a distribution
 
 - Generate a vector of 1,000 normally distributed values with mean 10 and standard deviation 5.
-
 - Inspect the output of the `summary()` function for that vector.
-
 - Compute the mean and standard deviation for those values.
-
 - Compute the deciles (i.e. 10 evenly spaced quantiles) for those values.
-
 - Visualise the distribution of those values as a histogram.
-
 - Visualise as vertical lines on the histogram: the mean (red solid), median (red dashed), one standard deviation below and above the mean (blue solid), and one median absolute deviation below and above the median (blue dashed).
-
 - Generate a new vector with _a lot_ more values (e.g., one million).
   Draw again a histogram.
   How does the distribution compare with more data points?
 
----
+## Exercise
 
-# Exercise
-
-## Query distributions and probabilities
+### Query distributions and probabilities
 
 For the standard normal distribution ${\mathcal {N}}(\mu=0 ,\sigma ^{2}=1)$:
 
 - Plot the cumulative distribution function in the range $[-5, 5]$ in 0.1 increment.
-
 - Plot the inverse cumulative distribution function for quantiles in 0.01 increment.
-
 - Plot the density function in the range $[-5, 5]$ in 0.1 increment.
-
 - What is the probability of observing a value greater than 2?
-
 - What is the probability of observing a value between -2 and 2?
-
 - What is the probability of observing a value more extreme than -2 or 2?
 
----
-
-# Empirical Cumulative Distribution Function
+## Empirical Cumulative Distribution Function
 
 The `ecdf()` function computes an empirical cumulative distribution function.
 
 It produces an object that can be plotted, printed, and used for further computations.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 ecdf_iris_sepal_length <- ecdf(iris$Sepal.Length)
 ecdf_iris_sepal_length
 ```
-]
 
-.pull-left[
-.small-code[
+<br/>
+
+The resulting object can be used for downstream analyses, e.g. plotting.
+
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, message=FALSE, fig.align='center', fig.height=2.75, fig.width=5}
+#| echo: true
 ggplot(iris, aes(Sepal.Length)) +
   geom_histogram(color = "black", fill = "grey") +
   cowplot::theme_cowplot()
 ```
-]
-]
+:::
 
-.pull-right[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE, fig.align='center', fig.height=3.4, fig.width=5}
+#| echo: true
 plot(ecdf_iris_sepal_length, cex = 0.5)
 ```
-]
-]
+:::
 
----
+::::
 
 # ecdf - Knots
 
@@ -530,9 +492,7 @@ In other words, the `knots()` function is equivalent to identifying the unique v
 sort(unique(iris$Sepal.Length))
 ```
 
----
-
-# ecdf - Quantiles
+## ecdf - Quantiles
 
 The `quantile()` function can be applied to `ecdf` objects.
 
@@ -546,13 +506,11 @@ In this case, the same function `quantile()` can be applied to the original vect
 quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
-.center[
+::: {style="text-align: center;"}
 **Is this choice convenient or confusing to you? Why?**
-]
+:::
 
----
-
-# <i class="fab fa-r-project"></i> Functions for Statistical Testing
+## <i class="fab fa-r-project"></i> Functions for Statistical Testing
 
 In the `r BiocStyle::CRANpkg("stats")` package, functions that implement statistical tests have a named that ends in `.test`.
 
@@ -567,20 +525,16 @@ Each of those functions comes with a help page with programmatic usage, statisti
 help(pairwise.t.test)
 ```
 
----
+## The five steps of hypothesis testing
 
-# The five steps of hypothesis testing
-
-## General principles of hypothesis testing
+### General principles of hypothesis testing
 
 ```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='700px', fig.align='center'}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/hypothesis-testing.svg")
 ```
 
----
-
-# Parametric tests and Non-parametric equivalents
+## Parametric tests and Non-parametric equivalents
 
 ```{r}
 tibble(
@@ -601,16 +555,12 @@ When parametric assumptions are not met, non-parametric tests equivalent should 
 
 <br/>
 
-.large-table[
 |Parametric test              |Non-parametric equivalent |
 |:----------------------------|:-------------------------|
 |Paired t-test                |Wilcoxon Rank sum test    |
 |Unpaired t-test              |Mann-Whitney U test       |
 |Pearson correlation          |Spearman correlation      |
 |One-way Analysis of Variance |Kruskal–Wallis test       |
-]
-
---
 
 Non-parametric tests make fewer assumptions, as such:
 
@@ -619,16 +569,16 @@ Non-parametric tests make fewer assumptions, as such:
 - they are more robust.
 - ..., however, fewer assumption gives non-parametric tests _less_ power than their parametric equivalent.
 
-???
-
+::: {.notes}
 **Credits:** [https://www.healthknowledge.org.uk/](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests)
+:::
 
----
+## Parametric t-test
 
-# Parametric t-test
+:::: {.columns}
 
-.pull-left[
-## Two normal distributions
+::: {.column width="50%"}
+### Two normal distributions
 
 ```{r, include=TRUE}
 set.seed(1)
@@ -646,14 +596,11 @@ ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
   cowplot::theme_cowplot()
 ```
-]
+:::
 
---
+::: {.column width="50%"}
+### Unpaired t-test
 
-.pull-right[
-## Unpaired t-test
-
-.x-small-code[
 ```{r, include=TRUE}
 t.test(value ~ group, test_data)
 ```
@@ -664,15 +611,16 @@ Compare with
 t.test(x, y)
 t.test(y, x)
 ```
-]
-]
+:::
 
----
+::::
 
-# Non-parametric wilcoxon test
+## Non-parametric wilcoxon test
 
-.pull-left[
-## Two uniform distributions
+:::: {.columns}
+
+::: {.column width="50%"}
+### Two uniform distributions
 
 ```{r, include=TRUE}
 set.seed(1)
@@ -691,43 +639,37 @@ gg <- ggplot(test_data, aes(value)) +
   cowplot::theme_cowplot()
 gg
 ```
-]
+:::
 
---
+::: {.column width="50%"}
+### Mann-Whitney U test
 
-.pull-right[
-## Mann-Whitney U test
-
-.x-small-code[
 ```{r, include=TRUE}
 wilcox.test(value ~ group, test_data)
 ```
-]
 
-## Directed hypothesis
+### Directed hypothesis
 
-.x-small-code[
 ```{r, include=TRUE}
 wilcox.test(value ~ group, test_data, alternative = "less")
 ```
-]
-]
+:::
 
----
+::::
 
-# Paired test
+## Paired test
 
 For each sample, the two measurements are related to one another; e.g. patients measured before and after a treatment.
 
-.pull-left[
-.small-code[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE}
 set.seed(1)
 n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
 y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
 ```
-]
 
 ```{r}
 test_data <- tibble(
@@ -743,24 +685,21 @@ ggplot(test_data, aes(variable, value)) +
   geom_point() +
   cowplot::theme_cowplot()
 ```
-]
+:::
 
---
-
-.pull-right[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE}
 t.test(x, y, paired = TRUE)
 ```
-]
+:::
+
+::::
 
 **Note:**
 What is actually tested is whether the mean of the differences between the paired $x$ and $y$ measurements is different from 0.
 ]
 
----
-
-# Analysis of Variance (ANOVA)
+## Analysis of Variance (ANOVA)
 
 Is the variance _between_ groups larger than the variance _within_ groups?
 
@@ -771,12 +710,11 @@ knitr::include_graphics("img/anova.png")
 
 `r Citet(bib, "liguori2018data")`
 
----
+## Analysis of Variance (ANOVA)
 
-# Analysis of Variance (ANOVA)
+:::: {.columns}
 
-.pull-left[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE}
 set.seed(1)
 n_sample <- 1000
@@ -802,11 +740,9 @@ gg <- ggplot(test_data, aes(value)) +
   cowplot::theme_cowplot()
 gg
 ```
-]
-]
+:::
 
-.pull-right[
-.small-code[
+::: {.column width="50%"}
 ```{r, include=TRUE}
 out <- aov(value ~ group, test_data)
 out
@@ -816,16 +752,17 @@ out
 summary(out)
 ```
 
-]
-]
+:::
 
----
+::::
 
-# Linear models
+## Linear models
 
 Describe a continuous response variable as a function of one or more predictor variables.
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r}
 set.seed(1)
 test_data <- tibble(
@@ -842,7 +779,7 @@ ggplot(test_data, aes(x = x, y = y)) +
 
 - What is the slope?
 - What is the intercept?
-]
+:::
 
 Null hypotheses:
 
@@ -850,27 +787,21 @@ Null hypotheses:
 
 - The intercept is equal to 0.
 
---
-
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE}
 lm(y ~ x, test_data)
 ```
-]
+:::
 
----
+::::
 
-# Linear models - summary
+## Linear models - summary
 
-.small-code[
 ```{r, include=TRUE}
 lm(y ~ x, test_data) %>% summary()
 ```
-]
 
----
-
-# Fisher's Exact Test
+## Fisher's Exact Test
 
 - Test of independence between two categorical variables
 
@@ -880,27 +811,27 @@ lm(y ~ x, test_data) %>% summary()
 
   + e.g., Gene set over-representation analysis (ORA)
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-table.svg")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE}
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-venn.svg")
 ```
-]
+:::
 
-.footnote[
+::::
+
 Further reading: [Towards data science](https://towardsdatascience.com/fishers-exact-test-in-r-independence-test-for-a-small-sample-56965db48e87)
-]
 
----
-
-# Fisher's Exact Test
+## Fisher's Exact Test
 
 |               |    DE | Not DE |  Total |
 |:--------------|------:|-------:|-------:|
@@ -908,9 +839,9 @@ Further reading: [Towards data science](https://towardsdatascience.com/fishers-e
 |Not in pathway |   $c$ |    $d$ |  $c+d$ |
 |Total          | $a+c$ |  $b+d$ | $a+b+c+d$ $(=n)$ |
 
-.center[
+::: {style="text-align: center;"}
 **What is the probability of observing a given distribution?**
-]
+:::
 
 <br/>
 
@@ -918,11 +849,9 @@ Further reading: [Towards data science](https://towardsdatascience.com/fishers-e
 
 $$p = \frac{{a+b \choose a} {c+d \choose c}} {n \choose a+c} = \frac{{a+b \choose b}{c+d \choose d}}{n \choose b+d}= \frac{(a+b)!~(c+d)!~(a+c)!~(b+d)!}{a!~b!~c!~d!~n!}$$
 
----
+## Fisher's Exact Test
 
-# Fisher's Exact Test
-
-.center[
+::: {style="text-align: center;"}
 ```{r include=TRUE, echo=FALSE}
 x_table <- matrix(data = c(12, 4, 3, 23),
   nrow = 2,
@@ -932,17 +861,17 @@ x_table <- matrix(data = c(12, 4, 3, 23),
   ))
 knitr::kable(x_table)
 ```
-]
+:::
 
 ```{r, include=TRUE}
 fisher.test(x_table)
 ```
 
----
+## Beware of interpreting inadequate tests!
 
-# Beware of interpreting inadequate tests!
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 ## Two uniform distributions
 
 ```{r, include=TRUE}
@@ -963,21 +892,19 @@ gg <- ggplot(test_data, aes(value)) +
   cowplot::theme_cowplot()
 gg
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ## Parametric (unpaired) t-test
 
-.x-small-code[
 ```{r, include=TRUE}
 t.test(value ~ group, test_data)
 ```
-]
-]
+:::
 
----
+::::
 
-# Choosing a test
+## Choosing a test
 
 ```{r, include=TRUE, echo=FALSE, out.height='400px', out.width='600px', fig.align='center'}
 # Source: https://python.plainenglish.io/statistical-tests-with-python-880251e9b572
@@ -988,15 +915,15 @@ knitr::include_graphics("img/choose-statistical-test.png")
 
 See also <https://stats.idre.ucla.edu/other/mult-pkg/whatstat/>
 
----
-
-# Knowledge assumptions - Central tendency
+## Knowledge assumptions - Central tendency
 
 Tests make assumptions that must be met to for the results to be interpreted properly and with validity.
 
 For instance, Student's t-Test expects values to be located around a central or typical value.
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, echo=FALSE, include=TRUE, fig.height=5}
 x_mean <- 0
 x_sd <- 20
@@ -1012,28 +939,27 @@ data_table %>%
   geom_vline(aes(xintercept = value, color = Value), summary_table, size = 2, alpha = 0.3) +
   cowplot::theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 Measures of central tendency include:
 
-.large-list[
 - the arithmetic mean
 - the median
 - ...
-]
-]
+:::
 
----
+::::
 
-# Knowledge assumptions - Normality
+## Knowledge assumptions - Normality
 
 In addition, Student's t-Test also expects values to be normally distributed.
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ## Normal distribution
 
-.small-code[
 ```{r include=TRUE}
 x <- rnorm(n = 5000, mean = 0, sd = 1)
 ```
@@ -1047,13 +973,11 @@ ggplot(tibble(x=x)) +
 ```{r, include=TRUE, fig.height=5}
 shapiro.test(x)
 ```
-]
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ## Log-normal distribution
 
-.small-code[
 ```{r, include=TRUE}
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
 ```
@@ -1067,73 +991,72 @@ ggplot(tibble(x=x)) +
 ```{r, include=TRUE, fig.height=5}
 shapiro.test(x)
 ```
-]
-]
+:::
 
----
+::::
 
-# Knowledge assumptions - Normality
+## Knowledge assumptions - Normality
 
 The Quantile-Quantile Plots (QQ plot) contrasts the quantiles of the observed distribution to those of a theoretical distribution.
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ## Normal distribution
 
-.small-code[
 ```{r, include=TRUE, echo=TRUE, fig.height=5}
 x <- rnorm(n = 5000, mean = 5, sd = 3)
 qqnorm(x)
 ```
-]
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ## Log-normal distribution
 
-.small-code[
 ```{r, include=TRUE, echo=TRUE, fig.height=5}
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
 qqnorm(x)
 ```
-]
-]
+:::
 
----
+::::
 
-# Multiple-testing correction
+## Multiple-testing correction
 
-## Hypothesis
+### Hypothesis
 
 "Jelly beans cause acne."
 
-## Results
+### Results
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 - No link between jelly beans and acne.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - No link between _brown_ jelly beans and acne.
 - No link between _pink_ jelly beans and acne.
 - ...
 - Link between _green_ jelly beans and acne.
-]
+:::
 
-## News
+::::
+
+### News
 
 > Green jelly beans linked to acne!
   95% confidence!
   Only 5% chance of coincidence!
 
-.footnote[
 [https://xkcd.com/882/](https://imgs.xkcd.com/comics/significant.png)
-]
 
----
+## Multiple-testing correction
 
-# Multiple-testing correction
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 Distribution of $p$-values in an RNA-seq differential expression experiment
 
 - True positive
@@ -1145,31 +1068,31 @@ Distribution of $p$-values in an RNA-seq differential expression experiment
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-fdr.png")
 ```
-]
+:::
 
-.pull-right[
-.center[
+::: {.column width="50%"}
+::: {style="text-align: center;"}
 Bonferroni correction
-]
+:::
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-bonferroni.png")
 ```
 
-.center[
+::: {style="text-align: center;"}
 Benjamini-Hochberg procedure
-]
+:::
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='200px', out.width='200px'}
 ## Source: https://www.huber.embl.de/msmb/Chap-Testing.html
 knitr::include_graphics("img/huber-bh.png")
 ```
-]
+:::
 
----
+::::
 
-# Multiple-testing correction
+## Multiple-testing correction
 
 ```{r}
 set.seed(1)
@@ -1187,7 +1110,9 @@ result_table <- tibble(
 )
 ```
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 Let us carry `r n_tests` tests between two normal distributions of mean 0 and standard deviation 1.
 
 ```{r, include=TRUE, echo=FALSE, fig.height=3}
@@ -1210,9 +1135,9 @@ ggplot(result_table) +
 ```{r, include=TRUE, echo=FALSE, results='asis'}
 cat(sprintf("There are %i out of %i raw p-values smaller than 0.05", sum(result_table$pvalue < 0.05), n_tests))
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.height=3}
 ggplot(result_table) +
   geom_histogram(aes(BH), fill = "grey", color = "black", bins = 20) +
@@ -1234,11 +1159,11 @@ ggplot(result_table) +
 ```{r, include=TRUE, echo=FALSE, results='asis'}
 cat(sprintf("There are %i bonferonni corrected p-values smaller than 0.05", sum(result_table$bonferroni < 0.05)))
 ```
-]
+:::
 
----
+::::
 
-# Multiple-testing correction in <i class="fab fa-r-project"></i>
+## Multiple-testing correction in <i class="fab fa-r-project"></i>
 
 The `p.adjust()` function can run a number of methods for multiple testing correction.
 
@@ -1250,33 +1175,33 @@ The function takes a vector of p-values and the name of a method.
 p.adjust(p_values, method = "bonferroni")
 ```
 
----
+## Exercise
 
-# Exercise
+:::: {.columns}
 
-.pull-left[
-## Statistical tests
+::: {.column width="50%"}
+### Statistical tests
 
-### Wilcoxon test
+#### Wilcoxon test
 
 - Run a Wilcoxon test to compare the vectors `1:10` and `5:14`.
 
-.center[
+::: {style="text-align: center;"}
 **What is the p-value?**
-]
+:::
 
-### T-test
+#### T-test
 
 - Import the data in the file `gene_exprs.csv`.
 
 - Run a t-test to compare the gene expression values between the two groups.
 
-.center[
+::: {style="text-align: center;"}
 **What is the p-value?**
-]
-]
+:::
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.height=3, fig.width=4, out.height="250px", fig.align='center'}
 df <- data.frame(
     value = c(1:10, 5:14),
@@ -1293,25 +1218,25 @@ ggplot(df, aes(group, gene_exprs)) +
     geom_point()
 ```
 
-]
+:::
 
----
+::::
 
-# Exercise
+## Exercise
 
-## Testing & Multiple testing correction
+### Testing & Multiple testing correction
 
 Given an Excel file that contains a matrix of log-normalised counts (`logcounts`) and experimental metadata (`cell_info`),
 test each gene (i.e., row) in the matrix for differential expression between the two experimental groups.
 Start by importing the `logcounts` table and converting it to a matrix.
 
-### Approach
+#### Approach
 
 1. Write the code to test a single gene and access the p-value.
 2. Write a function that generalises the code to test any one gene and return the p-value.
 3. Use the function `vapply` to test every row in the matrix and collect a vector of p-values.
 
-### Bonus points
+#### Bonus points
 
 - Visualise a histogram of the p-values.
 
@@ -1320,71 +1245,51 @@ Start by importing the `logcounts` table and converting it to a matrix.
 
 - Use `gene_info` to get the gene name for the gene identifier with the smallest p-value.
 
----
+## Exercise
 
-# Exercise
-
-## Illustration
+### Illustration
 
 ```{r, include=TRUE, echo=FALSE}
 knitr::include_graphics("img/apply-gene-expression.svg")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Over-representation analysis (ORA)
+### Over-representation analysis (ORA)
 
 Given the list of genes (Ensembl gene identifiers) that your identified as differentially expressed in the previous exercise,
 and a list of gene sets (`go_db`),
 test each gene set for over-representation of differentially expressed genes.
 Start by importing the Gene Ontology table and converting it to a list.
 
-### Approach
+#### Approach
 
 1. Write the code to test a single gene set and access the p-value.
 2. Write a function that generalises the code to test any one gene set and return the p-value.
 3. Use the function `vapply` to test every gene set in the list and collect a vector of p-values.
 
-### Bonus points
+#### Bonus points
 
 - Visualise a bar plot of the p-values.
-
 - Correct p-values for multiple testing.
   How many gene sets remain before and after multiple testing?
-
 - Use `go_info` to annotate each GO gene set with its corrected p-value,
   and arrange the table by increasing p-value.
 
----
-
-# Further reading
+## Further reading
 
 - [UCLouvain Bioinformatics Summer School 2019](https://uclouvain-cbio.github.io/BSS2019/)
-
-  + [Introduction to Statistics and Machine Learning](https://github.com/ococrook/2019-BSS/raw/master/Intro2statsml.pdf) by Oliver M. Crook
-  
-  + [Practical: stats/ML](https://htmlpreview.github.io/?https://github.com/ococrook/2019-BSS/blob/master/practical/Intro2statmlPractical.html)
-
+  - [Introduction to Statistics and Machine Learning](https://github.com/ococrook/2019-BSS/raw/master/Intro2statsml.pdf) by Oliver M. Crook
+  - [Practical: stats/ML](https://htmlpreview.github.io/?https://github.com/ococrook/2019-BSS/blob/master/practical/Intro2statmlPractical.html)
 - [CSAMA](https://github.com/Bioconductor/CSAMA/tree/2019/lecture/1-monday) by the European Molecular Biology Laboratory (EMBL).
-
 - [Statistic with R and dplyr and ggplot](https://www.youtube.com/watch?v=ANMuuq502rE) by Greg Martin
-
 - [Susan Holmes](http://statweb.stanford.edu/~susan/) - [Introduction to Statistics for Biology and Biostatistics](http://statweb.stanford.edu/~susan/courses/s141/)
-
 - Susan Holmes & Wolfgang Huber - [Modern Statistics for Modern Biology: Testing](https://www.huber.embl.de/msmb/Chap-Testing.html)
-
 - [Bioconductor Case Studies](https://www.bioconductor.org/help/publications/books/bioconductor-case-studies/)
-
 - [Introduction to Econometrics with R](https://www.econometrics-with-r.org/6-6-exercises-4.html)
 
----
+## References
 
-# References
-
-.small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
 PrintBibliography(bib)
 ```
-]

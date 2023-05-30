@@ -555,6 +555,24 @@
       ],
       "Hash": "439767ea41d4a09c9c5f9c27db2c0229"
     },
+    "DoubletFinder": {
+      "Package": "DoubletFinder",
+      "Version": "2.0.3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "chris-mcginnis-ucsf",
+      "RemoteRepo": "DoubletFinder",
+      "RemoteRef": "master",
+      "RemoteSha": "67fb8b5808eb16167ead5f9b439677cc24837554",
+      "Requirements": [
+        "KernSmooth",
+        "ROCR",
+        "fields",
+        "parallel"
+      ],
+      "Hash": "fa3f38d580db627b53cb86555f3aa872"
+    },
     "DropletUtils": {
       "Package": "DropletUtils",
       "Version": "1.20.0",
@@ -2410,6 +2428,16 @@
       ],
       "Hash": "451e5edf411987991ab6a5410c45011f"
     },
+    "dotCall64": {
+      "Package": "dotCall64",
+      "Version": "1.0-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "6aa9e277302190b6c618af042d904bdf"
+    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.1.2",
@@ -2617,6 +2645,20 @@
         "whisker"
       ],
       "Hash": "303b6f3bf647befbdf64394a1900b6c9"
+    },
+    "fields": {
+      "Package": "fields",
+      "Version": "14.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "maps",
+        "methods",
+        "spam",
+        "viridis"
+      ],
+      "Hash": "75f08bec9520d29ff8c3b37276eb3da7"
     },
     "filelock": {
       "Package": "filelock",
@@ -3668,6 +3710,18 @@
         "R"
       ],
       "Hash": "7ce2733a9826b3aeb1775d56fd305472"
+    },
+    "maps": {
+      "Package": "maps",
+      "Version": "3.4.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "graphics",
+        "utils"
+      ],
+      "Hash": "644a88fb036ab50cee0b715394eefa1a"
     },
     "matrixStats": {
       "Package": "matrixStats",
@@ -4983,6 +5037,19 @@
         "utils"
       ],
       "Hash": "6674e075a078d9c3bde8ba800367347c"
+    },
+    "spam": {
+      "Package": "spam",
+      "Version": "2.9-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "dotCall64",
+        "grid",
+        "methods"
+      ],
+      "Hash": "2024a309411ff865488552f108c68333"
     },
     "sparseMatrixStats": {
       "Package": "sparseMatrixStats",

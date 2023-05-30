@@ -1,9 +1,9 @@
 ---
-title: 'Integrated tidyverse exercise'
-subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
+title: 'Statistics'
+subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-06-09 (updated: `r Sys.Date()`)"
+date: "2023-06-12 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -14,22 +14,28 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- Integrated tidyverse exercise
+    footer: Kevin Rue-Albrecht -- Statistics
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
 
-```{r setup, include = FALSE}
+```{r}
 #| label: setup
 #| include: false
 #| cache: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-options(width = 120)
-stopifnot(require(magrittr))
+stopifnot(require(tidyverse))
+stopifnot(require(ALL))
+stopifnot(require(hgu95av2.db))
+stopifnot(require(matrixStats))
+stopifnot(require(cowplot))
+stopifnot(require(AnnotationDbi))
+stopifnot(require(GO.db))
+data(ALL)
 ```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
+```{r}
 #| label: load_refs
 #| include: false
 options(htmltools.dir.version = FALSE)
@@ -43,21 +49,11 @@ BibOptions(
   hyperlink = "to.doc",
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
-NoCite(bib, "R")
 ```
 
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
-
-<!--
-Docs:
-- https://quarto.org/docs/get-started/hello/rstudio.html
-- https://quarto.org/docs/presentations/revealjs/
-- https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd
-- https://quarto.org/docs/reference/formats/presentations/revealjs.html#slides
-- https://quarto.org/docs/output-formats/html-themes.html
--->
 
 ## Prerequisites
 
@@ -66,7 +62,7 @@ Docs:
 ## Set up
 
 - Launch RStudio Server on the teaching cluster.
-- Start a new RStudio project called `tidyverse_integrated`.
+- Start a new RStudio project called `statistics`.
 - Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.
 
