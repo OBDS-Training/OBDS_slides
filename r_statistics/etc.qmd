@@ -202,7 +202,10 @@ gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill =
   cowplot::theme_cowplot()
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.width=12, fig.height=7}
+```{r}
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 7
 plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 ```
 
@@ -520,7 +523,8 @@ sort(unique(iris$Sepal.Length))
 
 The `quantile()` function can be applied to `ecdf` objects.
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
+#| echo: true
 quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
@@ -528,7 +532,8 @@ quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
 
 In this case, the same function `quantile()` can be applied to the original vector of data for the same result.
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
+#| echo: true
 quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
 ```
 
@@ -540,13 +545,17 @@ quantile(iris$Sepal.Length, c(0, 0.25, 0.5, 0.75, 1))
 
 In the `r BiocStyle::CRANpkg("stats")` package, functions that implement statistical tests have a named that ends in `.test`.
 
-```{r, include=TRUE, echo=FALSE, results='asis'}
+```{r}
+#| results: asis
 cat(paste(sprintf("`%s`", sort(grep("\\.test$", ls("package:stats"), value=TRUE))), collapse = ", "))
 ```
 
+<br/>
+
 Each of those functions comes with a help page with programmatic usage, statistical advice, and external references to published work.
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 ?pairwise.t.test
 help(pairwise.t.test)
 ```
@@ -555,8 +564,11 @@ help(pairwise.t.test)
 
 ### General principles of hypothesis testing
 
-```{r, include=TRUE, echo=FALSE, out.height='450px', out.width='700px', fig.align='center'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 700px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/hypothesis-testing.svg")
 ```
 
@@ -666,6 +678,7 @@ y <- runif(n = 1000, min = 3, max = 13)
 ```
 
 ```{r}
+#| fig-align: center
 #| out-height: 400px
 test_data <- bind_rows(
   tibble(group = "x", value = x),
@@ -791,6 +804,8 @@ gg
 :::
 
 ::: {.column width="50%"}
+<br/>
+
 ```{r}
 #| echo: true
 out <- aov(value ~ group, test_data)
@@ -822,6 +837,7 @@ test_data <- tibble(
 ```
 
 ```{r}
+#| fig-align: center
 #| fig-width: 6
 #| fig-height: 4
 #| out-height: 200px
@@ -871,15 +887,15 @@ lm(y ~ x, test_data) %>% summary()
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE, echo=FALSE}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-table.svg")
 ```
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE, echo=FALSE}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/fisher-test-venn.svg")
 ```
 :::
@@ -1060,6 +1076,7 @@ x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
 ```
 
 ```{r}
+#| fig-align: center
 ggplot(tibble(x=x)) +
   geom_histogram(aes(x), fill = "grey", color = "black", bins = 20) +
   theme_cowplot()
@@ -1084,6 +1101,7 @@ The Quantile-Quantile Plots (QQ plot) contrasts the quantiles of the observed di
 
 ```{r}
 #| echo: true
+#| fig-align: center
 x <- rnorm(n = 5000, mean = 5, sd = 3)
 qqnorm(x)
 ```
@@ -1094,6 +1112,7 @@ qqnorm(x)
 
 ```{r}
 #| echo: true
+#| fig-align: center
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
 qqnorm(x)
 ```
@@ -1206,6 +1225,7 @@ result_table <- tibble(
 Let us carry `r n_tests` tests between two normal distributions of mean 0 and standard deviation 1.
 
 ```{r}
+#| fig-align: center
 #| fig-height: 3
 data_table <- tibble(
   x = rnorm(n = 100, mean = 0, sd = 1),
@@ -1217,6 +1237,7 @@ ggplot(data_table) +
 ```
 
 ```{r}
+#| fig-align: center
 #| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(pvalue), fill = "grey", color = "black", breaks = seq(0, 1, 0.05)) +
@@ -1232,6 +1253,7 @@ cat(sprintf("There are %i out of %i raw p-values smaller than 0.05", sum(result_
 
 ::: {.column width="50%"}
 ```{r}
+#| fig-align: center
 #| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(BH), fill = "grey", color = "black", bins = 20) +
@@ -1244,7 +1266,8 @@ ggplot(result_table) +
 cat(sprintf("There are %i BH-corrected p-values smaller than 0.05", sum(result_table$BH < 0.05)))
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=3}
+```{r}
+#| fig-align: center
 #| fig-height: 3
 ggplot(result_table) +
   geom_histogram(aes(bonferroni), fill = "grey", color = "black", bins = 20) +
@@ -1359,7 +1382,8 @@ Start by importing the `logcounts` table and converting it to a matrix.
 
 ### Illustration
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-align: center
 knitr::include_graphics("img/apply-gene-expression.svg")
 ```
 
@@ -1400,6 +1424,7 @@ Start by importing the Gene Ontology table and converting it to a list.
 
 ## References
 
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
+#| results: asis
 PrintBibliography(bib)
 ```
