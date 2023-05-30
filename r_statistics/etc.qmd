@@ -72,7 +72,7 @@ $${\mathcal{N}}(\mu ,\sigma^{2})$$
 - ${\mu \in \mathbb {R} }$ = mean (location)
 - ${ \sigma ^{2}>0}$ = variance (squared scale)
 
-<br/
+<br/>
 
 ### Properties
 
@@ -305,6 +305,7 @@ knitr::include_graphics("img/binomial-coins.svg")
 - Size of experiment
   - e.g., coins tossed, balls drawn.
 - Model number of occurrences of a specific outcome.
+
 :::
 
 ::: {.column width="50%"}
@@ -477,18 +478,22 @@ plot(ecdf_iris_sepal_length, cex = 0.5)
 
 ::::
 
-# ecdf - Knots
+## ecdf - Knots
 
 Knots are the unique values observed in the empirical distribution.
 For ease of inspection, the function `knots()` automatically sorts knots in increasing order.
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
+#| echo: true
 knots(ecdf_iris_sepal_length)
 ```
 
+<br/>
+
 In other words, the `knots()` function is equivalent to identifying the unique values in the original vector and sorting them in increasing order.
 
-```{r, include=TRUE, echo=TRUE}
+```{r}
+#| echo: true
 sort(unique(iris$Sepal.Length))
 ```
 
@@ -499,6 +504,8 @@ The `quantile()` function can be applied to `ecdf` objects.
 ```{r, include=TRUE, echo=TRUE}
 quantile(ecdf_iris_sepal_length, c(0, 0.25, 0.5, 0.75, 1))
 ```
+
+<br/>
 
 In this case, the same function `quantile()` can be applied to the original vector of data for the same result.
 
@@ -537,6 +544,7 @@ knitr::include_graphics("img/hypothesis-testing.svg")
 ## Parametric tests and Non-parametric equivalents
 
 ```{r}
+#| include: false
 tibble(
   "Parametric test" = c(
     "Paired t-test",
@@ -562,6 +570,8 @@ When parametric assumptions are not met, non-parametric tests equivalent should 
 |Pearson correlation          |Spearman correlation      |
 |One-way Analysis of Variance |Kruskal–Wallis test       |
 
+<br/>
+
 Non-parametric tests make fewer assumptions, as such:
 
 - they have wider applicability.
@@ -580,13 +590,15 @@ Non-parametric tests make fewer assumptions, as such:
 ::: {.column width="50%"}
 ### Two normal distributions
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 set.seed(1)
 x <- rnorm(n = 1000, mean = 0, sd = 1)
 y <- rnorm(n = 1000, mean = 1, sd = 1)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
+#| out-height: 400px
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
@@ -601,13 +613,18 @@ ggplot(test_data, aes(value)) +
 ::: {.column width="50%"}
 ### Unpaired t-test
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 t.test(value ~ group, test_data)
 ```
 
+<br/>
+
 Compare with
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 t.test(x, y)
 t.test(y, x)
 ```
@@ -622,13 +639,15 @@ t.test(y, x)
 ::: {.column width="50%"}
 ### Two uniform distributions
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 set.seed(1)
 x <- runif(n = 1000, min = 1, max = 11)
 y <- runif(n = 1000, min = 3, max = 13)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
+#| out-height: 400px
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
@@ -644,13 +663,17 @@ gg
 ::: {.column width="50%"}
 ### Mann-Whitney U test
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 wilcox.test(value ~ group, test_data)
 ```
 
+<br/>
+
 ### Directed hypothesis
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 wilcox.test(value ~ group, test_data, alternative = "less")
 ```
 :::
@@ -664,7 +687,8 @@ For each sample, the two measurements are related to one another; e.g. patients 
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE}
+```{r}
+#| echo: true
 set.seed(1)
 n_sample <- 10
 x <- runif(n = n_sample, min = 10, max = 20)
@@ -679,7 +703,8 @@ test_data <- tibble(
 ) %>% pivot_longer(cols = c(x, y), names_to = "variable")
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
+#| out-height: 300px
 ggplot(test_data, aes(variable, value)) +
   geom_line(aes(group = sample), size = 0.1) +
   geom_point() +
@@ -688,7 +713,8 @@ ggplot(test_data, aes(variable, value)) +
 :::
 
 ::: {.column width="50%"}
-```{r, include=TRUE}
+```{r}
+#| echo: true
 t.test(x, y, paired = TRUE)
 ```
 :::
@@ -697,7 +723,6 @@ t.test(x, y, paired = TRUE)
 
 **Note:**
 What is actually tested is whether the mean of the differences between the paired $x$ and $y$ measurements is different from 0.
-]
 
 ## Analysis of Variance (ANOVA)
 
@@ -784,7 +809,6 @@ ggplot(test_data, aes(x = x, y = y)) +
 Null hypotheses:
 
 - The slope is equal to 0.
-
 - The intercept is equal to 0.
 
 ::: {.column width="50%"}
@@ -797,19 +821,17 @@ lm(y ~ x, test_data)
 
 ## Linear models - summary
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 lm(y ~ x, test_data) %>% summary()
 ```
 
 ## Fisher's Exact Test
 
 - Test of independence between two categorical variables
-
 - Alternative to the Chi-square test when the sample is not large enough.
-
-  + Rule of thumb: when any of the _expected_ values in the contingency table is less than 5.
-
-  + e.g., Gene set over-representation analysis (ORA)
+  - Rule of thumb: when any of the _expected_ values in the contingency table is less than 5
+  - e.g., Gene set over-representation analysis (ORA)
 
 :::: {.columns}
 
@@ -872,7 +894,7 @@ fisher.test(x_table)
 :::: {.columns}
 
 ::: {.column width="50%"}
-## Two uniform distributions
+### Two uniform distributions
 
 ```{r, include=TRUE}
 set.seed(1)
@@ -895,7 +917,7 @@ gg
 :::
 
 ::: {.column width="50%"}
-## Parametric (unpaired) t-test
+### Parametric (unpaired) t-test
 
 ```{r, include=TRUE}
 t.test(value ~ group, test_data)
@@ -958,7 +980,7 @@ In addition, Student's t-Test also expects values to be normally distributed.
 :::: {.columns}
 
 ::: {.column width="50%"}
-## Normal distribution
+### Normal distribution
 
 ```{r include=TRUE}
 x <- rnorm(n = 5000, mean = 0, sd = 1)
@@ -976,7 +998,7 @@ shapiro.test(x)
 :::
 
 ::: {.column width="50%"}
-## Log-normal distribution
+### Log-normal distribution
 
 ```{r, include=TRUE}
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
@@ -1002,7 +1024,7 @@ The Quantile-Quantile Plots (QQ plot) contrasts the quantiles of the observed di
 :::: {.columns}
 
 ::: {.column width="50%"}
-## Normal distribution
+### Normal distribution
 
 ```{r, include=TRUE, echo=TRUE, fig.height=5}
 x <- rnorm(n = 5000, mean = 5, sd = 3)
@@ -1011,7 +1033,7 @@ qqnorm(x)
 :::
 
 ::: {.column width="50%"}
-## Log-normal distribution
+### Log-normal distribution
 
 ```{r, include=TRUE, echo=TRUE, fig.height=5}
 x <- 2^rnorm(n = 5000, mean = 0, sd = 1)
@@ -1071,6 +1093,7 @@ knitr::include_graphics("img/huber-fdr.png")
 :::
 
 ::: {.column width="50%"}
+
 ::: {style="text-align: center;"}
 Bonferroni correction
 :::
@@ -1217,7 +1240,6 @@ df <- read.csv("data/gene_exprs.csv")
 ggplot(df, aes(group, gene_exprs)) +
     geom_point()
 ```
-
 :::
 
 ::::
