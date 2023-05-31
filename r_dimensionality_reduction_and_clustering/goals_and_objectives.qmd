@@ -4,7 +4,7 @@
 
 - Describe dimensionality reduction and clustering methods.
 - Explain the difference between dimensionality reduction and clustering.
-- Learn how to use those methods as part of analytical workflow in R.
+- Learn how to use those methods as part of analytical workflow in <i class="fab fa-r-project"></i>.
 
 ### Learning objectives
 

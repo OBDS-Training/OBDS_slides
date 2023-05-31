@@ -1,67 +1,60 @@
-# Updating Bioconductor packages
+## Updating Bioconductor packages
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 BiocManager::valid()
 ```
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-align: center
 knitr::include_graphics("img/biocmanager-update.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Use Bioconductor packages and help pages
+### Use Bioconductor packages and help pages
 
 - Load the `r BiocStyle::Biocpkg("Biostrings")` package.
-
 - The package provides the object `DNA_ALPHABET`.
   Print the object in the console and use the help page to explain the contents of the object.
-
 - The package provides the function `IlluminaQuality()`.
   Run some code from the "Examples" section of the help page, and describe what the function does.
-
 - Access the package vignette(s).
   How many vignette does the package include?
-
 - Import sequences in the file `TruSeq3-PE-2.fa`.
   What is the class of the object?
 
----
-
-# BSgenome packages
+## BSgenome packages
 
 Bioconductor provide genome sequences for a range of model organisms and their incremental versions over time.
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
 ## Source: https://bioconductor.org/help/course-materials/2019/CSAMA/L1.4-bioc-data-representation.html
 knitr::include_graphics("img/biocviews-bsgenome.png")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - The `r BiocStyle::Biocpkg("BSgenome")` package provides core functionality.
-
 - Other package names start with `"BSgenome."`
+  - e.g. `BSgenome.Hsapiens.UCSC.hg19`
+:::
 
-  + e.g. `BSgenome.Hsapiens.UCSC.hg19`
-]
+::::
 
----
+## Exercise
 
-# Exercise
-
-## BSgenome packages
+### BSgenome packages
 
 - Load the package `r BiocStyle::Biocpkg("BSgenome")`.
-
 - Use the function `BSgenome::available.genomes()`.
   What does it do?
-
 - Load the package `BSgenome.Hsapiens.UCSC.hg38.masked`.
-
 - Assign the genome object provided in the package to a new object called `genome`.
 
 An E-box (enhancer box) is a DNA response element found in some eukaryotes that acts as a protein-binding site and has been found to regulate gene expression in neurons, muscles, and other tissues.
@@ -69,43 +62,42 @@ An E-box (enhancer box) is a DNA response element found in some eukaryotes that 
 The E-box motif is `"CANNTG"`.
 
 - Extract the sequence of chromosome Y from the `genome` object above.
-
 - Find out the appropriate method in the `r BiocStyle::Biocpkg("Biostrings")` and count the number of E-box motifs present on chromosome Y.
 
----
-
-# Genomic ranges
+## Genomic ranges
 
 Coordinates on a genomic scale.
 
-.pull-left[
-## Information
+:::: {.columns}
+
+::: {.column width="30%"}
+### Information
 
 - Chromosome, contig
-
 - Start
-
 - End
-
 - Strand (optional)
-
 - ... and other metadata
-]
+:::
 
-.pull-right[
-## Ranges and operations
+::: {.column width="70%"}
+### Ranges and operations
 
-```{r, include=TRUE, echo=FALSE, out.width='800px'}
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 800px
 ## Source: https://carpentries-incubator.github.io/bioc-project/07-genomic-ranges/index.html
 knitr::include_graphics("img/genomic-ranges.svg")
 ```
-]
+:::
 
----
+::::
 
-# Creating genomic ranges
+## Creating genomic ranges
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 library(GenomicRanges)
 demo_granges <- GRanges(
   seqnames = c("chr1", "chr2"),
@@ -117,16 +109,13 @@ demo_granges <- GRanges(
 demo_granges
 ```
 
-.center[
+::: {style="text-align: center;"}
 **What genomics file format does this remind you of?**
-]
+:::
 
----
+## BED file format
 
-# BED file format
-
-.center[
-```
+```{style="text-align: center;"}
 chr7  127471196  127472363  Pos1  0  +  127471196  127472363  255,0,0
 chr7  127472363  127473530  Pos2  0  +  127472363  127473530  255,0,0
 chr7  127473530  127474697  Pos3  0  +  127473530  127474697  255,0,0
@@ -137,9 +126,10 @@ chr7  127478198  127479365  Neg3  0  -  127478198  127479365  0,0,255
 chr7  127479365  127480532  Pos5  0  +  127479365  127480532  255,0,0
 chr7  127480532  127481699  Neg4  0  -  127480532  127481699  0,0,255
 ```
-]
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 - **chrom** - name of the chromosome or scaffold.
 - **chromStart** - Start position (first base is 0).
 - **chromEnd** - End position.
@@ -147,100 +137,106 @@ chr7  127480532  127481699  Neg4  0  -  127480532  127481699  0,0,255
 - **score** - A score between 0 and 1000.
 - **strand** - defined as + (forward) or - (reverse).
 - **thickStart** - start coordinate to draw a solid rectangle.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - **thickEnd** - end coordinate to draw a solid rectangle.
 - **itemRgb** - an RGB colour value (e.g. 0,0,255).
 - **blockCount** - the number of exons within the feature.
 - **blockSizes** - the size of these sub-elements.
 - **blockStarts** - the start coordinate of each sub-element
 
-.right[
+::: {style="text-align: right;"}
 [ensembl.org](https://m.ensembl.org/info/website/upload/bed.html)
-]
-]
+:::
+:::
 
----
+::::
 
-# Genomic ranges in action
+## Genomic ranges in action
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-align: center
 knitr::include_graphics("img/genomic-ranges-browser.png")
 ```
 
-.right[
+::: {style="text-align: right;"}
 Credits: Charlotte George
-]
+:::
 
----
-
-# Accessing the contents of GRanges objects
+## Accessing the contents of GRanges objects
 
 The functions `seqnames()`, `start()`, and `end()` access the components of the same name.
 
-.pull-left[
-.small-code[
-```{r, include=TRUE}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
 seqnames(demo_granges)
 as.character(seqnames(demo_granges))
 ```
-]
-]
+:::
 
-.pull-right[
-```{r, include=TRUE}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 start(demo_granges)
 end(demo_granges)
 ```
-]
+:::
+
+::::
 
 Chromosome names are conceptually similar to factors;
 a `GRanges` object often contains many ranges on each chromosome.
 The function `seqlevels()` returns the list of unique chromosome names in the object (including levels that may not be present in a subset).
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 seqlevels(demo_granges)
 ```
 
----
-
-# Metadata columns
+## Metadata columns
 
 `GRanges` is one of many classes that derive from the Bioconductor virtual class `Vector`.
 
 - Virtual classes cannot be instantiated into objects.
-
 - They are used to define slots and methods that be will passed down the inheritance path to all classes that derive from this virtual class.
 
 The virtual class `Vector` defines two slots:
 
 - `metadata`, to store metadata related to the entire object.
-
 - `elementMetadata`, to store metadata for each element in the vector; accessed using `mcols()`.
 
-.pull-left[
-```{r, include=TRUE}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
 mcols(demo_granges)
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 demo_granges$metadata1
 metadata(demo_granges)
 ```
-]
+:::
 
----
+::::
 
-# Bioconductor has its own DataFrame class
+## Bioconductor has its own DataFrame class
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 A Bioconductor `DataFrame` is constructed like a base R `data.frame`.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 library(S4Vectors)
 demo_DataFrame <- DataFrame(
     column1 = c("A", "B"),
@@ -248,97 +244,90 @@ demo_DataFrame <- DataFrame(
 )
 demo_DataFrame
 ```
-]
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 However, a `DataFrame` can have additional metadata columns.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 mcols(demo_DataFrame) <- DataFrame(
   column_type = c("character", "numeric")
 )
 mcols(demo_DataFrame)
 ```
-]
-]
+:::
 
-```{r, include=TRUE, echo=FALSE, out.height='175px', fig.align='center'}
+::::
+
+```{r}
+#| fig-align: center
+#| out-height: 175px
 knitr::include_graphics("img/dataframe-mcols.svg")
 ```
 
-???
-
+::: {.notes}
 - Note how row names are automatically set in the metadata, to the solumn names of the main `DataFrame`.
-
----
-
-# rtracklayer
-
-.pull-left[
-```{r, include=TRUE, echo=FALSE}
-knitr::include_graphics("img/biocviews-annotation.png")
-```
-]
-
-.pull-right[
-- The package `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
-
-  + e.g., UCSC
-
-- To that end, it also provides functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
-
-  + e.g., GFF, BED, bedGraph, BigWig
-]
-
----
-
-# Exercise
+:::
 
 ## rtracklayer
 
-- Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
+:::: {.columns}
 
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 350px
+knitr::include_graphics("img/biocviews-annotation.png")
+```
+:::
+
+::: {.column width="50%"}
+- The package `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
+  - e.g., UCSC
+- To that end, it also provides functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
+  - e.g., GFF, BED, bedGraph, BigWig
+:::
+
+::::
+
+## Exercise
+
+### rtracklayer
+
+- Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
 - Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `rtracklayer::import()`.
   Assign value to an object called `gtf_data`.
-
 - What are the metadata columns available in the object?
-
 - Use the function `subset()` to filter the annotations for the gene `ACTB`.
-
 - How many transcripts do the annotations describe for that gene?
-
 - Subset the annotations to exons, and use the `split()` function to separate exons from different transcripts.
   What is the class of the object that is returned?
 
----
+## Annotations - An example
 
-# Annotations - An example
-
-```{r, include=TRUE, out.height='500px', echo=FALSE}
+```{r}
+#| fig-align: center
+#| out-height: 600px
 knitr::include_graphics("img/biomart-ensembl.png")
 ```
 
----
-
-# Annotation packages and biomaRt
+## Annotation packages and biomaRt
 
 Packages dedicated to query annotations exist in the `Software` and `Annotation` categories of [biocViews](https://bioconductor.org/packages/release/BiocViews.html).
 
 - The `r BiocStyle::Biocannopkg("biomaRt")` package provides an interface to the [Ensembl BioMart](https://www.ensembl.org/biomart/martview) data repository.
-
 - A collection of annotation packages provide most of that information for several model organisms.
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-align: center
 knitr::include_graphics("img/biocview-annotations-human.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Annotation packages
+### Annotation packages
 
 Each annotation package contains a database of information.
 
@@ -355,14 +344,12 @@ from the object.
 - Use the `keys()` method to get the first six gene symbols in the database.
   Store as `human_symbols`.
 - Use the `AnnotationDbi::select()` method to fetch the Entrez and Ensembl identifiers for those gene symbols.
-  + What happens if you do not specify `AnnotationDbi`?
+  - What happens if you do not specify `AnnotationDbi`?
 - Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
 
----
+## Exercise
 
-# Exercise
-
-## biomaRt
+### biomaRt
 
 - Load the package `r BiocStyle::Biocpkg("biomaRt")`.
 - Use the `listMarts()` function to list the BioMart databases to which the `r BiocStyle::Biocpkg("biomaRt")` package can connect.
@@ -375,98 +362,90 @@ from the object.
 - Use the `listAttributes()` function to list the fields of information available in the dataset.
 - Use the `getBM()` function to fetch the chromosome, start and end positions, and strand for the gene symbols that you stored as `human_symbols`.
 
----
+## EnsDb packages
 
-# EnsDb packages
-
-.small-p[
 The `EnsDb` family of packages provide annotations that encapsulate individual versions of the Ensembl annotations in Bioconductor packages.
 
 - Once the package is installed, annotations are stored locally, without the need for internet.
-
 - The series of packages seems to have ended at Ensembl version 86 (!)
-
 - Bioconductor annotation packages share the `BiMap` class, meaning that functions like `columns()`, `keytypes()`, and `mapIds()` work in the same way for the different types of annotation packages.
-]
 
 ```{r}
 options(width = 130)
 ```
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 library(EnsDb.Hsapiens.v86)
 class(EnsDb.Hsapiens.v86)
 columns(EnsDb.Hsapiens.v86)
 ```
-]
 
----
-
-# TxDb packages
+## TxDb packages
 
 The `TxDb` family of packages provide annotations that encapsulate individual versions of the annotation databases generated from UCSC in Bioconductor packages.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 class(TxDb.Hsapiens.UCSC.hg38.knownGene)
 columns(TxDb.Hsapiens.UCSC.hg38.knownGene)
 keytypes(TxDb.Hsapiens.UCSC.hg38.knownGene)
 keys(TxDb.Hsapiens.UCSC.hg38.knownGene, "GENEID") %>% head()
 ```
-]
 
----
+## Annotations - Summary
 
-# Annotations - Summary
+:::: {.columns}
 
-.pull-left[
-## biomaRt
+::: {.column width="50%"}
+### biomaRt
 
 Interface to the Ensembl BiomaRt database.
 
-## OrgDb
+### OrgDb
 
 Family of packages that provide mapping between various types of gene identifiers and pathway information.
-]
+:::
 
-.pull-right[
-## EnsDb
+::: {.column width="50%"}
+### EnsDb
 
 Family of packages that each provide one release of gene annotations from Ensembl.
 
-## TxDb
+### TxDb
 
 Family of packages that each provide one release of transcript annotations from UCSC.
-]
+:::
 
-.center[
+::::
+
+::: {style="text-align: center;"}
 **Do you know any other?**
-]
+:::
 
----
+## The Bioconductor SummarizedExperiment
 
-# The Bioconductor SummarizedExperiment
-
-```{r, include=TRUE, echo=FALSE, out.height="450px", out.width="600px", fig.align='center'}
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 600px
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```
 
-.footnote[
-**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
-]
+**Source:** <https://www.nature.com/articles/nmeth.3252> (Figure 2)
 
----
+## Exercise
 
-# Exercise
+### Creating a SummarizedExperiment object
 
-## Creating a SummarizedExperiment object
+:::: {.columns}
 
-.pull-left[
-.small-code[
-```{r, include=TRUE, results='hide'}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| results: hide
 library(SummarizedExperiment)
 demo_count_matrix <- matrix(
   data = c(1, 2, 3, 4, 5, 6, 7, 8), nrow = 4, ncol = 2,
@@ -488,140 +467,125 @@ demo_se <- SummarizedExperiment(
   rowData = demo_rowdata,
   colData = demo_coldata)
 ```
-]
 
 What does the code above do?
-]
+:::
 
-.pull-right[
-```{r, include=TRUE,}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 demo_se
 ```
 
 Use the methods `assays()`, `assayNames()` `assay()`, `colData()`, `rowData()`, `mcols()` and `metadata()` on the object `demo_se`.
 
 What do those functions do?
-]
+:::
 
----
+::::
 
-# Exercise
+## Exercise
 
-## Assembling a SummarizedExperiment object
+### Assembling a SummarizedExperiment object
 
 - Import the matrix in the file `counts.csv`.
   Call it `assay_counts`.
-
 - Import the data frames in the files `sample_metadata.csv` and `gene_metadata.csv`.
   Call them `sample_metadata` and `gene_metadata`.
-  
 - Use the function `SummarizedExperiment()` to combine those three objects into a single `SummarizedExperiment` object.
   Call it `demo_se`.
-  
-  + Assign the matrix to an assay named `counts`.
+  - Assign the matrix to an assay named `counts`.
 
----
-
-# Inheritance and coercion
+## Inheritance and coercion
 
 The `as()` function can be used to convert an object between classes that are related through inheritance.
 This is called _coercing_ the object to another class.
 
 For instance:
 
-.pull-left[
-.small-code[
-```{r, include=TRUE}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
 demo_dataframe <- data.frame(A = c(1, 2), B = c(3, 4))
 demo_dataframe
 ```
-]
-]
+:::
 
-.pull-right[
-.small-code[
-```{r, include=TRUE}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 demo_DataFrame <- as(demo_dataframe, "DataFrame")
 demo_DataFrame
 ```
-]
-]
+:::
+
+::::
 
 <br/>
 
 - If the new class is simpler, some information may be lost
   (e.g., coercing to a parent class).
-
 - If the new class is more complex, new components may be filled with automatically computed or default values.
   (e.g., coercing to child class).
 
----
+## Exercise
 
-# Exercise
-
-## SummarizedExperiment extensions
+### SummarizedExperiment extensions
 
 - Load the package `r BiocStyle::Biocpkg("DESeq2")`.
-
 - Convert your earlier `demo_se` to a `DESeqDataSet` object, using the `as()` function.
   Call the object `demo_deseq`.
-
 - What are the slots of information present in the `DESeqDataSet` object?
   Use the function `slotNames()`.
-
 - Which slots are new compared to the `SummarizedExperiment` object?
-
 - Which components of the `DESeqDataSet` object can you access using accessor functions (e.g., `assays()`) ?
   Do all of those accessors work on the original `demo_se` object?
 
----
+## SingleCellExperiment extends SummarizedExperiment
 
-# SingleCellExperiment extends SummarizedExperiment
+:::: {.columns}
 
-.pull-left[
-## SummarizedExperiment.
+::: {.column width="50%"}
+### SummarizedExperiment.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```
 
-.small-text[
-**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
-]
-]
+**Source:** <https://www.nature.com/articles/nmeth.3252> (Figure 2)
+:::
 
-.pull-right[
-## SingleCellExperiment
+::: {.column width="50%"}
+### SingleCellExperiment
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://bioconductor.org/books/release/OSCA/data-infrastructure.html
 knitr::include_graphics("img/singlecellexperiment.png")
 ```
 
-.small-text[
-**Source:** https://osca.bioconductor.org/data-infrastructure.html
-]
-]
+**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
+:::
 
----
+::::
 
-# SingleCellExperiment
+## SingleCellExperiment
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://bioconductor.org/books/release/OSCA/data-infrastructure.html
 knitr::include_graphics("img/singlecellexperiment.png")
 ```
 
-.footnote[
-**Source:** https://osca.bioconductor.org/data-infrastructure.html
-]
+**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
 
----
+## Exercise
 
-# Exercise
-
-## SingleCellExperiment
+### SingleCellExperiment
 
 The class name `SingleCellExperiment` is only a name.
 While developed with single-cell genomics in mind, it is not limited to that use.
@@ -629,22 +593,16 @@ Remember that classes are simply defined by their slots and methods.
 If the slots and methods are suitable to store and process another type of data, then go for it!
 
 - Load the package `r BiocStyle::Biocpkg("SingleCellExperiment")`.
-
 - Convert your earlier `demo_se` to a `SingleCellExperiment` object, using the `as()` function.
   Call the object `demo_sce`.
-
 - Display the object.
   What additional information can the `SingleCellExperiment` class store, relative to the `SummarizedExperiment` class?
-
 - Use the methods `reducedDimNames()`, `reducedDims()`, and `reducedDim()` on the object `demo_sce`.
   What do they do?
-
 - **Bonus point:** Use the method `reducedDim()` to store a new dimensionality reduction matrix called `"PCA"` in the object.
   Display and inspect the updated object.
 
----
-
-# The ExperimentHub package and resources
+## The ExperimentHub package and resources
 
 The `r BiocStyle::Biocpkg("ExperimentHub")` package provides a portal to a large collection of preprocessed datasets available directly as Bioconductor objects.
 
@@ -654,80 +612,99 @@ The package can be used to query, search, and filter the list of available datas
 options(width = 80)
 ```
 
-.pull-left[
-.x-small-code[
-```{r, include=TRUE}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
 library(ExperimentHub)
 ehub <- ExperimentHub()
 query(ehub, c("SingleCellExperiment"))
 ```
-]
-]
+:::
 
-.pull-right[
-.x-small-code[
-```{r, include=TRUE}
+::: {.column width="50%"}
+```{r}
+#| echo: true
 eh1433 <- ehub[["EH1433"]]
 eh1433
 ```
-]
-]
+:::
 
----
+::::
 
-# Description of a dataset in the ExperimentHub
+## Description of a dataset in the ExperimentHub
 
 A single pair of square brackets `[]` shows information about a given identifier, while a double pair `[[]]` downloads the dataset and imports the object.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 ehub["EH1433"]
 ```
-]
 
----
+## Exercise
 
-# Exercise
+### Interactive visualisation using iSEE
 
-## Interactive visualisation using iSEE
+<a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" height="100px" align="top" style="float: left;margin:0px 10px 0px 0px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
 
-<a href="https://bioconductor.org/packages/iSEE/"><img src="img/isee-sticker.png" alt="iSEE sticker" align="bottom" height="90px"></a> is a package that leverages the reliable stability of the `SummarizedExperiment` data structure - and its extensions - to produce an interactive graphical user interface (GUI) for visualisation of the object contents.
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 Load the package `r BiocStyle::Biocpkg("iSEE")`.
+
+```{r}
+#| echo: true
+library(iSEE)
+```
 
 Use the `iSEE()` function on the `SingleCellExperiment` object `eh1433`.
 
+```{r}
+#| echo: true
+#| eval: false
+iSEE(eh1433)
+```
+
 Subset the object `eh1433` to remove cells where the sum of counts is `NA`.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 eh1433 <- eh1433[, !is.na(colSums(assay(eh1433)))]
 ```
-]
-]
+:::
 
-.pull-right[
-Use the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")` to compute and add a PCA result to the object `eh1433`
+::: {.column width="50%"}
+Use the packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scater")` to compute and add a PCA result to the object `eh1433`.
 
-.small-code[
-```{r, include=TRUE}
+```{r}
+#| echo: true
 library(scuttle)
 library(scater)
 eh1433 <- logNormCounts(eh1433)
 eh1433 <- runPCA(eh1433)
 ```
-]
 
 Launch the `iSEE` GUI again.
-What changed?
-]
 
----
+```{r}
+#| echo: true
+#| eval: false
+iSEE(eh1433)
+```
 
-# More popular Bioconductor packages
+::: {style="text-align: center;"}
+**What changed?**
+:::
+:::
 
-.pull-left[
+::::
+
+## More popular Bioconductor packages
+
+:::: {.columns}
+
+::: {.column width="50%"}
 <a href="https://bioconductor.org/packages/Gviz/"><img src="img/gviz-sticker.png" alt="Gviz sticker" align="middle" height="100px"></a> Genome browser visualisations.
 
 <a href="https://bioconductor.org/packages/affy/"><img src="img/affy-sticker.png" alt="affy sticker" align="middle" height="100px"></a> Affymetrix microarrays.
@@ -735,9 +712,9 @@ What changed?
 <a href="https://bioconductor.org/packages/ChIPseeker/"><img src="img/chipseeker-sticker.png" alt="ChIPseeker middle" align="middle" height="100px"></a> Annotation and visualisation.
 
 <a href="https://bioconductor.org/packages/bsseq/"><img src="img/bsseq-sticker.png" alt="bsseq sticker" align="middle" height="100px"></a> DNA methylation.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 <a href="https://bioconductor.org/packages/Spectra/"><img src="img/spectra-sticker.png" alt="Spectra sticker" align="middle" height="100px"></a> Mass spectrometry.
 
 <a href="https://bioconductor.org/packages/VariantAnnotation/"><img src="img/variantannotation-sticker.png" alt="VariantAnnotation sticker" align="middle" height="100px"></a> DNA variation.
@@ -745,49 +722,37 @@ What changed?
 <a href="https://bioconductor.org/packages/SpatialExperiment/"><img src="img/spatialexperiment-sticker.png" alt="SpatialExperiment sticker" align="middle" height="100px"></a> Spatial transcriptomics.
 
 <a href="https://bioconductor.org/packages/tidybulk/"><img src="img/tidybulk-sticker.png" alt="tidybulk sticker" align="middle" height="100px"></a> Tidy transcriptomics.
-]
+:::
 
----
+::::
 
-# Final advice
+## Final advice
 
-## Choosing a package
+### Choosing a package
 
 With so much choice, it can be difficult to decide which package to try first.
 
 - Go by popularity (e.g., biocViews, download stats, word of mouth)
-
-  + More users $\rightarrow$ more chance to find help, online and around you.
-
+  - More users $\rightarrow$ more chance to find help, online and around you.
 - Read and manually run code in the package vignette(s).
-
-  + A good package that makes sense to you is better than an expert package that feels obscure.
+  - A good package that makes sense to you is better than an expert package that feels obscure.
   
-## Getting help
+### Getting help
 
 - <https://support.bioconductor.org/>
+  - Public and searchable: asked once, answered once (avoid emails!).
+  - MRE: Minimal reproducible example (e.g., use demo object in help page).
 
-  + Public and searchable: asked once, answered once (avoid emails!).
-  
-  + MRE: Minimal reproducible example (e.g., use demo object in help page).
-
----
-
-# Further reading
+## Further reading
 
 - [CSAMA 2019 programme](https://www.huber.embl.de/csama2019/#programme)
-
 - [Bioconductor course materials](https://www.bioconductor.org/help/course-materials/)
-
 - [Introduction to R / Bioconductor (2019)](https://www.bioconductor.org/help/course-materials/2019/CSAMA/lab-1-intro-to-r-bioc.html), by Martin Morgan
-
 - [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html), by Martin Morgan
 
----
+## Advanced
 
-# Advanced
-
-## BiocManager repositories
+### BiocManager repositories
 
 Bioconductor packages can be installed and managed using base R function such as `install.packages()` with a minimum additional setup.
 
@@ -802,7 +767,8 @@ The function reports the URLs from which to install Bioconductor and CRAN packag
 
 - Set the `repos` option to the value of `BiocManager::repositories()`.
 
-```{r, include=TRUE}
+```{r}
+#| echo: true
 options(repos = BiocManager::repositories())
 ```
 
@@ -810,29 +776,22 @@ options(repos = BiocManager::repositories())
   What do you see now?
   What does it mean?
 
----
+## Advanced
 
-# Advanced
-
-## Import SummarizedExperiment objects using tximeta
+### Import SummarizedExperiment objects using tximeta
 
 - Load the packages `r BiocStyle::Biocpkg("tximeta")` and `r BiocStyle::Biocpkg("tximportData")`.
 
 The help page of the `tximeta()` function refers to an example output of the Salmon program that is installed on your computer at `system.file("extdata/salmon_dm/SRR1197474/quant.sf", package="tximportData")`.
 
 - Navigate to that location in the file explorer of your respective operating system, and examine its contents, in a text editor or your terminal application.
-
 - Run the rest of the example code, and discuss the use of a linked transcriptome with `tximeta` (set `write=TRUE` instead of using the example code as-is, call the file `tximeta.json`, and read the help page of `makeLinkedTxome()`).
-
 - What other types of quantification programs does `tximeta` support?
   Where do you find that information?
 
----
+## References
 
-# References
-
-.small-text[
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
+#| results: asis
 PrintBibliography(bib)
 ```
-]

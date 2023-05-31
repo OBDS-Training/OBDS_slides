@@ -3,76 +3,83 @@ title: 'Introduction to Bioconductor'
 subtitle: '<i class="fab fa-r-project"></i> for genomics data science (CCB cluster)'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-02-08 (updated: `r Sys.Date()`)"
-output:
-  xaringan::moon_reader:
-    css: [default, metropolis, rladies-fonts, "my-theme.css"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-# uncomment this line to produce HTML and PDF in RStudio:
-knit: pagedown::chrome_print
+date: "2023-06-14 (updated: `r Sys.Date()`)"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Kevin Rue-Albrecht -- Introduction to Bioconductor
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
 ---
 
-```{r, child='goals_and_objectives.Rmd'}
+```{r setup, include = FALSE}
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 90)
+stopifnot(require(tidyverse))
+stopifnot(require(S4Vectors))
 ```
 
----
+```{r, load_refs, include=FALSE, cache=FALSE}
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
 
-# Prerequisites
+```{r}
+#| child: goals_and_objectives.qmd
+```
+
+## Prerequisites
 
 - An account on the teaching cluster.
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
-
-## Lessons
+### Lessons
 
 - Introduction to base <i class="fab fa-r-project"></i>.
-
 - Object Oriented Programming (OOP).
-
 - Introduction to `r BiocStyle::CRANpkg("ggplot2")`.
 
----
-
-# Set up
+## Set up
 
 - Launch RStudio Server on the teaching cluster.
-
 - Start a new RStudio project called `bioconductor`.
-
-- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
-
-- Make symbolic link from the RStudio project to the template notebook.
-
+- Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='250px'}
-## Source: Adobe Illustrator (Kevin Rue-Albrecht)
-knitr::include_graphics("img/obds-git-setup.svg")
+```{r}
+#| child: philosophy.qmd
 ```
 
----
+## Exercise
 
-```{r, child='philosophy.Rmd'}
-```
-
----
-
-# Exercise
-
-## BiocManager
+### BiocManager
 
 On the teaching cluster, all the packages required for the course are already installed.
 As a result, you do not need (and should not) install any package yourself.
 
-> Instead, you should ask the system administrators to install or update packages for you.
+Instead, you should ask the system administrators to install or update packages for you.
 
 To give you an idea, what the system administrators did essentially comes down to:
 
-```{r, include=TRUE, echo=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 install.packages("BiocManager")
 BiocManager::install(c("Biostrings", "S4Vectors"))
 ```
@@ -87,7 +94,6 @@ However, it can be used to install a single package name as a character value.
 - Run the function `BiocManager::valid()`.
   What does it do?
 
----
-
-```{r, child='etc.Rmd'}
+```{r}
+#| child: etc.qmd
 ```

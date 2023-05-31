@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- Statistics
+    footer: Kevin Rue-Albrecht -- Dimensionality reduction and clustering
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
@@ -25,19 +25,19 @@ format:
 #| cache: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-library(tidyverse)
-library(scRNAseq)
-library(ComplexHeatmap)
-library(kableExtra)
-library(scater)
-library(airway)
-library(reshape2)
-library(RColorBrewer)
-library(Rtsne)
-library(pvclust)
-library(pheatmap)
-library(cowplot)
-library(e1071)
+stopifnot(require(tidyverse))
+stopifnot(require(scRNAseq))
+stopifnot(require(ComplexHeatmap))
+stopifnot(require(kableExtra))
+stopifnot(require(scater))
+stopifnot(require(airway))
+stopifnot(require(reshape2))
+stopifnot(require(RColorBrewer))
+stopifnot(require(Rtsne))
+stopifnot(require(pvclust))
+stopifnot(require(pheatmap))
+stopifnot(require(cowplot))
+stopifnot(require(e1071))
 ```
 
 ```{r}
