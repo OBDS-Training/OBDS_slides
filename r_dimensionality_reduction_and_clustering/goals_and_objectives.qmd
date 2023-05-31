@@ -1,0 +1,14 @@
+## Learning objectives
+
+### Learning goals
+
+- Describe dimensionality reduction and clustering methods.
+- Explain the difference between dimensionality reduction and clustering.
+- Learn how to use those methods as part of analytical workflow in R.
+
+### Learning objectives
+
+- Apply dimensionality reduction methods to data; visualise and compare results.
+- Identify and visualise features contributing most to principal components.
+- Apply clustering methods to data; visualise and compare results.
+- Integrate clustering and dimensionality reduction results for visualisation.

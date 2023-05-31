@@ -1,4 +1,4 @@
-# Visually extracting information from data
+## Visually extracting information from data
 
 ```{r}
 allen <- ReprocessedAllenData()
@@ -7,27 +7,30 @@ allen <- scater::runPCA(allen)
 allen <- scater::runUMAP(allen)
 ```
 
-.pull-left[
-## Data
+:::: {.columns}
+
+::: {.column width="50%"}
+### Data
 
 <br/>
 
-.x-small-table[
-```{r, include=TRUE, echo=FALSE}
+::: {.small-table}
+```{r}
 nrow <- 10
 ncol <- 5
 rownames <- paste("gene", seq_len(nrow))
 colnames <- paste("sample", seq_len(ncol))
 x <- matrix(data = rbinom(nrow*ncol, 10E3, 1E-4), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
-knitr::kable(x, format = "html", escape = F)
+knitr::kable(x, format = "html", escape = FALSE)
 ```
-]
-]
+:::
+:::
 
-.pull-right[
-## Information
+::: {.column width="50%"}
+### Information
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-height: 10
 x <- log(assay(allen, "tophat_counts") + 1)
 keep_rows <-  head(order(rowVars(x), decreasing = TRUE), 50)
 set.seed(1)
@@ -36,42 +39,39 @@ Heatmap(
   matrix = x[keep_rows, keep_columns],
   row_names_gp = gpar(fontsize = 8))
 ```
-]
+:::
 
----
+::::
 
-# Sources of variation in data
+## Sources of variation in data
 
 
 Difference in data (e.g., expression) can come from multiple sources:
 
 - Biological
-
 - Technical
 
 Either of those sources could be either:
 
 - Of interest to study
-
 - Considered a confounding covariate
 
-.center[
+::: {style="text-align: center;"}
 **Signal and noise both depend on your research question.**
-]
+:::
 
----
-
-# Confounding
+## Confounding
 
 Experimental design is crucial to ensure that sources of interesting variation are not confounded with independent sources of uninteresting variation (e.g. technical).
 
-.pull-left[
-## Confounded
+:::: {.columns}
+
+::: {.column width="50%"}
+### Confounded
 
 <br/>
 
-.small-table[
-```{r, include=TRUE, echo=FALSE}
+```{r}
 nrow <- 8
 data.frame(
   Cell = seq_len(nrow),
@@ -82,18 +82,16 @@ data.frame(
     Site = cell_spec(Site, "html", color = ifelse(Site == "S2", "red", "blue")),
     Treatment = cell_spec(Treatment, "html", color = ifelse(Treatment == "A", "cyan", "orange"))
   ) %>% 
-  knitr::kable(format = "html", escape = F)
+  knitr::kable(format = "html", escape = FALSE)
 ```
-]
-]
+:::
 
-.pull-left[
-## Balanced
+::: {.column width="50%"}
+### Balanced
 
 <br/>
 
-.small-table[
-```{r, include=TRUE, echo=FALSE}
+```{r}
 nrow <- 8
 data.frame(
   Cell = seq_len(nrow),
@@ -106,12 +104,12 @@ data.frame(
   ) %>% 
   knitr::kable(format = "html", escape = F)
 ```
-]
-]
 
----
+:::
 
-# Feature selection
+::::
+
+## Feature selection
 
 Many genes are not interesting because they don't vary much, or they
 don’t have enough counts.
@@ -119,18 +117,18 @@ don’t have enough counts.
 Filtering for feature selection is needed to:
 
 - Select genes that display useful variation.
-
 - Reduce memory usage and computational cost/time.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', fig.height=4, fig.width=6}
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 6
 set.seed(1)
 mat <- matrix(c(rnorm(12*4, 0, 10), rnorm(12*4, 0, 1)), nrow = 8, ncol = 12, byrow = TRUE)
 ComplexHeatmap::Heatmap(mat, name = "values")
 ```
 
----
-
-# Dimensionality reduction
+## Dimensionality reduction
 
 We use dimensionality reduction methods to:
 
@@ -142,9 +140,11 @@ Unsupervised learning helps finding groups of homogeneous items
 
 - Many approaches to do this (e.g. PCA, t-SNE, UMAP)
 
-.pull-left[
-.x-small-table[
-```{r, include=TRUE, echo=FALSE}
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.small-table}
+```{r}
 nrow <- 10
 ncol <- 5
 rownames <- paste("gene", seq_len(nrow))
@@ -152,12 +152,11 @@ colnames <- paste("sample", seq_len(ncol))
 x <- matrix(data = rbinom(nrow*ncol, 10E3, 1E-4), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
 knitr::kable(x, format = "html", escape = F)
 ```
-]
-]
+:::
+:::
 
-.pull-right[
-.x-small-table[
-```{r, include=TRUE, echo=FALSE}
+::: {.column width="50%"}
+```{r}
 nrow <- 5
 ncol <- 2
 rownames <- paste("sample", seq_len(nrow))
@@ -165,46 +164,51 @@ colnames <- paste("dim", seq_len(ncol))
 x <- matrix(data = rnorm(nrow*ncol, 0, 10), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
 knitr::kable(x, format = "html", escape = F)
 ```
-]
+:::
 
-]
+::::
 
----
+## Principal component analysis (PCA)
 
-# Principal component analysis (PCA)
+:::: {.columns}
 
-.pull-left[
-## Goals
+::: {.column width="50%"}
+### Goals
 
 - Find linear combination of variables to create principal components (PCs).
 - Maintain most variance in the data (for given number of PCs).
 - PCs are uncorrelated (orthogonal to each other) and ordered with respect to the percentage of variance explained.
 
-## Assumptions
+### Assumptions
 - Relationship between variables is linear!
 - Not optimal for non-linear data structures.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 <br/>
 
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-height: 5
+#| fig-width: 6
 plotReducedDim(object = allen, dimred = "PCA", colour_by = "driver_1_s")
 ```
-]
+:::
 
-.center[
-```{r, include=TRUE, eval=FALSE}
+::::
+
+```{r}
+#| echo: true
+#| eval: false
 pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
 ```
-]
 
----
+## PCA example
 
-# PCA example
+:::: {.columns}
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE}
+::: {.column width="50%"}
+```{r}
+#| fig-height: 5
 set.seed(1)
 df <- data.frame(
   x = rnorm(n = 100, mean = 0, sd = 1)
@@ -216,12 +220,11 @@ ggplot(df) +
   geom_point(aes(x, y)) +
   labs(x = "gene 1", y = "gene 2")
 ```
-]
+:::
 
---
-
-.pull-right[
-```{r, include=TRUE, echo=FALSE}
+::: {.column width="50%"}
+```{r}
+#| fig-height: 5
 pca <- prcomp(df)
 df_eigengenes <- as_tibble(t(pca$rotation * rep(pca$sdev^2, each=2))) %>% 
   mutate(
@@ -237,18 +240,20 @@ ggplot() +
   coord_cartesian(xlim = range(df$x), ylim = range(df$y)) +
   labs(x = "gene 1", y = "gene 2")
 ```
-]
 
 $$PC1 = \beta_{(1,1)} * gene_1 + \beta_{(1,2)} * gene_2$$
 $$PC2 = \beta_{(2,1)} * gene_1 + \beta_{(2,2)} * gene_2$$
 
----
+:::
 
-# Eigenvalue decomposition
+::::
+
+## Eigenvalue decomposition
 
 Eigenvalue decomposition is matrix factorization algorithm.
 
-```{r, include=TRUE, echo=FALSE, fig.align="center"}
+```{r}
+#| fig-align: center
 ## Source: https://notes.andrewgurung.com/data-science/linear-algebra/eigenvalues-and-eigenvectors
 knitr::include_graphics("img/eigen_decomposition.png")
 ```
@@ -258,30 +263,27 @@ In the context of PCA:
 - An eigenvector represents a direction or axis.
 - The corresponding eigenvalue represents variance along that eigenvector.
 
----
-
-# PCA
+## PCA
 
 - First, center data.
-  + Always best, unless you have a good reason not to.
-
+  - Always best, unless you have a good reason not to.
 - If comparing different units, scale data.
-  + i.e., using correlation matrix instead of covariance matrix<sup>1</sup>
-  + Genes have very different dynamic ranges!
+  - i.e., using correlation matrix instead of covariance matrix<sup>1</sup>
+  - Genes have very different dynamic ranges!
 
---
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 **Spectral decomposition = Eigen decomposition**
 - More intuitive, but computationally slower
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 **Singular Value Decomposition (SVD)**
 - Equivalent, faster
-]
+:::
 
---
+::::
 
 **Approach:**
 
@@ -291,9 +293,7 @@ eigenvectors that explain as much of the variability of the data as possible.
 
 **See also:** [Towards data science](https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22), "Correlation matrix and covariance matrix"
 
----
-
-# Expression data example
+## Expression data example
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
 
@@ -301,8 +301,13 @@ Airway smooth muscle cells expression profiling by high throughput sequencing; [
 data(airway)
 ```
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.height=4, fig.width=8}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 8
 keep_rows <- rowMeans(assay(airway, "counts")) > 1
 assay(airway, "counts")[keep_rows, ] %>% 
   melt(varnames = c("gene", "sample"), value.name = "count") %>%
@@ -315,7 +320,10 @@ assay(airway, "counts")[keep_rows, ] %>%
   theme_cowplot()
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=4, fig.width=8}
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 8
 tibble(
   rowSums = rowSums(assay(airway, "counts")[keep_rows, ])
 ) %>% 
@@ -327,13 +335,16 @@ tibble(
   ) +
   theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 * `dex`: treatment with dexamethasone
 * `cell`: cell line
 
-```{r, include=TRUE, echo=FALSE, fig.height=8, fig.width=8}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 8
 keep_rows <- log10(assay(airway, "counts") + 1) %>% 
   rowVars() %>% 
   order(decreasing = TRUE) %>% 
@@ -351,11 +362,11 @@ hm <- Heatmap(
   top_annotation = ha_top)
 draw(hm)
 ```
-]
+:::
 
----
+::::
 
-# Expression data example
+## Expression data example
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
 
@@ -379,8 +390,12 @@ scree_table <- tibble(
 )
 ```
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
 keep_samples <- rownames(pca$x)
 pca$x %>%
   as_tibble() %>% 
@@ -397,10 +412,12 @@ pca$x %>%
 Percentage variance explained:
 
 $$pct\_var = sdev^2 / sum(sdev^2)$$
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.height=4}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 ggplot(scree_table, aes(PC, var)) +
   geom_col(fill = "grey") +
   geom_point() +
@@ -408,20 +425,24 @@ ggplot(scree_table, aes(PC, var)) +
   labs(y = "% Variance explained", title = "Percentage of Variance Explained")
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=4}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 ggplot(scree_table, aes(PC, var_cumsum)) +
   geom_line() + geom_point() +
   scale_x_continuous(breaks = seq_along(scree_table$PC)) +
   labs(y = "Cumulative % Variance explained", title = "Cumulative Percentage of Variance Explained")
 ```
-]
+:::
 
----
+::::
 
-# PCA - Loadings / Rotation matrix
+## PCA - Loadings / Rotation matrix
 
-```{r, include=TRUE,echo=TRUE}
-# Visualise loadings for the first five genes and principal components
+The object produced by `prcomp()` can be used to visualise loadings for given genes and principal components.
+
+```{r}
+#| echo: true
 pca$rotation[1:5, 1:5]
 ```
 
@@ -429,13 +450,11 @@ Meaning that for each cell:
 
 $PC1_{(cell)} = 0.1255530 \times ENS00000129824_{(cell)}\ - 0.1293194 \times\ ...$
 
----
-
-# Visualize top genes
+## Visualize top genes
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
 
-## Top / Bottom loadings
+### Top / Bottom loadings
 
 ```{r}
 data(airway)
@@ -451,8 +470,12 @@ pca <- log10(assay(airway, "counts") + 1)[keep_rows, ] %>%
   prcomp()
 ```
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.height=6}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
 keep_pc <- "PC1"
 bind_rows(
   pca$rotation %>%
@@ -478,10 +501,12 @@ bind_rows(
     axis.text.x = element_text(angle = 90)
   )
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.height=6}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
 keep_pc <- "PC2"
 bind_rows(
   pca$rotation %>%
@@ -507,16 +532,20 @@ bind_rows(
     axis.text.x = element_text(angle = 90)
   )
 ```
-]
+:::
 
----
+::::
 
-# Visualize top genes - expression
+## Visualize top genes - expression
 
-.pull-left[
-## PC1
+:::: {.columns}
 
-```{r, include=TRUE, echo=FALSE, fig.height=3.5}
+::: {.column width="50%"}
+### PC1
+
+```{r}
+#| fig-align: center
+#| fig-height: 3.5
 keep_pc <- "PC1"
 keep_gene <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -534,7 +563,9 @@ assay(airway, "counts")[keep_gene, , drop=FALSE] %>%
   theme_cowplot()
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=3.5}
+```{r}
+#| fig-align: center
+#| fig-height: 3.5
 keep_pc <- "PC1"
 keep_gene <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -551,12 +582,14 @@ assay(airway)[keep_gene, , drop=FALSE] %>%
   labs(title = keep_gene, y = "counts (log-scale)") +
   theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
-## PC2
+::: {.column width="50%"}
+### PC2
 
-```{r, include=TRUE, echo=FALSE, fig.height=3.5}
+```{r}
+#| fig-align: center
+#| fig-height: 3.5
 keep_pc <- "PC2"
 keep_gene <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -574,7 +607,9 @@ assay(airway)[keep_gene, , drop=FALSE] %>%
   theme_cowplot()
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=3.5}
+```{r}
+#| fig-align: center
+#| fig-height: 3.5
 keep_pc <- "PC2"
 keep_gene <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -591,16 +626,20 @@ assay(airway)[keep_gene, , drop=FALSE] %>%
   labs(title = keep_gene, y = "counts (log-scale)") +
   theme_cowplot()
 ```
-]
+:::
 
----
+::::
 
-# Visualize top genes - expression
+## Visualize top genes - expression
 
-.pull-left[
-## ggplot2::geom_tile()
+:::: {.columns}
 
-```{r, include=TRUE, echo=FALSE, fig.height=8}
+::: {.column width="50%"}
+### ggplot2::geom_tile()
+
+```{r}
+#| fig-align: center
+#| fig-height: 8
 keep_pc <- "PC1"
 keep_rows <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -622,12 +661,14 @@ assay(airway)[keep_rows, , drop=FALSE] %>%
   labs(fill = "Raw counts\n(log10)\n") +
   scale_fill_viridis_c()
 ```
-]
+:::
 
-.pull-right[
-## ComplexHeatmap::Heatmap()
+::: {.column width="50%"}
+### ComplexHeatmap::Heatmap()
 
-```{r, include=TRUE, echo=FALSE, fig.height=8}
+```{r}
+#| fig-align: center
+#| fig-height: 8
 keep_pc <- "PC1"
 keep_rows <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -648,16 +689,20 @@ hm <- Heatmap(
   top_annotation = ha_top)
 draw(hm)
 ```
-]
+:::
 
----
+::::
 
-# Visualize top genes - expression
+## Visualize top genes - expression
 
-.pull-left[
-## PC1
+:::: {.columns}
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+::: {.column width="50%"}
+### PC1
+
+```{r}
+#| fig-align: center
+#| fig-height: 5
 keep_pc <- "PC1"
 keep_loading_table <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -678,12 +723,14 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
       keep_loading_table %>% filter(gene == keep_gene) %>% pull(loading))) +
   theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
-## PC2
+::: {.column width="50%"}
+### PC2
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+```{r}
+#| fig-align: center
+#| fig-height: 5
 keep_pc <- "PC2"
 keep_loading_table <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -704,150 +751,138 @@ assay(airway)[keep_gene, keep_samples, drop=FALSE] %>%
       keep_loading_table %>% filter(gene == keep_gene) %>% pull(loading))) +
   theme_cowplot()
 ```
-]
+:::
 
----
+::::
 
-# Exercise
+## Exercise
 
-## Setup
+### Setup
 
 - Import the `iris` data set.
-
 - Separate the matrix of measurements in a new object named `iris_features`.
 
----
+## Exercise
 
-# Exercise
-
-## Apply Principal Components Analysis (PCA)
+### Apply Principal Components Analysis (PCA)
 
 The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
 
 - Apply PCA while centering and scaling the matrix of features.
-
 - Examine the PCA output.
   Display the loading of each feature on each principal component.
-
 - Use the return value of the PCA to create a `data.frame` called `pca_iris_dataframe` that contains the coordinates projected on principal components.
-
 - Visualise the PCA projection using `ggplot2::geom_point()`.
 
-### Bonus point
+#### Bonus point
 
 - Color data points according to their class label.
 
 - Store the PCA plot as an object named `pca_iris_species`.
 
----
+## Exercise
 
-# Exercise
-
-## Variable loading
+### Variable loading
 
 - Color a scatter plot of PC1 and PC2 by the value of the variable most strongly associated with the first principal component.
 
 What do you observe?
 
-## Variance explained
+### Variance explained
 
 - Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
-
 - Visualise the variance explained by each principal component using `ggplot2::geom_col()`.
 
----
-
-# Non-linear dimensionality reduction techniques
+## Non-linear dimensionality reduction techniques
 
 In many cases, the relationship between features is not linear.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction
 knitr::include_graphics("img/non-linear-dim-red.png")
 ```
 
 - Linear dimensionality reduction techniques like PCA (in blue) will fit their model as best as they can.
-
 - But non-linear techniques will be able to accurately capture deviations non-linear patterns.
+  - e.g., self organising map (SOM), t-SNE, UMAP.
 
-  + e.g., self organising map (SOM), t-SNE, UMAP.
+## t-SNE
 
----
-
-# t-SNE
-
-.center[**t-Distributed Stochastic Neighbor Embedding**]
+::: {style="text-align: center;"}
+**t-Distributed Stochastic Neighbor Embedding**
+:::
 
 - Technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.
 - Aims to place cells with similar local neighbourhoods in high-dimensional space together in low-dimensional space.
+
+:::: {.columns}
+
+::: {.column width="50%"}
 - Non-linear dimensionality reduction (as opposed to PCA).
 - R implementation https://lvdmaaten.github.io/tsne/
-
-.pull-left[
 - Preserve local structure / small pairwise distances / local similarities 
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 300px
 ## Source: https://medium.com/@violante.andre/an-introduction-to-t-sne-with-python-example-47e6ae7dc58f
 knitr::include_graphics("img/tsne-swiss-roll.png")
 ```
-]
+:::
 
-.footnote[
+::::
+
 **See also:**
 
 1. [Towards data science](https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1), "An Introduction to t-SNE with Python Example".
-]
 
----
-
-# t-SNE
+## t-SNE
 
 Finds a way to project data into a low-dimension space (here, 1-D line), so that the clustering in the high-dimension space (here, 2-D scatter plot) is preserved.
 
-```{r, include=TRUE, echo=FALSE, fig.align="center", out.height="300px", out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 400px
 ## Source: https://younesse.net/assets/Slides/Visualization/Visualization.html
 knitr::include_graphics("img/tSNE_step0.png")
 ```
 
-.footnote[
 **See also:**
 
 1. [StatQuest](https://statquest.org/statquest-t-sne-clearly-explained/), "t-SNE, clearly explained!".
 2. [younesse.net](https://younesse.net/assets/Slides/Visualization/Visualization.html), "Dimensionality reduction & visualization of representations".
-]
 
----
-
-# UMAP
+## UMAP
 
 - Concept comparable to t-SNE.
-
 - Faster than t-SNE, especially for large data sets.
-
 - Better preservation of the global structure in the data.
 
-.center[
+::: {style="text-align: center;"}
 **There is no wrong choice. It doesn't hurt to run both and pick the best-looking one.**
-]
+:::
 
-.footnote[
 **See also:**
 
 1. [Understanding UMAP](https://pair-code.github.io/understanding-umap/)
-]
 
----
-
-# Expression data example
+## Expression data example
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
 
-.pull-left[
-## PCA
+:::: {.columns}
 
-```{r, include=TRUE, echo=FALSE, fig.height=5}
+::: {.column width="50%"}
+### PCA
+
+```{r}
+#| fig-align: center
+#| fig-height: 5
 as_tibble(pca$x) %>%
   dplyr::select(PC1, PC2) %>% 
   mutate(Sample = rownames(pca$x)) %>% 
@@ -860,12 +895,14 @@ as_tibble(pca$x) %>%
   ) +
   theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
-## t-SNE
+::: {.column width="50%"}
+### t-SNE
 
-```{r, include=TRUE, echo=FALSE, fig.height=5, fig.align='center'}
+```{r}
+#| fig-align: center
+#| fig-height: 5
 set.seed(1)
 tsne_out <- Rtsne(X = pca$x, perplexity = 1)
 tsne_out$Y %>% 
@@ -877,70 +914,63 @@ tsne_out$Y %>%
   labs(x = "t-SNE 1", y = "t-SNE 2") +
   theme_cowplot()
 ```
-]
+:::
 
----
+::::
 
-# Exercise
+## Exercise
 
-## UMAP
+### UMAP
 
 - Apply UMAP on the output of the PCA.
-
 - Inspect the UMAP output.
-
 - Visualise the UMAP projection using `ggplot2::geom_point()`.
 
-### Bonus point
+#### Bonus point
 
 - Color data points according to their class label.
-
 - Store the UMAP plot as an object named `umap_iris_species`.
 
----
+## Exercise
 
-# Exercise
-
-## t-SNE
+### t-SNE
 
 - Apply t-SNE and inspect the output.
-
 - Use the return value of the t-SNE to create a `data.frame` called `tsne_iris_dataframe` that contains the coordinates.
-
 - Visualise the t-SNE projection.
 
-### Bonus points
+#### Bonus points
 
 - Color data points according to their class label.
-
 - Store the t-SNE plot as an object named `tsne_iris_species`.
-
 - Combine PCA, UMAP and t-SNE plots in a single figure.
 
----
-
-# Clustering
+## Clustering
 
 - Technique for grouping of given data points and classification into groups.
-  + In theory, points with similar features should belong to the same group.
-  + Points with dissimilar features should belong to different groups.
-  + Method of unsupervised learning (no known labels).
-
+  - In theory, points with similar features should belong to the same group.
+  - Points with dissimilar features should belong to different groups.
+  - Method of unsupervised learning (no known labels).
 - Yields valuable insights from seeing what groups fall into after clustering
-
 - Many methods (e.g. K-means clustering, hierarchical clustering)
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=5}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
 ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
     geom_point(size = 2) +
     cowplot::theme_cowplot() +
     labs(x = "variable 1", y = "variable 2")
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.align="center", fig.height=5}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
 iris %>% 
     mutate(
         Cluster = Species %>% 
@@ -955,47 +985,51 @@ iris %>%
     cowplot::theme_cowplot() +
     labs(x = "variable 1", y = "variable 2")
 ```
-]
+:::
 
----
+::::
 
-# K-Means Clustering
+## K-Means Clustering
 
 - Probably the most well known clustering algorithm (unsupervised).
 - Easy to understand and implement.
 
-.pull-left[
-## Pros
+:::: {.columns}
+
+::: {.column width="50%"}
+### Pros
 
 - Very fast
-]
+:::
 
-.pull-right[
-## Cons
+::: {.column width="50%"}
+### Cons
 
 - Need to preselect the number of groups/classes – not always trivial
 - Random choice of cluster centers can yield different clustering results on different attempts.
-]
+:::
 
----
+::::
 
-# K-means clustering - Iterations
+## K-means clustering - Iterations
 
 1. Initialise $k$ centroids randomly.
 2. Assign each data points to the nearest centroid.
 3. Compute new centroid coordinates.
 4. Repeat (2) and (3) until convergence, or for a maximum number of iterations allowed.
 
-```{r, include=TRUE, echo=FALSE, fig.align="center", out.height='400px', out.width='600px'}
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 600px
 ## Source: https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
 knitr::include_graphics("img/kmeans-steps.png")
 ```
 
----
+## K-Means Clustering - How many clusters?
 
-# K-Means Clustering - How many clusters?
-
-```{r, include=TRUE, echo=FALSE, fig.align="center"}
+```{r}
+#| fig-align: center
 set.seed(1)
 keep_rows <-  head(order(rowVars(log10(assay(airway, "counts") + 1)), decreasing = TRUE), 500)
 keep_samples <- colnames(airway)
@@ -1022,9 +1056,7 @@ airway_counts %>%
   )
 ```
 
----
-
-# K-means clustering
+## K-means clustering
 
 To choose $k$, run multiple values and try to maximise `betweenss` / `totss`, which is a measure of how well the data is clustered.
 
@@ -1046,8 +1078,12 @@ kmeans_scree <- lapply(seq_len(nrow(pca$x)-1), function(x) {
   bind_rows()
 ```
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.height=4}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 kmeans_scree %>% 
   ggplot(aes(k, betweenss / totss)) +
   geom_line() +
@@ -1056,10 +1092,12 @@ kmeans_scree %>%
   scale_y_continuous(limits = c(0, 1)) +
   theme_cowplot()
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.height=4}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 kmeans_scree %>% 
   ggplot(aes(k, withinss_sum)) +
   geom_line(linetype = "F1") +
@@ -1067,54 +1105,70 @@ kmeans_scree %>%
   labs(title = "sum(withinss)") +
   theme_cowplot()
 ```
-]
+:::
 
----
+::::
 
-# Hierarchical clustering
+## Hierarchical clustering
 
 - Aims to build a hierarchy of classes
 - To decide which clusters are similar/dissimilar, use a metric (distance between observations), e.g. Euclidean distance
 - Either a bottom-up ('agglomerative') or a top-down ('divisive') approach.
-  + **Agglomerative:** each cell is initially assigned to its own cluster and pairs of clusters are subsequently merged to create a hierarchy.
-  + **Divisive:** starts with all observations in one cluster and then recursively split each cluster to form a hierarchy.
+  - **Agglomerative:** each cell is initially assigned to its own cluster and pairs of clusters are subsequently merged to create a hierarchy.
+  - **Divisive:** starts with all observations in one cluster and then recursively split each cluster to form a hierarchy.
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, out.height='250px', out.width='300px', fig.align='center'}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 300px
 ## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
 knitr::include_graphics("img/hierarchical-clustering-scatter.png")
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, out.height='250px', out.width='300px', fig.align='center'}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 300px
 ## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
 knitr::include_graphics("img/hierarchical-clustering-dendrogram.png")
 ```
-]
+:::
 
----
+::::
 
-# Hierarchical clustering
+## Hierarchical clustering
 
 ```{r}
 hclust_out <- hclust(dist(t(log10(assay(airway, "counts") + 1)[keep_rows, ])))
 ```
 
-.pull-left[
-```{r, include=TRUE, echo=FALSE, fig.height=4, fig.align="center"}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 plot(hclust_out)
 ```
 
-```{r, include=TRUE, echo=FALSE, fig.height=4, fig.align="center"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
 pvclust_out <- pvclust(log10(assay(airway, "counts") + 1)[keep_rows, ], quiet = TRUE)
 plot(pvclust_out)
 rect.hclust(hclust_out, 4)
 ```
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE, fig.height=8, fig.align="center"}
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
 keep_pc <- "PC1"
 keep_rows <- pca$rotation %>%
   melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
@@ -1124,139 +1178,112 @@ keep_rows <- pca$rotation %>%
   as.character()
 pheatmap(log10(assay(airway, "counts")[keep_rows, ] + 1))
 ```
-]
+:::
+
+::::
 
 `r BiocStyle::CRANpkg("pvclust")` (CRAN)
 
----
-
-# Density-based clustering
+## Density-based clustering
 
 - Two parameters:
-  + Minimum number of points to initiate a cluster.
-  + Maximum distance to search for neigbouring points.
+  - Minimum number of points to initiate a cluster.
+  - Maximum distance to search for neigbouring points.
 - Core points have at least $minPoints-1$ neigbours within $epsilon$ distance.
 - Border points are located within $epsilon$ of a core point
   (without being a core point themselves).
 - Outlier points are further than $epsilon$ from any other point.
 
-
-```{r, include=TRUE, echo=FALSE, out.height='350px', fig.align='center'}
+```{r}
+#| fig-align: center
+#| out-height: 350px
 ## Source: Adobe Illustrator (Kevin Rue-Albrecht)
 knitr::include_graphics("img/dbscan.svg")
 ```
 
----
+## Comparing clustering algorithms on toy datasets
 
-# Comparing clustering algorithms on toy datasets
-
-```{r, include=TRUE, echo=FALSE}
+```{r}
+#| fig-align: center
 ## Source: https://newbedev.com/scikit_learn/modules/clustering
 knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Hierarchical clustering
+### Hierarchical clustering
 
 - Perform hierarchical clustering on the `iris_features` data set,
   using the `euclidean` distance and method `ward.D2`.
   Use the functions `dist()` and `hclust()`.
-
 - Plot the clustering tree.
   Use the function `plot()`.
 
 How many clusters would you call from a visual inspection of the tree?
 
 - **Bonus point:** Color leaves by known species (use `dendextend`).
-
 - Cut the tree in 3 clusters and extract the cluster label for each flower.
   Use the function `cutree()`.
-
 - Repeat clustering using 3 other agglomeration methods:
-
-  + `complete`
-  + `average`
-  + `single`
-
+  - `complete`
+  - `average`
+  - `single`
 - Compare clustering results on scatter plots of the data.
 
----
+## Exercise
 
-# Exercise
-
-## dbscan
+### dbscan
 
 - Apply `dbscan` to the `iris_features` data set.
-
 - Visualise the `dbscan` cluster label on a scatter plot of the data.
 
-## hdbscan
+### hdbscan
 
 - Apply `hdbscan` to the `iris_features` data set.
-
 - Visualise the `hdbscan` cluster label on a scatter plot of the data.
-
-## Bonus point
-
-- Combine the plots of `dbscan` and `hdbscan` into a single plot.
-
----
-
-# Exercise
-
-## K-means
-
-- Apply $K$-means clustering to `iris_features` with $K$ set to 3 clusters.
-
-- Inspect the output.
-
-- Extract the cluster labels.
-
-- Extract the coordinates of the cluster centers.
-
-- Construct a data frame that combines the `iris` dataset and the cluster label.
-
-- Plot the data set as a scatter plot.
-
-  + Color by cluster label.
 
 ### Bonus point
 
+- Combine the plots of `dbscan` and `hdbscan` into a single plot.
+
+## Exercise
+
+### K-means
+
+- Apply $K$-means clustering to `iris_features` with $K$ set to 3 clusters.
+- Inspect the output.
+- Extract the cluster labels.
+- Extract the coordinates of the cluster centers.
+- Construct a data frame that combines the `iris` dataset and the cluster label.
+- Plot the data set as a scatter plot.
+  - Color by cluster label.
+
+#### Bonus point
+
 - Add cluster centers as points in the plot.
 
----
+## Exercise
 
-# Exercise
-
-## Cross-tabulation with ground truth
+### Cross-tabulation with ground truth
 
 - Cross-tabulate cluster labels with known labels.
 
 How many observations are mis-classified by $K$-means clustering?
 
-## Elbow plot
+### Elbow plot
 
 - Plot the "total within-cluster sum of squares" for $K$ ranging from 2 to 10.
 
 Do you agree that 3 is the optimal number of clusters for this data set?
 
----
-
-# Further reading
+## Further reading
 
 - `r BiocStyle::CRANpkg("dimRed")` vignette.
-
 - [Hitchhiker’s Guide to Matrix Factorization and PCA](https://aedin.github.io/PCAworkshop/index.html)
 
----
+## References
 
-# References
-
-.small-text[
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
+#| results: asis
 PrintBibliography(bib)
 ```
-]
