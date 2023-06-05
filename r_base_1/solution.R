@@ -97,3 +97,50 @@ l
 # Extract the elements at position 3 and 5 of l as a single new list.
 
 l[c(3, 5)]
+
+# Exercise ----
+
+# Data frames ----
+
+# Assign data from the file coding_gene_region.bed to an object named gene_data.
+
+gene_data <- read.table("/project/obds/shared/resources/2_r/baseR/coding_gene_region.bed")
+head(gene_data)
+
+# Display the dimensions of the data frame and the type of data in each column.
+
+dim(gene_data)
+str(gene_data)
+
+# Set column names to: chr, start, end, name, score, and strand.
+
+colnames(gene_data) <- c("chr", "start", "end", "name", "score", "strand")
+
+# Prove that you have (re)named the columns.
+
+head(gene_data)
+
+# Display the value at row 30, column 3.
+
+gene_data[30, 3]
+
+# Assign the column named start to a new object named start_position.
+
+start_position <- gene_data$start
+
+# Calculate the length of each gene and assign that value to a new column named length.
+
+gene_data$length <- gene_data$end - gene_data$start
+
+# Prove that you have added the new column.
+
+head(gene_data)
+
+# Assign rows where the gene length is between 100kb and 200kb to a new object named filtered_gene_data.
+
+filtered_gene_data <- subset(gene_data, length >= 100E3 & length <= 200E3)
+dim(filtered_gene_data)
+
+# Export filtered_gene_data to a file named filtered_gene_regions.tsv, using tabulation as a field delimiter. Include column names but not row names.
+
+write.table(filtered_gene_data, "filtered_gene_regions.tsv", sep = "\t", quote = FALSE, row.names = FALSE)
