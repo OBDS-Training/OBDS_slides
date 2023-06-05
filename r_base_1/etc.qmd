@@ -9,7 +9,7 @@
 
 ## What <i class="fab fa-r-project"></i> is
 
-<i class="fab fa-r-project"></i>? is a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: mathematical modelling, statistical tests, time series analysis, classification, clustering, etc.
+<i class="fab fa-r-project"></i> is a freely available language and environment for statistical computing and graphics which provides a wide variety of statistical and graphical techniques: mathematical modelling, statistical tests, time series analysis, classification, clustering, etc.
 
 ```{r}
 #| fig-align: center
@@ -31,7 +31,7 @@ knitr::include_graphics("img/r-console.png")
 
 ## Base <i class="fab fa-r-project"></i>
 
-- Base <i class="fab fa-r-project"></i> is made up of a small set of packagess maintained by [R Core](https://www.r-project.org/contributors.html).
+- Base <i class="fab fa-r-project"></i> is made up of a small set of packages maintained by [R Core](https://www.r-project.org/contributors.html).
 
 ```{r}
 #| eval: true
@@ -218,7 +218,7 @@ knitr::include_graphics("img/rstudio-project.png")
 
 ### Getting started
 
-- Make sure you have opened the <i class="fab fa-r-project"></i> project that you ave just created.
+- Make sure you have opened the <i class="fab fa-r-project"></i> project that you have just created.
 - Use the <i class="fab fa-r-project"></i> console as a simple calculator, e.g.
 
 ```{r}
@@ -414,7 +414,7 @@ v
 
 ## More ways to create vectors
 
-`C(...)`
+`c(...)`
 
 ```{r}
 #| echo: true
@@ -570,11 +570,13 @@ letters
 - Assign the values 1 to 200 to a vector named `a`.
 - Multiply each element of the vector by 123 and assign the result to a new object named `b`.
 - Print the value of the 44^th^ element of the vector `b`.
-- Assign the first fifteen elements of `b` and assign them to a new vector named `b_sub`.
-- Add the numbers `24108` and `24231` to the object `b_sub`.
+- Extract the first fifteen elements of `b` and assign them to a new vector named `b_sub`.
+- Append the numbers `24108` and `24231` to the object `b_sub`.
 - Assign the values `'actb'`, `100`, `3.4` to a vector named `m`.
-- Print the second element of `m`. Is it what you would expect? Why?
-- Multiply the second element of `m` by `4`. What happens? Why?
+- Print the second element of `m`.
+  Is it what you would expect? Why?
+- Multiply the second element of `m` by `4`.
+  What happens? Why?
 - Make a vector `c` that contains four *named* character scalars.
 - Display the names of the elements in `c`.
 
