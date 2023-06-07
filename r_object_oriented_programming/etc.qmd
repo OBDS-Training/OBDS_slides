@@ -45,6 +45,10 @@ knitr::include_graphics("img/object-oriented-programming.svg")
 - Different _classes_ of objects are designed to contain different data types.
 - Functions specialised in the handling of certain classes are called _methods_.
 
+::: {.notes}
+Use `rowSums()` as an example of method that accepts different classes of inputs but always returns the same class of output.
+:::
+
 ## Classes: the cornerstone of OOP
 
 - _Classes_ represent the generic definition of real-world objects.
@@ -148,9 +152,9 @@ Note: Individually described in next few slides
 
 - Attributes and methods are bundled together in objects.
 
-- Users interact with objects through their public methods.
+- Users interact with objects through their methods.
 
-- In turn, public methods perform the requested action using private attributes and methods.
+- In turn, methods perform the requested action, possibly returning a value or modifying the attributes of the object.
 
 :::: {.columns}
 
