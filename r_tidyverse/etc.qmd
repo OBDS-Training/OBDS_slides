@@ -151,7 +151,8 @@ sqrt(x)
 ### If you are so inclined ...
 
 ```{r}
-# fig.height=5
+#| echo: true
+#| fig.height: 5
 iris %>% 
   ggplot(aes(Sepal.Length, Sepal.Width)) +
   geom_point()
