@@ -322,7 +322,7 @@ library(gridExtra)
 grid.arrange(
   grobs=list(obds_diamonds, obds_chickweight, obds_msleep),
   layout_matrix = rbind(c(1, 2),
-                 c(3, 3))
+                        c(3, 3))
 )
 ```
 
