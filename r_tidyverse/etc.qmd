@@ -669,6 +669,7 @@ full_join(tibble_1, tibble_2, by = "ID")
 #### Exercise 3
 
 Let's make the silly assumption that iris sepals are rectangular in shape.
+
 - Using `iris_raw`, compute a new column named `sepal_area`, which is the product of `sepal_length` and `sepal_width`.
 - Subset the result to the columns named `species` and `sepal_area`.
 - Subset the result to display the top 5 observations by `sepal_area`.
@@ -717,7 +718,7 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 - the variable measured
 - the value
 
-**Hint:** you want to pivot all the columns that start are numeric.
+**Hint:** you want to pivot all the columns that are numeric.
 :::
 
 ::: {.column width="50%"}
