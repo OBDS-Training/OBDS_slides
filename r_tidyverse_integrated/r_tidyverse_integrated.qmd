@@ -1,0 +1,147 @@
+---
+title: 'Solution: Integrated exercise using the <i class="fab fa-r-project"></i> tidyverse'
+author: "Kevin Rue-Albrecht"
+date: "2023-06-09"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(tidyverse)
+library(readxl)
+```
+
+## Exercise
+
+### Part 1
+
+We provide you with an Excel file that contains gene expression data for the nine most highly variable genes in a pancreas cancer gene expression dataset (<https://portal.gdc.cancer.gov/projects/TCGA-PAAD>), as well as metadata for the individual samples and genes.
+
+- Import the gene expression matrix from the Excel file into the R session as a `tibble`.
+  Assign it to an object named `exprs_assay`.
+
+```{r}
+library(readxl)
+excel_sheets("data/EH2011.xlsx")
+exprs_assay <- read_xlsx("data/EH2011.xlsx", "exprs")
+exprs_assay
+```
+
+- Reshape the gene expression matrix in a tidy format.
+  Assign it to a new object `exprs_assay_long`.
+
+```{r}
+exprs_assay_long <- exprs_assay %>%
+  pivot_longer(-gene, names_to = "sample", values_to = "exprs")
+exprs_assay_long
+```
+
+- Draw a histogram of gene expression levels for each gene in a separate facet.
+
+```{r}
+ggplot(exprs_assay_long, aes(exprs)) +
+  geom_histogram(fill = "grey", color = "black", bins = 40) +
+  facet_wrap(~gene) +
+  cowplot::theme_cowplot()
+```
+
+## Exercise
+
+### Part 2
+
+- Import the sample metadata from the Excel file into the R session as a `tibble`.
+  Assign it to an object named `sample_info`.
+
+```{r}
+excel_sheets("data/EH2011.xlsx")
+sample_info <- read_xlsx("data/EH2011.xlsx", "sample_info")
+sample_info
+```
+
+> Metadata key:
+> 
+> [NIH AJCC staging system](https://www.cancer.gov/publications/dictionaries/ca> ncer-terms/def/ajcc-staging-system)
+> 
+> - grade: how abnormal the cancer cells and tissue look under a microscope
+> - T: size of the tumor and any spread of cancer into nearby tissue
+> - N: spread of cancer to nearby lymph nodes
+> - M: metastasis (spread of cancer to other parts of the body)
+
+- Convert the four columns above to the factor type.
+
+```{r}
+sample_info <- sample_info %>%
+  mutate(across(
+    c(sex, grade, T, N, M, vital_status, sample_type),
+    list(as.factor),
+    .names = "{.col}"))
+sample_info
+```
+
+- Combine sample information with gene expression data.
+  Assign the output to `exprs_sampleinfo`.
+
+```{r}
+exprs_sampleinfo <- sample_info %>%
+  left_join(exprs_assay_long, c("unique_patient_ID" = "sample"))
+exprs_sampleinfo
+```
+
+## Exercise
+
+### Part 3
+
+- Identify the gene with the largest absolute difference in expression between male and female patients.
+
+```{r}
+exprs_sampleinfo %>% 
+  group_by(sex, gene) %>% 
+  summarise(exprs = mean(exprs)) %>% 
+  pivot_wider(names_from = sex, values_from = exprs) %>% 
+  mutate(F_minus_M = F - M) %>% 
+  arrange(desc(abs(F_minus_M)))
+```
+
+- Visualise the expression of that gene across tumour grades.
+  Facet by `sex`.
+  Color by `T` score.
+
+```{r}
+table_for_ggplot <- exprs_sampleinfo %>% 
+  filter(gene == "XIST")
+table_for_ggplot
+```
+
+```{r}
+ggplot(table_for_ggplot, aes(grade, exprs, colour = T)) +
+  geom_point() +
+  facet_wrap(~ sex)
+```
+
+- Draw a heat map of all nine genes.
+  Remove labels as well as ticks for the x-axis.
+  Remove the panel grid and background.
+
+```{r}
+ggplot(exprs_sampleinfo, aes(unique_patient_ID, gene, fill = exprs)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    panel.grid = element_blank(), panel.background = element_blank())
+```
+
+- In the heat map, group samples by sex.
+
+```{r}
+# Copy the code chunk above and tweak the aes(...) contents.
+ggplot(exprs_sampleinfo, aes(interaction(unique_patient_ID, sex), gene, fill = exprs)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme(
+    axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+    panel.grid = element_blank(), panel.background = element_blank())
+```
