@@ -308,7 +308,7 @@ sce_umap <- reducedDim(x = sce, type = "UMAP") %>%
     as_tibble() %>%
     bind_cols(colData(sce) %>% as_tibble()) %>%
     ggplot() +
-    geom_point(aes(V1, V2, color=subsets_MT_percent)) +
+    geom_point(aes(UMAP1, UMAP2, color=subsets_MT_percent)) +
     cowplot::theme_cowplot()
 sce_umap
 ```
@@ -340,7 +340,7 @@ sce_denoise_umap <- reducedDim(x = sce_denoise, type = "UMAP") %>%
     as_tibble() %>%
     bind_cols(colData(sce_denoise) %>% as_tibble()) %>%
     ggplot() +
-    geom_point(aes(V1, V2, color=subsets_MT_percent)) +
+    geom_point(aes(UMAP1, UMAP2, color=subsets_MT_percent)) +
     cowplot::theme_cowplot()
 plot_grid(
     sce_umap + theme(legend.position = "bottom"),
@@ -381,7 +381,7 @@ gg_snn <- reducedDim(x = sce, type = "UMAP") %>%
     bind_cols(colData(sce) %>% as_tibble()) %>%
     sample_frac() %>%
     ggplot() +
-    geom_point(aes(V1, V2, color=label)) +
+    geom_point(aes(UMAP1, UMAP2, color=label)) +
     cowplot::theme_cowplot()
 gg_snn
 ```
@@ -401,7 +401,7 @@ for (d in c(5, 10, 13, 15)) {
         bind_cols(colData(sce) %>% as_tibble()) %>%
         sample_frac() %>%
         ggplot() +
-        geom_point(aes(V1, V2, color=snn_d), size = 0.2) +
+        geom_point(aes(UMAP1, UMAP2, color=snn_d), size = 0.2) +
         labs(title = d) +
         cowplot::theme_cowplot()
     snn_plots[[as.character(d)]] <- gg_d
@@ -421,7 +421,7 @@ gg_cluster <- reducedDim(x = sce, type = "UMAP") %>%
     bind_cols(colData(sce) %>% as_tibble()) %>%
     sample_frac() %>%
     ggplot() +
-    geom_point(aes(V1, V2, color=quickCluster)) +
+    geom_point(aes(UMAP1, UMAP2, color=quickCluster)) +
     cowplot::theme_cowplot()
 gg_cluster
 ```
@@ -468,7 +468,7 @@ gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
     mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
     slice_sample(prop = 1) %>% 
     ggplot() +
-    geom_point(aes(V1, V2, color=marker), size = 0.1) +
+    geom_point(aes(UMAP1, UMAP2, color=marker), size = 0.1) +
     scale_color_viridis_c() +
     labs(title = marker_id, subtitle = marker_name) +
     cowplot::theme_cowplot()
