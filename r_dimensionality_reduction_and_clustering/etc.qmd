@@ -208,7 +208,7 @@ pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
 
 ::: {.column width="50%"}
 ```{r}
-#| fig-height: 5
+#| fig-height: 7
 set.seed(1)
 df <- data.frame(
   x = rnorm(n = 100, mean = 0, sd = 1)
@@ -218,13 +218,14 @@ df <- data.frame(
   )
 ggplot(df) +
   geom_point(aes(x, y)) +
-  labs(x = "gene 1", y = "gene 2")
+  labs(x = "gene 1", y = "gene 2") +
+  coord_fixed(xlim = range(df$x), ylim = range(df$y))
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r}
-#| fig-height: 5
+#| fig-height: 7
 pca <- prcomp(df)
 df_eigengenes <- as_tibble(t(pca$rotation * rep(pca$sdev^2, each=2))) %>% 
   mutate(
@@ -237,7 +238,7 @@ ggplot() +
     aes(x = xend, y = yend, xend=x, yend=y, color = PC), df_eigengenes,
     size=1.25,
     arrow = arrow(length = unit(10, "points"), angle = 30)) +
-  coord_cartesian(xlim = range(df$x), ylim = range(df$y)) +
+  coord_fixed(xlim = range(df$x), ylim = range(df$y))+
   labs(x = "gene 1", y = "gene 2")
 ```
 
