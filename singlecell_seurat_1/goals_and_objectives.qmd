@@ -1,0 +1,14 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+- Describe the preparation of sequencing libraries for single-cell genomics.
+- Understand the core steps of a single-cell RNA-sequencing analysis workflow.
+- Describe how to access information stored in a Seurat object.
+
+### Learning objectives
+
+- Create a Seurat object.
+- Access information stored in a Seurat object.
+- Perform the steps of a Seurat workflow in a simple scenario.
+- Visualise, interpret, and discuss information produced at each step of a simple Seurat workflow.
