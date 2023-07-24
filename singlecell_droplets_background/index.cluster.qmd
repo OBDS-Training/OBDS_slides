@@ -19,7 +19,7 @@ format:
 # renderthis::to_pdf("index.cluster.html")
 ---
 
-```{r setup, include = FALSE}
+```{r}
 #| label: setup
 #| include: false
 stopifnot(requireNamespace("htmltools"))
@@ -28,7 +28,7 @@ options(width = 90)
 stopifnot(require(base))
 ```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
+```{r}
 #| label: load_refs
 #| include: false
 options(htmltools.dir.version = FALSE)
