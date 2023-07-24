@@ -3,7 +3,7 @@ title: 'Empty droplets, doublets and ambient RNA'
 subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i> (CCB cluster)'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-02-23 (updated: `r Sys.Date()`)"
+date: "2023-06-22 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, rladies-fonts, "my-theme.css"]
@@ -24,8 +24,6 @@ knit: pagedown::chrome_print
 # Prerequisites
 
 - An account on the teaching cluster.
-
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
 
 ## Lessons
 
@@ -51,9 +49,7 @@ knit: pagedown::chrome_print
 
 - Start a new RStudio project called `singlecell_droplets`.
 
-- Make a copy of the template notebook for this lesson in your <i class="fab fa-git"></i> repository.
-
-- Make symbolic link from the RStudio project to the template notebook.
+- Make a copy of the template notebook for this lesson in your RStudio project.
 
 - Open the notebook and follow along, editing and running the code as needed.
 
