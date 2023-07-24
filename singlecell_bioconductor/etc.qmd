@@ -1,52 +1,56 @@
-# Bioconductor resources and help
+## Bioconductor resources and help
 
-```{r, include=TRUE, echo=FALSE, out.height="100px", out.width="350px", fig.align="center"}
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 350px
+## Source: https://www.bioconductor.org/about/logo/
 knitr::include_graphics("img/bioconductor_logo_cmyk.jpeg")
 ```
 
 - Main website: <https://www.bioconductor.org/>
-
 - Support site: <https://support.bioconductor.org/>
-
 - Courses & Conferences materials: <https://www.bioconductor.org/help/course-materials/>
-
 - YouTube videos: <https://www.youtube.com/user/bioconductor>
-
 - Slack workspace: <https://bioc-community.herokuapp.com/>
-
 - Book: [Orchestrating Single-Cell Analysis with Bioconductor](https://bioconductor.org/books/release/OSCA/)
 
----
-
-# The Bioconductor SummarizedExperiment
+## The Bioconductor SummarizedExperiment
 
 ```{r, include=TRUE, echo=FALSE, out.height="450px", out.width="600px", fig.align='center'}
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
-.footnote[
-**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
-]
+**Source:** <https://www.nature.com/articles/nmeth.3252> (Figure 2)
 
----
+## SingleCellExperiment extends SummarizedExperiment
 
-# SingleCellExperiment extends SummarizedExperiment
+:::: {.columns}
 
-.pull-left[
-## SummarizedExperiment.
+::: {.column width="50%"}
+### SummarizedExperiment.
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
-.small-text[
-**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
-]
-]
+**Source:** <https://www.nature.com/articles/nmeth.3252> (Figure 2)
+:::
 
-.pull-right[
+::: {.column width="50%"}
+### SingleCellExperiment
+
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
+knitr::include_graphics("img/singlecellexperiment-osca.png")
+```
+
+**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
+:::
+::::
+
 ## SingleCellExperiment
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
@@ -54,37 +58,21 @@ knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
-.small-text[
-**Source:** https://osca.bioconductor.org/data-infrastructure.html
-]
-]
+**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
 
----
+## A single-cell analysis workflow using Bioconductor
 
-# SingleCellExperiment
+:::: {.columns}
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
-## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
-knitr::include_graphics("img/singlecellexperiment-osca.png")
-```
-
-.footnote[
-**Source:** https://osca.bioconductor.org/data-infrastructure.html
-]
-
----
-
-# A single-cell analysis workflow using Bioconductor
-
-.pull-left[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
 ## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
 knitr::include_graphics("img/workflow-osca.png")
 ```
-]
+:::
 
-.pull-right[
-**Source:** https://osca.bioconductor.org/overview.html#data-processing-and-downstream-analysis
+::: {.column width="50%"}
+**Source:** <https://osca.bioconductor.org/overview.html#data-processing-and-downstream-analysis>
 
 <br/>
 
@@ -96,30 +84,32 @@ knitr::include_graphics("img/workflow-osca.png")
   + Method (`r BiocStyle::Biocpkg("scran")`, `r BiocStyle::Biocpkg("scater")`)
   + Annotation (`r BiocStyle::Biocpkg("org.Hs.eg.db")`)
   + Reporting (`r BiocStyle::CRANpkg("rmarkdown")`, `r BiocStyle::CRANpkg("shiny")`)
-]
 
----
+:::
+::::
 
-# Bioconductor and Seurat
+## Bioconductor and Seurat
 
-.pull-left[
-## Bioconductor (2001-)
+:::: {.columns}
 
-<br/>
+::: {.column width="50%"}
+### Bioconductor (2001-)
 
-![Schematic representation of the Bioconductor SingleCellExperiment](img/singlecellexperiment-osca.png)
+```{r}
+#| include: true
+#| fig-align: center
+#| fig-cap: Schematic representation of the Bioconductor SingleCellExperiment
+## Source: TODO
+knitr::include_graphics("img/singlecellexperiment-osca.png", )
+```
 
-.small-text[
-**Source:** https://osca.bioconductor.org/data-infrastructure.html
-]
-]
+**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
+:::
 
-.pull-right[
-## Seurat (2014-)
+::: {.column width="50%"}
+### Seurat (2014-)
 
-<br/>
-
-.xx-small-table[
+::: {.small-table}
 |Slot         |Function                                                                        |
 |:------------|:-------------------------------------------------------------------------------|
 |assays       |A list of assays within this object                                             |
@@ -132,84 +122,74 @@ knitr::include_graphics("img/workflow-osca.png")
 |tools        |Empty list. Tool developers can store any internal data from their methods here |
 |misc         |Empty slot. User can store additional information here                          |
 |version      |Seurat version used when creating the object                                    |
-]
-
-.small-text[
-**Source:** https://github.com/satijalab/seurat/wiki/Seurat
-]
-]
-
----
-
-# Bioconductor and Scanpy
-
-.pull-left[
-## Bioconductor (2001-)
+:::
 
 <br/>
+<br/>
+
+**Source:** <https://github.com/satijalab/seurat/wiki/Seurat>
+:::
+::::
+
+## Bioconductor and Scanpy
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Bioconductor (2001-)
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
-.small-text[
-**Source:** https://www.nature.com/articles/nmeth.3252 (Figure 2)
-]
-]
+**Source:** <https://www.nature.com/articles/nmeth.3252> (Figure 2)
+:::
 
-.pull-right[
-## Scanpy (2017-)
+::: {.column width="50%"}
+### Scanpy (2017-)
 
-<br/>
+```{r, include=TRUE, echo=FALSE, fig.align='center'}
+#| fig-cap: Schematic representation of the Scanpy AnnData
+knitr::include_graphics("img/anndata.svg")
+```
 
-![Schematic representation of the Scanpy AnnData](img/anndata.svg)
-
-.small-text[
 **Source:** [https://anndata.readthedocs.io](https://anndata.readthedocs.io/en/latest/anndata.AnnData.html)
-]
-]
+:::
+::::
 
----
-
-# Bioconductor workflow - Overview
+## Bioconductor workflow - Overview
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis.png")
 ```
 
----
-
-# Bioconductor workflow - Import
+## Bioconductor workflow - Import
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-import.png")
 ```
 
----
-
-# Import single-cell data using Bioconductor
+## Import single-cell data using Bioconductor
 
 The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities for reading and preprocessing single-cell data.
 
-## Import
+### Import
 
 - `DropletUtils::read10xCounts()` imports 10X Genomics data from the CellRanger output directories.
   It returns a `SingleCellExperiment` object.
 
-## Utilities and quality control
+### Utilities and quality control
 
 - `DropletUtils::barcodeRanks()` computes barcode rank statistics and identify the knee and inflection points on the total count curve.
 - `DropletUtils::emptyDrops()` is designed to distinguish between empty droplets and cells by testing each barcode’s expression profile for significant deviation from the ambient profile.
 - `DropletUtils::swappedDrops()` removes the effects of barcode swapping.
   It takes a list of paths to individual samples and returns a list with an item called `cleaned`, itself a list of sparse matrices, after removing swapped molecules.
 
----
+## Exercise
 
-# Exercise
-
-## Import scRNA-seq data and create a SingleCellExperiment object
+### Import scRNA-seq data and create a SingleCellExperiment object
 
 - Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
@@ -223,38 +203,32 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 **Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
 
----
-
-# Bioconductor workflow - Quality control and filtering
+## Bioconductor workflow - Quality control and filtering
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-qc-filter.png")
 ```
 
----
-
-# Computing metrics for quality control
+## Computing metrics for quality control
 
 The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused on the preprocessing and quality control of single-cell gene expression data.
 
-## Quality-control
+### Quality-control
 
 - `scuttle::perCellQCMetrics()` and `scuttle::perFeatureQCMetrics()` compute a variety of quality control metrics for arbitrary sets of cells and features in the dataset (e.g., mitochondrial genes, individual samples), and returns them as columns of a `DataFrame`.
 
 - `scuttle::addPerCellQC()` and `scuttle::addPerFeatureQC()` compute the same metrics, but adds them to the `SingleCellExperiment` object as `colData` and `rowData`, respectively.
 
-## Visualisation
+### Visualisation
 
 - `scater::plotScater()` and other functions `scater::plot...()` can help you visualise different aspects of the data set.
 
 ... but you can also use `r BiocStyle::CRANpkg("ggplot2")` to visualise information stored as `DataFrame` in the `colData()` and `rowData()` (Note: you will first need to convert from `DataFrame` to `data.frame` or `tibble`).
 
----
+## Exercise
 
-# Exercise
-
-## Quality control
+### Quality control
 
 - Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
 
@@ -270,27 +244,23 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
----
-
-# Bioconductor workflow - Normalisation
+## Bioconductor workflow - Normalisation
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-normalise.png")
 ```
 
----
-
-# Normalisation strategies 
+## Normalisation strategies 
 
 The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran")` host methods for the most common and popular normalisation strategies.
 
-## scuttle
+### scuttle
 
 - `scuttle::logNormCounts()` computes log-transformed normalized expression values.
   This includes the computation of size factors using `scater::librarySizeFactors()`.
 
-## scran
+### scran
 
 - `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
 
@@ -298,11 +268,11 @@ The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran"
 
 `r NoCite(bib, "lun2016workflow")`
 
----
+## scran: Deconvoluting size factors from cell pools
 
-# scran: Deconvoluting size factors from cell pools
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 - All cells in the data set are averaged to make a reference pseudo-cell.
 
 - Expression values for cells in pool A are summed together and normalized against the reference to yield a pool-based size factor.
@@ -310,24 +280,26 @@ The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran"
 - This is equal to the sum of the cell-based factors and can be used to formulate a linear equation.
 
 - Repeating this for multiple pools leads to the construction of a linear system that can be solved to estimate the size factor for each cell
-]
+:::
 
-.pull-right[
-```{r, include=TRUE, echo=FALSE}
+::: {.column width="50%"}
+```{r}
+#| include: true
+#| fig-align: center
+#| out-width: 100%
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0947-7#citeas
 knitr::include_graphics("img/scran-fig3.png")
 ```
 
-.right[
+::: {style="text-align: right;"}
 `r Citet(bib, "lun2016pooling")`
-]
-]
+:::
+:::
+::::
 
----
+## Exercise
 
-# Exercise
-
-## Normalisation
+### Normalisation
 
 - Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
   Display the names of the assays available after that step.
@@ -336,25 +308,25 @@ knitr::include_graphics("img/scran-fig3.png")
   What is the return value?
   Where can you find the normalised counts?
 
+<br/>
+
 - Plot the variance against the mean of each gene.
 
 **Note:** how can you tell whether the normalisation was effective?
-  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
+  Compare with <https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation>
+
+<br/>
 
 - When would you rather use `scuttle::computePooledFactors` instead?
 
----
-
-# Bioconductor workflow - Feature selection
+## Bioconductor workflow - Feature selection
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-variable-features.png")
 ```
 
----
-
-# Feature selection
+## Feature selection
 
 The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflow to identify and select features that display a high amount of biological variance.
 
@@ -362,11 +334,9 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 
 - `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
 
----
+## Exercise
 
-# Exercise
-
-## Feature selection
+### Feature selection
 
 Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
 
@@ -377,6 +347,8 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 
 How do you interpret those different values?
 
+<br/>
+
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
@@ -384,32 +356,30 @@ How many genes do you identify?
 Where are those genes located in the mean-variance plot?
 What happens to this plot if you set more stringent thresholds to define highly variable genes?
 
----
-
-# Bioconductor workflow - Dimensionality reduction
+## Bioconductor workflow - Dimensionality reduction
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-dimensionality.png")
 ```
 
----
-
-# Dimensionality reduction
+## Dimensionality reduction
 
 The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("BiocSingular")` provide several common dimensionality reduction methods.
 
 Those include:
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 - `scater::runPCA()` / `BiocSingular::runPCA()`
 
 - `scater::runTSNE()`
 
 - `scater::runUMAP()`
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - `BiocSingular::runSVD()`
 
 - `BiocSingular::runExactSVD()`
@@ -417,19 +387,18 @@ Those include:
 - `BiocSingular::runIrlbaSVD()`
 
 - `BiocSingular::runRandomSVD()`
-]
+:::
+::::
 
-## Important notes
+### Important notes
 
 - Those methods generally use only a subset most variable features, not the entire dataset.
 - By default, `runTSNE()` performs a PCA step first, the result of which the first 50 PCs are used as input for the t-SNE algorithm.
 - By default, `runUMAP()` performs a PCA step first, of which the first 50 PCs are used as input into the UMAP algorithm.
 
----
+## Exercise
 
-# Exercise
-
-## Dimensionality reduction
+### Dimensionality reduction
 
 - Apply PCA; use `r BiocStyle::Biocpkg("scater")` or `r BiocStyle::Biocpkg("BiocSingular")`.
   Set a seed to control reproducibility.
@@ -443,25 +412,21 @@ Those include:
 - Visualise the scatterplot of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.
 
-## Bonus point
+### Bonus point
 
 - Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
   Name the output `sce_denoise`.
   How many components remain after denoising?
   Visualise a UMAP of the denoised PCA and compare.
 
----
-
-# Bioconductor workflow - Clustering
+## Bioconductor workflow - Clustering
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-clustering.png")
 ```
 
----
-
-# Clustering
+## Clustering
 
 The packages `r BiocStyle::Biocpkg("scran")` and `r BiocStyle::Biocpkg("BiocNeighbors")` provides several methods for clustering single-cell data.
 The CRAN package `r BiocStyle::CRANpkg("igraph")` provides powerful methods for graph-based clustering.
@@ -473,18 +438,18 @@ The CRAN package `r BiocStyle::CRANpkg("igraph")` provides powerful methods for 
   + The output is a graph where nodes are cells and edges represent connections between nearest neighbors.
     To obtain cluster, the graph must still be partitioned using an appropriate function, e.g. `igraph::cluster_louvain()`.
 
-## Example
+### Example
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 g <- scran::buildSNNGraph(sce, use.dimred = 'PCA')
 colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membership)
 ```
 
----
+## Exercise
 
-# Exercise
-
-## Clustering
+### Clustering
 
 Cluster cells using `scran`.
 
@@ -498,23 +463,19 @@ Cluster cells using `scran`.
 **Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
   They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
 
-## Bonus point
+### Bonus point
 
 - Test different numbers of principal components and compare results.
 - Try `scran::quickCluster()`; identify key parameters and compare results.
 
----
-
-# Bioconductor workflow - Cluster markers
+## Bioconductor workflow - Cluster markers
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-markers.png")
 ```
 
----
-
-# Identifying cluster markers
+## Identifying cluster markers
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for identifying cluster markers.
 
@@ -525,11 +486,9 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 - `scran::pairwiseWilcox()` and `scran::pairwiseBinom()` provide alternative statistical tests.
 
----
+## Exercise
 
-# Exercise
-
-## Cluster markers
+### Cluster markers
 
 - Use `scran::findMarkers()` to identify markers for each cluster.
   Display the metadata of markers for the first cluster.
@@ -541,29 +500,25 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
   + On a dimensionality reduction layout.
     Compare with the cluster labels.
 
----
-
-# Bioconductor workflow - Interactive visualisation
+## Bioconductor workflow - Interactive visualisation
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-interactive.png")
 ```
 
----
-
-# iSEE - interactive SummarizedExperiment Explorer
+## iSEE - interactive SummarizedExperiment Explorer
 
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
 ## Source: https://f1000research.com/articles/7-741
 knitr::include_graphics("img/isee-f1000-fig1.gif")
 ```
 
----
+## iSEE - interactive SummarizedExperiment Explorer
 
-# iSEE - interactive SummarizedExperiment Explorer
-
-```{r, include=TRUE, eval=FALSE}
+```{r}
+#| echo: true
+#| eval: false
 library(iSEE)
 library(scRNAseq)
 
@@ -586,33 +541,31 @@ app <- iSEE(sce)
 shiny::runApp(app, port=1234)
 ```
 
----
+## iSEE - interactive SummarizedExperiment Explorer
 
-# iSEE - interactive SummarizedExperiment Explorer
-
-.center[`iSEE(sce, voice=TRUE)`]
+::: {style="text-align: center;"}
+`iSEE(sce, voice=TRUE)`
+:::
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/0crFZLwAJOE?autoplay=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 90%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/0crFZLwAJOE?autoplay=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 80%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-.footnote[
 <https://youtu.be/0crFZLwAJOE>
-]
 
----
+## Exercise
 
-# Exercise
-
-## Interactive visualisation
+### Interactive visualisation
 
 - Use `iSEE::iSEE()` to launch an interactive web-application to visualise the contents of the `SingleCellExperiment` object.
 
-## Bonus point
+### Bonus point
 
 - Preconfigure the application to start with a subset of panels, e.g.
 
-```{r, eval=FALSE, include=TRUE}
+```{r}
+#| echo: true
+#| eval: false
 initial_panel_list <- list(
   ReducedDimensionPlot(PanelWidth=4L),
   RowDataTable(PanelWidth=8L)
@@ -620,36 +573,28 @@ initial_panel_list <- list(
 iSEE::iSEE(sce, initial = initial_panel_list)
 ```
 
----
+## More single-cell methods available in Bioconductor
 
-# More single-cell methods available in Bioconductor
-
-## scater
+### scater
 
 - `r BiocStyle::Biocpkg("scater")` includes a variety of convenient plotting functions (e.g. `scater::plotReducedDim()`, `scater::plotHeatmap()`)
 
-## scran
+### scran
 
 - `scran::cyclone()` implements the cell cycle classification step of the prediction method described by Scialdone et al. (2015).
 
-## bluster
+### bluster
 
 - `bluster::bootstrapStability()` generates bootstrap replicates and reclusters on them to determine the stability of clusters with respect to sampling noise.
 
----
-
-# Further reading
+## Further reading
 
 - [Introduction to R / Bioconductor (2016)](https://bioconductor.org/help/course-materials/2016/BiocIntro-May/B1_Bioconductor_Intro.html) by Martin Morgan (Bioconductor Core Team)
 
 - [HarvardX Biomedical Data Science Open Online Training](http://rafalab.github.io/pages/harvardx.html)
 
----
+## References
 
-# References
-
-.small-text[
 ```{r, include=TRUE, echo=FALSE, results="asis"}
 PrintBibliography(bib)
 ```
-]

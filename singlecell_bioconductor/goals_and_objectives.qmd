@@ -1,0 +1,18 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+- Describe common Bioconductor data structures for single-cell data sets.
+- Understand the relationship with other single-cell software
+  (e.g.
+  [Seurat](https://satijalab.org/seurat/),
+  [Scanpy](https://scanpy.readthedocs.io/en/stable/)).
+
+### Learning objectives
+
+- Write a workflow that analyses single-cell RNA-sequencing data using Bioconductor packages.
+- Import single-cell data from files into the <i class="fab fa-r-project"></i> session.
+- Perform basic quality control and filter cells and features.
+- Normalise single-cell data and inspect the results.
+- Apply clustering methods and visualise the results.
+- Identify markers for each cluster and visualise their expression.

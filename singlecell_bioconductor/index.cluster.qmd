@@ -1,0 +1,74 @@
+---
+title: 'Single-cell RNA-seq analysis using Bioconductor'
+subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
+author: "Kevin Rue-Albrecht"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2023-10-16 (updated: `r Sys.Date()`)"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Kevin Rue-Albrecht -- Single-cell RNA-seq analysis using Bioconductor
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
+---
+
+```{r}
+#| label: setup
+#| include: false
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 90)
+library(tidyverse)
+```
+
+```{r}
+#| label: load_refs
+#| include: false
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+```
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
+
+## Prerequisites
+
+- An account on the teaching cluster.
+
+### Lessons
+
+- Introduction to base <i class="fab fa-r-project"></i>.
+- Introduction to object oriented programming in <i class="fab fa-r-project"></i>.
+- Introduction to `r BiocStyle::CRANpkg("ggplot2")`.
+- Introduction to tidyverse.
+- Statistics in <i class="fab fa-r-project"></i>.
+- Dimensionality reduction and clustering in <i class="fab fa-r-project"></i>.
+- Differential expression for RNA-seq.
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster.
+- Start a new RStudio project called `singlecell_bioconductor`.
+- Make a copy of the template notebook for this lesson in your RStudio project.
+- Open the notebook and follow along, editing and running the code as needed.
+
+```{r}
+#| child: etc.qmd
+```
