@@ -17,7 +17,10 @@ knitr::include_graphics("img/bioconductor_logo_cmyk.jpeg")
 
 ## The Bioconductor SummarizedExperiment
 
-```{r, include=TRUE, echo=FALSE, out.height="450px", out.width="600px", fig.align='center'}
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 600px
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
@@ -31,7 +34,8 @@ knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ::: {.column width="50%"}
 ### SummarizedExperiment.
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://www.nature.com/articles/nmeth.3252
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
@@ -42,7 +46,8 @@ knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ::: {.column width="50%"}
 ### SingleCellExperiment
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
 knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
@@ -53,7 +58,8 @@ knitr::include_graphics("img/singlecellexperiment-osca.png")
 
 ## SingleCellExperiment
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 ## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
 knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
@@ -65,7 +71,9 @@ knitr::include_graphics("img/singlecellexperiment-osca.png")
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='500px'}
+```{r}
+#| fig-align: center
+#| out-height: 500px
 ## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
 knitr::include_graphics("img/workflow-osca.png")
 ```
@@ -96,11 +104,10 @@ knitr::include_graphics("img/workflow-osca.png")
 ### Bioconductor (2001-)
 
 ```{r}
-#| include: true
 #| fig-align: center
 #| fig-cap: Schematic representation of the Bioconductor SingleCellExperiment
 ## Source: TODO
-knitr::include_graphics("img/singlecellexperiment-osca.png", )
+knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
 **Source:** <https://osca.bioconductor.org/data-infrastructure.html>
@@ -138,7 +145,8 @@ knitr::include_graphics("img/singlecellexperiment-osca.png", )
 ::: {.column width="50%"}
 ### Bioconductor (2001-)
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ```
 
@@ -148,7 +156,8 @@ knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 ::: {.column width="50%"}
 ### Scanpy (2017-)
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
+#| fig-align: center
 #| fig-cap: Schematic representation of the Scanpy AnnData
 knitr::include_graphics("img/anndata.svg")
 ```
@@ -159,14 +168,20 @@ knitr::include_graphics("img/anndata.svg")
 
 ## Bioconductor workflow - Overview
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis.png")
 ```
 
 ## Bioconductor workflow - Import
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-import.png")
 ```
@@ -205,7 +220,10 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ## Bioconductor workflow - Quality control and filtering
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-qc-filter.png")
 ```
@@ -246,7 +264,10 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 
 ## Bioconductor workflow - Normalisation
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-normalise.png")
 ```
@@ -284,7 +305,6 @@ The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran"
 
 ::: {.column width="50%"}
 ```{r}
-#| include: true
 #| fig-align: center
 #| out-width: 100%
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0947-7#citeas
@@ -321,7 +341,10 @@ knitr::include_graphics("img/scran-fig3.png")
 
 ## Bioconductor workflow - Feature selection
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-variable-features.png")
 ```
@@ -358,7 +381,10 @@ What happens to this plot if you set more stringent thresholds to define highly 
 
 ## Bioconductor workflow - Dimensionality reduction
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-dimensionality.png")
 ```
@@ -421,7 +447,10 @@ Those include:
 
 ## Bioconductor workflow - Clustering
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-clustering.png")
 ```
@@ -470,7 +499,10 @@ Cluster cells using `scran`.
 
 ## Bioconductor workflow - Cluster markers
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-markers.png")
 ```
@@ -502,14 +534,20 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 ## Bioconductor workflow - Interactive visualisation
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='540px', out.width='400px'}
+```{r}
+#| fig-align: center
+#| out-height: 540px
+#| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-interactive.png")
 ```
 
 ## iSEE - interactive SummarizedExperiment Explorer
 
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
+```{r}
+#| fig-align: center
+#| out-height: 450px
+##| out-width: 400px
 ## Source: https://f1000research.com/articles/7-741
 knitr::include_graphics("img/isee-f1000-fig1.gif")
 ```
@@ -597,6 +635,7 @@ iSEE::iSEE(sce, initial = initial_panel_list)
 
 ## References
 
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
+#| results: asis
 PrintBibliography(bib)
 ```
