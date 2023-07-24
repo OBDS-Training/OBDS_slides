@@ -155,11 +155,15 @@ knitr::include_graphics("img/hashing_protocol.png")
 **Basically the same principle as CITE-seq.**
 :::
 
+::: {style="text-align: center;"}
+**Except, the assay targets a single, different, surface protein for all the cell of each sample.**
+:::
+
 ## Seurat workflow - Overview
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 550px
 #| out-width: 425px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis.png")
@@ -169,7 +173,7 @@ knitr::include_graphics("img/overview-analysis.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-import.png")
@@ -299,13 +303,15 @@ See `help("Seurat-methods")`.
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-qc-filter.png")
 ```
 
 ## Quality control
+
+<br/>
 
 :::: {.columns}
 
@@ -349,6 +355,8 @@ PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
   e.g., two features, a feature and quality control metric.
 
 ## Seurat visualisations
+
+<br/>
 
 :::: {.columns}
 
@@ -394,7 +402,7 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ", slot = 
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-normalise.png")
@@ -427,6 +435,8 @@ knitr::include_graphics("img/log_normal_and_normal_distributions.png")
 
 
 ## Log-normalised feature data
+
+<br/>
 
 :::: {.columns}
 
@@ -512,7 +522,7 @@ knitr::include_graphics("img/sctransform-fig2.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-variable-scaling.png")
@@ -524,6 +534,8 @@ Motivations:
 
 - Variability = information.
 - Driving force for dimensionality reduction and clustering.
+
+<br/>
 
 :::: {.columns}
 
@@ -559,6 +571,8 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 
 - `FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
 - `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
+
+<br/>
 
 :::: {.columns}
 
@@ -618,7 +632,7 @@ Many methods for downstream analysis work better when features are brought back 
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-dimensionality.png")
@@ -700,7 +714,7 @@ DimPlot(..., reduction = "pca", ...)
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-clustering.png")
@@ -777,7 +791,7 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
+#| out-height: 525px
 #| out-width: 400px
 ## Source: Kevin Rue-Albrecht (Illustrator)
 knitr::include_graphics("img/overview-analysis-markers.png")
