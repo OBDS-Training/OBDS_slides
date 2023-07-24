@@ -1,13 +1,15 @@
-# The origin of empty droplets
+## The origin of empty droplets
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
 # Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
 knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
 
 - This leads to a higher probability of a cell and a bead ending up in the same droplet.
@@ -22,11 +24,11 @@ knitr::include_graphics("img/10x-barcoded-gel-beads.png")
   + 4,000 cells ~ 3.1% doublets
   + 5,000 cells ~ 3.9% doublets
   + etc ...
-]
 
----
+:::
+::::
 
-# Empty droplets contain fewer transcripts
+## Empty droplets contain fewer transcripts
 
 Below is an example of a challenging cell-calling scenario mixing:
 
@@ -35,32 +37,35 @@ Below is an example of a challenging cell-calling scenario mixing:
 
 On the left is the cell calling result with the cell calling algorithm prior to Cell Ranger 3.0 and on the right is the current Cell Ranger 3.0 result. You can see that low RNA content cells are successfully identified by the new algorithm.
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE}
 # Source: https://support.10xgenomics.com/img/single-cell-gex/knee-plot-old-cell-calling.png
 knitr::include_graphics("img/knee-plot-old-cell-calling.png")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE}
 # Source: https://support.10xgenomics.com/img/single-cell-gex/knee-plot-new-cell-calling.png
 knitr::include_graphics("img/knee-plot-new-cell-calling.png")
 ```
-]
+:::
+::::
 
-.small-p[
+::: {.small-p}
 Source: <https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/algorithms/overview>
-]
+:::
 
----
-
-# The emptyDrops method
+## The emptyDrops method
 
 The function `DropletUtils::emptyDrops()` estimates the probability of empty droplets.
 
-.pull-left[
-## Parameters
+:::: {.columns}
+
+::: {.column width="50%"}
+### Parameters
 
 - `m`, a matrix of UMI counts
 
@@ -68,27 +73,26 @@ The function `DropletUtils::emptyDrops()` estimates the probability of empty dro
 
 - `niters`, number of iterations to use for the Monte Carlo p-value calculations.
   More interations increase the sensitivity to yield lower $p$-values and identify more cell-containing droplets, at the cost of computing time.
-]
+:::
 
-
-.pull-right[
-## Method
+::: {.column width="50%"}
+### Method
 - Barcodes with fewer than `lower` are used to estimate the composition of ambient RNA.
 
 - The count vector for each barcode above lower is then tested for a significant deviation from these proportions.
 
 - $p$-values are corrected for multiple testing using the Benjamini-Hochberg correction.
-]
 
-## Output
+:::
+::::
+
+### Output
 
 A table including the probability that each cell is an empty droplet.
 
----
+## Exercise
 
-# Exercise
-
-## Empty droplets
+### Empty droplets
 
 - Import the raw matrix into <i class="fab fa-r-project"></i>.
   Make a `SingleCellExperiment` object called `sce`.
@@ -99,32 +103,32 @@ This will massively speed up downstream steps, while removing unquestionable emp
 
 - Run `DropletUtils::emptyDrops()`.
 
-.center[
+::: {style="text-align: center;"}
 **How do you read the output? Which droplets would you consider empty?**
-]
+:::
 
 - Remove empty droplets from the data sets.
   Call the new object `sce_filtered_emptydrops`.
 
-## Bonus point
+### Bonus point
 
 - Draw plots comparing empty droplets and other droplets
   (e.g., library size, mitochondrial content, PCA).
 
 - Import the filtered matrix for the same cells and compare their set of filtered cells to yours.
 
----
+## The origin of doublets
 
-# The origin of doublets
+:::: {.columns}
 
-.pull-left[
+::: {.column width="33%"}
 ```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
 # Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
 knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 ```
-]
+:::
 
-.pull-right[
+::: {.column width="66%"}
 - To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
 
 - This leads to a higher probability of a cell and a bead ending up in the same droplet.
@@ -139,14 +143,16 @@ knitr::include_graphics("img/10x-barcoded-gel-beads.png")
   + 4,000 cells ~ 3.1% doublets
   + 5,000 cells ~ 3.9% doublets
   + etc ...
-]
 
----
+:::
+::::
 
-# The DoubletFinder method
+## The DoubletFinder method
 
-.pull-left[
-## Steps
+:::: {.columns}
+
+::: {.column width="50%"}
+### Steps
 
 1. Generate artificial doublets from existing scRNA-seq data.
 
@@ -155,26 +161,25 @@ knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 3. Perform PCA and use the PC distance matrix to find each cell's proportion of artificial k nearest neighbors (pANN).
 
 4. Rank order and threshold pANN values according to the expected number of doublets.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
 ## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
 knitr::include_graphics("img/doubletfinder-abstract.jpg")
 ```
-]
+:::
+::::
 
-.footnote[
 `r Citet(bib, "mcginnis2019doubletfinder")`
 
 <i class="fab fa-github"></i> [chris-mcginnis-ucsf/DoubletFinder](https://github.com/chris-mcginnis-ucsf/DoubletFinder)
-]
 
----
+## DoubletFinder in a workflow
 
-# DoubletFinder in a workflow
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 - Works on `r BiocStyle::CRANpkg("Seurat")` objects.
 
 - Preprocess the Seurat object
@@ -186,24 +191,21 @@ knitr::include_graphics("img/doubletfinder-abstract.jpg")
 - Estimate proportion of homotypic doublets
 
 - Classify / predict / call doublets.
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
 ## Source: https://www.sciencedirect.com/science/article/pii/S2405471219300730
 knitr::include_graphics("img/doubletfinder-box1.jpg")
 ```
-]
+:::
+::::
 
-.footnote[
 `r Citet(bib, "mcginnis2019doubletfinder")`
 
 <i class="fab fa-github"></i> [chris-mcginnis-ucsf/DoubletFinder](https://github.com/chris-mcginnis-ucsf/DoubletFinder)
-]
 
----
-
-# DoubletFinder parameters
+## DoubletFinder parameters
 
 | Name | Description |
 |:-----|:------------|
@@ -215,13 +217,11 @@ knitr::include_graphics("img/doubletfinder-box1.jpg")
 
 See `?DoubletFinder::doubletFinder()` for more details.
 
----
-
-# The scDblFinder method
+## The scDblFinder method
 
 The rough logic is very similar to other methods (e.g. `r BiocStyle::Githubpkg("chris-mcginnis-ucsf/DoubletFinder")`, `r BiocStyle::Biocpkg("scds")`), with a few twists that make it more efficient and provide extra features `r Citep(bib, "germain2020scdblfinder")`.
 
-## Parameters
+### Parameters
 
 | Name | Description |
 |:-----|:------------|
@@ -231,51 +231,39 @@ The rough logic is very similar to other methods (e.g. `r BiocStyle::Githubpkg("
 | `artificialDoublets` | Approximate number of doublets to identify (if omitted, will be $5 \times nbClusters^2$). |
 | `k` | Number of nearest neighbours for KNN graph. |
 
-.footnote[
 Bioconductor: `r BiocStyle::Biocpkg("scDblFinder")`.
 See `?scDblFinder::scDblFinder()` for more details.
-]
 
----
+## Other Doublet Detection Methods
 
-# Other Doublet Detection Methods
+### R
 
-## R
-
-.x-large-list[
 - `r BiocStyle::Biocpkg("scds")` (Bioconductor)
-
 - <i class="fab fa-github"></i> [EDePasquale/DoubletDecon](https://github.com/EDePasquale/DoubletDecon)
   `r Citep(bib, "depasquale2019doubletdecon")`
-]
 
-## Python
+### Python
 
-.x-large-list[
 - <i class="fab fa-github"></i> [JonathanShor/DoubletDetection](https://github.com/JonathanShor/DoubletDetection)
-
 - <i class="fab fa-github"></i> [Scrublet](https://github.com/AllonKleinLab/scrublet)
   `r Citep(bib, "wolock2019scrublet")`
-]
 
----
+## Exercise
 
-# Exercise
-
-## Doublets
+### Doublets
 
 Continue using the data set after you excluded empty droplets.
 
 - Run `scDblFinder::scDblFinder()`.
 
-.center[
+::: {style="text-align: center;"}
 **How do you read the output? Which droplets would you consider doublets?**
-]
+:::
 
 - Remove doublets from the data set.
   Call the new object `sce_filtered_scdblfinder`.
 
-## Bonus point
+### Bonus point
 
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
@@ -284,47 +272,52 @@ Continue using the data set after you excluded empty droplets.
 
   + You will need to make a `Seurat` object.
 
----
+## The origin of ambient RNA
 
-# The origin of ambient RNA
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center'}
-# Source: https://twitter.com/GenomeBiology/status/1235571002903576576/photo/1
+#| include: true
+#| fig-align: center
+#| out-width: 100%
+## Source: https://twitter.com/GenomeBiology/status/1235571002903576576/photo/1
 knitr::include_graphics("img/ambient_rna_origin.png")
 ```
 
 `r Citet(bib, "yang2020decontx")`
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - Cells damaged during library preparation can release their cytoplasmic contents (e.g., RNA transcripts) into the ambient medium.
 
 - In droplet-based microfluidic devices, ambient RNA can be incorporated into droplets along with oligonucleotide-barcoded beads and cells.
 
 - Both native mRNA from the cell and contaminating ambient RNA will be barcoded and counted within a droplet.
-]
+
+:::
+::::
 
 <br/>
 
-## Objective
+### Objective
 
 Deconvolute ambient RNA signal from cellular transcripts to estimate true biological signal as precisely as possible.
 
----
+## The decontX method
 
-# The decontX method
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
 ```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='450px'}
 # Source: https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs13059-020-1950-6/MediaObjects/13059_2020_1950_Fig1_HTML.png
 knitr::include_graphics("img/decontx_Fig1_HTML.png")
 ```
 
 `r Citet(bib, "yang2020decontx")`
-]
+:::
 
-.pull-right[
+::: {.column width="50%"}
 - Bioconductor package `r BiocStyle::Biocpkg("celda")`
 
 - Function `celda::decontX()`
@@ -334,49 +327,46 @@ the expression profile of "real" cells after cell calling (i.e., removing empty 
 
 - **Empty cell droplet information (low expression cell barcodes before cell calling) are
 not needed.**
-]
 
----
+:::
+::::
 
-# The decontX method
+## The decontX method
 
 The function `celda::decontX()` identifies contamination from factors such as ambient RNA in single cell genomic datasets.
 It estimate matrices of native expression and contamination from ambient RNA.
 
-.pull-left[
-## Parameters
+:::: {.columns}
+
+::: {.column width="50%"}
+### Parameters
 
 - `x`, a `SingleCellExperiment` object.
-
 - `z`, broad cell cluster labels.
-
 - `batch`, batch labels.
-
 - `maxIter`, maximum iterations for the EM algorithm.
-]
+:::
 
-
-.pull-right[
-## Method
+::: {.column width="50%"}
+### Method
 
 Assumption: each cell is a mixture of two multinomial distributions:
 
 1. A distribution of native transcripts from the cell’s true population
-
 2. A distribution of contaminating transcripts from all other cell populations captured in the assay
-]
 
-## Output
+:::
+::::
+
+### Output
 
 A `SingleCellExperiment` object with the decontaminated counts stored as a new assay.
 Other pieces of information are stored in `colData()` and `metadata()`.
 See `?celda::decontX()` for more information.
 
----
+## Exercise
 
-# Exercise
-
-## Ambient RNA
+### Ambient RNA
 
 - Run `celda::decontX()` (continue using the data after excluding empty droplets and doublets).
 
@@ -385,9 +375,9 @@ See `?celda::decontX()` for more information.
 - Visualize the percentage of contamination estimated by `decontX` in each cell.
   Use the `plotDecontXContamination()` function.
 
-.center[
+::: {style="text-align: center;"}
 **Does any cluster display higher (estimated) levels of ambient RNA?**
-]
+:::
 
 - Visualize the log-normalised expression of marker genes on a UMAP layout faceted by gene; use `plotDimReduceFeature()`.
 
@@ -397,12 +387,8 @@ See `?celda::decontX()` for more information.
 
 - Visualize the log-normalised expression of marker genes before and after decontamination as a violin plot; use `plotDecontXMarkerExpression()`.
 
----
+## References
 
-# References
-
-.small-p[
 ```{r refs, include=TRUE, echo=FALSE, results="asis"}
 PrintBibliography(bib)
 ```
-]

@@ -1,0 +1,7 @@
+.reveal .slide-logo {
+    max-height: 3rem !important; /* !important needed to overwrite footer.css */
+}
+
+.small-p {
+  font-size: small;
+}

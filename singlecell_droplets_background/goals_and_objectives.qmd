@@ -1,0 +1,13 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+- Understand the origin of empty droplets, doublets, and ambient signal in single-cell data.
+- Describe methods and metrics for identifying artefacts.
+
+### Learning objectives
+
+- Import single-cell data from files into the R session.
+- Apply methods to identify empty droplets.
+- Apply methods to identify doublets.
+- Apply methods to remove ambient noise from single-cell data.
