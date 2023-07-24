@@ -284,7 +284,7 @@ See `help("Idents", package = "SeuratObject")`.
 Those functions are often combined together, to achieve the desired result.
 For instance:
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
 #| echo: true
 #| eval: false
 subset(
@@ -425,7 +425,7 @@ This is an advanced topic that will be demonstrated and discussed later in the c
 
 ## Log-normal and normal distributions
 
-```{r, include=TRUE, echo=FALSE, fig.align='center'}
+```{r}
 #| fig-align: center
 knitr::include_graphics("img/log_normal_and_normal_distributions.png")
 ```
@@ -682,7 +682,7 @@ DimPlot(seurat_object, reduction = "umap")
 - `PCAPlot()` displays a scatter plot of two principal components.
 - `DimPlot()` is a versatile function used to plot any dimensionality reduction result available in the object, e.g.
 
-```{r, include=TRUE, eval=FALSE}
+```{r}
 #| echo: true
 #| eval: false
 DimPlot(..., reduction = "pca", ...)
@@ -887,7 +887,7 @@ and many more tutorials in the [Seurat documentation website](https://satijalab.
 
 ## References
 
-```{r, include=TRUE, echo=FALSE, results="asis"}
+```{r}
 #| results: asis
 PrintBibliography(bib)
 ```
