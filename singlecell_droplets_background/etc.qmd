@@ -2,14 +2,14 @@
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="33%"}
 ```{r, include=TRUE, echo=FALSE, out.height='500px', out.width='300px'}
 # Source: https://cores.research.asu.edu/sites/default/files/inline-images/10x-barcoded%20gel%20beads.png
 knitr::include_graphics("img/10x-barcoded-gel-beads.png")
 ```
 :::
 
-::: {.column width="50%"}
+::: {.column width="66%"}
 - To optimise the capture rate, the number of GEL beads is much higher than the number of cells.
 
 - This leads to a higher probability of a cell and a bead ending up in the same droplet.
