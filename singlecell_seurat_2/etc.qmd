@@ -1,0 +1,307 @@
+## Seurat workflow overview
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+- Seurat day 1
+  + `NormalizeData()`
+  + `ScaleData()`
+  + `FindVariableFeatures()`
+- Seurat day 2
+  + `SCTransform()`
+- Normalisation is done to remove influence of technical effects (e.g. sequencing depth) while preserving biological heterogeneity
+- Benchmarking study of methods `r Citep(bib, "ahlmann-eltze_comparison_2023")`
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 525px
+#| out-wdiffeidth: 400px
+## Source: custom-made? (2-scRNA-seq_day2 slide 4)
+knitr::include_graphics("img/seurat_workflow.png")
+```
+
+:::
+::::::::::::::
+
+## Conceptual differences between methods 
+<!-- Old slide is about limitation of log normalisation (slide 5) -->
+<!-- I think with this figure, we can remove slide  5 and 8 -->
+<!-- Essentially highlight that with sctransform, variance is normalised consistently across expression levels -->
+<!-- unlike log normalisation, which is more effective only on low to medium expressed genes -->
+
+```{r}
+#| fig-align: center
+#| out-height: 525px
+#| out-wdiffeidth: 400px
+## Source: ahlmann-eltze_comparison_2023
+knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
+```
+`r Citet(bib, "ahlmann-eltze_comparison_2023")`
+
+## sctransform `r Citep(bib, "hafemeister_normalization_2019")`
+
+- Gene group-specific factor used to normalise genes rather than constant factor as in global scaling normalisation
+1. Construct negative binomial generalised linear model (GLM) for each gene – sequencing depth on x (independent variable), log10(UMI count) on y (dependent variable)
+   + Accounts for sequencing depth by default
+2. Parameter estimates regularised (adjusted) to avoid model overfitting – pool information across genes
+
+## sctransform model parameters
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 525px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
+```
+`r Citet(bib, "hafemeister_normalization_2019")`
+
+## sctransform
+
+3. Second round of NB regression, constraining parameters of model to be those learned from previous step
+4. Residuals from this model are the normalised expression values
+5. Pearson residuals (raw residuals divided by expected standard deviation of residuals) are the scaled expression values – account for association between gene expression and variance
+   + Can be used to identify genes with unexpectedly high variance
+
+## `SCTransform()` analysis steps
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: custom-made? (2-scRNA-seq_day2 slide 10)
+knitr::include_graphics("img/sct_analysis_steps.png")
+```
+
+## Comparison example
+
+- Sharper biological distinctions
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
+knitr::include_graphics("img/sct_vs_log_example.png")
+```
+
+## Exercise: log vs. sctransform normalisation
+
+1. Compare clustering results following basic normalisation and sctransform normalisation – can you notice any differences?
+
+2. Bonus: Perform  ORA pathway analysis on cluster markers (DEGs between clusters) using gprofiler2 and plot the results
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 525px
+## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
+knitr::include_graphics("img/Gprofiler2_exercise_result.png")
+```
+
+# Cell Hashing
+
+## What is Cell Hashing
+
+- Cell hashing enables processing of multiple samples in the same sequencing run
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: https://cite-seq.com/cell-hashing/
+knitr::include_graphics("img/cell_hashing.png")
+```
+
+## Why should we use Cell hashing?
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+- Pros
+  + Low cost
+  + More samples in a single experiment
+  + Super-loading: greater number of cells assayed in a single experiment (5x)
+  + More replicates per experiment
+  + Better detection of multiplets
+  + No technical batch effect
+  
+:::
+::: {.column width="50%"}
+
+- Cons
+  + More complex experimental design
+  + Cell type recovery can suffer
+  
+:::
+::::::::::::::
+
+ 
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-wdiffeidth: 400px
+## Source: https://cite-seq.com/cell-hashing/
+knitr::include_graphics("img/why_cell_hashing.png")
+```
+
+## Evolution of cell multiplexing methods
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: https://cite-seq.com/cell-hashing/
+knitr::include_graphics("img/evolution_cell_multiplexing.png")
+```
+`r Citet(bib, "cheng_multiplexing_2021")`
+
+## Other cell multiplexing methods
+
+- Lipid and Cholesterol modified oligonucleotides (Multi-Seq)
+- Chemically modified barcodes, covalently linked to cell membrane
+- Nucleus hashing - irreversibly labelling cells with synthetic single –stranded DNA oligos
+- Genetic variation based on SNP calling (natural genetic barcoding) – matched genotype /without matched genotype
+
+## Nucleus Hashing
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: https://www.nature.com/articles/s41467-019-10756-2
+knitr::include_graphics("img/nucleus_hashing.png")
+```
+`r Citet(bib, "gaublomme_nuclei_2019")`
+
+## Genetic demultiplexing (e.g. Vireo)
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-wdiffeidth: 400px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1865-2
+knitr::include_graphics("img/genetic_demultiplexing.png")
+```
+`r Citet(bib, "huang_vireo_2019")`
+
+## CellhashR: Alternative tool for demultiplexing
+
+- CellhashR is a bit like multiqc and produces QC reports
+- Enables comparison of multiple demultiplexing algorithms
+- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq) 
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-wdiffeidth: 200px
+## Source: https://bimberlab.github.io/cellhashR/articles/V03-Benchmark-example.html
+knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
+```
+
+## De-multiplexing samples : HTODemux 
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+- Example using 8 multiplexed PBMC samples
+  + Demultiplexing convincingly separates cells from the different input samples
+  + Developed a statistical framework to classify each barcode as positive or negative for each HTO
+  + The sample singlets and doublet can be visualised by tSNE plot
+  + This method demonstrates the challenge of identifying singlets and doublets by UMI distribution alone
+  + RNA tSNE shows that all cell types were present in all samples
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 525px
+#| out-wdiffeidth: 400px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1603-1
+knitr::include_graphics("img/HTODemux_example.png")
+```
+`r Citet(bib, "stoeckius_cell_2018")`
+
+:::
+::::::::::::::
+
+## De-multiplexing samples : HTODemux 
+
+- HTODemux is implemented via the Seurat package and workflow.
+- Key commands:
+  + `HTODemux()`.  : Performs the demultiplexing
+  + `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
+  + `RidgePlot()`  : Ridge plots for visualisation of demultiplexing results
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-wdiffeidth: 400px
+## Source: https://satijalab.org/seurat/articles/hashing_vignette.html
+knitr::include_graphics("img/seurat_HTODemux.png")
+```
+
+## Cell Hashing data
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-wdiffeidth: 525px
+## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide 23)
+knitr::include_graphics("img/cell_hashing_data.png")
+```
+
+## Exercise: Demultiplexing HTOs with HTODemux()
+
+- Data
+  + Single cells collected from four cell lines: HEK, K562, KG1 and THP1
+  + Each cell line was further split into three samples (12 samples in total)
+  + Based on this design, we should be able to detect doublets both across and within cell types
+  + Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single lane of 10X.
+
+## Exercise key steps
+
+1. Read in HTO and UMI matrix
+2. Identify barcodes detected in both RNA and HTO
+3. Create SeuratObject with RNA and then add HTO as another assay
+4. Normalise/scale RNA data
+5. Normalise HTO data with CLR normalisation (margin=1)
+6. Demultiplex data using the HTODemux()
+7. Evaluate the de-multiplexing classification results with plots
+8. Bonus: Evaluate HTO and RNA based clustering for demultiplexed samples
+9. Bonus: Evaluate RNA based clustering for demultiplexed samples
+
+## Useful links for sctransform and other normalisation methods
+
+- [sctransform paper](https://doi.org/10.1186/s13059-019-1874-1)
+- [sctransform vignette](https://satijalab.org/seurat/articles/sctransform_vignette.html)
+- [Comparison of transformations for single-cell RNA-seq data, 2023](https://doi.org/10.1038/s41592-023-01814-1)
+
+## Useful links for cell hashing
+
+- [Cell hashing paper](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1603-1)
+- [cellhashR tool](https://bimberlab.github.io/cellhashR/index.html)
+- [Seurat cell hashing vignette](https://satijalab.org/seurat/articles/hashing_vignette.html)
+- [Hashing with single nuclei](https://www.nature.com/articles/s41467-019-10756-2)
+- [Viroeo: Genetic demultiplexing](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1865-2)
+- [Review on multiplexing methods](https://onlinelibrary.wiley.com/doi/10.1002/advs.202101229)
+
+## Useful links for general single-cell analysis
+
+- [Single cell best practices (online book)](https://github.com/theislab/single-cell-best-practices)
+- [Single cell best practices (article)](https://doi.org/10.1038/s41576-023-00586-w)
+- [Orchestrating single-cell analysis with Bioconductor](https://bioconductor.org/books/release/OSCA/)
+- [Normalization methods for single-cell RNA-Seq data (high-level overview) on YouTube by Florian Wagner](https://www.youtube.com/watch?v=huxkc2GH4lk)
+- [Harvard Bioinformatics Course training](https://hbctraining.github.io/main/#advanced-topics-analysis-of-high-throughput-sequencing-ngs-data)
+- [Resources compiled by Ming Tang](https://github.com/crazyhottommy/scRNAseq-analysis-notes)single
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

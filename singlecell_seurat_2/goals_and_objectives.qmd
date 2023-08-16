@@ -1,0 +1,21 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Learn alternative normalisation methods 
+- Understand cell (de)multiplexing 
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Perform and compare results of analysis following log and SCTransform normalisation 
+- Demultiplex 10x samples using Cell Hashing
