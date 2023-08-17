@@ -18,7 +18,7 @@
 ```{r}
 #| fig-align: center
 #| out-height: 525px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 4)
 knitr::include_graphics("img/seurat_workflow.png")
 ```
@@ -35,7 +35,7 @@ knitr::include_graphics("img/seurat_workflow.png")
 ```{r}
 #| fig-align: center
 #| out-height: 525px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: ahlmann-eltze_comparison_2023
 knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ```
@@ -53,7 +53,7 @@ knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 525px
+#| out-width: 525px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
 knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 ```
@@ -71,7 +71,7 @@ knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 10)
 knitr::include_graphics("img/sct_analysis_steps.png")
 ```
@@ -83,7 +83,7 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
 knitr::include_graphics("img/sct_vs_log_example.png")
 ```
@@ -97,7 +97,7 @@ knitr::include_graphics("img/sct_vs_log_example.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 525px
+#| out-width: 525px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
 knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```
@@ -111,7 +111,7 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/cell_hashing.png")
 ```
@@ -143,7 +143,7 @@ knitr::include_graphics("img/cell_hashing.png")
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/why_cell_hashing.png")
 ```
@@ -153,7 +153,7 @@ knitr::include_graphics("img/why_cell_hashing.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/evolution_cell_multiplexing.png")
 ```
@@ -171,7 +171,7 @@ knitr::include_graphics("img/evolution_cell_multiplexing.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://www.nature.com/articles/s41467-019-10756-2
 knitr::include_graphics("img/nucleus_hashing.png")
 ```
@@ -182,7 +182,7 @@ knitr::include_graphics("img/nucleus_hashing.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1865-2
 knitr::include_graphics("img/genetic_demultiplexing.png")
 ```
@@ -197,7 +197,7 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 ```{r}
 #| fig-align: center
 #| out-height: 200px
-#| out-wdiffeidth: 200px
+#| out-width: 200px
 ## Source: https://bimberlab.github.io/cellhashR/articles/V03-Benchmark-example.html
 knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
 ```
@@ -220,7 +220,7 @@ knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
 ```{r}
 #| fig-align: center
 #| out-height: 525px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1603-1
 knitr::include_graphics("img/HTODemux_example.png")
 ```
@@ -240,7 +240,7 @@ knitr::include_graphics("img/HTODemux_example.png")
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-wdiffeidth: 400px
+#| out-width: 400px
 ## Source: https://satijalab.org/seurat/articles/hashing_vignette.html
 knitr::include_graphics("img/seurat_HTODemux.png")
 ```
@@ -250,7 +250,7 @@ knitr::include_graphics("img/seurat_HTODemux.png")
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-wdiffeidth: 525px
+#| out-width: 525px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide 23)
 knitr::include_graphics("img/cell_hashing_data.png")
 ```
