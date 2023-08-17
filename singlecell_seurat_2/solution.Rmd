@@ -1,0 +1,712 @@
+---
+title: "Example code for single-cell analysis with Seurat, day 2"
+author: "Devika Agarwal, updated by Carla Cohen"
+date: "25/10/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Seurat)
+library(tidyverse)
+library(patchwork)
+library(DT)
+library(gprofiler2)
+
+```
+
+# Exercise
+
+## Read in the RDS object we created and save from Seurat day 1
+
+- use the `readRDS()` function to read in previously saved object
+
+```{r}
+
+# Need to update the file path here 
+seurat_after_qc <- readRDS(file= "data/seurat_after_qc.rds")
+```
+
+- Check the Default Assay
+
+```{r}
+DefaultAssay(seurat_after_qc)
+```
+
+
+## Apply SCTransfrom  normalisation
+
+Use `SCTransform()` function
+
+SCTransform vignette: https://satijalab.org/seurat/articles/sctransform_vignette.html 
+
+`SCTransform()`  command replaces `NormalizeData()`, `ScaleData` and `FindVariableFeatures()` run for the RNA assay in day 1 Seurat
+
+Should we remove any confounding variables like we did for the RNA assay for Day 1?
+
+Do we want to use the same number of variable featuresn(n=1000) or more than what we used for `NormalizeData()` function.
+
+
+```{r}
+seurat_after_qc <- SCTransform(object=seurat_after_qc,assay="RNA", vars.to.regress = c("percent_mt"))
+```
+
+Where is the new normalisation stored?
+> Transformed data will be available in a new assay named : SCT assay, which is set as the default after running sctransform
+
+
+Explore the `seurat_after_qc` object metadata and assays
+
+
+```{r}
+seurat_after_qc
+names(seurat_after_qc[[]])
+
+```
+
+Is there a change? 
+> Yes, new Assay called SCT 
+
+Are there new columns in the metadata?
+> 2 new columns called "nCount_SCT" and "nFeature_SCT"   
+
+# Exercise
+
+## Visulaisation
+
+- The library size and number of features detected per cell is already present in the Seurat object.
+
+- When you run `SCTransform` you get two new variables for library size and features for SCT normalisation
+
+- Use the function `VlnPlot()` to compare 
+(i) RNA assay vs SCT assay library size in a single plot 
+(ii) features detected in RNA vs SCT a single plot
+ 
+- Check to see how you can have fixed y axes (ylims) in the `VlnPlot()` function
+
+```{r}
+VlnPlot(object =seurat_after_qc, features = c("nCount_RNA" ,"nCount_SCT") , same.y.lims = T,)
+VlnPlot(object =seurat_after_qc, features = c("nFeature_RNA","nFeature_SCT") , same.y.lims = T)
+```
+
+
+
+
+## Bonus-
+- Visualise the distribution of SCT corrected count data for a feature of your choice.
+- Visualise the distribution of SCT logs counts in the data slot for a feature of choice
+- Visualise the distribution of SCT scale.data count feature of your choice. 
+
+Let's choose LYZ like day 1
+
+```{r}
+DefaultAssay(seurat_after_qc) <- "SCT"
+ggplot_lyz_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "counts"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+ggplot_lyz_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "data"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "scale.data"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+
+
+cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised,ggplot_lyz_scaled, ncol = 1)
+```
+
+Use the function `VariableFeatures` to pull out the 1:10 the variable genes after SCT and compare to 1:10 from the RNA assay
+
+Do we need to change any arguments to get the variables genes specific to the SCT or RNA assay?
+
+```{r}
+VariableFeatures(seurat_after_qc, assay = "SCT")[1:10]
+VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+```
+
+> The majority of genes overlap
+
+
+## Dimensionality reduction on SCT transformed data
+
+- Run a principal component analysis and UMAP on the Seurat object.
+- Check the Default assay
+
+- Do we want to change the `reduction.name` argument so that we can still keep the RNA assay based PCA results?
+  
+```{r}
+DefaultAssay(seurat_after_qc) <- "SCT"
+seurat_after_qc <- RunPCA(seurat_after_qc, reduction.name = "sct.pca" )
+```
+
+Check to see what reductions are now present in the object
+
+```{r}
+Reductions(seurat_after_qc)
+```
+
+# Exercise
+
+- First, visualise the amount of variance explained the top principal components for SCTransformed data (number of your choice).
+  How many principal components would you use for downstream analyses?
+  
+- Do we need to specify the correction reduction?
+  
+```{r}
+ElbowPlot( seurat_after_qc, ndims = 100 , reduction = "sct.pca" )
+```
+
+
+- Run the UMAP technique on the first 20 principal components stored in the Seurat object and visualise the result as a scatterplot.
+
+How can we change the reduction name from default "umap" to "sct.umap"
+
+How can we specify that we want to use PCA run on the SCT Assay (sct.pca) in the previous step?
+
+Use DimPlot() to plot the umap. What happens if you try to specify different reductions with UMAPPlot?
+
+Compare RNA based umap with sct.umap
+
+```{r}
+seurat_after_qc <- RunUMAP(seurat_after_qc, dims = 1:20 ,reduction = "sct.pca", reduction.name = "sct.umap"  )
+```
+
+Use DimPlot() to plot the umap. What happens if you try to specify different reductions with UMAPPlot?
+
+Compare RNA based umap with sct.umap
+
+
+```{r, fig.width=10}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap") + ggtitle("SCT UMAP")
+p1 + p2
+```
+
+
+# Exercise
+
+## Clustering on SCTransformed data
+
+- Compute the graph of nearest neighbours using the function `FindNeighbors()`.
+  Which principal components are used by default?
+  Instead, specify the number of components that you have chosen.
+  Have you chosen the right `reduction` and `assay`? 
+  
+```{r}
+seurat_after_qc <-  FindNeighbors(seurat_after_qc, dims = 1:20, assay = "SCT",reduction = "sct.pca")
+```
+
+
+- Finally, compute cluster labels.
+  What is the default setting for the `resolution` argument?
+  Instead, set it to `0.5`.
+  Do you expect more or fewer clusters following that change?
+  What other parameters would you also try to experiment with?
+  - should we specify the `graph.name`?
+
+```{r}
+
+Graphs(seurat_after_qc)
+
+seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5, graph.name = "SCT_snn")
+
+```
+
+
+Check cluster assignment between SCT and RNA workflow
+
+If you use the same resolution = o.5 and dims as RNA workflow do you get the same number of cluster or more?
+
+Are cells in the same cluster across both RNA and SCT
+
+```{r}
+seurat_after_qc[[]] %>% head()
+
+table(seurat_after_qc$RNA_snn_res.0.5, seurat_after_qc$SCT_snn_res.0.5)
+
+```
+
+- Visualise the SCT cluster labels on the SCT transformed UMAP scatter plot and the RNA cluster labels on the RNA UMAP
+  How would you describe the agreement between the UMAP layout and clustering for SCT vs RNA Assay results?
+  
+
+```{r}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap", group.by = "RNA_snn_res.0.5") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap", group.by = "SCT_snn_res.0.5" ) + ggtitle("SCT UMAP")
+p1 + p2
+
+```
+
+
+Plot some known cell-type markers for PBMC datasets, does the SCT better separate the celltypes?
+
+CD14+ Monocyte : LYZ, CD14
+CD16 Monocytes : FCGR3A, MS4A7
+CD4 T :  CD4, IL76
+CD8 T : CD8A, CD3D
+NK : GNLY, GZMB,NKG7
+B Cell :  MS4A1 , CD79A
+DC : CST3, FCER1A
+Platelets : PPBP
+
+
+```{r, fig.width=10, fig.height=8}
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "sct.umap")
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "umap")
+```
+
+Calculate the markers for these clusters from either the RNA or SCT assay
+
+```{r}
+
+SetIdent(seurat_after_qc) <- "RNA_snn_res.0.5"
+seurat_markers_all <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "RNA",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+
+SetIdent(seurat_after_qc) <- "SCT_snn_res.0.5"
+seurat_markers_all_sct <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "SCT",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+```
+```{r}
+
+#SetIdent(seurat_after_qc)
+seurat_after_qc[[]] %>% colnames()
+
+
+
+```
+
+
+
+# Bonus exercise to try in your own time:: Pathway analysis on Cluster markers for all clusters
+
+
+- Choose either RNA workflow based generated or SCT generated based Seurat marker results
+
+- we will be using Gprofiler `gost()` function for multiple gene lists at the same time
+
+- First we need to  filter Seurat top significant (p_adj < 0.05)  upregulated genes with a LogFC threshold (decided by you) for each cluster, use `dplyr:: group_by()` and `dplyr::filter` to get gene list for each cluster, then only select cluster and gene
+
+- We then use ` split()` on the filtered_df to divide gene markers into list  of multiple character vectors containing genes split by cluster
+
+- can refer to the pathway analysis code from previous tutorial, but use human not mouse pathways
+
+First generate the list of markers for each cluster
+
+```{r}
+seurat_clusters_results_filtered <- seurat_markers_all_sct %>% 
+    dplyr::group_by(cluster) %>% 
+    filter(p_val_adj < 0.05) %>% 
+    filter(avg_log2FC > 0.585) %>%
+    dplyr::select(cluster,gene)
+
+seurat_clusters_list <- split(seurat_clusters_results_filtered, seurat_clusters_results_filtered$cluster)
+```
+
+
+We then run pathway analysis using `gost()` with multi_query = TRUE
+ 
+- To generate all_genes_id , we use all genes present in either the RNA assay or SCT assay, as we have already filtered out lowly expressed genes not present in certain cells.
+ 
+```{r}
+# Choose Default assay based on if running pathway analyses on RNA or SCT results
+DefaultAssay(seurat_after_qc) <- "SCT"
+# create a vector of  of all genes 
+all_genes_id <- rownames(seurat_after_qc)
+
+multi_gostquery_results_obj <- gost(query = seurat_clusters_list,
+                                    organism = "hsapiens", 
+                                    exclude_iea = TRUE, # change to True as have alot of results otherwise
+                                    correction_method = "g_SCS",  # this is their own multiple testing correction - actually more stringent than bonferroni or BH 
+                                    custom_bg = all_genes_id, # make sure this is all gene ids 
+                                    multi_query = TRUE)
+```
+
+
+Can you plot the results for different clusters together ?
+
+```{r}
+
+gostplot(multi_gostquery_results_obj, capped = TRUE, interactive = TRUE)
+```
+
+
+
+## Afternoon Session ##
+
+Demultiplexing with hashtag oligos (HTOs)
+
+Dataset : 12-HTO dataset from four human cell lines
+
+* Dataset represent Data represent single cells collected from four cell lines: HEK, K562, KG1 and THP1
+* Each cell line was further split into three samples (12 samples in total)
+* Each sample was labeled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single lane of 10X.
+* Based on this design, we should be able to detect doublets both across and within cell types
+
+
+Load in the UMI matrix for the RNA data and check the dimensions
+
+```{r}
+hto12.umis <- readRDS("data/hto12_umi_mtx.rds")
+
+dim(hto12.umis)
+
+
+```
+
+What do rows and columns represent?
+ > rows are genes and columns are barcodes.
+> NB this is a spare matrix, not a seurat object.
+
+Load in the HTO matrix and check the dimensions
+ - What is the structure of the hto12.htos object? (what is the rows and what is the columns?)
+ - Check the class of the HTO object
+ - How many cell barcodes and HTO samples do we have?
+
+```{r}
+hto12.htos <- readRDS("data/hto12_hto_mtx.rds")
+
+# what is the structure of the hto12.htos object? 
+# check the class of the hto object
+#how many cell barcodes and HTO samples do we have?
+
+dim(hto12.htos)
+```
+
+> this is a data.frame where rows are HTOs and columns are cell lines/replicates
+
+
+Now we only want to subset to those cell barcodes or cells (actually called as cells by cellRanger or EmptyDrops on the gene expression data) which are detected by both RNA and HTO matrices 
+
+Check the class of the joint.bcs object and how many cell barcodes do we have in common
+```{r}
+joint.bcs <- intersect(rownames(hto12.htos), colnames(hto12.umis))
+
+length(joint.bcs)
+```
+
+Subset the RNA matrix to only the `joint.bcs` cell barcodes and check the dimensions
+
+```{r}
+hto12.umis.common <- hto12.umis[ ,joint.bcs]
+
+# check the dims
+dim(hto12.umis.common)
+head(hto12.umis.common)
+```
+
+- Create  a Seurat object with the RNA (UMI count matrix) data using only the joint bcs
+
+ Name the object `hto12_object`
+ Include features detected in at least 3 cells, and cells where at least 200 features detected
+ Normalise with log normalsiation ,find variable genes and Scale RNA data
+
+```{r}
+hto12_object <- CreateSeuratObject(counts = hto12.umis.common,min.cells =3,  min.features = 200)
+hto12_object <- NormalizeData(hto12_object)
+hto12_object <- FindVariableFeatures(hto12_object, selection.method = "vst")
+hto12_object <- ScaleData(hto12_object, features = VariableFeatures(hto12_object))
+```
+
+Add HTO data as another assay to `hto12_object` 
+
+- First subset the HTO matrix to those cell barcodes which are now in the `hto12_object` Seurat object and make sure that the features only consist of the HTO tags
+- Is our subsetted `hto12.htos.common` in the right format? if not what do we do to get it in the right format before adding it as another assay?
+Answer : we transpose the matrix, such that, cell barcodes are columns, and HTO tags are features
+
+```{r}
+hto12.htos.common <- t(hto12.htos[colnames(hto12_object), 1:12])
+```
+
+
+Now use `CreateAssayObject()` to add the subsetted  HTO  matrix to the already created  `hto12_object` seurat object as a new assay called `HTO`
+- Do we want to do any further filtering on the HTO object?
+Answer : no as we only do filtering based on number of features and minimum cells a feature is expressed on the RNA gene matrix, the HTO matrix is just to demultiplex the filtered RNA matrix
+
+
+```{r}
+
+hto12_object[["HTO"]] <- CreateAssayObject(counts = hto12.htos.common)
+
+#check the dim of the seurat object
+ 
+```
+
+
+Normalise the HTO data , here we will use the CLR transformation with margin =1 (Default setting)
+CLR: Applies a centered log ratio transformation
+This is required because the HTO data is bimodal, i.e. the tag is either present or absent on the cell. This is quite different to the RNA counts.
+
+```{r}
+# check the Default Assay
+DefaultAssay(hto12_object) <- "HTO"
+
+hto12_object <- NormalizeData(hto12_object, assay = "HTO", normalization.method = "CLR" , margin=1)
+```
+
+Demultiplex cells based on HTO enrichment
+
+Here we use Seurat Function `HTODemux()` to assign single cells to their original samples
+
+
+```{r}
+hto12_object <- HTODemux(hto12_object, assay = "HTO", positive.quantile = 0.99)
+```
+
+Checkout the metadata column of the `hto12_object` , try to read the `HTODemux()` results output summary in the `Value` section to understand the results
+
+```{r}
+head(hto12_object[[]]) # or 
+
+names(hto12_object[[]])
+```
+
+Visualise the Demultiplexing results
+
+We can visualise how many cells are classified as singlets, doublets and negative/ambiguous cells
+
+Check the meta.data, which column do we want for this information?
+
+```{r}
+table(hto12_object$HTO_classification.global)
+
+# with positive.quuantile = 0.99
+#Doublet Negative  Singlet 
+#    1783      361     6389 
+```
+
+Visualize enrichment for selected HTOs with ridge plots
+
+plot the max HTO signal  for one of the HTO of each of the 4 cell lines (HEK, K562, KG1 and THP1) features with ridge plots using the `RidgePlot()` function
+
+Max HTO signal
+
+```{r, fig.height=8, fig.width=10}
+# Change the identities of the seurat object to the relevant metadata column (because at the moment they are set for "hash.ID")
+
+Idents(hto12_object) <- "HTO_maxID"
+RidgePlot(hto12_object, assay = "HTO", features = c("HEK-A","THP1-A","K562-A","KG1-A"), ncol = 2)
+```
+
+Visualize pairs of HTO signals to confirm mutual exclusivity in singlets  between the same celline
+
+a) plot scatter plot of 2 HTOs within the same cell line e.g. HEK, colour by (single/doublet/negative status) 
+
+b) plot scatter plot of 2 HTOs within the same cell line e.g. HEK, colour by HTO_maxID 
+
+c) plot scatter plot of 2 HTOs within the same cell line e.g. HEK, colour by HTO_secondID
+
+use the function `FeatureScatter()`
+
+```{r}
+DefaultAssay(hto12_object) <- "HTO"
+FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_classification.global", span=F, smooth=F, shuffle=T )
+
+FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_maxID", span=F, smooth=F, shuffle=T ) 
+
+FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_secondID", span=F, smooth=F, shuffle=T ) 
+ 
+```
+what do you notice ?
+
+1) we clearly see a cluster 7 cells which are doublets for HEK-A & HEK-B, so we have a few within celltype doublets
+2) there max id is HEK-A/HEKB 
+
+
+Bonus Exercise
+
+Plot scatter plot of 2 HTOs across different cell lines e.g. K562 vs KG1 and colour by (single/doublet/negative status) and HTO_max ID
+ 
+```{r}
+FeatureScatter(hto12_object,feature1 = "K562-A",feature2 = "KG1-B", group.by = "HTO_classification.global", span=F, smooth=F, shuffle=T )
+
+FeatureScatter(hto12_object,feature1 = "K562-A",feature2 = "KG1-B", group.by = "HTO_maxID", span=F, smooth=F, shuffle=T ) 
+
+FeatureScatter(hto12_object,feature1 = "K562-A",feature2 = "KG1-B", group.by = "HTO_secondID", span=F, smooth=F, shuffle=T ) 
+```
+ 
+ Compare number of RNA UMIs for singlets, doublets and negative cells
+ 
+ what is a suitable plot for such comparisons?
+ 
+ Answer: Violin plots are good way to compare the frequencies and distribuutiion of the number of singlets/doublets/negative cells
+ 
+
+```{r}
+Idents(hto12_object) <- "HTO_classification.global"
+VlnPlot(hto12_object, features = "nCount_RNA", pt.size = 0, log = TRUE)
+VlnPlot(hto12_object, features = "nCount_HTO", pt.size = 0, log = TRUE)
+
+VlnPlot(hto12_object, features = "nCount_RNA", pt.size = 0, log = TRUE, split.by = "HTO_maxID")
+
+```
+
+question: what do you notice?
+
+Answer: we don't see that Dooublets have lots RNA UMIs than singlets, but defientely negatvies are on the lower end. This is not uncommon according to seurat githuub issue: https://github.com/satijalab/seurat/issues/3271 . As long HTOHeatmap and FeatureScatter show mutuually exclusive relationships, then it means the hashing and demultiplexing worked.
+
+
+Visualize HTO signals in a heatmap , lookup `HTOHeatmap()`
+
+```{r, fig.width=8}
+HTOHeatmap(hto12_object, assay = "HTO")
+```
+
+what do you notice?
+> The HTOdemux procedure worked,we clearly identify exclusive singlets for each of the cell line replicates.
+
+
+Generate a two dimensional tSNE & umap embedding for HTOs. Here we are grouping cells by singlets and doublets for simplicity.
+
+Do we need to subset our object?
+
+If so what are we subsetting out?
+> cells called as "negative"
+
+```{r}
+Idents(hto12_object) <- "HTO_classification.global"
+hto12_object.subset <- subset(hto12_object, idents = "Negative", invert = TRUE)
+dim(hto12_object.subset)
+```
+
+
+Run UMAP/TSNE
+ 
+What are we running UMAP/tsne for ?
+
+look up the arguments in `RunUMAP()` and/or `RunTSNE()` functions
+
+check which arguments in RunUMAP/RunUMAP/RunTSNE can be used to change the name of the reduction from default name of pca/umap/tsne to custom name
+
+
+
+```{r}
+# Calculate a tSNE & UMAP embedding of the HTO data
+DefaultAssay(hto12_object.subset) <- "HTO"
+hto12_object.subset <- ScaleData(hto12_object.subset, features = rownames(hto12_object.subset),
+    verbose = FALSE) # we need to rescale because we are working on the subsetted object
+# we are performing PCA on the 12 dimensional HTO matrix which is why we need to select all the features not the variable features. So the features are the cell types per HTO
+hto12_object.subset <- RunPCA(hto12_object.subset, features = rownames(hto12_object.subset), approx = FALSE, reduction.name="hto_pca")
+# we need to include approx = FALSE because we can run a real PCA not an approximated one since we are only using a small number of features (12)
+hto12_object.subset <- RunTSNE(hto12_object.subset, dims = 1:12, perplexity = 100, reduction ="hto_pca", reduction.name = "hto_tsne")
+hto12_object.subset <- RunUMAP(hto12_object.subset,dims = 1:12, reduction.name= "hto_umap", reduction="hto_pca")
+
+```
+
+
+
+Plot the UMAP/tsne for the HTO assay
+
+• colour by if singlet/doublet
+
+• colour by HTO final classification results (hash.ID)
+
+* check the arguments on how label the clusters by the cluster identity
+
+* can change the label size?
+
+
+```{r}
+DimPlot(hto12_object.subset, reduction="hto_tsne")
+DimPlot(hto12_object.subset, reduction="hto_umap")
+
+DimPlot(hto12_object.subset, reduction="hto_tsne", group.by = "hash.ID", label=T, label.size = 2)
+DimPlot(hto12_object.subset, reduction="hto_umap", group.by ="hash.ID", label=T, label.size = 2)
+```
+what do you notice about the clustering on tthe UMAP/tsne, does the number of clusters mean anything?
+
+Answer: we have as many clusters as the number of HTO tags , especially as we removed the negative cells
+
+ 
+what do you notice about the cloud of cells surrounding each cluster?
+
+Answer: Each singlet cluster is surrounded by a cloud of doublets
+
+
+# Bonus exercise
+You can also visualize the more detailed classification result by group.by HTO_maxID before plotting. 
+
+```{r}
+DimPlot(hto12_object.subset, reduction="hto_tsne", group.by = "HTO_maxID", label=T, label.size = 2) 
+DimPlot(hto12_object.subset, reduction="hto_umap", group.by ="HTO_maxID", label=T, label.size = 2)
+```
+what happens if you group.by the UMAP/TSNE plot by HTO_maxID?
+
+> Answer: you don't notice if there is cloud of doublets.
+
+Cluster and visualize cells using the usual scRNA-seq workflow, and examine for the potential presence of batch effects.
+
+do we need to rerun `FindVariableFeatures()` and `ScaleData()` again?
+
+> Answer : yes we do, as we have subsetted out the negative cells we need to rerun these steps again
+
+What other steps  do we need run to get viuslise our RNA data as umap/t-SNE? coloured by doublets/singlets/ and celltypes
+
+> Answer: we need to run RunPCA & RunUMAP on the RNA assay
+
+
+```{r}
+DefaultAssay(hto12_object.subset) <- "RNA"
+# Run PCA on most variable features
+hto12_object.subset <- FindVariableFeatures(hto12_object.subset, selection.method = "vst")
+
+hto12_object.subset <- ScaleData(hto12_object.subset, features = VariableFeatures(hto12_object.subset))
+
+
+
+hto12_object.subset <- RunPCA(hto12_object.subset)
+hto12_object.subset <- RunUMAP(hto12_object.subset, dims = 1:8)
+hto12_object.subset <- RunTSNE(hto12_object.subset, dims = 1:8, perplexity = 100)
+```
+
+
+
+Plot RNA based UMAP
+
+group.by hash.ID 
+
+create a new seurat object  meta.data column called _cell_line , which removes "_A or _B or _C " in the hash.ID and replaces it with "", to create a new meta.data with only the cell-line info
+
+```{r}
+#we create another metadata column, where we gsub the HTO tag info (-A,-B,-C) for each cell line to plot only the cell line names to see if we have batch effect
+
+hto12_object.subset$cell_line <- gsub(pattern = "[-ABC]","" ,hto12_object.subset$hash.ID)
+```
+
+
+```{r}
+DimPlot(hto12_object.subset, group.by = "hash.ID")
+DimPlot(hto12_object.subset, group.by = "cell_line") 
+
+DimPlot(hto12_object.subset, group.by = "hash.ID", reduction = "tsne")
+DimPlot(hto12_object.subset, group.by = "cell_line", reduction = "tsne") 
+```
+
+what does our RNA based clustering on the UMAP/T-SNE show?
+
+Answer: 1) we  see four major clusters corresponding to the 4 cell lines
+        2) We see small clusters in between representing mixed  transcriptomes, which were correctly annotated as doublets across celltypes
+        3) We also see within- celltype doublets that are unsuprisingly intermixed with singlets and not distinguishable based on the RNA but are identified because of cell hashing.
+        
+
+
+## Bonus exercise (try in your own time)
+
+create a second seurat object based , using the code above, and rerun the `HTODemux()` with a different value of positive quantile.
+
+try to check if the classification changes massively if you adjusted the threshold for classification by playing around with the `positive.quantile` argument from the default.
+
+
