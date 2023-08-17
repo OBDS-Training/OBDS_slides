@@ -1,6 +1,6 @@
 ## Seurat workflow overview
 
-:::::::::::::: {.columns}
+:::: {.columns}
 ::: {.column width="50%"}
 
 - Seurat day 1
@@ -24,7 +24,7 @@ knitr::include_graphics("img/seurat_workflow.png")
 ```
 
 :::
-::::::::::::::
+::::
 
 ## Conceptual differences between methods 
 <!-- Old slide is about limitation of log normalisation (slide 5) -->
@@ -118,7 +118,7 @@ knitr::include_graphics("img/cell_hashing.png")
 
 ## Why should we use Cell hashing?
 
-:::::::::::::: {.columns}
+:::: {.columns}
 ::: {.column width="50%"}
 
 - Pros
@@ -137,7 +137,7 @@ knitr::include_graphics("img/cell_hashing.png")
   + Cell type recovery can suffer
   
 :::
-::::::::::::::
+::::
 
  
 ```{r}
@@ -204,7 +204,7 @@ knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
 
 ## De-multiplexing samples : HTODemux 
 
-:::::::::::::: {.columns}
+:::: {.columns}
 ::: {.column width="50%"}
 
 - Example using 8 multiplexed PBMC samples
@@ -227,7 +227,7 @@ knitr::include_graphics("img/HTODemux_example.png")
 `r Citet(bib, "stoeckius_cell_2018")`
 
 :::
-::::::::::::::
+::::
 
 ## De-multiplexing samples : HTODemux 
 
