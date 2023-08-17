@@ -41,7 +41,7 @@ BibOptions(
   bib.style = "authoryear",
   cite.style = "authoryear",
   max.names = 2,
-  no.print.fields = c("issn", "url", "abstract", "number", "urldate", "month", "pages", "file"),
+  no.print.fields = c("issn", "url", "abstract", "number", "urldate", "month", "pages", "file", "note"),
   style = "markdown",
   hyperlink = "to.doc",
   dashed = TRUE)
