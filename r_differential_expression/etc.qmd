@@ -1,0 +1,10 @@
+## DESeq2
+
+Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

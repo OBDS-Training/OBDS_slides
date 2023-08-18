@@ -1,0 +1,23 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe the steps of a simple differential expression workflow.
+- Understand the motivation for each step in a differential expression workflow.
+- Explain how to adjust the workflow according to the experimental design.
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Import and preprocess RNA-sequencing data.
+- Perform a simple differential expression workflow.
+- Visualise differential expression results.
