@@ -1,0 +1,34 @@
+## Lesson goals and objectives
+
+<!--
+This lesson is essentially the skeleton of the linux course.
+We will present the genomics workflow done usually on linux and the subsequent 
+days would be about learning and doing each step of the workflow while learning 
+skills needed for that (e.g. version control, working on cluster using conda 
+environments).
+So the main goal in this lesson is to give them a shallow but comprehensive 
+picture of the linux course. We can talk about this while presenting the 
+learning goals and objectives below, highlighting at which point they are and 
+then just present detail objectives or outline per talk.
+Take care not to make this part very long, overwhelming them on the 1st day!
+-->
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Understand the value of working with the Linux command line for genomics
+- Learn to work with the Linux command line
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Familiarise with the genomics workflow often done on the Linux command line
+- Use basic Linux commands and syntax

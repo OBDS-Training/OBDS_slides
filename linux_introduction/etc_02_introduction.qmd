@@ -1,0 +1,106 @@
+# Talk 2: Introduction to the Linux command line
+
+## Overview
+
+- Linux is a type of computer operating system (OS), like Windows or MacOS, that is part of the Unix family of OS
+- Linux is frequently used in high-performance computing and applications e.g. in Computational Biology
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Outline:
+  + Introduction to the Linux shell 
+  + Linux commands 
+  + Navigating the Linux file system
+  + Viewing and editing files
+  + File properties and permissions
+  + Copying, moving and renaming files and directories
+  + Hard and symbolic links
+  + Deleting files and directories
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/UNIX-Logo-500x281.jpg")
+```
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/linux-logo/
+knitr::include_graphics("img/Symbol-Linux.jpg")
+```
+:::
+
+::::
+
+## Linux shell
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Linux is an Operating System
+- Linux Shell is a Command line interface (CLI)
+  + command interpreter
+- Takes commands from the keyboard and gives them to the operating system to perform
+- Most widely used is BASH (Bourne Again Shell)
+- Terminal emulator – program that lets you interact with the shell
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
+knitr::include_graphics("img/linux_shell_bash.png")
+```
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
+knitr::include_graphics("img/linux_shell_emulator.png")
+```
+:::
+
+::::
+
+## Linux commands
+
+## Getting help with linux commands
+
+## Linux file system
+
+## Working with Paths
+
+## Working with Paths
+
+## Viewing text files on the command line
+
+## Bash shortcuts
+
+## Make a Remote Connection to a Linux Server
+
+## Exercise 1 – Navigating the file system
+
+## Changing how you view files using ls
+
+## File properties & permissions
+
+## File permissions - Owner
+
+## File permissions – Group & Other
+
+## Useful links
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

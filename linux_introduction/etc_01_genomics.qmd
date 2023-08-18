@@ -1,0 +1,205 @@
+# Talk 1: Genomics on the Linux command line
+
+## Overview
+
+## Linux is valuable for genomics workflows
+
+- Genomics data arrives as sequence ‘reads’
+- Need to process before analysis and interpretation
+- Processing tools are designed to work on the Linux command line because:
+  + Open-source operating system and software
+  + Access to large computational resources (High Performance Computing)
+
+## Understand using an example RNA-seq workflow
+
+- Goal: Identify **differentially expressed** genes between conditions
+- Most common workflow:
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 800px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 2)
+knitr::include_graphics("img/rnaseq_workflow.png")
+```
+
+- **So the Linux course will go as far as quantification!**
+
+## Key concepts
+<!-- 
+Have separate slide for each point to review/refresh 
+Making sure that each slide is very simple and only contains what is needed to 
+understand the workflow
+-->
+
+- (Non-) vs. stranded RNA-seq library
+- General sequencing considerations
+  + Single or paired end?
+  + Sequencing depth – how many reads?
+    - At least 30M read pairs per sample for PolyA+
+   + Read length?
+    - Standard 75bp read length fine for differential expression
+    - Longer reads better for alternative splicing
+- NGS technology (e.g. Illumina technology)
+
+## Generating a short sequence read (base calling)
+
+<!-- 
+Goal of this slide is for people to be able to imagine how a single sequence
+read is generated
+-->
+
+- Base calling in Illumina platform 
+
+## Per-base quality score of a read
+
+- Base quality score encoding (e.g. Illumina)
+- During base calling, each base is assigned a quality score
+- Based on per cluster intensity profiles and signal-to-noise ratios
+- Different formulas have been used to calculate the quality score
+- To align quality scores with called bases in FASTQ, they are encoded into a single character using ASCII 
+  + ASCII is a set of codes used to encode characters in computing
+  + Sanger format can encode a Phred quality score from 0 to 93 using ASCII 33 to 126
+
+## **File format (sequence)**: Raw sequencing data as **FASTQ**
+
+- FASTQ files can have millions of entries
+- Usually compressed using gzip to save disk space
+- File extensions .fastq, .fq (uncompressed) or .fastq.gz, .fq.gz (compressed)
+- For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastg.gz
+- For paired-end files reads should be in the same order 
+- Each entry consists of 4 lines:
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 1000px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 10)
+knitr::include_graphics("img/fastq.png")
+```
+
+## RNA-seq workflow and example tools
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 600px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line, slide 10)
+knitr::include_graphics("img/rnaseq_workflow_tools.png")
+```
+
+## Step 1: Read quality control 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- **FastQC** tool
+- Produces an HTML report per FASTQ containing graphical summaries of
+  + Base quality scores
+  + Sequence content analyses
+- Summarises results using a traffic light overview
+- **MultiQC** tool can be used to compile per-FASTQ reports `r Citep(bib, "ewels_multiqc_2016")` 
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 1000px
+## Source: [Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+knitr::include_graphics("img/fastqc.png")
+```
+[Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+:::
+
+::::
+
+## Step 2: Read mapping / alignment
+
+- Find the position(s) in the reference genome where each short read sequence aligns with the fewest mismatches
+- String matching problem
+- Must allow small differences (sequencing errors or polymorphisms)
+- Must be fast (millions of short reads)
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 1000px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 13)
+knitr::include_graphics("img/alignment.png")
+```
+
+## **File format (sequence)**: Reference genome as **FASTA**
+
+- Designed for storing multiple biological sequences
+- Compared with FASTQ: 
+  + Header lines always start with a ’>’ character (not ‘@’ as in FASTQ) 
+  + No quality score information
+- Sequence can span multiple lines
+- One entry per sequence (chromosome / contig for genome sequences)
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 1000px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 13)
+knitr::include_graphics("img/fasta.png")
+```
+
+## **File format (alignment**: **BAM / SAM**
+
+<!-- 
+Check if discussed in detail in other slides
+-->
+
+## Step 3: Read mapping quality control
+
+- What proportion of reads map? 
+- What proportion of reads map uniquely to the target genome?
+- Do reads map with expected insert size and orientation? 
+- Are reads mapping in the right places?
+  + Protein coding regions?
+  + Has rRNA depletion been successful?
+  + Are many reads lost to the mitochondrial genome?
+
+## Step 4: Quantification
+
+- Generate a table of read counts per feature 
+  + Rows = Features (Gene/Transcript/Exon) 
+  + Columns = Samples 
+- Input for differential gene expression with DESeq2 in R
+- featureCounts (Subread package)
+- Proceed with differential expression analysis
+
+## <Insert slide>
+
+Summarising what information can be extracted from bam/sam files 
+e.g. counts matrix from RNA-seq bam, bed file from ChIP-seq bam
+
+## <Insert slide>
+
+Summary figure with workflow, example tools, file formats
+
+Figure of workflow added with file formats
+
+## Useful links
+
+- [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
+- [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics)
+- [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools)
+- [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/)
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```
+
+# Bonus topics
+
+## **File format (annotation)**: **BED**
+
+## **File format (annotation)**: **GFF**
+
+## **File format (annotation)**: **GTF**
