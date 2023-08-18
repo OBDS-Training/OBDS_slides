@@ -1,0 +1,49 @@
+---
+title: "Solution: Differential expression analysis for RNA-seq data"
+author: "Kevin Rue-Albrecht"
+date: "18/08/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+# Exercise
+
+## Import and preprocess data 
+
+- Load the `tidyverse` package, and use it to import count data into a tibble called `featurecounts_table`.
+  Display a preview of the object using `glimpse()`.
+
+```{r}
+library(tidyverse)
+featurecounts_table <- read_tsv("data/allsamples_counts.tsv.gz", comment = "#")
+glimpse(featurecounts_table)
+```
+
+- Extract gene metadata into a tibble called `gene_info`.
+  Display a preview of the object using `glimpse()`.
+
+```{r}
+gene_info <- featurecounts_table %>%
+    column_to_rownames("Geneid") %>%
+    select(Chr, Start, End, Strand, Length)
+glimpse(gene_info)
+```
+- Extract the read counts per sample into a numeric matrix called `counts_table`.
+  Display the first few rows of the matrix using `head()`.
+
+```{r}
+counts_table <- featurecounts_table %>%
+    column_to_rownames("Geneid") %>%
+    select(-Chr, -Start, -End, -Strand, -Length) %>%
+    as.matrix()
+head(counts_table)
+```
+
+- Display the dimensions of the matrix.
+
+```{r}
+dim(counts_table)
+```
