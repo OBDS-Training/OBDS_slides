@@ -159,7 +159,7 @@ identical(
 
 - Load the package `DESeq2`
   and use the function `DESeqDataSetFromMatrix()`
-  to construct a `DESeqDataSet`
+  to construct a `DESeqDataSet` called `dds`
   using the count matrix `counts_table`
   and the tibble `sample_info`.
   Define an experimental design that includes only `cell_type` for now.
@@ -183,3 +183,56 @@ dds <- DESeqDataSetFromMatrix(
     design = ~ cell_type
 )
 ```
+
+- Display the `dds` object.
+
+```{r}
+dds
+```
+
+## Exercise
+
+### Explore a DESeqDataSet object
+
+- Use the function `class()` to demonstrate that the object `dds` is a `DESeqDataSet`.
+
+```{r}
+class(dds)
+```
+
+- Use the function `is()` to demonstrate that `dds` is also a `SummarizedExperiment`.
+
+```{r}
+is(dds, "SummarizedExperiment")
+```
+
+- Given that `dds` is a `SummarizedExperiment`, what do the following methods tell you about `dds`?
+  + `assayNames()`
+  + `assays()`
+  + `assay()`
+  + `colData()`
+  + `rowData()`
+  + `metadata()`
+
+```{r}
+assayNames(dds)
+assays(dds)
+head(assay(dds, "counts"))
+colData(dds)
+rowData(dds)
+metadata(dds)
+```
+
+- Furthermore, as a `DESeqDataSet`, what do the following methods tell you about `dds`?
+  + `counts()`
+  + `design()`
+  + `sizeFactors()`
+  + `dispersions()`
+
+```{r}
+head(counts(dds))
+design(dds)
+sizeFactors(dds)
+dispersions(dds)
+```
+
