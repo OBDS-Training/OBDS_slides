@@ -1,5 +1,5 @@
 ---
-title: 'Differential expression analysis in <i class="fab fa-r-project"></i>'
+title: 'RNA-seq differential expression analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
@@ -25,6 +25,8 @@ format:
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
+library(tidyverse)
+source("preprocess.R")
 ```
 
 ```{r}

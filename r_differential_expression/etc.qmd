@@ -1,3 +1,72 @@
+## Differential expression
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Inputs
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/counts_coldata.png")
+```
+
+#### At a minimum
+
+- Matrix of read counts
+- Sample metadata
+:::
+
+::: {.column width="50%"}
+### Outputs
+
+```{r}
+#| fig-align: center
+x <- plotMA(deseq2_res, returnData = TRUE)
+ggplot() +
+  geom_point(
+    aes(mean, lfc, colour = isDE),
+    x %>% filter(!is.na(lfc)),
+    size = 0.2) +
+  scale_x_log10() +
+  scale_colour_manual(values = c("FALSE" = "grey", "TRUE" = "blue")) +
+  labs(
+    x = "Mean of normalised counts",
+    y = "Log fold-change",
+    title = "MA plot"
+  ) +
+  theme_minimal() +
+  theme(
+    title = element_text(size = 20),
+    text = element_text(size = 14)
+  )
+```
+
+```{r}
+#| fig-align: center
+x <- as_tibble(deseq2_res)
+ggplot() +
+  geom_point(
+    aes(log2FoldChange, -log10(pvalue), colour = isDE),
+    x %>%
+      filter(!is.na(log2FoldChange) & !is.na(pvalue)) %>% 
+      mutate(isDE = padj < 0.05),
+    size = 0.2) +
+  scale_colour_manual(values = c("FALSE" = "grey", "TRUE" = "blue")) +
+  labs(
+    x = "Log fold-change",
+    y = "-log10(P)",
+    title = "Volcano plot"
+  ) +
+  theme_minimal() +
+  theme(
+    title = element_text(size = 20),
+    text = element_text(size = 14)
+  )
+```
+:::
+
+::::
+
 ## DESeq2
 
 Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
