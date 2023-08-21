@@ -11,7 +11,7 @@ library(tidyverse)
 
 # Exercise
 
-## Import and preprocess data 
+## Import gene data and metadata
 
 - Load the `tidyverse` package, and use it to import count data into a tibble called `featurecounts_table`.
   Display a preview of the object using `glimpse()`.
@@ -52,5 +52,14 @@ dim(counts_table)
 
 ```{r}
 storage.mode(counts_table)
+```
+
+# Exercise
+
+## Import sample metadata
+
+```{r}
+sample_info <- read_tsv("data/PRJEB18572_sample_info.tsv")
+sample_info
 ```
 
