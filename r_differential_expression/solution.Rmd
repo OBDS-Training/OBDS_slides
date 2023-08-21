@@ -111,3 +111,43 @@ sample_info$replicate <- factor(sample_info$replicate, c(1, 2, 3))
 sample_info
 ```
 
+## Exercise
+
+### Sanity check and preprocess data
+
+- Check whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
+
+```{r}
+colnames(counts_table) == sample_info$sample_id
+```
+
+- If not, display the two sets of sample names.
+  (Hint: you display them individually, or as two columns in a single tibble, for easier side-by-side comparison).
+
+```{r}
+tibble(
+    counts_table = colnames(counts_table),
+    sample_info = sample_info$sample_id
+)
+```
+
+**What makes the two sets of sample names different from each other?**
+
+- Remove `.bam` from the column names of the matrix to match the `sample_id` column of the sample metadata.
+
+```{r}
+colnames(counts_table) <- colnames(counts_table) %>%
+    str_replace(".bam","")
+```
+
+- Check (again) whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
+
+```{r}
+# get a vector of pairwise comparisons
+colnames(counts_table) == sample_info$sample_id
+# get a single overall answer whether the two whole vectors are identical
+identical(
+    colnames(counts_table),
+    sample_info$sample_id
+)
+```
