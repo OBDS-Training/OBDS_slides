@@ -1,3 +1,4 @@
+<!--
 ## Lesson goals and objectives
 
 <!--
@@ -13,22 +14,48 @@ then just present detail objectives or outline per talk.
 Take care not to make this part very long, overwhelming them on the 1st day!
 -->
 
-### Learning goals
+## Learning goals
 
 <!--
 High-level "big picture" objectives of the learning process.
 This should be no more than 3 bullet points.
 -->
 
-- Understand the value of working with the Linux command line for genomics
-- Learn to work with the Linux command line
+- Understand the use of Linux for genomics (Day 1)
+- Learn to work with the Linux command line (Day 1-3)
+- Process genomics data in Linux (Day 4-5)
 
-### Learning objectives
+## Learning objectives
 
 <!--
 More concrete and measurable outputs.
 This can range from 3 to 8 bullet points.
 -->
 
-- Familiarise with the genomics workflow often done on the Linux command line
-- Use basic Linux commands and syntax
+:::: {.columns}
+
+::: {.column width="47%"}
+- **Day 1**
+  + Familiarise with the genomics workflow often done on the Linux command line
+  + Use basic commands and work with files in Linux
+- Day 2
+  + Learn how to manage processes and system resources in Linux 
+  + Learn how to organise data
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="47%"}
+- Day 3
+  + Use git and GitHub for version control 
+  + Install and load bioinformatics software using Conda 
+- Day 4
+  + Perform RNA-seq workflow in Linux part 1
+  + Submit jobs to a High Performance Computing cluster using Slurm
+- Day 5
+  + Perform RNA-seq workflow in Linux part 2
+:::
+
+::::
+
