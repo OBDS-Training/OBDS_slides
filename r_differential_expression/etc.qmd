@@ -123,6 +123,10 @@ Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
 
 ::::
 
+- As a `SummarizedExperiment`, the `dds` object can also be indexed using `[`.
+  Extract the rows 1 to 5 and columns 1 to 4.
+  Display the result without assigning it to any object.
+
 ## References
 
 ```{r}
