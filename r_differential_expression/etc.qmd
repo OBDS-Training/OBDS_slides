@@ -127,6 +127,29 @@ Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
   Extract the rows 1 to 5 and columns 1 to 4.
   Display the result without assigning it to any object.
 
+## Exercise
+
+### Filter out lowly genes expressed
+
+- Use the functions `counts()` and `rowSums()`
+  to count the number of samples in which each gene is expressed
+  (i.e., strictly more than zero read counts).
+  Use that information to extract genes expressed in at least 4 samples
+  into a new object called `dds_filtered`.
+  Display the object `dds_filtered`.
+
+::: {style="text-align: center;"}
+**How many genes remain after filtering?**
+:::
+
+### Bonus point(s)
+
+Explore different cut-offs and filtering strategies, e.g.
+
+- Change the minimum read count cut-off from 0 to higher values.
+- Change the number of samples in which genes should be detected above the read count cut-off.
+- Keep only genes detected above the read count cut-off in all the samples of either cell type.
+
 ## References
 
 ```{r}
