@@ -57,6 +57,23 @@ Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
 - Remove `.bam` from the column names of the matrix to match the `sample_id` column of the sample metadata.
 - Check (again) whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
 
+## Exercise
+
+### Construct a DESeqDataSet object
+
+- Load the package `DESeq2`
+  and use the function `DESeqDataSetFromMatrix()`
+  to construct a `DESeqDataSet`
+  using the count matrix `counts_table`
+  and the tibble `sample_info`.
+  Define an experimental design that includes only `cell_type` for now.
+
+::: {style="text-align: center;"}
+**The function `DESeqDataSetFromMatrix()` is expected to printed the message "converting counts to integer mode". Why?**
+:::
+
+- Rewrite the code above, adding a line using the function `storage.mode()` to avoid the message.
+
 ## References
 
 ```{r}

@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(DESeq2)
 ```
 
 ## Exercise
@@ -149,5 +150,36 @@ colnames(counts_table) == sample_info$sample_id
 identical(
     colnames(counts_table),
     sample_info$sample_id
+)
+```
+
+## Exercise
+
+### Construct a DESeqDataSet object
+
+- Load the package `DESeq2`
+  and use the function `DESeqDataSetFromMatrix()`
+  to construct a `DESeqDataSet`
+  using the count matrix `counts_table`
+  and the tibble `sample_info`.
+  Define an experimental design that includes only `cell_type` for now.
+
+```{r}
+library(DESeq2)
+dds <- DESeqDataSetFromMatrix(
+    countData = counts_table,
+    colData = sample_info,
+    design = ~ cell_type
+)
+```
+
+- Rewrite the code above, adding a line using the function `storage.mode()` to avoid the message "converting counts to integer mode", printed by the function `DESeqDataSetFromMatrix()`.
+
+```{r}
+storage.mode(counts_table) <- "integer"
+dds <- DESeqDataSetFromMatrix(
+    countData = counts_table,
+    colData = sample_info,
+    design = ~ cell_type
 )
 ```
