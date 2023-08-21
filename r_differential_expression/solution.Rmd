@@ -47,3 +47,10 @@ head(counts_table)
 ```{r}
 dim(counts_table)
 ```
+
+- What does the function `storage.mode()` tell you about `counts_table`?
+
+```{r}
+storage.mode(counts_table)
+```
+
