@@ -45,6 +45,7 @@ BibOptions(
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
 NoCite(bib, "R")
+NoCite(bib, "deseq2_package")
 ```
 
 ```{r}

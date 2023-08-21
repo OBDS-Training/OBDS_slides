@@ -62,11 +62,32 @@ ggplot() +
 
 ::::
 
-## 
+## Goals of differential expression analysis
 
-## DESeq2
+::: {style="text-align: center;"}
+**Quantify differences between groups, taking into account variability within groups.**
+:::
 
-Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
+### Examples hypotheses
+
+- Which genes are significantly *up- or down-regulated* in group A relative to group B?
+- Which genes are significantly affected by the *interaction* of covariates A and B?
+- Which genes show significant variation over a *time course*?
+
+### Input data
+
+Most methods require raw count data.
+
+- Range of methods including
+  `r BiocStyle::Biocpkg("DESeq2")`,
+  `r BiocStyle::Biocpkg("edgeR")`,
+  and `r BiocStyle::Biocpkg("DEXSeq")`.
+- Suitable for various assays including RNA-seq, ChIP-seq, and ATAC-seq.
+- Read count associated with features of interest (e.g., gene, transcript, exon).
+
+### Outputs
+
+- A table of statistics, often accompanied by plots for quality control and further analyses.
 
 ## Exercise
 
