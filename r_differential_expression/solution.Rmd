@@ -390,9 +390,53 @@ dds_filtered_unique <- dds_filtered[, keep]
 dds_filtered_unique
 ```
 
-
 ## Exercise
 
 ### Perform differential expression analysis
 
-Not yet.
+- Display the design formula stored in the object `dds_filtered_unique`
+  and check it against the sample metadata stored in the same object
+  to confirm that it is still valid
+  with respect to the differential expression analysis that we wish to perform.
+
+```{r}
+design(dds_filtered_unique)
+```
+
+```{r}
+colData(dds_filtered_unique)
+```
+
+- Use the function `DESeq()` to perform the differential expression analysis
+  on the object `dds_filtered_unique`.
+  Re-assign the output to the same name.
+  Display the object.
+
+```{r}
+dds_filtered_unique <- DESeq(dds_filtered_unique)
+dds_filtered_unique
+```
+
+**What differences can you see with this object printed earlier in the notebook?**
+
+- Use the function `results()` to extract the differential expression results
+  from the object `dds_filtered_unique`.
+  Assign the result to an object called `dds_results`.
+
+```{r}
+dds_results <- results(dds_filtered_unique)
+dds_results
+```
+
+**How do you know that extracted the results for the desired contrast?**
+
+> Answer:
+> "Wald test p-value: cell type CD4 vs CD8"
+> Better yet, use the additional arguments of the function 'results()'
+> to explicitly fetch the desired contrast results.
+
+```{r}
+results(dds_filtered_unique, contrast = c("cell_type", "CD4", "CD8"))
+```
+
+- What does the function `summary()` tell you about the object `dds_results`?

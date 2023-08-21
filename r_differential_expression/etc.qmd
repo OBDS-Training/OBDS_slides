@@ -204,6 +204,33 @@ Using either of the objects `dds_rlog` or `dds_vst` produced earlier.
   Display the sample metadata of the new object
   (compare with objects prior to indexing).
 
+## Exercise
+
+### Perform differential expression analysis
+
+- Display the design formula stored in the object `dds_filtered_unique`
+  and check it against the sample metadata stored in the same object
+  to confirm that it is still valid
+  with respect to the differential expression analysis that we wish to perform.
+- Use the function `DESeq()` to perform the differential expression analysis
+  on the object `dds_filtered_unique`.
+  Re-assign the output to the same name.
+  Display the object.
+
+::: {style="text-align: center;"}
+**What differences can you see with this object printed earlier in the notebook?**
+:::
+
+- Use the function `results()` to extract the differential expression results
+  from the object `dds_filtered_unique`.
+  Assign the result to an object called `dds_results`.
+
+::: {style="text-align: center;"}
+**How do you know that extracted the results for the desired contrast?**
+:::
+
+- What does the function `summary()` tell you about the object `dds_results`?
+
 ## References
 
 ```{r}
