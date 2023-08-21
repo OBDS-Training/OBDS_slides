@@ -1,24 +1,19 @@
-## Differential expression
+## Differential expression {.smaller}
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-### Inputs
-
 ```{r}
 #| fig-align: center
 knitr::include_graphics("img/counts_coldata.png")
 ```
 
-#### At a minimum
-
-- Matrix of read counts
-- Sample metadata
+```{r}
+deseq2_res
+```
 :::
 
 ::: {.column width="50%"}
-### Outputs
-
 ```{r}
 #| fig-align: center
 x <- plotMA(deseq2_res, returnData = TRUE)
@@ -66,6 +61,8 @@ ggplot() +
 :::
 
 ::::
+
+## 
 
 ## DESeq2
 
