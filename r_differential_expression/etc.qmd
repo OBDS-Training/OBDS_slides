@@ -172,6 +172,38 @@ Explore different cut-offs and filtering strategies, e.g.
 **Can you spot differences between the rlog() and vst() outputs?**
 :::
 
+## Exercise
+
+### Exploratory analysis and quality control
+
+Using either of the objects `dds_rlog` or `dds_vst` produced earlier.
+
+- Use the function `plotPCA()`.
+  Set the argument `intgroup` to `"cell_type"`.
+
+::: {style="text-align: center;"}
+**How many samples do you count?**
+:::
+
+- Use the functions `assay()` and `cor()`
+  to compute a correlation matrix between samples using the "spearman" method.
+  Load the `pheatmap` package and use the function `pheatmap()`
+  to plot a heat map of correlations between samples.
+
+::: {style="text-align: center;"}
+**What can you tell from the scale of correlation values?**
+:::
+
+- Use the functions `assay()`, `t()` and `dist()`
+  to compute the Euclidean distance matrix between samples.
+  Use the function `pheatmap()`
+  to plot a heat map of distances between samples.
+- Confirm that the suspicious samples are duplicate of each other.
+- Index the `dds_filtered` object to extract the unique samples
+  into a new object called `dds_filtered_unique`.
+  Display the sample metadata of the new object
+  (compare with objects prior to indexing).
+
 ## References
 
 ```{r}

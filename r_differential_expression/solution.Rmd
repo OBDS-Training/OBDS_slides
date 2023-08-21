@@ -271,18 +271,6 @@ Explore different cut-offs and filtering strategies, e.g.
 - Keep only genes detected above the read count cut-off in all the samples of either cell type.
 
 ```{r}
-# apply to each row (MARGIN=1) of the dds counts matrix, an anonymous function that:
-# - uses 'tapply' to group counts by 'cell_type'
-# - for each cell type, asks the question whether all counts are greater than 0
-# - looks at the result of 'tapply' and asks the question whether the answer for any cell type is TRUE
-# The answer for each gene is recorded in the logical vector 'keep'
-# which can be used to index the DESeqDataSet object 'dds'
-keep <- apply(X = counts(dds), MARGIN = 1, FUN = function(x) {
-    any(tapply(counts(dds)[1, ], dds$cell_type, function(x) {
-        all(x > 0)
-    }))
-})
-# tidyverse alternative
 keep <- counts(dds) %>%
     as.data.frame() %>% 
     rownames_to_column("gene_id") %>% 
@@ -330,6 +318,78 @@ dds_vst
 
 > Answer:
 > Some rowData() names are different.
+
+## Exercise
+
+### Exploratory analysis and quality control
+
+Using either of the objects `dds_rlog` or `dds_vst` produced earlier.
+
+- Use the function `plotPCA()`.
+  Set the argument `intgroup` to `"cell_type"`.
+
+```{r}
+plotPCA(dds_rlog, intgroup='cell_type') +
+    coord_fixed(ratio = 5)
+```
+
+**How many samples do you count?**
+
+### Bonus point(s)
+
+- Use the functions `assay()` and `cor()`
+  to compute a correlation matrix between samples using the "spearman" method.
+  Load the `pheatmap` package and use the function `pheatmap()`
+  to plot a heat map of correlations between samples.
+
+```{r, message=FALSE}
+library(pheatmap)
+dds_cor <- cor(assay(dds_rlog), method="spearman")
+pheatmap(dds_cor)
+```
+
+**What can you tell from the scale of correlation values?**
+
+- Use the functions `assay()`, `t()` and `dist()`
+  to compute the Euclidean distance matrix between samples.
+  Use the function `pheatmap()`
+  to plot a heat map of distances between samples.
+
+```{r, message=FALSE}
+library(RColorBrewer)
+dds_dist <- dist(t(assay(dds_rlog)))
+blue_colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(as.matrix(dds_dist),
+    clustering_distance_rows = dds_dist,
+    clustering_distance_cols = dds_dist,
+    color = blue_colors
+)
+```
+
+- Confirm that the suspicious samples are duplicate of each other.
+
+```{r}
+identical(
+    counts(dds_filtered)[, "ERR1755082"],
+    counts(dds_filtered)[, "ERR1755088"]
+)
+identical(
+    counts(dds_filtered)[, "ERR1755083"],
+    counts(dds_filtered)[, "ERR1755089"]
+)
+```
+
+- Index the `dds_filtered` object to extract the unique samples
+  into a new object called `dds_filtered_unique`.
+  Display the sample metadata of the new object
+  (compare with objects prior to indexing).
+
+```{r}
+keep <- setdiff(colnames(dds_filtered), c("ERR1755088", "ERR1755089"))
+dds_filtered_unique <- dds_filtered[, keep]
+dds_filtered_unique
+```
+
 
 ## Exercise
 
