@@ -2,8 +2,10 @@
 
 ## Overview
 
+<!--
 - Linux is a type of computer operating system (OS), like Windows or MacOS, that is part of the Unix family of OS
 - Linux is frequently used in high-performance computing and applications e.g. in Computational Biology
+-->
 
 :::: {.columns}
 
@@ -38,31 +40,39 @@ knitr::include_graphics("img/Symbol-Linux.jpg")
 
 ::::
 
-## Linux shell
+## Linux shell - Terminology alert!
+
+<!-- 
+Nice explanation in https://www.freecodecamp.org/news/command-line-for-beginners/
+-->
+
+- Linux is an Operating System (OS), like MS Windows and macOS, but open source and **FREE**! 
+- All OS have a  **shell** i.e. a command-line interpreter
+  + It processes the commands, giving them to the OS and outputs the results
+- There are different shells differing in syntax and characteristics
+- Most widely used shell for Linux is **BASH** (Bourne Again Shell)
+- The **terminal** or **command-line interface**, where user inputs commands, is used to interact with the shell
+  + The command-line prompt (input field) is indicated by a certain character depending on OS ($ for Linux)
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-- Linux is an Operating System
-- Linux Shell is a Command line interface (CLI)
-  + command interpreter
-- Takes commands from the keyboard and gives them to the operating system to perform
-- Most widely used is BASH (Bourne Again Shell)
-- Terminal emulator – program that lets you interact with the shell
-:::
 
-::: {.column width="50%"}
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 200px
+#| out-width: 400px
 ## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
 knitr::include_graphics("img/linux_shell_bash.png")
 ```
+:::
+
+::: {.column width="50%"}
+
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 200px
+#| out-width: 400px
 ## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
 knitr::include_graphics("img/linux_shell_emulator.png")
 ```
@@ -72,7 +82,45 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Linux commands
 
+- Types
+  + **Shell builtin** - Built into the shell itself
+  + **Executable program** - Any external software in the system path (where OS looks for executables)
+  + **Alias** - User-defined command built using other commands
+  
+```
+$ type <command name>             # ‘type’ shows type of command
+
+$ type cd                    
+cd is a shell builtin
+
+$ type less
+less is /usr/bin/less
+
+$ which <command name>            # ‘which’ returns the path of the file to be executed
+$ which less
+/usr/bin/less
+```
+## Linux command options
+
+- Commands have options that modify their functions
+- Main parts of a command
+  + \<command> -\<options> \<argument>
+
+```
+$ which less
+less is /usr/bin/less
+
+$ which -a less                  # '-a' to print all matching paths of each argument
+/usr/bin/less
+/bin/less
+```
+
 ## Getting help with linux commands
+
+- Different ways
+  + ‘man’ command displays manual pages
+  + <command name> --help
+  + Google search!
 
 ## Linux file system
 

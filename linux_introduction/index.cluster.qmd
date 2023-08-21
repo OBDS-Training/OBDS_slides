@@ -59,7 +59,7 @@ NoCite(bib, "R")
 
 ## Set up
 
-```{r}
+```{r, eval=FALSE}
 #| child: etc_01_genomics.qmd
 ```
 

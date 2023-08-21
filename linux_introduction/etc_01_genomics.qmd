@@ -2,20 +2,20 @@
 
 ## Overview
 
-## Linux is valuable for genomics workflows
+## Processing genomics data in Linux
 
 - Genomics data arrives as sequence ‘reads’
-- Need to process before analysis and interpretation
+- Need to process these reads before analysis and interpretation
 - Processing tools are designed to work on the Linux command line because:
   + Open-source operating system and software
-  + Access to large computational resources (High Performance Computing)
+  + Access to large computational resources fir High Performance Computing 
 
 ## Understand using an example RNA-seq workflow
 
 - Goal: Identify **differentially expressed** genes between conditions
 - Most common workflow:
 
-```{r}
+```{r, rnaseq_workflow}
 #| fig-align: center
 #| out-height: 350px
 #| out-width: 800px
@@ -23,43 +23,41 @@
 knitr::include_graphics("img/rnaseq_workflow.png")
 ```
 
-- **So the Linux course will go as far as quantification!**
+- **So in this week-long Linux course, we will go as far as quantification!**
 
-## Key concepts
-<!-- 
-Have separate slide for each point to review/refresh 
-Making sure that each slide is very simple and only contains what is needed to 
-understand the workflow
--->
+## Generating a short sequence read 
 
-- (Non-) vs. stranded RNA-seq library
-- General sequencing considerations
-  + Single or paired end?
-  + Sequencing depth – how many reads?
-    - At least 30M read pairs per sample for PolyA+
-   + Read length?
-    - Standard 75bp read length fine for differential expression
-    - Longer reads better for alternative splicing
-- NGS technology (e.g. Illumina technology)
+Illumina platform
 
-## Generating a short sequence read (base calling)
+:::: {.columns}
 
-<!-- 
-Goal of this slide is for people to be able to imagine how a single sequence
-read is generated
--->
+::: {.column width="50%"}
+- Generate cluster
 
-- Base calling in Illumina platform 
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 450px
+## Source: https://en.wikipedia.org/wiki/Illumina_dye_sequencing#/media/File:Cluster_Generation.png
+knitr::include_graphics("img/wiki_Cluster_Generation.png")
+```
+:::
 
-## Per-base quality score of a read
+::: {.column width="50%"}
+- Sequence
 
-- Base quality score encoding (e.g. Illumina)
-- During base calling, each base is assigned a quality score
-- Based on per cluster intensity profiles and signal-to-noise ratios
-- Different formulas have been used to calculate the quality score
-- To align quality scores with called bases in FASTQ, they are encoded into a single character using ASCII 
-  + ASCII is a set of codes used to encode characters in computing
-  + Sanger format can encode a Phred quality score from 0 to 93 using ASCII 33 to 126
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 400px
+## Source: 
+knitr::include_graphics("img/illumina_sequencing.png")
+```
+:::
+
+::::
+
+[An introduction to Next-Generation Sequencing Technology](https://www.illumina.com/content/dam/illumina-marketing/documents/products/illumina_sequencing_introduction.pdf)
 
 ## **File format (sequence)**: Raw sequencing data as **FASTQ**
 
@@ -78,6 +76,40 @@ read is generated
 knitr::include_graphics("img/fastq.png")
 ```
 
+## Per-base quality score of a read
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Base quality is based on base error probability (**e**)
+- Storing **e** (per base) can take up a lot of space, so 
+  + **e** -> Phred quality score (**Q**) -> ASCII code (by adding 33) -> single ASCII character
+  + **Q** = -10 log~10~ (**e**)
+  + Using ASCII code-character aligns quality scores with called bases in FASTQ
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 400px
+## Source: https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf
+knitr::include_graphics("img/quality_score_accuracy.png")
+```
+
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 800px
+## Source: https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf
+knitr::include_graphics("img/quality_score_table.png")
+```
+
+:::
+
+::::
+
 ## RNA-seq workflow and example tools
 
 ```{r}
@@ -90,29 +122,23 @@ knitr::include_graphics("img/rnaseq_workflow_tools.png")
 
 ## Step 1: Read quality control 
 
-:::: {.columns}
-
-::: {.column width="50%"}
 - **FastQC** tool
 - Produces an HTML report per FASTQ containing graphical summaries of
   + Base quality scores
   + Sequence content analyses
 - Summarises results using a traffic light overview
-- **MultiQC** tool can be used to compile per-FASTQ reports `r Citep(bib, "ewels_multiqc_2016")` 
-:::
+<!-- 
+**MultiQC** tool can be used to compile per-FASTQ reports `r Citep(bib, "#ewels_multiqc_2016")`  
+-->
 
-::: {.column width="50%"}
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 1000px
+#| out-height: 300px
+#| out-width: 500px
 ## Source: [Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 knitr::include_graphics("img/fastqc.png")
 ```
 [Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-:::
-
-::::
 
 ## Step 2: Read mapping / alignment
 
@@ -123,11 +149,85 @@ knitr::include_graphics("img/fastqc.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 1000px
+#| out-height: 300px
+#| out-width: 800px
 ## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 13)
 knitr::include_graphics("img/alignment.png")
 ```
+
+- Output: BAM / SAM
+
+## **File format (alignment)**: **SAM / BAM / CRAM**
+
+All contain sequence alignment (read mapping) information
+
+:::: {.columns}
+
+::: {.column width="33%"}
+- **SAM**
+
+  + **S**equence **A**lignment **M**ap
+  + Text file
+:::
+
+::: {.column width="33%"}
+- **BAM**
+
+  + **B**inary **A**lignment **M**ap
+  + Binary representation of SAM
+:::
+
+::: {.column width="33%"}
+- **CRAM**
+
+  + **C**ompressed **R**eference-oriented **A**lignment **M**ap
+  + "More highly compressed alternative to the BAM and SAM" designed by EBI
+:::
+
+::::
+
+## Step 3: Read mapping quality control
+
+- What proportion of reads map? 
+- What proportion of reads map uniquely to the target genome?
+- Do reads map with expected insert size and orientation? 
+- Are reads mapping in the right places?
+  + Protein coding regions?
+  + Has rRNA depletion been successful?
+  + Are many reads lost to the mitochondrial genome?
+
+## Step 4: Quantification
+
+- Generate a table of read counts per feature 
+  + Rows = Features (Gene/Transcript/Exon) 
+  + Columns = Samples 
+- Proceed with differential expression analysis (e.g. input to DESeq2 in R)
+
+## RNA-seq processing workflow in Linux
+
+Course outline: 
+
+```{r, rnaseq_workflow}
+```
+
+- Mapped reads -> Peak calling in ATAC-seq, ChIP-seq, and DNase-seq 
+
+## Useful links
+
+- [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/)
+- [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics)
+- [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools)
+- [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
+- [Illumina course on imaging and base calling (Video)](https://support.illumina.com/content/dam/illumina-support/courses/MiSeq_Imaging_and_Base_Calling/story_html5.html)
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```
+
+# Bonus topics
 
 ## **File format (sequence)**: Reference genome as **FASTA**
 
@@ -146,60 +246,25 @@ knitr::include_graphics("img/alignment.png")
 knitr::include_graphics("img/fasta.png")
 ```
 
-## **File format (alignment**: **BAM / SAM**
-
-<!-- 
-Check if discussed in detail in other slides
--->
-
-## Step 3: Read mapping quality control
-
-- What proportion of reads map? 
-- What proportion of reads map uniquely to the target genome?
-- Do reads map with expected insert size and orientation? 
-- Are reads mapping in the right places?
-  + Protein coding regions?
-  + Has rRNA depletion been successful?
-  + Are many reads lost to the mitochondrial genome?
-
-## Step 4: Quantification
-
-- Generate a table of read counts per feature 
-  + Rows = Features (Gene/Transcript/Exon) 
-  + Columns = Samples 
-- Input for differential gene expression with DESeq2 in R
-- featureCounts (Subread package)
-- Proceed with differential expression analysis
-
-## <Insert slide>
-
-Summarising what information can be extracted from bam/sam files 
-e.g. counts matrix from RNA-seq bam, bed file from ChIP-seq bam
-
-## <Insert slide>
-
-Summary figure with workflow, example tools, file formats
-
-Figure of workflow added with file formats
-
-## Useful links
-
-- [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
-- [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics)
-- [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools)
-- [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/)
-
-## References
-
-```{r}
-#| results: asis
-PrintBibliography(bib)
-```
-
-# Bonus topics
-
 ## **File format (annotation)**: **BED**
 
 ## **File format (annotation)**: **GFF**
 
 ## **File format (annotation)**: **GTF**
+
+## Key concepts
+<!-- 
+Have separate slide for each point to review/refresh 
+Making sure that each slide is very simple and only contains what is needed to 
+understand the workflow
+-->
+
+- (Non-) vs. stranded RNA-seq library
+- General sequencing considerations
+  + Single or paired end?
+  + Sequencing depth – how many reads?
+    - At least 30M read pairs per sample for PolyA+
+   + Read length?
+    - Standard 75bp read length fine for differential expression
+    - Longer reads better for alternative splicing
+- NGS technology (e.g. Illumina technology)
