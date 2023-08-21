@@ -278,7 +278,9 @@ Explore different cut-offs and filtering strategies, e.g.
 # The answer for each gene is recorded in the logical vector 'keep'
 # which can be used to index the DESeqDataSet object 'dds'
 keep <- apply(X = counts(dds), MARGIN = 1, FUN = function(x) {
-    any(tapply(counts(dds)[1, ], dds$cell_type, function(x) { all(x > 0) }))
+    any(tapply(counts(dds)[1, ], dds$cell_type, function(x) {
+        all(x > 0)
+    }))
 })
 # tidyverse alternative
 keep <- counts(dds) %>%
@@ -296,3 +298,41 @@ keep <- counts(dds) %>%
     pull(gene_id)
 dds[keep, ]
 ```
+
+## Exercise
+
+### Preprocessing for exploratory analysis and quality control
+
+- Use the function `rlog()` to transform the counts data using the 'regularised log' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_rlog`.
+  Display the object `dds_rlog`.
+  What is the class of the object?
+
+```{r}
+dds_rlog <- rlog(dds_filtered, blind=TRUE)
+dds_rlog
+```
+### Bonus point(s)
+
+- Use the function `vst()` to transform the counts data using the 'variance stabilizing' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_vst`.
+  Display the object `dds_vst`.
+  What is the class of the object?
+
+```{r}
+dds_vst <- vst(dds_filtered, blind=TRUE)
+dds_vst
+```
+
+**Can you spot differences between the rlog() and vst() outputs?**
+
+> Answer:
+> Some rowData() names are different.
+
+## Exercise
+
+### Perform differential expression analysis
+
+Not yet.

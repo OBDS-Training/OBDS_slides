@@ -150,6 +150,28 @@ Explore different cut-offs and filtering strategies, e.g.
 - Change the number of samples in which genes should be detected above the read count cut-off.
 - Keep only genes detected above the read count cut-off in all the samples of either cell type.
 
+## Exercise
+
+### Preprocessing for exploratory analysis and quality control
+
+- Use the function `rlog()` to transform the counts data using the 'regularised log' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_rlog`.
+  Display the object `dds_rlog`.
+  What is the class of the object?
+
+### Bonus point(s)
+
+- Use the function `vst()` to transform the counts data using the 'variance stabilizing' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_vst`.
+  Display the object `dds_vst`.
+  What is the class of the object?
+
+::: {style="text-align: center;"}
+**Can you spot differences between the rlog() and vst() outputs?**
+:::
+
 ## References
 
 ```{r}
