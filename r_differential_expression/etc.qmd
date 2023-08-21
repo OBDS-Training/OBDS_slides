@@ -2,6 +2,54 @@
 
 Citation of DESeq2 `r Citep(bib, "deseq2_package")`.
 
+## Exercise
+
+### Import gene data and metadata
+
+- Load the `tidyverse` package,
+  and use the function `read_tsv()`
+  to import count data from the file `allsamples_counts.tsv.gz`
+  into a tibble called `featurecounts_table`.
+  Display a preview of `featurecounts_table` using `glimpse()`.
+
+- Extract gene metadata from the tibble `featurecounts_table` into a new tibble called `gene_info`.
+  Display a preview of `gene_info` using `glimpse()`.
+
+- Similarly, extract the read counts per sample from `featurecounts_table`
+  into a numeric matrix called `counts_table`.
+  Display the first few rows of `counts_table` using `head()`.
+
+- Display the dimensions of the matrix `counts_table`.
+
+- What does the function `storage.mode()` tell you about `counts_table`?
+
+## Exercise
+
+### Import sample metadata
+
+- Import sample metadata from the file `PRJEB18572_sample_info.tsv`
+  into a tibble called `sample_info`
+  using the tidyverse function `read_tsv()`.
+  Display the object `sample_info`.
+
+- What is the class of the column called `cell_type`?
+
+- Convert the column `cell_type` to a factor.
+
+- What is the default order of the levels of that factor?
+
+- One more time, convert the column `cell_type` to a factor,
+  this time setting the levels of that factor to be `CD8` first, then `CD4`.
+  Demonstrate that it worked.
+
+::: {style="text-align: center;"}
+**How does the order of the levels impact the differential expression analysis?**
+:::
+
+- What other columns might we want to include in the experimental design of our differential expression analysis?
+  Convert those to factors too.
+  Display the full tibble `sample_info` again.
+
 ## References
 
 ```{r}

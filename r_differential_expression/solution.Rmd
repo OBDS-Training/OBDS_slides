@@ -9,15 +9,15 @@ output: html_document
 library(tidyverse)
 ```
 
-# Exercise
+## Exercise
 
-## Import gene data and metadata
+### Import gene data and metadata
 
 - Load the `tidyverse` package,
   and use the function `read_tsv()`
   to import count data from the file `allsamples_counts.tsv.gz`
   into a tibble called `featurecounts_table`.
-  Display a preview of the object using `glimpse()`.
+  Display a preview of `featurecounts_table` using `glimpse()`.
 
 ```{r}
 library(tidyverse)
@@ -25,8 +25,8 @@ featurecounts_table <- read_tsv("data/allsamples_counts.tsv.gz", comment = "#")
 glimpse(featurecounts_table)
 ```
 
-- Extract gene metadata into a tibble called `gene_info`.
-  Display a preview of the object using `glimpse()`.
+- Extract gene metadata from the tibble `featurecounts_table` into a new tibble called `gene_info`.
+  Display a preview of `gene_info` using `glimpse()`.
 
 ```{r}
 gene_info <- featurecounts_table %>%
@@ -34,8 +34,9 @@ gene_info <- featurecounts_table %>%
     select(Chr, Start, End, Strand, Length)
 glimpse(gene_info)
 ```
-- Extract the read counts per sample into a numeric matrix called `counts_table`.
-  Display the first few rows of the matrix using `head()`.
+- Similarly, extract the read counts per sample from `featurecounts_table`
+  into a numeric matrix called `counts_table`.
+  Display the first few rows of `counts_table` using `head()`.
 
 ```{r}
 counts_table <- featurecounts_table %>%
@@ -45,7 +46,7 @@ counts_table <- featurecounts_table %>%
 head(counts_table)
 ```
 
-- Display the dimensions of the matrix.
+- Display the dimensions of the matrix `counts_table`.
 
 ```{r}
 dim(counts_table)
@@ -57,13 +58,13 @@ dim(counts_table)
 storage.mode(counts_table)
 ```
 
-# Exercise
+## Exercise
 
-## Import sample metadata
+### Import sample metadata
 
 - Import sample metadata from the file `PRJEB18572_sample_info.tsv`
   into a tibble called `sample_info`
-  using the Tidyverse function `read_tsv()`.
+  using the tidyverse function `read_tsv()`.
   Display the object `sample_info`.
 
 ```{r}
@@ -101,7 +102,7 @@ levels(sample_info$cell_type)
 **How does the order of the levels impact the differential expression analysis?**
 
 - What other columns might we want to include in the experimental design of our differential expression analysis?
-  Convert those to factor too.
+  Convert those to factors too.
   Display the full tibble `sample_info` again.
 
 ```{r}
