@@ -70,8 +70,8 @@ ggplot() +
 
 ### Examples hypotheses
 
-- Which genes are significantly *up- or down-regulated* in group A relative to group B?
-- Which genes are significantly affected by the *interaction* of covariates A and B?
+- Which genes are significantly *up- or down-regulated* in *condition* A relative to condition B?
+- Which genes are significantly affected by the *interaction* of *covariates* A and B, taking into account the *independent* effect of those covariates?
 - Which genes show significant variation over a *time course*?
 
 ### Input data
@@ -88,6 +88,13 @@ Most methods require raw count data.
 ### Outputs
 
 - A table of statistics, often accompanied by plots for quality control and further analyses.
+
+## Differential expression within an RNA-seq workflow
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/overview-rnaseq-workflow.png")
+```
 
 ## Exercise
 
