@@ -97,21 +97,21 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 
 ## Packages for differential expression analysis
 
-### Genes and transcripts
+### RNA-seq data
 
-#### Count data
+#### Gene / transcripts
 
 - `r BiocStyle::Biocpkg("DESeq2")` `r Citep(bib, "deseq2_package")`.
 - `r BiocStyle::Biocpkg("edgeR")` `r Citep(bib, "edger_package")`.
 
-#### Salmon / Kallisto
-
-- `r BiocStyle::Githubpkg("pachterlab/sleuth")` `r Citep(bib, "sleuth_package")`.
-
-### Exons
+#### Exons
 
 - `r BiocStyle::Biocpkg("DEXSeq")` `r Citep(bib, "dexseq_package")`.
   Note: uses `r BiocStyle::Biocpkg("DESeq2")` internally
+
+#### Salmon / Kallisto
+
+- `r BiocStyle::Githubpkg("pachterlab/sleuth")` `r Citep(bib, "sleuth_package")`.
 
 ### ChIP-seq data
 
