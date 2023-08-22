@@ -79,9 +79,8 @@ ggplot() +
 Most methods require raw count data.
 
 - Range of methods including
-  `r BiocStyle::Biocpkg("DESeq2")`,
-  `r BiocStyle::Biocpkg("edgeR")`,
-  and `r BiocStyle::Biocpkg("DEXSeq")`.
+  `r BiocStyle::Biocpkg("DESeq2")`
+  and `r BiocStyle::Biocpkg("edgeR")`.
 - Suitable for various assays including RNA-seq, ChIP-seq, and ATAC-seq.
 - Read count associated with features of interest (e.g., gene, transcript, exon).
 
@@ -95,6 +94,30 @@ Most methods require raw count data.
 #| fig-align: center
 knitr::include_graphics("img/overview-rnaseq-workflow.png")
 ```
+
+## Packages for differential expression analysis
+
+### Genes and transcripts
+
+#### Count data
+
+- `r BiocStyle::Biocpkg("DESeq2")` `r Citep(bib, "deseq2_package")`
+- `r BiocStyle::Biocpkg("edgeR")` `r Citep(bib, "edger_package")`
+
+#### Salmon / Kallisto
+
+- `r BiocStyle::Githubpkg("pachterlab/sleuth")` `r Citep(bib, "sleuth_package")`
+
+### Exons
+
+- `r BiocStyle::Biocpkg("DEXSeq")` `r Citep(bib, "dexseq_package")`.
+  Note: uses DESeq2 internally
+
+### ChIP-seq data
+
+- `r BiocStyle::Biocpkg("DiffBind")` `r Citep(bib, "diffbind_package")`
+  Note: uses either edgeR or DESeq2 internally.
+
 
 ## Exercise
 
