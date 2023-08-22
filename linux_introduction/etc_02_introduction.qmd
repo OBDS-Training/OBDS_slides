@@ -43,16 +43,17 @@ knitr::include_graphics("img/Symbol-Linux.jpg")
 ## Linux shell - Terminology alert!
 
 <!-- 
-Nice explanation in https://www.freecodecamp.org/news/command-line-for-beginners/
+Nice explanation in https://www.freecodecamp.org/news/command-line-for-beginners/ and
+https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolinuxandshells
 -->
 
-- Linux is an Operating System (OS), like MS Windows and macOS, but open source and **FREE**! 
+- Linux is an Operating System (OS), like MS Windows and macOS, but open source (source code is freely available!) 
 - All OS have a  **shell** i.e. a command-line interpreter
   + It processes the commands, giving them to the OS and outputs the results
 - There are different shells differing in syntax and characteristics
 - Most widely used shell for Linux is **BASH** (Bourne Again Shell)
 - The **terminal** or **command-line interface**, where user inputs commands, is used to interact with the shell
-  + The command-line prompt (input field) is indicated by a certain character depending on OS ($ for Linux)
+  + The command-line prompt (input field) is indicated by a certain character depending on the OS ($ for Linux)
 
 :::: {.columns}
 
@@ -82,69 +83,461 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Linux commands
 
+- Basic part/s
+  + \<command> 
+  + \<command> \<argument> 
 - Types
   + **Shell builtin** - Built into the shell itself
   + **Executable program** - Any external software in the system path (where OS looks for executables)
   + **Alias** - User-defined command built using other commands
   
 ```
-$ type <command name>             # ‘type’ shows type of command
-
-$ type cd                    
+$ type cd                        # ‘type’ shows the type of command
 cd is a shell builtin
 
-$ type less
-less is /usr/bin/less
-
-$ which <command name>            # ‘which’ returns the path of the file to be executed
-$ which less
-/usr/bin/less
+$ type head
+head is /usr/bin/head
+      
+$ which head                     # ‘which’ returns the path of the file to be executed
+/usr/bin/head
 ```
 ## Linux command options
 
 - Commands have options that modify their functions
-- Main parts of a command
   + \<command> -\<options> \<argument>
+  + Short options start with '-', long options start with '\-\-' (TBD)
 
 ```
-$ which less
-less is /usr/bin/less
+$ which head
+/usr/bin/head
 
-$ which -a less                  # '-a' to print all matching paths of each argument
-/usr/bin/less
-/bin/less
+$ which -a head                  # '-a' to print all matching paths of each argument
+/usr/bin/head
+/bin/head
 ```
 
 ## Getting help with linux commands
 
 - Different ways
-  + ‘man’ command displays manual pages
-  + <command name> --help
+  + `man` shows manual pages of the command
+  + Press q to exit
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 800px
+## Source: screenshot from jade
+knitr::include_graphics("img/man_head.png")
+```
+
+## Getting help with linux commands
+
+- Different ways
+   + `--help`
+   + Different format with `man`
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 600px
+## Source: screenshot from jade
+knitr::include_graphics("img/help_head.png")
+```
+
+## Getting help with linux commands
+
+- Different ways
   + Google search!
+  + Use in combination with command-line ways to make sure that information is accurate or up to date
 
-## Linux file system
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: Google search! :>
+knitr::include_graphics("img/google_head.png")
+```
+
+## Linux file system tree
+
+- In Linux, everything is a file organised in a tree structure
+- A directory is just a file containing names of other files
+- All directories branch off from the **root** directory
+- **home** is your personal (user) directory
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
+knitr::include_graphics("img/linux_file_tree.png")
+```
+
+## Commands to navigate the file structure
+
+- Basic commands
+
+```
+$ type cd                        # ‘type’ shows the type of command
+$ pwd                            # Print working directory
+/home/<user>                      
+
+$ ls                 
+Desktop  Documents  Downloads...
+
+$ cd Desktop                     # Change directory
+
+$ pwd
+/home/<user>/Desktop
+```
+
+**DEMO**
+
+## Working with Paths (Location)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Absolute paths
+  + Absolute paths always starts with the root directory
+  + Given by `realpath`
+  
+    ```
+    $ realpath foo
+    /home/mthomas/class_stuff/foo
+    ```
+:::
+
+::: {.column width="50%"}
+
+- Relative paths 
+  + Relative paths are relative to the current working directory
+
+    ```
+    $ pwd 
+    /home/mthomas/class_stuff/foo
+    
+    $ cd ../bar                      # Go to bar
+    $ cd ../../bin                   # Go to bin
+    ```
+:::
+
+::::
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Path shortcuts
+  + .  current directory 
+  + .. parent directory
+  + ~  home directory
+  + /  root directory
+  
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/sample_working_tree.png")
+```
+
+:::
+
+::::
 
 ## Working with Paths
 
-## Working with Paths
+- Advice
+  + Prompt tells you your current working directory
+  + Always use tab autocompletion (type first few characters and press tab)
 
 ## Viewing text files on the command line
 
-## Bash shortcuts
+```
+$ cd ../bar                      
+$ cat <filename>                 # Print the file contents to the terminal
+$ head -n 20 <filename>          # Print the first n lines to the terminal (default=10)
+$ tail -n 20 <filename>          # Print the last n lines to the terminal (default=10)
+$ more <filename>                # Display output in the terminal one page at a time
+$ less <filename>                # Like more but allows backward movement, exit with q
+```
+
+## Some useful Bash shortcuts
+
+- **Tab** - autocomplete (will prompt if ambiguous)
+- **Up arrow** - access previous commands in history
+- **CTRL-c** - Abort current command
+- **CTRL-a** - Go to start of line
+- **CTRL-e** - Go to end of line
+
+**DEMO**
 
 ## Make a Remote Connection to a Linux Server
 
+- Secure shell – SSH
+- Encrypted network protocol for secure connection to a remote server
+- Remote command line login to a Linux system
+- Uses a username and password to authenticate a remote user
+- Can be used to log into the cluster using SSH
+- From your local Linux shell (Terminal / git bash):
+
+```
+$ ssh <username>@login1.molbiol.ox.ac.uk
+```
+
 ## Exercise 1 – Navigating the file system
 
-## Changing how you view files using ls
+1. Log into the cluster using ssh
+2. Establish your current location in the file system
+3. List all the files and directories in your current folder (including hidden files)
+4. Change into your course working directory: /project/obds/<username>
+5. Change into the course shared directory /project/obds/shared/resources/
+6. Change into the directory 1_linux/1_linux_intro
+7. View the file manpage.txt on the command line (try cat, more, less, head and tail) 
+   + Change manpage.txt
+8. Use history command to view previously executed commands
+
+## Changing how you view files using ``ls`` options
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Short options can be bundled
+
+```
+$ ls --help
+
+$ ls -lhFa
+```
+  + -l = Long format
+  + -h = Human readable numbers
+  + -F = Classify directories
+  + -a = Show hidden files
+
+```
+$ man ls
+$ ls -lrt
+```
+  + -r = Human readable numbers
+  + -t = Classify directories
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/ls_options.png")
+```
+
+:::
+
+::::
 
 ## File properties & permissions
 
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/ls_long_output_labeled.png")
+```
+
 ## File permissions - Owner
+
+- Linux is a multi-user operating system
+- Access to read, write and execute each file / directory is controlled
+- Each file is owned by exactly one user
+
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/ls_long_output.png")
+```
+
+<!--
+- The /etc/passwd file contains a line for every user that has been created on your operating system. 
+-->
 
 ## File permissions – Group & Other
 
+- A group is a collection of one or more users
+- Each user can be a member of multiple groups 
+- A file can be owned by exactly one group
+- To see the groups that your user currently belongs to, type:
+```
+$ groups
+```
+- The last category that you can assign permissions for is the **‘other’** category
+  + Any user that is not the file owner and 
+  + is not a member of the group that owns the file
+- This allows you to set permissions that will apply to anyone outside of the two control groups
+  + Any user that is not the file owner and
+  + is not a member of the group that owns the file
+
+## Types of permissions
+
+- Each permissions category (owner, group and other) can be assigned permissions that restrict their ability to **read**, **write**, or **execute** a file
+- For a regular file
+  + Read permissions are required to read the contents of a file
+  + Write permissions are necessary to modify it
+  + Execute permissions are needed to run the file as a script or an application
+- For directories
+  + **Read** permissions are necessary to list the contents of a directory
+  + **Write** permissions are required to modify the contents of a directory
+  + **Execute** permissions allow a user to change directories into the directory
+- Linux represents these types of permissions using alphabetic notation
+
+## Alphabetic notation
+
+```{r}
+#| fig-align: center
+#| out-height: 100px
+#| out-width: 300px
+## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 18)
+knitr::include_graphics("img/alphabetic_notation.png")
+```
+
+## Changing file permissions
+
+- We can change file permissions with the ``chmod`` command using alphabetic notation
+  + u = user, g = group, o = other
+  + r = read, w = write, x = execute
+  + - = deny access, + = give access
+
+```
+$ chmod go-rwx file1.txt
+$ ls -l file1.txt
+-rwx------ 1 dsims root 2981 Apr 26  2020 file1.txt
+```
+
+## Terminal text editors
+
+- Used to edit files on the command line 
+- No graphical interface or mouse required
+- Tools
+  + Vim and Emacs 
+    - Been around for 40 years, widely used, large number of add-ons
+    - Can be heavily customised (e.g. keyword highlighting, code auto-completion)
+    - But users need to learn a set of keyboard shortcuts
+  + Nano - more basic and so recommended for beginners
+- To edit a file, type either one of these
+```
+$ vim <filename>  
+$ emacs <filename>
+$ nano <filename>
+```
+
+## Creating files and directories
+
+```
+$ touch <filename>              # Create new empty file (can create several at a time)
+                                # If file exists, will update timestamp to current time
+                            
+$ nano <filename>               # Open new empty file in nano editor
+                                # If file exists, will open file for editing
+                                # Exit with CTRL+x
+                                
+$ mkdir <dir1>                  # Create new directory
+$ mkdir <dir1> <dir2>           # Create multiple new directories
+```
+
+## Copying, moving and renaming files
+
+```
+$ cp file1 file2                # Copy file to new file
+$ cp file1 dir1/                # Copy file to new directory
+
+$ mv file1 file2                # Rename file
+$ mv file1 dir1/                # Move file to new directory
+
+$ mv dir1/ dir2/
+$ cp -r dir1/ dir2/             # cp needs -r to recursively copy directories and its contents
+```
+
+## Hard & symbolic Links
+
+- A hard link is an additional name for an existing file
+- A symbolic link (or soft link) is a file that contains a text pointer to a target file or directory
+- Symbolic links overcome the two disadvantages of hard links:
+  + Hard links cannot span physical devices (disks)
+  + Hard links cannot reference directories but only files
+- Symbolic links become unusable if target file is moved or deleted
+
+```
+$ ln file1 link1                # Create hard link
+$ ln -s file1 link2             # Create symbolic link
+```
+
+## Types of files – formats and suffixes
+
+- Files can be plain text or binary
+- Many files use a standardized internal organization called a file format
+  + Enables software to easily extract defined information
+- Suffixes are used to indicate file format
+  + Many programs make use of input and output file suffixes
+- There are several biological file formats:
+  + Fasta – biological sequence information
+  + Fastq – sequence information with quality scores
+  + SAM, BAM -  alignments of sequences to a reference genome
+  + GTF, BED – Genomic coordinates of sequence features e.g. exons, repeats etc
+
+## Deleting files & directories - rm
+
+```
+$ rm file1                      # Remove file
+$ rm *.jpg                      # Remove multiple files
+                                * is a wildcard that will match any character any number of times)
+$ rm -r dir1                    # Remove directory and contents                               
+$ rmdir dir1                    # Remove empty directory
+
+```
+
+- **!!! There is no undo or recycle bin so be careful when using ``rm`` !!!**
+  + Particularly with -r (recursive) or * (wildcard)
+  + You can only remove files you have permission to delete
+
+## Exercise 2 - Navigating the file system
+
+1. Change into your obds course directory /project/obds/<username>
+2. Create a new directory called 1_linux and change directory into it
+3. Copy the folder /project/obds/shared/resources/1_linux/1_linux_intro to your working directory (using -r option)
+4. Change the permissions of your manpage.txt file so that only you have read and write permission
+5. Create a new directory within your home directory called obds
+6. Change into the obds directory & make a copy of manpage.txt called copy.txt
+7. Open copy.txt in a terminal text editor (e.g. nano) and remove the ‘usage’ line
+8. Rename the file to edit.txt
+9. Create a symbolic link to edit.txt called softlink.txt, and a hard link called hardlink.txt
+10. Delete both links, edit.txt, and then delete the obds directory
+
+## Advanced Exercise 3
+
+1. Look up the usage of the stat command
+2. Display the octal permission for all the files and folders in your home directory
+3. Create a new text file called test.txt and set the file permissions to allow read, write and execute access for user only using octal notation
+
+## Using Octal Notation for File Permissions
+
+## Setting Permissions in Octal
+
 ## Useful links
+
+- (Classic SysAdmin: The Linux Filesystem Explained)[https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained]
 
 ## References
 

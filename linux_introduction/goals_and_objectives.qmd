@@ -1,6 +1,5 @@
 <!--
 ## Lesson goals and objectives
-
 <!--
 This lesson is essentially the skeleton of the linux course.
 We will present the genomics workflow done usually on linux and the subsequent 
