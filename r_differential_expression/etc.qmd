@@ -101,22 +101,22 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 
 #### Count data
 
-- `r BiocStyle::Biocpkg("DESeq2")` `r Citep(bib, "deseq2_package")`
-- `r BiocStyle::Biocpkg("edgeR")` `r Citep(bib, "edger_package")`
+- `r BiocStyle::Biocpkg("DESeq2")` `r Citep(bib, "deseq2_package")`.
+- `r BiocStyle::Biocpkg("edgeR")` `r Citep(bib, "edger_package")`.
 
 #### Salmon / Kallisto
 
-- `r BiocStyle::Githubpkg("pachterlab/sleuth")` `r Citep(bib, "sleuth_package")`
+- `r BiocStyle::Githubpkg("pachterlab/sleuth")` `r Citep(bib, "sleuth_package")`.
 
 ### Exons
 
 - `r BiocStyle::Biocpkg("DEXSeq")` `r Citep(bib, "dexseq_package")`.
-  Note: uses DESeq2 internally
+  Note: uses `r BiocStyle::Biocpkg("DESeq2")` internally
 
 ### ChIP-seq data
 
-- `r BiocStyle::Biocpkg("DiffBind")` `r Citep(bib, "diffbind_package")`
-  Note: uses either edgeR or DESeq2 internally.
+- `r BiocStyle::Biocpkg("DiffBind")` `r Citep(bib, "diffbind_package")`.
+  Note: uses either `r BiocStyle::Biocpkg("edgeR")` or `r BiocStyle::Biocpkg("DESeq2")` internally.
 
 
 ## Exercise
