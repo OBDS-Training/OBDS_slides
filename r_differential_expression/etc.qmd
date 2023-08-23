@@ -352,6 +352,25 @@ It is accessible directly if needed:
 design(dds)
 ```
 
+## The design formula
+
+::: {style="text-align: center;"}
+`~ condition + treatment`
+:::
+
+A *formula* is a specific type of <i class="fab fa-r-project"></i> object that refers to variables in the environment, or columns in a *data.frame*.
+
+In the context of differential expression analysis, the design formula refers to known sample metadata that are expected sources of variations affecting the expression levels of features in the data set (e.g., condition, treatment, batch).
+
+- Some covariates are sources of *interesting* (i.e., biological) variation.
+  Those are modelled with the aim of testing for significant differences between groups.
+- Other covariates are sources of *technical* variation.
+  Those are modelled with the aim of regressing out (i.e, controlling for) their effect on gene expression.
+
+All covariates mentioned in the design formula must be present in the `colData()` of the *DESeqDataSet* object.
+
+**Tip: Place the most interesting covariate last in the formula. It will be the one reported by default in the differential expression results.**
+
 ## Exercise
 
 ### Import gene data and metadata
