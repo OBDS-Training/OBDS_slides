@@ -324,6 +324,16 @@ The first step of a `r BiocStyle::Biocpkg("DESeq2")` workflow is to construct a 
 knitr::include_graphics("img/construct-desseqdataset.png")
 ```
 
+## Constructing a DESeqDataSet -- Example
+
+```{r}
+#| echo: true
+DESeqDataSetFromMatrix(
+  countData = count_matrix,
+  colData = sample_info,
+  design = ~ cell + dex)
+```
+
 ## Exercise
 
 ### Import gene data and metadata
