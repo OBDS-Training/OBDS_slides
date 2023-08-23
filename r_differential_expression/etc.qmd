@@ -171,6 +171,46 @@ knitr::include_graphics("img/de-exploratory-analysis.png")
 
 ::::
 
+## Input data
+
+In <i class="fab fa-r-project"></i>,
+a differential expression analysis needs three key inputs:
+
+- A matrix of read counts for each feature in each sample.
+
+```{r}
+n_genes <- 3
+n_samples <- 4
+matrix(
+  data = rbinom(n_genes * n_samples, 10, 0.1),
+  nrow = n_genes,
+  ncol = n_samples,
+  dimnames = list(
+    paste0("gene_", 1:n_genes),
+    paste0("S", 1:n_samples)
+  )
+)
+```
+
+- A table of metadata for each sample.
+
+```{r}
+data.frame(
+  sample_id = paste0("S", 1:n_samples),
+  condition = factor(sample(c("A", "B"), size = n_samples, replace = TRUE)),
+  age = sample(30:60, size = n_samples, replace = TRUE)
+)
+```
+
+
+- A formula that describes the experimental design.
+
+```{r}
+#| echo: true
+#| eval: false
+~ age + condition
+```
+
 ## Exercise
 
 ### Import gene data and metadata
