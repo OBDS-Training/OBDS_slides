@@ -265,19 +265,42 @@ slotNames(dds)
 **What slots does the class `DESeqDataSet` add to the base case `RangedSummarizedExperiment`?**
 :::
 
+```{r}
+options(oo)
+```
+
 ## Additional slots
 
 `design`
 
 - Dedicated to the storage of the formula that describes the experimental design.
 
+```{r}
+#| echo: true
+design(dds)
+```
+
 `dispersionFunction`
 
 - Dedicated to the storage of the function that models dispersion in the data.
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r}
-options(oo)
+#| echo: true
+dispersionFunction(dds)
 ```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+plot(dispersionFunction(dds))
+```
+:::
+
+::::
 
 ## Exercise
 
