@@ -502,7 +502,7 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
 
 - Check whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
 - If not, display the two sets of sample names.
-  (Hint: you display them individually, or as two columns in a single tibble, for easier side-by-side comparison).
+  (Hint: you may display them individually, or as two columns in a single tibble, for easier side-by-side comparison).
 
 ::: {style="text-align: center;"}
 **What makes the two sets of sample names different from each other?**
