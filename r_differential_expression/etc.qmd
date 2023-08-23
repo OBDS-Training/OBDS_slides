@@ -211,6 +211,57 @@ data.frame(
 ~ age + condition
 ```
 
+## The Bioconductor SummarizedExperiment
+
+`r BiocStyle::Biocpkg("SummarizedExperiment")` provides a base class that is re-used throughout Bioconductor packages.
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/summarizedexperiment.jpeg")
+```
+
+## The DESeq2 DESeqDataSet
+
+```{r}
+oo <- options()
+options(width = 60)
+```
+
+`r BiocStyle::Biocpkg("DESeq2")` defines the class `DESeqDataSet` that extends the class `SummarizedExperiment`.
+
+```{r}
+dds_se <- as(dds, "SummarizedExperiment")
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### `r as.character(class(dds_se))`
+
+```{r}
+slotNames(dds_se)
+```
+:::
+
+::: {.column width="50%"}
+### `r as.character(class(dds))`
+
+```{r}
+slotNames(dds)
+```
+:::
+
+::::
+
+
+::: {style="text-align: center;"}
+What slots does the class `DESeqDataSet` add to the base case `SummarizedExperiment`?
+:::
+
+```{r}
+options(oo)
+```
+
 ## Exercise
 
 ### Import gene data and metadata
