@@ -255,7 +255,7 @@ slotNames(dds)
 
 
 ::: {style="text-align: center;"}
-What slots does the class `DESeqDataSet` add to the base case `SummarizedExperiment`?
+**What slots does the class `DESeqDataSet` add to the base case `SummarizedExperiment`?**
 :::
 
 ```{r}
