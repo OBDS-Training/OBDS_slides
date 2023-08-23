@@ -252,7 +252,7 @@ knitr::include_graphics("img/fasta.png")
 
 ## **File format (annotation)**: **GTF**
 
-## Key concepts
+## Key concepts and considerations
 <!-- 
 Have separate slide for each point to review/refresh 
 Making sure that each slide is very simple and only contains what is needed to 
