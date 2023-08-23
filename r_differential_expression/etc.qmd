@@ -387,10 +387,27 @@ Allows for the testing of either covariate while accounting for the effect of th
 Models the effets of conditions and genotypes independently, as well as the effect of their interaction.
 The interaction term captures the joint effect of two covariates.
 
+:::: {.columns}
+
+::: {.column width="50%"}
+#### No interaction
+
 ```{r}
 #| fig-align: center
-knitr::include_graphics("img/interaction-term.png")
+knitr::include_graphics("img/interaction-no.png")
 ```
+:::
+
+::: {.column width="50%"}
+#### Interaction
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/interaction-yes.png")
+```
+:::
+
+::::
 
 ## Exercise
 
