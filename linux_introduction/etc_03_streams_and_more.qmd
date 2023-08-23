@@ -1,0 +1,296 @@
+# Talk 3: Working with files and streams in Linux
+
+## Overview
+
+- Outline
+  + Linux streams, pipes & redirection
+  + File compression
+  + Filter and sort file contents
+  + Searching for files
+  + Loops in BASH
+
+## Linux streams to pass information to and from files 
+
+- Streams are mechanisms to move data from one place to another (e.g. between files)
+- Few common scenarios that use streams:
+  + Passing the contents – not the name! – of a file as the input to a command
+  + Passing the output of a command as the input to another command
+  + Writing the output of a command to a (new or existing) file
+
+- Some standard streams are commonly referred to in Linux as:
+  + Standard input (stdin): the default place from which input to the system is taken
+  + Standard output (stdout): the default place where a process (i.e. command) can write output
+  + Standard error (stderr): the default place where a process (i.e. command) can write error messages
+
+- By default stdout and stderr both print to the terminal but their outputs can be redirected to other destinations (most commmonly, files)
+- Streams can be redirected to/from files
+
+## Redirecting streams (input, output and error)
+
+- Streams can be redirected to new destinations – including files – using the symbols '>', '<', and variants thereof
+
+```
+$ command1 < file1              # Input file1 to stdin for command1
+$ command1 > file1              # Write standard output of command1 to file1
+$ command1 >> file1             # Append standard output of command1 to file1
+                                # '>' overwrites to a file
+$ command1 2> file2             # Write error output of command1 to file2
+$ command1 >! file1             # Overwrite existing file1 with output of command1
+```
+
+- Redirecting the standard error and output (preferably to separate files) can be extremely helpful for diagnosing errors and bugs and for asking help
+
+## Linux pipes to pass information between commands
+
+- Linux philosophy is that one tool should only perform only one task
+  + Complex workflows may be broken down into smaller tasks that can be resolved by combining multiple tools
+- Tools can be combined using pipes represented by '|'
+- Pipes connect the standard output of one command to the standard input of another 
+
+$ command1 | <command2 
+$ cat file1.txt | head -n 5
+
+## Combining commands
+
+- Generally, successive commands are executed in separate statements but certain characters can be used combine multiple commands in a single statement
+
+```
+$ command1; command2            # Execute command1 and then command 2 (left to right)
+$ command1 && command2          # Execute command2 only if command1 is sucessful 
+$ command1 || command2          # Execute command2 only if command1 fails 
+```
+
+## (De)compressing files with `gzip` and `gunzip`
+
+- Raw data files and files created during analyses can be large (up to hundreds of GB)
+- Compressing files is an efficient way to save disk space
+
+- You can compress your files using gzip to save disk space
+```
+$ gzip filename.fq
+```
+
+  + This will add a .gz suffix to the existing file - filename.fq.gz
+
+- To decompress the gzipped file
+```
+$ gunzip filename.fq.gz
+```
+
+- Many programs support gzip compressed input files
+  + So no need to decompress before use
+
+## (De)compressing files: Redirecting to standard output
+
+- The option `-c` can be used in both commands gzip and gunzip for major benefits:
+  + Original files are kept unchanged i.e. not deleted
+  + Compressed or decompressed output is redirected to the standard output of the command, meaning that it can be redirected to any file name (circumventing the default behaviour of both commands)
+  
+```
+gzip -c file1.txt > compressed.txt.gz
+```
+
+## File archiving with `tar`
+
+- `tar` stands for tape archive, an archiving file format
+- A tar archive combines multiple files and directories into a single file 
+- Optionally, tar archives can be further compressed during their creation
+- `tar` creates, modifies and extracts files that are archived in the tar format
+- Compress an entire directory or a single file
+
+```
+$ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+```
+  + -c = *C*reate an archive
+  + -z = Compress the archive with g**z**ip
+  + -v = **V**erbose to display progress in the terminal while creating the archive
+  + -f = To specify the file name (path) of the archive file to create
+
+## (De)compressing files
+
+- Compression turns text files into binary files to save hard disk space
+- Good practice to compress all non-trivial text files
+
+```
+$ gzip file1 	                # Compress file1 in place (adds .gz file extension)
+$ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file extension)
+$ gunzip -c file1.gz 	        # Decompress file1 to standard out (can be redirected to a file)
+$ zcat file1.gz                 # Print compressed file to the terminal
+$ zless file1.gz                # Interactively scroll through compressed files (equivalent to less)
+$ tar czf jpg.tar.gz *.jpg      # Create a compressed archive from multiple files
+$ tar xzf jpg.tar.gz            # Extract files from an archive
+```
+
+## Searching within files using ``grep``
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Search files and print only lines that match a given pattern
+- Line-based i.e. returns all lines that match the pattern
+- Pattern to search for must be given as a regular expression
+  + Does not always need to include special wildcard characters
+  + Can be as simple as the exact sequence of characters to search for
+  
+```
+$ grep <options> regex <file>
+$ grep –i “error” pipeline.log
+$ grep –c “chr1” p300.bed
+$ grep –v “chr5” p300.bed
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 400px
+## Source: 
+knitr::include_graphics("img/grep_options.png")
+```
+
+:::
+
+::::
+
+## Extracting columns from files with `cut`
+
+- Extract one or more columns from a file
+
+```
+$ cut -f3 file1.tsv             # Extract only the third field from a tab delimited file
+$ cut –f1,4 –d ‘,’ file2.csv    # Extract the first and fourth columns from a comma delimited file
+                                # Default delimiter is tab (\t)
+```
+
+## Sorting files with `sort`
+
+- Sort the lines in a file according to the values of one or more columns in each line
+
+```
+$ sort file1.txt file2.txt file3.txt > sorted.txt       #
+$sort -t, --key=2 --key=1n file1.txt
+```
+  + -t = Defines the delimiter that is used to separate columns
+  + --key = Declares one or more fields i.e. columns to use for sorting 
+          = Sort rarely used without this option i.e. whole line is used for sorting
+  + --key=2 = Second field should be used to order lines, in alphebetical order of that field
+  + --key=1n = First field should be used to break ties, in numerical order of that field
+  
+## Removing duplicate rows with `uniq`
+
+- Remove duplicated lines, or count the number of occurrences of each distinct line in a file
+
+```
+$ cut –f1,4 –d ‘,’ file2.csv         # Extract the first and fourth columns from a comma delimited file
+$ uniq file1.txt                     # Remove duplicate lines, display on screen
+$ uniq –c file1.txt                  # Prefix lines by the number of occurrences
+$ uniq –u file1.txt > uniqlines.txt  # Only print unique lines
+$ uniq –i file1.txt                  # Ignore differences in case when comparing
+```
+- Assumes that the file is sorted and will only detect adjacent duplicate lines
+
+```
+$ sort file1.txt | uniq
+```
+
+## Searching for files with `find`
+
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 400px
+## Source: 
+knitr::include_graphics("img/search_find.png")
+```
+
+## Exercise 1 - Working with files and streams
+
+1. Find the tar archive dnase1.tar.gz in your 1_linux directory
+2. Decompress and extract the archive using the tar command
+3. Move into the bed directory and count the number of lines in each .bed file
+4. Print the first 5 lines of the file cpg.bed. Compress the cpg.bed file in place and then head the compressed file.
+   What do you notice about the compressed file?
+5. Decompress the cpg.bed file in place
+6. Extract all the lines in cpg.bed containing regions on chromosome 5 to a new file called cpg_chr5.bed
+7. Extract all of the entries EXCEPT those on chr5 to another file called cpg_nochr5.bed
+   How can you check that this command has worked?
+8. With the cpg.bed file count how many intervals (rows) are on each chromosome (column1)
+   Hint: you will need to pipe together 3 commands
+9. Find the fasta format files in the folder /databank/raw/hg19_full/. How many are there?
+10. Find all the bed format files in the folder /datashare/courses/obds/bedfiles and count the number of lines in each file
+
+## Loops in BASH
+
+- Iterate over lists of items, files and directories
+- When repeatedly executing the same set of commands on a series of inputs, loops can be used to:
+  + Define a set of input
+  + Define a set of commands
+  + Execute the set of commands on the set of inputs
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+- Integer over fixed inputs 
+
+```
+for i in 2 5 3
+do
+  echo "start"
+  echo "value of i: '$i'"
+  echo "end"
+done
+```
+
+:::
+
+::: {.column width="33%"}
+
+- Iterate over integers
+
+```
+for i in {1..3}
+do
+  echo "value of i: '$i'"
+done
+```
+
+:::
+
+::: {.column width="33%"}
+
+- Iterate over files
+
+```
+for file in *.txt
+do
+  wc -l $file
+done
+```
+
+:::
+
+::::
+
+## Loops in BASH
+
+- Tips
+  + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
+  + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
+
+## Advanced exercise 2 - Loops 
+
+1. Create a list of all chromosomes for every dnase1 bed file
+
+## Useful links
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```
