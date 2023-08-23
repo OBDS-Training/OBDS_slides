@@ -318,6 +318,12 @@ The first step of a `r BiocStyle::Biocpkg("DESeq2")` workflow is to construct a 
 - The function `DESeqDataSetFromHTSeqCount()` takes a *data.frame* of sample names, associated count files and metadata, and a design *formula*.
 - The function `DESeqDataSetFromTximport()` takes the *list* output of the function `tximport()`.
 
+## Constructing a DESetDataSet object from a matrix
+
+```{r}
+knitr::include_graphics("img/construct-desseqdataset.png")
+```
+
 ## Exercise
 
 ### Import gene data and metadata
