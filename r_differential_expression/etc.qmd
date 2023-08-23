@@ -152,6 +152,25 @@ vignette("DESeq2")
 knitr::include_graphics("img/de-exploratory-analysis.png")
 ```
 
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Part 1
+
+- Get familiar with the data.
+- Expect the unexpected.
+:::
+
+::: {.column width="50%"}
+#### Part 2
+
+- Model the data.
+- Inspect the results.
+- Downstream analyses.
+:::
+
+::::
+
 ## Exercise
 
 ### Import gene data and metadata
