@@ -409,6 +409,25 @@ knitr::include_graphics("img/interaction-yes.png")
 
 ::::
 
+## What should you include in the design formula?
+
+- Covariate(s) to test must be included.
+- Known batch covariates should be included.
+
+### Surrogate variables
+
+Some methods attempt to capture one or more 'unknown' sources of variation *post hoc*, e.g.
+
+- Batch effects that were not formally recorded (e.g., date, operator, instrument).
+- Unexpected sources of variation (e.g., experimental issue).
+
+Once computed, surrogate variables can be added to the sample metadata and used in the design formula.
+
+Packages capable of producing surrogate variables:
+
+- `r BiocStyle::Biocpkg("sva")` `r Citep(bib, "sva_package")`.
+- `r BiocStyle::Biocpkg("RUVSeq")` `r Citep(bib, "ruvseq_package")`.
+
 ## Exercise
 
 ### Import gene data and metadata
