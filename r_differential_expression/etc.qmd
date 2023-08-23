@@ -371,6 +371,27 @@ All covariates mentioned in the design formula must be present in the `colData()
 
 **Tip: Place the most interesting covariate last in the formula. It will be the one reported by default in the differential expression results.**
 
+## Interpreting the design formula
+
+`~ condition`
+
+Models the effect of conditions relative to one another, ignoring any other covariate.
+
+`~ condition + genotype`
+
+Models the effets of conditions and genotypes independently.
+Allows for the testing of either covariate while accounting for the effect of the other.
+
+`~ condition + genotype + condition:genotype`
+
+Models the effets of conditions and genotypes independently, as well as the effect of their interaction.
+The interaction term captures the joint effect of two covariates.
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/interaction-term.png")
+```
+
 ## Exercise
 
 ### Import gene data and metadata
