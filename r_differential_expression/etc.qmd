@@ -227,11 +227,13 @@ oo <- options()
 options(width = 60)
 ```
 
-`r BiocStyle::Biocpkg("DESeq2")` defines the class `DESeqDataSet` that extends the class `SummarizedExperiment`.
+`r BiocStyle::Biocpkg("DESeq2")` defines the class `DESeqDataSet` that extends the class `RangedSummarizedExperiment`.
 
 ```{r}
-dds_se <- as(dds, "SummarizedExperiment")
+dds_se <- as(dds, "RangedSummarizedExperiment")
 ```
+
+<br/>
 
 :::: {.columns}
 
@@ -253,10 +255,21 @@ slotNames(dds)
 
 ::::
 
+<br/>
 
 ::: {style="text-align: center;"}
-**What slots does the class `DESeqDataSet` add to the base case `SummarizedExperiment`?**
+**What slots does the class `DESeqDataSet` add to the base case `RangedSummarizedExperiment`?**
 :::
+
+## Additional slots
+
+`design`
+
+- Dedicated to the storage of the formula that describes the experimental design.
+
+`dispersionFunction`
+
+- Dedicated to the storage of the function that models dispersion in the data.
 
 ```{r}
 options(oo)
