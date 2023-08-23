@@ -430,6 +430,34 @@ Packages capable of producing surrogate variables:
 
 ## Exercise
 
+### Data
+
+In this lesson, we use RNA-seq data obtained from the European Nucleotide Archive (ENA).
+
+#### Project PRJEB18572
+
+::: {style="text-align: center;"}
+"RNAseq analysis of CD4 and CD8 T cells in response to vaccinia virus infection".
+:::
+
+- Murine CD4+ and CD8+ T cells with Egr2/3 double KO.
+- Samples collected seven days after infection with vaccinia virus.
+- Three biological replicates per group.
+– Contrast of interest: CD4+ vs CD8+ cells.
+
+#### Experimental question
+
+::: {style="text-align: center;"}
+**What genes are DE in CD8 vs CD4 cells in Egr2/3 KO in response to infection?**
+:::
+
+#### Input files
+
+- *allsamples_counts.tsv.gz*
+- *PRJEB18572_sample_info.tsv*
+
+## Exercise
+
 ### Import gene data and metadata
 
 - Load the `tidyverse` package,
