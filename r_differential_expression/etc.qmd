@@ -464,12 +464,12 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
   and use the function `read_tsv()`
   to import count data from the file `allsamples_counts.tsv.gz`
   into a tibble called `featurecounts_table`.
-  Display a preview of `featurecounts_table` using `glimpse()`.
+  Display a preview of `featurecounts_table` using the function `glimpse()`.
 - Extract gene metadata from the tibble `featurecounts_table` into a new tibble called `gene_info`.
-  Display a preview of `gene_info` using `glimpse()`.
+  Display a preview of `gene_info` using the function `glimpse()`.
 - Similarly, extract the read counts per sample from `featurecounts_table`
   into a numeric matrix called `counts_table`.
-  Display the first few rows of `counts_table` using `head()`.
+  Display the first few rows of `counts_table` using the function `head()`.
 - Display the dimensions of the matrix `counts_table`.
 - What does the function `storage.mode()` tell you about `counts_table`?
 
