@@ -220,6 +220,10 @@ data.frame(
 knitr::include_graphics("img/summarizedexperiment.jpeg")
 ```
 
+::: {style="text-align: center;"}
+**Why is the `SummarizedExperiment` relevant to differential expression analysis?**
+:::
+
 ## The DESeq2 DESeqDataSet
 
 ```{r}
