@@ -118,6 +118,32 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 - `r BiocStyle::Biocpkg("DiffBind")` `r Citep(bib, "diffbind_package")`.
   Note: uses either `r BiocStyle::Biocpkg("edgeR")` or `r BiocStyle::Biocpkg("DESeq2")` internally.
 
+## DESeq2
+
+### Publications
+
+- "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2" `r Citep(bib, "deseq2_2014")`
+
+### Package vignette
+
+- [Analyzing RNA-seq data with DESeq2](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html)
+- In the <i class="fab fa-r-project"></i> console:
+
+```{r}
+#| eval: false
+#| echo: true
+vignette("DESeq2")
+```
+
+### Bioconductor support site
+
+- <https://support.bioconductor.org/>
+
+### Other resources
+
+- [Gene-level differential expression analysis
+](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/01c_RNAseq_count_distribution.html) -- Harvard Chan Bioinformatics Core
+- [StatQuest: DESeq2 part 1: Library Normalization](https://statquest.org/statquest-deseq2-part-1-library-normalization/)
 
 ## Exercise
 
