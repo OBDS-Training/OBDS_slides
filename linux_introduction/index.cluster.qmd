@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to the Linux command line'
-subtitle: 'Genomics on the Linux command Line'
-author: "Updated from David Sims, Charlie George"
+subtitle: ''
+author: "Updated from Devika Agarwal, Carla Cohen, Kevin Rue Albrecht (CCB Doks)"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-08-18 (updated: `r Sys.Date()`)"
 date-format: long
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Updated from Devika Agarwal, Carla Cohen -- Single-cell analysis using Seurat, part 2
+    footer: Updated from Devika Agarwal, Carla Cohen, Kevin Rue Albrecht (CCB Doks) -- Introduction to the Linux command line
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("./singlecell_seurat_2/index.cluster.html")
 # ^If throwing error, set: 
@@ -55,7 +55,7 @@ NoCite(bib, "R")
 
 ## Prerequisites
 
-- An account on the teaching cluster.
+- An account on the teaching cluster
 
 ## Set up
 
@@ -63,6 +63,10 @@ NoCite(bib, "R")
 #| child: etc_01_genomics.qmd
 ```
 
-```{r}
+```{r, eval=TRUE}
 #| child: etc_02_introduction.qmd
+```
+
+```{r, eval=TRUE}
+#| child: etc_03_streams_and_more.qmd
 ```
