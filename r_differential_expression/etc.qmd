@@ -327,11 +327,29 @@ knitr::include_graphics("img/construct-desseqdataset.png")
 ## Constructing a DESeqDataSet -- Example
 
 ```{r}
+count_matrix <- assay(airway)
+sample_info <- colData(airway)
+```
+
+```{r}
 #| echo: true
-DESeqDataSetFromMatrix(
+dds <- DESeqDataSetFromMatrix(
   countData = count_matrix,
   colData = sample_info,
   design = ~ cell + dex)
+dds
+```
+
+<br/>
+
+### Design
+
+Note that the design formula is not displayed in the summarised view.
+It is accessible directly if needed:
+
+```{r}
+#| echo: true
+design(dds)
 ```
 
 ## Exercise
