@@ -669,6 +669,36 @@ ggplot(x, aes(value)) +
 https://www.theanalysisfactor.com/differences-between-normal-and-poisson-distributions/
 :::
 
+## Heteroskedasticity
+
+Phenomenon when the variance of the error term is not constant across the scale of the value being measured.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 100%
+knitr::include_graphics("img/homoskedastic.jpg")
+```
+:::
+
+::: {.column width="66%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 100%
+knitr::include_graphics("img/heteroskedastic.jpg")
+```
+:::
+
+::::
+
+- Naturally present in gene expression data.
+- Data must be made homoskedastic prior to downstream analyses that rely on variance.
+- Otherwise, genes with highest count (and thus, variance) will dominate the analyses.
+
 # Exploratory data analysis
 
 ## TODO
