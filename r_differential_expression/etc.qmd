@@ -921,7 +921,7 @@ Unsupervised method identifying major axes of *variance* in a matrix.
 #| fig-width: 5
 #| out-height: 450px
 #| out-width: 450px
-plotPCA(airway_rlog, intgroup = "cell")
+plotPCA(airway_rlog, intgroup = "dex")
 ```
 :::
 
@@ -932,7 +932,7 @@ plotPCA(airway_rlog, intgroup = "cell")
 #| fig-width: 5
 #| out-height: 450px
 #| out-width: 450px
-plotPCA(airway_rlog, intgroup = "dex")
+plotPCA(airway_rlog, intgroup = "cell")
 ```
 :::
 
