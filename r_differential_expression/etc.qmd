@@ -731,6 +731,61 @@ Centers each individual gene to a mean of 0 and scales it to a variance of 1.
 - Loses relative expression between genes.
 - Scaling can be skewed by the presence of outliers.
 
+## Side-by-side transformations {.smaller}
+
+```{r}
+airway_counts <- assay(airway)
+airway_counts <- airway_counts[rowMeans(airway_counts) > 1, ]
+airway_counts_log1p <- log1p(airway_counts)
+x_ylim <- ylim(0, 3.5)
+x_theme <- theme(
+  title = element_text(size = 24),
+  text = element_text(size = 22)
+)
+```
+
+:::: {.columns}
+
+::: {.column width="33%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+##| out-height: 250px
+vsn::meanSdPlot(airway_counts_log1p, plot = FALSE)$gg +
+    x_ylim + x_theme + ggtitle("log1p")
+```
+
+- Inflated variance at low counts.
+:::
+
+::: {.column width="33%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+##| out-height: 300px
+vsn::meanSdPlot(DESeq2::vst(airway_counts), plot = FALSE)$gg +
+    x_ylim + x_theme + ggtitle("vst")
+```
+
+- Faster (great for larger numbers of samples).
+- Less sensitive to high outliers.
+:::
+
+::: {.column width="33%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+##| out-height: 350px
+vsn::meanSdPlot(DESeq2::rlog(airway_counts), plot = FALSE)$gg +
+    x_ylim + x_theme + ggtitle("rlog")
+```
+
+- Slower.
+- Better for variable sequencing depths.
+:::
+
+::::
+
 # Exploratory data analysis
 
 ## TODO
