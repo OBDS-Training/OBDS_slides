@@ -696,8 +696,40 @@ knitr::include_graphics("img/heteroskedastic.jpg")
 ::::
 
 - Naturally present in gene expression data.
-- Data must be made homoskedastic prior to downstream analyses that rely on variance.
+- Data must be made homoskedastic prior to downstream analyses that rely on variance (e.g., PCA, ).
 - Otherwise, genes with highest count (and thus, variance) will dominate the analyses.
+
+## Data transformations for RNA-seq {.smaller}
+
+Methods that aim to produce homoskedastic transformed data are often described as "variance stabilising transformations".
+
+`DESeq2::vst()`
+
+Wrapper for the varianceStabilizingTransformation (VST) that provides much faster estimation of the dispersion trend used to determine the formula for the VST.
+
+### Alternatives
+
+`DESeq2::rlog()`
+
+Transforms the count data to the log2 scale in a way which minimizes differences between samples for rows with small counts, and which normalizes with respect to library size.
+Produces a similar variance stabilizing effect as *vst()*, though *rlog()* is more robust in the case when the size factors vary widely.
+
+`log1p()`
+
+Log-transform counts after adding 1 (to avoid `log(0)`).
+
+**Caveat:**
+
+- Introduce higher variance in lowly expressed genes.
+
+`scale(..., center = TRUE, scale = TRUE)`
+
+Centers each individual gene to a mean of 0 and scales it to a variance of 1.
+
+**Caveats:**
+
+- Loses relative expression between genes.
+- Scaling can be skewed by the presence of outliers.
 
 # Exploratory data analysis
 
