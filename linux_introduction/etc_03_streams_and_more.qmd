@@ -117,8 +117,8 @@ $ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file ext
 $ gunzip -c file1.gz 	        # Decompress file1 to standard out (can be redirected to a file)
 $ zcat file1.gz                 # Print compressed file to the terminal
 $ zless file1.gz                # Interactively scroll through compressed files (equivalent to less)
-$ tar czf jpg.tar.gz *.jpg      # Create a compressed archive from multiple files
-$ tar xzf jpg.tar.gz            # Extract files from an archive
+$ tar -czf jpg.tar.gz *.jpg      # Create a compressed archive from multiple files
+$ tar -xzf jpg.tar.gz            # Extract files from an archive
 ```
 
 ## Searching within files using ``grep``
