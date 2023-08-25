@@ -887,6 +887,28 @@ pheatmap(dds_cor, breaks = seq(.99, 1, length.out = 100), fontsize = 20)
 **Pro-tip: What is the difference between those heat maps?**
 :::
 
+## Distance heat map
+
+```{r}
+#| echo: true
+dds_dist <- dist(t(assay(airway_rlog)))
+```
+
+
+```{r}
+#| fig-align: center
+#| fig-height: 7
+blue_colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(
+  as.matrix(dds_dist),
+  clustering_distance_rows = dds_dist,
+  clustering_distance_cols = dds_dist,
+  color = blue_colors,
+  fontsize = 20
+)
+```
+
+
 ## Exercise
 
 ### Exploratory analysis and quality control

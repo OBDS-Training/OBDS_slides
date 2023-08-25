@@ -28,6 +28,7 @@ options(width = 120)
 library(tidyverse)
 library(DESeq2)
 library(pheatmap)
+library(RColorBrewer)
 source("preprocess.R")
 ```
 
