@@ -858,13 +858,10 @@ Know when the data set as a whole is just not good enough!
 ## Correlation heat map
 
 ```{r}
+#| echo: true
 airway_rlog <- rlog(DESeqDataSet(airway, design = ~ cell + dex))
 dds_cor <- cor(assay(airway_rlog), method="spearman")
 ```
-
-::: {style="text-align: center;"}
-**Pro-tip: What is the difference between those heat maps?**
-:::
 
 :::: {.columns}
 
@@ -885,6 +882,10 @@ pheatmap(dds_cor, breaks = seq(.99, 1, length.out = 100), fontsize = 20)
 :::
 
 ::::
+
+::: {style="text-align: center;"}
+**Pro-tip: What is the difference between those heat maps?**
+:::
 
 ## Exercise
 
