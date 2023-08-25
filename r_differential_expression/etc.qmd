@@ -145,7 +145,7 @@ vignette("DESeq2")
 ](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/01c_RNAseq_count_distribution.html) -- Harvard Chan Bioinformatics Core
 - [StatQuest: DESeq2 part 1: Library Normalization](https://statquest.org/statquest-deseq2-part-1-library-normalization/)
 
-## Exploratory analysis
+## Workflow overview
 
 ```{r}
 #| fig-align: center
@@ -170,6 +170,8 @@ knitr::include_graphics("img/de-exploratory-analysis.png")
 :::
 
 ::::
+
+# Input data
 
 ## Input data
 
@@ -581,6 +583,30 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
   Extract the rows 1 to 5 and columns 1 to 4.
   Display the result without assigning it to any object.
 
+# Preprocessing
+
+## Preprocessing
+
+### Filter lowly expressed genes
+
+Preprocessing can take a number of different meanings in bioinformatics analyses.
+
+Here, we focus on the filtering of 'uninformative' genes, in the form of *lowly expressed genes*.
+
+Even then, *lowly expressed genes* can be defined in a number of ways, based on:
+
+- An arbitrary cut-off on their expression level in individual samples, to consider the gene as 'detected'.
+- An arbitrary number or fraction of samples in which the gene is 'detected' (see above).
+- More elaborate rules (e.g., using sample metadata to request detection in specific groups of samples).
+
+### Motivations
+
+Filtering lowly expressed genes has a number of positive effects:
+
+- Reduce genes very unlikely to be differentially expressed.
+- Reduce the multiple testing correction burden on the remaining genes.
+- Reduce noise in exploratory data analyses (e.g., PCA, clustering).
+
 ## Exercise
 
 ### Filter out lowly genes expressed
@@ -588,7 +614,7 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
 - Use the functions `counts()` and `rowSums()`
   to count the number of samples in which each gene is expressed
   (i.e., strictly more than zero read counts).
-  Use that information to extract genes expressed in at least 4 samples
+- Use that information to extract genes expressed in at least 4 samples
   into a new object called `dds_filtered`.
   Display the object `dds_filtered`.
 
