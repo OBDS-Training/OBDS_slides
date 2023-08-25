@@ -666,7 +666,7 @@ ggplot(x, aes(value)) +
 - More appropriate for count data where $variance > mean$.
 
 ::: {.notes}
-https://www.theanalysisfactor.com/differences-between-normal-and-poisson-distributions/
+<https://www.theanalysisfactor.com/differences-between-normal-and-poisson-distributions/>
 :::
 
 ## Heteroskedasticity
@@ -680,6 +680,7 @@ Phenomenon when the variance of the error term is not constant across the scale 
 #| fig-align: center
 #| out-height: 250px
 #| out-width: 100%
+## Source: https://www.dummies.com/article/business-careers-money/business/economics/how-to-distinguish-between-homoskedastic-and-heteroskedastic-disturbances-156402/
 knitr::include_graphics("img/homoskedastic.jpg")
 ```
 :::
@@ -689,6 +690,7 @@ knitr::include_graphics("img/homoskedastic.jpg")
 #| fig-align: center
 #| out-height: 250px
 #| out-width: 100%
+## Source: https://www.dummies.com/article/business-careers-money/business/economics/how-to-distinguish-between-homoskedastic-and-heteroskedastic-disturbances-156402/
 knitr::include_graphics("img/heteroskedastic.jpg")
 ```
 :::
@@ -815,25 +817,41 @@ Plots inspired by the answer to Question 8.12 of
 
 # Exploratory data analysis
 
-## Exploratory data analysis (EDA)
+## Exploratory data analysis (EDA) {.smaller}
 
 EDA is an integral part of your differential expression workflow.
 
 Getting to know your data informs key decisions that impact your results.
 
-### The good
+:::: {.columns}
+
+::: {.column width="66%"}
+### Motivations
+
+#### The good
 
 - Sanity check that samples from the same experimental groups cluster together.
 - Compute quality control metrics that inform your decision-making.
 
-### The bad
+#### The bad
 
 - Spot outliers.
 - Spot swapped samples (i.e., mislabelled samples).
 
-### The ugly
+#### The ugly
 
 Know when the data set as a whole is just not good enough!
+:::
+
+::: {.column width="33%"}
+### Methods
+
+- PCA
+- Clustering
+- ...
+:::
+
+::::
 
 ## Exercise
 
