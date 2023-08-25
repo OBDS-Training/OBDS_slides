@@ -26,6 +26,8 @@ stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
 library(tidyverse)
+library(DESeq2)
+library(pheatmap)
 source("preprocess.R")
 ```
 

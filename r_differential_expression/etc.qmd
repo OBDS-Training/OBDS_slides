@@ -848,7 +848,40 @@ Know when the data set as a whole is just not good enough!
 
 - PCA
 - Clustering
+- Correlation between samples
+- Distance between samples
 - ...
+:::
+
+::::
+
+## Correlation heat map
+
+```{r}
+airway_rlog <- rlog(DESeqDataSet(airway, design = ~ cell + dex))
+dds_cor <- cor(assay(airway_rlog), method="spearman")
+```
+
+::: {style="text-align: center;"}
+**Pro-tip: What is the difference between those heat maps?**
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+pheatmap(dds_cor, fontsize = 20)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+pheatmap(dds_cor, breaks = seq(.99, 1, length.out = 100), fontsize = 20)
+```
 :::
 
 ::::
