@@ -786,10 +786,6 @@ vsn::meanSdPlot(DESeq2::rlog(airway_counts), plot = FALSE)$gg +
 
 ::::
 
-# Exploratory data analysis
-
-## TODO
-
 ## Exercise
 
 ### Preprocessing for exploratory analysis and quality control
@@ -811,6 +807,10 @@ vsn::meanSdPlot(DESeq2::rlog(airway_counts), plot = FALSE)$gg +
 ::: {style="text-align: center;"}
 **Can you spot differences between the rlog() and vst() outputs?**
 :::
+
+# Exploratory data analysis
+
+## TODO
 
 ## Exercise
 
