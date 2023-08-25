@@ -786,6 +786,11 @@ vsn::meanSdPlot(DESeq2::rlog(airway_counts), plot = FALSE)$gg +
 
 ::::
 
+::: {.notes}
+Plots inspired by the answer to Question 8.12 of
+<https://www.huber.embl.de/msmb/08-chap.html#fig-countdata-meansd>
+:::
+
 ## Exercise
 
 ### Preprocessing for exploratory analysis and quality control
@@ -810,7 +815,25 @@ vsn::meanSdPlot(DESeq2::rlog(airway_counts), plot = FALSE)$gg +
 
 # Exploratory data analysis
 
-## TODO
+## Exploratory data analysis (EDA)
+
+EDA is an integral part of your differential expression workflow.
+
+Getting to know your data informs key decisions that impact your results.
+
+### The good
+
+- Sanity check that samples from the same experimental groups cluster together.
+- Compute quality control metrics that inform your decision-making.
+
+### The bad
+
+- Spot outliers.
+- Spot swapped samples (i.e., mislabelled samples).
+
+### The ugly
+
+Know when the data set as a whole is just not good enough!
 
 ## Exercise
 
