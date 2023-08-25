@@ -908,6 +908,38 @@ pheatmap(
 )
 ```
 
+## Principal component analysis (PCA)
+
+Unsupervised method identifying major axes of *variance* in a matrix.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 5
+#| out-height: 450px
+#| out-width: 450px
+plotPCA(airway_rlog, intgroup = "cell")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 5
+#| out-height: 450px
+#| out-width: 450px
+plotPCA(airway_rlog, intgroup = "dex")
+```
+:::
+
+::::
+
+**Pro-tip:** The pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
+
 
 ## Exercise
 
