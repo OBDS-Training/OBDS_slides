@@ -1,0 +1,187 @@
+# Day 1: Exercises
+
+## Talk 2 Exercise 1 – Files and directories part 1
+
+1. Log into the cluster using `ssh`.
+```
+$ ssh <username>@login1.molbiol.ox.ac.uk
+```
+2. Establish your current location in the file system.
+```
+$ pwd
+```
+3. List all the files and directories in your current directory (including hidden files).
+```
+$ ls -a
+```
+4. Change into your course working directory: /project/obds/<username>.
+```
+$ cd /project/obds/<username>
+```
+5. Change into the course shared directory /project/obds/shared/resources/.
+```
+$ cd /project/obds/shared/resources/      # Absolute path
+$ cd ../shared/resources/                 # Relative path from /project/obds/<username>
+```
+6. Change into the directory 1_linux/1_linux_intro.
+```
+$ cd 1_linux/1_linux_intro
+```
+7. View the file manpage.txt on the command line (try cat, wc, head and tail, more and less).
+```
+$ <command> manpage.txt
+```
+9. What type of command is `history`? What is it for?
+```
+$ type history
+history is a shell builtin
+$ type --help                             # To see previously executed commands 
+```
+
+## Talk 2 Exercise 2 - Files and directories part 2
+
+1. Change into your obds course directory /project/obds/<username>. 
+```
+$ cd /project/obds/<username>
+```
+2. Create a new directory called 1_linux and change directory into it. 
+```
+$ mkdir 1_linux; cd 1_linux
+```
+3. Copy SRR2121685h_1.fastq from /project/obds/datashare/ltamon/1_linux to the current working directory.
+```
+$ cp /project/obds/datashare/ltamon/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
+```
+4. View the file SRR2121685h_1.fastq on the command line (try cat, wc, head and tail, more and less). Also try viewing using a
+terminal text editor (making sure not to save unintended edits). 
+```
+$ <command> SRR2121685h_1.fastq
+```
+5. How many lines does the fastq have? How many reads does it have?
+```
+$ wc -l SRR2121685h_1.fastq 
+40                                  # With 40 lines and 4 lines per read, 10 reads            
+```
+6. Copy the directory /project/obds/shared/resources/1_linux/1_linux_intro to your working directory (using -r option).
+```
+$ cp -r /project/obds/shared/resources/1_linux/1_linux_intro .
+```
+7. Move SRR2121685h_1.fastq in your working directory to the copied directory.  
+```
+$ mv SRR2121685h_1.fastq 1_linux_intro/SRR2121685h_1.fastq
+```
+8. Change the permissions of your manpage.txt file so that only you have read and write permission
+```
+$ cd 1_linux_intro
+$ ls -l manpage.txt
+-rw-r--r-- 1 ltamon obdsgrp 7660 Aug 25 14:16 manpage.txt
+$ chmod go-r manpage.txt
+```
+8. Create a new directory within your home directory called obds
+```
+$ cd ~
+$ mkdir obds
+```
+9. Change into the obds directory & make a copy of manpage.txt called copy.txt
+```
+$ cd obds
+$ cp /project/obds/shared/resources/1_linux/1_linux_intro/manpage.txt copy.txt
+```
+10. Open copy.txt in a terminal text editor (e.g. nano) and remove the ‘usage’ line
+11. Rename the file to edit.txt
+12. Create a symbolic link to SRR2121685h_1.fastq called symlink.fastq, and a hard link called hardlink.fastq. Inspect files with `ls`. View the fastq again using the links. 
+```
+$ ln -s /project/obds/datashare/ltamon/1_linux/1_linux_intro/SRR2121685h_1.fastq symlink.fastq
+$ ln /project/obds/datashare/ltamon/1_linux/1_linux_intro/SRR2121685h_1.fastq hardlink.fastq
+$ ls -l                     # Notice symlink.fastq pointing to original SRR2121685h_1 path and differences in colours
+$ nano symlink.fastq
+$ nano hardlink.fastq
+```
+13. Delete both links at the same time.
+14. Compare the output of these two commands
+```
+$ cp -r /project/obds/shared/resources/1_linux/1_linux_intro .
+
+$ cp -r /project/obds/shared/resources/1_linux/1_linux_intro/. .
+```
+15. Delete the obds directory, try using `rmdir` then `rm`. 
+```
+$ cd ..
+$ rmdir obds                # Won't work with directory that is not empty
+$ rm                        # Need -r 
+$ rm -r                     # Won't prompt at all that directory is not empty
+```
+
+## Talk 2 Advanced Exercise 3
+
+1. Look up the usage of the stat command.
+```
+$ stat --help
+$ man stat
+```
+2. Display the octal permission for all the files and directories in your home directory.
+3. Create a new text file called test.txt and set the file permissions to allow read, write and execute access for user only using octal notation.
+
+## Talk 3 Exercise 1 - Working with files and streams
+
+1. Find the tar archive dnase1_new.tar.gz in your 1_linux directory
+```
+$ cd /project/obds/<username>/1_linux/1_linux_intro; ls
+```
+2. Decompress and extract the archive using the tar command
+```
+$ tar -xzf dnase1_new.tar.gz
+```
+3. Move into the bed directory and count the number of lines in each .bed file
+```
+$ cd bed; wc -l *.bed
+```
+4. Print the first 5 lines of the file cpg.bed. Compress the cpg.bed file in place and then head the compressed file.
+   What do you notice about the compressed file?
+```
+$ ls –l
+$ head cpg.bed
+$ gzip cpg.bed
+$ ls -l
+$ head cpg.bed.gz
+```
+5. Decompress the cpg.bed file in place
+```
+$ gunzip cpg.bed.gz; ls -l; head cpg.bed
+```
+6. Extract all the lines in cpg.bed containing regions on chromosome 5 to a new file called cpg_chr5.bed
+```
+$ grep chr5 cpg.bed > cpg_chr5.bed
+$ head cpg_chr5.bed
+$ tail cpg_chr5.bed
+$ wc –l cpg_chr5.bed
+```
+7. Extract all of the entries EXCEPT those on chr5 to another file called cpg_nochr5.bed
+```
+$ grep -v chr5 cpg.bed > cpg_nochr5.bed
+```
+   How can you check that this command has worked?
+```
+$ wc -l cpg*.bed                # Check if sum of cpg_chr5.bed and cpg_nochr5.bed lines equal to cpg.bed lines
+```
+8. With the cpg.bed file count how many intervals (rows) are on each chromosome (column1)
+   Hint: you will need to pipe together 3 commands
+```
+$ head cpg.bed 
+$ cut -f 1 cpg.bed | sort | uniq -c
+```
+9. Find the fasta format files in the directory /databank/raw/hg19_full/. How many are there?
+```
+$ find /databank/raw/hg19_full/ -type f -name '*.fa' | wc -l
+```
+10. Find all the bed format files in the directory /databank/raw/ and count the number of lines in each file
+```
+$ find /databank/raw/ -type f -name '*.bed' -exec wc -l {} \;
+```
+
+## Talk 3 Advanced exercise 2 - Loops 
+
+1. Create a list of all chromosomes for every dnase1 bed file
+```
+
+```
