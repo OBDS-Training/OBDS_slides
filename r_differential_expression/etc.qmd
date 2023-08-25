@@ -938,7 +938,7 @@ plotPCA(airway_rlog, intgroup = "cell")
 
 ::::
 
-**Pro-tip:** The pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
+**Pro-tip:** Pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
 
 
 ## Exercise
