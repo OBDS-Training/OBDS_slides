@@ -630,6 +630,49 @@ Explore different cut-offs and filtering strategies, e.g.
 - Change the number of samples in which genes should be detected above the read count cut-off.
 - Keep only genes detected above the read count cut-off in all the samples of either cell type.
 
+# Statistical distributions and modelling
+
+## Poisson or Negative binomial distribution? {.smaller}
+
+RNA-seq data is count based, i.e. all values are positive integers.
+
+- Cannot have negative values.
+- Cannot have floating points.
+
+As such, cannot be normally distributed.
+
+### Distributions for count data
+
+#### Poisson
+
+- Assumes variance and mean are equal.
+  May be true for technical replicates, but not for biological replicates.
+- Basic shape of a Poisson distribution changes with $lamba$ parameter.
+
+```{r}
+#| fig-align: center
+#| fig-height: 2
+#| fig-width: 8
+x <- lapply(c(0.8, 1.5, 5, 12), function(x) tibble(value = rpois(1E6, x), lamba = x))
+x <- do.call("bind_rows", x)
+ggplot(x, aes(value)) +
+  geom_histogram(fill = "grey", colour = "black", bins = 20, linewidth = 0.3) +
+  facet_wrap(~lamba, nrow = 1, labeller = "label_both") +
+  theme_bw()
+```
+
+#### Negative binomial
+
+- More appropriate for count data where $variance > mean$.
+
+::: {.notes}
+https://www.theanalysisfactor.com/differences-between-normal-and-poisson-distributions/
+:::
+
+# Exploratory data analysis
+
+## TODO
+
 ## Exercise
 
 ### Preprocessing for exploratory analysis and quality control
