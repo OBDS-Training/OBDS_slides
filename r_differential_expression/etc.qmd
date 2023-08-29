@@ -1260,7 +1260,7 @@ Note(s):
 
 ::::
 
-<https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/02_DGE_count_normalization.html>
+Read <https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/02_DGE_count_normalization.html>.
 
 ## Exercise
 
