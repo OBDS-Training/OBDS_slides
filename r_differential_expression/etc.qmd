@@ -1330,9 +1330,11 @@ class(counts_normalized)
 
 ::: {.column width="50%"}
 ```{r}
+#| echo: true
 #| fig-align: center
 #| fig-height: 7
 #| fig-width: 7
+dds <- estimateDispersions(dds)
 plotDispEsts(dds)
 ```
 
@@ -1357,6 +1359,52 @@ Outliers *not* shrunk toward the fitted trend.
 :::
 
 ::::
+
+## Estimating gene dispersion {.smaller}
+
+Remember that:
+
+- RNA-seq count data is modelled using the Negative Binomial distribution.
+- Heteroskedastic data show association between variance and mean.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Motivation(s)
+
+- Dispersion accounts for the variance *and* the mean of each gene.
+- Higher variance $\rightarrow$ higher dispersion.
+- Higher mean $\rightarrow$ lower dispersion.
+- High dispersion $\rightarrow$ noisy gene.
+:::
+
+::: {.column width="50%"}
+$$K_{ij} \sim \textrm{NB}(\mu_{ij},
+\alpha_i)$$
+
+With
+counts $K_{ij}$ for gene $i$, sample $j$,
+fitted mean $\mu_{ij}$,
+and a gene-specific **dispersion** parameter $\alpha_i$
+:::
+
+::::
+
+### Consequence(s)
+
+- The significance differential expression for a gene depends on its fold-change as well as its **dispersion** within each group of samples being compared.
+- Dispersion *shrinkage* is employed by differential expression methods to estimate more accurately the **dispersion** of individual genes, taking into account the dispersion of other genes with similar abundance.
+
+::: {style="text-align: center;"}
+**Dispersion shrinkage helps reduce false positive in DE results.**
+:::
+
+### Challenge(s)
+
+Dispersion is increasing difficult to estimate as:
+
+- the number of samples decreases,
+- the abundance of the gene decreases (i.e., Poisson sampling noise increases leading to over-dispersion).
 
 ## Exercise
 
