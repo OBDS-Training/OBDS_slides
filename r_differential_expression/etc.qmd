@@ -940,7 +940,7 @@ plotPCA(airway_rlog, intgroup = "cell")
 
 **Pro-tip:** Pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
 
-## Unwanted variation and surrogate variables
+## Unwanted variation and surrogate variables {.smaller}
 
 :::: {.columns}
 
@@ -984,6 +984,9 @@ ggplot(x, aes(sample, value, fill = group)) +
 
 ::::
 
+:::: {.columns}
+
+::: {.column width="66%"}
 ### Objective(s)
 
 - Detected and correct systematic 'unwanted' bias in the data.
@@ -993,6 +996,16 @@ ggplot(x, aes(sample, value, fill = group)) +
 
 - Define 'unwanted', 'cleaner', 'better'.
 - Use and processing of spike-in molecules to capture (some) technical biases.
+:::
+
+::: {.column width="33%"}
+### Packages
+
+- `r BiocStyle::Biocpkg("sva")` `r Citep(bib, "sva_package")`.
+- `r BiocStyle::Biocpkg("RUVSeq")` `r Citep(bib, "ruvseq_package")`.
+:::
+
+::::
 
 ## Exercise
 
