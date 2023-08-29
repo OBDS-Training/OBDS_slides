@@ -1075,6 +1075,19 @@ dds
 
 ::::
 
+## Extracting results from a DESeqDataSet object
+
+```{r}
+#| echo: true
+deseq_results <- results(dds)
+deseq_results
+```
+
+```{r}
+#| echo: true
+summary(deseq_results)
+```
+
 ## Exercise
 
 ### Perform differential expression analysis
