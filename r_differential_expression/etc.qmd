@@ -1220,6 +1220,48 @@ knitr::include_graphics("img/normalization-composition.png")
 - The sequencing depth is the same in both samples.
 - Most genes should yield a *similar fraction* of counts across samples (i.e., housekeeping, unaffected).
 
+## Size factors using geometric mean
+
+#### Step 1
+
+For each gene, a pseudo-reference sample is created that is equal to the geometric mean across all samples.
+
+:::: {.columns}
+
+::: {.column width="20%"}
+Note(s):
+:::
+
+::: {.column width="80%"}
+- Geometric mean is less skewed by outliers than the arithmetic mean.
+- Any zero in any sample results in a zero for the gene (see below).
+:::
+
+::::
+
+#### Step 2
+
+For every gene in every sample, the ratio of counts divided by pseudo-reference counts (for that gene) is calculated.
+
+#### Step 3
+
+The median value for each sample is taken as the size factor.
+
+:::: {.columns}
+
+::: {.column width="20%"}
+Note(s):
+:::
+
+::: {.column width="80%"}
+- The median should not be affected by the set of zero values produced in step 1.
+- The median should not be affected by differentially expressed genes. 
+:::
+
+::::
+
+<https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/02_DGE_count_normalization.html>
+
 ## Exercise
 
 ### Perform differential expression analysis
