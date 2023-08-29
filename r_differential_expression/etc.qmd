@@ -1115,7 +1115,7 @@ summary(deseq_results)
 
 - What does the function `summary()` tell you about the object `dds_results`?
 
-## References
+## References {.smaller}
 
 ```{r}
 #| results: asis
