@@ -1140,7 +1140,7 @@ Computes gene-wise dispersion estimates for Negative Binomial data.
 Calls successively:
 
 - `estimateDispersionsGeneEst()` -- "gene-wise estimates"
-- `estimateDispersionsFit()`
+- `estimateDispersionsFit()` -- "fit model across genes"
 - `estimateDispersionsMAP()` -- "maximum *a posteriori*"
 :::
 
@@ -1158,6 +1158,35 @@ using previously calculated size factors.
 :::
 
 ::::
+
+## Size factors -- Library size
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| fig-align: center
+## Source: https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+knitr::include_graphics("img/normalization-depth.png")
+```
+:::
+
+::: {.column width="55%"}
+#### Fact(s)
+
+- Sample A was sequenced *X times* deep than Sample B.
+- At equal expression level, every gene in Sample A will have *X times* as many counts as in Sample B.
+
+#### Consequence(s)
+
+- Counts in one sample must be multiplied by a scaling factor to be directly comparable to counts in the other sample.
+:::
+
+::::
+
+#### Assumption(s)
+
+- All genes are affected equally (i.e., one single scaling factor per sample).
 
 ## Exercise
 
