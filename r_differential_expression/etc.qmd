@@ -1188,6 +1188,38 @@ knitr::include_graphics("img/normalization-depth.png")
 
 - All genes are affected equally (i.e., one single scaling factor per sample).
 
+## Size factors -- RNA composition
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| fig-align: center
+## Source: https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html
+knitr::include_graphics("img/normalization-composition.png")
+```
+:::
+
+::: {.column width="55%"}
+#### Fact(s)
+
+- Gene DE takes up a much *larger fraction* of counts in Sample A than in Sample B.
+- As a result, all other genes share an overall *smaller fraction* of counts in Sample A than in Sample B.
+- Every other genes takes up a slightly *smaller fraction* of counts in Sample A than in Sample B.
+
+#### Consequence(s)
+
+- Gene DE should be ignored (or downweighted) during the estimation of size factors,
+  so that size factors yield comparable counts for *most* genes across samples.
+:::
+
+::::
+
+#### Assumption(s)
+
+- The sequencing depth is the same in both samples.
+- Most genes should yield a *similar fraction* of counts across samples (i.e., housekeeping, unaffected).
+
 ## Exercise
 
 ### Perform differential expression analysis
