@@ -1316,13 +1316,47 @@ ggplot(x, aes(SampleName, sizeFactor, fill = dex, group = dex)) +
 
 ::::
 
-### Apply
+### Apply to counts
 
 ```{r}
 #| echo: true
 counts_normalized <- counts(dds, normalized = TRUE)
 class(counts_normalized)
 ```
+
+## Dispersion
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 7
+#| fig-width: 7
+plotDispEsts(dds)
+```
+
+:::
+
+::: {.column width="50%"}
+**Black**
+
+Actual dispersion estimate for each gene.
+
+<span style="color:red;">**Red**</span>
+
+Fitted trend.
+
+<span style="color:blue;">**Blue (dot)**</span>
+
+Genes shrunk toward the fitted trend.
+
+<span style="color:blue;">**Blue (circle)**</span>
+
+Outliers *not* shrunk toward the fitted trend.
+:::
+
+::::
 
 ## Exercise
 
