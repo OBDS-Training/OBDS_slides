@@ -1,0 +1,162 @@
+# Day 2: Exercises
+
+## Talk 1 Exercise 1 – Linux processes & system resources
+
+1. Start a new process in the foreground using the sleep command.
+```
+$ sleep 300
+```
+2. Pause the process and send it to the background.
+```
+$ Control+z # then
+$ bg
+```
+3. Check the status of running processes.
+```
+$ ps 
+$ jobs
+```
+4. Start a new sleep process in the background.
+```
+$ sleep 350 &
+```
+5. Kill the first process.
+```
+$ ps
+$ kill <PID> 
+
+$ jobs -l
+$ kill <jobid>
+```
+6. Bring the second process to the foreground and terminate it.
+```
+$ fg
+$ Control+c
+```
+7. Start 3 sleep processes and kill them all by name using a single command.
+```
+$ sleep 300 &; sleep 300 &; sleep 300 &; killall sleep
+```
+8. Look for all the processes for your username using htop.
+```
+$ htop # Then type 'u' then select username
+```
+9. Sort the processes output by memory usage.
+```
+$ htop # Then F5 then click on column header
+```
+10. Find the total memory usage, total tasks and running tasks on the server.
+```
+$ htop # Information on top section (dynamic, no single answer)
+```
+11. Check the total disk usage in your home directory.
+```
+$ cd ~
+$ du -sh
+```
+
+## Talk 2 Exercise 1 – Shell configuration
+
+## Talk 2 Exercise 2 – Modules
+
+1. List the available modules on the cluster.
+```
+$ module avail
+```
+2. Search module list for available fastqc versions.
+```
+$ module search fastqc
+```
+
+2. Load the fastqc module and use `which` to confirm it has worked. 
+Look at the system path, then unload the module and check it again.
+```
+$ which fastqc
+
+$ module add fastqc/0.11.9 
+Loading fastqc/0.11.9
+  Loading requirement: java/17.0.1
+  
+$ which fastqc
+/package/fastqc/0.11.9/bin/fastqc
+
+$ echo $PATH
+$ module unload fastqc
+$ echo $PATH
+```
+3. Try using the module system to load different versions of programs you are familiar with.
+Look at how system path changes.
+```
+$ module add cellranger/2.1.1
+$ module list
+$ module unload cellranger
+$ module list
+$ module add cellranger/7.1.0
+```
+
+## Talk 3 Exercise 1 – Working directory
+
+Set up a working directory for RNAseq data analysis.
+
+1. Create a new project directory called 2_rnaseq in /project/obds/<username>/1_linux.
+```
+$ cd /project/obds/<username>/1_linux/
+$ mkdir 2_rnaseq
+```
+2. Create subdirectories called 1_fastq and 2_genome.
+```
+$ cd 2_rnaseq/
+$ mkdir 1_fastq 2_genome
+```
+3. Create symbolic links to a pair of fastq files in /project/obds/shared/resources/1_linux/rnaseq/ in 1_fastq.
+```
+$ cd 1_fastq/
+$ ls /project/obds/shared/resources/1_linux/rnaseq/
+$ ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
+$ ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
+```
+4. Copy the file md5sum.txt from /project/obds/shared/resources/1_linux/rnaseq to 1_fastq.
+```
+$ cp /project/obds/shared/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
+```
+5. Check that the checksums for your fastq files are correct.
+```
+$ md5sum -c --ignore-missing md5sum.txt
+``` 
+6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to 2_genome and check it downloaded correctly. 
+```
+# Go to Ensembl home, Downloads tab, FTP Download section then the table links to 
+# most current release but you can work your way up to get to older releases
+# This way is good because directory structure is similar across releases and you
+# should be able to find the file type you want in older releases
+
+$ cd ../2_genome/
+$ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz & 
+$ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS & 
+$ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
+
+```
+7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to 2_genome and check it downloaded correctly.
+```
+$ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
+$ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS & 
+$ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/README & 
+
+$ cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
+$ sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+```
+8. Create a readme.txt file in the 2_genome detailing how you obtained the public data files.
+```
+$ nano readme.txt
+```
+9. Create a third directory called 3_analysis and a subdirectory called 1_fastqc.
+```
+$ cd ..
+$ mkdir 3_analysis
+$ cd 3_analysis/
+$ mkdir 1_fastqc
+```
+10. Create an analysis lab-book called rnaseq_commands_<username>.sh in 3_analysis.
+```
+$ nano rnaseq_commands_<username>.sh
+```

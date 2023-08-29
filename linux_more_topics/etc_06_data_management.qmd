@@ -1,0 +1,269 @@
+# Talk 6: Data management
+
+## Philosophy of organising your computational research
+
+"Someone unfamiliar with your project should be able to look at your computer files and understand in detail what you did and why.”
+
+- A Quick Guide to Organizing Computational Biology Projects - William Stafford Noble `r Citep(bib, "noble_quick_2009")`
+
+## Overview
+
+- Outline
+  + Best practices for data storage & organisation
+  + Rules and conventions for naming files
+  + Typical components of genomics data analysis projects
+  + Records metadata and traceability
+  + Backups and archives
+  + Data transfers to and from remote computers
+
+## Linux file system tree
+
+- In Linux, everything is a file organised in a tree structure
+- A directory is just a file containing names of other files
+- All directories branch off from the **root** directory
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
+knitr::include_graphics("img/linux_file_tree.png")
+```
+
+## Name files carefully
+
+- Linux file names are case sensitive
+  + Exclusively using lowercase makes remembering paths easier
+
+- File names must be unique within their directory
+  + Important especially for processes that overwrite by default
+
+- Symbols allowed in filenames
+  + Uppercase and lowercase letters
+  + Digits
+  + '-' (dash), '_' (underscore).
+
+- Symbols to avoid in file names
+  + e.g. % $ £ “ ‘ / \ | =
+  + Do not put spaces into your file or directory names
+  + Use underscore or dash to separate words e.g. file_name.txt
+
+## Name files carefully
+
+- Use distinctive, human-readable names that give an indication of the content
+
+- Follow a consistent pattern that is both user-friendly to read and machine-friendly to process 
+  + e.g. sample1-replicate1-read1.fastq.gz
+
+- Make use of suffixes to identify file formats
+  + e.g. file.txt, file.fastq, file.bed
+
+## Directory structure
+
+- Put each project in its own directory, named after the project
+- Organise files into directory structures that follow a consistent pattern
+
+```
+my_project/
+    ├── data/
+    │   ├── fastq/
+    │   │   ├── sample1.fastq.gz
+    │   │   └── sample2.fastq.gz
+    │   └── annotations/
+    │       ├── genome.gtf.gz
+    │       └── sample_metadata.csv
+    ├── code/
+    │   ├── scripts/
+    │   │   ├── hisat2.sh
+    │   │   └── featurecounts.sh
+    │   └── notebooks/
+    │       ├── differential_expression.R
+    │       └── pathway_analysis.R
+    ├── results/
+    │   ├── sample1.bam
+    │   ├── sample2.bam
+    │   └── read_counts.tsv
+    └── README.txt
+```
+
+## Directory structure
+
+- Sub-directories are commonly created for
+  + Raw sequencing data (e.g. FASTQ files).
+  + Publicly available data sets (e.g., Gene Expression Omnibus - NCBI)
+  + Reference genome, index, and annotations (e.g. Ensembl FTP)
+  + Analysis code (e.g. scripts, notebooks, pipelines)
+  + Analysis output files (e.g. tables, plots, reports)
+
+## Keeping records with the lab notebook
+
+- A chronologically organised lab notebook
+- Series of documents / text files where you record your analysis process
+- Entries in the notebook should be dated, and verbose
+- Record all the steps used to process data
+- Include links to relevant websites, files, reports or plots
+- Record your observations, conclusions, and ideas for future work
+- Include your lab notebook in a git repo, and upload to GitHub regularly
+
+## Backup your work
+
+- A backup is a copy of important data that is stored at regular intervals of time in an alternative location, so that it can be recovered the original data is deleted or becomes corrupted
+- A backup should be in a different computer preferably physically distant from the original source
+- Ways
+  + Many Linux clusters offer backup options 
+    - Ask system administrator about options and cost
+  + The University offers backup services for single-user and multi-user machines (Central Backup Service (HFS))[https://services.it.ox.ac.uk/Service/data-services/backup]
+- Use Git to version control your code and documentation (TBD, day 3)
+  + Push changes to GitHub regularly
+
+## Archive data
+
+- When a project has been completed you can archive the data
+  + Archiving systems reduce storage costs, but will often have longer access times
+- Before using third-party systems, check with funders if they allow data to be hosted externally
+  + Amazon Glacier
+- Published data can be stored in public database at no cost
+  + European Nucleotide Archive / Short Read Archive
+  + ArrayExpress / GEO
+- WIMM IT team offers the (WIMM Keep)[https://gatekeeper.imm.ox.ac.uk/index.cgi/about] (SSO login required)
+- Archived data should be carefully organised and annotated with comprehensive metadata for traceability and discoverability
+
+## Data storage good practices
+
+- Backup
+  + Experimental raw data - data collected directly from experiments and all raw files that cannot be (or hard to) regenerate 
+  + Analysis code 
+  + Environment specifications - version of programs used in scripts and notebooks should be recorded and backed up
+- Separate different analyses into different subdirectories
+- Avoid storing large uncompressed text files 
+  + If you need to decompress for processing, compress afterwards
+- Delete large intermediate files
+  + If you perform multiple BAM processing steps only keep the final BAM file
+- Keep only one copy of large files (excluding backups)
+  + Use symbolic links (`ln -s`) to keep data together without copying files
+- Regularly check your disk usage and available disk / quota with `du`
+
+## Transferring files using FileZilla
+
+- The (FileZilla Client)[https://filezilla-project.org/download.php?platform=osx] is a free solution for transferring files between computers via FTP/SFTP/FTPS protocols
+  + Transfer files between a local computer (where the FileZilla Client is installed) and a remote computer (e.g. CCB cluster)
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: CCB Doks
+knitr::include_graphics("img/filezilla-drop-areas.png")
+```
+
+:::
+
+::: {.column width="30%"}
+
+- To connect to remote server, provide:
+  + Host     - name of remote server
+  + Username - remote server username
+  + Password - remote server password
+  + Port     - 22 (secure ftp / sftp)
+
+:::
+
+::::
+
+## Downloading remote files using the command line
+
+- We can use the Linux command line tool `wget` to download remote files e.g. from public databases like Ensembl
+
+- Ensembl is the European database for reference genome sequence and annotation data
+  + DNA, RNA and protein sequence data
+  + Gene & genome annotations
+    + Coding and non-coding transcripts
+    + Repeats, CpG islands etc.
+
+```
+$ wget ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+$ wget \
+      -P ~/ccb_demo \               # -P to set a directory prefix where all files and subdirectories will be saved
+       ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+```
+
+**DEMO**
+<!--
+How to look for genome files in Ensembl
+-->
+
+## Downloading public sequencing data
+
+- ArrayExpress (EBI)
+- ENA – European Nucleotide archive (EBI)
+- GEO - Gene expression Omnibus (NCBI)
+- SRA – Short Read Archive (NCBI)
+- Download published datasets
+  + Raw sequencing data (fastq files)
+  + Processed results (bed, count matrix)
+  + Metadata (experiment details, sample processing, data analysis)
+
+**DEMO**
+<!--
+How to look for sequencing files in ENA
+-->
+
+## Verify integrity of downloads
+
+- We can check if files have downloaded correctly using checksums
+- Checksum tools generate a unique code (hash / checksum) for each file
+- There are multiple checksum algorithms `md5sum`, `sha256sum`, `sum` etc.
+- These commands are useful if the remote provider ran any of the command themselves and made available the output for each file 
+- Users can then run the same command on their own copy of the downloaded files, and compare the output with that of the provider
+
+## Verify integrity of downloads
+
+- Ensembl uses `sum` 
+
+- ENA uses `md5sum` 
+
+```
+$ wget http…/md5.out            # Download checksum file to local system
+```
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: CCB Doks
+knitr::include_graphics("img/md5_file.png")
+```
+
+```
+$ md5sum -c md5.out             #  Compare the value obtained for the downloaded file to the reference value in md5.out
+```
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: CCB Doks
+knitr::include_graphics("img/md5sum-c.png")
+```
+
+## Exercise 1 - Working directory
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```
+
+# Bonus topics
+
+## Downloading remote files using the command line
+
+- `wget`
+- `curl`
+- `scp`
+- `rsync`
