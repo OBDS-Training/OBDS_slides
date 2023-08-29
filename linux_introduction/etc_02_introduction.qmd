@@ -323,9 +323,23 @@ $ less <filename>                # Like more but allows backward movement, "less
 - From your local Linux shell (Terminal / git bash):
 
 ```
+ssh <username>@<remote>
 $ ssh <username>@login1.molbiol.ox.ac.uk
+$ ssh <username>@login2.molbiol.ox.ac.uk
 ```
 
+## Make a Remote Connection to a Linux Server
+
+- If this is indeed your very first connection, you may be prompted to verify the authenticity of the host
+  + Type 'yes' and press the Return key to continue connecting
+
+- When prompted for your password, type it and press the Return key
+
+- To logout, use any of the following:
+  + Type 'exit' and press the Return key
+  + Type 'logout' and press the Return key
+  + Press Control+d
+  
 ## Exercise 1 – Files and directories part 1
 
 1. Log into the cluster using ssh
