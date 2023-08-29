@@ -1092,6 +1092,32 @@ summary(deseq_results)
 
 :::: {.columns}
 
+::: {.column width="50%"}
+#### Quick start
+
+```{r}
+#| echo: true
+#| eval: false
+dds <- DESeq(dds)
+```
+:::
+
+::: {.column width="50%"}
+#### Detailed workflow
+
+```{r}
+#| echo: true
+#| eval: false
+dds <- estimateSizeFactors(dds)
+dds <- estimateDispersions(dds)
+dds <- nbinomWaldTest(dds)
+```
+:::
+
+::::
+
+:::: {.columns}
+
 ::: {.column width="33%"}
 `estimateSizeFactors()`
 :::
@@ -1129,32 +1155,6 @@ Calls successively:
 ::: {.column width="66%"}
 Tests for significance of coefficients in a Negative Binomial generalised linear model (GLM),
 using previously calculated size factors.
-:::
-
-::::
-
-:::: {.columns}
-
-::: {.column width="50%"}
-#### Quick start
-
-```{r}
-#| echo: true
-#| eval: false
-dds <- DESeq(dds)
-```
-:::
-
-::: {.column width="50%"}
-#### Detailed workflow
-
-```{r}
-#| echo: true
-#| eval: false
-dds <- estimateSizeFactors(dds)
-dds <- estimateDispersions(dds)
-dds <- nbinomWaldTest(dds)
-```
 :::
 
 ::::
