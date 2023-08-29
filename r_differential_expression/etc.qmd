@@ -1088,6 +1088,77 @@ deseq_results
 summary(deseq_results)
 ```
 
+## DESeq2 workflow as individual steps
+
+:::: {.columns}
+
+::: {.column width="33%"}
+`estimateSizeFactors()`
+:::
+
+::: {.column width="66%"}
+Computes sample-wise size factor that normalise counts for sequencing depth and RNA composition.
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="33%"}
+`estimateDispersions()`
+:::
+
+::: {.column width="66%"}
+Computes gene-wise dispersion estimates for Negative Binomial data.
+
+Calls successively:
+
+- `estimateDispersionsGeneEst()` -- "gene-wise estimates"
+- `estimateDispersionsFit()`
+- `estimateDispersionsMAP()` -- "maximum *a posteriori*"
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="33%"}
+`nbinomWaldTest()`
+:::
+
+::: {.column width="66%"}
+Tests for significance of coefficients in a Negative Binomial generalised linear model (GLM),
+using previously calculated size factors.
+:::
+
+::::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Quick start
+
+```{r}
+#| echo: true
+#| eval: false
+dds <- DESeq(dds)
+```
+:::
+
+::: {.column width="50%"}
+#### Detailed workflow
+
+```{r}
+#| echo: true
+#| eval: false
+dds <- estimateSizeFactors(dds)
+dds <- estimateDispersions(dds)
+dds <- nbinomWaldTest(dds)
+```
+:::
+
+::::
+
 ## Exercise
 
 ### Perform differential expression analysis
