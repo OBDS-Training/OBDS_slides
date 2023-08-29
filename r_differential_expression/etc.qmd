@@ -940,6 +940,59 @@ plotPCA(airway_rlog, intgroup = "cell")
 
 **Pro-tip:** Pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
 
+## Unwanted variation and surrogate variables
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+set.seed(1)
+n_replicates <- 3
+n_genes <- 1000
+sample_names <- paste0(rep(c("Control_", "Treated_"), each = n_replicates), rep(1:n_replicates, times = 2))
+sample_shift <- runif(n_replicates * 2)
+names(sample_shift) <- sample_names
+x <- tibble(
+  sample = rep(sample_names, each = n_genes),
+  group = str_extract(sample, "[[:alpha:]]+"),
+  value = rnorm(n_replicates * 2 * n_genes)
+) %>% 
+  group_by(sample) %>% 
+  mutate(value = value + sample_shift[.data[["sample"]]])
+ggplot(x, aes(sample, value, fill = group)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_boxplot() +
+  scale_fill_manual(values = c("Control" = "turquoise", "Treated" = "salmon")) +
+  theme_bw()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+x <- x %>% 
+  group_by(sample) %>% 
+  mutate(value = value - mean(value))
+ggplot(x, aes(sample, value, fill = group)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_boxplot() +
+  scale_fill_manual(values = c("Control" = "turquoise", "Treated" = "salmon")) +
+  theme_bw()
+```
+:::
+
+::::
+
+### Objective(s)
+
+- Detected and correct systematic 'unwanted' bias in the data.
+- Remaining signal should be 'cleaner' and produce 'better' results.
+
+### Challenge(s)
+
+- Define 'unwanted', 'cleaner', 'better'.
+- Use and processing of spike-in molecules to capture (some) technical biases.
 
 ## Exercise
 
