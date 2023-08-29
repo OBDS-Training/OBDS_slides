@@ -1039,6 +1039,42 @@ Using either of the objects `dds_rlog` or `dds_vst` produced earlier.
   Display the sample metadata of the new object
   (compare with objects prior to indexing).
 
+# Differential expression analysis
+
+## Different expression (DE) analysis
+
+DE analysis may be the first thing on your mind.
+
+However, only proceed if you can answer 'yes' to the question:
+
+::: {style="text-align: center;"}
+**Am I satisfied with the quality of my data set?**
+:::
+
+## The DESeq() one-stop shop
+
+:::: {.columns}
+
+::: {.column width="25%"}
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/deseq-internal-steps.svg")
+```
+:::
+
+::: {.column width="75%"}
+```{r}
+#| echo: true
+#| message: true
+library(DESeq2)
+dds <- DESeq(dds)
+dds
+```
+
+:::
+
+::::
+
 ## Exercise
 
 ### Perform differential expression analysis

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225.2 311.99">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: ArialMT, Arial;
+        font-size: 12px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #1d1d1b;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <text class="cls-1" transform="translate(56.71 23.75)"><tspan x="0" y="0">Estimate size factors</tspan></text>
+  <text class="cls-1" transform="translate(30.69 93.28)"><tspan x="0" y="0">Estimate gene-wise dispersion</tspan></text>
+  <text class="cls-1" transform="translate(51.7 155.61)"><tspan x="0" y="0">Fit model to gene-wise</tspan><tspan x="5.67" y="14.4">dispersion estimates</tspan></text>
+  <text class="cls-1" transform="translate(66.03 208.93)"><tspan x="0" y="0">Shrink gene-wise</tspan><tspan x="-8.67" y="14.4">dispersion estimates</tspan></text>
+  <text class="cls-1" transform="translate(38.35 271.26)"><tspan x="0" y="0">Fit generalised linear model</tspan><tspan x="37.01" y="14.4">for each gene</tspan></text>
+  <g>
+    <line class="cls-3" x1="110.72" y1="47.95" x2="110.72" y2="62.06"/>
+    <polygon class="cls-2" points="105.73 60.61 110.72 69.24 115.7 60.61 105.73 60.61"/>
+  </g>
+  <g>
+    <line class="cls-3" x1="110.72" y1="110.27" x2="110.72" y2="124.39"/>
+    <polygon class="cls-2" points="105.73 122.93 110.72 131.57 115.7 122.93 105.73 122.93"/>
+  </g>
+  <g>
+    <line class="cls-3" x1="110.72" y1="172.6" x2="110.72" y2="186.72"/>
+    <polygon class="cls-2" points="105.73 185.26 110.72 193.9 115.7 185.26 105.73 185.26"/>
+  </g>
+  <g>
+    <line class="cls-3" x1="112.06" y1="231.33" x2="112.06" y2="245.45"/>
+    <polygon class="cls-2" points="107.07 243.99 112.06 252.62 117.04 243.99 107.07 243.99"/>
+  </g>
+</svg>
