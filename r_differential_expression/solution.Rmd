@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(DESeq2)
+options(width = 120)
 ```
 
 ## Exercise

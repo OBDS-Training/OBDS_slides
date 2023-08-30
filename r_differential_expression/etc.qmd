@@ -1500,15 +1500,58 @@ and
 
 ## Multiple testing correction
 
-`r BiocStyle::Biocpkg("DESeq2")` offers a choice of multiple testing correction methods.
+::: {style="text-align: center;"}
+Tens of thousands of tests.
+:::
 
-The default settings add *independent filtering* prior to multiple testing correction:
+Occasionally, random variability may coincide with experimental design,
+resulting in *false positive* results (i.e., $P$-values).
+
+::: {style="text-align: center;"}
+More tests = more opportunities for false positives.
+:::
+
+Multiple testing correction computes *adjusted* $P$-values,
+controlling for:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Family-Wise Error Rate (FWER)
+
+- **Synonyms:** false positives, type I errors.
+- The expected proportion of false positive across *all* tests.
+- Stricter.
+
+e.g., 'holm', 'hochberg', 'hommel', 'bonferroni'
+
+:::
+
+::: {.column width="50%"}
+#### False Discovery Rate (FDR)
+
+- The expected proportion of false discoveries amongst the *rejected* hypotheses.
+- More lenient.
+
+e.g. 'BH', 'BY', 'fdr'
+:::
+
+::::
+
+## Multiple testing correction and independent filtering
+
+`r BiocStyle::Biocpkg("DESeq2")` offers the usual choice of multiple testing correction methods,
+along with their own additional *independent filtering* method (enabled by default).
+
+Independent filtering is applied prior to multiple testing correction:
 
 - Genes with the lowest average expression level are progressively removed,
   until the number of null hypotheses rejected is maximised.
-- The Benjamini-Hochberg multiple testing correction method is applied to the remaining genes.
+- The chosen multiple testing correction method (default: Benjamini-Hochberg)
+  is applied to the *remaining* genes.
 
-**Remember:** Lowly expressed genes are less likely to be differentially expressed (higher dispersion).
+**Remember:** Lowly expressed genes are less likely to reach statistical significance,
+due to higher dispersion.
 
 The False Discovery Rate (FDR) can be adjusted to control the expected fraction of false positives in the results.
 
