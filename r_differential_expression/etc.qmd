@@ -1476,7 +1476,7 @@ Default: last level of last variable in design compared to first level.
 ::: {.column width="50%"}
 ### Likelihood ratio test
 
-Tests for significance of change in **deviance** between a full and reduced model.
+Tests for significance of change in **deviance** between a *full* and *reduced* models.
 
 ```{r}
 dds <- nbinomLRT(dds, reduced = ~ cell)
