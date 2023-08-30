@@ -1637,6 +1637,7 @@ It is usually recommended to call `lfcShrink()` to shrink log~2~ fold changes pr
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
+#| fig-align: center
 #| fig-height: 6
 #| fig-width: 7
 plotMA(dds)
@@ -1646,6 +1647,7 @@ plotMA(dds)
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
+#| fig-align: center
 #| fig-height: 6
 #| fig-width: 7
 dds_shrink <- lfcShrink(dds, coef = 2)
@@ -1654,6 +1656,21 @@ plotMA(dds_shrink)
 :::
 
 ::::
+
+## Plot counts for gene in individual samples
+
+The `r BiocStyle::Biocpkg("DESeq2")` function `plotCounts()` can be used to
+visualise the counts for a given gene,
+in individual samples grouped by condition.
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 7
+plotCounts(dds, gene = "ENSG00000000003", intgroup = "dex")
+```
+
 
 ## References {.smaller}
 
