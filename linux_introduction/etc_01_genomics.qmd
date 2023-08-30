@@ -1,7 +1,5 @@
 # Talk 1: Genomics on the Linux command line
 
-## Overview
-
 ## Processing genomics data in Linux
 
 - Genomics data arrives as sequence ‘reads’
@@ -10,9 +8,9 @@
   + Open-source operating system and software
   + Access to large computational resources fir High Performance Computing 
 
-## Understand using an example RNA-seq workflow
+## Perform using an example RNA-seq workflow
 
-- Goal: Identify **differentially expressed** genes between conditions
+- Goal: Identify differentially expressed genes between conditions
 - Most common workflow:
 
 ```{r, rnaseq_workflow}
