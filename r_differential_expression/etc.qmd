@@ -1442,6 +1442,8 @@ With
 
 ::::
 
+The $\beta_{var}$ coefficients represent the log~2~ fold-change values tested for significance.
+
 ## Exercise
 
 ### Perform differential expression analysis
