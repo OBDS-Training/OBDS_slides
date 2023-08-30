@@ -1362,10 +1362,7 @@ Outliers *not* shrunk toward the fitted trend.
 
 ## Estimating gene dispersion {.smaller}
 
-Remember that:
-
-- RNA-seq count data is modelled using the Negative Binomial distribution.
-- Heteroskedastic data show association between variance and mean.
+**Reminder:** RNA-seq count data is heteroskedastic and modelled using the Negative Binomial distribution.
 
 :::: {.columns}
 
@@ -1405,6 +1402,8 @@ Dispersion is increasing difficult to estimate as:
 
 - the number of samples decreases,
 - the abundance of the gene decreases (i.e., Poisson sampling noise increases leading to over-dispersion).
+
+<https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/04b_DGE_DESeq2_analysis.html>
 
 ## Exercise
 
