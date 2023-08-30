@@ -1630,11 +1630,30 @@ The `r BiocStyle::Biocpkg("DESeq2")` function `plotMA()` can be used to
 visualise a scatter plot of log~2~ fold changes (on the y-axis)
 versus the mean of normalized counts (on the x-axis).
 
+It is usually recommended to call `lfcShrink()` to shrink log~2~ fold changes prior to plotting.
+
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r}
 #| echo: true
+#| fig-height: 5
+#| fig-width: 7
 plotMA(dds)
 ```
+:::
 
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| fig-height: 5
+#| fig-width: 7
+dds_shrink <- lfcShrink(dds, coef = 2)
+plotMA(dds_shrink)
+```
+:::
+
+::::
 
 ## References {.smaller}
 
