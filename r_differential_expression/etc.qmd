@@ -1637,7 +1637,7 @@ It is usually recommended to call `lfcShrink()` to shrink log~2~ fold changes pr
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-#| fig-height: 5
+#| fig-height: 6
 #| fig-width: 7
 plotMA(dds)
 ```
@@ -1646,7 +1646,7 @@ plotMA(dds)
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-#| fig-height: 5
+#| fig-height: 6
 #| fig-width: 7
 dds_shrink <- lfcShrink(dds, coef = 2)
 plotMA(dds_shrink)
