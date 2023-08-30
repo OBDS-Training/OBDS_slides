@@ -209,19 +209,18 @@ knitr::include_graphics("img/search_find.png")
 
 ## Exercise 1 - Working with files and streams
 
-1. Find the tar archive dnase1.tar.gz in your 1_linux directory
-2. Decompress and extract the archive using the tar command
-3. Move into the bed directory and count the number of lines in each .bed file
-4. Print the first 5 lines of the file cpg.bed. Compress the cpg.bed file in place and then head the compressed file.
-   What do you notice about the compressed file?
-5. Decompress the cpg.bed file in place
-6. Extract all the lines in cpg.bed containing regions on chromosome 5 to a new file called cpg_chr5.bed
-7. Extract all of the entries EXCEPT those on chr5 to another file called cpg_nochr5.bed
+1. Find the tar archive **dnase1_new.tar.gz** in your 1_linux directory.
+2. Decompress and extract the archive using `tar`.
+3. Move into the bed directory and count the number of lines in each .bed file.
+4. Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place and then head the compressed file. What do you notice about the compressed file?
+5. Decompress the **cpg.bed** file in place.
+6. Extract all the lines in **cpg.bed** containing regions on chromosome 5 to a new file called **cpg_chr5.bed**.
+7. Extract all of the entries EXCEPT those on chr5 to another file called **cpg_nochr5.bed**.
    How can you check that this command has worked?
-8. With the cpg.bed file count how many intervals (rows) are on each chromosome (column1)
-   Hint: you will need to pipe together 3 commands
-9. Find the fasta format files in the folder /databank/raw/hg19_full/. How many are there?
-10. Find all the bed format files in the folder /datashare/courses/obds/bedfiles and count the number of lines in each file
+8. With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
+   Hint: you will need to pipe together 3 commands.
+9. Find the fasta format files in the directory, **/databank/raw/hg19_full/**. How many are there?
+10. Find all the bed format files in the directory, **/databank/raw/** and count the number of lines in each file.
 
 ## Loops in BASH
 
@@ -285,8 +284,6 @@ done
 ## Advanced exercise 2 - Loops 
 
 1. Create a list of all chromosomes for every dnase1 bed file
-
-## Useful links
 
 ## References
 

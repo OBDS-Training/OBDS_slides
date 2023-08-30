@@ -300,7 +300,7 @@ knitr::include_graphics("img/sample_working_tree.png")
 ```
 $ cd ../bar                      
 $ cat <filename>                 # Print the entire file contents to the terminal
-                                 # If taking a while, interrupt with Control+c
+                                 # If taking a while, interrupt with Control + c
 $ head -n 20 <filename>          # Print the first n lines to the terminal (default=10)
 $ tail -n 20 <filename>          # Print the last n lines to the terminal (default=10)
 $ wc <filename>                  # Count the number of bytes (-m), characters (-m), lines (-l) etc.
@@ -317,25 +317,23 @@ $ less <filename>                # Like more but allows backward movement, "less
                                  # Unlike more, reaching end will not terminate interactive viewer
                                  # Similar to more, exit anytime with 'q'
 ```
- 
-## Make a Remote Connection to a Linux Server
 
-- Secure shell – SSH
-- Encrypted network protocol for secure connection to a remote server
-- Remote command line login to a Linux system
-- Uses a username and password to authenticate a remote user
-- Can be used to log into the cluster using SSH
-- From your local Linux shell (Terminal / git bash):
+## Make a remote connection to a Linux server
 
+- We can do a remote command line login to a Linux system using `ssh`
+- SSH (secure shell) is an encrypted network protocol for establishing a secure connection to a remote server
+- The protocol uses a username and password to authenticate a user on the remote system
+- We can log into the cluster using `ssh`
+- From your local Linux shell (Terminal / Git Bash):
 ```
-ssh <username>@<remote>
-$ ssh <username>@login1.molbiol.ox.ac.uk
-$ ssh <username>@login2.molbiol.ox.ac.uk
+$ ssh <username>@<remote>
+$ ssh <username>@login1.molbiol.ox.ac.uk 
+$ ssh <username>@login2.molbiol.ox.ac.uk 
 ```
 
 ## Make a Remote Connection to a Linux Server
 
-- If this is indeed your very first connection, you may be prompted to verify the authenticity of the host
+- For the very first connection, you may be prompted to verify the authenticity of the host
   + Type 'yes' and press the Return key to continue connecting
 
 - When prompted for your password, type it and press the Return key
@@ -343,19 +341,18 @@ $ ssh <username>@login2.molbiol.ox.ac.uk
 - To logout, use any of the following:
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
-  + Press Control+d
+  + Press Control + d
   
 ## Exercise 1 – Files and directories part 1
 
-1. Log into the cluster using ssh
-2. Establish your current location in the file system
-3. List all the files and directories in your current folder (including hidden files)
-4. Change into your course working directory: /project/obds/<username>
-5. Change into the course shared directory /project/obds/shared/resources/
-6. Change into the directory 1_linux/1_linux_intro
-7. View the file manpage.txt on the command line (try cat, more, less, head and tail) 
-   + Change manpage.txt
-8. Use history command to view previously executed commands
+1. Log into the cluster using `ssh`.
+2. Establish your current location in the file system.
+3. List all the files and directories in your current directory (including hidden files).
+4. Change into your course working directory, **/project/obds/\<username>/**.
+5. Change into the course shared directory, **/project/obds/shared/resources/**.
+6. Change into the directory **1_linux/1_linux_intro/**.
+7. View the file **manpage.txt** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`).
+9. What type of command is `history`? What is it for?
 
 ## Changing how you view files using ``ls`` options
 
@@ -396,7 +393,7 @@ knitr::include_graphics("img/ls_options.png")
 
 ::::
 
-## File properties & permissions
+## File properties and permissions
 
 ```{r}
 #| fig-align: center
@@ -422,7 +419,7 @@ knitr::include_graphics("img/ls_long_output_labeled.png")
 knitr::include_graphics("img/ls_long_output.png")
 ```
 
-## File permissions – Group & Other
+## File permissions – group & other
 
 - A group is a collection of one or more users
 - Each user can be a member of multiple groups 
@@ -527,7 +524,7 @@ $ mkdir <dir1> <dir2>           # Create multiple new directories
 - The arrow keys can be used to move the cursor through the file
 - Common keyboard shortcuts are displayed at the bottom of the editor
   + The ^ symbol represents the Control key
-  + For instance, ^X indicates that pressing the Control+x will exit the interactive text editor
+  + For instance, ^X indicates that pressing the Control + x will exit the interactive text editor
 
 - To save edits made to a file:
   + Press the Control and X keys simultaneously to initiate the exit from the editor
@@ -563,7 +560,7 @@ $ rmdir dir1                    # Remove empty directory, will raise an error if
 $ rmdir dir1 dir2               # Will only remove empty directories
 ```
 
-- **!!! There is no undo or recycle bin so be careful when using ``rm`` !!!**
+- **<span style="color:red;">!!! There is no undo or recycle bin so be careful when using `rm` !!!</span>**
   + Particularly with -r (recursive) or * (wildcard)
   + **Good news**, you can only remove files you have permission to delete
   
@@ -573,10 +570,10 @@ $ rmdir dir1 dir2               # Will only remove empty directories
 - Wildcards are special characters that match one or more characters in filenames
 - Therefore they are used to specify groups of file names matching a pattern
 - Main wildcards
-  + * - Matches any sequence of characters 
+  + \* - Matches any sequence of characters 
   + ? - Matches any single character
 
-- Example globs (termed used in Linux):
+- Example globs (term used in Linux):
 ```
 $ ls *.jpg                      # Lists all files with the .jpg extension
 $ ls sample1*                   # Lists all files which start with sample1
@@ -594,6 +591,9 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
   + Hard links cannot reference directories but only files
 - The advantage of hard links is that the original and linked files remain linked even when either or both files are moved
 - Symbolic links become unusable if target file is moved or deleted unless they are updated
+
+## Hard & symbolic links to files and directories
+
 - Symbolic links can point to target files using absolute or relative paths (relative to location of symlink)
   + With absolute paths, symlink will continue to point to the same location even if the symlink itself is moved
   + With relative paths, symlink will point to a new location if the symlink itself is moved (relative to new location of symlink)
@@ -604,7 +604,7 @@ $ ln file1 link1.csv            # Create symbolic link
 $ ln dir1 link1                 # Create symbolic link
 ```
 
-- **!!! Do not create hard links on the CCB cluster. If you think you need a hard link, contact system administrators first to enquire !!!**
+- **Do not create hard links on the CCB cluster. If you think you need a hard link, contact system administrators first to enquire**
 
 ## File types and extensions
  
@@ -634,17 +634,23 @@ $ ln dir1 link1                 # Create symbolic link
 
 ## Exercise 2 - Files and directories part 2
 
-1. Change into your obds course directory /project/obds/<username>
-2. Create a new directory called 1_linux and change directory into it
-3. Copy the folder /project/obds/shared/resources/1_linux/1_linux_intro to your working directory (using -r option)
-4. Change the permissions of your manpage.txt file so that only you have read and write permission
-5. Create a new directory within your home directory called obds
-6. Change into the obds directory & make a copy of manpage.txt called copy.txt
-7. Open copy.txt in a terminal text editor (e.g. nano) and remove the ‘usage’ line
-8. Rename the file to edit.txt
-9. Create a symbolic link to edit.txt called softlink.txt, and a hard link called hardlink.txt
-10. Delete both links, edit.txt, and then delete the obds directory
-11. Use history command to view previously executed commands
+1. Change into your obds course directory, **/project/obds/\<username>/**. 
+2. Create a new directory called 1_linux and change directory into it. 
+3. Copy **SRR2121685h_1.fastq** from **/project/obds/datashare/ltamon/1_linux/** to the current working directory.
+4. View the file **SRR2121685h_1.fastq** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`). Also try viewing using a
+terminal text editor (making sure not to save unintended edits). 
+5. How many lines does the fastq have? How many reads does it have?
+6. Copy the directory **/project/obds/shared/resources/1_linux/1_linux_intro/** to your working directory (using `-r` option).
+7. Move **SRR2121685h_1.fastq** in your working directory to the copied directory.  
+8. Change the permissions of your **manpage.txt** file so that only you have read and write permission
+8. Create a new directory within your home directory called **obds**
+9. Change into the obds directory & make a copy of **manpage.txt** called **copy.txt**
+10. Open **copy.txt** in a terminal text editor (e.g. nano) and remove the ‘usage’ line
+11. Rename the file to **edit.txt**
+12. Create a symbolic link to **SRR2121685h_1.fastq** called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
+13. Delete both links at the same time.
+14. Compare the output of these two commands.
+15. Delete the obds directory, try using `rmdir` then `rm`. 
 
 ## Using octal notation for file permissions
 
@@ -677,14 +683,13 @@ stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
 
 ## Advanced Exercise 3
 
-1. Look up the usage of the stat command
-2. Display the octal permission for all the files and folders in your home directory
-3. Create a new text file called test.txt and set the file permissions to allow read, write and execute access for user only using octal notation
-4. Use history command to view previously executed commands
+1. Look up the usage of the `stat` command.
+2. Display the octal permission for all the files and directories in your home directory.
+3. Create a new text file called **test.txt** and set the file permissions to allow read, write and execute access for user only using octal notation.
 
 ## Useful links
 
-- (Classic SysAdmin: The Linux Filesystem Explained)[https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained]
+- [Classic SysAdmin: The Linux Filesystem Explained](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained)
 
 ## References
 
@@ -692,6 +697,4 @@ stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
 #| results: asis
 PrintBibliography(bib)
 ```
-
-# Bonus topics
 
