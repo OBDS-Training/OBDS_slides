@@ -1471,6 +1471,8 @@ res
   to yield a $P$-value.
 
 Default: last level of last variable in design compared to first level.
+
+<https://hbctraining.github.io/DGE_workshop/lessons/05_DGE_DESeq2_analysis2.html>
 :::
 
 ::: {.column width="50%"}
