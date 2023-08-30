@@ -441,3 +441,22 @@ results(dds_filtered_unique, contrast = c("cell_type", "CD4", "CD8"))
 ```
 
 - What does the function `summary()` tell you about the object `dds_results`?
+
+```{r}
+summary(dds_results)
+```
+
+> Answer:
+> - Number and fraction of significantly up-regulated genes.
+> - Number and fraction of significantly down-regulated genes.
+> - Number and fraction of outliers (?)
+> - Number and fraction of lowly expressed genes excluded by independent filtering.
+
+- Export the table of differential expression results to a CSV file.
+
+```{r}
+x <- dds_results %>% 
+  as.data.frame() %>% 
+  rownames_to_column("gene_id")
+write_csv(x, "dds_results.csv")
+```

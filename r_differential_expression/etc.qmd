@@ -1600,6 +1600,8 @@ summary(results(dds, alpha = 0.05))
 
 - What does the function `summary()` tell you about the object `dds_results`?
 
+- Export the table of differential expression results to a CSV file.
+
 ## Column definitions and results metadata {.smaller}
 
 The `r BiocStyle::Biocpkg("S4Vectors")` method `mcols()` can be used to
