@@ -1260,7 +1260,7 @@ Note(s):
 
 ::::
 
-Read <https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/02_DGE_count_normalization.html>.
+<https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/02_DGE_count_normalization.html>
 
 ## Estimate size factors
 
@@ -1471,8 +1471,6 @@ res
   to yield a $P$-value.
 
 Default: last level of last variable in design compared to first level.
-
-<https://hbctraining.github.io/DGE_workshop/lessons/05_DGE_DESeq2_analysis2.html>
 :::
 
 ::: {.column width="50%"}
@@ -1491,8 +1489,43 @@ res
 - Requires a 'reduced' model formula (i.e., without the terms of interest).
 - $P$-values are determined *solely* by the difference in **deviance** between the 'full' and 'reduced' models.
 - Deviance = difference between observed data and values predicted by model (i.e., smaller deviance = better fit = significant effect of additional covariates).
+:::
 
+::::
+
+Read
+<https://hbctraining.github.io/DGE_workshop/lessons/05_DGE_DESeq2_analysis2.html>
+and
 <https://hbctraining.github.io/DGE_workshop/lessons/08_DGE_LRT.html>.
+
+## Multiple testing correction
+
+`r BiocStyle::Biocpkg("DESeq2")` offers a choice of multiple testing correction methods.
+
+The default settings add *independent filtering* prior to multiple testing correction:
+
+- Genes with the lowest average expression level are progressively removed,
+  until the number of null hypotheses rejected is maximised.
+- The Benjamini-Hochberg multiple testing correction method is applied to the remaining genes.
+
+**Remember:** Lowly expressed genes are less likely to be differentially expressed (higher dispersion).
+
+The False Discovery Rate (FDR) can be adjusted to control the expected fraction of false positives in the results.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+summary(results(dds, alpha = 0.1))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+summary(results(dds, alpha = 0.05))
+```
 :::
 
 ::::
