@@ -56,14 +56,14 @@ NoCite(bib, "R")
 ## Prerequisites
 
 - An account on the teaching cluster
-
-## Set up
-
-```{r, eval=FALSE}
+- VPN to remotely connect to the University network
+- Git Bash for Microsoft Windows users
+ 
+```{r, eval=TRUE}
 #| child: etc_04_processes.qmd
 ```
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: etc_05_shell_config.qmd
 ```
 
