@@ -43,6 +43,9 @@ $ alias wd='cd </path/to/working_dir/> && pwd && ls'
 - Environment variables are defined and available in the shell’s environment
 - Can be accessed by any program run in the shell
 - Can be accessed using '\$' followed by variable name e.g. $USER
+
+## Environment variables
+
 - Can be user defined and modified
   + Once logged into the CCB cluster, a number of environment variables are set in the Bash session
 
@@ -186,6 +189,7 @@ Host jade1
 
 ## Exercise 2 - Working with modules
 
+<!--
 ## Useful links
 
 ## References
@@ -194,6 +198,7 @@ Host jade1
 #| results: asis
 PrintBibliography(bib)
 ```
+-->
 
 # Bonus topics
 

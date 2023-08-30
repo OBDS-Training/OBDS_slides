@@ -98,24 +98,24 @@ $ module add cellranger/7.1.0
 
 Set up a working directory for RNAseq data analysis.
 
-1. Create a new project directory called 2_rnaseq in /project/obds/<username>/1_linux.
+1. Create a new project directory called **2_rnaseq** in **/project/obds/\<username>/1_linux**.
 ```
 $ cd /project/obds/<username>/1_linux/
 $ mkdir 2_rnaseq
 ```
-2. Create subdirectories called 1_fastq and 2_genome.
+2. Create subdirectories called **1_fastq** and **2_genome**.
 ```
 $ cd 2_rnaseq/
 $ mkdir 1_fastq 2_genome
 ```
-3. Create symbolic links to a pair of fastq files in /project/obds/shared/resources/1_linux/rnaseq/ in 1_fastq.
+3. Create symbolic links to a pair of fastq files in **/project/obds/shared/resources/1_linux/rnaseq/** in **1_fastq**.
 ```
 $ cd 1_fastq/
 $ ls /project/obds/shared/resources/1_linux/rnaseq/
 $ ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
 $ ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
 ```
-4. Copy the file md5sum.txt from /project/obds/shared/resources/1_linux/rnaseq to 1_fastq.
+4. Copy the file **md5sum.txt** from **/project/obds/shared/resources/1_linux/rnaseq/** to **1_fastq**.
 ```
 $ cp /project/obds/shared/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
 ```
@@ -123,7 +123,7 @@ $ cp /project/obds/shared/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
 ```
 $ md5sum -c --ignore-missing md5sum.txt
 ``` 
-6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to 2_genome and check it downloaded correctly. 
+6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome** and check it downloaded correctly. 
 ```
 # Go to Ensembl home, Downloads tab, FTP Download section then the table links to 
 # most current release but you can work your way up to get to older releases
@@ -136,7 +136,7 @@ $ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS 
 $ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
 
 ```
-7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to 2_genome and check it downloaded correctly.
+7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome** and check it downloaded correctly.
 ```
 $ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
 $ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS & 
@@ -145,18 +145,18 @@ $ wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/README &
 $ cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
 $ sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
-8. Create a readme.txt file in the 2_genome detailing how you obtained the public data files.
+8. Create a **readme.txt** file in the **2_genome** detailing how you obtained the public data files.
 ```
 $ nano readme.txt
 ```
-9. Create a third directory called 3_analysis and a subdirectory called 1_fastqc.
+9. Create a third directory called **3_analysis** and a subdirectory called **1_fastqc**.
 ```
 $ cd ..
 $ mkdir 3_analysis
 $ cd 3_analysis/
 $ mkdir 1_fastqc
 ```
-10. Create an analysis lab-book called rnaseq_commands_<username>.sh in 3_analysis.
+10. Create an analysis lab-book called **rnaseq_commands_<username>.sh** in **3_analysis**.
 ```
 $ nano rnaseq_commands_<username>.sh
 ```

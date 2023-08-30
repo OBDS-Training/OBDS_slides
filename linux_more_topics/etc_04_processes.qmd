@@ -25,6 +25,9 @@
 - By default, command executed interactively in the Bash session of a Terminal application are run in the **foreground**
   + A command running in the foreground will not return the prompt i.e. user cannot use the terminal until the command has finished running
   + stdout and stderr are printed on the terminal
+
+## Foreground & background processes
+
 - Processes can be run in the **background** to continue using the terminal while the they run
   + To run a command in the background, add an ampersand '&' to the end of the command
   + Best to prevent the process from printing to the terminal while running in the background i.e. redirect stdout and stderr to a file or suppress them
@@ -43,11 +46,27 @@
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 1000px
+#| out-height: 100px
+#| out-width: 500px
 ## Source: CCB Doks
 knitr::include_graphics("img/jobs.png")
 ```
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 250px
+## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 5)
+knitr::include_graphics("img/jobs_option.png")
+```
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="40%"}
 
 - If you have more than one process running in the background:
   + Type fg followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
@@ -56,18 +75,6 @@ knitr::include_graphics("img/jobs.png")
   + '+' - job that would be brought to the foreground by default
   + '-' - second job that would be brought to the foreground by default
   
-:::
-
-::: {.column width="50%"}
-
-```{r}
-#| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
-## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 5)
-knitr::include_graphics("img/jobs_option.png")
-```
-
 :::
 
 ::::
@@ -80,6 +87,10 @@ knitr::include_graphics("img/jobs_option.png")
   + Bash process that is used to run the current Bash session
   + `ps` process itself, which is being being executed to snapshot currently running processes
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
 ```{r}
 #| fig-align: center
 #| out-height: 200px
@@ -88,16 +99,24 @@ knitr::include_graphics("img/jobs_option.png")
 knitr::include_graphics("img/ps-sleep.png")
 ```
 
+:::
+
+::: {.column width="50%"}
+
   + PID  - Process identifier (unique)
   + TTY  - Terminal type
   + TIME - CPU runtime
   + CMD  - Process name
   
+:::
+
+::::
+
 ```
 $ ps -ef                  # Show all processes (-e) in the full format (-f)
 $ ps -u <username>        # Show all processes for <username>
 ```
-  
+
 ## Real-time monitoring with `top`
 
 - Monitor processes and resource usage in real time
@@ -235,9 +254,11 @@ knitr::include_graphics("img/nohup.png")
 10. Find the total memory usage, total tasks and running tasks on the server.
 11. Check the total disk usage in your home directory.
 
+<!--
 ## References
 
 ```{r}
 #| results: asis
 PrintBibliography(bib)
 ```
+-->

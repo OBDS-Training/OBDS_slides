@@ -135,6 +135,9 @@ my_project/
   + Analysis code 
   + Environment specifications - version of programs used in scripts and notebooks should be recorded and backed up
 - Separate different analyses into different subdirectories
+
+## Data storage good practices
+
 - Avoid storing large uncompressed text files 
   + If you need to decompress for processing, compress afterwards
 - Delete large intermediate files
@@ -191,7 +194,7 @@ $ wget \
        ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-**DEMO**
+**DEMO (download from Ensembl)**
 <!--
 How to look for genome files in Ensembl
 -->
@@ -207,7 +210,7 @@ How to look for genome files in Ensembl
   + Processed results (bed, count matrix)
   + Metadata (experiment details, sample processing, data analysis)
 
-**DEMO**
+**DEMO (download from ENA)**
 <!--
 How to look for sequencing files in ENA
 -->
@@ -224,13 +227,13 @@ How to look for sequencing files in ENA
 
 - Ensembl uses `sum` 
 
-- ENA uses `md5sum` 
-
 ```
-$ wget http…/md5.out            # Download checksum file to local system
+$ wget http…/CHECKSUMS      # Download reference checksum file to local system
+$ cat CHECKSUMS             # Print reference checksum
+$ sum <downloaded file>     # Generate checksum for downloaded file and compare to value in reference checksum file
 ```
 
-```{r}
+```{r, eval=FALSE}
 #| fig-align: center
 #| out-height: 350px
 #| out-width: 600px
@@ -238,11 +241,16 @@ $ wget http…/md5.out            # Download checksum file to local system
 knitr::include_graphics("img/md5_file.png")
 ```
 
+## Verify integrity of downloads
+
+- ENA uses `md5sum` 
+
 ```
-$ md5sum -c md5.out             #  Compare the value obtained for the downloaded file to the reference value in md5.out
+$ wget http…/md5sum.txt     # Download reference checksum file to local system
+$ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compare to value in reference checksum file
 ```
 
-```{r}
+```{r, eval=FALSE}
 #| fig-align: center
 #| out-height: 350px
 #| out-width: 600px
