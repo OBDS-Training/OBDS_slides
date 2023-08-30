@@ -1680,11 +1680,11 @@ However, the dispersion of the purple gene is greater than that of the green gen
 The larger dispersion of the purple gene indicates more uncertainty (less information)
 giving the *prior* (black) more influence on its posterior,
 and shrinking its log fold-change towards zero.
+
+`r Citet(bib, "deseq2_2014")`
 :::
 
 ::::
-
-`r Citet(bib, "deseq2_2014")`
 
 ::: {style="text-align: center;"}
 **Shrinkage does not impact significance. However, it may be relevant for downstream analyses.**
@@ -1704,6 +1704,46 @@ in individual samples grouped by condition.
 plotCounts(dds, gene = "ENSG00000000003", intgroup = "dex")
 ```
 
+## Histogram of $P$-values
+
+There is no dedicated function in `r BiocStyle::Biocpkg("DESeq2")`.
+
+However, the results being reported as a table,
+the desired plot can be produced with a minimum of `r BiocStyle::Biocpkg("ggplot2")` code.
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 7
+ggplot(as.data.frame(deseq2_res), aes(pvalue)) +
+  geom_histogram(fill = "grey", color = "black") +
+  theme_bw()
+```
+
+::: {style="text-align: center;"}
+**This plot should be done on the *raw* $P$-values, to be interpreted correctly.**
+:::
+
+<http://varianceexplained.org/statistics/interpreting-pvalue-histogram/>
+
+## Checklist
+
+### Essentials
+
+- [ ] Are samples in the same order in the count matrix and the metadata table?
+- [ ] Does the dispersion plot look reasonable?
+- [ ] Does the MA plot look reasonable?
+- [ ] Does the histogram of raw $P$-values look reasonable?
+
+### Quality of life
+
+- [ ] Is the covariate of interest last in the *design formula*?
+- [ ] Are discrete covariates encoded as *factors* with *levels* in the desired order?
+
+### Better practice
+
+- [ ] Have you recorded the version of the `r BiocStyle::Biocpkg("DESeq2")` package that you are using?
 
 ## References {.smaller}
 
