@@ -1657,6 +1657,39 @@ plotMA(dds_shrink)
 
 ::::
 
+## Shrinkage of log~2~ fold-change
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-width: 400px
+#| out-height: 400px
+knitr::include_graphics("img/logfc-shrinkage.jpg")
+```
+:::
+
+::: {.column width="50%"}
+The mean expression of the two genes is similar.
+
+Without shrinkage, their log fold-change would be similar.
+
+However, the dispersion of the purple gene is greater than that of the green gene.
+
+The larger dispersion of the purple gene indicates more uncertainty (less information)
+giving the *prior* (black) more influence on its posterior,
+and shrinking its log fold-change towards zero.
+:::
+
+::::
+
+`r Citet(bib, "deseq2_2014")`
+
+::: {style="text-align: center;"}
+**Shrinkage does not impact significance. However, it may be relevant for downstream analyses.**
+:::
+
 ## Plot counts for gene in individual samples
 
 The `r BiocStyle::Biocpkg("DESeq2")` function `plotCounts()` can be used to
