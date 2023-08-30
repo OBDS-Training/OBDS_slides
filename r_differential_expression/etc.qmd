@@ -1600,6 +1600,42 @@ summary(results(dds, alpha = 0.05))
 
 - What does the function `summary()` tell you about the object `dds_results`?
 
+## Column definitions and results metadata {.smaller}
+
+The `r BiocStyle::Biocpkg("S4Vectors")` method `mcols()` can be used to
+access metadata associated with columns in the results *DataFrame* object.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+results(dds)
+```
+
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+mcols(results(dds))
+```
+:::
+
+::::
+
+## MA plot
+
+The `r BiocStyle::Biocpkg("DESeq2")` function `plotMA()` can be used to
+visualise a scatter plot of log~2~ fold changes (on the y-axis)
+versus the mean of normalized counts (on the x-axis).
+
+```{r}
+#| echo: true
+plotMA(dds)
+```
+
+
 ## References {.smaller}
 
 ```{r}
