@@ -1443,8 +1443,57 @@ With
 ::::
 
 ::: {style="text-align: center;"}
-**The $\beta_{var}$ coefficients represent the log~2~ fold-change values tested for significance.**
+**The $\beta$ coefficients represent the log~2~ fold-change values tested for significance.**
 :::
+
+## Methods for differential expression testing {.smaller}
+
+**Null hypothesis:** Log~2~ fold-change is zero.
+
+Two major tests in `r BiocStyle::Biocpkg("DESeq2")`:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Wald significance test
+
+Tests for significance of coefficients in a Negative Binomial GLM.
+
+```{r}
+dds <- nbinomWaldTest(dds)
+res <- results(dds)
+res
+```
+
+- Compares two groups of samples.
+- The log~2~ fold-change coefficients are scaled by their standard error.
+- The resulting $z$-statistics are then compared to a standard Normal distribution
+  to yield a $P$-value.
+
+Default: last level of last variable in design compared to first level.
+:::
+
+::: {.column width="50%"}
+### Likelihood ratio test
+
+Tests for significance of change in **deviance** between a full and reduced model.
+
+```{r}
+dds <- nbinomLRT(dds, reduced = ~ cell)
+res <- results(dds)
+res
+```
+
+- Analyse all levels of a factor at once,
+  to identify changes of expression across the different levels (e.g., time course).
+- Requires a 'reduced' model formula (i.e., without the terms of interest).
+- $P$-values are determined *solely* by the difference in **deviance** between the 'full' and 'reduced' models.
+- Deviance = difference between observed data and values predicted by model (i.e., smaller deviance = better fit = significant effect of additional covariates).
+
+<https://hbctraining.github.io/DGE_workshop/lessons/08_DGE_LRT.html>.
+:::
+
+::::
 
 ## Exercise
 
