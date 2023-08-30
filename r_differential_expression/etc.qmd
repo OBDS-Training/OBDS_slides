@@ -1403,7 +1403,44 @@ Dispersion is increasing difficult to estimate as:
 - the number of samples decreases,
 - the abundance of the gene decreases (i.e., Poisson sampling noise increases leading to over-dispersion).
 
-<https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/04b_DGE_DESeq2_analysis.html>
+Read <https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/04b_DGE_DESeq2_analysis.html>.
+
+## Test for significance {.smaller}
+
+At this point, we have computed:
+
+- sample-wise **size factors** to account for library size and RNA composition.
+- gene-wise **dispersion estimates** to reduce false positive in DE results.
+
+We also defined a **design formula** to indicate covariates to control for and to test.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Given the design
+
+$$\sim 0 + dex + cell$$
+
+The expression of gene $i$ in sample $j$ is modelled as
+
+$$y = \beta_{0} + \beta_{dex}X_{dex} + \beta_{cell}X_{cell} + \epsilon$$
+:::
+
+::: {.column width="50%"}
+With
+
+- $y$ the expression level of the gene being modelled (i.e., the 'dependent' or 'outcome' variable).
+- $\beta_{0}$ the average expression a reference group of samples
+  (i.e., when all predictor variables are zero).
+- $\beta_{dex}$ the coefficient associated with the covariate $dex$,
+  modelling the independent effect of covariate $dex$ in each group of sample
+  relative to the baseline.
+- $X_{dex}$ a discrete predictor variable that represents the different values of $dex$.
+- ...
+- $\epsilon$ represents the error term (i.e., variability in $y$ not explained by the model).
+:::
+
+::::
 
 ## Exercise
 
