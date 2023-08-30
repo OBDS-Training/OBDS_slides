@@ -56,10 +56,10 @@ NoCite(bib, "R")
 ## Prerequisites
 
 - An account on the teaching cluster
+- VPN to remotely connect to the University network
+- Git Bash for Microsoft Windows users
 
-## Set up
-
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: etc_01_genomics.qmd
 ```
 
