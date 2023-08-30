@@ -51,6 +51,9 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 - All OS have a  **shell** i.e. a command-line interpreter
   + It processes the commands, giving them to the OS and outputs the results
 - There are different shells differing in syntax and characteristics
+
+## Linux shell - Terminology alert!
+
 - Most widely used shell for Linux is **BASH** (Bourne Again Shell)
   + Often used in the CCB cluster but others are available for use
 - The **terminal** or **command-line interface**, where user inputs commands, is used to interact with the shell
@@ -84,9 +87,10 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Linux commands
 
-- Basic part/s
-  + \<command> 
+- Basic part/s (Text in \<arrows> indicates a variable which should be replaced)
+  + \<command>      
   + \<command> \<argument> 
+  + \<command> \<options> \<argument> 
   
 - Types
   + **Shell builtin** - Built into the shell itself
@@ -104,6 +108,21 @@ $ which head                     # ‘which’ returns the path of the file to b
 /usr/bin/head
 ```
 
+## Linux command options
+
+- Commands have options that modify their functions
+  + \<command> \<options> \<argument>
+  + Short options start with '-', long options start with '\-\-' (TBD)
+
+```
+$ which head
+/usr/bin/head
+
+$ which -a head                  # '-a' to print all matching paths of each argument
+/usr/bin/head
+/bin/head
+```
+
 ## Some useful Bash keyboard shortcuts
 
 - **Tab** - autocomplete (will prompt if ambiguous)
@@ -118,32 +137,17 @@ knitr::include_graphics("img/tab_autocompletion.png")
 ```
 
 - **Up and down arrows** - Access history of commands
-- **Control+c** - Abort current command
-- **Control+a** - Go to start of line
-- **Control+e** - Go to end of line
+- **Control + c** - Abort current command
+- **Control + a** - Go to start of line
+- **Control + e** - Go to end of line
 
 **DEMO**
-
-## Linux command options
-
-- Commands have options that modify their functions
-  + \<command> -\<options> \<argument>
-  + Short options start with '-', long options start with '\-\-' (TBD)
-
-```
-$ which head
-/usr/bin/head
-
-$ which -a head                  # '-a' to print all matching paths of each argument
-/usr/bin/head
-/bin/head
-```
 
 ## Getting help with linux commands
 
 - Different ways
   + `man` shows manual pages of the command
-  + Press q to exit
+  + Press 'q' to exit
 
 ```{r}
 #| fig-align: center
@@ -171,7 +175,7 @@ knitr::include_graphics("img/help_head.png")
 
 - Different ways
   + Google search!
-  + Use in combination with command-line ways for more information that is accurate or up to date
+  + Use in combination with command-line ways for more information that is accurate and up to date
 
 ```{r}
 #| fig-align: center
@@ -215,7 +219,7 @@ $ pwd
 
 ## Working with Paths 
 
-- Path is the location to a file
+Path is the location to a file
 
 :::: {.columns}
 
@@ -248,9 +252,10 @@ $ pwd
 
 ::::
 
+
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 
 - Path shortcuts
   + .  (full stop)     current directory 
@@ -260,12 +265,12 @@ $ pwd
   
 :::
 
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 300px
+#| out-width: 600px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/sample_working_tree.png")
 ```
@@ -281,10 +286,10 @@ knitr::include_graphics("img/sample_working_tree.png")
   + Always use tab autocompletion to avoid typos 
     - Command-line interpreters may figure out whether you need a command or file path
   + `ls` output can be set to be coloured to indicate the type of each file 
-    - Directory-purple
-    - File-black 
-    - Symbolic link-cyan (links TBD) 
-    - Compressed file-red
+    - <span style="color:indigo;">Directory</span>
+    - File - black 
+    - <span style="color:cyan;">Symbolic link</span> (TBD) 
+    - <span style="color:#b84e38;">Compressed file</span>
     
 **DEMO** 
 
