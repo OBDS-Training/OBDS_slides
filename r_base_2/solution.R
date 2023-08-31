@@ -41,11 +41,15 @@ setwd("new_dir")
 
 # Restore objects saved in the .RData file to your workspace.
 
-load("workspace.RData")
+load("../workspace.RData")
 
 # Restore the object saved in the RDS file to your workspace under a different name.
 
-a_restored <- readRDS("a.rds")
+a_restored <- readRDS("../a.rds")
+
+# Set the working directory back one level up from the new directory.
+
+setwd("..")
 
 # Exercise ----
 
@@ -53,7 +57,7 @@ a_restored <- readRDS("a.rds")
 
 # Use readRDS() to load the file /project/obds/shared/resources/2_r/my_day2matrix.rds and assign the object to the name m.
 
-m <- readRDS("/project/obds/shared/resources/2_r/my_day2matrix.rds")
+m <- readRDS("data/my_day2matrix.rds")
 
 # Compute the sum of values in each row and add those values as a new column in the matrix.
 
@@ -94,8 +98,8 @@ min(ToothGrowth$len)
 
 # Can you use the functions rowSums() and colSums() on the ToothGrowth object?
 
-rowSums(ToothGrowth)
-colSums(ToothGrowth)
+try(rowSums(ToothGrowth))
+try(colSums(ToothGrowth))
 
 # Exercise ----
 
