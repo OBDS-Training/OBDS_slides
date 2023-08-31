@@ -98,14 +98,14 @@ $ module add cellranger/7.1.0
 
 Set up a working directory for RNAseq data analysis.
 
-1. Create a new project directory called **2_rnaseq** in **/project/obds/\<username>/1_linux**.
+1. Create a new project directory called **rnaseq** in **/project/obds/\<username>/1_linux**.
 ```
 $ cd /project/obds/<username>/1_linux/
-$ mkdir 2_rnaseq
+$ mkdir rnaseq
 ```
 2. Create subdirectories called **1_fastq** and **2_genome**.
 ```
-$ cd 2_rnaseq/
+$ cd rnaseq/
 $ mkdir 1_fastq 2_genome
 ```
 3. Create symbolic links to a pair of fastq files in **/project/obds/shared/resources/1_linux/rnaseq/** in **1_fastq**.
