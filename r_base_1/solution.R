@@ -35,7 +35,7 @@ m[2]
 
 # Multiply the second element of m by 4. What happens? Why?
 
-m[2] * 4
+try(m[2] * 4, silent = TRUE)
 
 # Make a vector c that contains four named character scalars.
 
@@ -104,7 +104,7 @@ l[c(3, 5)]
 
 # Assign data from the file coding_gene_region.bed to an object named gene_data.
 
-gene_data <- read.table("/project/obds/shared/resources/2_r/baseR/coding_gene_region.bed")
+gene_data <- read.table("data/coding_gene_region.bed")
 head(gene_data)
 
 # Display the dimensions of the data frame and the type of data in each column.
