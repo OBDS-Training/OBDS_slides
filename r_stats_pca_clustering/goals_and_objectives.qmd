@@ -1,0 +1,25 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe statistical distributions and tests available in <i class="fab fa-r-project"></i>.
+- Explain the motivation for dimensionality reduction and clustering.
+- Understand the relationship between dimensionality reduction and clustering.
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Demonstrate the use of statistical distributions and tests available in <i class="fab fa-r-project"></i>.
+- Apply principal component analysis.
+- Visualise and interpret the outputs of principal component analysis.
+- Apply hierarchical clustering.
+- Visualise and interpret the outputs of hierarchical clustering.

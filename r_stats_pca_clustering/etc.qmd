@@ -1,0 +1,363 @@
+## <i class="fab fa-r-project"></i> is built for statistics
+
+- <i class="fab fa-r-project"></i> includes a number of common statistical distributions:
+  - The *Normal* Distribution
+  - The *Binomial* Distribution
+  - The *Poisson* Distribution
+  - ...
+- <i class="fab fa-r-project"></i> implements a range of statistical tests:
+  - Student's t-Test
+  - Pearson's Chi-squared Test for Count Data
+  - Wilcoxon Rank Sum and Signed Rank Tests
+  - ...
+
+## <i class="fab fa-r-project"></i> Functions for Probability Distributions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+::: {.small-table}
+|Distribution                   |Probability |Quantile    |Density     |Random      |
+|:------------------------------|:-----------|:-----------|:-----------|:-----------|
+|Beta                           |`pbeta`     |`qbeta`     |`dbeta`     |`rbeta`     |
+|Binomial                       |`pbinom`    |`qbinom`    |`dbinom`    |`rbinom`    |
+|Cauchy                         |`pcauchy`   |`qcauchy`   |`dcauchy`   |`rcauchy`   |
+|Chi-Square                     |`pchisq`    |`qchisq`    |`dchisq`    |`rchisq`    |
+|Exponential                    |`pexp`      |`qexp`      |`dexp`      |`rexp`      |
+|F                              |`pf`        |`qf`        |`df`        |`rf`        |
+|Gamma                          |`pgamma`    |`qgamma`    |`dgamma`    |`rgamma`    |
+|Geometric                      |`pgeom`     |`qgeom`     |`dgeom`     |`rgeom`     |
+|Hypergeometric                 |`phyper`    |`qhyper`    |`dhyper`    |`rhyper`    |
+|Logistic                       |`plogis`    |`qlogis`    |`dlogis`    |`rlogis`    |
+|Log Normal                     |`plnorm`    |`qlnorm`    |`dlnorm`    |`rlnorm`    |
+|Negative Binomial              |`pnbinom`   |`qnbinom`   |`dnbinom`   |`rnbinom`   |
+|Normal                         |`pnorm`     |`qnorm`     |`dnorm`     |`rnorm`     |
+|Poisson                        |`ppois`     |`qpois`     |`dpois`     |`rpois`     |
+|Student t                      |`pt`        |`qt`        |`dt`        |`rt`        |
+|Studentized Range              |`ptukey`    |`qtukey`    |`dtukey`    |`rtukey`    |
+|Uniform                        |`punif`     |`qunif`     |`dunif`     |`runif`     |
+|Weibull                        |`pweibull`  |`qweibull`  |`dweibull`  |`rweibull`  |
+|Wilcoxon Rank Sum Statistic    |`pwilcox`   |`qwilcox`   |`dwilcox`   |`rwilcox`   |
+|Wilcoxon Signed Rank Statistic |`psignrank` |`qsignrank` |`dsignrank` |`rsignrank` |
+:::
+:::
+
+::: {.column width="40%"}
+- Each distribution has a root name, e.g. `norm`
+- Every distribution has four functions.
+- The root name is prefixed by one of the letters:
+  - `p` for "probability", the cumulative distribution function (c. d. f.)
+  - `q` for "quantile", the inverse c. d. f.
+  - `d` for "density", the density function (p. f. or p. d. f.)
+  - `r` for "random", a random variable having the specified distribution
+
+:::
+
+::::
+
+::: {.notes}
+Source: <https://www.stat.umn.edu/geyer/old/5101/rlook.html>
+:::
+
+## The normal distribution
+
+### Notation
+
+$${\mathcal{N}}(\mu ,\sigma^{2})$$
+
+<br/>
+
+### Parameters
+
+- ${\mu \in \mathbb {R} }$ = mean (location)
+- ${ \sigma ^{2}>0}$ = variance (squared scale)
+
+<br/>
+
+### Properties
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Median: ${ \mu }$
+
+- Mode: ${ \mu }$
+:::
+
+::: {.column width="50%"}
+- Variance: ${ \sigma ^{2} }$
+:::
+
+::::
+
+- Probability density function (PDF): ${\displaystyle {\frac {1}{\sigma {\sqrt {2\pi }}}}e^{-{\frac {1}{2}}\left({\frac {x-\mu }{\sigma }}\right)^{2}}}$
+
+## The standard normal distribution
+
+```{r}
+slide_mean <- 0; slide_sd <- 1;
+```
+
+Standard normal distribution with mean `r slide_mean` and standard deviation `r slide_sd`.
+
+```{r}
+x <- tibble(
+  quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
+  pnorm = pnorm(q = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("pnorm(q = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = 1, by = 0.01),
+  qnorm = qnorm(p = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
+  geom_hline(yintercept = slide_mean, color = "blue") +
+  geom_label(aes(y = y, label = y), x = 0, data = tibble(y = slide_mean)) +
+  geom_hline(yintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(y = y, label = label), x = 0, alpha = 0.5,
+    data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("qnorm(p = probabilities, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
+  dnorm = dnorm(x = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("dnorm(x = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  rnorm = rnorm(n = 1E3, mean = slide_mean, sd = slide_sd)
+)
+gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill = "grey") +
+  geom_rug(alpha = 0.5) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("rnorm(n = 1E3, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 7
+plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
+```
+
+## A parameterised normal distribution
+
+```{r}
+slide_mean <- 50; slide_sd <- 100;
+```
+
+Normal distribution parameterised with mean `r slide_mean` and standard deviation `r slide_sd`.
+
+```{r}
+x <- tibble(
+  quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
+  pnorm = pnorm(q = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg1 <- ggplot(x) + geom_point(aes(quantile, pnorm)) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("pnorm(q = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = 1, by = 0.01),
+  qnorm = qnorm(p = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
+  geom_hline(yintercept = slide_mean, color = "blue") +
+  geom_label(aes(y = y, label = y), x = 0, data = tibble(y = slide_mean)) +
+  geom_hline(yintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(y = y, label = label), x = 0, alpha = 0.5,
+    data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("qnorm(p = probabilities, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
+  dnorm = dnorm(x = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("dnorm(x = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  rnorm = rnorm(n = 1E3, mean = slide_mean, sd = slide_sd)
+)
+gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill = "grey") +
+  geom_rug(alpha = 0.5) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("rnorm(n = 1E3, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 7
+plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
+```
+
+## A parameterised binomial distribution
+
+```{r}
+slide_size <- 50; slide_prob <- 0.1;
+```
+
+Binomial distribution parameterised with size `r slide_size` and probability `r slide_prob`.
+This distribution models an experiment where a coin is tossed 50 times, and the probability of observing head is 10%.
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = slide_size, by = 1),
+  pbinom = pbinom(q = quantile, size = slide_size, prob = slide_prob)
+)
+gg1 <- ggplot(x) + geom_point(aes(quantile, pbinom)) +
+  labs(
+    title = sprintf("pbinom(q = quantiles, size = %s, prob = %s)", slide_size, slide_prob),
+    subtitle = "the cumulative distribution function (c. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = 1, by = 0.01),
+  qbinom = qbinom(p = quantile, size = slide_size, prob = slide_prob)
+)
+gg2 <- ggplot(x) + geom_point(aes(quantile, qbinom)) +
+  labs(
+    title = sprintf("qbinom(p = probabilities, size = %s, prob = %s)", slide_size, slide_prob),
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = slide_size, by = 1),
+  dbinom = dbinom(x = quantile, size = slide_size, prob = slide_prob)
+)
+gg3 <- ggplot(x) + geom_point(aes(quantile, dbinom)) +
+  labs(
+    title = sprintf("dbinom(x = quantiles, size = %s, prob = %s)", slide_size, slide_prob),
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  rbinom = rbinom(n = 1E3, size = slide_size, prob = slide_prob)
+)
+gg4 <- ggplot(x, aes(rbinom)) + geom_histogram(bins = 30, color = "black", fill = "grey") +
+  labs(
+    title = sprintf("rbinom(n = 1E3, size = %s, prob = %s)", slide_size, slide_prob),
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 7
+plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
+```
+
+## The binomial distribution
+
+```{r}
+#| fig-align: center
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/binomial-coins.svg")
+```
+
+Two mutually exclusive outcomes:
+
+::: {style="text-align: center;"}
+$$P(H) = 1 - P(T)$$
+:::
+
+Size of experiment:
+
+::: {style="text-align: center;"}
+Number of times the coin is tossed.
+:::
+
+Model:
+
+::: {style="text-align: center;"}
+What is the probability of observing $n$ head when tossing the coin $N$ times?
+:::
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

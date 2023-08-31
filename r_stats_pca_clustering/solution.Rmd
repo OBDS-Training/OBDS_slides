@@ -1,0 +1,11 @@
+---
+title: "Solution: Statistics, dimensionality reduction, and clustering"
+author: "Author name goes here"
+date: "2023-08-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
