@@ -337,23 +337,50 @@ plot_grid(gg1, gg2, gg3, gg4, ncol = 2, nrow = 2)
 knitr::include_graphics("img/binomial-coins.svg")
 ```
 
-Two mutually exclusive outcomes:
+#### Two mutually exclusive outcomes
 
 ::: {style="text-align: center;"}
 $$P(H) = 1 - P(T)$$
 :::
 
-Size of experiment:
+#### Size of experiment
 
 ::: {style="text-align: center;"}
 Number of times the coin is tossed.
 :::
 
-Model:
+#### Model
 
 ::: {style="text-align: center;"}
-What is the probability of observing $H$ head when tossing the coin $N$ times?
+Probability of observing $H$ head when tossing the coin $N$ times.
 :::
+
+## Quantiles
+
+For instance, the minimum value, the value that separates the lowest 10% values in the distribution, 20%, and so on, until the maximum value.
+
+```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 9
+slide_mean <- 50; slide_sd <- 100;
+slide_quantiles_code <- "seq(0, 1, by = 0.1)"
+slide_quantiles <- eval(parse(text = slide_quantiles_code))
+x1 <- tibble(
+  rnorm = rnorm(n = 10E3, mean = slide_mean, sd = slide_sd)
+)
+x2 <- tibble(
+  quantile = slide_quantiles,
+  value = quantile(x1$rnorm, slide_quantiles)
+)
+ggplot() +
+  geom_histogram(aes(rnorm), x1, bins = 30, color = "black", fill = "grey") +
+  geom_vline(aes(xintercept = value), x2, color = "blue", linetype = "dashed") +
+  labs(
+    title = sprintf("quantile(x, %s)", slide_quantiles_code),
+    subtitle = sprintf("Ten deciles computed on the distribution rnorm(n = 10E3, mean = %s, sd = %s)", slide_mean, slide_sd)) +
+  cowplot::theme_cowplot()
+```
 
 ## References
 
