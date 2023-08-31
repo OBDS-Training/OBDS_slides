@@ -35,7 +35,7 @@ m[2]
 
 # Multiply the second element of m by 4. What happens? Why?
 
-try(m[2] * 4, silent = TRUE)
+try(m[2] * 4)
 
 # Make a vector c that contains four named character scalars.
 
