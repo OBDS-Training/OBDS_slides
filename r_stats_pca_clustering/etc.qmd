@@ -352,7 +352,7 @@ Number of times the coin is tossed.
 Model:
 
 ::: {style="text-align: center;"}
-What is the probability of observing $n$ head when tossing the coin $N$ times?
+What is the probability of observing $H$ head when tossing the coin $N$ times?
 :::
 
 ## References
