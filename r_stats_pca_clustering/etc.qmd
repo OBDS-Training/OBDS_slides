@@ -382,6 +382,25 @@ ggplot() +
   cowplot::theme_cowplot()
 ```
 
+## <i class="fab fa-r-project"></i> Functions for Statistical Testing
+
+In the `r BiocStyle::CRANpkg("stats")` package, functions that implement statistical tests have a named that ends in `.test`.
+
+```{r}
+#| results: asis
+cat(paste(sprintf("*%s()*", sort(grep("\\.test$", ls("package:stats"), value=TRUE))), collapse = " -- "))
+```
+
+<br/>
+
+Each of those functions comes with a help page with programmatic usage, statistical advice, and external references to published work.
+
+```{r}
+#| echo: true
+?pairwise.t.test
+help(pairwise.t.test)
+```
+
 ## References
 
 ```{r}
