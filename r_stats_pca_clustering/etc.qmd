@@ -397,9 +397,43 @@ Each of those functions comes with a help page with programmatic usage, statisti
 
 ```{r}
 #| echo: true
+#| eval: false
 ?pairwise.t.test
 help(pairwise.t.test)
 ```
+
+## Parametric tests and Non-parametric equivalents
+
+When parametric assumptions are not met, non-parametric tests equivalent should be used.
+
+```{r}
+#| include: true
+tibble(
+  "Parametric test" = c(
+    "Paired t-test",
+    "Unpaired t-test",
+    "Pearson correlation",
+    "One-way Analysis of Variance"),
+  "Non-parametric equivalent" = c(
+    "Wilcoxon Rank sum test",
+    "Mann-Whitney U test",
+    "Spearman correlation",
+    "Kruskal–Wallis test")
+) %>% knitr::kable(align = "c")
+```
+
+Non-parametric tests make fewer assumptions, as such:
+
+- they have wider applicability.
+- they may be applied in situations where less is known about the data.
+- they are more robust.
+- ..., however, fewer assumption gives non-parametric tests _less_ power than their parametric equivalent.
+
+<https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests>
+
+::: {.notes}
+**Credits:** [https://www.healthknowledge.org.uk/](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests)
+:::
 
 ## References
 
