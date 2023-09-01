@@ -9,3 +9,84 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Demo
+
+### The standard normal distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-5, 5, 0.1)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pnorm <- pnorm(q = data_quantiles) 
+head(data_pnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pnorm)
+```
+
+#### qnorm()
+
+```{r}
+x <- tibble(
+  quantile = seq(from = 0, to = 1, by = 0.01),
+  qnorm = qnorm(p = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg2 <- ggplot(x) + geom_point(aes(quantile, qnorm)) +
+  geom_hline(yintercept = slide_mean, color = "blue") +
+  geom_label(aes(y = y, label = y), x = 0, data = tibble(y = slide_mean)) +
+  geom_hline(yintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(y = y, label = label), x = 0, alpha = 0.5,
+    data = tibble(y = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("qnorm(p = probabilities, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the inverse c. d. f.") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  quantile = seq(from = slide_mean-5*slide_sd, to = slide_mean+5*slide_sd, by = slide_sd/100),
+  dnorm = dnorm(x = quantile, mean = slide_mean, sd = slide_sd)
+)
+gg3 <- ggplot(x) + geom_point(aes(quantile, dnorm)) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("dnorm(x = quantiles, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "the density function (p. f. or p. d. f.)") +
+  cowplot::theme_cowplot()
+```
+
+```{r}
+x <- tibble(
+  rnorm = rnorm(n = 1E3, mean = slide_mean, sd = slide_sd)
+)
+gg4 <- ggplot(x, aes(rnorm)) + geom_histogram(bins = 30, color = "black", fill = "grey") +
+  geom_rug(alpha = 0.5) +
+  geom_vline(xintercept = slide_mean, color = "blue") +
+  geom_label(aes(x = x, label = x), y = 0, data = tibble(x = slide_mean)) +
+  geom_vline(xintercept = slide_mean+slide_sd*c(-2, 2), color = "blue", linetype = "dashed") +
+  geom_label(
+    aes(x = x, label = label), y = 0, alpha = 0.5,
+    data = tibble(x = slide_mean+slide_sd*c(-2, 2), label = "2*sd")) +
+  labs(
+    title = sprintf("rnorm(n = 1E3, mean = %s, sd = %s)", slide_mean, slide_sd),
+    subtitle = "a random variable having the specified distribution") +
+  cowplot::theme_cowplot()
+```
