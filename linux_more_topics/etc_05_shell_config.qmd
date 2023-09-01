@@ -22,7 +22,7 @@
 - Used to configure the shell environment
   + Set aliases (shortcuts)
   + Set environment variables
-  + Load environment modules
+  + Load environment modules (not recommended by CCB cluster team)
  
 ## Aliases
 
