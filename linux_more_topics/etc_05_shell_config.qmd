@@ -17,12 +17,12 @@
   + A hidden file as its name starts with '.'; display with `ls -a`
   - Often edited to include commands that users wish to execute every time they log in, without the need to explicitly type them every time
  
-- New accounts on the CCB cluster are created with a initial copy of ~/.bashrc file
+- New accounts on the cluster are created with a initial copy of ~/.bashrc file (show obds cluster .bashrc)
 
 - Used to configure the shell environment
   + Set aliases (shortcuts)
   + Set environment variables
-  + Load environment modules (not recommended by CCB cluster team)
+  + Load environment modules (not recommended)
  
 ## Aliases
 
@@ -47,7 +47,7 @@ $ alias wd='cd </path/to/working_dir/> && pwd && ls'
 ## Environment variables
 
 - Can be user defined and modified
-  + Once logged into the CCB cluster, a number of environment variables are set in the Bash session
+  + Once logged into the cluster, a number of environment variables are set in the Bash session
 
 ```
 $ echo $HOME        # Set for each user to their own home directory
@@ -100,22 +100,32 @@ $ module purge                # Unload all loaded modules
 
 ## Remote Connection to a Linux Server
 
-- We log into the CCB cluster using `ssh`
+- We log into the cluster using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure connection to a remote server
 - Simply put, the protocol uses a username and password to authenticate a user on the remote system
-```
-$ ssh <username>@<remote>
-$ ssh <username>@login1.molbiol.ox.ac.uk 
-$ ssh <username>@login2.molbiol.ox.ac.uk 
-```
-- Can create a shortcut on your local machine to minimise typing
-- Can also use a public-private key pair (SSH key) for additional layer of security
 
+```
+$ ssh <username>@<remote / host / server>
+$ ssh -J <jump username>@<jump host> <target username>@<target host>  # Through a jump host 
+```
+  + -J - If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+
+- To connect to the OBDS cluster, we have to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+
+```
+$ ssh -J <username>@bastion.imm.ox.ac.uk <username>@imm-obds
+```
+  + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
+  
+- We can use an SSH public-private key pair (SSH key):
+  + To simplify remote connection by avoiding to repeatedly enter passwords, which are likely hard to remember for security purposes)
+  + To enhance security e.g. not prone to password-guessing attacks
+  
 ## Setting up a public-private key pair
 
 - An SSH key consists of two parts:
-  + A private file (private key) on your local home directory (id_rsa)
-  + A public file (public key) which is uploaded to the remote server you are connecting to (id_rsa.pub)
+  + A **private** file (private key) on your local home directory 
+  + A **public** file (public key) which is uploaded to the remote server you are connecting to 
 - These two files enable your personal computer and the cluster to identify each other
 
 ```{r}
@@ -128,62 +138,96 @@ knitr::include_graphics("img/ssh-key-pair.png")
 
 ## Setting up a public-private key pair
 
-- On your local machine, SSH keys and configuration files are stored in a hidden directory within your home directory called .ssh
+- On your local machine, SSH key pairs and configuration files are stored in a hidden directory within your home directory called .ssh
 ```
-$ cd ~/.ssh                  # Create if it doesn't exist
-$ ssh-keygen -t rsa -b 2048  # Generate keys
+$ cd ~/.ssh                         # Create if it doesn't exist
+$ ssh-keygen -t ecdsa -b 521        # Generate keys
 ```
    + -t = To specify the type of SSH key pair
-   + -b = To specify the number of bits in the key; a minimum of 2048 is previously recommended, larger values generally give additional strength to the key
+   + -b = To specify the number of bits in the key; recommended values depend on type / algorithm and current state of technology, longer keys stronger i.e. harder to crack but slows down encryption / decryption process
 
 - You will be prompted for: 
-  + A file name (leave blank - id_rsa by default)
+  + A file name (if you leave blank - id_<ssh key type> by default e.g. id_ecdsa)
   + A password / passphrase (always set a password for maximum security)
 
+- This creates a private key/file, 'id_ecdsa' and a public key/file, 'id_ecdsa.pub' in ~/.ssh/
 - Please ensure that the private key file has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
 
 ## Adding the public key to a remote server
 
-- The public key – generated and saved as a file on the local machine – needs to be copied to your account on the cluster, so that the CCB cluster can prove its identity to the client
+- The public key - generated and saved as a file on the local machine - needs to be copied to your account on the target host / cluster, so that the cluster can prove its identity to the client
 ```
-$ ssh-copy-id -i ~/.ssh/id_rsa <username>@<remote>
-$ ssh-copy-id -i ~/.ssh/id_rsa <username>@login1.molbiol.ox.ac.uk
+$ ssh-copy-id -i ~/.ssh/id_ecdsa <username>@<remote>
+$ ssh-copy-id -i ~/.ssh/id_ecdsa <username>@login1.molbiol.ox.ac.uk
 ```
-- If the public key indeed does not exist on your CCB cluster account yet, you will be prompted for your password. Type it, and press the Return key
+- If the public key indeed does not exist on your cluster account yet, you will be prompted for your password. Type it, and press the Return key
 
 - This adds the public key to the file ~/.ssh/authorized_keys on your account on the cluster
+- A single SSH key pair can be used to authenticate and access multiple target hosts, provided that you have added the corresponding public key to the ~/.ssh/authorized_keys file on each of those target hosts for the intended user
 
-## Configuring the SSH client
+## Configuring the SSH client 
 
-- We can create a file to store ssh connection details and use a shortcut (host nickname) to access them
+- To easily connect with remote host/s using SSH key pair/s
+- We can create a file to store ssh remote connection details for target host/s and use a shortcut (target host nickname) to access them
 - These can be done by creating a file called config in your local ~/.ssh directory
+
 ```
 $ cd ~/.ssh
 $ nano config
 ```
 
-```
-Host * 
-    IdentityFile ~/.ssh/id_rsa
-```
-  + The keyword 'Host' creates a new set of parameters
-  + The pattern * matches all hostnames, making those parameters global defaults unless overwritten in subsequent declaration
-  + IdentityFile specifies the path to the private SSH key file that you created earlier on your local machine
+## Configuring the SSH client
 
-- Explicitly declare host name if using different SSH key pairs to connect to different SSH servers:
+- config file to access the OBDS cluster:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
 ```
-Host jade1                      
-    Hostname login1.molbiol.ox.ac.uk
-    user <username>
-    IdentityFile ~/.ssh/id_rsa
-    
+Host bastion
+    HostName bastion.imm.ox.ac.uk
+    User <username>
+    IdentityFile ~/.ssh/id_ecdsa
+
+Host obds-bastion
+    HostName imm-obds
+    User <username>
+    IdentityFile ~/.ssh/id_ecdsa
+    ProxyJump bastion
+    # for RStudio
+    LocalForward localhost:8787 localhost:8787
+```
+
+:::
+
+::: {.column width="50%"}
+
+  + 'Host' - creates a new set of parameters, can specify a nickname for the host
+  + 'IdentityFile' - specifies the path to the private SSH key file that you created earlier on your local machine
+  + 'User' - username on host (can be different between jump and target hosts)
+  + 'ProxyJump' - establish connection through a jump host (earlier nicknamed as bastion)
+  + 'LocalForward' - specify connection between your machine's port 8787 to the target host's port 8787, which "offers" RStudio
+                  
+:::
+
+::::
+
+  
+## Configuring the SSH client
+
+- Specifying global default parameters to be applied on all hosts:
+
+```
+Host *                            
+    IdentityFile ~/.ssh/id_ecdsa  # If using an SSH key pair as a default if not specified later on for a particular host
     # For macOS only, add these so there's no need to enter passphrase when starting remote connection
-    AddKeysToAgent yes          # Whether keys should be automatically added to a running ssh-agent
-    UseKeychain yes             # Whether passphrases are stored in the keychain (macOS app)
-    
+    AddKeysToAgent yes            # Whether keys should be automatically added to a running ssh-agent
+    UseKeychain yes               # Whether passphrases are stored in the keychain (macOS app)
 ```
+  + The pattern * matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
    
-- A template config file is provided in /project/obds/shared/resources/1_linux/2_linux_config
+- Look at OBDS config file template
 
 ## Exercise 1 - Shell configuration
 
