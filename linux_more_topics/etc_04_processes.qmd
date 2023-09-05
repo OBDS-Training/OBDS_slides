@@ -2,11 +2,10 @@
 
 ## Overview
 
-- Outline
-  + Linux processes
-  + Monitoring processes
-  + Terminating processes
-  + Disk usage
+- Linux processes
+- Monitoring processes
+- Terminating processes
+- Monitoring disk usage
 
 ## Linux processes
 
@@ -14,10 +13,10 @@
 - A process is a running instance of a program
 - Every process has a process identifier (PID)
 - During execution, a process changes from one state to another depending on its environment/circumstances
-  + Running - process is running on the system
-  + Waiting - process is waiting for an event to occur or for a system resource
-  + Stopped - process has been stopped, usually by receiving a termination signal (either from user or system)
-  + Zombie - process has been halted but it still has an entry in the table of processes
+  + **Running** - process is running on the system
+  + **Waiting** - process is waiting for an event to occur or for a system resource
+  + **Stopped** - process has been stopped, usually by receiving a termination signal (either from user or system)
+  + **Zombie** - process has been halted but it still has an entry in the table of processes
 
 
 ## Foreground & background processes
@@ -32,7 +31,7 @@
   + To run a command in the background, add an ampersand '&' to the end of the command
   + Best to prevent the process from printing to the terminal while running in the background i.e. redirect stdout and stderr to a file or suppress them
   + To move a running process to the background
-    - Press Control+z to pause the process
+    - Press Control + z to pause the process
     - Type 'bg' to send it to the background
     - Type 'fg' then Return key to bring the task back to the foreground
 
@@ -46,7 +45,7 @@
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
+#| out-height: 50px
 #| out-width: 500px
 ## Source: CCB Doks
 knitr::include_graphics("img/jobs.png")
@@ -55,18 +54,18 @@ knitr::include_graphics("img/jobs.png")
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-width: 250px
+#| out-width: 400px
 ## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 5)
 knitr::include_graphics("img/jobs_option.png")
 ```
 
 :::
 
-::: {.column width="10%"}
+::: {.column width="5%"}
 
 :::
 
-::: {.column width="40%"}
+::: {.column width="45%"}
 
 - If you have more than one process running in the background:
   + Type fg followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
@@ -94,7 +93,7 @@ knitr::include_graphics("img/jobs_option.png")
 ```{r}
 #| fig-align: center
 #| out-height: 200px
-#| out-width: 1000px
+#| out-width: 500px
 ## Source: CCB Doks
 knitr::include_graphics("img/ps-sleep.png")
 ```
@@ -129,8 +128,8 @@ $ top
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 350px
+#| out-width: 1000px
 ## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 7)
 knitr::include_graphics("img/top_from_slide.png")
 ```
@@ -144,8 +143,8 @@ knitr::include_graphics("img/top_from_slide.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 450px
+#| out-width: 900px
 ## Source: CCB Doks
 knitr::include_graphics("img/htop-annotated.png")
 ```
@@ -157,12 +156,12 @@ knitr::include_graphics("img/htop-annotated.png")
   + They may use a quota system to limit disk usage
 
 ```
-$ du -h                 # Show directory space usage in human readable form
-79K   ./slurm           # Works recursively showing usage in each subdirectory by default
+$ du -h             # Show directory space usage in human readable form
+79K   ./slurm       # Works recursively showing usage in each subdirectory by default
 8.2MB ./rnaseq
 17M   .
 
-$ du -hs                # Show total directory space usage in human readable form
+$ du -hs            # Show total directory space usage in human readable form
 17M   .
 ```
 
@@ -173,19 +172,20 @@ $ du -hs                # Show total directory space usage in human readable for
   + Using too many resources (e.g. memory, open file connections)
   + No longer functioning properly
 
-```
-$ kill <PID>            # Kills a specific process by process ID 
-$ killall <name>        # Kills all processes by name
-```
-
 :::: {.columns}
 
 ::: {.column width="50%"}
 
+```
+# Kills a specific process by process ID
+
+$ kill <PID>     
+```
+
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 1000px
+#| out-height: 150px
+#| out-width: 400px
 ## Source: CCB Doks
 knitr::include_graphics("img/kill.png")
 ```
@@ -194,9 +194,15 @@ knitr::include_graphics("img/kill.png")
 
 ::: {.column width="50%"}
 
+```
+# Kills all processes by name
+
+$ killall <name>  
+```
+
 ```{r}
 #| fig-align: center
-#| out-height: 400px
+#| out-height: 250px
 #| out-width: 400px
 ## Source: CCB Doks
 knitr::include_graphics("img/killall.png")
@@ -211,11 +217,11 @@ knitr::include_graphics("img/killall.png")
 - Log out of the CCB cluster using any of these
   + Type 'exit' and press Return key 
   + Type 'logout' and press Return key 
-  + Press Control+d
+  + Press Control + d
   
 - Connection to a Bash session on the CCB cluster may be lost for a number of reasons
-  + Loss of internet / VPN for remote sessions
-  + Power loss causing an unexpected outage of CCB systems
+  + Loss of internet or VPN for remote sessions
+  + Power loss causing an unexpected outage of computing systems
 
 - When connection is lost, the HUP (hangup) signal is sent to the Bash session 
   + HUP signal prompts the session to terminate commands that are currently running, potentially resulting in lost work for users
@@ -228,14 +234,15 @@ knitr::include_graphics("img/killall.png")
   + By default, does not save stderr so should explicitly redirected
 
 ```
-$ nohup <command> &        # & commonly used with nohup to launch process in background
+$ nohup <command> &        # '&' commonly used with nohup to launch process in 
+                             background
 $ nohup wc -l file1.txt > stdout.txt 2> stderr.txt &
 ```
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 50px
+#| out-width: 700px
 ## Source: CCB Doks
 knitr::include_graphics("img/nohup.png")
 ```

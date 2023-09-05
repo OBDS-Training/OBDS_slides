@@ -2,14 +2,13 @@
 
 ## Overview
 
-- Outline
-  + The .bashrc file
-  + Aliases
-  + The .inputrc file
-  + Environment variables
-  + The system path, $PATH
-  + SSH and public-private keys
-  + Environment modules
+- The .bashrc file
+- Aliases
+- The .inputrc file
+- Environment variables
+- The system path, $PATH
+- SSH and public-private keys
+- Environment modules
 
 ## Shell configuration
 
@@ -17,7 +16,8 @@
   + A hidden file as its name starts with '.'; display with `ls -a`
   - Often edited to include commands that users wish to execute every time they log in, without the need to explicitly type them every time
  
-- New accounts on the cluster are created with a initial copy of ~/.bashrc file (show obds cluster .bashrc)
+- New accounts on the cluster are created with a initial copy of ~/.bashrc file 
+  + <span style="color:green;">Show obds cluster .bashrc</span>
 
 - Used to configure the shell environment
   + Set aliases (shortcuts)
@@ -50,25 +50,25 @@ $ alias wd='cd </path/to/working_dir/> && pwd && ls'
   + Once logged into the cluster, a number of environment variables are set in the Bash session
 
 ```
-$ echo $HOME        # Set for each user to their own home directory
-$ ls $HOME          # Use in commands
-$ echo $USER        # Set for each user to their own username
+$ echo $HOME            # Set for each user to their own home directory
+$ ls $HOME              # Use in commands
+$ echo $USER            # Set for each user to their own username
 $ mkdir $USER
-$ printenv          # Print currently defined environment variables
-$ printenv USER     # Print $USER
+$ printenv              # Print currently defined environment variables
+$ printenv USER         # Print $USER
 ```
 
 - Above are among the most commonly used variables but user can define any number of custom variable names using `export`
 - Some programs might expect users to define additional environment variables
 
 ```
-export TMP="$HOME"        # Not set by default, preferably define in ~/.bashrc
+export TMP="$HOME"      # Not set by default, preferably define in ~/.bashrc
 ```
 
 ## Environment variables - System path ($PATH)
 
 - One of the most important environment variable
-- Stored as a colon-separated (: symbol) character string that represents the list of directories that are searched – in the given order – to find executable files that are invoked by users and their scripts
+- Stored as a colon-separated (:) character string that represents the list of directories that are searched – in the given order – to find executable files that are invoked by users and their scripts
 - If the wanted program is not in the list of directories, it will not run
 - Mpdify to add directories or remove directories (e.g. when a command is defined in multiple directories)
 - Alternatively, you can provide the full path to the program you wish to run
@@ -88,14 +88,14 @@ $ echo $PATH
   + New modules can be requested from system administrators (help@imm.ox.ac.uk)[help@imm.ox.ac.uk]
 
 ```
-$ module avail                # List modules currently available
-$ module avail python         # Search for specific pattern of module names or use
-$ module search python.       # 
-$ module list                 # List modules currently loaded
-$ module <add | load>         # Add/load modules 
-$ module load fastqc/0.11.9 bowtie2/2.4.2 # Load multiple modules
-$ module unload <module name> # Unload 
-$ module purge                # Unload all loaded modules 
+$ module avail                              # List modules currently available
+$ module <avail | search> python            # Search for specific pattern of 
+                                              module names 
+$ module list                               # List modules currently loaded
+$ module <add | load>                       # Add or load modules 
+$ module load fastqc/0.11.9 bowtie2/2.4.2   # Load multiple modules
+$ module unload <module name>               # Unload 
+$ module purge                              # Unload all loaded modules 
 ```
 
 ## Remote Connection to a Linux Server
@@ -106,17 +106,22 @@ $ module purge                # Unload all loaded modules
 
 ```
 $ ssh <username>@<remote / host / server>
-$ ssh -J <jump username>@<jump host> <target username>@<target host>  # Through a jump host 
+
+# If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+
+$ ssh -J <jump username>@<jump host> <target username>@<target host>  
 ```
-  + -J - If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
 - To connect to the OBDS cluster, we have to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
 
 ```
 $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@imm-obds
 ```
+-
   + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
-  
+
+## Remote Connection to a Linux Server
+
 - We can use an SSH public-private key pair (SSH key):
   + To simplify remote connection by avoiding to repeatedly enter passwords, which are likely hard to remember for security purposes)
   + To enhance security e.g. not prone to password-guessing attacks
@@ -130,8 +135,8 @@ $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@imm-obds
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 400px
+#| out-width: 500px
 ## Source: CCB Doks
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
@@ -143,14 +148,14 @@ knitr::include_graphics("img/ssh-key-pair.png")
 $ cd ~/.ssh                         # Create if it doesn't exist
 $ ssh-keygen -t ecdsa -b 521        # Generate keys
 ```
-   + -t = To specify the type of SSH key pair
-   + -b = To specify the number of bits in the key; recommended values depend on type / algorithm and current state of technology, longer keys stronger i.e. harder to crack but slows down encryption / decryption process
+   + -t - To specify the type of SSH key pair
+   + -b - To specify the number of bits in the key; recommended values depend on type / algorithm and current state of technology, longer keys stronger i.e. harder to crack but slows down encryption / decryption process
 
 - You will be prompted for: 
-  + A file name (if you leave blank - id_<ssh key type> by default e.g. id_ecdsa)
-  + A password / passphrase (always set a password for maximum security)
+  + A file name (if you leave blank - id_\<ssh key type> by default e.g. id_ecdsa)
+  + A password or passphrase (always set a password for maximum security)
 
-- This creates a private key/file, 'id_ecdsa' and a public key/file, 'id_ecdsa.pub' in ~/.ssh/
+- This creates a private key (file), 'id_ecdsa' and a public key (file), 'id_ecdsa.pub' in ~/.ssh/
 - Please ensure that the private key file has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
 
 ## Adding the public key to a remote server
@@ -178,11 +183,11 @@ $ nano config
 
 ## Configuring the SSH client
 
-- config file to access the OBDS cluster:
+Config file to access the OBDS cluster:
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ```
 Host bastion
@@ -201,33 +206,36 @@ Host obds-bastion
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 
-  + 'Host' - creates a new set of parameters, can specify a nickname for the host
-  + 'IdentityFile' - specifies the path to the private SSH key file that you created earlier on your local machine
-  + 'User' - username on host (can be different between jump and target hosts)
-  + 'ProxyJump' - establish connection through a jump host (earlier nicknamed as bastion)
-  + 'LocalForward' - specify connection between your machine's port 8787 to the target host's port 8787, which "offers" RStudio
+  + **Host** - creates a new set of parameters, can specify a nickname for the host
+  + **IdentityFile** - specifies the path to the private SSH key file that you created earlier on your local machine
+  + **User** - username on host (can be different between jump and target hosts)
+  + **ProxyJump** - establish connection through a jump host (earlier nicknamed as bastion)
+  + **LocalForward** - specify connection between your machine's port 8787 to the target host's port 8787, which "offers" RStudio
                   
 :::
 
 ::::
 
-  
 ## Configuring the SSH client
 
 - Specifying global default parameters to be applied on all hosts:
 
 ```
 Host *                            
-    IdentityFile ~/.ssh/id_ecdsa  # If using an SSH key pair as a default if not specified later on for a particular host
-    # For macOS only, add these so there's no need to enter passphrase when starting remote connection
-    AddKeysToAgent yes            # Whether keys should be automatically added to a running ssh-agent
-    UseKeychain yes               # Whether passphrases are stored in the keychain (macOS app)
+    IdentityFile ~/.ssh/id_ecdsa  # If using an SSH key pair as a default if not 
+                                    specified later on for a particular host
+    
+# For macOS only, add these so there's no need to enter passphrase when starting remote connection
+
+    AddKeysToAgent yes            # Whether keys should be automatically added 
+                                    to a running ssh-agent
+    UseKeychain yes               # Whether passphrases are stored in the 
+                                    keychain (macOS app)
 ```
-  + The pattern * matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
-   
-- Look at OBDS config file template
+  + '*' matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
+- <span style="color:green;">Look at OBDS config file template</span>
 
 ## Exercise 1 - Shell configuration
 

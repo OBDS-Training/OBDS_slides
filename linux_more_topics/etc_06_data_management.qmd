@@ -2,19 +2,22 @@
 
 ## Philosophy of organising your computational research
 
+<br>
+
+<span style="color: green; font-size: 1.5em;">
 "Someone unfamiliar with your project should be able to look at your computer files and understand in detail what you did and why.”
+</span>
 
 - A Quick Guide to Organizing Computational Biology Projects - William Stafford Noble `r Citep(bib, "noble_quick_2009")`
 
 ## Overview
 
-- Outline
-  + Best practices for data storage & organisation
-  + Rules and conventions for naming files
-  + Typical components of genomics data analysis projects
-  + Records metadata and traceability
-  + Backups and archives
-  + Data transfers to and from remote computers
+- Best practices for data storage & organisation
+- Rules and conventions for naming files
+- Typical components of genomics data analysis projects
+- Records metadata and traceability
+- Backups and archives
+- Data transfers to and from remote computers
 
 ## Linux file system tree
 
@@ -24,8 +27,8 @@
 
 ```{r}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 600px
+#| out-height: 400px
+#| out-width: 700px
 ## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
 knitr::include_graphics("img/linux_file_tree.png")
 ```
@@ -112,7 +115,7 @@ my_project/
 - Ways
   + Many Linux clusters offer backup options 
     - Ask system administrator about options and cost
-  + The University offers backup services for single-user and multi-user machines (Central Backup Service (HFS))[https://services.it.ox.ac.uk/Service/data-services/backup]
+  + The University offers backup services for single-user and multi-user machines [Central Backup Service (HFS)](https://services.it.ox.ac.uk/Service/data-services/backup)
 - Use Git to version control your code and documentation (TBD, day 3)
   + Push changes to GitHub regularly
 
@@ -125,7 +128,7 @@ my_project/
 - Published data can be stored in public database at no cost
   + European Nucleotide Archive / Short Read Archive
   + ArrayExpress / GEO
-- WIMM IT team offers the (WIMM Keep)[https://gatekeeper.imm.ox.ac.uk/index.cgi/about] (SSO login required)
+- WIMM IT team offers the [WIMM Keep](https://gatekeeper.imm.ox.ac.uk/index.cgi/about) (SSO login required)
 - Archived data should be carefully organised and annotated with comprehensive metadata for traceability and discoverability
 
 ## Data storage good practices
@@ -148,7 +151,7 @@ my_project/
 
 ## Transferring files using FileZilla
 
-- The (FileZilla Client)[https://filezilla-project.org/download.php?platform=osx] is a free solution for transferring files between computers via FTP/SFTP/FTPS protocols
+- The [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) is a free solution for transferring files between computers via FTP/SFTP/FTPS protocols
   + Transfer files between a local computer (where the FileZilla Client is installed) and a remote computer (e.g. CCB cluster)
 
 :::: {.columns}
@@ -157,7 +160,7 @@ my_project/
 
 ```{r}
 #| fig-align: center
-#| out-height: 350px
+#| out-height: 400px
 #| out-width: 600px
 ## Source: CCB Doks
 knitr::include_graphics("img/filezilla-drop-areas.png")
@@ -172,6 +175,8 @@ knitr::include_graphics("img/filezilla-drop-areas.png")
   + Username - remote server username
   + Password - remote server password
   + Port     - 22 (secure ftp / sftp)
+  
+<span style="color:green;">DEMO</span>
 
 :::
 
@@ -189,15 +194,14 @@ knitr::include_graphics("img/filezilla-drop-areas.png")
 
 ```
 $ wget ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+
+# -P to set a directory prefix where all files and subdirectories will be saved
 $ wget \
-      -P ~/ccb_demo \               # -P to set a directory prefix where all files and subdirectories will be saved
+      -P ~/ccb_demo \               
        ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-**DEMO (download from Ensembl)**
-<!--
-How to look for genome files in Ensembl
--->
+<span style="color:green;">DEMO (download from Ensembl)</span>
 
 ## Downloading public sequencing data
 
@@ -210,10 +214,7 @@ How to look for genome files in Ensembl
   + Processed results (bed, count matrix)
   + Metadata (experiment details, sample processing, data analysis)
 
-**DEMO (download from ENA)**
-<!--
-How to look for sequencing files in ENA
--->
+<span style="color:green;">DEMO (download from ENA)</span>
 
 ## Verify integrity of downloads
 
@@ -230,7 +231,8 @@ How to look for sequencing files in ENA
 ```
 $ wget http…/CHECKSUMS      # Download reference checksum file to local system
 $ cat CHECKSUMS             # Print reference checksum
-$ sum <downloaded file>     # Generate checksum for downloaded file and compare to value in reference checksum file
+$ sum <downloaded file>     # Generate checksum for downloaded file and compare 
+                              to value in reference checksum file
 ```
 
 ```{r, eval=FALSE}
@@ -247,7 +249,8 @@ knitr::include_graphics("img/md5_file.png")
 
 ```
 $ wget http…/md5sum.txt     # Download reference checksum file to local system
-$ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compare to value in reference checksum file
+$ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compare 
+                              to value in reference checksum file
 ```
 
 ```{r, eval=FALSE}
