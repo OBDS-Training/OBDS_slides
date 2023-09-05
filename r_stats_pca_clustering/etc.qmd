@@ -609,6 +609,66 @@ wilcox.test(x, y, alternative = "less")
 
 ::::
 
+## Analysis of Variance (ANOVA) {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+set.seed(1)
+n_sample <- 1000
+x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
+x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
+x3 <- x2 + 0 + rnorm(n = n_sample, mean = 0, sd = 0.5)
+test_data <- data.frame(
+  value = c(x1, x2, x3),
+  group = c(
+    rep("x1", length(x1)),
+    rep("x2", length(x2)),
+    rep("x3", length(x3))
+  )
+)
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 7
+gg <- ggplot(test_data, aes(value)) +
+  facet_wrap(~group, ncol = 1) +
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
+gg
+```
+:::
+
+::: {.column width="50%"}
+ANOVA can compare any number of groups.
+As such, the `aov()` function takes:
+
+- the data as a *data.frame* object
+- the name of the column that contains the value
+- the name of the column that contains the grouping information
+
+The latter two pieces of information are supplied as a *formula*.
+
+```{r}
+#| echo: true
+out <- aov(value ~ group, test_data)
+out
+```
+
+The output of `aov()` is an object that can be statistically summarised using the function `summarise()`.
+
+```{r}
+#| echo: true
+summary(out)
+```
+:::
+
+::::
+
 ## References
 
 ```{r}
