@@ -669,6 +669,37 @@ summary(out)
 
 ::::
 
+## Fisher's Exact Test
+
+Test of independence between two categorical variables.
+
+Alternative to the Chi-square test when the sample is not "large enough".
+
+- Rule of thumb: when any of the _expected_ values in the contingency table is less than 5.
+- Common situation for gene-set over-representation analysis (ORA).
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/fisher-test-table.svg")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
+knitr::include_graphics("img/fisher-test-venn.svg")
+```
+:::
+
+::::
+
+<https://towardsdatascience.com/fishers-exact-test-in-r-independence-test-for-a-small-sample-56965db48e87>
+
 ## References
 
 ```{r}

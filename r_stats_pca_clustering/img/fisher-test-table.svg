@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 441 261" style="enable-background:new 0 0 441 261;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#293273;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;}
+	.st2{font-family:'ArialMT';}
+	.st3{font-size:12px;}
+	.st4{fill:#CFE7F9;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st5{font-family:'MyriadPro-Regular';}
+	.st6{font-size:16px;}
+	.st7{fill:#74CAE7;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st8{fill:#47A0D9;stroke:#FFFFFF;stroke-miterlimit:10;}
+</style>
+<rect x="0.5" y="0.5" class="st0" width="110" height="65"/>
+<rect x="110.5" y="0.5" class="st0" width="110" height="65"/>
+<rect x="220.5" y="0.5" class="st0" width="110" height="65"/>
+<rect x="0.5" y="65.5" class="st0" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 132.4883 29.322)"><tspan x="0" y="0" class="st1 st2 st3">Differentially</tspan><tspan x="5.3" y="14.4" class="st1 st2 st3">expressed</tspan></text>
+<text transform="matrix(1 0 0 1 266.1631 22.1222)"><tspan x="0" y="0" class="st1 st2 st3">Not</tspan><tspan x="-23.7" y="14.4" class="st1 st2 st3">Differentially</tspan><tspan x="-18.3" y="28.8" class="st1 st2 st3">expressed</tspan></text>
+<rect x="330.5" y="0.5" class="st0" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 372.167 36.5222)" class="st1 st2 st3">Total</text>
+<rect x="0.5" y="195.5" class="st0" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 42.167 231.5222)" class="st1 st2 st3">Total</text>
+<text transform="matrix(1 0 0 1 26.4815 101.5222)" class="st1 st2 st3">In pathway</text>
+<rect x="0.5" y="130.5" class="st0" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 46.1631 159.322)"><tspan x="0" y="0" class="st1 st2 st3">Not</tspan><tspan x="-19.3" y="14.4" class="st1 st2 st3">in pathway</tspan></text>
+<rect x="110.5" y="65.5" class="st4" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 157.2984 101.5222)" class="st5 st6">12</text>
+<rect x="220.5" y="65.5" class="st4" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 271.4019 101.5222)" class="st5 st6">3</text>
+<rect x="330.5" y="65.5" class="st7" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 377.2984 101.5222)" class="st5 st6">15</text>
+<rect x="110.5" y="130.5" class="st4" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 161.4019 166.5222)" class="st5 st6">4</text>
+<rect x="220.5" y="130.5" class="st4" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 267.2984 166.5222)" class="st5 st6">23</text>
+<rect x="330.5" y="130.5" class="st7" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 377.2984 166.5222)" class="st5 st6">27</text>
+<rect x="110.5" y="195.5" class="st7" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 157.2984 231.5222)" class="st5 st6">16</text>
+<rect x="220.5" y="195.5" class="st7" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 267.2984 231.5222)" class="st5 st6">26</text>
+<rect x="330.5" y="195.5" class="st8" width="110" height="65"/>
+<text transform="matrix(1 0 0 1 377.2984 231.5222)" class="st5 st6">42</text>
+</svg>
