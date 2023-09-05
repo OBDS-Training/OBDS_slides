@@ -724,6 +724,35 @@ data_xtable %>%
 fisher.test(data_xtable)
 ```
 
+## Beware of interpreting inadequate tests!
+
+::: {style="text-align: center;"}
+e.g.
+:::
+
+<br/>
+
+::: {style="text-align: center;"}
+You *can* run a $t$-test on data that is *not* normally distributed.
+:::
+
+<br/>
+
+::: {style="text-align: center;"}
+<i class="fab fa-r-project"></i> *won't* stop you or even warn you.
+:::
+
+<br/>
+
+::: {style="text-align: center;"}
+But you *shouldn't*.
+:::
+
+<br/>
+
+::: {style="text-align: center;"}
+And you **definitely** *shouldn't* trust the result of that test.
+:::
 
 ## References
 
