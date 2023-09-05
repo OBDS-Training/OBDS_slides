@@ -408,6 +408,7 @@ When parametric assumptions are not met, non-parametric tests equivalent should 
 
 ```{r}
 #| include: true
+#| results: asis
 tibble(
   "Parametric test" = c(
     "Paired t-test",
@@ -430,10 +431,6 @@ Non-parametric tests make fewer assumptions, as such:
 - ..., however, fewer assumption gives non-parametric tests _less_ power than their parametric equivalent.
 
 <https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests>
-
-::: {.notes}
-**Credits:** [https://www.healthknowledge.org.uk/](https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests)
-:::
 
 ## References
 
