@@ -447,7 +447,9 @@ y <- rnorm(n = 2000, mean = 1, sd = 1)
 ```
 
 ```{r}
-#| out-height: 400px
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 7
 test_data <- bind_rows(
   tibble(group = "x", value = x),
   tibble(group = "y", value = y)
