@@ -1,3 +1,15 @@
 .reveal .slide-logo {
     max-height: 5rem !important; /* !important needed to overwrite footer.css */
 }
+
+.reveal p, .reveal .slides section, .reveal .slides section > section {
+    line-height: 1.25;
+}
+
+.reveal pre code {
+    background-color: white;
+    color: black;
+    font-size: 1.5em;
+    font-family: Courier New;
+    line-height: 1;
+}
