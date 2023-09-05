@@ -82,6 +82,172 @@ plot(data_quantiles, data_dnorm)
 #### rnorm
 
 ```{r}
-data_rnorm <- rnorm(n = 100, mean = 0, sd = 1)
+data_rnorm <- rnorm(n = 100)
 head(data_rnorm)
+```
+
+```{r}
+hist(data_rnorm, breaks = 20)
+```
+
+## Demo
+
+### A parameterised normal distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-500, 500, 50)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pnorm <- pnorm(q = data_quantiles, mean = 50, sd = 100)
+head(data_pnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pnorm)
+```
+
+#### qnorm()
+
+The function `qnorm()` takes as input a vector of probabilities between 0 and 1.
+
+```{r}
+data_probabilities <- seq(from = 0, to = 1, by = 0.02)
+head(data_probabilities)
+```
+
+The function `qnorm()` the quantiles (i.e., values) that correspond to those probabilities.
+
+```{r}
+data_qnorm <- qnorm(p = data_probabilities, mean = 50, sd = 100) 
+head(data_qnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_probabilities, data_qnorm)
+```
+
+#### dnorm
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-500, 500, 50)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_dnorm <- dnorm(x = data_quantiles, mean = 50, sd = 100) 
+head(data_dnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_dnorm)
+```
+
+#### rnorm
+
+```{r}
+data_rnorm <- rnorm(n = 100, mean = 50, sd = 100)
+head(data_rnorm)
+```
+
+```{r}
+hist(data_rnorm, breaks = 20)
+```
+
+## Demo
+
+### A parameterised binomial distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(0, 50, 1)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pbinom <- pbinom(q = data_quantiles, size = 50, prob = 0.1)
+head(data_pbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pbinom)
+```
+
+#### qbinom()
+
+The function `qbinom()` takes as input a vector of probabilities between 0 and 1.
+
+```{r}
+data_probabilities <- seq(from = 0, to = 1, by = 0.02)
+head(data_probabilities)
+```
+
+The function `qbinom()` the quantiles (i.e., values) that correspond to those probabilities.
+
+```{r}
+data_qbinom <- qbinom(p = data_probabilities, size = 50, prob = 0.1)
+head(data_qbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_probabilities, data_qbinom)
+```
+
+#### dbinom
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(0, 50, 1)
+head(data_quantiles)
+```
+
+The function `pbinom()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_dbinom <- dbinom(x = data_quantiles, size = 50, prob = 0.1)
+head(data_dbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_dbinom)
+```
+
+#### rbinom
+
+```{r}
+data_rbinom <- rbinom(n = 100, size = 50, prob = 0.1)
+head(data_rbinom)
+```
+
+```{r}
+hist(data_rbinom, breaks = 20)
 ```
