@@ -551,6 +551,64 @@ test_data %>%
 **Note:**
 What is actually tested is whether the mean of the differences between the paired $x$ and $y$ measurements is different from 0.
 
+## Non-parametric wilcoxon test {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+A non-parametric test do not require samples to follow any particular distribution.
+
+```{r}
+#| echo: true
+set.seed(1)
+x <- runif(n = 20, min = 1, max = 11)
+y <- runif(n = 10, min = 3, max = 13)
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 7
+test_data <- bind_rows(
+  tibble(group = "x", value = x),
+  tibble(group = "y", value = y)
+)
+gg <- ggplot(test_data, aes(value)) +
+  facet_wrap(~group, ncol = 1) +
+  geom_histogram(fill = "grey", color = "black") +
+  cowplot::theme_cowplot()
+gg
+```
+:::
+
+::: {.column width="50%"}
+As per the `?wilcox.test` help page:
+
+> Performs one- and two-sample Wilcoxon tests on vectors of data; the latter is also known as ‘Mann-Whitney’ test.
+
+This is a two-group comparison, thus a 'Mann-Whitney' test.
+
+```{r}
+#| echo: true
+wilcox.test(x, y)
+```
+
+<br/>
+
+Many statistical tests offer the possibility to perform a 'one-tailed' test,
+also known as specifying a *directed* hypothesis.
+
+This will often produce a smaller $P$-value when the data match the direction of the hypothesis,
+at the expense of being blind to the possibility of the data moving in the direction *opposite* to the hypothesis.
+
+```{r}
+#| echo: true
+wilcox.test(x, y, alternative = "less")
+```
+:::
+
+::::
+
 ## References
 
 ```{r}

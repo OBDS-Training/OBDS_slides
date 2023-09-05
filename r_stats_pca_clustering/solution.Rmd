@@ -320,3 +320,21 @@ mean(y - x)
 ```{r}
 t.test(x, y, paired = TRUE)
 ```
+
+## Demo
+
+### Non-parametric tests
+
+```{r}
+set.seed(1)
+x <- runif(n = 10, min = 1, max = 11)
+y <- runif(n = 5, min = 3, max = 13)
+```
+
+```{r}
+wilcox.test(x, y)
+```
+
+```{r}
+wilcox.test(x, y, alternative = "less")
+```
