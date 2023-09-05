@@ -479,6 +479,78 @@ t.test(y, x)
 
 ::::
 
+## Paired test {.smaller}
+
+For each sample, the two measurements are related to one another; e.g. patients measured before and after a treatment.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+set.seed(1)
+n_sample <- 10
+x <- runif(n = n_sample, min = 10, max = 20)
+y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
+```
+
+```{r}
+test_data <- tibble(
+  sample = paste("sample", seq_len(n_sample)),
+  x = x,
+  y = y
+) %>% pivot_longer(cols = c(x, y), names_to = "variable")
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 7
+ggplot(test_data, aes(variable, value)) +
+  geom_line(aes(group = sample), size = 0.1) +
+  geom_point() +
+  labs(
+    title = "Paired <x> and <y> observations"
+  ) +
+  cowplot::theme_cowplot() +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+t.test(x, y, paired = TRUE)
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 7
+test_data %>% 
+  pivot_wider(names_from = "variable", values_from = "value") %>% 
+  mutate(x_minus_y = x - y) %>%
+  ggplot(aes(x_minus_y)) +
+  geom_histogram(color = "black", fill = "grey") +
+  geom_density(linetype = "dashed") +
+  geom_vline(xintercept = 0, color = "red") +
+  labs(
+    title = "<x> minus <y>"
+  ) +
+  cowplot::theme_cowplot() +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+:::
+
+::::
+
+**Note:**
+What is actually tested is whether the mean of the differences between the paired $x$ and $y$ measurements is different from 0.
+
 ## References
 
 ```{r}
