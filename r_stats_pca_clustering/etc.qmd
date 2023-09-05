@@ -432,6 +432,51 @@ Non-parametric tests make fewer assumptions, as such:
 
 <https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/parametric-nonparametric-tests>
 
+## Parametric t-test {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+A $t$-test should only be applied to compare two normal distributions.
+
+```{r}
+#| echo: true
+set.seed(1)
+x <- rnorm(n = 1000, mean = 0, sd = 1)
+y <- rnorm(n = 2000, mean = 1, sd = 1)
+```
+
+```{r}
+#| out-height: 400px
+test_data <- bind_rows(
+  tibble(group = "x", value = x),
+  tibble(group = "y", value = y)
+)
+ggplot(test_data, aes(value)) +
+  geom_histogram(fill = "grey", color = "black") +
+  facet_wrap(~group, ncol = 1) +
+  cowplot::theme_cowplot()
+```
+:::
+
+::: {.column width="50%"}
+An unpaired t-test should be used when there is no pairing relationship between observations in the two groups.
+
+```{r}
+#| echo: true
+t.test(x, y)
+```
+
+The second argument is used as reference (i.e., denominator).
+
+```{r}
+#| echo: true
+t.test(y, x)
+```
+:::
+
+::::
+
 ## References
 
 ```{r}
