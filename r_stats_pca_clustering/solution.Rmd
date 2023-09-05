@@ -278,10 +278,43 @@ x <- rnorm(n = 1000, mean = 0, sd = 1)
 y <- rnorm(n = 2000, mean = 1, sd = 1)
 ```
 
+```{r, fig.height=7}
+par(mfrow = c(2, 1))
+hist(x, breaks = 30)
+hist(y, breaks = 30)
+par(mfrow = c(1, 1 ))
+```
+
+
 ```{r}
 t.test(x, y)
 ```
 
 ```{r}
 t.test(y, x)
+```
+
+## Demo
+
+### Paired test
+
+Simulate a vector of values `x`.
+Then simulate values `y` that are systematically 2 units greater than their `x` counterpart,
+with a bit of noise (normally distributed).
+
+```{r}
+set.seed(1)
+n_sample <- 10
+x <- runif(n = n_sample, min = 10, max = 20)
+y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
+```
+
+The average difference between `y` and `x` values is approximately 2, as intended. 
+
+```{r}
+mean(y - x)
+```
+
+```{r}
+t.test(x, y, paired = TRUE)
 ```
