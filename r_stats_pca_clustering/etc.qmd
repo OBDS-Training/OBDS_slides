@@ -754,6 +754,32 @@ But you *shouldn't*.
 And you **definitely** *shouldn't* trust the result of that test.
 :::
 
+## Choosing a test {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 700px
+# Source: https://python.plainenglish.io/statistical-tests-with-python-880251e9b572
+knitr::include_graphics("img/choose-statistical-test.png")
+```
+:::
+
+::: {.column width="30%"}
+#### See also
+
+"Operating with Data - Statistics for the Cardiovascular Surgeon: Part III. Comparing Groups"
+`r Citep(bib, "liguori2018data")`
+
+"Choosing the correct statistical test in SAS, Stata, SPSS and R"
+<https://stats.idre.ucla.edu/other/mult-pkg/whatstat/>
+:::
+
+::::
+
 ## References
 
 ```{r}
