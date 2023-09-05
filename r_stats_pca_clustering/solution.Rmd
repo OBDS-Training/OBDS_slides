@@ -251,3 +251,37 @@ head(data_rbinom)
 ```{r}
 hist(data_rbinom, breaks = 20)
 ```
+
+## Demo
+
+### Quantiles
+
+```{r}
+data_rnorm <- rnorm(n = 1000, mean = 50, sd = 100)
+quantile(data_rnorm, probs = seq(0, 1, 0.1))
+```
+
+```{r}
+plot(
+  seq(0, 1, 0.1),
+  quantile(data_rnorm, probs = seq(0, 1, 0.1))
+)
+```
+
+## Demo
+
+### Parametric t-test
+
+```{r}
+set.seed(1)
+x <- rnorm(n = 1000, mean = 0, sd = 1)
+y <- rnorm(n = 2000, mean = 1, sd = 1)
+```
+
+```{r}
+t.test(x, y)
+```
+
+```{r}
+t.test(y, x)
+```
