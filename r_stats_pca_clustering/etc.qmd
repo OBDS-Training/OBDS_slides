@@ -700,6 +700,31 @@ knitr::include_graphics("img/fisher-test-venn.svg")
 
 <https://towardsdatascience.com/fishers-exact-test-in-r-independence-test-for-a-small-sample-56965db48e87>
 
+## Fisher’s Exact Test in action
+
+```{r}
+#| echo: true
+data_xtable <- matrix(
+  data = c(12, 4, 3, 23),
+  nrow = 2, ncol = 2,
+  dimnames = list(
+    c("DE", "Not DE"),
+    c("In pathway", "Not in pathway")
+  )
+)
+```
+
+```{r}
+data_xtable %>% 
+   knitr::kable(align = "c")
+```
+
+```{r}
+#| echo: true
+fisher.test(data_xtable)
+```
+
+
 ## References
 
 ```{r}
