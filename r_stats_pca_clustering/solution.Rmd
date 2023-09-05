@@ -278,6 +278,8 @@ x <- rnorm(n = 1000, mean = 0, sd = 1)
 y <- rnorm(n = 2000, mean = 1, sd = 1)
 ```
 
+In base R, `par(mfrow=c(i, j)))` can be used to display plots in a grid of `i` rows and `j` columns.
+
 ```{r, fig.height=7}
 par(mfrow = c(2, 1))
 hist(x, breaks = 30)

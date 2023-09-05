@@ -537,7 +537,7 @@ test_data %>%
   geom_density(linetype = "dashed") +
   geom_vline(xintercept = 0, color = "red") +
   labs(
-    title = "<x> minus <y>"
+    title = "<x> minus paired <y>"
   ) +
   cowplot::theme_cowplot() +
   theme(
