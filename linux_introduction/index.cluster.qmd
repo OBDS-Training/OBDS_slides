@@ -46,7 +46,7 @@ BibOptions(
   hyperlink = "to.doc",
   dashed = TRUE)
 bib <- ReadBib("bibliography.bib")
-NoCite(bib, "R")
+#NoCite(bib, "R")
 ```
 
 ```{r}

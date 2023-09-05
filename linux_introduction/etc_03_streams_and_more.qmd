@@ -2,12 +2,11 @@
 
 ## Overview
 
-- Outline
-  + Linux streams, pipes & redirection
-  + File compression
-  + Filter and sort file contents
-  + Searching for files
-  + Loops in BASH
+- Linux streams, pipes & redirection
+- File compression
+- Filter and sort file contents
+- Searching for files
+- Loops in Bash
 
 ## Linux streams to pass information to and from files 
 
@@ -47,8 +46,10 @@ $ command1 >! file1             # Overwrite existing file1 with output of comman
 - Tools can be combined using pipes represented by '|'
 - Pipes connect the standard output of one command to the standard input of another 
 
+```
 $ command1 | <command2 
 $ cat file1.txt | head -n 5
+```
 
 ## Combining commands
 
@@ -87,7 +88,7 @@ $ gunzip filename.fq.gz
   + Compressed or decompressed output is redirected to the standard output of the command, meaning that it can be redirected to any file name (circumventing the default behaviour of both commands)
   
 ```
-gzip -c file1.txt > compressed.txt.gz
+$ gzip -c file1.txt > compressed.txt.gz
 ```
 
 ## File archiving with `tar`
@@ -101,10 +102,10 @@ gzip -c file1.txt > compressed.txt.gz
 ```
 $ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
 ```
-  + -c = *C*reate an archive
+  + -c = **C**reate an archive
   + -z = Compress the archive with g**z**ip
   + -v = **V**erbose to display progress in the terminal while creating the archive
-  + -f = To specify the file name (path) of the archive file to create
+  + -f = To specify the **f**ile name (path) of the archive file to create
 
 ## (De)compressing files
 
@@ -113,12 +114,15 @@ $ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
 
 ```
 $ gzip file1 	                # Compress file1 in place (adds .gz file extension)
-$ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file extension)
-$ gunzip -c file1.gz 	        # Decompress file1 to standard out (can be redirected to a file)
+$ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file 
+                                  extension)
+$ gunzip -c file1.gz 	        # Decompress file1 to standard out (can be 
+                                  redirected to a file)
 $ zcat file1.gz                 # Print compressed file to the terminal
-$ zless file1.gz                # Interactively scroll through compressed files (equivalent to less)
-$ tar -czf jpg.tar.gz *.jpg      # Create a compressed archive from multiple files
-$ tar -xzf jpg.tar.gz            # Extract files from an archive
+$ zless file1.gz                # Interactively scroll through compressed files 
+                                  (equivalent to less)
+$ tar -czf jpg.tar.gz *.jpg     # Create a compressed archive from multiple files
+$ tar -xzf jpg.tar.gz           # Extract files from an archive
 ```
 
 ## Searching within files using ``grep``
@@ -146,8 +150,8 @@ $ grep –v “chr5” p300.bed
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 400px
+#| out-height: 400px
+#| out-width: 500px
 ## Source: 
 knitr::include_graphics("img/grep_options.png")
 ```
@@ -161,8 +165,10 @@ knitr::include_graphics("img/grep_options.png")
 - Extract one or more columns from a file
 
 ```
-$ cut -f3 file1.tsv             # Extract only the third field from a tab delimited file
-$ cut –f1,4 –d ‘,’ file2.csv    # Extract the first and fourth columns from a comma delimited file
+$ cut -f3 file1.tsv             # Extract only the third field from a tab 
+                                  delimited file
+$ cut –f1,4 –d ‘,’ file2.csv    # Extract the first and fourth columns from 
+                                  a comma delimited file
                                 # Default delimiter is tab (\t)
 ```
 
@@ -172,20 +178,22 @@ $ cut –f1,4 –d ‘,’ file2.csv    # Extract the first and fourth columns f
 
 ```
 $ sort file1.txt file2.txt file3.txt > sorted.txt       #
-$sort -t, --key=2 --key=1n file1.txt
+$ sort -t, --key=2 --key=1n file1.txt
 ```
-  + -t = Defines the delimiter that is used to separate columns
-  + --key = Declares one or more fields i.e. columns to use for sorting 
-          = Sort rarely used without this option i.e. whole line is used for sorting
-  + --key=2 = Second field should be used to order lines, in alphebetical order of that field
-  + --key=1n = First field should be used to break ties, in numerical order of that field
+-
+  + -t - Defines the delimiter that is used to separate columns
+  + \-\-key - Declares one or more fields i.e. columns to use for sorting 
+          - Sort rarely used without this option i.e. whole line is used for sorting
+  + \-\-key=2 - Second field should be used to order lines, in alphebetical order of that field
+  + \-\-key=1n - First field should be used to break ties, in numerical order of that field
   
 ## Removing duplicate rows with `uniq`
 
 - Remove duplicated lines, or count the number of occurrences of each distinct line in a file
 
 ```
-$ cut –f1,4 –d ‘,’ file2.csv         # Extract the first and fourth columns from a comma delimited file
+$ cut –f1,4 –d ‘,’ file2.csv         # Extract the first and fourth columns from 
+                                       a comma delimited file
 $ uniq file1.txt                     # Remove duplicate lines, display on screen
 $ uniq –c file1.txt                  # Prefix lines by the number of occurrences
 $ uniq –u file1.txt > uniqlines.txt  # Only print unique lines
@@ -199,10 +207,12 @@ $ sort file1.txt | uniq
 
 ## Searching for files with `find`
 
+<br>
+
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 400px
+#| out-height: 300px
+#| out-width: 900px
 ## Source: 
 knitr::include_graphics("img/search_find.png")
 ```
@@ -222,7 +232,7 @@ knitr::include_graphics("img/search_find.png")
 9. Find the fasta format files in the directory, **/databank/raw/hg19_full/**. How many are there?
 10. Find all the bed format files in the directory, **/databank/raw/** and count the number of lines in each file.
 
-## Loops in BASH
+## Loops in Bash
 
 - Iterate over lists of items, files and directories
 - When repeatedly executing the same set of commands on a series of inputs, loops can be used to:
@@ -237,6 +247,7 @@ knitr::include_graphics("img/search_find.png")
 - Integer over fixed inputs 
 
 ```
+$
 for i in 2 5 3
 do
   echo "start"
@@ -252,6 +263,7 @@ done
 - Iterate over integers
 
 ```
+$
 for i in {1..3}
 do
   echo "value of i: '$i'"
@@ -265,6 +277,7 @@ done
 - Iterate over files
 
 ```
+$
 for file in *.txt
 do
   wc -l $file
@@ -275,7 +288,7 @@ done
 
 ::::
 
-## Loops in BASH
+## Loops in Bash
 
 - Tips
   + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs

@@ -9,30 +9,35 @@
 
 :::: {.columns}
 
-::: {.column width="50%"}
-- Outline:
-  + Introduction to the Linux shell 
-  + Linux commands 
-  + Navigating the Linux file system
-  + Viewing and editing files
-  + File properties and permissions
-  + Copying, moving and renaming files and directories
-  + Hard and symbolic links
-  + Deleting files and directories
+::: {.column width="60%"}
+
+- Introduction to the Linux shell 
+- Linux commands 
+- Navigating the Linux file system
+- Viewing and editing files
+- File properties and permissions
+- Copying, moving and renaming files and directories
+- Hard and symbolic links
+- Deleting files and directories
+  
 :::
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 ```{r}
 #| fig-align: center
 #| out-height: 100px
-#| out-width: 300px
+#| out-width: 250px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/UNIX-Logo-500x281.jpg")
 ```
+
+<br>
+<br>
+
 ```{r}
 #| fig-align: center
 #| out-height: 100px
-#| out-width: 300px
+#| out-width: 250px
 ## Source: https://1000logos.net/linux-logo/
 knitr::include_graphics("img/Symbol-Linux.jpg")
 ```
@@ -54,9 +59,9 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 
 ## Linux shell - Terminology alert!
 
-- Most widely used shell for Linux is **BASH** (Bourne Again Shell)
-  + Often used in the CCB cluster but others are available for use
-- The **terminal** or **command-line interface**, where user inputs commands, is used to interact with the shell
+- Most widely used shell for Linux is **Bash** (Bourne Again Shell)
+  + Default shell in the OBDS cluster but others are available for use
+- A **terminal emulator** (e.g. Git Bash, Terminal) is used to interact with the shell, providing the **command-line interface (CLI)**, where user inputs commands
   + The command-line prompt (input field) is indicated by a certain character depending on the OS ($ for Linux)
 
 :::: {.columns}
@@ -65,8 +70,8 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 400px
+#| out-height: 225px
+#| out-width: 500px
 ## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
 knitr::include_graphics("img/linux_shell_bash.png")
 ```
@@ -76,8 +81,8 @@ knitr::include_graphics("img/linux_shell_bash.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 400px
+#| out-height: 225px
+#| out-width: 500px
 ## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 2)
 knitr::include_graphics("img/linux_shell_emulator.png")
 ```
@@ -87,7 +92,7 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Linux commands
 
-- Basic part/s (Text in \<arrows> indicates a variable which should be replaced)
+- Basic part/s (<span style="color:red;">\<arrows></span> indicates a variable which should be replaced)
   + \<command>      
   + \<command> \<argument> 
   + \<command> \<options> \<argument> 
@@ -95,16 +100,16 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 - Types
   + **Shell builtin** - Built into the shell itself
   + **Executable program** - Any external software in the system path (where OS looks for executable programs)
-  + **Alias** - User-defined command built using other commands (TBD)
-  
+  + **Alias** - User-defined command built using other commands (To Be Discussed)
+
 ```
-$ type cd                        # ‘type’ shows the type of command
+$ type cd               # ‘type’ shows the type of command
 cd is a shell builtin
 
 $ type head
 head is /usr/bin/head
       
-$ which head                     # ‘which’ returns the path of the file to be executed
+$ which head            # ‘which’ returns the path of the file to be executed
 /usr/bin/head
 ```
 
@@ -112,13 +117,16 @@ $ which head                     # ‘which’ returns the path of the file to b
 
 - Commands have options that modify their functions
   + \<command> \<options> \<argument>
-  + Short options start with '-', long options start with '\-\-' (TBD)
+  + Short options start with '-' (TBD)
+  + Long options start with '\-\-' (TBD)
+
+<br>
 
 ```
 $ which head
 /usr/bin/head
 
-$ which -a head                  # '-a' to print all matching paths of each argument
+$ which -a head         # -a to print all matching paths of each argument
 /usr/bin/head
 /bin/head
 ```
@@ -131,7 +139,7 @@ $ which -a head                  # '-a' to print all matching paths of each argu
 ```{r}
 #| fig-align: center
 #| out-height: 100px
-#| out-width: 300px
+#| out-width: 600px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/tab_autocompletion.png")
 ```
@@ -194,8 +202,8 @@ knitr::include_graphics("img/google_head.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 600px
+#| out-height: 400px
+#| out-width: 700px
 ## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
 knitr::include_graphics("img/linux_file_tree.png")
 ```
@@ -205,13 +213,14 @@ knitr::include_graphics("img/linux_file_tree.png")
 - Basic commands
 
 ```
-$ type cd                        # ‘type’ shows the type of command
-$ pwd                            # Print working directory
-/home/<user>                     # When you log into the CCB cluster, the working directory is                                      # initially set to the user’s home directory.
+$ type cd                   # ‘type’ shows the type of command
+$ pwd                       # Print working directory
+/home/<user>                # When you log into the CCB cluster, the working directory
+                              is initially set to the user’s home directory
 $ ls                 
 Desktop  Documents  Downloads...
 
-$ cd Desktop                     # Change directory
+$ cd Desktop                # Change directory
 
 $ pwd
 /home/<user>/Desktop
@@ -223,7 +232,7 @@ Path is the location to a file
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 
 - Absolute paths
   + Absolute paths always starts with the root directory ('/')
@@ -235,7 +244,25 @@ Path is the location to a file
     ```
 :::
 
-::: {.column width="50%"}
+::: {.column width="60%"}
+
+```{r, sample_working_tree}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 700px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/sample_working_tree.png")
+```
+
+:::
+
+::::
+
+## Working with Paths 
+
+:::: {.columns}
+
+::: {.column width="40%"}
 
 - Relative paths 
   + Relative paths are relative to the current working directory
@@ -245,17 +272,9 @@ Path is the location to a file
     $ pwd 
     /home/mthomas/class_stuff/foo
     
-    $ cd ../bar                      # Go to bar
-    $ cd ../../bin                   # Go to bin
+    $ cd ../bar     # Go to bar
+    $ cd ../../bin  # Go to bin
     ```
-:::
-
-::::
-
-
-:::: {.columns}
-
-::: {.column width="40%"}
 
 - Path shortcuts
   + .  (full stop)     current directory 
@@ -266,15 +285,11 @@ Path is the location to a file
 :::
 
 ::: {.column width="60%"}
-
-```{r}
+```{r, sample_working_tree}
 #| fig-align: center
 #| out-height: 300px
-#| out-width: 600px
-## Source: https://1000logos.net/unix-logo/#
-knitr::include_graphics("img/sample_working_tree.png")
+#| out-width: 700px
 ```
-
 :::
 
 ::::
@@ -287,51 +302,64 @@ knitr::include_graphics("img/sample_working_tree.png")
     - Command-line interpreters may figure out whether you need a command or file path
   + `ls` output can be set to be coloured to indicate the type of each file 
     - <span style="color:indigo;">Directory</span>
-    - File - black 
+    - File
     - <span style="color:cyan;">Symbolic link</span> (TBD) 
-    - <span style="color:#b84e38;">Compressed file</span>
+    - <span style="color:#b84e38;">Compressed file</span> (TBD)
     
-**DEMO** 
-
 ## Viewing text files on the command line
 
 - Useful commands
 
 ```
 $ cd ../bar                      
-$ cat <filename>                 # Print the entire file contents to the terminal
-                                 # If taking a while, interrupt with Control + c
-$ head -n 20 <filename>          # Print the first n lines to the terminal (default=10)
-$ tail -n 20 <filename>          # Print the last n lines to the terminal (default=10)
-$ wc <filename>                  # Count the number of bytes (-m), characters (-m), lines (-l) etc.
+$ cat <filename>            # Print the entire file contents to the terminal
+                            # If taking a while, interrupt with Control + c
+$ head -n 20 <filename>     # Print the first n lines to the terminal (default=10)
+$ tail -n 20 <filename>     # Print the last n lines to the terminal (default=10)
+$ wc <filename>             # Count the number of bytes (-m), characters (-m), 
+                              lines (-l) etc.
 ```
 
 - Interactively scroll through files
 
 ```
-$ more <filename>                # Scroll through a file unidirectionally from top to bottom
-$ less <filename>                # Like more but allows backward movement, "less is more"
-                                 # Up and down arrow keys to scroll one line up or down
-                                 # Left and right arrow keys to scroll one screen worth left or right across contents
-                                 # Similar to more, use space bar to scroll down one screen worth of contents
-                                 # Unlike more, reaching end will not terminate interactive viewer
-                                 # Similar to more, exit anytime with 'q'
+$ more <filename>           # Scroll through a file unidirectionally from top to 
+                              bottom
+$ less <filename>           # Like more but allows backward movement, "less is more"
+                            # Up and down arrow keys to scroll one line up or down
+                            # Left and right arrow keys to scroll one screen worth 
+                              left or right across contents
+                            # Similar to more, use space bar to scroll down one 
+                              screen worth of contents
+                            # Unlike more, reaching end will not terminate 
+                              interactive viewer
+                            # Similar to more, exit anytime with 'q'
 ```
 
-## Make a remote connection to a Linux server
+## Remote Connection to a Linux Server
 
-- We can do a remote command line login to a Linux system using `ssh`
+- We log into the cluster using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure connection to a remote server
-- The protocol uses a username and password to authenticate a user on the remote system
-- We can log into the cluster using `ssh`
-- From your local Linux shell (Terminal / Git Bash):
+- Simply put, the protocol uses a username and password to authenticate a user on the remote system
+
 ```
-$ ssh <username>@<remote>
-$ ssh <username>@login1.molbiol.ox.ac.uk 
-$ ssh <username>@login2.molbiol.ox.ac.uk 
+$ ssh <username>@<remote / host / server>
+
+# If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+
+$ ssh -J <jump username>@<jump host> <target username>@<target host>  
 ```
 
-## Make a Remote Connection to a Linux Server
+- To connect to the OBDS cluster, we have to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+
+```
+$ ssh -J <username>@bastion.imm.ox.ac.uk <username>@imm-obds
+```
+-
+  + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
+  
+
+## Remote Connection to a Linux Server
 
 - For the very first connection, you may be prompted to verify the authenticity of the host
   + Type 'yes' and press the Return key to continue connecting
@@ -363,14 +391,16 @@ $ ssh <username>@login2.molbiol.ox.ac.uk
 - Short options can be bundled
 
 ```
-$ ls -l -t -a -h -F                      
-$ ls -ltahF                      # Short options can be bundled  
+$ ls -l -t -a -h -F
+
+# Short options can be bundled
+$ ls -ltahF    
 ```
-  + -l = Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
-  + -t = Sort files by modification time (newest first)
-  + -a = Show hidden files
-  + -h = Human readable numbers
-  + -F = Append an indicator to the end of each listed name (e.g. / for a directory)
+  + -l - Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
+  + -t - Sort files by modification time (newest first)
+  + -a - Show hidden files
+  + -h - Human readable numbers
+  + -F - Append an indicator to the end of each listed name (e.g. '/' for a directory)
 
 ```
 $ ls --help
@@ -383,8 +413,8 @@ $ man ls
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 415px
+#| out-width: 450px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/ls_options.png")
 ```
@@ -397,8 +427,8 @@ knitr::include_graphics("img/ls_options.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 300px
+#| out-width: 900px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/ls_long_output_labeled.png")
 ```
@@ -408,13 +438,13 @@ knitr::include_graphics("img/ls_long_output_labeled.png")
 ## File permissions - Owner
 
 - Linux is a multi-user operating system
-- Access to read, write and execute each file / directory is controlled
+- Access to read, write and execute each file or directory is controlled
 - Each file is owned by exactly one user
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 200px
+#| out-width: 900px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/ls_long_output.png")
 ```
@@ -454,8 +484,8 @@ $ groups
 
 ```{r}
 #| fig-align: center
-#| out-height: 100px
-#| out-width: 300px
+#| out-height: 300px
+#| out-width: 900px
 ## Source: custom-made (obds_sep2023/02_Introduction_to_the_linux_command_line.pptx, slide 18)
 knitr::include_graphics("img/alphabetic_notation.png")
 ```
@@ -473,20 +503,22 @@ knitr::include_graphics("img/alphabetic_notation.png")
 
 - We can change file permissions with ``chmod`` using alphabetic notation
 - `chmod` <permissions> <file or directory>
-  + u for user, g for group, o for other
-  + - to deny access, + to give access
-  + r for read, w for write, x for execute
-  + , for separating multiple sets of changes 
+  + u - For user, g for group, o for other
+  + - - To deny access, + to give access
+  + r - For read, w for write, x for execute
+  + , - For separating multiple sets of changes 
 
 ```
 $ chmod u+x,g-w,o-r file1.txt
 ```
-  + u+x to add execute permission for the user who owns the file 
-  + g-w to remove write permission for the user group assigned to the file 
-  + o-r to remove read permission for every other user 
+  + u+x - To add execute permission for the user who owns the file 
+  + g-w - To remove write permission for the user group assigned to the file 
+  + o-r - To remove read permission for every other user 
 
 ```
-$ chmod go-rwx file1.txt         # Can be bundled together when applying same permission to groups        
+$ chmod go-rwx file1.txt    # Can be bundled together when applying same 
+                              permission to groups       
+                              
 $ ls -l file1.txt
 -rwx------ 1 dsims root 2981 Apr 26  2020 file1.txt
 ```
@@ -508,15 +540,17 @@ $ nano <filename>
 
 ## Creating files and directories
 
+<br>
+
 ```
-$ touch <filename>              # Create new empty file (can create several at a time)
-                                # If file exists, will update timestamp to current time
+$ touch <filename>      # Create new empty file (can create several at a time)
+                        # If file exists, will update timestamp to current time
                             
-$ nano <filename>               # Open new empty file in nano editor
-                                # If file exists, will open file for editing
+$ nano <filename>       # Open new empty file in nano editor
+                        # If file exists, will open file for editing
                                 
-$ mkdir <dir1>                  # Create new directory
-$ mkdir <dir1> <dir2>           # Create multiple new directories
+$ mkdir <dir1>          # Create new directory
+$ mkdir <dir1> <dir2>   # Create multiple new directories
 ```
 
 ## Working using nano
@@ -534,37 +568,46 @@ $ mkdir <dir1> <dir2>           # Create multiple new directories
 
 ## Copying, moving and renaming files
 
+<br>
+
 ```
 $ cp file1 file2                # Copy file to new file
 $ cp -n file1 file2             # Do not overwrite if file2 exists
 $ cp file1 dir1/                # Copy file to new directory
-$ cp -r dir1/ dir2/             # cp needs -r to recursively copy contents of directories (empty or not) 
-                                  to a new directory (does not need to exist beforehand)
-                                # If dir2/ already exists, the copy will be created inside dir2/
+$ cp -r dir1/ dir2/             # 'cp' needs -r to recursively copy contents of 
+                                  directories (empty or not) to a new directory 
+                                  (does not need to exist beforehand)
+                                # If dir2/ already exists, the copy will be 
+                                  created inside dir2/
+
 
 $ mv file1 file1.csv            # Rename file
-$ mv file1 dir1/file.csv        # Move file to new directory and rename (-n to not overwrite)
+$ mv file1 dir1/file.csv        # Move file to new directory and rename 
+                                  (-n to not overwrite)
 $ mv dir1/ dir2/                # Rename directory, no need for -r
                                 # But if dir2/ exists, dir1/ will be moved to dir2/ 
 ```
 
 ## Deleting files & directories 
 
+<br>
+
 ```
 $ rm file1                              # Remove file
 $ rm file1.txt file1.csv file2* *.csv   # Remove multiple files, use wildcard (*)
-                                        # Also delete all files whose names start with file2 and all files that end with .csv
-$ rm -r dir1                    # Remove directory and contents     
-$ rm -rv dir1                   # Verbosely display list of files to be removed
-$ rmdir dir1                    # Remove empty directory, will raise an error if directory is not empty
-$ rmdir dir1 dir2               # Will only remove empty directories
+                                        # Also delete all files whose names start with 
+                                          file2 and all files that end with .csv
+$ rm -r dir1                            # Remove directory and contents     
+$ rm -rv dir1                           # Verbosely display list of files to be removed
+$ rmdir dir1                            # Remove empty directory, will raise an 
+                                          error if directory is not empty
+$ rmdir dir1 dir2                       # Will only remove empty directories
 ```
 
-- **<span style="color:red;">!!! There is no undo or recycle bin so be careful when using `rm` !!!</span>**
-  + Particularly with -r (recursive) or * (wildcard)
-  + **Good news**, you can only remove files you have permission to delete
+- **<span style="color:red;">There is no undo or recycle bin so be careful when using `rm` !</span>**
+  + Particularly with -r (recursive) or '*' (wildcard)
+  + **<span style="color:green;">Good news</span>**, you can only remove files you have permission to delete
   
-
 ## Using wildcards (*)
 
 - Wildcards are special characters that match one or more characters in filenames
@@ -643,24 +686,27 @@ terminal text editor (making sure not to save unintended edits).
 6. Copy the directory **/project/obds/shared/resources/1_linux/1_linux_intro/** to your working directory (using `-r` option).
 7. Move **SRR2121685h_1.fastq** in your working directory to the copied directory.  
 8. Change the permissions of your **manpage.txt** file so that only you have read and write permission
-8. Create a new directory within your home directory called **obds**
-9. Change into the obds directory & make a copy of **manpage.txt** called **copy.txt**
-10. Open **copy.txt** in a terminal text editor (e.g. nano) and remove the ‘usage’ line
-11. Rename the file to **edit.txt**
-12. Create a symbolic link to **SRR2121685h_1.fastq** called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
-13. Delete both links at the same time.
-14. Compare the output of these two commands.
-15. Delete the obds directory, try using `rmdir` then `rm`. 
+
+## Exercise 2 - Files and directories part 2
+
+9. Create a new directory within your home directory called **obds**
+10. Change into the obds directory & make a copy of **manpage.txt** called **copy.txt**
+11. Open **copy.txt** in a terminal text editor (e.g. nano) and remove the ‘usage’ line
+12. Rename the file to **edit.txt**
+13. Create a symbolic link to **SRR2121685h_1.fastq** called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
+14. Delete both links at the same time.
+15. Compare the output of these two commands.
+16. Delete the obds directory, try using `rmdir` then `rm`. 
 
 ## Using octal notation for file permissions
 
 - Octal notation is more compact but takes more practice to read and write
 - Each type of permission is assigned a numerical value
-  + 4 for **read** permission
-  + 2 for **write** permission
-  + 1 for **execute** permission
+  + **4** for **read** permission
+  + **2** for **write** permission
+  + **1** for **execute** permission
 - We sum the numbers for each category to give a single unique number for each combination of permissions
-- Each permissions category (owner, group, other) is represented by a number between 0 (no permission) and 7 (all permission)
+- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
 
 ## Changing file permissions using octal notation
 

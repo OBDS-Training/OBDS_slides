@@ -15,8 +15,8 @@
 
 ```{r, rnaseq_workflow}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 800px
+#| out-height: 300px
+#| out-width: 825px
 ## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 2)
 knitr::include_graphics("img/rnaseq_workflow.png")
 ```
@@ -68,8 +68,8 @@ knitr::include_graphics("img/illumina_sequencing.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 1000px
+#| out-height: 150px
+#| out-width: 800px
 ## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 10)
 knitr::include_graphics("img/fastq.png")
 ```
@@ -78,16 +78,16 @@ knitr::include_graphics("img/fastq.png")
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="35%"}
 - Base quality is based on base error probability (**e**)
 - Storing **e** (per base) can take up a lot of space, so 
-  + **e** -> Phred quality score (**Q**) -> ASCII code (by adding 33) -> single ASCII character
+  + **e** → Phred quality score (**Q**) → ASCII code (by adding 33) → single ASCII character
   + **Q** = -10 log~10~ (**e**)
   + Using ASCII code-character aligns quality scores with called bases in FASTQ
 
 ```{r}
 #| fig-align: center
-#| out-height: 200px
+#| out-height: 180px
 #| out-width: 400px
 ## Source: https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf
 knitr::include_graphics("img/quality_score_accuracy.png")
@@ -95,11 +95,11 @@ knitr::include_graphics("img/quality_score_accuracy.png")
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="65%"}
 ```{r}
 #| fig-align: center
-#| out-height: 500px
-#| out-width: 800px
+#| out-height: 600px
+#| out-width: 1000px
 ## Source: https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf
 knitr::include_graphics("img/quality_score_table.png")
 ```
@@ -120,6 +120,10 @@ knitr::include_graphics("img/rnaseq_workflow_tools.png")
 
 ## Step 1: Read quality control 
 
+:::: {.columns}
+
+::: {.column width="35%"}
+
 - **FastQC** tool
 - Produces an HTML report per FASTQ containing graphical summaries of
   + Base quality scores
@@ -129,14 +133,22 @@ knitr::include_graphics("img/rnaseq_workflow_tools.png")
 **MultiQC** tool can be used to compile per-FASTQ reports `r Citep(bib, "#ewels_multiqc_2016")`  
 -->
 
+:::
+
+::: {.column width="65%"}
+
 ```{r}
-#| fig-align: center
-#| out-height: 300px
-#| out-width: 500px
+#| fig-align: left
+#| out-height: 400px
+#| out-width: 600px
 ## Source: [Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 knitr::include_graphics("img/fastqc.png")
 ```
 [Babraham Bioinformatics](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+
+:::
+
+::::
 
 ## Step 2: Read mapping / alignment
 
@@ -208,7 +220,7 @@ Course outline:
 ```{r, rnaseq_workflow}
 ```
 
-- Mapped reads -> Peak calling in ATAC-seq, ChIP-seq, and DNase-seq 
+- Mapped reads → Peak calling in ATAC-seq, ChIP-seq, and DNase-seq 
 
 ## Useful links
 
@@ -236,10 +248,12 @@ PrintBibliography(bib)
 - Sequence can span multiple lines
 - One entry per sequence (chromosome / contig for genome sequences)
 
+<br>
+
 ```{r}
 #| fig-align: center
 #| out-height: 200px
-#| out-width: 1000px
+#| out-width: 750px
 ## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 13)
 knitr::include_graphics("img/fasta.png")
 ```
