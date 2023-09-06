@@ -127,3 +127,45 @@ set.seed(1)
 mat <- matrix(c(rnorm(12*4, 0, 10), rnorm(12*4, 0, 1)), nrow = 8, ncol = 12, byrow = TRUE)
 ComplexHeatmap::Heatmap(mat, name = "values")
 ```
+
+## Dimensionality reduction {.smaller}
+
+We use dimensionality reduction methods to:
+
+- Find structure in the data.
+
+- Aid in visualization.
+
+Unsupervised learning helps finding groups of homogeneous items
+
+- Many approaches to do this (e.g. PCA, t-SNE, UMAP)
+
+:::: {.columns}
+
+::: {.column width="70%"}
+### High dimensional
+
+```{r}
+nrow <- 10
+ncol <- 5
+rownames <- paste("gene", seq_len(nrow))
+colnames <- paste("sample", seq_len(ncol))
+x <- matrix(data = rbinom(nrow*ncol, 10E3, 1E-4), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
+knitr::kable(x, format = "html", escape = T)
+```
+:::
+
+::: {.column width="30%"}
+### Reduced dimensionality
+
+```{r}
+nrow <- 5
+ncol <- 2
+rownames <- paste("sample", seq_len(nrow))
+colnames <- paste("dim", seq_len(ncol))
+x <- matrix(data = rnorm(nrow*ncol, 0, 10), nrow = nrow, ncol = ncol, dimnames = list(rownames, colnames))
+knitr::kable(x, format = "html", escape = T)
+```
+:::
+
+::::
