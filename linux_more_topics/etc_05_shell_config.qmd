@@ -157,6 +157,7 @@ $ ssh-keygen -t ecdsa -b 521        # Generate keys
 
 - This creates a private key (file), 'id_ecdsa' and a public key (file), 'id_ecdsa.pub' in ~/.ssh/
 - Please ensure that the private key file has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
+- <span style="color:red;"> Before generating, check now whether you have existing SSH keys in ~/.ssh. Let us know!</span>
 
 ## Adding the public key to a remote server
 
@@ -196,12 +197,14 @@ Host bastion
     IdentityFile ~/.ssh/id_ecdsa
 
 Host obds-bastion
-    HostName imm-obds
+    HostName obds
     User <username>
     IdentityFile ~/.ssh/id_ecdsa
     ProxyJump bastion
     # for RStudio
     LocalForward localhost:8787 localhost:8787
+    # for FileZilla
+    LocalForward localhost:3111 localhost:22
 ```
 
 :::
@@ -212,8 +215,8 @@ Host obds-bastion
   + **IdentityFile** - specifies the path to the private SSH key file that you created earlier on your local machine
   + **User** - username on host (can be different between jump and target hosts)
   + **ProxyJump** - establish connection through a jump host (earlier nicknamed as bastion)
-  + **LocalForward** - specify connection between your machine's port 8787 to the target host's port 8787, which "offers" RStudio
-                  
+  + **LocalForward** - specify connection between a port of local machine to a port of target host, offering a particular "service" (8787 often used for RStudio, 22 often used for SSH connection); note that although there are commonly used port numbers for certain services, system admins can change this
+  
 :::
 
 ::::
@@ -254,14 +257,28 @@ PrintBibliography(bib)
 
 # Bonus topics
 
-## Advanced shell configuration
+## Advanced shell configuration 
 
-- .inputrc file
-- .bash_profile 
+- You may come across other Bash startup files other than ~/.bashrc e.g. ~/.profile, ~/.bash_profile
 
-<Need to figure out what's going on the cluster with .bashrc, .profile, .bash_profile>
-<Explain here what's going on in the cluster>
+- Those other files perform a task similar to ~/.bashrc, but with subtle differences with respect to the order and the environment in which they are executed
 
-## Advanced SSH client configuration
+- <span style="color:red;">We strongly discourage users from editing or creating those other files, stick with editing ~/.bashrc !</span>
 
-- https://obds-training.github.io/Help/docs/connect/ssh-configuration/client-advanced/
+## Advanced shell configuration - ~/.inputrc file
+
+- This file allows you to customise how keystrokes are interpreted in the terminal emulator
+- Like ~/.bashrc, it is a hidden file in the home directory that is applied on login
+- Common shortcuts added to ~/.inputrc are:
+  + "\<key combination>":\<command>
+  
+```
+# In case of ambiguity when using tab completion, display options right away instead of asking whether to display them or not
+set show-all-if-ambiguous on
+
+# Search history of commands (forward or backward) starting with the pattern you typed (could be a command therefore)
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+```
+
+[List of key combinations and commands from Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
