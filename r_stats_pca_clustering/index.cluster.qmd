@@ -25,8 +25,12 @@ format:
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
-library(tidyverse)
-library(cowplot)
+library("tidyverse")
+library("cowplot")
+library("airway")
+library("SingleCellExperiment")
+library("ComplexHeatmap")
+source("preprocess.R")
 ```
 
 ```{r}

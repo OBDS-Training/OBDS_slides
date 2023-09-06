@@ -1,0 +1,35 @@
+# Dimensionality reduction and clustering
+
+## Visually extracting information from data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Data
+
+<br/>
+
+::: {.small-table}
+```{r}
+knitr::kable(head(assay(airway, "counts"), 20), format = "html", escape = FALSE)
+```
+:::
+:::
+
+::: {.column width="50%"}
+### Information
+
+```{r}
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 7
+top_var_idx <- head(order(rowVars(assay(airway, "logcounts")), decreasing = TRUE), 40)
+Heatmap(
+  matrix = assay(airway, "logcounts")[top_var_idx, ],
+  row_names_gp = gpar(fontsize = 8),
+  name = "logcounts"
+)
+```
+:::
+
+::::

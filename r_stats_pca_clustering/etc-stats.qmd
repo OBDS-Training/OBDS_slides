@@ -813,8 +813,8 @@ hist(data_p_values, breaks = 30)
 ::: {.column width="50%"}
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 300px
+#| out-height: 500px
+#| out-width: 400px
 knitr::include_graphics("img/xkcd-multiple-testing-pub.jpg")
 ```
 
