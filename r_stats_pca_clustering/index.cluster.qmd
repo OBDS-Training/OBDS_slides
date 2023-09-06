@@ -30,6 +30,7 @@ library("cowplot")
 library("airway")
 library("SingleCellExperiment")
 library("ComplexHeatmap")
+library("kableExtra")
 source("preprocess.R")
 ```
 

@@ -59,3 +59,71 @@ Variation in data (e.g., expression) can come from multiple sources.
 ::::
 
 Whether each source of variation is seen as signal or noise depends on the goal of the study.
+
+## Confounding variables
+
+Experimental design is crucial to ensure that sources of interesting variation are not confounded with independent sources of uninteresting variation.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Confounded
+
+<br/>
+
+```{r}
+nrow <- 8
+data.frame(
+  Cell = seq_len(nrow),
+  Site = rep(c("S1", "S2"), each = 4),
+  Treatment = rep(c("A", "B"), each = 4)
+) %>%
+  mutate(
+    Site = cell_spec(Site, "html", color = ifelse(Site == "S2", "red", "blue")),
+    Treatment = cell_spec(Treatment, "html", color = ifelse(Treatment == "A", "cyan", "orange"))
+  ) %>% 
+  knitr::kable(format = "html", escape = FALSE)
+```
+:::
+
+::: {.column width="50%"}
+### Balanced
+
+<br/>
+
+```{r}
+nrow <- 8
+data.frame(
+  Cell = seq_len(nrow),
+  Site = rep(c("S1", "S2"), each = 4),
+  Treatment = rep(c("A", "B"), times = 4)
+) %>%
+  mutate(
+    Site = cell_spec(Site, "html", color = ifelse(Site == "S2", "red", "blue")),
+    Treatment = cell_spec(Treatment, "html", color = ifelse(Treatment == "A", "cyan", "orange"))
+  ) %>% 
+  knitr::kable(format = "html", escape = F)
+```
+
+:::
+
+::::
+
+## Feature selection
+
+Many genes are not interesting because they don't vary much, or they
+don’t have enough counts.
+
+Filtering for feature selection is needed to:
+
+- Select genes that display useful variation.
+- Reduce memory usage and computational cost/time.
+
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 6
+set.seed(1)
+mat <- matrix(c(rnorm(12*4, 0, 10), rnorm(12*4, 0, 1)), nrow = 8, ncol = 12, byrow = TRUE)
+ComplexHeatmap::Heatmap(mat, name = "values")
+```
