@@ -33,3 +33,29 @@ Heatmap(
 :::
 
 ::::
+
+## Sources of variation in data
+
+Variation in data (e.g., expression) can come from multiple sources.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Biological
+
+- Stimulus (e.g., infection, drug)
+- Condition (e.g., healthy, disease)
+- ...
+:::
+
+::: {.column width="50%"}
+### Technical
+
+- Instrumentation
+- Operator
+- ...
+:::
+
+::::
+
+Whether each source of variation is seen as signal or noise depends on the goal of the study.
