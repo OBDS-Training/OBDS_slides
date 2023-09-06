@@ -143,7 +143,7 @@ Unsupervised learning helps finding groups of homogeneous items
 :::: {.columns}
 
 ::: {.column width="70%"}
-### High dimensional
+#### High dimensional
 
 ```{r}
 nrow <- 10
@@ -156,7 +156,7 @@ knitr::kable(x, format = "html", escape = T)
 :::
 
 ::: {.column width="30%"}
-### Reduced dimensionality
+#### Reduced dimensionality
 
 ```{r}
 nrow <- 5
