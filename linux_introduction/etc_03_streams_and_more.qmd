@@ -217,7 +217,7 @@ $ sort file1.txt | uniq
 knitr::include_graphics("img/search_find.png")
 ```
 
-## Exercise 1 - Working with files and streams
+## Talk 3 Exercise 1 - Working with files and streams
 
 1. Find the tar archive **dnase1_new.tar.gz** in your 1_linux directory.
 2. Decompress and extract the archive using `tar`.
@@ -294,7 +294,7 @@ done
   + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
   + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
 
-## Advanced exercise 2 - Loops 
+## Talk 3 Advanced exercise 2 - Loops 
 
 1. Create a list of all chromosomes for every dnase1 bed file
 

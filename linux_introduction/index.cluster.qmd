@@ -1,10 +1,12 @@
 ---
 title: 'Introduction to the Linux command line'
 subtitle: ''
-author: "Updated from Devika Agarwal, Carla Cohen, Kevin Rue Albrecht (CCB Doks)"
+author: "Updated from David Sims, Charlie George, Kevin Rue Albrecht (CCB Doks)"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-08-18 (updated: `r Sys.Date()`)"
+date: "2023-09-11 (updated: `r Sys.Date()`)"
 date-format: long
+execute: 
+  echo: false
 format:
   revealjs: 
     slide-number: true
@@ -14,7 +16,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Updated from Devika Agarwal, Carla Cohen, Kevin Rue Albrecht (CCB Doks) -- Introduction to the Linux command line
+    footer: Updated from David Sims, Charlie George, Kevin Rue Albrecht (CCB Doks) -- Introduction to the Linux command line
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("./linux_introduction/index.cluster.html")
 # ^If throwing error, set: 
@@ -69,4 +71,8 @@ bib <- ReadBib("bibliography.bib")
 
 ```{r, eval=TRUE}
 #| child: etc_03_streams_and_more.qmd
+```
+
+```{r, eval=TRUE}
+#| child: solution.qmd
 ```
