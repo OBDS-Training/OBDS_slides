@@ -794,7 +794,20 @@ knitr::include_graphics("img/choose-statistical-test.png")
 knitr::include_graphics("img/xkcd-multiple-testing.jpg")
 ```
 
-[https://xkcd.com/882/](https://imgs.xkcd.com/comics/significant.png)
+```{r}
+#| echo: true
+data_p_values <- runif(1E3, min = 0, max = 1)
+data_p_adjusted <- p.adjust(data_p_values, method = "BH")
+head(sort(data_p_adjusted))
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 3
+#| fig-width: 7
+hist(data_p_values, breaks = 30)
+```
+
 :::
 
 ::: {.column width="50%"}
@@ -804,6 +817,10 @@ knitr::include_graphics("img/xkcd-multiple-testing.jpg")
 #| out-width: 300px
 knitr::include_graphics("img/xkcd-multiple-testing-pub.jpg")
 ```
+
+::: {style="text-align: right;"}
+[https://xkcd.com/882/](https://imgs.xkcd.com/comics/significant.png)
+:::
 :::
 
 ::::
