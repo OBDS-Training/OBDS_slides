@@ -222,3 +222,7 @@ ggplot() +
 #| eval: false
 pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
 ```
+
+Each principal component is described as a linear combination of the original dimensions.
+
+$$PC_{i} = \beta_{(i,1)} * gene_1 + \beta_{(i,2)} * gene_2$$
