@@ -226,3 +226,74 @@ pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
 Each principal component is described as a linear combination of the original dimensions.
 
 $$PC_{i} = \beta_{(i,1)} * gene_1 + \beta_{(i,2)} * gene_2$$
+
+## Decomposition into principal components
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+knitr::include_graphics("img/pca.png")
+```
+:::
+
+::: {.column width="50%"}
+### Terminology
+
+$A$ is the original data matrix.
+
+$V$ is calls the **loadings** matrix.
+
+$U$ is the **scores** matrix.
+:::
+
+::::
+
+### Interpretation
+
+**Loadings** can be understood as the weights for each original variable when calculating the principal component.
+$V$ is also often called the **rotation** matrix.
+
+**Scores** contain the original data in a rotated coordinate system.
+$U$ is the matrix of new coordinates used to produce PCA plots.
+
+::: {.notes}
+It can be shown that the principal components are eigenvectors of the data's covariance matrix. Thus, the principal components are often computed by eigendecomposition of the data covariance matrix or singular value decomposition of the data matrix.
+[Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis)
+
+Remember that eigendecomposition works on a square matrix (https://notes.andrewgurung.com/data-science/linear-algebra/eigenvalues-and-eigenvectors).
+The covariance matrix is square, not the original data matrix.
+:::
+
+## General advice for PCA
+
+::: {style="text-align: center;"}
+Always **center** data (the default in `prcomp()`).
+:::
+
+- This is key to computing the **covariance** matrix.
+
+::: {style="text-align: center;"}
+If comparing different units, **scale** data.
+:::
+
+- Uses the *correlation* matrix rather than the *covariance* matrix.
+- Not necessary for log-normalised gene expression.
+
+::: {style="text-align: center;"}
+Use a *subset* of the principal components in downstream analyses.
+:::
+
+- PCA *rotates* the data, it does not reduce dimensionality.
+- Principal components are ordered by decreasing variance captured.
+- Extract the first $k$ components to reduce dimensionality
+  while preserving as much variance as desired.
+
+::: {.notes}
+Centering data for PCA:
+<https://stats.stackexchange.com/questions/22329/how-does-centering-the-data-get-rid-of-the-intercept-in-regression-and-pca>
+
+DESeq2 PCA:
+<https://github.com/thelovelab/DESeq2/blob/e67c68886bf07b90a12594e16d533b42340ad63b/R/plots.R#L249>
+:::
