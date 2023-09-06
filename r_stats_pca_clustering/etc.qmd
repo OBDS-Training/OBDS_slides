@@ -1,3 +1,5 @@
+# Statistics
+
 ## <i class="fab fa-r-project"></i> is built for statistics
 
 - <i class="fab fa-r-project"></i> includes a number of common statistical distributions:
