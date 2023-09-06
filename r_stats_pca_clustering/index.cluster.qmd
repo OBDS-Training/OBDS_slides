@@ -63,5 +63,17 @@ NoCite(bib, "R")
 - Open the notebook and follow along, editing and running the code as needed.
 
 ```{r}
+#| child: etc-stats.qmd
+```
+
+```{r}
+#| child: etc-pca.qmd
+```
+
+```{r}
+#| child: etc-clustering.qmd
+```
+
+```{r}
 #| child: etc.qmd
 ```
