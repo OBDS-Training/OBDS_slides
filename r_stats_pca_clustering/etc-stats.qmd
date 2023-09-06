@@ -803,7 +803,7 @@ head(sort(data_p_adjusted))
 
 ```{r}
 #| fig-align: center
-#| fig-height: 3
+#| fig-height: 4
 #| fig-width: 7
 hist(data_p_values, breaks = 30)
 ```
