@@ -169,3 +169,56 @@ knitr::kable(x, format = "html", escape = T)
 :::
 
 ::::
+
+## Principal component analysis (PCA)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Goals
+
+- Find linear combination of variables to create principal components (PCs).
+- Maintain most of the variance in the data (for given number of PCs).
+- PCs are uncorrelated (orthogonal to each other) and ordered with respect to the percentage of variance explained.
+
+### Assumptions
+- Relationship between variables is linear!
+- Not optimal for non-linear data structures.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 7
+#| fig-width: 9
+data_x <- tibble(
+  x = rnorm(n = 100, mean = 0, sd = 1)
+) %>% 
+  mutate(
+  y = x + rnorm(n = 100, mean = 0, sd = 0.8)
+  )
+data_pca <- prcomp(data_x)
+data_eigengenes <- as_tibble(t(data_pca$rotation * rep(data_pca$sdev^2, each=2))) %>% 
+  mutate(
+    xend = 0,
+    yend = 0,
+    PC = paste0("PC", 1:2))
+ggplot() +
+  geom_point(aes(x, y), data_x) +
+  geom_segment(
+    aes(x = xend, y = yend, xend=x, yend=y, color = PC), data_eigengenes,
+    size=1.25,
+    arrow = arrow(length = unit(10, "points"), angle = 30)) +
+  labs(x = "gene 1", y = "gene 2") +
+  theme_bw() +
+  theme(text = element_text(size = 20))
+```
+:::
+
+::::
+
+```{r}
+#| echo: true
+#| eval: false
+pca <- prcomp(x, center = TRUE, scale. = FALSE, ...)
+```
