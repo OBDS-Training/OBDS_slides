@@ -237,7 +237,6 @@ Course outline:
 PrintBibliography(bib)
 ```
 
-<!-- 
 
 # Bonus topics
 
@@ -261,6 +260,20 @@ knitr::include_graphics("img/fasta.png")
 ```
 
 ## **File format (annotation)**: **BED**
+
+- Genomic intervals
+- Can be used to represent coordinates of any genomic feature
+  + Exons, introns, repeats, CpG islands, transcription factor binding sites
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 750px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 19)
+knitr::include_graphics("img/bed.png")
+```
+
+<!-- 
 
 ## **File format (annotation)**: **GFF**
 
