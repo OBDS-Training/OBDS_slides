@@ -1,0 +1,43 @@
+## Cluster analysis
+
+Task of grouping a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+  geom_point(size = 3) +
+  cowplot::theme_cowplot() +
+  labs(x = "variable 1", y = "variable 2")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+iris %>% 
+  mutate(
+    Cluster = Species %>% 
+      fct_recode(
+        "1" = "setosa",
+        "2" = "versicolor",
+        "3" = "virginica"
+      )
+  ) %>% 
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Cluster)) +
+  geom_point(size = 3) +
+  cowplot::theme_cowplot() +
+  labs(x = "variable 1", y = "variable 2")
+```
+:::
+
+::::
+
+- Unsupervised machine learning task.
+- Many methods (e.g.,$k$-means clustering, hierarchical clustering).
+- Insights arise from downstream analyses of the resulting clusters.
+- Often an iterative process as a result of initial over- or under-clustering.

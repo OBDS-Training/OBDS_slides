@@ -1,5 +1,5 @@
 ---
-title: 'Statistics, dimensionality reduction, and clustering'
+title: 'Statistics, dimensionality reduction, and cluster analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
