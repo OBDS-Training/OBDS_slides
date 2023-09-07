@@ -41,3 +41,30 @@ iris %>%
 - Many methods (e.g.,$k$-means clustering, hierarchical clustering).
 - Insights arise from downstream analyses of the resulting clusters.
 - Often an iterative process as a result of initial over- or under-clustering.
+
+## $k$-means clustering
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+<br/>
+
+1. Initialise $k$ centroids randomly.
+2. Assign each data points to the nearest centroid.
+3. Compute new centroid coordinates.
+4. Repeat (2) and (3) until convergence, or for a maximum number of iterations allowed.
+:::
+
+::: {.column width="66%"}
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 600px
+## Source: https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
+knitr::include_graphics("img/kmeans-steps.png")
+```
+
+:::
+
+::::
