@@ -70,7 +70,7 @@ export TMP="$HOME"      # Not set by default, preferably define in ~/.bashrc
 - One of the most important environment variable
 - Stored as a colon-separated (:) character string that represents the list of directories that are searched – in the given order – to find executable files that are invoked by users and their scripts
 - If the wanted program is not in the list of directories, it will not run
-- Mpdify to add directories or remove directories (e.g. when a command is defined in multiple directories)
+- Modify to add directories or remove directories (e.g. when a command is defined in multiple directories)
 - Alternatively, you can provide the full path to the program you wish to run
 
 ```
@@ -304,8 +304,6 @@ Host obds-bastion
     LocalForward localhost:3111 localhost:22
 ```
 
-- This template should be on the OneDrive folder with the lecture slides 
-
 ## Configuring the SSH client
 
 - Once you have the config file, the original `ssh` command to connect to the OBDS server *via* the bastion host can be simplified: 
@@ -317,6 +315,23 @@ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 # To
 ssh obds-bastion
 ```
+
+## Transferring files across systems on the command line using `scp`
+
+- `scp` \<options> \<source> \<destination>
+
+- Transferring files *via* bastion host from OBDS server to local machine:
+```
+$ scp -o 'ProxyJump <username>@bastion.imm.ox.ac.uk' <username>@obds:<source path> <destination path>
+
+# With the SSH config, we can simplify to:
+
+$ scp -o 'ProxyJump bastion' obds-bastion:<source path> <destination path>
+```
+
+- `scp` vs. `rsync`
+   + `scp` - Straightforward copying of files using SSH
+   + `rsync` - Synchronises files and directories between a source and a destination 
 
 # Talk 2 Exercise 1 - Shell configuration
 

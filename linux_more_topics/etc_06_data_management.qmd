@@ -263,6 +263,13 @@ $ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compar
 knitr::include_graphics("img/md5sum-c.png")
 ```
 
+## Downloading remote files using the command line
+
+- `wget`
+- `curl`
+   + Like `wget`, can be used for downloading files from the Internet 
+   + The two have differences in terms of other functionality e.g. `wget` can download recursively
+   
 ## Exercise 1 - Working directory
 
 ## References
@@ -271,21 +278,3 @@ knitr::include_graphics("img/md5sum-c.png")
 #| results: asis
 PrintBibliography(bib)
 ```
-
-# Bonus topics
-
-## Downloading remote files using the command line
-
-- `wget`
-- `curl`
-   + Like `wget`, can be used for downloading files from the Internet 
-   + The two have differences in terms of other functionality e.g. `wget` can download recursively
-   
-## Transferring files across systems
-
-- Syntax:
-  + \<`scp` | `rsync`> \<options> \<source> \<destination>
-- `scp` 
-   + Straightforward copying of files using SSH
-- `rsync`
-   + Synchronises files and directories between a source and a destination 

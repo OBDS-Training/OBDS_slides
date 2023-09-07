@@ -89,7 +89,7 @@ If none, create an SSH key as shown on the lecture slides. Check if both private
 
 <span style="color:red;">If you are using gitbash (i.e. on a windows machine), leave the password blank! The keychain won't remember it sadly :(</span>
 
-3.To easily connect to the server *via* the bastion host, configure your ssh client. Download the OBDS config file template and transfer to your local ~/.ssh folder.
+3.To easily connect to the server *via* the bastion host, configure your ssh client. Get the OBDS config file template in the resources directory and transfer to your local ~/.ssh folder.
 
 4.Edit the config file using a terminal text editor to add your username in the appropriate places.
 
