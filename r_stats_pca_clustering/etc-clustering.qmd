@@ -257,3 +257,56 @@ pheatmap(assay(airway, "logcounts")[keep_rows, ] + 1)
 :::
 
 ::::
+
+## Density-based clustering
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 800px
+## Source: Adobe Illustrator (Kevin Rue-Albrecht)
+knitr::include_graphics("img/dbscan.svg")
+```
+
+Two parameters:
+- Minimum number of points to initiate a cluster.
+- Maximum distance to search for neigbouring points.
+
+Core points have at least $minPoints-1$ neigbours within $epsilon$ distance.
+
+Border points are located within $epsilon$ of a core point
+(without being a core point themselves).
+
+Outlier points are further than $epsilon$ from any other point.
+
+## Comparing clustering algorithms on toy datasets
+
+```{r}
+#| fig-align: center
+#| out-height: 600px
+#| out-width: 1000px
+## Source: https://newbedev.com/scikit_learn/modules/clustering
+knitr::include_graphics("img/sphx_glr_plot_cluster_comparison_0011.png")
+```
+
+## Exercise
+
+### Hierarchical clustering
+
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
+  Use the functions `dist()` and `hclust()`.
+- Plot the clustering tree.
+  Use the function `plot()`.
+
+::: {style="text-align: center;"}
+**How many clusters would you call from a visual inspection of the tree?**
+:::
+
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
+  Use the function `cutree()`.
+- Repeat clustering using 3 other agglomeration methods:
+  - `complete`
+  - `average`
+  - `single`
+- Compare clustering results on scatter plots of the data.
