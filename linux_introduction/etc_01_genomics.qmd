@@ -237,6 +237,8 @@ Course outline:
 PrintBibliography(bib)
 ```
 
+<!-- 
+
 # Bonus topics
 
 ## **File format (sequence)**: Reference genome as **FASTA**
@@ -265,11 +267,6 @@ knitr::include_graphics("img/fasta.png")
 ## **File format (annotation)**: **GTF**
 
 ## Key concepts and considerations
-<!-- 
-Have separate slide for each point to review/refresh 
-Making sure that each slide is very simple and only contains what is needed to 
-understand the workflow
--->
 
 - (Non-) vs. stranded RNA-seq library
 - General sequencing considerations
@@ -280,3 +277,5 @@ understand the workflow
     - Standard 75bp read length fine for differential expression
     - Longer reads better for alternative splicing
 - NGS technology (e.g. Illumina technology)
+
+-->
