@@ -185,7 +185,7 @@ $$Distances \rightarrow Tree \rightarrow Clusters.$$
 ```{r}
 #| fig-align: center
 #| out-height: 250px
-#| out-width: 300px
+#| out-width: 280px
 ## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
 knitr::include_graphics("img/hierarchical-clustering-scatter.png")
 ```
