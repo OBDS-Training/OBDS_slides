@@ -208,3 +208,52 @@ knitr::include_graphics("img/hierarchical-clustering-dendrogram.png")
 - Distance metric
 - Agglomeration method
 - Number of cluster / Height of cut
+
+## Hierarchical clustering in action {.smaller}
+
+```{r}
+hclust_out <- hclust(dist(t(assay(airway, "logcounts")[keep_rows, ])))
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 7
+plot(hclust_out)
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 7
+pvclust_out <- pvclust(assay(airway, "logcounts")[keep_rows, ], quiet = TRUE)
+plot(pvclust_out)
+rect.hclust(hclust_out, 4)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 7
+keep_pc <- "PC1"
+keep_rows <- airway_pca$rotation %>%
+  as.data.frame() %>% 
+  rownames_to_column("gene") %>% 
+  as_tibble() %>% 
+  pivot_longer(cols = -gene, names_to = "PC", values_to = "loading") %>% 
+  filter(PC == keep_pc) %>% 
+  top_n(n = 20, wt = loading) %>% 
+  pull(gene) %>%
+  as.character()
+pheatmap(assay(airway, "logcounts")[keep_rows, ] + 1)
+```
+
+`r BiocStyle::CRANpkg("pvclust")`
+:::
+
+::::

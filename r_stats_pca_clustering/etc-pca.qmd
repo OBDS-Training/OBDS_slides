@@ -425,7 +425,6 @@ airway_pca$rotation %>%
   rownames_to_column("gene") %>% 
   as_tibble() %>% 
   pivot_longer(cols = -gene, names_to = "PC", values_to = "loading") %>% 
-  # melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
   filter(PC == keep_pc) %>% 
   top_n(n = 10, wt = loading) %>% 
   mutate(direction = "+") %>% 
@@ -435,7 +434,6 @@ airway_pca$rotation %>%
   rownames_to_column("gene") %>% 
   as_tibble() %>% 
   pivot_longer(cols = -gene, names_to = "PC", values_to = "loading") %>% 
-  # melt(varnames = c("gene", "PC"), value.name = "loading") %>% 
   filter(PC == keep_pc) %>% 
   top_n(n = 10, wt = -loading) %>% 
   mutate(direction = "-")
