@@ -336,29 +336,37 @@ $ less <filename>           # Like more but allows backward movement, "less is m
                             # Similar to more, exit anytime with 'q'
 ```
 
-## Remote Connection to a Linux Server
+## Remote connection to a Linux server
 
-- We log into the cluster using `ssh`
-- SSH (secure shell) is an encrypted network protocol for establishing a secure connection to a remote server
-- Simply put, the protocol uses a username and password to authenticate a user on the remote system
+- We can log into a remote target host using `ssh`
+- SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
+- Simply put, the protocol uses a username and password to authenticate a user on the remote target host
 
 ```
-$ ssh <username>@<remote / host / server>
+$ ssh <target username>@<target host>
+```
+  + If prompted whether to continue connecting, type 'yes' (usually appears when connecting the first time)
+  + This prompts for the password for the user account on target host 
 
-# If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+## Remote connection to a Linux server *via* a jump host
 
+- Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+
+```
 $ ssh -J <jump username>@<jump host> <target username>@<target host>  
 ```
 
-- To connect to the OBDS cluster, we have to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+- We will be using the new OBDS teaching server throughout the Linux course. To connect to the server (obds), we need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
 
 ```
 $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 ```
+
 -
   + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
-  
 
+  + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
+  
 ## Remote Connection to a Linux Server
 
 - For the very first connection, you may be prompted to verify the authenticity of the host
@@ -370,7 +378,13 @@ $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
   + Press Control + d
-  
+
+## Side note for tomorrow!
+
+- Please download [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture
+
+- We will use this program to transfer files between your local machine and a remote host (OBDS server)
+
 # Talk 2 Exercise 1 – Files and directories part 1
 
 ## Changing how you view files using ``ls`` options
