@@ -299,3 +299,104 @@ Centering data for PCA:
 DESeq2 PCA:
 <https://github.com/thelovelab/DESeq2/blob/e67c68886bf07b90a12594e16d533b42340ad63b/R/plots.R#L249>
 :::
+
+## Example gene expression data set {.smaller}
+
+Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<br/>
+
+::: {.small-table}
+```{r}
+knitr::kable(head(assay(airway, "counts"), 20), format = "html", escape = FALSE)
+```
+:::
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 8
+#| fig-width: 7
+top_var_idx <- head(order(rowVars(assay(airway, "logcounts")), decreasing = TRUE), 40)
+Heatmap(
+  matrix = assay(airway, "logcounts")[top_var_idx, ],
+  row_names_gp = gpar(fontsize = 8),
+  name = "logcounts"
+)
+```
+:::
+
+::::
+
+## Example PCA results
+
+```{r}
+keep_rows <- assay(airway, "logcounts") %>% 
+  rowVars() %>% 
+  order(decreasing = TRUE) %>% 
+  head(500)
+pca <- assay(airway, "logcounts")[keep_rows, ] %>% 
+  t() %>% 
+  prcomp()
+scree_table <- tibble(
+  sdev = pca$sdev,
+  PC = seq_along(pca$sdev),
+  var = sdev^2 / sum(sdev^2),
+  var_cumsum = cumsum(var)
+)
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+keep_samples <- rownames(pca$x)
+pca$x %>%
+  as_tibble() %>% 
+  dplyr::select(PC1, PC2) %>% 
+  bind_cols(colData(airway)[keep_samples, ] %>% as_tibble()) %>% 
+  ggplot(aes(PC1, PC2, color = cell, shape = dex)) +
+  geom_point(size = 5) +
+  labs(
+    x = sprintf("PC1 (%.2f %%)", 100*subset(scree_table, PC == 1, "var")),
+    y = sprintf("PC2 (%.2f %%)", 100*subset(scree_table, PC == 2, "var"))
+  ) +
+  theme_bw()
+```
+
+Percentage variance explained:
+
+$$pct\_var = sdev^2 / sum(sdev^2)$$
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
+ggplot(scree_table, aes(PC, var)) +
+  geom_col(fill = "grey") +
+  geom_point() +
+  scale_x_continuous(breaks = seq_along(scree_table$PC)) +
+  labs(y = "% Variance explained", title = "Percentage of Variance Explained") +
+  theme_bw()
+```
+
+```{r}
+#| fig-align: center
+#| fig-height: 5
+ggplot(scree_table, aes(PC, var_cumsum)) +
+  geom_line() + geom_point(size = 2) +
+  scale_x_continuous(breaks = seq_along(scree_table$PC)) +
+  labs(y = "Cumulative % Variance explained", title = "Cumulative Percentage of Variance Explained") +
+  theme_bw()
+```
+:::
+
+::::
