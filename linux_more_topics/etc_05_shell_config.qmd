@@ -98,7 +98,7 @@ $ module unload <module name>               # Unload
 $ module purge                              # Unload all loaded modules 
 ```
 
-## Remote Connection to a Linux Server
+## Remote connection to a Linux server
 
 - We can log into a remote target host using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
@@ -108,9 +108,11 @@ $ module purge                              # Unload all loaded modules
 $ ssh <target username>@<target host>
 ```
   + If prompted whether to continue connecting, type 'yes' (usually appears when connecting the first time)
-  + This prompts for password for user account on target host 
+  + This prompts for the password for the user account on target host 
 
-- If applicable, connecting through a jump (bastion / proxy) host as an intermediary or gateway for extra security
+## Remote connection to a Linux server *via* a jump host
+
+- Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
 ```
 $ ssh -J <jump username>@<jump host> <target username>@<target host>  
@@ -125,9 +127,9 @@ $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 -
   + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
 
-- <span style="color:red;">Does everyone know their username?</span>
+  + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
  
-## Remote Connection to a Linux Server
+## Remote connection to a Linux server
 
 - Typing the `ssh` command and all its options works on the command line 
   + but could be tedious especially when using a jump host as in our case and needing to repeatedly connect
@@ -166,8 +168,8 @@ $ ssh-keygen -t ecdsa -b 521        # Generate private and public keys / files
   + A file name (if you leave blank - id_\<ssh key type> by default e.g. id_ecdsa)
   + A password or passphrase (ideally, always set a password for maximum security, but for Git Bash users please leave this blank for now because unlike in macOS, the passphrase cannot be stored by the SSH agent so you would need to input it everytime)
 
-- This creates a private key (file), 'id_ecdsa' and a public key (file), 'id_ecdsa.pub' in ~/.ssh/
-- Please ensure that the private key file has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
+- This creates a private key (file), **'id_ecdsa'** and a public key (file), **'id_ecdsa.pub'** in **~/.ssh/**
+- Please ensure that the private key has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
 - <span style="color:red;">Before generating, check whether you have existing SSH keys in ~/.ssh on your local machine. Let us know!</span>
 
 ## Adding the public key to a remote server
@@ -275,11 +277,38 @@ Host *
                                     keychain (macOS app)
 ```
   + '*' matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
-- <span style="color:green;">Look at OBDS config file template</span>
 
 ## Configuring the SSH client
 
-- Once you have the config file, the original `ssh` command to connect to the OBDS server *via* the bastion host can be simplied 
+- OBDS config file template for connecting to the OBDS server:
+
+```
+Host *
+    IdentityFile ~/.ssh/id_ecdsa
+    AddKeysToAgent yes
+    UseKeychain no
+
+Host bastion
+    HostName bastion.imm.ox.ac.uk
+    User exet4759
+#    IdentityFile ~/.ssh/id_ecdsa
+
+Host obds-bastion
+    HostName obds
+    User exet4759
+#    IdentityFile ~/.ssh/id_ecdsa
+    ProxyJump bastion
+    # for RStudio
+    LocalForward localhost:8787 localhost:8787
+    # for FileZilla
+    LocalForward localhost:3111 localhost:22
+```
+
+- This template should be on the OneDrive folder with the lecture slides 
+
+## Configuring the SSH client
+
+- Once you have the config file, the original `ssh` command to connect to the OBDS server *via* the bastion host can be simplified: 
 
 ```
 # From
@@ -312,7 +341,7 @@ PrintBibliography(bib)
 
 - Those other files perform a task similar to ~/.bashrc, but with subtle differences with respect to the order and the environment in which they are executed
 
-- <span style="color:red;">We strongly discourage users from editing or creating those other files, stick with editing ~/.bashrc !</span>
+- <span style="color:red;">We strongly discourage users from editing or creating those other files, stick with editing ~/.bashrc!</span>
 
 ## Advanced shell configuration - ~/.inputrc file
 

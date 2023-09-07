@@ -38,10 +38,12 @@ jobs -l
 kill <jobid>
 ```
 
+## Talk 1 Exercise 1 – Linux processes & system resources
+
 6.Bring the second process to the foreground and terminate it.
 
 ```{bash, eval=FALSE}
-fg # Then Control + c
+fg   # Then Control + c
 ```
 
 7.Start 3 sleep processes and kill them all by name using a single command.
@@ -56,7 +58,7 @@ sleep 300 &; sleep 300 &; sleep 300 &; killall sleep
 htop # Then type 'u' then select username
 ```
 
-9. Sort the processes output by memory usage.
+9.Sort the processes output by memory usage.
 
 ```{bash, eval=FALSE}
 htop # Then F5 then click on column header
@@ -68,7 +70,7 @@ htop # Then F5 then click on column header
 htop # Information on top section (dynamic, no single answer)
 ```
 
-11. Check the total disk usage in your home directory.
+11.Check the total disk usage in your home directory.
 
 ```{bash, eval=FALSE}
 cd ~ 
@@ -79,17 +81,21 @@ du -sh
 
 **Connecting to the OBDS server (obds) *via* a bastion host (bastion@imm.ox.ac.uk) using SSH key pair**
 
-1.On your local machine, change into ~/.ssh/ to check for existing keys and/or config file (let us know if you have!). If none, create an SSH key as shown on the lecture slides. Check if both private and public keys were successfully generated.
+1.On your local machine, change into **~/.ssh/** to check for existing keys and/or config file. <span style="color:red;">Let us know if you have!</span>
 
-2.Copy the public key to the jump host (bastion@imm.ox.ac.uk). If successful, copy the public key to the target host (obds).
+If none, create an SSH key as shown on the lecture slides. Check if both private and public keys were successfully generated.
+
+2.Copy the public key to the jump host (**bastion@imm.ox.ac.uk**). If successful, copy the public key to the target host (**obds**).
 
 <span style="color:red;">If you are using gitbash (i.e. on a windows machine), leave the password blank! The keychain won't remember it sadly :(</span>
 
-3. To easily connect with the server through the bastion host, configure your ssh client. Download the OBDS config file template and transfer to your local ~/.ssh folder.
+3.To easily connect to the server *via* the bastion host, configure your ssh client. Download the OBDS config file template and transfer to your local ~/.ssh folder.
 
 4.Edit the config file using a terminal text editor to add your username in the appropriate places.
 
 5.Connect to the OBDS server using the ssh key and shortcut. 
+
+## Talk 2 Exercise 1 – Shell configuration
 
 **Configure your .bashrc**
 
@@ -99,7 +105,7 @@ du -sh
 cp /<path>/resources/1_linux/2_linux_config/.bashrc /<path>/<username>
 ```
 
-7.Use a terminal text editor and add the **alias la=‘ls -alhF’**
+7.Use a terminal text editor and add the **alias la=‘ls -alhF’**.
 
 8.Add another alias to provide a shortcut to the resources directory and your course working directory.
 
@@ -119,26 +125,20 @@ module avail
 module search fastqc
 ```
 
-2.Load the fastqc module and use `which` to confirm it has worked. 
+3.Load the fastqc module and use `which` to confirm it has worked. 
 Look at the system path, then unload the module and check it again.
 
 ```{bash, eval=FALSE}
 which fastqc
-
 module add fastqc/0.11.9 
-Loading fastqc/0.11.9
-  Loading requirement: java/17.0.1
-  
 which fastqc
-/package/fastqc/0.11.9/bin/fastqc
 
 echo $PATH
 module unload fastqc
 echo $PATH
 ```
 
-## Talk 2 Exercise 2 – Modules
-
+<!--
 3.Try using the module system to load different versions of programs you are familiar with.
 Look at how system path changes.
 
@@ -149,38 +149,41 @@ module unload cellranger
 module list
 module add cellranger/7.1.0
 ```
+-->
 
 ## Talk 3 Exercise 1 – Working directory
 
-Set up a working directory for RNAseq data analysis.
+**Set up a working directory for RNAseq data analysis**
 
-1.Create a new project directory called **rnaseq** in your **1_linux** in your course working directory i.e. **/<path>/<username>/1_linux**.
+1.Create a new directory called **rnaseq** within **1_linux** in your course working directory. 
 
 ```{bash, eval=FALSE}
-cd /project/obds/<username>/1_linux/
+cd /<path>/<username>/1_linux/
 mkdir rnaseq
 ```
 
-2.Create subdirectories called **1_fastq** and **2_genome**.
+2.Change into your **rnaseq/**. Create subdirectories called **1_fastq** and **2_genome**.
 
 ```{bash, eval=FALSE}
 cd rnaseq/
 mkdir 1_fastq 2_genome
 ```
 
-3.Create symbolic links to a pair of fastq files in **/project/obds/shared/resources/1_linux/rnaseq/** in **1_fastq**.
+3.Create symbolic links to a pair of fastq files in the rnaseq resources directory, **/\<path>/resources/1_linux/rnaseq/**, in **1_fastq/**.
 
 ```{bash, eval=FALSE}
 cd 1_fastq/
-ls /project/obds/shared/resources/1_linux/rnaseq/
-ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
-ln -s /project/obds/shared/resources/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
+ls /<path>/resources/1_linux/rnaseq/
+ln -s /<path>/resources/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
+ln -s /<path>/resources/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
 ```
 
-4.Copy the file **md5sum.txt** from **/project/obds/shared/resources/1_linux/rnaseq/** to **1_fastq**.
+## Talk 3 Exercise 1 – Working directory
+
+4.Copy the file **md5sum.txt** from rnaseq resources directory to **1_fastq**.
 
 ```{bash, eval=FALSE}
-cp /project/obds/shared/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
+cp /<path>/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
 ```
 
 5.Check that the checksums for your fastq files are correct.
@@ -189,9 +192,7 @@ cp /project/obds/shared/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
 md5sum -c --ignore-missing md5sum.txt
 ``` 
 
-## Talk 3 Exercise 1 – Working directory
-
-6.Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome** and check it downloaded correctly. 
+6.Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly. 
 
 ```{bash, eval=FALSE}
 # Go to Ensembl home, Downloads tab, FTP Download section then the table links to 
@@ -203,10 +204,11 @@ cd ../2_genome/
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz & 
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS & 
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
-
 ```
 
-7.Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome** and check it downloaded correctly.
+## Talk 3 Exercise 1 – Working directory
+
+7.Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome/** and check it downloaded correctly.
 
 ```{bash, eval=FALSE}
 wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
@@ -217,9 +219,7 @@ cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
 sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-## Talk 3 Exercise 1 – Working directory
-
-8.Create a **readme.txt** file in the **2_genome** detailing how you obtained the public data files.
+8.Create a **readme.txt** file in the **2_genome/** detailing how you obtained the public data files.
 
 ```{bash, eval=FALSE}
 nano readme.txt
