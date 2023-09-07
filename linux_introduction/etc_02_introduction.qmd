@@ -648,8 +648,8 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
 
 ```
 $ ln file1 link1.csv            # Create hard link
-$ ln file1 link1.csv            # Create symbolic link
-$ ln dir1 link1                 # Create symbolic link
+$ ln -s file1 link1.csv         # Create symbolic link
+$ ln -s dir1 link1              # Create symbolic link
 ```
 
 - **Do not create hard links on the CCB cluster. If you think you need a hard link, contact system administrators first to enquire**
