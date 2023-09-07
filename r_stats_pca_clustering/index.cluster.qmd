@@ -31,6 +31,7 @@ library("airway")
 library("SingleCellExperiment")
 library("ComplexHeatmap")
 library("kableExtra")
+library("RColorBrewer")
 source("preprocess.R")
 ```
 
