@@ -174,3 +174,37 @@ kmeans_scree %>%
 :::
 
 ::::
+
+## Hierarchical clustering
+
+$$Distances \rightarrow Tree \rightarrow Clusters.$$
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 300px
+## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
+knitr::include_graphics("img/hierarchical-clustering-scatter.png")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 300px
+## Source: https://en.wikipedia.org/wiki/Hierarchical_clustering
+knitr::include_graphics("img/hierarchical-clustering-dendrogram.png")
+```
+:::
+
+::::
+
+### Key parameters
+
+- Distance metric
+- Agglomeration method
+- Number of cluster / Height of cut
