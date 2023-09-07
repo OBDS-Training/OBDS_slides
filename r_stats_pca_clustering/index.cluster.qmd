@@ -24,7 +24,7 @@ format:
 #| include: false
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-options(width = 120)
+options(width = 130)
 library("tidyverse")
 library("cowplot")
 library("airway")
