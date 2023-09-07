@@ -272,7 +272,7 @@ The covariance matrix is square, not the original data matrix.
 Always **center** data (the default in `prcomp()`).
 :::
 
-- This is key to computing the **covariance** matrix.
+- This is key to computing the *covariance* matrix.
 
 ::: {style="text-align: center;"}
 If comparing different units, **scale** data.
@@ -281,8 +281,10 @@ If comparing different units, **scale** data.
 - Uses the *correlation* matrix rather than the *covariance* matrix.
 - Not necessary for log-normalised gene expression.
 
+<https://towardsdatascience.com/let-us-understand-the-correlation-matrix-and-covariance-matrix-d42e6b643c22>
+
 ::: {style="text-align: center;"}
-Use a *subset* of the principal components in downstream analyses.
+Use a **subset** of the principal components in downstream analyses.
 :::
 
 - PCA *rotates* the data, it does not reduce dimensionality.
