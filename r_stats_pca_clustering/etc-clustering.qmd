@@ -68,3 +68,21 @@ knitr::include_graphics("img/kmeans-steps.png")
 :::
 
 ::::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Pro(s)
+
+- Easy to understand and implement.
+- Extremely fast.
+:::
+
+::: {.column width="50%"}
+#### Con(s)
+
+- Must pre-select the number of groups.
+- Stochastic (must set seed for reproducibility).
+:::
+
+::::
