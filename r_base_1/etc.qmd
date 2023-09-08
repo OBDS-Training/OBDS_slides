@@ -945,7 +945,7 @@ Subset
 Names
 
 - `rownames()` returns the names of the rows in a data frame.
-- `colnames()` returns the names of the rows in a data frame.
+- `colnames()` returns the names of the columns in a data frame.
 - `dimnames()` returns the names of the dimensions in a data frame (rows, columns).
 
 Miscellaneous
@@ -1017,6 +1017,26 @@ As for matrices, single brackets can be used with a comma symbol '`,`' to index 
 df[1, ]
 df[1:2, ]
 ```
+
+<br/>
+
+### Indexing by column
+
+```{r}
+#| echo: true
+#| eval: true
+df[ ,1]  
+```
+
+```{r}
+#| echo: true
+#| eval: true
+df[ , 1, drop=FALSE]  
+```
+
+## Indexing data frames (continued)
+
+As for matrices, single brackets can be used with a comma symbol '`,`' to index data frames by row and column, e.g.
 
 <br/>
 
