@@ -19,17 +19,17 @@
   + **Zombie** - process has been halted but it still has an entry in the table of processes
 
 
-## Foreground & background processes
+## Foreground and background processes
 
 - By default, command executed interactively in the Bash session of a Terminal application are run in the **foreground**
-  + A command running in the foreground will not return the prompt i.e. user cannot use the terminal until the command has finished running
-  + stdout and stderr are printed on the terminal
+  + A command running in the foreground will not return the prompt -- user cannot use the terminal until the command has finished running
+  + **stdout** and **stderr** are printed on the terminal
 
-## Foreground & background processes
+## Foreground and background processes
 
 - Processes can be run in the **background** to continue using the terminal while the they run
-  + To run a command in the background, add an ampersand '&' to the end of the command
-  + Best to prevent the process from printing to the terminal while running in the background i.e. redirect stdout and stderr to a file or suppress them
+  + To run a command in the background, add an **ampersand '&'** to the end of the command
+  + Best to prevent the process from printing to the terminal while running in the background -- redirect stdout and stderr to a file or suppress them
   + To move a running process to the background
     - Press Control + z to pause the process
     - Type 'bg' to send it to the background

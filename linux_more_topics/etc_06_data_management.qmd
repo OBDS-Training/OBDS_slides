@@ -270,7 +270,7 @@ knitr::include_graphics("img/md5sum-c.png")
    + Like `wget`, can be used for downloading files from the Internet 
    + The two have differences in terms of other functionality e.g. `wget` can download recursively
    
-## Exercise 1 - Working directory
+# Exercise 1 - Working directory
 
 ## References
 

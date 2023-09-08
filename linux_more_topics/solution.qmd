@@ -87,9 +87,9 @@ If none, create an SSH key as shown on the lecture slides. Check if both private
 
 2.Copy the public key to the jump host (**bastion@imm.ox.ac.uk**). If successful, copy the public key to the target host (**obds**).
 
-<span style="color:red;">If you are using gitbash (i.e. on a windows machine), leave the password blank! The keychain won't remember it sadly :(</span>
+<span style="color:red;">If you are using Git Bash -- on a Windows machine, leave the password blank!</span>
 
-3.To easily connect to the server *via* the bastion host, configure your ssh client. Get the OBDS config file template in the resources directory and transfer to your local ~/.ssh folder.
+3.To easily connect to the server *via* the bastion host, configure your ssh client. Get the OBDS config file template in the resources directory from the OBDS server and transfer to your local ~/.ssh folder.
 
 4.Edit the config file using a terminal text editor to add your username in the appropriate places.
 
@@ -99,7 +99,7 @@ If none, create an SSH key as shown on the lecture slides. Check if both private
 
 **Configure your .bashrc**
 
-6.Copy the **.bashrc** from the resources directory, /<path>/resources/1_linux/2_linux_config directory to your course working directory.
+6.Copy the **.bashrc** from the resources directory, \/<path>/resources/1_linux/2_linux_config directory to your course working directory.
 
 ```{bash, eval=FALSE}
 cp /<path>/resources/1_linux/2_linux_config/.bashrc /<path>/<username>
@@ -234,7 +234,7 @@ cd 3_analysis/
 mkdir 1_fastqc
 ```
 
-10.Create an analysis lab-book called **rnaseq_commands_<username>.sh** in **3_analysis**.
+10.Create an analysis lab-book called **rnaseq_commands_<username>.sh** in **3_analysis/**.
 
 ```{bash, eval=FALSE}
 nano rnaseq_commands_<username>.sh

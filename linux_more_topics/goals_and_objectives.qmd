@@ -37,7 +37,7 @@ This can range from 3 to 8 bullet points.
 - Day 1
   + Familiarise with the genomics workflow often done on the Linux command line
   + Use basic commands and work with files in Linux
-- **Day 2**
+- <span style="color:green;">**Day 2**</span>
   + Learn how to manage processes and system resources in Linux 
   + Learn how to organise data
 :::
