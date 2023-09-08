@@ -17,7 +17,7 @@
   - Often edited to include commands that users wish to execute every time they log in, without the need to explicitly type them every time
  
 - New accounts on the OBDS server are created with a initial copy of ~/.bashrc file 
-  + <span style="color:green;">Show obds server .bashrc</span>
+  + <span style="color:green;">Show .bashrc template on OBDS server</span>
 
 - Used to configure the shell environment
   + Set aliases (shortcuts)
@@ -34,6 +34,7 @@
 ```
 $ alias la='ls -alhF'       # Informative listing of files
 $ alias rm='rm -i'          # Force an interactive prompt before every removal
+
 $ alias wd='cd </path/to/working_dir/> && pwd && ls'
 ```
 
@@ -102,52 +103,56 @@ $ module purge                              # Unload all loaded modules
 
 - We can log into a remote target host using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
-- Simply put, the protocol uses a username and password to authenticate a user on the remote target host
-
-```
-$ ssh <target username>@<target host>
-```
-  + If prompted whether to continue connecting, type 'yes' (usually appears when connecting the first time)
-  + This prompts for the password for the user account on target host 
+- Simply put, the protocol uses a username and password to authenticate a user on the target host
+  ```
+  $ ssh <target username>@<target host>
+  ```
+  + If prompted for authenticity of host and whether to continue connecting, type 'yes' (usually appears when connecting the first time)
+  + This then prompts for the password for the user account on target host 
 
 ## Remote connection to a Linux server *via* a jump host
 
 - Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
 ```
-$ ssh -J <jump username>@<jump host> <target username>@<target host>  
+$ ssh -J <jump username>@<jump host> <target username>@<target host> 
+
+# OR
+
+$ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 ```
+
+<br>
 
 - To connect to the OBDS server (obds), we do need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
 
-```
-$ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
-```
-
--
-  + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
-
+  ```
+  $ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <target username>@obds
+  ```
+  + If prompted for authenticity of host and whether to continue connecting, type 'yes'
+  + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
  
 ## Remote connection to a Linux server
 
 - Typing the `ssh` command and all its options works on the command line 
   + but could be tedious especially when using a jump host as in our case and needing to repeatedly connect
-- To minimise typing when connecting to a remote target host, we can
-  + Use an SSH public-private key pair (SSH key) **(1)** to avoid repeatedly entering passwords, which are likely hard to remember for security purposes, and **(2)** to enhance security e.g. not prone to password-guessing attacks
-  + Use an ssh config file to store ssh connection details to multiple target hosts and accessing them using host shortcuts or nicknames, instead of typing long `ssh` commands
+- To minimise typing when connecting to a remote target host, we can:
+  + Use an **SSH public-private key pair (SSH key)** **(1)** to avoid repeatedly entering passwords, which are likely hard to remember for security purposes, and **(2)** to enhance security e.g. not prone to password-guessing attacks
+  + Use an **SSH config file** to store SSH connection details to multiple target hosts and accessing them using host shortcuts or nicknames, instead of typing long `ssh` commands
+  + <span style="color:red;">Note that these two are independent, you can do either or both! We will do both of course!</span>
   
 ## Setting up a public-private key pair
 
 - An SSH key consists of two parts:
-  + A **private** file (private key) on your local home directory 
-  + A **public** file (public key), which is copied to the remote host you are connecting to 
+  + A **private** key (a file) on your local home directory 
+  + A **public** key (a file), which is copied to the remote host you are connecting to 
 - These two files enable your personal computer and the target host to identify each other
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 500px
+#| out-height: 500px
+#| out-width: 600px
 ## Source: CCB Doks
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
@@ -155,34 +160,57 @@ knitr::include_graphics("img/ssh-key-pair.png")
 ## Setting up a public-private key pair
 
 - On your local machine, SSH key pairs and configuration files are stored in a hidden directory within your home directory called .ssh
-```
-$ cd ~/.ssh                         # Create if it doesn't exist
-$ ssh-keygen -t ecdsa -b 521        # Generate private and public keys / files
-```
-   + -t - To specify the type of SSH key pair
-   + -b - To specify the number of bits in the key; recommended values depend on type / algorithm and current state of technology, longer keys stronger i.e. harder to crack but slows down encryption / decryption process
+  ```
+  $ cd ~/.ssh                         # Create if it doesn't exist
+  ```
+  + <span style="color:red;">Before generating, check whether you have existing SSH keys in ~/.ssh on your local machine. Let us know!</span>
+
+- Generate private and public keys / files
+  ```
+  $ ssh-keygen -t ecdsa -b 521        
+  ```
+  + -t - To specify the type of SSH key pair
+  + -b - To specify the number of bits in the key -- recommended values depend on type / algorithm and current state of technology -- longer keys stronger i.e. harder to crack but slows down encryption / decryption process
 
 ## Setting up a public-private key pair
 
 - You will be prompted for: 
-  + A file name (if you leave blank - id_\<ssh key type> by default e.g. id_ecdsa)
-  + A password or passphrase (ideally, always set a password for maximum security, but for Git Bash users please leave this blank for now because unlike in macOS, the passphrase cannot be stored by the SSH agent so you would need to input it everytime)
+  + A file name for both keys (if you leave blank by pressing Return key -- id_\<ssh key type> by default e.g. id_ecdsa)
+  + A password or passphrase (ideally, always set a password for maximum security)
+    - For Git Bash users (Windows users), please leave the passphrase blank (just enter Return key) for now because unlike in macOS, the passphrase cannot be easily stored by an SSH agent so you would need to input it everytime
 
-- This creates a private key (file), **'id_ecdsa'** and a public key (file), **'id_ecdsa.pub'** in **~/.ssh/**
-- Please ensure that the private key has only read and write permissions for user and no permissions for group or other; file must be secure for the authentication to work
-- <span style="color:red;">Before generating, check whether you have existing SSH keys in ~/.ssh on your local machine. Let us know!</span>
+- The command creates files in **~/.ssh/**:
+  + A private key (file), **'id_ecdsa'** 
+  + A public key (file), **'id_ecdsa.pub'** 
+- Please ensure that the private key has only read and write permissions for user and no permissions for group or other -- file must be secure for the authentication to work
 
 ## Adding the public key to a remote server
 
-- The public key, generated and saved as a file on the local machine, needs to be copied to your account on the target host, so that the target host can prove its identity to the client
+- The public key, generated and saved as a file on the local machine, needs to be copied to the target host
 
-```
-$ ssh-copy-id -i ~/.ssh/id_ecdsa <target username>@<target host>
-```
-  + If the public key indeed does not exist on the target host yet, you will be prompted for your password; Type it, and press the Return key
+  ```
+  $ ssh-copy-id -i ~/.ssh/id_ecdsa <target username>@<target host>
+  ```
+  + This will prompt for password of your account on target host
+  + If the public key indeed does not exist on the target host yet, you will be prompted for your password -- Type it, and press the Return key
   + This adds the public key to the file ~/.ssh/authorized_keys on the target host
 
-## Adding the public key to a remote server
+- Once the public key has been copied you can log into the host using the SSH key for authentication rather than your password
+  + But this will still prompt for the SSH key passphrase if you have it
+
+## Adding the private key to SSH agent
+
+- To avoid typing your SSH key passphrase every time you use the key, you can add your key to an SSH authentication agent
+  + <span style="color:red;">Skip this step if you did not provide an SSH key passphrase</span>
+
+  ```
+  $ eval `ssh-agent -s`           # Activate SSH agent
+  $ ssh-add ~/.ssh/id_ecdsa       # Add private key to agent
+  ```
+  + <span style="color:red;">Note that the agent activation and key addition have to be done every time you start a 'session'</span>
+    - Say you started a new terminal window, you have to run the two commands again! We will get rid of this later using the SSH config file!
+ 
+## Adding the public key to both jump and target hosts
 
 - If connecting through a jump host as in our case, the public key has to be copied to the jump host and then copied to the target host
 
@@ -190,15 +218,18 @@ $ ssh-copy-id -i ~/.ssh/id_ecdsa <target username>@<target host>
 $ ssh-copy-id -i ~/.ssh/id_ecdsa <username>@bastion.imm.ox.ac.uk
 
 # If successful, you should be able to connect to the jump host without your account password 
+
 # and then now, we can copy the same public key to target host
 
 $ ssh-copy-id -i ~/.ssh/id_ecdsa -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
 ```
 
+<br>
+
 - A single SSH key pair can be used to authenticate and access multiple hosts, provided that you have added the corresponding public key to the ~/.ssh/authorized_keys file on each of those hosts for the intended user
   + We used the same SSH key pair for the jump host and target host
   
-- At this point, you should be able to log in to the OBDS server without entering passwords for your accounts in the jump host and OBDS server 
+- <span style="color:green;">At this point, you should be able to log into the OBDS server *via* bastion host without entering passwords for your accounts in both hosts</span>
 
 ## Configuring the SSH client 
 
@@ -278,9 +309,9 @@ Host *
 ```
   + '*' matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
 
-## Configuring the SSH client
+## Remote connection to the OBDS server
 
-- OBDS config file template for connecting to the OBDS server:
+- OBDS config file template:
 
 ```
 Host *
@@ -304,13 +335,11 @@ Host obds-bastion
     LocalForward localhost:3111 localhost:22
 ```
 
-## Configuring the SSH client
-
 - Once you have the config file, the original `ssh` command to connect to the OBDS server *via* the bastion host can be simplified: 
 
 ```
 # From
-ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
+ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
 
 # To
 ssh obds-bastion
@@ -318,20 +347,21 @@ ssh obds-bastion
 
 ## Transferring files across systems on the command line using `scp`
 
-- `scp` \<options> \<source> \<destination>
-
 - Transferring files *via* bastion host from OBDS server to local machine:
 ```
-$ scp -o 'ProxyJump <username>@bastion.imm.ox.ac.uk' <username>@obds:<source path> <destination path>
+$ scp -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds:<source path> <destination path>
+```
 
-# With the SSH config, we can simplify to:
-
-$ scp -o 'ProxyJump bastion' obds-bastion:<source path> <destination path>
+- With the SSH config, we can simplify to:
+```
+$ scp obds-bastion:<source path> <destination path>
 ```
 
 - `scp` vs. `rsync`
    + `scp` - Straightforward copying of files using SSH
    + `rsync` - Synchronises files and directories between a source and a destination 
+
+- <`scp` | `rsync`> \<options> \<source> \<destination>
 
 # Talk 2 Exercise 1 - Shell configuration
 
@@ -364,17 +394,18 @@ PrintBibliography(bib)
 - Like ~/.bashrc, it is a hidden file in the home directory that is applied on login
 - Common shortcuts added to ~/.inputrc are:
   + "\<key combination>":\<command>
+  + In case of ambiguity when using tab completion, display options right away instead of asking whether to display them or not
+  ```
+  set show-all-if-ambiguous on
+  ```
   
-```
-# In case of ambiguity when using tab completion, display options right away instead of asking whether to display them or not
-set show-all-if-ambiguous on
-
-# Search history of commands (forward or backward) starting with the pattern you typed (could be a command therefore)
-"\e[A":history-search-backward
-"\e[B":history-search-forward
-```
-
-[List of key combinations and commands from Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
+  + Search history of commands (forward or backward) starting with the pattern you typed (could be a command therefore)
+  ```
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
+  ```
+  
+  + [List of key combinations and commands from Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
 
 <span style="color:green;">DEMO</span>
 
