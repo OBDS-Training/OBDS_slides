@@ -149,7 +149,7 @@ knitr::include_graphics("img/tab_autocompletion.png")
 - **Control + a** - Go to start of line
 - **Control + e** - Go to end of line
 
-**DEMO**
+<span style="color:green;">**DEMO**</span>
 
 ## Getting help with linux commands
 
@@ -340,39 +340,37 @@ $ less <filename>           # Like more but allows backward movement, "less is m
 
 - We can log into a remote target host using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
-- Simply put, the protocol uses a username and password to authenticate a user on the remote target host
-
-```
-$ ssh <target username>@<target host>
-```
-  + If prompted whether to continue connecting, type 'yes' (usually appears when connecting the first time)
-  + This prompts for the password for the user account on target host 
+- Simply put, the protocol uses a username and password to authenticate a user on the target host
+  ```
+  $ ssh <target username>@<target host>
+  ```
+  + If prompted for authenticity of host and whether to continue connecting, type 'yes' (usually appears when connecting the first time)
+  + This then prompts for the password for the user account on target host 
 
 ## Remote connection to a Linux server *via* a jump host
 
 - Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
 ```
-$ ssh -J <jump username>@<jump host> <target username>@<target host>  
+$ ssh -J <jump username>@<jump host> <target username>@<target host> 
+
+# OR
+
+$ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 ```
 
-- We will be using the new OBDS teaching server throughout the Linux course. To connect to the server (obds), we need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+<br>
 
-```
-$ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
-```
+- To connect to the OBDS server (obds), we do need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
 
--
-  + This prompts for 2 passwords, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
-
+  ```
+  $ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <target username>@obds
+  ```
+  + If prompted for authenticity of host and whether to continue connecting, type 'yes'
+  + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
-  
+ 
 ## Remote Connection to a Linux Server
-
-- For the very first connection, you may be prompted to verify the authenticity of the host
-  + Type 'yes' and press the Return key to continue connecting
-
-- When prompted for your password, type it and press the Return key
 
 - To logout, use any of the following:
   + Type 'exit' and press the Return key
@@ -381,9 +379,9 @@ $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 
 ## Side note for tomorrow!
 
-- Please download [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture
+- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture
 
-- We will use this program to transfer files between your local machine and a remote host (OBDS server)
+- We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server)
 
 # Talk 2 Exercise 1 – Files and directories part 1
 
@@ -399,6 +397,7 @@ $ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 $ ls -l -t -a -h -F
 
 # Short options can be bundled
+
 $ ls -ltahF    
 ```
   + -l - Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
