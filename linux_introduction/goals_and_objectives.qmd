@@ -34,7 +34,7 @@ This can range from 3 to 8 bullet points.
 :::: {.columns}
 
 ::: {.column width="47%"}
-- **Day 1**
+- <span style="color:green;">**Day 1**</span>
   + Familiarise with the genomics workflow often done on the Linux command line
   + Use basic commands and work with files in Linux
 - Day 2

@@ -21,7 +21,7 @@
 knitr::include_graphics("img/rnaseq_workflow.png")
 ```
 
-- **So in this week-long Linux course, we will go as far as quantification!**
+- <span style="color:green;">**So in this week-long Linux course, we will go as far as quantification!**</span>
 
 ## Generating a short sequence read 
 
@@ -165,7 +165,7 @@ knitr::include_graphics("img/fastqc.png")
 knitr::include_graphics("img/alignment.png")
 ```
 
-- Output: BAM / SAM
+- Output: SAM / BAM / CRAM
 
 ## **File format (alignment)**: **SAM / BAM / CRAM**
 
