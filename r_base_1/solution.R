@@ -9,7 +9,7 @@ a
 
 # Multiply each element of the vector by 123 and assign the result to a new object named b.
 
-b<- a * 123
+b <- a * 123
 b
 
 # Print the value of the 44th element of the vector b.
@@ -18,7 +18,7 @@ b[44]
 
 # Extract the first fifteen elements of b and assign them to a new vector named b_sub.
 
-b_sub <- b[1:44]
+b_sub <- b[1:15]
 
 # Append the numbers 24108 and 24231 to the object b_sub.
 
@@ -47,7 +47,7 @@ names(c)
 
 # Exercise ----
 
-## Matrice, arrays, and lists ----
+## Matrices, arrays, and lists ----
 
 # Assign a matrix that contains the integers 1 to 9 in three rows and three columns (filled by column) to an object named m1.
 
@@ -144,3 +144,68 @@ dim(filtered_gene_data)
 # Export filtered_gene_data to a file named filtered_gene_regions.tsv, using tabulation as a field delimiter. Include column names but not row names.
 
 write.table(filtered_gene_data, "filtered_gene_regions.tsv", sep = "\t", quote = FALSE, row.names = FALSE)
+
+# Exercise (bonus) ----
+
+# Scalars and vectors ----
+
+# Create a vector with values 1 to 10 in three ways: once using c(), once using start:end, and once using seq().
+
+c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+1:10
+seq(1, 10, 1)
+
+# Create a vector with values 2.1, 4.1, 6.1, 8.1 in two ways, once using c() and once using seq().
+
+c(2.1, 4.1, 6.1, 8.1)
+seq(2.1, 8.1, 2)
+
+# Create a vector with values 0, 5, 10, 15 in three ways: using c(), seq() with the by= argument, and seq() with the length.out= argument.
+
+c(0, 5, 10, 15)
+seq(0, 15, by=5)
+seq(0, 15, length.out=4)
+
+# Create a vector with values 101, 102, 103, 200, 205, 210, 1000, 1100, 1200 using a combination of the functions c() and seq().
+
+c(seq(101, 103, 1),
+  seq(200, 210, 5),
+  seq(1000, 1200, 100))
+
+# Create a vector that repeats the integers from 1 to 5, ten times. That is: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, …. The length of the vector should be 50.
+
+rep(1:5, times=10)
+
+# Now, create the same vector as before, but this time repeat 1, ten times, then 2, ten times, and so on. That is: 1, 1, …, 2, 2, …, 5, 5. The length of the vector should also be 50.
+
+rep(1:5, each=10)
+
+# Exercise (bonus) ----
+
+# Data frames ----
+
+# Run the code below to initialise data for this exercise.
+
+vector1 <- 1:10 
+vector2 <- letters[1:10] 
+vector3 <- rnorm(10, sd = 10) 
+df <- data.frame(vector1, vector2, vector3)
+
+# Look up the help page for the function rnorm(). What does it do?
+
+# - Generates random values from a normal distribution of given parameters
+
+# Print the last two columns of df, once by integer position, once by column name.
+
+df[,2:3]
+df[,c( ncol(df) - 1, ncol(df) )]
+df[, c("vector2", "vector3")]
+
+# Print the values in the column vector2 where the value in the column vector3 is positive.
+
+df[ df$vector3 > 0, "vector2"]
+
+# Look up the help page for the function paste(). 
+# Create a vector that, for each row, combines the values across all the columns of df separated by a underscore.
+
+paste(df$vector1, df$vector2, df$vector3, sep="_")
