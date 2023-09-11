@@ -7,9 +7,12 @@
 
 <br/>
 
-```{r, out.height='220px', out.width='250px'}
+```{r}
+#| fig-align: center
+#| out-height: 220px
+#| out-width: 250px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-new-repository.png")
-# Source: Kevin Rue-Albrecht (screenshot)
 ```
 
 ## Exercise
@@ -19,9 +22,12 @@ knitr::include_graphics("img/github-new-repository.png")
 - Fill the form as needed.
 - When ready, click the green button labelled `Create repository`.
 
-```{r, out.height='425px', out.width='475px'}
+```{r}
+#| fig-align: center
+#| out-height: 425px
+#| out-width: 475px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-new-repository-form.png")
-# Source: Kevin Rue-Albrecht (screenshot)
 ```
 
 ## Exercise
@@ -30,7 +36,10 @@ knitr::include_graphics("img/github-new-repository-form.png")
 
 The new repository - if initialised with a README file - should appear as follows.
 
-```{r, out.height='500px', out.width='800px'}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-new-repository-view.png")
-# Source: Kevin Rue-Albrecht (screenshot)
 ```

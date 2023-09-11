@@ -55,8 +55,11 @@
 
 The `git revert` sub-command can be used to undo everything that was done in a particular commit, without the need to edit any of the files manually.
 
-```{r, fig.align='center', out.height='400px', out.width='700px'}
-# In-house illustration made using Adobe Illustrator
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 700px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-revert.svg")
 ```
 
@@ -65,10 +68,11 @@ knitr::include_graphics("img/git-revert.svg")
 The `git reset` sub-command can be used to reset the history of the repository
 to an earlier commit, deleting every subsequent commit.
 
-<br/>
-
-```{r, fig.align='center', out.height='400px'}
-# In-house illustration made using Adobe Illustrator
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-reset.svg")
 ```
 
@@ -77,8 +81,11 @@ knitr::include_graphics("img/git-reset.svg")
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, fig.align='center', out.height='300px'}
-# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 500px
+## Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
 knitr::include_graphics("img/carpentries-versions.svg")
 ```
 :::
@@ -107,8 +114,11 @@ Then:
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, fig.align='center', out.height='300px'}
-# Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 500px
+## Source: https://swcarpentry.github.io/git-novice/01-basics/index.html
 knitr::include_graphics("img/carpentries-merge.svg")
 ```
 :::
@@ -131,19 +141,18 @@ Downstream of the merging point, the files contain the changes made in both upst
 
 ## Branching and merging
 
-```{r, fig.align='center', out.height='300px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/branch-and-merge.svg")
 ```
 
 - Branching allows you to work on different things independently from each other.
-
 - Merging combines the changes made on a branch to those made on another branch.
-
   + Typically, "feature" branches are merged to the main branch.
-
 - Branches can contain any number of commits before being merged.
-
 - Branches do not have to be merged; they can be abandoned and deleted (great for experimenting).
 
 ## Create a branch
@@ -151,13 +160,9 @@ knitr::include_graphics("img/branch-and-merge.svg")
 The `git branch` sub-command can be used to inspect and create branches in a repository.
 
 - This does not automatically synchronise remote clones of the repository.
-
   + You will need to _push_ those branches to the remote clones.
-  
 - You can only create branches with names that are not already used (locally).
-
   + You will need to delete branches if you want to re-use their names.
-  
 - The branching point is the latest commit on the current branch.
 
 The `git checkout` sub-command is used to switch between branches.
@@ -165,8 +170,11 @@ The `git checkout` sub-command is used to switch between branches.
 Frequently, `git checkout -b name_of_new_branch` is used to simultaneously
 create **and** switch to that new branch.
 
-```{r, fig.align='center', out.height='150px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 150px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-branch.svg")
 ```
 
@@ -188,10 +196,11 @@ git merge new_branch  # merge the "feature" branch to the current branch
 This creates a new commit.
 From that point, files contain the changes made in the two parent branches.
 
-<br/>
-
-```{r, fig.align='center', out.height='150px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 150px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-merge.svg")
 ```
 
@@ -205,16 +214,16 @@ git branch -D new_branch # force delete
 ```
 
 - Except the main branch!
-
 - If the branch was merged, only the name of the branch is deleted, not the commits.
-
   + The commits are part of the history of the other branch.
     Thus, commits are kept as long as one branch in the repository contains them.
-
 - If the branch was not merged, the commits on that branch are lost.
 
-```{r, fig.align='center', out.height='150px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 150px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-branch-delete.svg")
 ```
 

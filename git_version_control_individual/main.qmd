@@ -35,13 +35,11 @@ ls -a .git/
 
 ## Ignore files
 
-One or more special files named `.gitignore` can be placed in your project.
+One or more special files named `.gitignore` can be placed in your repository.
 
-Each line in those file specifies a file name or pattern that <i class="fab fa-git"></i> will ignore (i.e., not track) in the future.
+Each line in those file specifies a file name or pattern that <i class="fab fa-git"></i> will ignore (i.e., not track) *in the future*.
 
-- Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the _index_, but keep the file itself).
-
-<br/>
+> Files that are already tracked will continue to be tracked even after they are added to `.gitignore`, unless they are explicitly removed from the repository using `git rm` (use the `--cached` option to only remove the file from the _index_, but keep the file itself).
 
 :::: {.columns}
 
@@ -76,8 +74,6 @@ my-project/
 
 ::::
 
-<br/>
-
 **Can you tell which files will be tracked when this `.gitignore` exists in the project root directory?**
 
 ## Status of a repository
@@ -104,8 +100,6 @@ nothing to commit, working tree clean
 Create a file named `.gitignore` in your repository
 using the `nano` or `vi` command line text editors in the Bash terminal:
 
-<br/>
-
 ```bash
 nano .gitignore
 # or
@@ -126,8 +120,6 @@ Add a commented line to that file, starting with `#` (hashtag), e.g.
 <br/>
 
 Run `git status` again.
-
-<br/>
 
 ::: {style="text-align: center;"}
 **What does the command return this time? How do you interpret it?**
@@ -154,20 +146,21 @@ nothing added to commit but untracked files present (use "git add" to track)
 The message indicates that a new file named `.gitignore` is detected in the repository.
 It also indicates that the command `git add` may be used to track the file.
 
-```{r, fig.align='center', out.height='200px', out.width='800px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-untracked.svg")
 ```
 
 ## Track new files
 
-The `git add` sub-command can be used to add new sets of changes to the _staging area_.
+The `git add` sub-command can be used to add new sets of changes to the *staging area*.
 
-- The _staging area_ is used to prepare the set of changes that will be recorded in the next _commit_.
-- The command adds filenames to the staging area, but only the changes in those files will be recorded.
-- In this case, we add a new file to the staging area, so the whole contents of the new file constitute the changes (relative to no file).
-
-<br/>
+- The *staging area* is used to prepare the set of changes that will be recorded in the next *commit*.
+- The command adds filenames to the staging area, but only the *changes* in those files will be recorded.
+- In this case, we add a brand new file to the staging area, so the whole contents of the new file constitute the changes (relative to no file).
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git add .gitignore
@@ -200,10 +193,11 @@ The `git commit` sub-command can be used to add changes currently in the _stagin
 - The contents of the _staging area_ are added to a new _commit_ in the repository.
 - The _staging area_ itself is cleared, ready for the next set of changes to process.
 
-<br/>
-
-```{r, fig.align='center', out.height='200px', out.width='800px'}
-# Source: https://swcarpentry.github.io/git-novice/04-changes/index.html
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 800px
+## Source: https://swcarpentry.github.io/git-novice/04-changes/index.html
 knitr::include_graphics("img/carpentries-git-staging-area.svg")
 ```
 
@@ -212,8 +206,6 @@ knitr::include_graphics("img/carpentries-git-staging-area.svg")
 The `git commit` sub-command can be used to record the changes that are currently in the _staging area_ in the next _commit_ of the _repository_.
 
 - The `-m` option can be used to specify the message used to annotate the _commit_ that will contain this set of changes.
-
-<br/>
 
 ```{bash, eval=FALSE, echo=TRUE}
 $ git commit -m "Added .gitignore file"
@@ -231,28 +223,33 @@ $ git commit -m "Added .gitignore file"
 **What information do you recognise in the message displayed as a result of the `git commit` command?**
 :::
 
-```{r, fig.align='center', out.height='175px', out.width='800px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 175px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-commit.svg")
 ```
 
 ## Remotes
 
-You have made a _commit_ in the _clone_ of the _repository_ on the teaching cluster.
+You have made a *commit* in the *clone* of the *repository* on the **teaching cluster**.
 
-- The <i class="fab fa-github"></i> GitHub _clone_ of the _repository_ does not about it yet.
-
-- You need to _push_ those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
+- The <i class="fab fa-github"></i> GitHub *clone* of the *repository* does not about it yet.
+- You need to *push* those updates from the teaching cluster to <i class="fab fa-github"></i> GitHub.
 
 ```{r, fig.align='center', out.height='300px', out.width='800px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 800px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-push.svg")
 ```
 
 The histories of clones are not automatically synchronised.
 
 ::: {style="text-align: center;"}
-**Can you guess reasons why?**
+**Can you imagine reasons why?**
 :::
 
 ## Push commits to a remote
@@ -262,8 +259,6 @@ The `git push` sub-command can be used to send local changes to a _remote_ repos
 - The local repository must have configured the address of the _remote_ repository.
 - When you create a repository as a _clone_ of a _remote_ repository,
   this is done automatically (the remote `origin` is created during initialisation).
-
-<br/>
 
 Before we push, the `git remote` command can be used to inspect, add, and remove links to _remote_ repositories from the local repository configuration.
 
@@ -296,8 +291,6 @@ $ git push
 **How do you read the output message? (example below)**
 :::
 
-<br/>
-
 ```
 $ git push
 Enumerating objects: 3, done.
@@ -324,12 +317,13 @@ git push origin main
 
 ### On <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='400px', out.width='900px'}
-# Screenshot (Kevin Rue-Albrecht)
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 900px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-network-graph.png")
 ```
-
-<br/>
 
 ::: {style="text-align: center;"}
 **How do you read this graph?**
@@ -339,12 +333,13 @@ knitr::include_graphics("img/github-network-graph.png")
 
 ### On <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='300px', out.width='900px'}
-# Screenshot (Kevin Rue-Albrecht)
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 900px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-commit-view.png")
 ```
-
-<br/>
 
 ::: {style="text-align: center;"}
 **How do you read this page?**
@@ -359,8 +354,6 @@ The `git log` sub-command can be used to display the history of commits in the r
 - The `--graph` option adds a visual representation of branches in the repository, and their connections to each other.
 - The `--oneline` (i.e., "one line") forces <i class="fab fa-git"></i> to summarise each commit as a single line.
   + This limits the information displayed, but helps with the visualisation.
-
-<br/>
 
 ```{bash, eval=FALSE, echo=TRUE}
 git log --all --graph --oneline
@@ -401,8 +394,6 @@ new file mode 100644
 index 0000000..e69de29
 ```
 
-<br/>
-
 ::: {style="text-align: center;"}
 **How do you read this output history? What changes were recorded?**
 :::
@@ -411,16 +402,23 @@ index 0000000..e69de29
 
 The `git diff` sub-command can be used to compare two states of the repository.
 
-- It is possible to compare all the changes between a reference and a target commits using the syntax `git diff reference_commit target_commit`
-  + The order of commit identifiers control the changes that are shown as "added" or "removed".
-- It is also possible to compare the current state of files in the repository - including uncommitted changes - to any commit of the repository.
-  + This is often used to examine the changes that you have made since the most recent commit.
+It is possible to compare all the changes between a reference and a target commits using the syntax 
 
-<br/>
+```{bash, eval=FALSE, echo=TRUE}
+git diff reference_commit target_commit
+```
+
+- The order of commit identifiers control the changes that are shown as "added" or "removed".
+
+It is also possible to compare the current state of files in the repository - including uncommitted changes - to any commit of the repository.
+
+- This is often used to examine the changes that you have made since the most recent commit.
 
 :::: {.columns}
 
 ::: {.column width="50%"}
+<br/>
+
 ```{bash, eval=FALSE, echo=TRUE}
 git diff 4df0fa7 81acf15
 ```
@@ -433,7 +431,10 @@ index 0000000..e69de29
 :::
 
 ::: {.column width="50%"}
-```{r, fig.align='center', out.height='200px', out.width='500px'}
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 500px
 # Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-diff.svg")
 ```
@@ -447,22 +448,26 @@ Files can be created and edited directly on <i class="fab fa-github"></i> GitHub
 though only one file can be edited at a time in this way.
 Saving the changes creates a new commit on <i class="fab fa-github"></i> GitHub.
 
-<br/>
-
 ### Exercise
 
 On <i class="fab fa-github"></i> GitHub, navigate to the file `README.md`,
 and click the pencil above the file on the right.
 
-```{r, fig.align='center', out.height='300px', out.width='600px'}
-# Source: Screenshot (Kevin Rue-Albrecht)
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 575px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-readme-view.png")
 ```
 
 ## Editing a file on <i class="fab fa-github"></i> GitHub
 
-```{r, fig.align='center', out.height='500px', out.width='600px'}
-# Source: Screenshot (Kevin Rue-Albrecht)
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 600px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-readme-edit.png")
 ```
 
@@ -474,8 +479,7 @@ knitr::include_graphics("img/github-readme-edit.png")
 
 Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
 
-- This does not (cannot!) automatically update the files in your _clone(s)_ on clusters and personal computers.
-
+- This does not automatically update the files in your _clone(s)_ on clusters and personal computers.
 - The changes need to be _pulled_ from <i class="fab fa-github"></i> GitHub to the clone.
 
 ### Exercise
@@ -484,7 +488,10 @@ Having just made changes to the files on <i class="fab fa-github"></i> GitHub:
   and your clone of of the repository.
 
 ```{r, fig.align='center', out.height='250px', out.width='600px'}
-# Screenshot (Kevin Rue-Albrecht)
+#| fig-align: center
+#| out-height: 275px
+#| out-width: 600px
+## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-network-graph2.png")
 ```
 
@@ -494,11 +501,11 @@ knitr::include_graphics("img/github-network-graph2.png")
 
 In the Bash Terminal, set the working directory inside your _clone_ of the _repository_, and run `git pull`.
 
-<br/>
-
 ::: {style="text-align: center;"}
 **How do you read the message output? (example below)**
 :::
+
+<br/>
 
 ```{bash}
 #| eval: false

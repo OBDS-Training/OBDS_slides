@@ -1,9 +1,9 @@
 ---
 title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub'
-subtitle: 'Using individual repositories on the teaching cluster'
+subtitle: 'Genomics on the Linux command Line'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-04-26 (updated: `r Sys.Date()`)"
+date: "2023-09-13 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -43,7 +43,7 @@ BibOptions(
 bib <- ReadBib("bibliography.bib")
 ```
 
-## Learning Goals & Objectives (CCB cluster)
+## Lesson goals and objectives
 
 ### Learning goals
 
@@ -71,27 +71,27 @@ More concrete and measurable outputs.
 - _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
 - Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
 
-## Prerequisites (CCB cluster)
+## Prerequisites
 
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
-
 - An account on the teaching cluster.
 
-## Set up (CCB cluster)
+## Set up
 
 - Connect to the University VPN.
-
 - Open a terminal application on your computer.
-
 - Connect to the teaching cluster over SSH.
 
 ```{r, child='opening.qmd'}
 ```
 
-## SSH key pairs (CCB cluster)
+## SSH key pairs
 
-```{r, fig.align='center', out.height='500px', out.width='600px'}
-# Source: https://note.nguyenanhung.com/
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 600px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/ssh-key-pair.svg")
 ```
 
@@ -99,26 +99,19 @@ knitr::include_graphics("img/ssh-key-pair.svg")
 _We need to set an SSH key pair between the teaching cluster and <i class="fab fa-github"></i> GitHub._
 :::
 
-## Exercise (CCB cluster)
+## Exercise
 
 ### Setting up the SSH key pair
 
 This key pair will allow your clone of the repository to push and pull code through the <i class="fab fa-github"></i> GitHub API.
 
 - In the Terminal application, logged in the teaching cluster, create an SSH key pair.
-
   + `ssh-keygen -t ecdsa -b 521`
-  
   + Accept the default location for the key (leave field empty and press the Return key)
-  
   + _Do_ set a passphrase to protect your key pair.
-
 - Display the public key and copy it.
-
   + `cat ~/.ssh/id_ecdsa.pub`
-
 - Add the public key to your <i class="fab fa-github"></i> GitHub account.
-
   + <https://github.com/settings/ssh/new>
 
 ::: {style="text-align: center;"}
@@ -137,23 +130,24 @@ _(See next slides to navigate to that page more naturally.)_
 ```{r, child='create-github-repository.qmd'}
 ```
 
-## Exercise (CCB cluster)
+## Exercise
 
 ### Clone the repository
 
 The `git clone` sub-command takes the address of a remote repository and creates a copy of that repository in a new local directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-git clone git@github.com:kevinrue/OBDS_May_2022.git
+git clone git@github.com:<username>/<repository>.git
 ```
-
-<br/>
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, fig.align='center', out.height='300px'}
-# Source: Kevin Rue-Albrecht (Adobe Illustrator)
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 500px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/git-clone-collaboration.svg")
 ```
 :::
@@ -162,16 +156,14 @@ knitr::include_graphics("img/git-clone-collaboration.svg")
 But first, create a `git` subdirectory in your personal OBDS directory and change directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-mkdir /project/obds/$USER/git
-cd /project/obds/$USER/git
+mkdir /var/scratch/$USER/git
+cd /var/scratch/$USER/git
 ```
 
-Now, clone the repository into that `git` subdirectory.
-
-<br/>
+Now, clone your repository into that `git` subdirectory.
 
 ::: {style="text-align: center;"}
-**Why is a `git` subdirectory best practices?**
+**Why is a `git` subdirectory good practice?**
 :::
 :::
 
@@ -180,32 +172,30 @@ Now, clone the repository into that `git` subdirectory.
 ```{r, child='main.qmd'}
 ```
 
-## Summary so far (CCB cluster)
+## Summary so far
 
 - You have _initialised_ a repository (with a `README.md` file) on <i class="fab fa-github"></i> GitHub.
-
 - You have made a _clone_ of the repository on the teaching cluster.
-
 - You have _committed_ changes to files on the teaching cluster.
-
 - You have _pushed_ those commits from the teaching cluster to <i class="fab fa-github"></i> GitHub.
-
 - You have _committed_ changes to files on <i class="fab fa-github"></i> GitHub.
-
 - You have _pulled_ those changes from <i class="fab fa-github"></i> GitHub to the teaching cluster.
-
-<br/>
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, fig.align='center', out.height='250px', out.width='600px'}
-# Screenshot (Kevin Rue-Albrecht)
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 700px
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/summary-workflow-pull-push.svg")
 ```
 ::::
 
 ::: {.column width="50%"}
+<br/>
+
 Adding, committing, and pushing/pulling changes cover 99% of the <i class="fab fa-git"></i> commands you will use.
 
 However, you need to be aware of other <i class="fab fa-git"></i> commands to manage and undo mistakes.
