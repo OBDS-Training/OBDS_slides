@@ -34,10 +34,10 @@ Illumina platform
 
 ```{r}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 450px
+#| out-height: 400px
+#| out-width: 400px
 ## Source: https://en.wikipedia.org/wiki/Illumina_dye_sequencing#/media/File:Cluster_Generation.png
-knitr::include_graphics("img/wiki_Cluster_Generation.png")
+knitr::include_graphics("img/Cluster_Generation.png")
 ```
 :::
 

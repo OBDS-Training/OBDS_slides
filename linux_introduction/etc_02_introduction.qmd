@@ -352,6 +352,10 @@ $ less <filename>           # Like more but allows backward movement, "less is m
                               interactive viewer
 ```
 
+# Coffee break (20 mins)
+
+@sec-Talk2Exercise1
+
 ## Remote connection to a Linux server
 
 We will do exercises on the Linux OBDS teaching server so how to connect to it?
@@ -403,7 +407,7 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 - We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server)
 
-# Coffee break (20 mins) then Talk 2 Exercise 1 
+# Talk 2 Exercise 1 then Lunch break (60 mins)
 
 @sec-Talk2Exercise1
 
@@ -689,7 +693,7 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
   + Deleting all the hard links to a file will effectively delete the file itself
   + Hard links cannot span physical devices (a server or cluster can have multiple disks)
   + Hard links cannot reference directories but only files
-- The advantage of hard links is that the original file and links remain working even when either or both are moved
+- The advantage of hard links is that they remain working even when they are moved
 - Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated
 
 ## Hard & symbolic links to files and directories
@@ -730,7 +734,7 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
 - Renaming a file and changing its file extension will not cause any error if the new file extension does not match the format of the contents
 - Mismatch between file extension and format of contents may only be detected when the file is actively used by a program that relies on the file extension
 
-# Lunch break (60 mins) then Talk 2 Exercise 2
+# Coffee break (20 mins) then Talk 2 Exercise 2
 
 @sec-Talk2Exercise2
 

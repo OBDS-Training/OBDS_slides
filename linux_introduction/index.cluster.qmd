@@ -6,7 +6,7 @@ institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-09-11 (updated: `r Sys.Date()`)"
 date-format: long
 execute: 
-  echo: false
+  echo: true
 format:
   revealjs: 
     slide-number: true

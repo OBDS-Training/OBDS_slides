@@ -281,7 +281,7 @@ done
   + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
   + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
   
-# Coffee break (20 mins) then Talk 3 Exercise 1 and advanced exercises
+# Talk 3 Exercise 1 and advanced exercises (optional)
 
 @sec-Talk3Exercise1
 
