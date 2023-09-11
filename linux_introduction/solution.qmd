@@ -1,6 +1,6 @@
 # Day 1 Exercises
 
-## Talk 2 Exercise 1 – Files and directories part 1
+## Talk 2 Exercise 1 – Files and directories part 1 {#sec-Talk2Exercise1}
 
 1.Log into the server using `ssh`.
 
@@ -14,23 +14,24 @@ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
 pwd
 ```
 
-3.List all the files and directories in your current directory (including hidden files).
+3.List all the files and directories in your current directory including hidden files, which starts with '.' (full stop). Use ways to get help with commands to figure this out! :)
 
 ```{bash, eval=FALSE}
 ls -a
 ```
 
-4.Change into your course working directory.
+4.Change into your course working directory, **/var/scratch/\<username>**.
 
 ```{bash, eval=FALSE}
 cd /<path>/<username>
 ```
 
-5.Change into the resources directory.
+5.Change into the resources directory, **/storage/exet4759/resources/**. List files in and/or explore the directory.
 
 ```{bash, eval=FALSE}
 cd /<path>/resources/       # Absolute path
 cd ./<path>/resources/      # Relative path from current directory
+ls
 ```
 
 ## Talk 2 Exercise 1 – Files and directories part 1
@@ -54,7 +55,7 @@ type history        # history is a shell builtin
 type --help         # To see previously executed commands 
 ```
 
-## Talk 2 Exercise 2 - Files and directories part 2
+## Talk 2 Exercise 2 - Files and directories part 2 {#sec-Talk2Exercise2}
 
 1.Change into your course working directory. 
 
@@ -67,7 +68,7 @@ cd /<path>/<username>
 ```{bash, eval=FALSE}
 mkdir 1_linux; cd 1_linux
 ```
-3.Copy **SRR2121685h_1.fastq** from the resources directory to the current directory.
+3.Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to the current directory.
 
 ```{bash, eval=FALSE}
 cp /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
@@ -89,16 +90,17 @@ wc -l SRR2121685h_1.fastq
 
 ## Talk 2 Exercise 2 - Files and directories part 2
 
-6.Copy the directory **/<path>/resources/1_linux/1_linux_intro/** to your course working directory (using `-r` option).
+6.Copy the directory, **1_linux_intro**, from the resources directory to your **1_linux** directory. Check again which files are in there.
 
 ```{bash, eval=FALSE}
 cp -r /<path>/resources/1_linux/1_linux_intro .
 ```
 
-7.Move **SRR2121685h_1.fastq** in your course working directory to the copied directory.  
+7.Move **SRR2121685h_1.fastq** in your **1_linux/** to the copied **1_linux_intro** subdirectory. Did you get a prompt asking to overwrite same file in **1_linux_intro/**? If not, what option can you use to get a prompt? 
 
 ```{bash, eval=FALSE}
 mv SRR2121685h_1.fastq 1_linux_intro/SRR2121685h_1.fastq
+mv -i SRR2121685h_1.fastq 1_linux_intro/SRR2121685h_1.fastq
 ```
 
 8.Change the permissions of your **manpage.txt** file so that only you have read and write permission
@@ -109,17 +111,17 @@ ls -l manpage.txt
 chmod go-r manpage.txt
 ```
 
-9.Create a new directory within your home directory called **obds**
+9.Create a new directory within your home directory called **obds_linux**
 
 ```{bash, eval=FALSE}
 cd ~
-mkdir obds
+mkdir obds_linux
 ```
 
-10.Change into the obds directory & make a copy of **manpage.txt** called **copy.txt**
+10.Change into the created directory & make a copy of **manpage.txt** called **copy.txt**
 
 ```{bash, eval=FALSE}
-cd obds
+cd obds_linux
 cp /<path>/resources/1_linux/1_linux_intro/manpage.txt copy.txt
 ```
 
@@ -127,31 +129,30 @@ cp /<path>/resources/1_linux/1_linux_intro/manpage.txt copy.txt
 
 11.Open **copy.txt** in a terminal text editor (e.g. nano) and remove the ‘usage’ line
 
-12.Rename the file to **edit.txt**
+```{bash, eval=FALSE}
+nano copy.txt
+```
+
+12.Rename the file to **edit.txt**. 
 
 13.Create a symbolic link to **SRR2121685h_1.fastq** called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
 
 ```{bash, eval=FALSE}
 ln -s /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq symlink.fastq
+# This won't work because the two locations are in different disks
 ln /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq hardlink.fastq
 ls -l                     # Notice symlink.fastq pointing to original 
-                            # SRR2121685h_1 path and differences in colours
+                          # SRR2121685h_1.fastq path and differences in colours
 nano symlink.fastq
-nano hardlink.fastq
 ```
 
-14.Delete both links at the same time.
-
-15.Compare the output of these two commands.
+14.Delete plain text files at the same time.
 
 ```{bash, eval=FALSE}
-cp -r /<path>/resources/1_linux/1_linux_intro .
-cp -r /<path>/resources/1_linux/1_linux_intro/. .
+rm -r *.txt
 ```
 
-## Talk 2 Exercise 2 - Files and directories part 2
-
-16.Delete the obds directory, try using `rmdir` then `rm`. 
+15.Delete the obds_linux directory, try using `rmdir` then `rm`. 
 
 ```{bash, eval=FALSE}
 cd ..
@@ -160,7 +161,7 @@ rm                        # Need -r
 rm -r                     # Won't prompt at all that directory is not empty
 ```
 
-## Talk 2 Advanced Exercise 3
+## Talk 2 Advanced Exercise 3 - Octal permissions
 
 1.Look up the usage of the `stat` command.
 
@@ -169,13 +170,17 @@ stat --help
 man stat
 ```
 
-2.Display the octal permission for all the files and directories in your home directory.
+2.Display the octal permission for all the files in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
 
-3.Create a new text file called **test.txt** and set the file permissions to allow read, write and execute access for user only using octal notation.
+```{bash, eval=FALSE}
+stat -c "%a: %n - %s bytes" *
+```
 
-## Talk 3 Exercise 1 - Working with files and streams
+3.Create a new text file called **test.txt** in your course working directory and set the file permissions to allow read, write and execute access for user only using octal notation.
 
-1.Find the tar archive **dnase1_new.tar.gz** in your 1_linux directory.
+## Talk 3 Exercise 1 - Working with files and streams {#sec-Talk3Exercise1}
+
+1.Find the compressed tar archive **dnase1_new.tar.gz** in your 1_linux directory.
 
 ```{bash, eval=FALSE}
 cd /<path>/<username>/1_linux/1_linux_intro; ls
@@ -197,7 +202,7 @@ cd bed; wc -l *.bed
 
 ```{bash, eval=FALSE}
 ls –l
-head cpg.bed
+head -n 5 cpg.bed
 gzip cpg.bed
 ls -l
 head cpg.bed.gz
@@ -241,8 +246,6 @@ head cpg.bed
 cut -f 1 cpg.bed | sort | uniq -c
 ```
 
-## Talk 3 Exercise 1 - Working with files and streams
-
 9.Find the **.gz** files in the resources directory. How many are there?
 
 ```{bash, eval=FALSE}
@@ -256,7 +259,7 @@ find /<path>/resources/ -type f -name '*.gz' | wc -l
 find /<path>/resources/ -type f -name '*.txt' -exec wc -l {} \;
 ```
 
-## Talk 3 Advanced exercise 2 - Loops
+## Talk 3 Advanced Exercise 2 - Loops
 
 1.Create files containing subsets of cpg.bed for each chromosome.
 

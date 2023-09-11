@@ -2,24 +2,28 @@
 
 ## Overview
 
+- Linux is a type of computer operating system (OS), like Windows or MacOS, that is part of the Unix 
+family of OS
+
 <!--
-- Linux is a type of computer operating system (OS), like Windows or MacOS, that is part of the Unix family of OS
 - Linux is frequently used in high-performance computing and applications e.g. in Computational Biology
 -->
+
+<br>
+<br> 
 
 :::: {.columns}
 
 ::: {.column width="60%"}
 
 - Introduction to the Linux shell 
-- Linux commands 
+- Using and getting help with Linux commands 
 - Navigating the Linux file system
 - Viewing and editing files
+- Remote connection a Linux server or cluster
 - File properties and permissions
-- Copying, moving and renaming files and directories
-- Hard and symbolic links
-- Deleting files and directories
-  
+- Manipulating files and directories
+
 :::
 
 ::: {.column width="40%"}
@@ -53,15 +57,15 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 -->
 
 - Linux is an Operating System (OS), like MS Windows and macOS, but open source (source code is freely available!) 
-- All OS have a  **shell** i.e. a command-line interpreter
-  + It processes the commands, giving them to the OS and outputs the results
+- All OS have a  **shell** (a command-line interpreter) for us to communicate with the OS
+  + The **shell** takes commands from the keyboard and gives them to the OS to perform
 - There are different shells differing in syntax and characteristics
 
 ## Linux shell - Terminology alert!
 
 - Most widely used shell for Linux is **Bash** (Bourne Again Shell)
-  + Default shell in the OBDS cluster but others are available for use
-- A **terminal emulator** (e.g. Git Bash, Terminal) is used to interact with the shell, providing the **command-line interface (CLI)**, where user inputs commands
+  + Default shell in the OBDS server but others are available for use
+- A **terminal emulator** (e.g. Git Bash, macOS Terminal app) is used to interact with the shell, providing the **command-line interface (CLI)**, where user inputs commands
   + The command-line prompt (input field) is indicated by a certain character depending on the OS ($ for Linux)
 
 :::: {.columns}
@@ -79,7 +83,7 @@ knitr::include_graphics("img/linux_shell_bash.png")
 
 ::: {.column width="50%"}
 
-```{r}
+```{r, linux_shell_emulator}
 #| fig-align: center
 #| out-height: 225px
 #| out-width: 500px
@@ -90,14 +94,14 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ::::
 
-## Linux commands
+## Anatomy of a Linux command
 
 - Basic part/s (<span style="color:red;">\<arrows></span> indicates a variable which should be replaced)
   + \<command>      
   + \<command> \<argument> 
   + \<command> \<options> \<argument> 
   
-- Types
+- Types of commands
   + **Shell builtin** - Built into the shell itself
   + **Executable program** - Any external software in the system path (where OS looks for executable programs)
   + **Alias** - User-defined command built using other commands (To Be Discussed)
@@ -131,7 +135,55 @@ $ which -a head         # -a to print all matching paths of each argument
 /bin/head
 ```
 
-## Some useful Bash keyboard shortcuts
+## Getting help with Linux commands
+
+- Different ways
+  + `man` shows manual pages of the command
+  ```
+  $ man head
+  ```
+  + Press 'q' to exit
+  
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 800px
+## Source: screenshot from jade
+knitr::include_graphics("img/man_head.png")
+```
+
+## Getting help with Linux commands
+
+- Different ways
+   + Commands often come with the help option, `--help`
+   ```
+   $ head --help
+   ```
+   + More concise than `man` output
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 600px
+## Source: screenshot from jade
+knitr::include_graphics("img/help_head.png")
+```
+
+## Getting help with Linux commands
+
+- Different ways
+  + Google search!
+  + Use in combination with command-line ways for more information that is accurate and up to date
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 600px
+## Source: Google search! :>
+knitr::include_graphics("img/google_head.png")
+```
+
+## Some useful keyboard shortcuts
 
 - **Tab** - autocomplete (will prompt if ambiguous)
   + Predict rest of word (e.g. command or file path/name) based on first few typed characters
@@ -148,57 +200,16 @@ knitr::include_graphics("img/tab_autocompletion.png")
 - **Control + c** - Abort current command
 - **Control + a** - Go to start of line
 - **Control + e** - Go to end of line
+- **Control + l** - Clear screen 
 
 <span style="color:green;">**DEMO**</span>
-
-## Getting help with linux commands
-
-- Different ways
-  + `man` shows manual pages of the command
-  + Press 'q' to exit
-
-```{r}
-#| fig-align: center
-#| out-height: 300px
-#| out-width: 800px
-## Source: screenshot from jade
-knitr::include_graphics("img/man_head.png")
-```
-
-## Getting help with linux commands
-
-- Different ways
-   + `--help`
-   + Different format with `man`
-
-```{r}
-#| fig-align: center
-#| out-height: 300px
-#| out-width: 600px
-## Source: screenshot from jade
-knitr::include_graphics("img/help_head.png")
-```
-
-## Getting help with linux commands
-
-- Different ways
-  + Google search!
-  + Use in combination with command-line ways for more information that is accurate and up to date
-
-```{r}
-#| fig-align: center
-#| out-height: 350px
-#| out-width: 600px
-## Source: Google search! :>
-knitr::include_graphics("img/google_head.png")
-```
 
 ## Linux file system tree
 
 - In Linux, everything is a file organised in a tree structure
 - A directory is just a file containing names of other files
-- All directories branch off from the **root** directory
-- **home** is your personal (user) directory
+- All directories branch off from the **root** ('/') directory
+- **home** ('~') is your personal (user) directory
 
 ```{r}
 #| fig-align: center
@@ -208,14 +219,13 @@ knitr::include_graphics("img/google_head.png")
 knitr::include_graphics("img/linux_file_tree.png")
 ```
 
-## Commands to navigate the file structure
+## Linux commands to navigate the file structure
 
 - Basic commands
 
 ```
-$ type cd                   # ‘type’ shows the type of command
-$ pwd                       # Print working directory
-/home/<user>                # When you log into the CCB cluster, the working directory
+$ pwd                       # Show present working directory
+/home/<user>                # When you log into the OBDS server, the working directory
                               is initially set to the user’s home directory
 $ ls                 
 Desktop  Documents  Downloads...
@@ -234,6 +244,7 @@ Path is the location to a file
 
 ::: {.column width="40%"}
 
+- There are two types of paths, absolute and relative
 - Absolute paths
   + Absolute paths always starts with the root directory ('/')
   + Given by `realpath`
@@ -278,7 +289,7 @@ knitr::include_graphics("img/sample_working_tree.png")
 
 - Path shortcuts
   + .  (full stop)     current directory 
-  + .. (2 full stops)  parent directory
+  + .. (2 full stops)  parent / previous directory
   + ~  (tilde)         home directory
   + /  (forward slash) root directory
   
@@ -298,6 +309,10 @@ knitr::include_graphics("img/sample_working_tree.png")
 
 - Tips
   + Prompt tells you your current working directory
+  
+  ```{r, linux_shell_emulator}
+  #| fig-align: center
+  ```
   + Always use tab autocompletion to avoid typos 
     - Command-line interpreters may figure out whether you need a command or file path
   + `ls` output can be set to be coloured to indicate the type of each file 
@@ -309,15 +324,14 @@ knitr::include_graphics("img/sample_working_tree.png")
 ## Viewing text files on the command line
 
 - Useful commands
+  + \<filename> - input file path or name (if file is in current working directory)
 
 ```
-$ cd ../bar                      
 $ cat <filename>            # Print the entire file contents to the terminal
                             # If taking a while, interrupt with Control + c
 $ head -n 20 <filename>     # Print the first n lines to the terminal (default=10)
 $ tail -n 20 <filename>     # Print the last n lines to the terminal (default=10)
-$ wc <filename>             # Count the number of bytes (-m), characters (-m), 
-                              lines (-l) etc.
+$ wc <filename>             # Count the number of characters (-m), lines (-l) etc.
 ```
 
 - Interactively scroll through files
@@ -326,19 +340,24 @@ $ wc <filename>             # Count the number of bytes (-m), characters (-m),
 $ more <filename>           # Scroll through a file unidirectionally from top to 
                               bottom
 $ less <filename>           # Like more but allows backward movement, "less is more"
+
                             # Up and down arrow keys to scroll one line up or down
                             # Left and right arrow keys to scroll one screen worth 
                               left or right across contents
+                              
                             # Similar to more, use space bar to scroll down one 
                               screen worth of contents
+                            # Similar to more, exit anytime with 'q'
                             # Unlike more, reaching end will not terminate 
                               interactive viewer
-                            # Similar to more, exit anytime with 'q'
 ```
 
 ## Remote connection to a Linux server
 
-- We can log into a remote target host using `ssh`
+We will do exercises on the Linux OBDS teaching server so how to connect to it?
+<br>
+
+- We can log into a remote target host (e.g. server or cluster) using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
 - Simply put, the protocol uses a username and password to authenticate a user on the target host
   ```
@@ -351,24 +370,25 @@ $ less <filename>           # Like more but allows backward movement, "less is m
 
 - Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
-```
-$ ssh -J <jump username>@<jump host> <target username>@<target host> 
+  ```
+  $ ssh -J <jump username>@<jump host> <target username>@<target host> 
 
-# OR
+  # OR
 
-$ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
-```
-
-<br>
+  $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
+  ```
+  + -o - Can be used to give options in the format used in the configuration file (TBD)
 
 - To connect to the OBDS server (obds), we do need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
-
   ```
   $ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <target username>@obds
   ```
   + If prompted for authenticity of host and whether to continue connecting, type 'yes'
   + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
+  + <span style="color:red;">In our case, the user accounts on bastion and obds are the same!</span>
+
+- <span style="color:red;">Note that we do not always have to go through a jump host!</span>
  
 ## Remote Connection to a Linux Server
 
@@ -383,7 +403,9 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 
 - We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server)
 
-# Talk 2 Exercise 1 – Files and directories part 1
+# Coffee break (20 mins) then Talk 2 Exercise 1 
+
+@sec-Talk2Exercise1
 
 ## Changing how you view files using ``ls`` options
 
@@ -392,24 +414,16 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 ::: {.column width="50%"}
 
 - Short options can be bundled
+  ```
+  $ ls -l -t -a -h -F
 
-```
-$ ls -l -t -a -h -F
-
-# Short options can be bundled
-
-$ ls -ltahF    
-```
+  $ ls -ltahF    
+  ```
   + -l - Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
   + -t - Sort files by modification time (newest first)
   + -a - Show hidden files
   + -h - Human readable numbers
   + -F - Append an indicator to the end of each listed name (e.g. '/' for a directory)
-
-```
-$ ls --help
-$ man ls
-```
 
 :::
 
@@ -417,7 +431,7 @@ $ man ls
 
 ```{r}
 #| fig-align: center
-#| out-height: 415px
+#| out-height: 375px
 #| out-width: 450px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/ls_options.png")
@@ -439,37 +453,37 @@ knitr::include_graphics("img/ls_long_output_labeled.png")
 
 - `ls -l` used to display file permissions
 
-## File permissions - Owner
+## File permissions - owner
 
-- Linux is a multi-user operating system
-- Access to read, write and execute each file or directory is controlled
+- Linux is a multi-user OS
+- So important that access to read, write and execute each file or directory is controlled
 - Each file is owned by exactly one user
 
 ```{r}
 #| fig-align: center
 #| out-height: 200px
-#| out-width: 900px
+#| out-width: 915px
 ## Source: https://1000logos.net/unix-logo/#
 knitr::include_graphics("img/ls_long_output.png")
 ```
 
 ## File permissions – group & other
 
-- A group is a collection of one or more users
+- A **group** is a collection of one or more users
 - Each user can be a member of multiple groups 
 - A file can be owned by exactly one group
 - To see the groups that your user currently belongs to, type:
 ```
 $ groups
 ```
-- The last category that you can assign permissions for is the **‘other’** category
+- The last category that you can assign permissions for is the **other** category
   + Any user that is not the file owner and 
   + is not a member of the group that owns the file
 - This allows you to set permissions that will apply to anyone outside of the two control groups
   + Any user that is not the file owner and
   + is not a member of the group that owns the file
 
-## Types of permissions
+## Types of file permissions
 
 - Each permissions category (owner, group and other) can be assigned permissions that restrict their ability to read, write, or execute a file
 - For a regular file
@@ -497,20 +511,21 @@ knitr::include_graphics("img/alphabetic_notation.png")
 ## Changing file permissions using alphabetic notation
 
 - Most commonly, changes in file permissions are made to
-  + Make script files executable
+  + Strategically control access
   + Make valuable files (e.g. raw sequencing data) read-only, to avoid accidentally deleting them
+  + Make script files executable
   
 - Do not change file permissions to give other users access to your own files and directories
-- Instead, contact the system administrators to request project directories that are set up with shared access for collaborators
+- Instead, contact the system administrators to request directories that are set up with shared access for collaborators (e.g. projects in the CCB cluster)
   
 ## Changing file permissions using alphabetic notation
 
 - We can change file permissions with ``chmod`` using alphabetic notation
 - `chmod` <permissions> <file or directory>
-  + u - For user, g for group, o for other
-  + - - To deny access, + to give access
-  + r - For read, w for write, x for execute
-  + , - For separating multiple sets of changes 
+  + **u** for user, **g** for group, **o** for other
+  + **--** to deny access, **+** to give access
+  + **r** for read, **w** for write, **x** for execute
+  + **,** (comma) for separating multiple sets of changes 
 
 ```
 $ chmod u+x,g-w,o-r file1.txt
@@ -521,11 +536,41 @@ $ chmod u+x,g-w,o-r file1.txt
 
 ```
 $ chmod go-rwx file1.txt    # Can be bundled together when applying same 
-                              permission to groups       
+                              permission to user categories      
                               
 $ ls -l file1.txt
 -rwx------ 1 dsims root 2981 Apr 26  2020 file1.txt
 ```
+
+## Using octal notation for file permissions
+
+- Octal notation is more compact but takes more practice to read and write
+- Each type of permission is assigned a numerical value
+  + **4** for **read** permission
+  + **2** for **write** permission
+  + **1** for **execute** permission
+- We sum the numbers for each category to give a single unique number for each combination of permissions
+- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
+
+## Changing file permissions using octal notation
+
+- We can change file permissions with ``chmod`` using octal notation
+
+  ```
+  $ chmod 700 file1.txt
+  $ ls -l file1.txt
+  -rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
+  ```
+
+- File permissions can be displayed in octal format using ``stat``
+
+  ```
+  stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
+  755: jupyter_notebooks
+  644: mm10.blacklist.bed.gz
+  ```
+  + -c - use the specified format instead of the default
+
 ## Viewing and editing files on the command line using interactive text editors
 
 - No graphical interface or mouse required
@@ -542,6 +587,21 @@ $ emacs <filename>
 $ nano <filename>
 ```
 
+## Working with nano
+
+- The arrow keys can be used to move the cursor through the file
+- Common keyboard shortcuts are displayed at the bottom of the editor
+  + The ^ symbol represents the Control key
+  + For instance, ^X indicates that pressing the Control + x will exit the interactive text editor
+
+- To save edits made to a file:
+  + Press Control + x to initiate the exit from the editor
+  + When prompted whether to ‘Save modified buffer’, press Y to confirm (N to discard changes)
+  + When prompted for the ‘File Name to Write’, immediately press the Return key to use the current
+  file name (or edit file name as needed)
+  
+<span style="color:green;">**DEMO**</span>
+
 ## Creating files and directories
 
 <br>
@@ -556,19 +616,6 @@ $ nano <filename>       # Open new empty file in nano editor
 $ mkdir <dir1>          # Create new directory
 $ mkdir <dir1> <dir2>   # Create multiple new directories
 ```
-
-## Working using nano
-
-- The arrow keys can be used to move the cursor through the file
-- Common keyboard shortcuts are displayed at the bottom of the editor
-  + The ^ symbol represents the Control key
-  + For instance, ^X indicates that pressing the Control + x will exit the interactive text editor
-
-- To save edits made to a file:
-  + Press the Control and X keys simultaneously to initiate the exit from the editor
-  + When prompted whether to ‘Save modified buffer’, press Y to confirm (N to discard changes)
-  + When prompted for the ‘File Name to Write’, immediately press the Return key to use the current
-  file name (or edit file name as needed)
 
 ## Copying, moving and renaming files
 
@@ -612,6 +659,8 @@ $ rmdir dir1 dir2                       # Will only remove empty directories
   + Particularly with -r (recursive) or '*' (wildcard)
   + **<span style="color:green;">Good news</span>**, you can only remove files you have permission to delete
   
+- **<span style="color:green;">Make sure to try the commands you have seen on your own later!</span>**
+
 ## Using wildcards (*)
 
 - Wildcards are special characters that match one or more characters in filenames
@@ -630,14 +679,18 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
 
 ## Hard & symbolic links to files and directories
 
-- A hard link is an additional name for an existing file
-- A symbolic link (soft link or abbreviated symlinks) is a file that contains a text pointer to a target file or directory
+- In cases when you need files to be in multiple places, links to files can be used instead of copying files in multiple places
+  + Saves space
+  + For more organised and logical file structures
+  + Easier to keep files up to date across different places
+- A **hard link** is a pointer to the data itself (spot on the hard drive)
+- A **symbolic link** (soft link or abbreviated symlinks) is a file that contains a text pointer to the path of a file or directory
 - Symbolic links overcome disadvantages of hard links:
   + Deleting all the hard links to a file will effectively delete the file itself
-  + Hard links cannot span physical devices (disks and the CCB cluster is composed of many nodes and disks)
+  + Hard links cannot span physical devices (a server or cluster can have multiple disks)
   + Hard links cannot reference directories but only files
-- The advantage of hard links is that the original and linked files remain linked even when either or both files are moved
-- Symbolic links become unusable if target file is moved or deleted unless they are updated
+- The advantage of hard links is that the original file and links remain working even when either or both are moved
+- Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated
 
 ## Hard & symbolic links to files and directories
 
@@ -647,11 +700,9 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
 
 ```
 $ ln file1 link1.csv            # Create hard link
-$ ln -s file1 link1.csv         # Create symbolic link
-$ ln -s dir1 link1              # Create symbolic link
+$ ln -s file1 link1.csv         # Create symbolic link for a file
+$ ln -s dir1 link1              # Create symbolic link for a directory
 ```
-
-- **Do not create hard links on the CCB cluster. If you think you need a hard link, contact system administrators first to enquire**
 
 ## File types and extensions
  
@@ -679,42 +730,13 @@ $ ln -s dir1 link1              # Create symbolic link
 - Renaming a file and changing its file extension will not cause any error if the new file extension does not match the format of the contents
 - Mismatch between file extension and format of contents may only be detected when the file is actively used by a program that relies on the file extension
 
-# Talk 2 Exercise 2 - Files and directories part 2
+# Lunch break (60 mins) then Talk 2 Exercise 2
 
-## Using octal notation for file permissions
+@sec-Talk2Exercise2
 
-- Octal notation is more compact but takes more practice to read and write
-- Each type of permission is assigned a numerical value
-  + **4** for **read** permission
-  + **2** for **write** permission
-  + **1** for **execute** permission
-- We sum the numbers for each category to give a single unique number for each combination of permissions
-- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
+<br>
 
-## Changing file permissions using octal notation
-
-- We can change file permissions with ``chmod`` using octal notation
-
-```
-$ chmod 700 file1.txt
-$ ls -l file1.txt
--rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
-```
-
-## Displaying file permissions in octal notation
-
-- File permissions can be displayed in octal format using ``stat``
-```
-stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
-755: jupyter_notebooks
-644: mm10.blacklist.bed.gz
-```
-
-## Advanced Exercise 3
-
-1. Look up the usage of the `stat` command.
-2. Display the octal permission for all the files and directories in your home directory.
-3. Create a new text file called **test.txt** and set the file permissions to allow read, write and execute access for user only using octal notation.
+Talk 2 Advanced Exercise 3 - Octal permissions
 
 ## Useful links
 

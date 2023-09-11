@@ -57,7 +57,7 @@ bib <- ReadBib("bibliography.bib")
 
 ## Prerequisites
 
-- An account on the teaching cluster
+- An account on the teaching server or cluster
 - VPN to remotely connect to the University network
 - Git Bash for Microsoft Windows users
 

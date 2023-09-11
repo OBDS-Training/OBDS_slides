@@ -10,16 +10,16 @@
 
 ## Linux streams to pass information to and from files 
 
-- Streams are mechanisms to move data from one place to another (e.g. between files)
+- Streams are mechanisms to move data from one place to another 
 - Few common scenarios that use streams:
   + Passing the contents – not the name! – of a file as the input to a command
   + Passing the output of a command as the input to another command
   + Writing the output of a command to a (new or existing) file
 
 - Some standard streams are commonly referred to in Linux as:
-  + Standard input (stdin): the default place from which input to the system is taken
-  + Standard output (stdout): the default place where a process (i.e. command) can write output
-  + Standard error (stderr): the default place where a process (i.e. command) can write error messages
+  + **Standard input (stdin)**: the default place from which input to the system is taken
+  + **Standard output (stdout)**: the default place where a process (i.e. command) can write output
+  + **Standard error (stderr)**: the default place where a process (i.e. command) can write error messages
 
 - By default stdout and stderr both print to the terminal but their outputs can be redirected to other destinations (most commmonly, files)
 - Streams can be redirected to/from files
@@ -47,8 +47,8 @@ $ command1 >! file1             # Overwrite existing file1 with output of comman
 - Pipes connect the standard output of one command to the standard input of another 
 
 ```
-$ command1 | <command2 
-$ cat file1.txt | head -n 5
+$ <command1> | <command2> 
+$ cat file1.txt | wc -l
 ```
 
 ## Combining commands
@@ -56,9 +56,9 @@ $ cat file1.txt | head -n 5
 - Generally, successive commands are executed in separate statements but certain characters can be used combine multiple commands in a single statement
 
 ```
-$ command1; command2            # Execute command1 and then command 2 (left to right)
-$ command1 && command2          # Execute command2 only if command1 is sucessful 
-$ command1 || command2          # Execute command2 only if command1 fails 
+$ <command1>; <command2>        # Execute command1 and then command2 (left to right)
+$ <command1> && <command2>      # Execute command2 only if command1 is sucessful 
+$ <command1> || <command2>      # Execute command2 only if command1 fails 
 ```
 
 ## (De)compressing files with `gzip` and `gunzip`
@@ -71,7 +71,7 @@ $ command1 || command2          # Execute command2 only if command1 fails
 $ gzip filename.fq
 ```
 
-  + This will add a .gz suffix to the existing file - filename.fq.gz
+  + This will add a .gz suffix to the existing file e.g. filename.fq.gz
 
 - To decompress the gzipped file
 ```
@@ -83,7 +83,7 @@ $ gunzip filename.fq.gz
 
 ## (De)compressing files: Redirecting to standard output
 
-- The option `-c` can be used in both commands gzip and gunzip for major benefits:
+- The option `-c` can be used in both commands `gzip` and `gunzip` for major benefits:
   + Original files are kept unchanged i.e. not deleted
   + Compressed or decompressed output is redirected to the standard output of the command, meaning that it can be redirected to any file name (circumventing the default behaviour of both commands)
   
@@ -138,7 +138,7 @@ $ tar -xzf jpg.tar.gz           # Extract files from an archive
   + Can be as simple as the exact sequence of characters to search for
   
 ```
-$ grep <options> regex <file>
+$ grep <options> <pattern> <file>
 $ grep –i “error” pipeline.log
 $ grep –c “chr1” p300.bed
 $ grep –v “chr5” p300.bed
@@ -150,7 +150,7 @@ $ grep –v “chr5” p300.bed
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
+#| out-height: 375px
 #| out-width: 500px
 ## Source: 
 knitr::include_graphics("img/grep_options.png")
@@ -184,7 +184,7 @@ $ sort -t, --key=2 --key=1n file1.txt
   + -t - Defines the delimiter that is used to separate columns
   + \-\-key - Declares one or more fields i.e. columns to use for sorting 
           - Sort rarely used without this option i.e. whole line is used for sorting
-  + \-\-key=2 - Second field should be used to order lines, in alphebetical order of that field
+  + \-\-key=2 - Second field should be used to order lines, in alphabetical order of that field
   + \-\-key=1n - First field should be used to break ties, in numerical order of that field
   
 ## Removing duplicate rows with `uniq`
@@ -217,20 +217,7 @@ $ sort file1.txt | uniq
 knitr::include_graphics("img/search_find.png")
 ```
 
-## Talk 3 Exercise 1 - Working with files and streams
-
-1. Find the tar archive **dnase1_new.tar.gz** in your 1_linux directory.
-2. Decompress and extract the archive using `tar`.
-3. Move into the bed directory and count the number of lines in each .bed file.
-4. Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place and then head the compressed file. What do you notice about the compressed file?
-5. Decompress the **cpg.bed** file in place.
-6. Extract all the lines in **cpg.bed** containing regions on chromosome 5 to a new file called **cpg_chr5.bed**.
-7. Extract all of the entries EXCEPT those on chr5 to another file called **cpg_nochr5.bed**.
-   How can you check that this command has worked?
-8. With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
-   Hint: you will need to pipe together 3 commands.
-9. Find the fasta format files in the directory, **/databank/raw/hg19_full/**. How many are there?
-10. Find all the bed format files in the directory, **/databank/raw/** and count the number of lines in each file.
+# Advanced topics
 
 ## Loops in Bash
 
@@ -244,7 +231,7 @@ knitr::include_graphics("img/search_find.png")
 
 ::: {.column width="33%"}
 
-- Integer over fixed inputs 
+- Iterate over fixed inputs 
 
 ```
 $
@@ -293,10 +280,16 @@ done
 - Tips
   + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
   + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
+  
+# Coffee break (20 mins) then Talk 3 Exercise 1 and advanced exercises
 
-## Talk 3 Advanced exercise 2 - Loops 
+@sec-Talk3Exercise1
 
-1. Create a list of all chromosomes for every dnase1 bed file
+<br>
+
+Talk 2 Advanced Exercise 3 - Octal permissions
+<br>
+Talk 3 Advanced exercise 2 - Loops
 
 ## References
 

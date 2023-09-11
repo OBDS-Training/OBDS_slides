@@ -3,12 +3,12 @@
 ## Processing genomics data in Linux
 
 - Genomics data arrives as sequence ‘reads’
-- Need to process these reads before analysis and interpretation
+- We need to process these reads before analysis and interpretation
 - Processing tools are designed to work on the Linux command line because:
-  + Open-source operating system and software
-  + Access to large computational resources fir High Performance Computing 
+  + Linux is an open-source operating system often used by large computational resources (e.g. High Performance Computing clusters) essential for genomics
+- So by being familiar with Linux, we gain access to these processing tools and large computational resources for more efficient workflow
 
-## Perform using an example RNA-seq workflow
+## Learn to process genomics data on Linux using an example RNA-seq workflow
 
 - Goal: Identify differentially expressed genes between conditions
 - Most common workflow:
@@ -60,9 +60,9 @@ knitr::include_graphics("img/illumina_sequencing.png")
 ## **File format (sequence)**: Raw sequencing data as **FASTQ**
 
 - FASTQ files can have millions of entries
-- Usually compressed using gzip to save disk space
+- Usually compressed using `gzip` to save disk space
 - File extensions .fastq, .fq (uncompressed) or .fastq.gz, .fq.gz (compressed)
-- For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastg.gz
+- For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastq.gz
 - For paired-end files reads should be in the same order 
 - Each entry consists of 4 lines:
 
@@ -83,7 +83,7 @@ knitr::include_graphics("img/fastq.png")
 - Storing **e** (per base) can take up a lot of space, so 
   + **e** → Phred quality score (**Q**) → ASCII code (by adding 33) → single ASCII character
   + **Q** = -10 log~10~ (**e**)
-  + Using ASCII code-character aligns quality scores with called bases in FASTQ
+  + So by using single-digit ASCII characters, the base quality representations align with called bases in FASTQ
 
 ```{r}
 #| fig-align: center
@@ -245,9 +245,8 @@ PrintBibliography(bib)
 - Designed for storing multiple biological sequences
 - Compared with FASTQ: 
   + Header lines always start with a ’>’ character (not ‘@’ as in FASTQ) 
-  + No quality score information
+  + No base quality score information
 - Sequence can span multiple lines
-- One entry per sequence (chromosome / contig for genome sequences)
 
 <br>
 
@@ -262,7 +261,7 @@ knitr::include_graphics("img/fasta.png")
 ## **File format (annotation)**: **BED**
 
 - Genomic intervals
-- Can be used to represent coordinates of any genomic feature
+- Can be used to store coordinates of any genomic feature
   + Exons, introns, repeats, CpG islands, transcription factor binding sites
 
 ```{r}

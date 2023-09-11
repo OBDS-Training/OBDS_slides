@@ -30,13 +30,15 @@ Requirements:
 | Activity                                                      |  Time |
 |---------------------------------------------------------------|-------|
 | Welcome and introductions                                     | 09:30 |
-| Talk - Genomics on the Linux command line                     | 10:00 |
-| Talk - Introduction to the Linux command line                 | 10:30 |
+| Talk 1 - Genomics on the Linux command line                   | 10:00 |
+| Talk 2 - Introduction to the Linux command line, part 1       | 10:30 |
 | **Morning Break**                                             | 11:00 |
-| Exercise                                                      | 11:15 |
+| Talk 2 Exercise 1                                             | 11:20 |
+| Talk 2 - Introduction to the Linux command line, part 2       | 11:50 |
 | **Lunch Break**                                               | 12:30 |
-| Talk - Working with files and streams in Linux                | 13:30 |
-| Exercise                                                      | 14:00 |
-| **Afternoon Break**                                           | 14:45 |
-| Exercise                                                      | 15:00 |
+| Talk 2 Exercise 2                                             | 13:30 |
+| Talk 3 - Working with files and streams in Linux              | 14:10 |
+| **Afternoon Break**                                           | 14:40 |
+| Talk 3 Exercise 1                                             | 15:00 |
+| Talk 2 and 3 Advanced exercises                               | 15:30 |
 | **Day End**                                                   | 16:00 |
