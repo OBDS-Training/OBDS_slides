@@ -1,8 +1,8 @@
 # Day 2 Exercises
 
-## Talk 1 Exercise 1 – Linux processes & system resources
+## Talk 1 Exercise 1 – Linux processes & system resources {#sec-Talk1Exercise1}
 
-1.Start a new process in the foreground using the sleep command.
+1.Start a new process in the foreground using the `sleep`.
 
 ```{bash, eval=FALSE}
 sleep 300
@@ -31,14 +31,13 @@ sleep 350 &
 5.Kill the first process.
 
 ```{bash, eval=FALSE}
-ps
-kill <PID> 
+ps # Or 
+jobs -l # -l To additionally display PID
 
-jobs -l
-kill <jobid>
+kill <PID>
 ```
 
-## Talk 1 Exercise 1 – Linux processes & system resources
+## Talk 1 Exercise 1 – Linux processes & system resources 
 
 6.Bring the second process to the foreground and terminate it.
 
@@ -46,74 +45,131 @@ kill <jobid>
 fg   # Then Control + c
 ```
 
-7.Start 3 sleep processes and kill them all by name using a single command.
+7.Start 3 sleep (background) processes and kill them all by name using a single command.
 
 ```{bash, eval=FALSE}
-sleep 300 &; sleep 300 &; sleep 300 &; killall sleep
+sleep 300 & sleep 300 & sleep 300 & # Or just input separate lines
+killall sleep
 ```
 
 8.Look for all the processes for your username using htop.
 
 ```{bash, eval=FALSE}
-htop # Then type 'u' then select username
+htop # Then type 'u', select username then press Return 
+# To go back to original view, type 'u', select 'All users' then press Return
 ```
 
 9.Sort the processes output by memory usage.
 
 ```{bash, eval=FALSE}
-htop # Then F5 then click on column header
+htop # Then click on column header
 ```
 
 10.Find the total memory usage, total tasks and running tasks on the server.
 
 ```{bash, eval=FALSE}
-htop # Information on top section (dynamic, no single answer)
+# Information on top section (dynamic because info is real-time, no single answer)
+htop 
 ```
 
 11.Check the total disk usage in your home directory.
 
 ```{bash, eval=FALSE}
 cd ~ 
-du -sh
+du -sh .
+```
+
+## Talk 2 Exercise 1 – Shell configuration {#sec-Talk2Exercise1}
+
+**Connecting to the OBDS server (obds) *via* a bastion host (bastion@imm.ox.ac.uk) using SSH key pair**
+
+1.On your local machine, change into **~/.ssh/** to check for existing key pairs and/or 'config' file. <span style="color:red;">Let us know if you have!</span>
+
+```{bash, eval=FALSE}
+cd ~/.ssh/; ls     
+# Having 'known_hosts' and 'known_hosts.old' files is okay
+# Let us know if you have a 'config' file. Also, if you have 'id_ecdsa' and 
+# 'id_ecdsa.pub' 
+# files because these will also be the names of the keys we will create.
+```
+
+If okay to proceed, create an SSH key pair as shown on the lecture slides. When prompted, leave file and passphrase blank (for this course only) by just pressing the Return key. Check if both private and public keys were successfully generated.
+
+```{bash, eval=FALSE}
+ssh-keygen -t ecdsa -b 521 
+ls      # id_ecdsa and id_ecdsa.pub files created
 ```
 
 ## Talk 2 Exercise 1 – Shell configuration
 
-**Connecting to the OBDS server (obds) *via* a bastion host (bastion@imm.ox.ac.uk) using SSH key pair**
+2.Still on your local machine, copy the public key to the jump host (**bastion.imm.ox.ac.uk**). 
 
-1.On your local machine, change into **~/.ssh/** to check for existing keys and/or config file. <span style="color:red;">Let us know if you have!</span>
+```{bash, eval=FALSE}
+ssh-copy-id -i ~/.ssh/id_ecdsa <username>@bastion.imm.ox.ac.uk
+```
 
-If none, create an SSH key as shown on the lecture slides. Check if both private and public keys were successfully generated.
+If successful, you should be able to connect to jump host i.e. `ssh <username>@bastion.imm.ox.ac.uk` without entering account password.
 
-2.Copy the public key to the jump host (**bastion@imm.ox.ac.uk**). If successful, copy the public key to the target host (**obds**).
+Now, working on your local machine, copy the public key to the target host (**obds**) via the jump host.
 
-<span style="color:red;">If you are using Git Bash -- on a Windows machine, leave the password blank!</span>
+```{bash, eval=FALSE}
+ssh-copy-id -i ~/.ssh/id_ecdsa \
+            -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
+```
 
-3.To easily connect to the server *via* the bastion host, configure your ssh client. Get the OBDS config file template in the resources directory from the OBDS server and transfer to your local ~/.ssh folder.
+If successful, you should be able to connect to OBDS server via jump host i.e. `ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds` without entering account password.
+
+3.To easily connect to the server *via* the bastion host, configure your ssh client. Working on your local machine, copy the OBDS config file template (**/storage/exet4759/resources/1_linux/2_linux_config/config**) from the OBDS server and transfer to your local ~/.ssh folder.
+
+```{bash, eval=FALSE}
+scp -o ProxyJump=<username>@bastion.imm.ox.ac.uk \
+<username>@obds:/storage/exet4759/resources/1_linux/2_linux_config/config ~/.ssh
+```
+
+## Talk 2 Exercise 1 – Shell configuration
 
 4.Edit the config file using a terminal text editor to add your username in the appropriate places.
 
-5.Connect to the OBDS server using the ssh key and shortcut. 
+5.From your local machine, connect to the OBDS server using the ssh key pair and shortcut for the ssh connection to the server on your config file. 
+
+```{bash, eval=FALSE}
+ssh obds-bastion
+```
 
 ## Talk 2 Exercise 1 – Shell configuration
 
 **Configure your .bashrc**
 
-6.Copy the **.bashrc** from the resources directory, \/<path>/resources/1_linux/2_linux_config directory to your course working directory.
+6.Locate your **.bashrc** in your home directory.  
 
 ```{bash, eval=FALSE}
-cp /<path>/resources/1_linux/2_linux_config/.bashrc /<path>/<username>
+cd ~; ls -a
 ```
 
-7.Use a terminal text editor and add the **alias la=‘ls -alhF’**.
+7.Create **.bash_aliases** file in your home directory (same place as your **.bashrc**). 
 
-8.Add another alias to provide a shortcut to the resources directory and your course working directory.
+```{bash, eval=FALSE}
+touch ~/.bash_aliases
+```
 
-9.To apply the changes on the .bashrc, open a new terminal (or type `source .bashrc` on the current terminal). Check that your aliases work. 
+8.Use a terminal text editor to open your **.bash_aliases** and add the **alias la='ls -alhF'**. So usually aliases are added to .bashrc but because your .bashrc already contains a lot of text that we don't want to accidentally modify, we can put aliases to **.bash_aliases**. The .bashrc in the OBDS server is set to automatically call **.bash_aliases**. 
 
-## Talk 2 Exercise 2 – Modules
+```{bash, eval=FALSE}
+nano .bash_aliases     
+```
 
-1.List the available modules on the cluster.
+9.Add aliases to **.bash_aliases** for the resources directory and your course working directory.
+
+```{bash, eval=FALSE}
+alias resdir='cd /storage/exet4759/resources/'
+alias cwdir='cd /var/scratch/<username>/'
+```
+
+10.To apply the changes, open a new terminal (or type `source .bashrc` on the current terminal). Check that your aliases work. 
+
+## Talk 2 Exercise 2 – Modules {#sec-Talk2Exercise2}
+
+1.List the available modules on the server.
 
 ```{bash, eval=FALSE}
 module avail
@@ -151,14 +207,14 @@ module add cellranger/7.1.0
 ```
 -->
 
-## Talk 3 Exercise 1 – Working directory
+## Talk 3 Exercise 1 – Working directory {#sec-Talk3Exercise1}
 
 **Set up a working directory for RNAseq data analysis**
 
-1.Create a new directory called **rnaseq** within **1_linux** in your course working directory. 
+1.Create a new directory called **rnaseq** within **1_linux** in your course working directory, **/var/scratch/<username>**. 
 
 ```{bash, eval=FALSE}
-cd /<path>/<username>/1_linux/
+cd <course working directory>/1_linux/
 mkdir rnaseq
 ```
 
@@ -169,24 +225,24 @@ cd rnaseq/
 mkdir 1_fastq 2_genome
 ```
 
-3.Create symbolic links to a pair of fastq files in the rnaseq resources directory, **/\<path>/resources/1_linux/rnaseq/**, in **1_fastq/**.
+3.Create symbolic links to a pair of fastq files in the rnaseq resources directory, in **1_fastq/**.
 
 ```{bash, eval=FALSE}
 cd 1_fastq/
-ls /<path>/resources/1_linux/rnaseq/
-ln -s /<path>/resources/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
-ln -s /<path>/resources/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
+ls <resources dir>/1_linux/rnaseq/
+ln -s <resources dir>/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
+ln -s <resources dir>/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
 ```
 
-## Talk 3 Exercise 1 – Working directory
+## Talk 3 Exercise 1 – Working directory 
 
 4.Copy the file **md5sum.txt** from rnaseq resources directory to **1_fastq**.
 
 ```{bash, eval=FALSE}
-cp /<path>/resources/1_linux/rnaseq/md5sum.txt md5sum.txt
+cp <resources dir>/1_linux/rnaseq/md5sum.txt md5sum.txt
 ```
 
-5.Check that the checksums for your fastq files are correct.
+5.Check that the checksums for your fastq files (downloaded from ENA) are correct.
 
 ```{bash, eval=FALSE}
 md5sum -c --ignore-missing md5sum.txt
@@ -195,13 +251,18 @@ md5sum -c --ignore-missing md5sum.txt
 6.Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly. 
 
 ```{bash, eval=FALSE}
-# Go to Ensembl home, Downloads tab, FTP Download section then the table links to 
-# most current release but you can work your way up to get to older releases
-# This way is good because directory structure is similar across releases and you
-# should be able to find the file type you want in older releases
+# Go to Ensembl home, Downloads tab, FTP Download section then the table links 
+# to most current release but you can work your way up to get to older releases
+# This way is good because directory structure is similar across releases and 
+# you should be able to find the file type you want in older releases
+
+# Alternatively, you can change the text of the links below (e.g. to download 
+# release 110, change 102 to 110 in the links) but this approach is subject to 
+# typos
 
 cd ../2_genome/
-wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz & 
+wget \
+https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz & 
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS & 
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
 ```
@@ -211,18 +272,22 @@ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
 7.Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome/** and check it downloaded correctly.
 
 ```{bash, eval=FALSE}
-wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
+wget \
+https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
 wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS & 
 wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/README & 
-
-cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
+cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz' 
 sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+# The checksums value in CHECKSUMS file (downloaded from public database) for 
+# 'Mus_musculus.GRCm38.dna.primary_assembly.fa.gz' should match the generated 
+# checksums value (generated using sum command) for the file you downloaded
 ```
 
 8.Create a **readme.txt** file in the **2_genome/** detailing how you obtained the public data files.
 
 ```{bash, eval=FALSE}
-nano readme.txt
+nano readme.txt  # Or
+touch readme.txt
 ```
 
 9.Create a third directory called **3_analysis** and a subdirectory called **1_fastqc**.
@@ -234,8 +299,11 @@ cd 3_analysis/
 mkdir 1_fastqc
 ```
 
+## Talk 3 Exercise 1 – Working directory
+
 10.Create an analysis lab-book called **rnaseq_commands_<username>.sh** in **3_analysis/**.
 
 ```{bash, eval=FALSE}
-nano rnaseq_commands_<username>.sh
+nano rnaseq_commands_<username>.sh  # Or
+touch rnaseq_commands_<username>.sh
 ```

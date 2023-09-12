@@ -1,14 +1,12 @@
-# Talk 4: Linux shell configuration
+# Talk 2: Linux shell configuration
 
 ## Overview
 
 - The .bashrc file
 - Aliases
-- The .inputrc file
-- Environment variables
-- The system path, $PATH
-- SSH and public-private keys
+- Environment variables e.g. the system path, $PATH
 - Environment modules
+- SSH and public-private keys for remote connection to a Linux server
 
 ## Shell configuration
 
@@ -16,8 +14,7 @@
   + A hidden file as its name starts with '.'; display with `ls -a`
   - Often edited to include commands that users wish to execute every time they log in, without the need to explicitly type them every time
  
-- New accounts on the OBDS server are created with a initial copy of ~/.bashrc file 
-  + <span style="color:green;">Show .bashrc template on OBDS server</span>
+- Typically, new accounts on Linux servers are created with an initial copy of ~/.bashrc file 
 
 - Used to configure the shell environment
   + Set aliases (shortcuts)
@@ -35,7 +32,7 @@
 $ alias la='ls -alhF'       # Informative listing of files
 $ alias rm='rm -i'          # Force an interactive prompt before every removal
 
-$ alias wd='cd </path/to/working_dir/> && pwd && ls'
+$ alias wd='cd </path/to/working_dir/> && pwd && ls
 ```
 
 ## Environment variables
@@ -70,23 +67,23 @@ export TMP="$HOME"      # Not set by default, preferably define in ~/.bashrc
 
 - One of the most important environment variable
 - Stored as a colon-separated (:) character string that represents the list of directories that are searched – in the given order – to find executable files that are invoked by users and their scripts
-- If the wanted program is not in the list of directories, it will not run
-- Modify to add directories or remove directories (e.g. when a command is defined in multiple directories)
-- Alternatively, you can provide the full path to the program you wish to run
 
 ```
 $ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/l/ltamon/edirect:/home/l/ltamon/.local/bin:/home/l/ltamon/bin
 ```
 
+- If the wanted program is not in the list of directories, it will not run
+- Modify to add directories or remove directories (e.g. when a command is defined in multiple directories)
+- Alternatively, you can provide the full path to the program you wish to run
 - Whenever possible, we recommend using `module` to add and remove programs (i.e. modules) from the $PATH
 
 ## Environment modules
 
 - Provide a central install of software available to multiple users on the same computer system 
 - Dynamic modification of a user’s shell environment via modulefiles
-  + Modulefiles are created by the system administrator to instruct `module` to alter or set shell environment variables such as $PATH
-  + New modules can be requested from system administrators (help@imm.ox.ac.uk)[help@imm.ox.ac.uk]
+  + Modulefiles are created by the system administrator to instruct `module` how software will be loaded or configured e.g. adding path of software to environment variable, $PATH
+  + New modules can be requested from system administrators 
 
 ```
 $ module avail                              # List modules currently available
@@ -98,6 +95,8 @@ $ module load fastqc/0.11.9 bowtie2/2.4.2   # Load multiple modules
 $ module unload <module name>               # Unload 
 $ module purge                              # Unload all loaded modules 
 ```
+
+<!--
 
 ## Remote connection to a Linux server
 
@@ -132,7 +131,9 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
   + If prompted for authenticity of host and whether to continue connecting, type 'yes'
   + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
- 
+
+-->
+
 ## Remote connection to a Linux server
 
 - Typing the `ssh` command and all its options works on the command line 
@@ -144,15 +145,15 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
   
 ## Setting up a public-private key pair
 
-- An SSH key consists of two parts:
+- An SSH key pair consists of two parts:
   + A **private** key (a file) on your local home directory 
   + A **public** key (a file), which is copied to the remote host you are connecting to 
 - These two files enable your personal computer and the target host to identify each other
 
 ```{r}
 #| fig-align: center
-#| out-height: 500px
-#| out-width: 600px
+#| out-height: 450px
+#| out-width: 550px
 ## Source: CCB Doks
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
@@ -176,13 +177,13 @@ knitr::include_graphics("img/ssh-key-pair.png")
 
 - You will be prompted for: 
   + A file name for both keys (if you leave blank by pressing Return key -- id_\<ssh key type> by default e.g. id_ecdsa)
-  + A password or passphrase (ideally, always set a password for maximum security)
-    - For Git Bash users (Windows users), please leave the passphrase blank (just enter Return key) for now because unlike in macOS, the passphrase cannot be easily stored by an SSH agent so you would need to input it everytime
+  + A passphrase 
+    - Ideally, always set a passphrase for maximum security, but for now let's just leave the passphrase blank (just press Return key) 
 
 - The command creates files in **~/.ssh/**:
   + A private key (file), **'id_ecdsa'** 
   + A public key (file), **'id_ecdsa.pub'** 
-- Please ensure that the private key has only read and write permissions for user and no permissions for group or other -- file must be secure for the authentication to work
+- Please ensure that the private key has only read and write permissions for user and no permissions for group or other 
 
 ## Adding the public key to a remote server
 
@@ -195,7 +196,7 @@ knitr::include_graphics("img/ssh-key-pair.png")
   + If the public key indeed does not exist on the target host yet, you will be prompted for your password -- Type it, and press the Return key
   + This adds the public key to the file ~/.ssh/authorized_keys on the target host
 
-- Once the public key has been copied you can log into the host using the SSH key for authentication rather than your password
+- Once the public key has been copied you can log into the host using the SSH key pair for authentication rather than your passwords
   + But this will still prompt for the SSH key passphrase if you have it
 
 ## Adding the private key to SSH agent
@@ -208,7 +209,7 @@ knitr::include_graphics("img/ssh-key-pair.png")
   $ ssh-add ~/.ssh/id_ecdsa       # Add private key to agent
   ```
   + <span style="color:red;">Note that the agent activation and key addition have to be done every time you start a 'session'</span>
-    - Say you started a new terminal window, you have to run the two commands again! We will get rid of this later using the SSH config file!
+    - Say you started a new terminal window, you have to run the two commands again! We can get rid of these steps using the SSH config file (TBD)!
  
 ## Adding the public key to both jump and target hosts
 
@@ -233,11 +234,11 @@ $ ssh-copy-id -i ~/.ssh/id_ecdsa -o ProxyJump=<username>@bastion.imm.ox.ac.uk <u
 
 ## Configuring the SSH client 
 
-- We have avoided entering multiple passwords but the command we have to use to connect to the OBDS server is still pretty long! 
+- With the SSH key pair, we added extra security as well as avoided entering multiple passwords but the command we have to use to connect to the OBDS server is still pretty long! 
   + and will be longer if we need more options to configure the connection
 
 ```
-$ ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
+$ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
 ```
 
 - We can create an SSH config file to 
@@ -317,7 +318,7 @@ Host *
 Host *
     IdentityFile ~/.ssh/id_ecdsa
     AddKeysToAgent yes
-    UseKeychain no
+#    UseKeychain no
 
 Host bastion
     HostName bastion.imm.ox.ac.uk
@@ -363,9 +364,9 @@ $ scp obds-bastion:<source path> <destination path>
 
 - <`scp` | `rsync`> \<options> \<source> \<destination>
 
-# Talk 2 Exercise 1 - Shell configuration
+# Talk 2 Exercise 1 (Shell configuration) and 2 (Working with modules)
 
-# Talk 2 Exercise 2 - Working with modules
+@sec-Talk2Exercise1
 
 <!--
 ## Useful links
@@ -393,13 +394,14 @@ PrintBibliography(bib)
 - This file allows you to customise how keystrokes are interpreted in the terminal emulator
 - Like ~/.bashrc, it is a hidden file in the home directory that is applied on login
 - Common shortcuts added to ~/.inputrc are:
-  + "\<key combination>":\<command>
   + In case of ambiguity when using tab completion, display options right away instead of asking whether to display them or not
   ```
   set show-all-if-ambiguous on
   ```
   
   + Search history of commands (forward or backward) starting with the pattern you typed (could be a command therefore)
+  + "\<key combination>":\<command>
+  
   ```
   "\e[A":history-search-backward
   "\e[B":history-search-forward
@@ -407,5 +409,5 @@ PrintBibliography(bib)
   
   + [List of key combinations and commands from Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
 
-<span style="color:green;">DEMO</span>
+<span style="color:green;">DEMO on OBDS server</span>
 

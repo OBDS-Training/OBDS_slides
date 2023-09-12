@@ -1,4 +1,4 @@
-# Talk 4: Managing Linux processes and system resources
+# Talk 1: Managing Linux processes and system resources
 
 ## Overview
 
@@ -116,10 +116,15 @@ $ ps -ef                  # Show all processes (-e) in the full format (-f)
 $ ps -u <username>        # Show all processes for <username>
 ```
 
+- `jobs` output is specific to the shell session while `ps` is more system-wide, able to return all processes
+
+- When a processes has completed it will no longer appear in this process table
+
 ## Real-time monitoring with `top`
 
 - Monitor processes and resource usage in real time
-- Information is displayed as a table that can be filtered and sorted
+- Shows all processes running, not just yours
+- Information is displayed as a table that can be filtered, for example to show processes for specific users, and sorted by different columns
 - Above the table, a header displays system-wide information 
 
 ```
@@ -212,26 +217,26 @@ knitr::include_graphics("img/killall.png")
 
 ::::
 
-## Exiting the terminal
+## Terminating shell session and exiting the terminal
 
-- Log out of the CCB cluster using any of these
+- Log out of the server using any of these
   + Type 'exit' and press Return key 
   + Type 'logout' and press Return key 
   + Press Control + d
   
-- Connection to a Bash session on the CCB cluster may be lost for a number of reasons
+- Connection to a Bash session on a remote host may be lost for a number of reasons
   + Loss of internet or VPN for remote sessions
   + Power loss causing an unexpected outage of computing systems
 
 - When connection is lost, the HUP (hangup) signal is sent to the Bash session 
-  + HUP signal prompts the session to terminate commands that are currently running, potentially resulting in lost work for users
+  + HUP signal prompts the session to terminate commands (including background processes) that are currently running, potentially resulting in lost work for users
 
 ## Resilience to loss of connection
 
 - `nohup` command can be used to run a command that is immune to the HUP signal
   + Tells a process to ignore the hangup signal
   + By default, sends stdout to a file 'nohup.out'
-  + By default, does not save stderr so should explicitly redirected
+  + By default, does not save stderr so should be explicitly redirected
 
 ```
 $ nohup <command> &        # '&' commonly used with nohup to launch process in 
@@ -247,25 +252,13 @@ $ nohup wc -l file1.txt > stdout.txt 2> stderr.txt &
 knitr::include_graphics("img/nohup.png")
 ```
 
-## Exercise 1 - Linux processes & system resources
+# Talk 1 Exercise 1 - Linux processes & system resources
 
-1. Start a new process in the foreground using the sleep command.
-2. Pause the process and send it to the background.
-3. Check the status of running processes.
-4. Start a new sleep process in the background.
-5. Kill the first process.
-6. Bring the second process to the foreground and terminate it.
-7. Start 3 sleep processes and kill them all by name using a single command.
-8. Look for all the processes for your username using htop.
-9. Sort the processes output by memory usage.
-10. Find the total memory usage, total tasks and running tasks on the server.
-11. Check the total disk usage in your home directory.
+@sec-Talk1Exercise1
 
-<!--
 ## References
 
 ```{r}
 #| results: asis
 PrintBibliography(bib)
 ```
--->

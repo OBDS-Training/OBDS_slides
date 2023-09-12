@@ -1,3 +1,10 @@
+## Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
 <!--
 ## Lesson goals and objectives
 <!--
@@ -11,13 +18,6 @@ picture of the linux course. We can talk about this while presenting the
 learning goals and objectives below, highlighting at which point they are and 
 then just present detail objectives or outline per talk.
 Take care not to make this part very long, overwhelming them on the 1st day!
--->
-
-## Learning goals
-
-<!--
-High-level "big picture" objectives of the learning process.
-This should be no more than 3 bullet points.
 -->
 
 - Understand the use of Linux for genomics (Day 1)

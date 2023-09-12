@@ -1,4 +1,4 @@
-# Talk 6: Data management
+# Talk 3: Data management
 
 ## Philosophy of organising your computational research
 
@@ -19,7 +19,8 @@
 - Backups and archives
 - Data transfers to and from remote computers
 
-## Linux file system tree
+<!--
+## Linux file system tree 
 
 - In Linux, everything is a file organised in a tree structure
 - A directory is just a file containing names of other files
@@ -32,9 +33,11 @@
 ## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
 knitr::include_graphics("img/linux_file_tree.png")
 ```
+-->
 
 ## Name files carefully
 
+- In Linux, everything is a file organised in a tree structure
 - Linux file names are case sensitive
   + Exclusively using lowercase makes remembering paths easier
 
@@ -128,8 +131,10 @@ my_project/
 - Published data can be stored in public database at no cost
   + European Nucleotide Archive / Short Read Archive
   + ArrayExpress / GEO
-- WIMM IT team offers the [WIMM Keep](https://gatekeeper.imm.ox.ac.uk/index.cgi/about) (SSO login required)
 - Archived data should be carefully organised and annotated with comprehensive metadata for traceability and discoverability
+  +  Metadata is data providing information about other data
+
+<!-- - WIMM IT team offers the [WIMM Keep](https://gatekeeper.imm.ox.ac.uk/index.cgi/about) (SSO login required) -->
 
 ## Data storage good practices
 
@@ -178,7 +183,7 @@ knitr::include_graphics("img/filezilla-drop-areas.png")
 
 - Or use ssh key
 
-<span style="color:green;">DEMO connection to OBDS server</span>
+<span style="color:green;">DEMO connection to CCB cluster</span>
 
 :::
 
@@ -203,7 +208,7 @@ $ wget \
        ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-<span style="color:green;">DEMO (download from Ensembl)</span>
+<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
 
 ## Downloading public sequencing data
 
@@ -216,12 +221,10 @@ $ wget \
   + Processed results (bed, count matrix)
   + Metadata (experiment details, sample processing, data analysis)
 
-<span style="color:green;">DEMO (download from ENA)</span>
-
 ## Verify integrity of downloads
 
 - We can check if files have downloaded correctly using checksums
-- Checksum tools generate a unique code (hash / checksum) for each file
+- Checksum tools generate a unique code (checksum) for each file
 - There are multiple checksum algorithms `md5sum`, `sha256sum`, `sum` etc.
 - These commands are useful if the remote provider ran any of the command themselves and made available the output for each file 
 - Users can then run the same command on their own copy of the downloaded files, and compare the output with that of the provider
@@ -237,13 +240,15 @@ $ sum <downloaded file>     # Generate checksum for downloaded file and compare
                               to value in reference checksum file
 ```
 
-```{r, eval=FALSE}
+```{r}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 600px
+#| out-height: 150px
+#| out-width: 800px
 ## Source: CCB Doks
 knitr::include_graphics("img/md5_file.png")
 ```
+
+<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
 
 ## Verify integrity of downloads
 
@@ -255,10 +260,10 @@ $ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compar
                               to value in reference checksum file
 ```
 
-```{r, eval=FALSE}
+```{r}
 #| fig-align: center
-#| out-height: 350px
-#| out-width: 600px
+#| out-height: 150px
+#| out-width: 800px
 ## Source: CCB Doks
 knitr::include_graphics("img/md5sum-c.png")
 ```
@@ -270,7 +275,9 @@ knitr::include_graphics("img/md5sum-c.png")
    + Like `wget`, can be used for downloading files from the Internet 
    + The two have differences in terms of other functionality e.g. `wget` can download recursively
    
-# Exercise 1 - Working directory
+# Talk 3 Exercise 1 - Working directory
+
+@sec-Talk3Exercise1
 
 ## References
 
