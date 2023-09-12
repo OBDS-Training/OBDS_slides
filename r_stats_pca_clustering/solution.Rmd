@@ -478,3 +478,75 @@ explained_variance_ratio
 ```{r}
 barplot(explained_variance_ratio)
 ```
+
+# Exercise
+
+## Hierarchical clustering
+
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
+  Use the functions `dist()` and `hclust()`.
+
+```{r}
+dist_iris <- dist(iris_features, method = "euclidean")
+hclust_iris_ward <- hclust(dist_iris, method = "ward.D2")
+hclust_iris_ward
+```
+
+- Plot the clustering tree using `plot()`.
+
+```{r}
+plot(hclust_iris_ward, labels = FALSE)
+```
+
+How many clusters would you call from a visual inspection of the tree?
+
+> Answer:
+> - Visually: two major clusters.
+> - One could argue for three - maybe four - clusters, depending on follow-up analyses.
+
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
+  Use the function `cutree()`.
+
+```{r}
+iris_hclust_ward_labels <- cutree(hclust_iris_ward, k = 3)
+iris_hclust_ward_labels
+```
+
+- Repeat clustering using 3 other agglomeration methods:
+
+  + `complete`
+  + `average`
+  + `single`
+
+```{r}
+# complete
+hclust_iris_complete <- hclust(dist_iris, method = "complete")
+iris_hclust_complete_labels <- cutree(hclust_iris_complete, k = 3)
+iris_hclust_complete_labels
+```
+
+```{r}
+# average
+hclust_iris_average <- hclust(dist_iris, method = "average")
+iris_hclust_average_labels <- cutree(hclust_iris_average, k = 3)
+iris_hclust_average_labels
+```
+
+```{r}
+# single
+hclust_iris_single <- hclust(dist_iris, method = "single")
+iris_hclust_single_labels <- cutree(hclust_iris_single, k = 3)
+iris_hclust_single_labels
+```
+
+- Compare clustering results on scatter plots of the data using `plot()`.
+
+```{r, fig.height=7, fig.width=7}
+par(mfrow = c(2, 2))
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_ward_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_complete_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_average_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_single_labels)
+par(mfrow = c(1, 1))
+```
