@@ -399,3 +399,10 @@ data_p_adjusted <- p.adjust(data_p_values, method = "BH")
 head(sort(data_p_adjusted))
 ```
 
+```{r, fig.height=7}
+par(mfrow = c(2, 1))
+hist(data_p_values, xlim = c(0, 1), breaks = seq(0, 1, 0.05))
+hist(data_p_adjusted, xlim = c(0, 1), breaks = seq(0, 1, 0.05))
+par(mfrow = c(1, 1))
+```
+
