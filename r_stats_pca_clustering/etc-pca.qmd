@@ -594,3 +594,21 @@ The `prcomp()` function allows you to standardise the data as part of the princi
 
 - Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
 - Visualise the variance explained by each principal component using `barplot()`.
+
+## Non-linear dimensionality reduction techniques
+
+In many cases, the relationship between features is not linear.
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 450px
+## Source: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction
+knitr::include_graphics("img/non-linear-dim-red.png")
+```
+
+Linear dimensionality reduction techniques like PCA (in blue) will fit their model as best as they can.
+
+But non-linear techniques will be able to accurately capture deviations non-linear patterns.
+
+- e.g., self organising map (SOM), t-distributed stochastic neighbor embedding (t-SNE), Uniform manifold approximation and projection (UMAP).
