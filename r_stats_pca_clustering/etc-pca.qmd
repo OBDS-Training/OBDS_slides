@@ -303,6 +303,12 @@ DESeq2 PCA:
 ## Example gene expression data set {.smaller}
 
 Airway smooth muscle cells expression profiling by high throughput sequencing; [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778).
+Accessible in R as:
+
+```{r, echo=TRUE, eval=FALSE}
+library(airway)
+data("airway")
+```
 
 :::: {.columns}
 
@@ -573,9 +579,10 @@ draw(hm)
 The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
 
 - Apply PCA, centering and scaling the matrix of features.
-- Examine the PCA output.
+  Assign the result to an object called `pca_iris`.
+- Examine the object `pca_iris`.
   Display the loading of each feature on each principal component.
-- From the return value of the PCA,
+- From `pca_iris`,
   extract the coordinates projected on principal components,
   convert them to a *data.frame*,
   and assign the result to an object called `pca_iris_dataframe`.
