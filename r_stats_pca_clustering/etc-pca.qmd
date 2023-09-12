@@ -612,3 +612,81 @@ Linear dimensionality reduction techniques like PCA (in blue) will fit their mod
 But non-linear techniques will be able to accurately capture deviations non-linear patterns.
 
 - e.g., self organising map (SOM), t-distributed stochastic neighbor embedding (t-SNE), Uniform manifold approximation and projection (UMAP).
+
+## t-SNE
+
+::: {style="text-align: center;"}
+**t-Distributed Stochastic Neighbor Embedding**
+:::
+
+Technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.
+
+Aims to place cells with similar local neighbourhoods in high-dimensional space together in low-dimensional space.
+
+:::: {.columns}
+
+::: {.column width="60%"}
+- Non-linear dimensionality reduction (as opposed to PCA).
+- R implementation https://lvdmaaten.github.io/tsne/
+- Preserve local structure / small pairwise distances / local similarities 
+:::
+
+::: {.column width="40%"}
+```{r}
+#| fig-align: center
+#| out-height: 200px
+#| out-width: 300px
+## Source: https://medium.com/@violante.andre/an-introduction-to-t-sne-with-python-example-47e6ae7dc58f
+knitr::include_graphics("img/tsne-swiss-roll.png")
+```
+:::
+
+::::
+
+<https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1>
+
+## Non-linear dimensionality reduction methods in action
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 700px
+## Source: https://medium.com/@violante.andre/an-introduction-to-t-sne-with-python-example-47e6ae7dc58f
+knitr::include_graphics("img/swissroll.png")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 500px
+## Source: https://medium.com/@violante.andre/an-introduction-to-t-sne-with-python-example-47e6ae7dc58f
+knitr::include_graphics("img/swissroll_lle_tsne.png")
+```
+:::
+
+::::
+
+## UMAP
+
+::: {style="text-align: center;"}
+**Uniform manifold approximation and projection**
+:::
+
+At its core, UMAP works very similarly to t-SNE.
+
+Most notably, UMAP is much faster than t-SNE, especially on larger data sets.
+
+UMAP also better preserves the global structure in the data (i.e., relative position of clusters).
+
+<https://pair-code.github.io/understanding-umap/>
+
+<br/>
+
+::: {style="text-align: center;"}
+**There is no wrong choice. Comparing the result of multiple visualisation method is the most direct way to identify the one best suited for your own data.**
+:::
