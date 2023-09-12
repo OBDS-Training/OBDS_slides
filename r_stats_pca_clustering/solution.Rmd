@@ -448,45 +448,48 @@ str(pca_iris)
 pca_iris$rotation
 ```
 
-- From `pca_iris`,
-  extract the coordinates projected on principal components,
-  convert them to a *data.frame*,
-  and assign the result to an object called `pca_iris_dataframe`.
+- Visualise the PCA projection using `plot()`.
 
 ```{r}
-pca_iris_dataframe <- as.data.frame(pca_iris$x)
-head(pca_iris_dataframe)
-```
-
-- Visualise the PCA projection using `ggplot2::geom_point()`.
-
-```{r}
-ggplot(pca_iris_dataframe, aes(PC1, PC2)) +
-  geom_point() +
-  cowplot::theme_cowplot()
-```
-
-- Store the PCA plot as an object named `pca_iris_plot`.
-
-```{r}
-pca_iris_plot <- ggplot(pca_iris_dataframe, aes(PC1, PC2)) +
-  geom_point() +
-  cowplot::theme_cowplot()
+plot(pca_iris$x[, "PC1"], pca_iris$x[, "PC2"])
 ```
 
 ### Bonus point
 
-- Color data points according to their class label.
-  Store the plot as an objet called `pca_iris_species`.
+- Edit the plot above, coloring data points according to their class label.
 
 ```{r}
-pca_iris_dataframe$Species <- iris$Species
-head(pca_iris_dataframe)
+plot(pca_iris$x[, "PC1"], pca_iris$x[, "PC2"], col = iris$Species)
+```
+
+## Exercise
+
+### Variance explained
+
+- Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
+
+```{r}
+explained_variance_ratio <- pca_iris$sdev ^ 2 / sum(pca_iris$sdev ^ 2)
+explained_variance_ratio
+```
+
+- Visualise the variance explained by each principal component using `barplot()`.
+
+```{r}
+barplot(explained_variance_ratio)
 ```
 
 ```{r}
-pca_iris_species <- ggplot(pca_iris_dataframe, aes(PC1, PC2, color = Species)) +
-  geom_point() +
+variance_dataframe <- data.frame(
+  PC = seq_along(explained_variance_ratio),
+  variance_ratio = explained_variance_ratio
+)
+head(variance_dataframe)
+```
+
+```{r}
+ggplot(variance_dataframe, aes(PC, variance_ratio)) +
+  geom_col() +
+  ylim(0, 1) +
   cowplot::theme_cowplot()
-pca_iris_species
 ```
