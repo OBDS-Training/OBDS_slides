@@ -478,18 +478,3 @@ explained_variance_ratio
 ```{r}
 barplot(explained_variance_ratio)
 ```
-
-```{r}
-variance_dataframe <- data.frame(
-  PC = seq_along(explained_variance_ratio),
-  variance_ratio = explained_variance_ratio
-)
-head(variance_dataframe)
-```
-
-```{r}
-ggplot(variance_dataframe, aes(PC, variance_ratio)) +
-  geom_col() +
-  ylim(0, 1) +
-  cowplot::theme_cowplot()
-```
