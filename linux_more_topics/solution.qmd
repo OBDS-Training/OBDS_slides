@@ -52,7 +52,7 @@ sleep 300 & sleep 300 & sleep 300 & # Or just input separate lines
 killall sleep
 ```
 
-8.Look for all the processes for your username using htop.
+8.Look for all the processes for your username using `htop`.
 
 ```{bash, eval=FALSE}
 htop # Then type 'u', select username then press Return 
@@ -211,10 +211,10 @@ module add cellranger/7.1.0
 
 **Set up a working directory for RNAseq data analysis**
 
-1.Create a new directory called **rnaseq** within **1_linux** in your course working directory, **/var/scratch/<username>**. 
+1.Create a new directory called **rnaseq** within **1_linux** in your course working directory, **/var/scratch/\<username>**. 
 
 ```{bash, eval=FALSE}
-cd <course working directory>/1_linux/
+cd <course working dir>/1_linux/
 mkdir rnaseq
 ```
 
