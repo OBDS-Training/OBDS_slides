@@ -23,15 +23,16 @@ ls -a
 4.Change into your course working directory, **/var/scratch/\<username>**.
 
 ```{bash, eval=FALSE}
-cd /<path>/<username>
+cd <course working dir>
 ```
 
-5.Change into the resources directory, **/storage/exet4759/resources/**. List files in and/or explore the directory.
+5.Change into the resources directory, **/storage/exet4759/resources**. List files in and/or explore the directory.
 
 ```{bash, eval=FALSE}
-cd /<path>/resources/       # Absolute path
-cd ./<path>/resources/      # Relative path from current directory
+cd <absolute path>                        # Or
+cd <relative path from current location>
 ls
+tree        # Try this command to help you explore directories
 ```
 
 ## Talk 2 Exercise 1 – Files and directories part 1
@@ -39,7 +40,7 @@ ls
 6.Change into the directory, **1_linux_intro**, in the resources directory.
 
 ```{bash, eval=FALSE}
-cd /<path>/resources/1_linux/1_linux_intro
+cd <resources dir>/1_linux/1_linux_intro
 ```
 
 7.View the file **manpage.txt** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`).
@@ -52,7 +53,10 @@ cd /<path>/resources/1_linux/1_linux_intro
 
 ```{bash, eval=FALSE}
 type history        # history is a shell builtin
-type --help         # To see previously executed commands 
+history --help      # To see previously executed commands
+# By default, command history from current session is written on ~/.bash_history 
+# but writing will only happen after you log out, see help of history or better to
+# read more online if interested on this file!
 ```
 
 ## Talk 2 Exercise 2 - Files and directories part 2 {#sec-Talk2Exercise2}
@@ -60,7 +64,7 @@ type --help         # To see previously executed commands
 1.Change into your course working directory. 
 
 ```{bash, eval=FALSE}
-cd /<path>/<username>
+cd <course working dir>
 ```
 
 2.Create a new directory called **1_linux** and change directory into it. 
@@ -68,10 +72,10 @@ cd /<path>/<username>
 ```{bash, eval=FALSE}
 mkdir 1_linux; cd 1_linux
 ```
-3.Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to the current directory.
+3.Copy **SRR2121685h_1.fastq** from **<resources dir>/1_linux/1_linux_intro/** in resources directory to your **1_linux** directory.
 
 ```{bash, eval=FALSE}
-cp /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
+cp <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
 ```
 
 4.View the file **SRR2121685h_1.fastq** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`). Also try viewing using a
@@ -85,7 +89,7 @@ terminal text editor (making sure not to save unintended edits).
 
 ```{bash, eval=FALSE}
 wc -l SRR2121685h_1.fastq 
-40      # With 40 lines and 4 lines per read, 10 reads            
+40      # With 40 lines and given 4 lines per read, 10 reads            
 ```
 
 ## Talk 2 Exercise 2 - Files and directories part 2
@@ -93,14 +97,14 @@ wc -l SRR2121685h_1.fastq
 6.Copy the directory, **1_linux_intro**, from the resources directory to your **1_linux** directory. Check again which files are in there.
 
 ```{bash, eval=FALSE}
-cp -r /<path>/resources/1_linux/1_linux_intro .
+cp -r <resources dir>/1_linux/1_linux_intro <course working dir>/1_linux
 ```
 
 7.Move **SRR2121685h_1.fastq** in your **1_linux/** to the copied **1_linux_intro** subdirectory. Did you get a prompt asking to overwrite same file in **1_linux_intro/**? If not, what option can you use to get a prompt? 
 
 ```{bash, eval=FALSE}
-mv SRR2121685h_1.fastq 1_linux_intro/SRR2121685h_1.fastq
-mv -i SRR2121685h_1.fastq 1_linux_intro/SRR2121685h_1.fastq
+mv SRR2121685h_1.fastq 1_linux_intro
+mv -i SRR2121685h_1.fastq 1_linux_intro
 ```
 
 8.Change the permissions of your **manpage.txt** file so that only you have read and write permission
@@ -118,47 +122,45 @@ cd ~
 mkdir obds_linux
 ```
 
-10.Change into the created directory & make a copy of **manpage.txt** called **copy.txt**
+10.Change into the created directory & make a copy of your **manpage.txt** but call it **copy.txt**
 
 ```{bash, eval=FALSE}
 cd obds_linux
-cp /<path>/resources/1_linux/1_linux_intro/manpage.txt copy.txt
+cp <course working dir>/1_linux/1_linux_intro/manpage.txt copy.txt
 ```
 
 ## Talk 2 Exercise 2 - Files and directories part 2
 
-11.Open **copy.txt** in a terminal text editor (e.g. nano) and remove the ‘usage’ line
+11.Open **copy.txt** in a terminal text editor (e.g. nano), remove the ‘usage’ line and save this modified version as **edit.txt**. 
 
 ```{bash, eval=FALSE}
 nano copy.txt
 ```
 
-12.Rename the file to **edit.txt**. 
-
-13.Create a symbolic link to **SRR2121685h_1.fastq** called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
+12.Create a symbolic link to **SRR2121685h_1.fastq** (the one located in the resources directory) called **symlink.fastq**, and a hard link called **hardlink.fastq**. Inspect files with `ls`. View the fastq again using the links. 
 
 ```{bash, eval=FALSE}
-ln -s /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq symlink.fastq
-# This won't work because the two locations are in different disks
-ln /<path>/resources/1_linux/1_linux_intro/SRR2121685h_1.fastq hardlink.fastq
-ls -l                     # Notice symlink.fastq pointing to original 
-                          # SRR2121685h_1.fastq path and differences in colours
+ln -s <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq symlink.fastq
+# Can't create hard link because the two locations are in different disks
+ln <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq hardlink.fastq
+ls -l                     # Notice symlink.fastq pointing to original file 
 nano symlink.fastq
 ```
 
-14.Delete plain text files at the same time.
+13.Delete plain text files at the same time.
 
 ```{bash, eval=FALSE}
 rm -r *.txt
 ```
 
-15.Delete the obds_linux directory, try using `rmdir` then `rm`. 
+14.Delete the **obds_linux** directory, try using `rmdir` then `rm`. 
 
 ```{bash, eval=FALSE}
 cd ..
-rmdir obds                # Won't work with directory that is not empty
-rm                        # Need -r 
-rm -r                     # Won't prompt at all that directory is not empty
+rmdir obds_linux        # Won't work with directory that is not empty
+rm obds_linux           # Need -r since obds_linux is a directory
+rm -r obds_linux        # Won't prompt at all that directory is not empty
+rm -ir obds_linux       # Prompt before every removal
 ```
 
 ## Talk 2 Advanced Exercise 3 - Octal permissions
@@ -176,23 +178,29 @@ man stat
 stat -c "%a: %n - %s bytes" *
 ```
 
-3.Create a new text file called **test.txt** in your course working directory and set the file permissions to allow read, write and execute access for user only using octal notation.
+3.Create a new text file called **test.txt** in your course working directory and set the file permissions using octal notation to allow read, write and execute access only for you. 
+
+```{bash, eval=FALSE}
+cd <course working dir>
+touch test.txt
+chmod 700 test.txt
+```
 
 ## Talk 3 Exercise 1 - Working with files and streams {#sec-Talk3Exercise1}
 
-1.Find the compressed tar archive **dnase1_new.tar.gz** in your 1_linux directory.
+1.Find the compressed tar archive **dnase1_new.tar.gz** in your **1_linux** directory.
 
 ```{bash, eval=FALSE}
-cd /<path>/<username>/1_linux/1_linux_intro; ls
+cd <course working dir>/1_linux/1_linux_intro; ls
 ```
 
-2.Decompress and extract the archive using `tar`.
+2.Decompress and extract the archive using `tar`. Check if successful. 
 
 ```{bash, eval=FALSE}
-tar -xzf dnase1_new.tar.gz
+tar -xzf dnase1_new.tar.gz      # There will be a directory named 'bed'
 ```
 
-3.Move into the bed directory and count the number of lines in each .bed file.
+3.Move into the **bed** directory and count the number of lines in each **.bed** file.
 
 ```{bash, eval=FALSE}
 cd bed; wc -l *.bed
@@ -201,10 +209,8 @@ cd bed; wc -l *.bed
 4.Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place and then head the compressed file. What do you notice about the compressed file?
 
 ```{bash, eval=FALSE}
-ls –l
 head -n 5 cpg.bed
 gzip cpg.bed
-ls -l
 head cpg.bed.gz
 ```
 
@@ -220,9 +226,6 @@ gunzip cpg.bed.gz; ls -l; head cpg.bed
 
 ```{bash, eval=FALSE}
 grep chr5 cpg.bed > cpg_chr5.bed
-head cpg_chr5.bed
-tail cpg_chr5.bed
-wc –l cpg_chr5.bed
 ```
 
 7.Extract all of the entries EXCEPT those on chr5 to another file called **cpg_nochr5.bed**.
@@ -238,25 +241,25 @@ wc -l cpg*.bed      # Check if sum of cpg_chr5.bed and cpg_nochr5.bed lines
                     # equal to cpg.bed lines 
 ```
 
-8.With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
+8.With the **cpg.bed** file count how many unique intervals (rows) are on each chromosome (column1).
   Hint: you will need to pipe together 3 commands.
 
 ```{bash, eval=FALSE}
-head cpg.bed 
 cut -f 1 cpg.bed | sort | uniq -c
 ```
+
+## Talk 3 Exercise 1 - Working with files and streams
 
 9.Find the **.gz** files in the resources directory. How many are there?
 
 ```{bash, eval=FALSE}
-find /<path>/resources/ -type f -name '*.gz' | wc -l
-3
+find <resources dir> -type f -name '*.gz' | wc -l
 ```
 
 10.Find all the **.txt** files in the resources directory and count the number of lines in each file.
 
 ```{bash, eval=FALSE}
-find /<path>/resources/ -type f -name '*.txt' -exec wc -l {} \;
+find <resources dir> -type f -name '*.txt' -exec wc -l {} \;
 ```
 
 ## Talk 3 Advanced Exercise 2 - Loops
