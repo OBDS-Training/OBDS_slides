@@ -5,7 +5,7 @@ author: "Updated from David Sims, Charlie George, Kevin Rue Albrecht (CCB Doks)"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-09-12 (updated: `r Sys.Date()`)"
 execute: 
-  echo: true
+  echo: false
 date-format: long
 format:
   revealjs: 
@@ -54,7 +54,7 @@ bib <- ReadBib("bibliography.bib")
 ```
 
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: goals_and_objectives.qmd
 ```
 
@@ -64,15 +64,15 @@ bib <- ReadBib("bibliography.bib")
 - VPN to remotely connect to the University network
 - Git Bash for Microsoft Windows users
  
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: etc_04_processes.qmd
 ```
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: etc_05_shell_config.qmd
 ```
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 #| child: etc_06_data_management.qmd
 ```
 

@@ -248,6 +248,8 @@ cp <resources dir>/1_linux/rnaseq/md5sum.txt md5sum.txt
 md5sum -c --ignore-missing md5sum.txt
 ``` 
 
+## Talk 3 Exercise 1 – Working directory
+
 6.Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly. 
 
 ```{bash, eval=FALSE}
@@ -256,15 +258,20 @@ md5sum -c --ignore-missing md5sum.txt
 # This way is good because directory structure is similar across releases and 
 # you should be able to find the file type you want in older releases
 
-# Alternatively, you can change the text of the links below (e.g. to download 
-# release 110, change 102 to 110 in the links) but this approach is subject to 
-# typos
+# Alternatively, you can change the text of the links below based on the release 
+# you want (e.g. to download release 110, change 102 to 110 in the links) but 
+# this approach is subject to typos and also you are not sure whether the link
+# really (or still) exists or not
 
 cd ../2_genome/
 wget \
-https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz & 
-wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS & 
-wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
+https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz &
+wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS &
+cat CHECKSUMS | grep 'Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
+sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+# The checksums value in CHECKSUMS file (downloaded from public database) for 
+# 'Mus_musculus.GRCm38.dna.primary_assembly.fa.gz' should match the generated 
+# checksums value (generated using sum command) for the file you downloaded
 ```
 
 ## Talk 3 Exercise 1 – Working directory
@@ -273,14 +280,12 @@ wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/README &
 
 ```{bash, eval=FALSE}
 wget \
-https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz & 
-wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS & 
-wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/README & 
-cat CHECKSUMS | grep ' Mus_musculus.GRCm38.dna.primary_assembly.fa.gz' 
-sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
-# The checksums value in CHECKSUMS file (downloaded from public database) for 
-# 'Mus_musculus.GRCm38.dna.primary_assembly.fa.gz' should match the generated 
-# checksums value (generated using sum command) for the file you downloaded
+https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz &
+wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS &
+ls  # Because there is an existing CHECKSUMS for the genome, it downloaded GTF
+    # CHECKSUMS as CHECKSUMS.1; you can rename the two files
+cat CHECKSUMS.1 | grep 'Mus_musculus.GRCm38.102.gtf.gz'
+sum Mus_musculus.GRCm38.102.gtf.gz
 ```
 
 8.Create a **readme.txt** file in the **2_genome/** detailing how you obtained the public data files.
