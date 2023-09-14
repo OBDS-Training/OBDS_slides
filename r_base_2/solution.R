@@ -1,4 +1,4 @@
-# Exercise ---- 
+# Exercise ----
 
 # Workspace management ----
 
