@@ -3,7 +3,7 @@ title: 'Introduction to base <i class="fab fa-r-project"></i>'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-06-05 (updated: `r Sys.Date()`)"
+date: "2023-09-18 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
