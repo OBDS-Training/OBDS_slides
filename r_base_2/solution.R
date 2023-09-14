@@ -2,13 +2,13 @@
 
 # Workspace management ----
 
-# Open a new  script and write code to create three new objects (any type, any name, any value).
+# Open a new script and write code to create three new objects (any type, any name, any value).
 
 a <- 1
 b <- "some text"
 c <- TRUE
 
-# Save your  script.
+# Save your script.
 
 # Save all objects in your workspace to an .RData file.
 
@@ -55,7 +55,7 @@ setwd("..")
 
 # Descriptive statistics ----
 
-# Use readRDS() to load the file /project/obds/shared/resources/2_r/my_day2matrix.rds and assign the object to the name m.
+# Use readRDS() to load the file, my_day2matrix.rds, and assign the object to the name m.
 
 m <- readRDS("data/my_day2matrix.rds")
 
@@ -82,7 +82,7 @@ typeof(ToothGrowth$len)
 typeof(ToothGrowth$supp)
 typeof(ToothGrowth$dose)
 # or
-str(ToothGrowth$len)
+str(ToothGrowth)
 
 # What is the mean tooth length across all observations in the data set?
 
