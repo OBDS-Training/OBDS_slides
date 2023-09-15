@@ -40,5 +40,6 @@
 
 cd /var/scratch/$USER/1_linux/rnaseq
 mkdir -p 4_outputs/fastqc
-fastqc --threads 2 -o 4_outputs/fastqc /storage/exet4759/resources/1_linux/rnaseq/*fastq.gz
+fastqc --threads 2 -o 4_outputs/fastqc \ 
+      /storage/exet4759/resources/1_linux/rnaseq/*fastq.gz
 multiqc 4_outputs/fastqc/ --outdir 4_outputs/fastqc/
