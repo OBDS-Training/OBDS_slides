@@ -1,4 +1,4 @@
-# Genomics on the Linux command Line: Introduction to the Linux command line
+# Introduction to the Linux command line, part 2
 
 <!--
 This title should match exactly the link in the main README.
