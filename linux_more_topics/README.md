@@ -40,3 +40,18 @@ Requirements:
 | **Afternoon Break**                                           | 14:45 |
 | Exercise                                                      | 15:00 |
 | **Day End**                                                   | 16:00 |
+
+## Log for completed round and task list for next round
+
+### 2023 Sep - Liezel
+
+- Schedule 
+  + Planned schedule was okay
+  + But as in Day 1, we also did not have much time for exercises because of SSH config and key pair 
+  
+### 2024 Jan - Liezel
+
+Lesson
+- [ ] Adjust schedule based on slide content adjustments
+- [ ] Write schedule above
+- [ ] Change SSH config and key pair location and approach as detailed in Day 1 README.md
