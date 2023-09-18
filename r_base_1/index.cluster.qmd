@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to base <i class="fab fa-r-project"></i>'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht"
+author: "Kevin Rue-Albrecht (based on slides by Nicki Gray)"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-09-18 (updated: `r Sys.Date()`)"
 date-format: long
@@ -55,7 +55,11 @@ NoCite(bib, "R")
 
 ## Set up
 
-- Launch RStudio Server on the teaching cluster.
+- Open a terminal application on your computer.
+- Edit `~/.ssh/config` to set up port forwarding for the teaching server.
+- Connect to the teaching over SSH with port forwarding.
+- Open a new tab in your web browser and navigate to <http://localhost:8787/>.
+- Type your WIMM IT username (SSO) and password.
 
 ```{r}
 #| child: etc.qmd

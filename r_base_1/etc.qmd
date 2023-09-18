@@ -184,8 +184,8 @@ Other context-dependent panes include:
 
 ## Opening a session on RStudio Server
 
-- Navigate to <https://cbrglogin3.molbiol.ox.ac.uk/rstudio/>.
-- Log in using your username and password.
+- Navigate to <http://localhost:8787/>.
+- Log in using your username (SSO) and WIMM IT password.
 
 ```{r}
 #| fig-align: center
