@@ -1029,7 +1029,7 @@ The `tapply()` function can be used to apply a function to groups of values in a
 ```{r}
 #| eval: true
 #| echo: true
-values <- c(1, 2, 3, 4, 5, 6)
+values <- c(  1,   2,   3,   4,   5,  6 )
 groups <- c("A", "A", "A", "B", "B", "B")
 tapply(X = values, INDEX = groups, FUN = sum)
 ```
