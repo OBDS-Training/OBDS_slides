@@ -598,7 +598,7 @@ Note:
 
 ### Descriptive statistics
 
-- Use `readRDS()` to load the file `/project/obds/shared/resources/2_r/my_day2matrix.rds` and assign the object to the name `m`.
+- Use `readRDS()` to load the file `/storage/shared/resources/r/base_2/my_day2matrix.rds` and assign the object to the name `m`.
 - Compute the sum of values in each row and add those values as a new column in the matrix.
 - Run the command `data("ToothGrowth")` to load the builtin data set `ToothGrowth`.
 - Open the help page for the `ToothGrowth` data set, to learn more about it.
