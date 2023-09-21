@@ -1,0 +1,193 @@
+---
+title: "Pathway and gene set enrichment analysis"
+author: "Updated from Charlie George"
+date: "05/10/2023"
+output: html_document
+---
+
+## Pathway and gene set enrichment analysis (GSEA) practical
+
+- The first part is using [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html) R package to perform an over representation analsis (ORA) on the output table of differentially expressed genes from DESeq2
+
+- The major aims of this exercise is to get you used to reading online tool documentation and playing with different parameters of the relevant functions
+
+### 1. Load libraries
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(gprofiler2)
+```
+
+### 2. Read in output table of differentially expressed genes from DESeq2 
+
+- Check its dimensions and look at the top of the file. What does that tell us about our table? 
+
+```{r}
+all_genes_df <- read_csv("./data/dds_results.csv")
+```
+```{r}
+dim(all_genes_df)
+```
+
+```{r}
+head(all_genes_df)  
+```
+- What type of R object is the table?
+```{r}
+class(all_genes_df)
+```
+
+### 3. Create gene subsets
+
+- Create these 3 data frames by subsetting the original one:
+  + **all_genes_tested_df** variable containing table of all genes tested in the differential expression analysis, which will be the background or control set
+  + **upreg_genes_df** variable containing all significantly upregulated genes ('padj' < 0.05 & 'log2FoldChange' > 1)
+  + **downreg_genes_df** variable containing all significantly downregulated genes ('padj' < 0.05 & 'log2FoldChange' < -1)
+
+```{r}
+all_genes_tested_df <- all_genes_df %>% 
+                          dplyr::filter(padj !="NA")
+  
+upreg_genes_df <- all_genes_tested_df %>% 
+                    dplyr::filter(padj < 0.05 & log2FoldChange > 1)
+
+downreg_genes_df <- all_genes_tested_df %>% 
+                    dplyr::filter(padj < 0.05 & log2FoldChange < -1)
+```
+
+- Check the dimensions of the data frames
+
+```{r}
+dim(all_genes_tested_df)
+dim(upreg_genes_df)
+dim(downreg_genes_df)
+```
+
+- From each of the 3 data frames, get a vector of the Ensembl ids 
+
+```{r}
+all_gene_ids <- all_genes_tested_df %>% pull(gene_id)
+upreg_gene_ids <- upreg_genes_df %>% pull(gene_id)
+downreg_gene_ids <- downreg_genes_df %>% pull(gene_id)
+```
+
+### 4. Perform ORA using **gprofiler2** 
+
+a. First, we want to do ORA on upregulated genes  (vs. all genes tested as background) What function from gprofiler2 should we use? What parameters of that function should we include or change? Look at [documentation](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html). 
+
+```{r}
+?gost() # Get help for function
+
+# Write ORA query
+gost_results_obj <- gost(query = upreg_gene_ids, 
+                         organism = "mmusculus", 
+                         ordered_query = FALSE,    
+                         multi_query = FALSE, 
+                         significant = TRUE, 
+                         exclude_iea = FALSE, 
+                         measure_underrepresentation = FALSE, 
+                         evcodes = FALSE, 
+                         user_threshold = 0.05, 
+                         correction_method = "g_SCS",  
+                         domain_scope = "annotated", 
+                         custom_bg = all_gene_ids, 
+                         numeric_ns = "", 
+                         sources = NULL, 
+                         as_short_link = FALSE)
+                
+```
+-   
+   + `exclude_iea = FALSE` - Change to `TRUE` as have a lot of results otherwise - and we want to be stringent and look at well annotated genesets
+   + `correction_method = "g_SCS"` - This is their own multiple testing coorrection - actually more strignent then bonferroni or BH 
+   + `domain_scope = "annotated"` - Delete - will be set if have custom_bg automatically
+   + `custom_bg = all_gene_ids` - # THIS IS THE MOST IMPORTANT, this is our background gene set: make sure this is all gene ids that were tested in our differential expression
+   
+What type of object is the output? View.
+```{r}
+class(gost_results_obj)
+```
+
+```{r}
+summary(gost_results_obj)
+```
+
+```{r}
+head(gost_results_obj$result)
+head(gost_results_obj$meta)
+```
+
+c. Plot our results using function from gprofiler2. Which one is it? 
+
+```{r}
+gostplot(gost_results_obj, capped = TRUE, interactive = TRUE)
+```
+
+d. What does `as_short_link = FALSE` do in `gost()` function? 
+
+```{r}
+gost_results_obj_link <- gost(query = upreg_gene_ids, 
+                organism = "mmusculus", 
+                ordered_query = FALSE,    
+                multi_query = FALSE, 
+                significant = TRUE, 
+                exclude_iea = TRUE, # Changed to TRUE
+                measure_underrepresentation = FALSE, 
+                evcodes = FALSE, 
+                user_threshold = 0.05, 
+                correction_method = "g_SCS",  
+                custom_bg = all_gene_ids, 
+                numeric_ns = "", 
+                sources = NULL, 
+                as_short_link = TRUE)
+
+gost_results_obj_link
+
+# ANSWER:
+# This gives you a url where you can quickly and easily visualise your data and send the link to others to see it too. 
+# Point out "detailed results tab"
+```
+
+e. Filter results table for gene sets with between 5-300 genes 
+
+```{r}
+gost_results_df = gost_results_obj$result
+gost_results_df_5to300_genes = gost_results_df  %>% 
+                                              filter(term_size >=5) %>% 
+                                              filter(term_size <=300)
+gost_results_df_5to300_genes
+```
+
+f. Try querying multiple gene lists at the same time (up and down regulated genes) using Multiple queries - see the documentation 
+
+```{r}
+multi_gostquery_results_obj <- gost(query = list("upreg_genes" = upreg_gene_ids,
+                                                 "downreg_genes"= downreg_gene_ids),
+                                    organism = "mmusculus", 
+                                    exclude_iea = TRUE, 
+                                    correction_method = "g_SCS", 
+                                    custom_bg = all_gene_ids,
+                                    multi_query = TRUE)
+```
+
+g. Can you plot these querys together?
+
+```{r}
+gostplot(multi_gostquery_results_obj, capped = TRUE, interactive = TRUE)
+```
+
+h. Output the get_version_info() to save the versions of the databases that were used for the analysis!! 
+```{r}
+get_version_info('mmusculus')
+```
+
+### Output the sessionInfo() so know what packages we used
+
+```{r}
+sessionInfo()
+```
+
+### Knit your report into an HTML 
+
+- This is good practise as it creates a permanent record of your plots/analysis output that you can share
+- and also makes sure your script runs without error from start to finish! 
