@@ -1,0 +1,286 @@
+## Pathway/Gene set (Functional) enrichment analysis 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Gene lists (e.g. from differential expression analysis) are complex and hard to interpret by eye
+  + A biological function is often not attributable to a single molecule
+- With functional enrichment analysis tools, we can:
+  - Get biological meaning/function from a list of genes 
+  - Generate/confirm hypothesis from our data
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 490px
+#| out-width: 500px
+## Source: custom-made (from Kevin's 'r_differential_expression' lecture)
+knitr::include_graphics("img/overview-rnaseq-workflow.png")
+```
+
+:::
+
+::::
+
+## Terminology
+
+- **Gene set** - Set of related genes, relationship can be defined by different contexts
+  + All genes mentioned in a paper
+  + All genes involved in a pathway
+  
+- **Pathway** - Set of genes that work together to carry out a biological process
+
+- Gene set is a more general and less specific concept than pathway but the terms are often used interchangeably
+
+## Methods of functional enrichment analysis
+
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 580px
+## Source: http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf 
+knitr::include_graphics("img/types_method.png")
+```
+
+- **ORA** - uses a list of differentially expressed genes as input
+- **FCS** - uses the entire matrix of genes as input (e.g. Gene Set Enrichment Analysis method / **GSEA**)
+- PT - similar to FCS but additionally uses the number and type of interactions between gene products, which may or may not be available from gene set/pathway databases used by tools
+
+<br/>
+
+- All methods output **list of significant gene sets/pathways in the condition under study**
+- <span style="color:green;">Let's focus first on ORA then discuss GSEA in comparison with ORA</span>
+
+# Over representation analysis (ORA)
+
+## ORA workflow
+
+- Determine enrichment of each gene set/pathway (provided by databases) within our input gene list relative to a background gene list
+
+```{r}
+#| fig-align: left
+#| out-height: 450px
+#| out-width: 900px
+## Source: custom-made (obds_sep2023/r/5_Pathway_analysis.pptx, slide 20)
+knitr::include_graphics("img/ora_flowchart.png")
+```
+
+## ORA analysis method
+
+1. **Make input list** of differentially expressed genes created using a specified threshold or criteria
+   + e.g. upregulated genes with log2 FC > 1 and padj < 0.05
+  
+2. For each gene set/pathway (provided by databases, e.g. immune response):
+   a. Count the number of **genes overlapping and not overlapping** with your (i.) input differentially expressed genes and (ii.) background
+   
+      ```{r}
+      #| fig-align: center
+      #| out-height: 200px
+      #| out-width: 450px
+      ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+      knitr::include_graphics("img/fisher-test-table.svg")
+      ```
+    
+   b. **Statistically test for over-representation** of gene sets/pathways in the input list *via* e.g. Fisher's exact (based on hypergeometric distribution) / Chi-squared test -- gives p-value 
+
+3. After all gene sets/pathways are tested, adjust p-values for multiple test correction
+
+## Choosing background gene list
+
+- Think of background as as list of genes that could have been positive or present in your input gene list! 
+  + Can exclude from background list genes that are not expressed in the experimental context
+  + When restricted to measuring certain types of genes (e.g. immunology / neuroscience genes using targeted expression panels), only include genes of that type in the background
+
+- Important factor because the size and content of background gene lists can change the resulting enrichment p-values for each pathway / gene set
+  + It changes the numbers in the previous table
+
+## Databases of gene sets / pathways
+
+- Gene sets and pathways are available from a number of databases
+- **[Gene Ontology (GO)](https://geneontology.org)** and **[Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/)** are the most popular and frequently used
+  + Long standing curation
+  + Availability for wide range of species
+  
+- Collection of databases used for functional enrichment analysis is tool-specific
+  + Tools (e.g. R packages, web-based tools for ORA / GSEA) can either use one or multiple databases
+  
+- [Example list of gene set databases](https://maayanlab.cloud/Enrichr/#libraries)
+
+## Database 1: Gene Ontology (GO)
+
+- GO uses 3 umbrella terms to describe our understanding of biology:
+  + Molecular function (MF) - Molecular activities of gene products e.g. catalysis or transport 
+  + Cellular component (CC) - Where gene products are active e.g. mitochondrion
+  + Biological process (BP) - Pathways and larger processes made up of the activities of multiple gene products e.g. DNA repair
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- 1 GO term ~ 1 gene set
+
+- From these 3 umbrella terms, other GO terms branch out forming a tree-like structure
+  + Where edges between terms represent parent-child relationship, 
+  + Where 'child' terms are more specific than 'parent' terms
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 350px
+## Source: https://geneontology.org/docs/ontology-documentation/
+knitr::include_graphics("img/go_mf.png")
+```
+
+:::
+
+::::
+
+## Database 2: Kyoto Encyclopedia of Genes and Genomes (KEGG)
+
+- A collection of manually drawn pathway maps representing molecular interaction and reaction networks
+- Divided into [7 broad categories](https://www.genome.jp/kegg/pathway.html)
+
+## R packages to perform functional enrichment analysis
+
+- ORA
+  + [gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/index.html)
+  + goseq, GOstats, topGO
+
+- FCS (GSEA)
+  + [GSEAbase](https://bioconductor.org/packages/release/bioc/html/GSEABase.html)
+
+- Both
+  + [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html)
+  + [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
+  + [ReactomePA](https://bioconductor.org/packages/release/bioc/html/ReactomePA.html)
+
+- Web-based tools are also available
+  + [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost)
+  + [DAVID](https://david.ncifcrf.gov)
+  + [Enrichr](https://maayanlab.cloud/Enrichr/)
+  
+# Exercise - Perform ORA using gprofiler2 
+
+## Advantages of ORA
+
+- Simple, quick and straight forward
+- Can be performed with unordered gene lists (unlike GSEA, TBD)
+
+## Limitations of ORA
+
+- Often only uses the most significant genes -- information loss
+  + Gene list generated using an arbitrary threshold
+  + Some methods overcome this by using an iterative approach that adds one gene at a time to find a set of genes for which a pathway is most significant 
+- Equal importance assigned to each gene -- ignores fold changes from DE analysis
+- Uses statistical procedures that assume independence among genes
+  + Estimated significance of a pathway may be biased or incorrect
+- Assumes each pathway is independent of other pathways
+  + GO processes are heirarchical
+  + Same gene can be present in multiple pathways, so identifying which gene set is the most relevant becomes problematic
+
+- FCS (GSEA) addresses some of these limitations
+
+# Functional class scoring (FCS) 
+
+## FCS workflow
+
+- While large changes in single genes can have significant effects on pathways (detected by ORA)
+  + Weaker but coordinated changes in groups of functionally-related genes can also have significant effects 
+- FCS can detect these weaker, coordinated changes
+- **Gene set enrichment analysis (GSEA)** is a tool classified under FCS approaches
+
+```{r}
+#| fig-align: center
+#| out-height: 380px
+#| out-width: 600px
+## Source: custom-made (obds_sep2023/r/5_Pathway_analysis.pptx, slide 25)
+knitr::include_graphics("img/gsea_flowchart.png")
+```
+
+## GSEA analysis method
+
+1. **Make input ranked list** of all genes using a gene-level statistic -- log2 FC
+  
+2. For each gene set/pathway: 
+   a. Calculate an **enrichment score** -- degree to which gene set is over-represented at the top or bottom of a ranked list of gene
+   
+      ```{r}
+      #| fig-align: center
+      #| out-height: 200px
+      #| out-width: 450px
+      ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+      knitr::include_graphics("img/fisher-test-table.svg")
+      ```
+    
+   b. **Statistically test for enrichment** of gene sets/pathways in the input list *via* permutation test -- gives p-value 
+   
+3. After all gene sets/pathways are tested, adjust p-values for multiple test correction
+
+## Calculation of enrichment score per gene set/pathway
+
+- Test statistic for a gene set/pathway is a running sum or score
+  + <insert good image for explanation, maybe use actual output for them to be familiar?>
+
+## Calculation of enrichment score per gene set/pathway
+
+- Null distribution is obtained *via* permutation testing by calculating a running sum many times, resulting into a distribution of test statistic values
+  + but each time shuffling the order of genes in the "ranked" list
+
+- P-value is then the probability of getting the test statistic for a gene set/pathway given the null distribution
+
+- Let's try to do GSEA then after that we can discuss the differences between ORA and GSEA
+
+# Exercise - Perform GSEA using fgsea 
+
+## ORA vs. FCS (GSEA)
+
+- Input
+- Analysis
+- Output
+
+## ORA? GSEA? Both?
+
+## Nine quick tips for pathway enrichment analysis
+
+- Browse through [Nine quick tips for pathway enrichment analysis, 2022](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348)
+
+## Considerations when choosing ORA/GSEA tools
+
+- Different tools access different databases 
+  + Are they regularly updated?
+- Interfaces of tool – web versus script?
+  + Script allows you more control of settings and version control/reproducibility
+- Different tools have different default settings - check 
+  + Larger gene sets more likely to be significant ->  cap at ~500 
+- Is it well documented/maintained 
+- What gene identifiers does it use? 
+  + Specificity -> Ensembl >> Entrez >> Gene Symbol
+  + Species?
+
+<br>
+
+- Not all ORA tools let you set a custom background gene lists (online especially)
+
+## Useful links
+
+- [Method review, 2019](https://www.nature.com/articles/s41596-018-0103-9)
+
+## References
+
+- [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichment-overview.html)
+- [Introduction to Pathway and Network Analysis](http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf)
+- [Ten Years of Pathway Analysis: Current Approaches and Outstanding Challenges](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002375)
+- (Functional Analysis for RNA-seq)[https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/11_FA_functional_class_scoring.html]
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

@@ -1,0 +1,65 @@
+---
+title: 'Gene set/Pathway enrichment analysis'
+subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
+author: "Updated from Charlie George"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2023-10-05"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Updated from Charlie George -- Gene set/Pathway enrichment analysis in <i class="fab fa-r-project"></i>
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
+---
+
+```{r}
+#| label: setup
+#| include: false
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 120)
+```
+
+```{r}
+#| label: load_refs
+#| include: false
+#| cache: false
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+NoCite(bib, "R")
+```
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
+
+## Prerequisites
+
+- An account on the teaching cluster
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster
+- Start a new RStudio project called `pathway_analysis`
+- Make a copy of the template notebook for this lesson in your RStudio project
+- Open the notebook and follow along, editing and running the code as needed
+
+```{r}
+#| child: etc.qmd
+```
