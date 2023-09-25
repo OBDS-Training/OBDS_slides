@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-# Exercises
+## Demo
 
-## Character
+### Character
 
 ```{r}
 character_object <- "A"
@@ -48,9 +48,9 @@ class(character_object2)
 attributes(character_object2)
 ```
 
-# Exercise
+## Demo
 
-## Factors
+### Factors
 
 ```{r, include=TRUE}
 factor_object <- factor(c("A", "B", "C"))
@@ -77,9 +77,9 @@ attr(factor_object, "levels")
 attr(factor_object, "class")
 ```
 
-# Exercise
+## Demo
 
-## Data-frames
+### Data-frames
 
 ```{r}
 dataframe_object <- data.frame(
@@ -101,9 +101,9 @@ str(dataframe_object)
 attributes(dataframe_object)
 ```
 
-# Exercise
+## Demo
 
-## Matrices
+### Matrices
 
 ```{r}
 matrix_object <- matrix(
@@ -129,9 +129,9 @@ attributes(matrix_object)
 attr(matrix_object, "dim")
 ```
 
-# Exercise
+## Demo
 
-## S3 method dispatch
+### S3 method dispatch
 
 ```{r}
 methods("print") %>% head(14)
