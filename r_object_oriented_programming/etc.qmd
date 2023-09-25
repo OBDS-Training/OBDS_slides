@@ -323,7 +323,7 @@ attributes(character_object2)
 
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
-factor_object <- factor(c("A", "B", "C"))
+factor_object <- factor(c("A", "B", "A", "C"))
 factor_object
 ```
 
@@ -367,8 +367,8 @@ attr(factor_object, "class")
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
 dataframe_object <- data.frame(
-  numbers = c(1, 2, 3),
-  strings = c("A", "B", "C")
+  numbers = c(4, 10, 5),
+  strings = c("C", "B", "D")
   )
 dataframe_object
 ```
