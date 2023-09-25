@@ -3,7 +3,7 @@ title: 'Object Oriented Programming (OOP)'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-06-07 (updated: `r Sys.Date()`)"
+date: "2023-09-25 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -50,16 +50,11 @@ bib <- ReadBib("bibliography.bib")
 
 - An account on the teaching cluster.
 
-- A [<i class="fab fa-github"></i> GitHub](https://github.com/) repository for this course.
-
 ## Set up
 
 - Launch RStudio Server on the teaching cluster.
-
 - Start a new RStudio project called `object_oriented_programming`.
-
 - Make a copy of the template notebook for this lesson in your RStudio project.
-
 - Open the notebook and follow along, editing and running the code as needed.
 
 ```{r, child='etc.qmd'}
