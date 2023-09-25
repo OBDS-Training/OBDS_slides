@@ -32,7 +32,7 @@ attributes(character_object)
 ```
 
 ```{r}
-character_object2 <- c("A", "B", "C")
+character_object2 <- c("A", "B", "A", "C")
 character_object2
 ```
 
@@ -53,7 +53,7 @@ attributes(character_object2)
 ### Factors
 
 ```{r, include=TRUE}
-factor_object <- factor(c("A", "B", "C"))
+factor_object <- factor(c("A", "B", "A", "C"))
 factor_object
 ```
 
@@ -83,8 +83,8 @@ attr(factor_object, "class")
 
 ```{r}
 dataframe_object <- data.frame(
-  numbers = c(1, 2, 3),
-  strings = c("A", "B", "C")
+  numbers = c(4, 2, 1),
+  strings = c("C", "B", "D")
   )
 dataframe_object
 ```
@@ -108,7 +108,8 @@ attributes(dataframe_object)
 ```{r}
 matrix_object <- matrix(
   data = c(1, 2, 3, 4, 5, 6, 7, 8),
-  nrow = 2
+  nrow = 2,
+  byrow = TRUE
   )
 matrix_object
 ```

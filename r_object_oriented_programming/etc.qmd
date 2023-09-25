@@ -292,7 +292,7 @@ attributes(character_object)
 
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
-character_object2 <- c("A", "B", "C")
+character_object2 <- c("A", "B", "A", "C")
 character_object2
 ```
 
