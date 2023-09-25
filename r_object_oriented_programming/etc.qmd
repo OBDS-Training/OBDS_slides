@@ -178,6 +178,24 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 **What are advantages of bundling attributes and methods together?**
 :::
 
+## Abstraction
+
+- Expose only high-level methods.
+
+- Keep details of low-level implementation internal.
+
+- As a result, the private methods and attributes can be changed without affecting users.
+
+- Do not overwhelm users with more information than they need to be aware of.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
+knitr::include_graphics("img/class-abstraction.svg")
+```
+
+::: {style="text-align: center;"}
+**How much do think users should know about the details of the internal implementation?**
+:::
+
 ## Inheritance
 
 - Child classes inherit all the attributes and methods of their parent class(es).
@@ -207,24 +225,6 @@ knitr::include_graphics("img/class-bird-attributes-methods.svg")
 
 ::: {style="text-align: center;"}
 **How much time do you think is saved when _learning_ classes developed by inheritance?**
-:::
-
-## Abstraction
-
-- Expose only high-level methods.
-
-- Keep details of low-level implementation internal.
-
-- As a result, the private methods and attributes can be changed without affecting users.
-
-- Do not overwhelm users with more information than they need to be aware of.
-
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
-knitr::include_graphics("img/class-abstraction.svg")
-```
-
-::: {style="text-align: center;"}
-**How much do think users should know about the details of the internal implementation?**
 :::
 
 ## Polymorphism
