@@ -49,6 +49,21 @@ knitr::include_graphics("img/object-oriented-programming.svg")
 Use `rowSums()` as an example of method that accepts different classes of inputs but always returns the same class of output.
 :::
 
+## Objects are instances of a class
+
+- A _class_ is the generic description of an object
+  
+  + Like a recipe for a dish; or an entry in a dictionary.
+
+- An _object_ is an instance of that class
+
+  + Like one specific plate of food serve on a table.
+
+```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
+## Source: https://www.guru99.com/java-oops-class-objects.html
+knitr::include_graphics("img/class-object-relationship.jpeg")
+```
+
 ## Classes: the cornerstone of OOP
 
 - _Classes_ represent the generic definition of real-world objects.
@@ -78,21 +93,6 @@ knitr::include_graphics("img/class-animal-attributes-methods.svg")
 :::
 
 ::::
-
-## Objects are instances of a class
-
-- A _class_ is the generic description of an object
-  
-  + Like a recipe for a dish; or an entry in a dictionary.
-
-- An _object_ is an instance of that class
-
-  + Like one specific plate of food serve on a table.
-
-```{r, include=TRUE, echo=FALSE, fig.align='center', out.height='300px', out.width='500px'}
-## Source: https://www.guru99.com/java-oops-class-objects.html
-knitr::include_graphics("img/class-object-relationship.jpeg")
-```
 
 ## Object Oriented Programming (OOP)
 
