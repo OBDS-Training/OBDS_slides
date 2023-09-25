@@ -367,7 +367,7 @@ attr(factor_object, "class")
 ::: {.column width="50%"}
 ```{r, echo=TRUE, include=TRUE}
 dataframe_object <- data.frame(
-  numbers = c(4, 10, 5),
+  numbers = c(4, 2, 1),
   strings = c("C", "B", "D")
   )
 dataframe_object
