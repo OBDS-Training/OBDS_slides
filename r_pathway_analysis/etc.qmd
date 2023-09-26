@@ -18,15 +18,16 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 
 - Gene lists are complex and hard to interpret by eye
   + A biological function is often not attributable to a single molecule
-- With gene set/pathway enrichment analysis, we can get biological function from a gene list
+- With gene set/pathway enrichment analysis, we can get biological function/s from a gene list
   + Collectively call as *functional enrichment analysis*
   + Taking into account function ~ multiple molecules
-- Biological function is given by gene sets / pathways 
-- **What *gene sets/pathways* are significantly enriched in the gene list?**
+- Biological function is given by gene sets / pathways (e.g. genes involved in alcohol metabolism)
 
 :::
 
 ::::
+
+- <span style="color:green;">What *gene sets/pathways* are significantly enriched in your gene list?</span>
 
 ## Gene set? Pathway?
 
@@ -40,7 +41,11 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 
 - Gene set is a more general concept than pathway but the terms are often used interchangeably
 - In its simplest form, a gene set / pathway is stored in a database as a list of gene identifiers 
-  + Does not necessarily show interaction of genes within a set
+  + May not necessarily show interactions of genes within a set
+  
+<br>
+
+- Will simply refer to both gene set and pathway as gene set from now on
 
 ## Methods of functional enrichment analysis
 
@@ -54,49 +59,49 @@ knitr::include_graphics("img/types_method.png")
 ```
 -->
 
-1. **ORA** 
-   - Uses a list of differentially expressed genes as input
-2. **FCS** 
-   - Uses the entire matrix of genes as input but genes are ranked based on a gene-level statistic
-   - **GSEA** (Gene Set Enrichment Analysis) uses FCS approach
-3. PT 
-   - Similar to FCS but additionally considers other information like type of interactions between genes (e.g. activation or inhibition), whose availability depends on the database
-   - Changing interactions between genes affects PT result but not ORA or FCS
+1. **Over-representation analysis (ORA)** 
+   - Input a list of genes often based on a selection criteria (e.g. upregulated genes)
+2. **Functional class scoring (FCS)** 
+   - Input entire matrix of genes but genes are ranked based on a gene-level statistic (e.g. fold change)
+   - **Gene Set Enrichment Analysis (GSEA)** uses FCS approach
+3. Pathway Topology (PT) 
+   - Similar to FCS but additionally considers other information like type of interactions between genes in a set (e.g. activation or inhibition); <span style="color:red;">not all databases have this information</span>
+   - Changing interactions between genes in a set affects PT result but not ORA or FCS
 
-- All methods output **list of significant gene sets/pathways in the condition under study**
+- All methods can output a **list of significant gene sets/pathways in the condition under study**
 - <span style="color:green;">Let's focus first on ORA then discuss GSEA in comparison with ORA</span>
 
 # Over-representation analysis (ORA)
 
 ## ORA workflow
 
-- Determine enrichment of each gene set/pathway within our input gene list relative to a background gene list
+- Determine enrichment of each gene set within our input gene list relative to a background 
 
 1. **Input gene list/s**
-   + Gene list based on a threshold or criteria
-     - E.g. upregulated genes with log2 FC > 1 and padj < 0.05
-   + Background
-     - Built-in or user-defined
+   a. Gene list based on a selection criteria
+      - E.g. upregulated genes with log2 FC > 1 and padj < 0.05
+   b. Background
+      - Built-in or user-defined
 
-1.a. **Gene sets / Pathways**
+1.c. **Gene sets / Pathways**
 
 -
    + Accessed by tools or by user from databases
    + User-defined
 
 2. **Analysis test**
-   + Done and gives p-values per gene set/pathway
+   + Done per gene set and so gives p-values per gene set
 
 3. **Multiple test correction** 
-   + Because we are testing multiple gene sets/pathways, we adjust the p-values  
+   + Because we are testing multiple gene sets, we adjust the p-values  
 
 ## 2. ORA analysis test
 
-For each gene set/pathway (e.g. immune response),
+For each gene set (e.g. immune response),
 
-- **Statistically test for over-representation** of gene set/pathway in your gene list (e.g. Fisher's exact test) -- gives p-value 
+- **Statistically test for over-representation** of a gene set in your gene list (e.g. *via* Fisher's exact test) -- gives p-value 
   
-  a. Count the number of **gene set/pathway genes overlapping and not overlapping** with your (i) gene list and (ii) background
+  a. Count (non)overlaps of genes in a set with (i) gene list and (ii) background
    
   :::: {.columns}
 
@@ -111,13 +116,13 @@ For each gene set/pathway (e.g. immune response),
   ```
 
   :::
-
+  
   ::: {.column width="50%"}
 
   ```{r}
   #| fig-align: center
-  #| out-height: 200px
-  #| out-width: 450px
+  #| out-height: 220px
+  #| out-width: 460px
   ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
   knitr::include_graphics("img/fisher-test-venn.svg")
   ```
@@ -126,20 +131,18 @@ For each gene set/pathway (e.g. immune response),
 
   ::::
 
-  b. Given background, calculate probability of the above combination happening and more extreme combinations
+  b. Given the background, calculate probability of the above combination and something *more extreme*
      + <span style="color:red;">Add formula formal and less formal way, add link to pathway guide in case they ask about combinations</span>
 
 ## Choosing background genes
 
-- Think of background as as list of genes that could have been positive or present in your gene list! 
-  + Can exclude from background list genes that are not expressed in the experimental context
-  + When restricted to measuring certain types of genes (e.g. kinase genes), only include genes of that type in the background
-  + Only include genes you could measure!
+- Think of background as genes that could have been positive or present in your gene list! 
+  + All genes in a species
+  + Only genes that the method can measure (e.g. targeted expression panels)
   
 <br>
 
-- Important factor because the size and content of background can change the resulting enrichment p-values for each gene set /pathway
-  + It changes the numbers in the previous table
+- Important factor because the different backgrounds change the numbers in the previous table -- change the resulting enrichment p-values for each gene set /pathway
 
 ## Databases of gene sets / pathways
 
@@ -254,7 +257,7 @@ knitr::include_graphics("img/gsea_flowchart.png")
 
 1. **Make input ranked list** of all genes using a gene-level statistic -- log2 FC
   
-2. For each gene set/pathway: 
+2. For each gene set: 
    a. Calculate an **enrichment score** -- degree to which gene set is over-represented at the top or bottom of a ranked list of gene
    
       ```{r}
@@ -269,17 +272,17 @@ knitr::include_graphics("img/gsea_flowchart.png")
    
 3. After all gene sets/pathways are tested, adjust p-values for multiple test correction
 
-## Calculation of enrichment score per gene set/pathway
+## Calculation of enrichment score per gene set
 
-- Test statistic for a gene set/pathway is a running sum or score
+- Test statistic for a gene set is a running sum or score
   + <insert good image for explanation, maybe use actual output for them to be familiar?>
 
-## Calculation of enrichment score per gene set/pathway
+## Calculation of enrichment score per gene set
 
 - Null distribution is obtained *via* permutation testing by calculating a running sum many times, resulting into a distribution of test statistic values
   + but each time shuffling the order of genes in the "ranked" list
 
-- P-value is then the probability of getting the test statistic for a gene set/pathway given the null distribution
+- P-value is then the probability of getting the test statistic for a gene set given the null distribution
 
 - Let's try to do GSEA then after that we can discuss the differences between ORA and GSEA
 
@@ -332,7 +335,7 @@ PrintBibliography(bib)
 
 ## ORA workflow
 
-- Determine enrichment of each gene set/pathway within our input gene list relative to a background gene list
+- Determine enrichment of each gene set within our input gene list relative to a background gene list
 
 ```{r}
 #| fig-align: left
