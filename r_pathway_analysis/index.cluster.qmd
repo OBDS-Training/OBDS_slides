@@ -1,5 +1,5 @@
 ---
-title: 'Gene set/Pathway enrichment analysis'
+title: 'Gene set / Pathway enrichment analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Updated from Charlie George"
 institute: "Oxford Biomedical Data Science Training Programme"
