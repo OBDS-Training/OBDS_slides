@@ -1,7 +1,7 @@
 ---
 title: "Example code for ggplot2"
 author: "Kevin Rue-Albrecht"
-date: "25/09/2023"
+date: "03/11/2022"
 output: html_document
 ---
 
@@ -31,7 +31,7 @@ ggplot(diamonds)
 ```
 
 > Answer: It creates a blank canvas for the plot.
-> This is because we have not defined which variables should be shown on each axis.
+> This is because we have defined which variables should be shown on each axis.
 
 ## Add the aesthetics.
 
@@ -214,7 +214,7 @@ ggplot(msleep, aes(order)) +
   theme(
     axis.text.x = element_text(size = rel(1.5), angle = 60, hjust = 1, vjust = 1),
     axis.title = element_text(size = rel(2))
-    ) 
+    )
 ```
 
 From this point onwards, you may need to iteratively resize the text of the ticks and axes for readability.
