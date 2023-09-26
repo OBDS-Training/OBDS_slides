@@ -1,16 +1,6 @@
-## Pathway/Gene set (Functional) enrichment analysis 
+## Gene set/Pathway enrichment analysis 
 
 :::: {.columns}
-
-::: {.column width="50%"}
-
-- Gene lists (e.g. from differential expression analysis) are complex and hard to interpret by eye
-  + A biological function is often not attributable to a single molecule
-- With functional enrichment analysis tools, we can:
-  - Get biological meaning/function from a list of genes 
-  - Generate/confirm hypothesis from our data
-
-:::
 
 ::: {.column width="50%"}
 
@@ -24,9 +14,21 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 
 :::
 
+::: {.column width="50%"}
+
+- Gene lists are complex and hard to interpret by eye
+  + A biological function is often not attributable to a single molecule
+- With gene set/pathway enrichment analysis, we can get biological function from a gene list
+  + Collectively call as *functional enrichment analysis*
+  + Taking into account function ~ multiple molecules
+- Biological function is given by gene sets / pathways 
+- **What *gene sets/pathways* are significantly enriched in the gene list?**
+
+:::
+
 ::::
 
-## Terminology
+## Gene set? Pathway?
 
 - **Gene set** - Set of related genes, relationship can be defined by different contexts
   + All genes mentioned in a paper
@@ -34,10 +36,15 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
   
 - **Pathway** - Set of genes that work together to carry out a biological process
 
-- Gene set is a more general and less specific concept than pathway but the terms are often used interchangeably
+<br>
+
+- Gene set is a more general concept than pathway but the terms are often used interchangeably
+- In its simplest form, a gene set / pathway is stored in a database as a list of gene identifiers 
+  + Does not necessarily show interaction of genes within a set
 
 ## Methods of functional enrichment analysis
 
+<!--
 ```{r}
 #| fig-align: center
 #| out-height: 250px
@@ -45,57 +52,93 @@ knitr::include_graphics("img/overview-rnaseq-workflow.png")
 ## Source: http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf 
 knitr::include_graphics("img/types_method.png")
 ```
+-->
 
-- **ORA** - uses a list of differentially expressed genes as input
-- **FCS** - uses the entire matrix of genes as input (e.g. Gene Set Enrichment Analysis method / **GSEA**)
-- PT - similar to FCS but additionally uses the number and type of interactions between gene products, which may or may not be available from gene set/pathway databases used by tools
-
-<br/>
+1. **ORA** 
+   - Uses a list of differentially expressed genes as input
+2. **FCS** 
+   - Uses the entire matrix of genes as input but genes are ranked based on a gene-level statistic
+   - **GSEA** (Gene Set Enrichment Analysis) uses FCS approach
+3. PT 
+   - Similar to FCS but additionally considers other information like type of interactions between genes (e.g. activation or inhibition), whose availability depends on the database
+   - Changing interactions between genes affects PT result but not ORA or FCS
 
 - All methods output **list of significant gene sets/pathways in the condition under study**
 - <span style="color:green;">Let's focus first on ORA then discuss GSEA in comparison with ORA</span>
 
-# Over representation analysis (ORA)
+# Over-representation analysis (ORA)
 
 ## ORA workflow
 
-- Determine enrichment of each gene set/pathway (provided by databases) within our input gene list relative to a background gene list
+- Determine enrichment of each gene set/pathway within our input gene list relative to a background gene list
 
-```{r}
-#| fig-align: left
-#| out-height: 450px
-#| out-width: 900px
-## Source: custom-made (obds_sep2023/r/5_Pathway_analysis.pptx, slide 20)
-knitr::include_graphics("img/ora_flowchart.png")
-```
+1. **Input gene list/s**
+   + Gene list based on a threshold or criteria
+     - E.g. upregulated genes with log2 FC > 1 and padj < 0.05
+   + Background
+     - Built-in or user-defined
 
-## ORA analysis method
+1.a. **Gene sets / Pathways**
 
-1. **Make input list** of differentially expressed genes created using a specified threshold or criteria
-   + e.g. upregulated genes with log2 FC > 1 and padj < 0.05
+-
+   + Accessed by tools or by user from databases
+   + User-defined
+
+2. **Analysis test**
+   + Done and gives p-values per gene set/pathway
+
+3. **Multiple test correction** 
+   + Because we are testing multiple gene sets/pathways, we adjust the p-values  
+
+## 2. ORA analysis test
+
+For each gene set/pathway (e.g. immune response),
+
+- **Statistically test for over-representation** of gene set/pathway in your gene list (e.g. Fisher's exact test) -- gives p-value 
   
-2. For each gene set/pathway (provided by databases, e.g. immune response):
-   a. Count the number of **genes overlapping and not overlapping** with your (i.) input differentially expressed genes and (ii.) background
+  a. Count the number of **gene set/pathway genes overlapping and not overlapping** with your (i) gene list and (ii) background
    
-      ```{r}
-      #| fig-align: center
-      #| out-height: 200px
-      #| out-width: 450px
-      ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
-      knitr::include_graphics("img/fisher-test-table.svg")
-      ```
-    
-   b. **Statistically test for over-representation** of gene sets/pathways in the input list *via* e.g. Fisher's exact (based on hypergeometric distribution) / Chi-squared test -- gives p-value 
+  :::: {.columns}
 
-3. After all gene sets/pathways are tested, adjust p-values for multiple test correction
+  ::: {.column width="50%"}
 
-## Choosing background gene list
+  ```{r}
+  #| fig-align: center
+  #| out-height: 200px
+  #| out-width: 450px
+  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+  knitr::include_graphics("img/fisher-test-table.svg")
+  ```
 
-- Think of background as as list of genes that could have been positive or present in your input gene list! 
+  :::
+
+  ::: {.column width="50%"}
+
+  ```{r}
+  #| fig-align: center
+  #| out-height: 200px
+  #| out-width: 450px
+  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+  knitr::include_graphics("img/fisher-test-venn.svg")
+  ```
+
+  :::
+
+  ::::
+
+  b. Given background, calculate probability of the above combination happening and more extreme combinations
+     + <span style="color:red;">Add formula formal and less formal way, add link to pathway guide in case they ask about combinations</span>
+
+## Choosing background genes
+
+- Think of background as as list of genes that could have been positive or present in your gene list! 
   + Can exclude from background list genes that are not expressed in the experimental context
-  + When restricted to measuring certain types of genes (e.g. immunology / neuroscience genes using targeted expression panels), only include genes of that type in the background
+  + When restricted to measuring certain types of genes (e.g. kinase genes), only include genes of that type in the background
+  + Only include genes you could measure!
+  
+<br>
 
-- Important factor because the size and content of background gene lists can change the resulting enrichment p-values for each pathway / gene set
+- Important factor because the size and content of background can change the resulting enrichment p-values for each gene set /pathway
   + It changes the numbers in the previous table
 
 ## Databases of gene sets / pathways
@@ -148,10 +191,12 @@ knitr::include_graphics("img/go_mf.png")
 - A collection of manually drawn pathway maps representing molecular interaction and reaction networks
 - Divided into [7 broad categories](https://www.genome.jp/kegg/pathway.html)
 
+## Database 3: The Molecular Signatures Database (MSigDB)
+
 ## R packages to perform functional enrichment analysis
 
 - ORA
-  + [gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/index.html)
+  + [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html)
   + goseq, GOstats, topGO
 
 - FCS (GSEA)
@@ -159,7 +204,7 @@ knitr::include_graphics("img/go_mf.png")
 
 - Both
   + [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html)
-  + [fgsea](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
+  + [**fgsea**](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
   + [ReactomePA](https://bioconductor.org/packages/release/bioc/html/ReactomePA.html)
 
 - Web-based tools are also available
@@ -283,4 +328,16 @@ knitr::include_graphics("img/gsea_flowchart.png")
 ```{r}
 #| results: asis
 PrintBibliography(bib)
+```
+
+## ORA workflow
+
+- Determine enrichment of each gene set/pathway within our input gene list relative to a background gene list
+
+```{r}
+#| fig-align: left
+#| out-height: 450px
+#| out-width: 900px
+## Source: custom-made (obds_sep2023/r/5_Pathway_analysis.pptx, slide 20)
+knitr::include_graphics("img/ora_flowchart.png")
 ```
