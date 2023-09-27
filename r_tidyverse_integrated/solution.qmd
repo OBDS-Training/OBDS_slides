@@ -3,7 +3,10 @@ title: 'Solution: Integrated exercise using the <i class="fab fa-r-project"></i>
 author: "Kevin Rue-Albrecht"
 date: "2023-06-09"
 date-format: long
-format: html
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
 ---
 
 ```{r}
@@ -139,7 +142,8 @@ ggplot(exprs_sampleinfo, aes(unique_patient_ID, gene, fill = exprs)) +
 ```{r}
 # Copy the code chunk above and tweak the aes(...) contents.
 ggplot(exprs_sampleinfo, aes(interaction(unique_patient_ID, sex), gene, fill = exprs)) +
-  geom_tile() +
+  geom_tile() + 
+  facet_wrap(~sex, scales = "free_x") +
   scale_fill_viridis_c() +
   theme(
     axis.text.x = element_blank(), axis.ticks.x = element_blank(),
