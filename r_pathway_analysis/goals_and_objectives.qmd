@@ -8,8 +8,7 @@ This should be no more than 3 bullet points.
 -->
 
 - Understand why you might want to perform gene set/pathway analysis
-- Understand the difference between a gene set and a pathway
-- Be aware of the different methods of gene set/pathway analysis, and their pros and cons
+- Learn different methods of gene set/pathway analysis, and their requirements, and pros and cons
 
 ### Learning objectives
 
@@ -18,5 +17,5 @@ More concrete and measurable outputs.
 This can range from 3 to 8 bullet points.
 -->
 
-- Perform over-representation analysis and interpret output
-- Perform gene set enrichment analysis and interpret output
+- Perform over-representation analysis (ORA) and interpret output
+- Perform gene set enrichment analysis (GSEA) and interpret output
