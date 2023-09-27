@@ -174,7 +174,9 @@ iris %>%
 
 ```{r}
 #| echo: true
-iris %>% select(Sepal.Length, Sepal.Width, Species) %>% slice_head(n = 3)
+iris %>%
+  select(Sepal.Length, Sepal.Width, Species) %>%
+  slice_head(n = 3)
 ```
 
 ## Import and export data
@@ -285,7 +287,11 @@ The `tibble()` function is a nice way to create a tibble from scratch.
 
 ```{r}
 #| echo: true
-tibble(x = 1:5, y = 1, z = x ^ 2 + y)
+tibble(
+  x = 1:5,
+  y = 1,
+  z = x ^ 2 + y
+)
 ```
 
 ## Data exploration
@@ -373,7 +379,7 @@ Columns are treated sequentially, a single call to `mutate()` can create columns
 iris %>% mutate(
   ID = seq(1, nrow(iris)),
   Flower.ID = paste0(Species, ID)
-  ) %>% slice_head(n = 6)
+  )
 ```
 
 ## Subset observations in a table
@@ -385,8 +391,7 @@ The `filter()` function can be used to select rows of a table (i.e., observation
 ```{r}
 #| echo: true
 iris %>% 
-  filter(Sepal.Length > mean(Sepal.Length) & Sepal.Width > mean(Sepal.Width)) %>% 
-  as_tibble()
+  filter(Sepal.Length > mean(Sepal.Length) & Sepal.Width > mean(Sepal.Width))
 ```
 
 ## Compute summary statistics
@@ -435,19 +440,20 @@ The `arrange()` function can be used to order observations using values in certa
 ```{r}
 #| echo: true
 iris %>% 
-  arrange(Species, desc(Sepal.Length)) %>% 
-  as_tibble()
+  arrange(Species, desc(Sepal.Length))
 ```
 
-## Extract a single column as a vector
+## Extract a single column as a vector {.smaller}
+
+```{r}
+options(width = 90)
+```
 
 <br/>
 
 The `pull()` function can be used to extract a single column as a vector.
 
 - In particular, the `pull()` function has a `name=` argument that can be used to create a named vector.
-
-<br/>
 
 :::: {.columns}
 
@@ -456,8 +462,7 @@ The `pull()` function can be used to extract a single column as a vector.
 
 ```{r}
 #| echo: true
-iris %>% pull(Sepal.Length) %>% 
-  head(5)
+iris %>% pull(Sepal.Length)
 ```
 :::
 
@@ -466,12 +471,15 @@ iris %>% pull(Sepal.Length) %>%
 
 ```{r}
 #| echo: true
-iris %>% pull(Sepal.Length, name = Species) %>% 
-  head(5)
+iris %>% pull(Sepal.Length, name = Species)
 ```
 :::
 
 ::::
+
+```{r}
+options(width = 120)
+```
 
 ## Combine two tables using shared information
 
@@ -656,8 +664,10 @@ full_join(tibble_1, tibble_2, by = "ID")
 #### Exercise 2
 
 - For each species of iris, compute the mean of every column that is numeric.
-  **Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `base::is.numeric()`.
-- Filter the table above to retain only species of iris with an average sepal length less than `6`.
+
+**Hint:** use the functions `dplyr::across()`, `tidyselect::where()`, and `is.numeric()`.
+
+- Filter the table above to retain only species of iris with an average sepal length lower than `6`.
 - Sort the table above by descending `sepal_length`.
 - From the table above, extract the `sepal_length` column as a numeric vector.
   Make it a named numeric vector, where each value is named with the corresponding species.
@@ -678,7 +688,7 @@ Let's make the silly assumption that iris sepals are rectangular in shape.
 
 ### Bonus point
 
-- Make a histogram of `sepal_area` colored by species.
+- Make a histogram of `sepal_area` colored by species (for all 150 flowers).
 
 You might also want to facet the plot by species.
 
@@ -802,7 +812,7 @@ The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to
 - `str_length`: query the length of a string.
 - `str_to_lower` / `str_to_upper`: convert case of a string.
 
-## Extract substrings
+## Extract substrings {.smaller}
 
 The `str_sub()` function can be used to extract or replace substrings using the index of the start and end positions.
 
@@ -819,7 +829,7 @@ E.g., extract the unique substrings of the first three characters.
 
 ```{r}
 #| echo: true
-iris_species %>% str_sub(1, 3) %>% unique()
+iris_species %>% str_sub(1, 3)
 ```
 
 <br/>
@@ -829,7 +839,7 @@ E.g., replace the fourth character onwards by an ellipsis.
 ```{r}
 #| echo: true
 str_sub(iris_species, 4) <- "..."
-iris_species %>% unique()
+iris_species
 ```
 
 ## Join multiple strings and remove whitespaces

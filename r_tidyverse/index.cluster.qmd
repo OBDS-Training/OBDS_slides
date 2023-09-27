@@ -26,7 +26,9 @@ format:
 stopifnot(requireNamespace("htmltools"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
-stopifnot(require(magrittr))
+library(tidyverse)
+data("iris")
+iris <- as_tibble(iris)
 ```
 
 ```{r}
