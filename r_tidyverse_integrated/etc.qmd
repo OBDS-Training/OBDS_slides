@@ -16,7 +16,7 @@ You are expected you to use <i class="fab fa-r-project"></i> and `tidyverse` fun
 
 ### Part 1
 
-We provide you with an Excel file that contains gene expression data for the nine most highly variable genes in a pancreas cancer gene expression dataset (<https://portal.gdc.cancer.gov/projects/TCGA-PAAD>), as well as metadata for the individual samples and genes.
+We provide you with an Excel file `EH2011.xlsx` that contains gene expression data for the nine most highly variable genes in a pancreas cancer gene expression dataset (downloaded from <https://portal.gdc.cancer.gov/projects/TCGA-PAAD>), as well as metadata for the individual samples and genes.
 
 - Import the gene expression matrix from the Excel file into the R session as a `tibble`.
   Assign it to an object named `exprs_assay`.
