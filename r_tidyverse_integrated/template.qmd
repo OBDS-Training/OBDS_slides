@@ -137,7 +137,7 @@ ggplot(exprs_sampleinfo,   ) +
 - Repeat the heat map, grouping samples by sex.
 
 ```{r}
-# Copy the code chunk above and tweak the aes(...) contents.
+# Copy the code chunk above and edit as needed
 ggplot(exprs_sampleinfo,   ) +
 
 
