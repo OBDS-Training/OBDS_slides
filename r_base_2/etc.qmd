@@ -982,7 +982,7 @@ apply(X = m, MARGIN = 2, FUN = mean)
 
 ::::
 
-## Apply functions to vetors and lists
+## Apply functions to vectors and lists
 
 The function `lapply()`, `sapply()`, and `vapply()` can be used to apply functions to iterable objects such as vectors and lists.
 
