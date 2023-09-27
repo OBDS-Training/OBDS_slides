@@ -700,7 +700,7 @@ The `r BiocStyle::CRANpkg("tidyr")` package is mostly known for functions to res
 - `pivot_longer()`: "lengthens" data, increasing the number of rows and decreasing the number of columns.
   This generally "tidies" data.
 - `pivot_wider()`: Opposite of `pivot_longer`.
-- `separate()`: split the value of a column into multiple columns (e.g. sample name -> experimental conditions).
+- `separate()`: split the value of a column into multiple columns (e.g. sample name $\rightarrow$ experimental conditions).
 - `unite()`: Opposite of `separate`.
 
 ## Exercise
@@ -717,8 +717,6 @@ Reshape the `iris_raw` dataset in a tidy format where one observation is represe
 - the species
 - the variable measured
 - the value
-
-**Hint:** you want to pivot all the columns that are numeric.
 :::
 
 ::: {.column width="50%"}
@@ -730,6 +728,8 @@ iris %>%
 :::
 
 ::::
+
+**Hint:** you want to pivot all the columns that are numeric; use `pivot_longer()`.
 
 <br/>
 
