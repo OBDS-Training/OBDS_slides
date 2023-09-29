@@ -152,6 +152,7 @@ knitr::include_graphics("img/types_method.png")
 
 - Think of background as genes that could have been positive or present in your gene list! 
   + All genes in a species
+  + Only genes with annotation
   + Only genes that the method can measure (e.g. targeted expression panels)
   
 <br>
@@ -167,14 +168,14 @@ knitr::include_graphics("img/types_method.png")
   + Long standing curation
   + Availability for wide range of species
   
-<br>
-
 - Can either use gene sets from one or multiple databases at the same time
 - Considerations:
-  + Scope - species? pathway interactions available?
+  + Scope - species? [pathway interactions available](https://www.wikipathways.org/about.html)? specific for [disease ontology](https://disease-ontology.org)?
   + Curation - manual vs. electronic
-  + Actively maintained
+  + Actively maintained - new release?
   + [Evidence](https://geneontology.org/docs/guide-go-evidence-codes/)
+
+- Other databases - Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
 
 ## Database 1: [Gene Ontology (GO)](https://geneontology.org)
 
@@ -189,7 +190,7 @@ knitr::include_graphics("img/types_method.png")
 
 - 1 GO term ~ 1 gene set
 
-- From these 3 umbrella terms, other GO terms branch out forming a tree-like structure
+- From these 3 umbrella terms, other more specific GO terms branch out forming a tree-like structure
   + Where edges between terms represent parent-child relationship, 
   + Where 'child' terms are more specific than 'parent' terms
 
@@ -247,6 +248,7 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 
 - Gene list often comes from subsetting genes based on an arbitrary threshold
   + Information loss
+  + ORA result depends heavily on this threshold
 - Equal importance assigned to each gene
   + E.g. ignores fold changes from DE analysis
 
@@ -257,11 +259,11 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 ## Functional class scoring (FCS) 
 
 - While large changes in single genes can have significant effects on pathways 
-  + Detected by ORA *via* use of significantly differentially expressed genes as input
+  + Detected by ORA *via* use of significant differentially expressed genes as input
 
 <br>
 
-- Weaker but coordinated changes in groups of functionally-related genes (may not necessarily be significantly differentially expressed) may also have significant effects 
+- Weaker but coordinated changes in groups of functionally-related genes (may not necessarily be significantly differentially expressed) may also have significant effects
   + FCS can detect these weaker, coordinated changes
 
 <br>
@@ -273,7 +275,7 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 <span style="color:red;">**Difference vs. ORA**</span>
 
 1. <span style="color:red;">**Input gene list/s**</span>
-   + <span style="color:red;">**All** genes **ranked**</span> based on a gene-level statistic -- log2 FC
+   + <span style="color:red;">**All** genes **ranked**</span> based on a gene-level metric -- e.g. value combining log2 FC (strength and direction) and p-value (significance)
    
 1.a. **Gene sets / Pathways**
 
@@ -282,11 +284,13 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
    + Accessed from databases as a built-in functionality of enrichment analysis tools or user does this separately and inputs gene sets to tools
   
 2. <span style="color:red;">**Analysis method**</span>
-   + Done per gene set and so gives p-value and <span style="color:red;">**enrichment score**</span> per gene set
+   + Done per gene set giving an <span style="color:red;">**enrichment score** and corresponding **p-value**</span> per gene set
 
 3. **Multiple test correction** 
    + Because we are testing multiple gene sets, we adjust the p-values  
    
+- <span style="color:red;">Determine whether members of a gene set tend to be at the top or bottom of the ranked list</span>
+
 ## GSEA analysis method
 
 - Per gene set, calculate an **enrichment score** -- degree to which gene set is over-represented at the top or bottom of a ranked list of gene
@@ -295,35 +299,74 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
    
 ## Enrichment score per gene set
 
-- Test statistic for a gene set is a running sum or score
-  + <insert good image for explanation, maybe use actual output for them to be familiar?>
+:::: {.columns}
 
-## Enrichment score per gene set
+::: {.column width="45%"}
 
-- Null distribution (which gives p-value) is obtained *via* permutation testing by calculating a running sum many times, resulting into a distribution of test statistic values
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 450px
+## Source: https://www.pnas.org/doi/10.1073/pnas.0506580102#fig1
+knitr::include_graphics("img/gsea_escore_diagram.png")
+```
+
+`r Citet(bib, "subramanian_gene_2005")`
+
+:::
+
+::: {.column width="55%"}
+
+- Enrichment score is based on a running sum statistic that changes as we walk down the ranked list of genes
+  + Sum increases when gene encountered is in gene set S; decreases otherwise
+  + Degree of increase or decrease can be weighted based on the ranking metric
+  + **ES is the maximum deviation from 0**
+- If genes are ranked in decreasing order from top to bottom:
+  + ES > 0 - upregulated genes
+  + ES < 0 - downregulated genes
+
+:::
+
+::::
+
+- Leading edge subset - subset of your genes (present in gene set S) that contributed the most to the ES
+- Correlation with phenotype - plots the ranking metric for each gene
+- ES is normalised relative to the size of gene set to be comparable across gene sets (NES)
+
+## Significance of enrichment score per gene set
+
+- Null distribution (which gives p-value) is obtained *via* permutation testing by calculating a ES many times, resulting into a distribution of ES values
   + but each time shuffling the order of genes in the "ranked" list
 
 <br>
 
 - <span style="color:green;">Let's try to do GSEA then after that we can discuss the differences between ORA and GSEA</span>
 
-## Database 3: [Molecular Signatures Database](https://www.gsea-msigdb.org/gsea/msigdb)
-
 # Exercise - Perform GSEA using fgsea 
 
 ## ORA vs. FCS (GSEA)
 
-- Input
-- Analysis
-- Output
+::: {.small-table}
+|                                          | ORA                                  | GSEA                                 |
+|------------------------------------------|--------------------------------------|--------------------------------------|
+| <span style="color:red;">Input</span>    | Subset of genes based on a threshold | All genes ranked based on a metric   |
+| <span style="color:red;">Analysis</span> | Equal importance of genes            | Ranked importance of genes           |
+:::
 
-## ORA? GSEA? Both?
+- Output 
+  + List of gene sets, with significance, correlated with the condition you are studying 
 
-## Nine quick tips for pathway enrichment analysis
+## ORA? GSEA? PT? All?
 
-- Browse through [Nine quick tips for pathway enrichment analysis, 2022](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348)
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 800px
+## Source: https://biostatsquid.com/gene-set-enrichment-analysis/
+knitr::include_graphics("img/biostatsquid_fishes.png")
+```
 
-## Choosing ORA and GSEA tools
+## Choosing enrichment analysis tools
 
 - Interface of tool - web vs. script?
 - Gene set database access or usage
@@ -337,10 +380,12 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 ## Useful links
 
 - [Method review, 2019](https://www.nature.com/articles/s41596-018-0103-9)
+- [Nine quick tips for pathway enrichment analysis, 2022](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348)
 
 ## References
 
 - [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichment-overview.html)
+- [Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM)
 - [Fisher's Exact Test](https://www.pathwaycommons.org/guide/primers/statistics/fishers_exact_test/)
 - [Functional Analysis for RNA-seq](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/11_FA_functional_class_scoring.html)
 - [Introduction to Pathway and Network Analysis](http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf)
@@ -350,28 +395,3 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 #| results: asis
 PrintBibliography(bib)
 ```
-
-<!--
-
-# Extra - revisit
-
-## General limitations
-
-- Uses statistical procedures that assume independence among genes
-  + Estimated significance of a pathway may be biased or incorrect
-- Assumes each pathway is independent of other pathways
-  + GO processes are heirarchical
-  + Same gene can be present in multiple pathways, so identifying which gene set is the most relevant becomes problematic
-
-## ORA workflow
-
-- Determine enrichment of a gene set within an input gene list relative to a background 
-```{r}
-#| fig-align: left
-#| out-height: 450px
-#| out-width: 900px
-## Source: custom-made (obds_sep2023/r/5_Pathway_analysis.pptx, slide 20)
-knitr::include_graphics("img/ora_flowchart.png")
-```
-
--->
