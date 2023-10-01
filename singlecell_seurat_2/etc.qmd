@@ -35,7 +35,7 @@ knitr::include_graphics("img/seurat_workflow.png")
 ```{r}
 #| fig-align: center
 #| out-height: 525px
-#| out-width: 400px
+#| out-width: 800px
 ## Source: ahlmann-eltze_comparison_2023
 knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ```
@@ -44,7 +44,7 @@ knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ## sctransform `r Citep(bib, "hafemeister_normalization_2019")`
 
 - Gene group-specific factor used to normalise genes rather than constant factor as in global scaling normalisation
-1. Construct negative binomial generalised linear model (GLM) for each gene – sequencing depth on x (independent variable), log10(UMI count) on y (dependent variable)
+1. Construct negative binomial generalised linear model (GLM) for each gene – sequencing depth on x (independent variable), log~10~(UMI count) on y (dependent variable)
    + Accounts for sequencing depth by default
 2. Parameter estimates regularised (adjusted) to avoid model overfitting – pool information across genes
 
@@ -53,7 +53,7 @@ knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-width: 525px
+#| out-width: 1000px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
 knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 ```
@@ -70,8 +70,8 @@ knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 550px
+#| out-width: 575px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 10)
 knitr::include_graphics("img/sct_analysis_steps.png")
 ```
@@ -83,7 +83,7 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-width: 400px
+#| out-width: 800px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
 knitr::include_graphics("img/sct_vs_log_example.png")
 ```
@@ -97,7 +97,7 @@ knitr::include_graphics("img/sct_vs_log_example.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-width: 525px
+#| out-width: 900px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
 knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```
@@ -111,7 +111,7 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-width: 400px
+#| out-width: 1000px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/cell_hashing.png")
 ```
@@ -141,9 +141,9 @@ knitr::include_graphics("img/cell_hashing.png")
 
  
 ```{r}
-#| fig-align: center
+#| fig-align: right
 #| out-height: 300px
-#| out-width: 400px
+#| out-width: 700px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/why_cell_hashing.png")
 ```
@@ -152,8 +152,8 @@ knitr::include_graphics("img/why_cell_hashing.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 350px
+#| out-width: 1000px
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/evolution_cell_multiplexing.png")
 ```
@@ -170,8 +170,8 @@ knitr::include_graphics("img/evolution_cell_multiplexing.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 350px
+#| out-width: 1000px
 ## Source: https://www.nature.com/articles/s41467-019-10756-2
 knitr::include_graphics("img/nucleus_hashing.png")
 ```
@@ -181,8 +181,8 @@ knitr::include_graphics("img/nucleus_hashing.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 400px
+#| out-height: 350px
+#| out-width: 1000px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1865-2
 knitr::include_graphics("img/genetic_demultiplexing.png")
 ```
@@ -194,13 +194,30 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 - Enables comparison of multiple demultiplexing algorithms
 - Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq) 
 
+:::: {.columns}
+::: {.column width="50%"}
+
 ```{r}
 #| fig-align: center
-#| out-height: 200px
-#| out-width: 200px
+#| out-height: 400px
+#| out-width: 300px
 ## Source: https://bimberlab.github.io/cellhashR/articles/V03-Benchmark-example.html
-knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
+knitr::include_graphics("img/cellhashR_1.png")
 ```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 500px
+## Source: https://bimberlab.github.io/cellhashR/articles/V03-Benchmark-example.html
+knitr::include_graphics("img/cellhashR_2.png")
+```
+
+:::
+::::
 
 ## De-multiplexing samples : HTODemux 
 
@@ -219,8 +236,8 @@ knitr::include_graphics(c("img/cellhashR_1.png", "img/cellhashR_2.png"))
 
 ```{r}
 #| fig-align: center
-#| out-height: 525px
-#| out-width: 400px
+#| out-height: 400px
+#| out-width: 600px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1603-1
 knitr::include_graphics("img/HTODemux_example.png")
 ```
@@ -239,8 +256,8 @@ knitr::include_graphics("img/HTODemux_example.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 300px
-#| out-width: 400px
+#| out-height: 280px
+#| out-width: 800px
 ## Source: https://satijalab.org/seurat/articles/hashing_vignette.html
 knitr::include_graphics("img/seurat_HTODemux.png")
 ```
@@ -250,12 +267,12 @@ knitr::include_graphics("img/seurat_HTODemux.png")
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-width: 525px
+#| out-width: 750px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide 23)
 knitr::include_graphics("img/cell_hashing_data.png")
 ```
 
-## Exercise: Demultiplexing HTOs with HTODemux()
+## Exercise: Demultiplexing HTOs with `HTODemux()`
 
 - Data
   + Single cells collected from four cell lines: HEK, K562, KG1 and THP1
@@ -270,7 +287,7 @@ knitr::include_graphics("img/cell_hashing_data.png")
 3. Create SeuratObject with RNA and then add HTO as another assay
 4. Normalise/scale RNA data
 5. Normalise HTO data with CLR normalisation (margin=1)
-6. Demultiplex data using the HTODemux()
+6. Demultiplex data using the `HTODemux()`
 7. Evaluate the de-multiplexing classification results with plots
 8. Bonus: Evaluate HTO and RNA based clustering for demultiplexed samples
 9. Bonus: Evaluate RNA based clustering for demultiplexed samples
@@ -297,7 +314,7 @@ knitr::include_graphics("img/cell_hashing_data.png")
 - [Orchestrating single-cell analysis with Bioconductor](https://bioconductor.org/books/release/OSCA/)
 - [Normalization methods for single-cell RNA-Seq data (high-level overview) on YouTube by Florian Wagner](https://www.youtube.com/watch?v=huxkc2GH4lk)
 - [Harvard Bioinformatics Course training](https://hbctraining.github.io/main/#advanced-topics-analysis-of-high-throughput-sequencing-ngs-data)
-- [Resources compiled by Ming Tang](https://github.com/crazyhottommy/scRNAseq-analysis-notes)single
+- [Resources compiled by Ming Tang](https://github.com/crazyhottommy/scRNAseq-analysis-notes)
 
 ## References
 
