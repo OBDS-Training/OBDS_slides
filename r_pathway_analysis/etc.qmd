@@ -244,6 +244,25 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
   
 # Exercise - Perform ORA using gprofiler2 
 
+<!--
+
+### gost(ordered_query = TRUE)
+- "option that takes the ranking into account when performing enrichment tests. The testing is then performed iteratively, starting from the first gene and sequentially adding genes one by one. For every term, the smallest enrichment P-value is reported along with the corresponding gene list size. Consequently, for different terms the query size can vary, especially as the broader terms can be enriched for larger lists only. This option is very similar to the idea of the GSEA analysis method" `r Citet(bib, "kolberg_gprofiler2_2020")`
+
+### gost(exclude_iea = TRUE)
+- "would exclude the electronic GO annotations from the data source before testing. These are the terms with the IEA evidence code indicating that these annotations are assigned to genes using in silico curation methods." (gprofiler2 documentation)
+
+### GO ontology evidence codes
+- "Out of all the evidence codes available, only Inferred from Electronic Annotation (IEA) is not assigned by a curator. Manually-assigned evidence codes fall into four general categories: experimental (and experimental from high throughput experiments), computational analysis, author statements, and curatorial statements." 
+(https://lpalbou.github.io/docs/guide-go-evidence-codes/)
+- [IEA pipelines](https://wiki.geneontology.org/index.php/Inferred_from_Electronic_Annotation_(IEA))
+
+### g_SCS p-value adjustment method
+"In comparison to the latter two (Bonferroni and FDR), our algorithm takes into account the unevenly distributed structure of functionally annotated gene sets. Our simulations in (Nucleic Acids Research, 2007) show that g:SCS provides a better threshold between significant and non-significant results than FDR or BC." 
+(https://biit.cs.ut.ee/gprofiler/page/docs)
+
+-->
+
 ## Major limitations of ORA
 
 - Gene list often comes from subsetting genes based on an arbitrary threshold

@@ -12,6 +12,7 @@ output: html_document
 ### 1. Load libraries.
 
 ```{r}
+options(bitmapType='cairo') # For rendering 
 library(dplyr)
 library(tidyverse)
 library(gprofiler2)
@@ -32,16 +33,10 @@ dim(all_genes_df)
 head(all_genes_df)  
 ```
 
-- What type of R object is the table?
-
-```{r}
-class(all_genes_df)
-```
-
 ### 3. Create input gene lists.
 
 - Create these 3 data frames by subsetting the original one:
-  + **all_genes_tested_df** object containing table of all genes tested in the differential expression analysis, which will be the background or control set
+  + **all_genes_tested_df** object containing table of all genes tested in the differential expression analysis, which will be the background set
   + **upreg_genes_df** object containing all significantly upregulated genes ('padj' < 0.05 & 'log2FoldChange' > 1)
   + **downreg_genes_df** object containing all significantly downregulated genes ('padj' < 0.05 & 'log2FoldChange' < -1)
 
@@ -86,21 +81,38 @@ gost_results_obj <- gost(query = upreg_gene_ids,
                          multi_query = FALSE, 
                          significant = TRUE, 
                          exclude_iea = TRUE, 
-                         measure_underrepresentation = FALSE, 
+                         measure_underrepresentation = TRUE, 
                          evcodes = FALSE, 
                          user_threshold = 0.05, 
                          correction_method = "g_SCS",  
-                         domain_scope = "custom_annotated",  
+                         domain_scope = "custom_annotated", #"custom_annotated",  
                          custom_bg = all_gene_ids, 
                          numeric_ns = "", 
                          sources = NULL, 
                          as_short_link = FALSE,
                          highlight = FALSE)
 
-# `exclude_iea` - Change to `TRUE` if we want to be stringent with gene sets considered i.e. only look at well-annotated gene sets
-# `correction_method = "g_SCS"` - This is their own multiple testing correction; more stringent than Bonferroni or Benjamini-Hochberg
-# `domain_scope` - No need to set if providing custom background
-# `custom_bg = all_gene_ids` - # Background gene list
+# gost() parameters:
+
+## `ordered_query` - Change to `TRUE` if input gene list is ranked; "testing is then performed iteratively, starting from the first gene and sequentially adding genes one by one" (kolberg_gprofiler2_2020)
+
+## `exclude_iea` - Change to `TRUE` if we want to be stringent with gene sets considered i.e. only look at curated GO gene sets
+
+## `correction_method = "g_SCS"` - This is their own multiple testing correction; more stringent than Bonferroni or Benjamini-Hochberg, takes into account the unevenly distributed structure of functionally annotated gene sets
+
+## `domain_scope = "custom_annotated"` - "Use the set of genes that are annotated in the data source and are also included in the user provided background list (documentation)"
+
+# gost() output coulumns:
+
+## query_size - See gprofiler2 documentation
+
+## precision - "the proportion of genes in the input list that are annotated to the function (defined as intersection_size/query_size)"
+
+## recall - "the proportion of functionally annotated genes that the query recovers (defined as intersection_size/term_size)"
+
+## effective_domain_size - Different per source when `domain_scope = "custom_annotated"` because number of genes annotated differs across sources
+
+## source_order - "numeric order for the term within its data source (this is important for drawing the results)"; closely related terms are closer to each other in the order
 ```
 
 - What type of object is the output? Explore contents.
@@ -114,6 +126,10 @@ b. Plot our results using a function from gprofiler2. Which one is it?
 
 ```{r}
 gostplot(gost_results_obj, capped = TRUE, interactive = TRUE)
+
+# 
+
+## size of cirle - term size
 ```
 
 c. What does `as_short_link = FALSE` do in `gost()` function? 
@@ -129,7 +145,7 @@ gost_results_obj_link <- gost(query = upreg_gene_ids,
                          evcodes = FALSE, 
                          user_threshold = 0.05, 
                          correction_method = "g_SCS",  
-                         domain_scope = "custom_annotated", # 
+                         domain_scope = "custom_annotated",  
                          custom_bg = all_gene_ids, 
                          numeric_ns = "", 
                          sources = NULL, 
@@ -141,14 +157,14 @@ gost_results_obj_link
 # Check 'Detailed Results' tab; see g:Profiler docs (https://biit.cs.ut.ee/gprofiler/page/docs) to learn more about the website
 ```
 
-d. Filter results table for gene sets with between 5-300 genes, inclusive. 
+d. Filter results table for gene sets with between 5-300 genes, inclusive. Examine results subset.
 
 ```{r}
-gost_results_df <- gost_results_obj$result
-gost_results_df_5to300_genes <- gost_results_df  %>% 
-                                  filter(term_size >= 5) %>% 
-                                  filter(term_size <= 300)
-head(gost_results_df_5to300_genes)
+gost_results_obj_filtered <- gost_results_obj
+gost_results_obj_filtered$result <- gost_results_obj_filtered$result %>%
+  filter(term_size >= 5 & term_size <= 300)
+  
+gostplot(gost_results_obj_filtered, capped = TRUE, interactive = TRUE)
 ```
 
 e. Try querying multiple gene lists at the same time (up and down regulated genes) using the parameter to specify multiple queries.
@@ -160,6 +176,7 @@ multi_gostquery_results_obj <- gost(query = list("upreg_genes" = upreg_gene_ids,
                                     multi_query = TRUE,
                                     exclude_iea = TRUE, 
                                     correction_method = "g_SCS", 
+                                    domain_scope = "custom_annotated",
                                     custom_bg = all_gene_ids)
 ```
 
