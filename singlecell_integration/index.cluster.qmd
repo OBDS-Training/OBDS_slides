@@ -59,7 +59,7 @@ NoCite(bib, "R")
 
 ## Set up
 
-- Launch RStudio Server on the teaching cluster.xx
+- Launch RStudio Server on the teaching cluster.
 - Start a new RStudio project called `singlecell_integration`.
 - Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.

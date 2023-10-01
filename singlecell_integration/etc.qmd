@@ -23,7 +23,7 @@
 ```{r}
 #| fig-align: center
 #| out-height: 250px
-#| out-width: 450px
+#| out-width: 500px
 ## Source: custom-made? (scRNA-seq_integration slide 3)
 knitr::include_graphics("img/merged_vs_integrated.png")
 ```
@@ -57,8 +57,8 @@ knitr::include_graphics("img/merged_vs_integrated.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 525px
+#| out-height: 350px
+#| out-width: 500px
 ## Source: OSCA book
 knitr::include_graphics("img/tsne_batch_effect.png")
 ```
@@ -74,7 +74,7 @@ knitr::include_graphics("img/tsne_batch_effect.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 525px
+#| out-height: 500px
 #| out-width: 1000px
 ## Source: https://www.nature.com/articles/s41587-019-0113-3
 knitr::include_graphics("img/stitched_panorama.png")
@@ -85,7 +85,7 @@ knitr::include_graphics("img/stitched_panorama.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
+#| out-height: 350px
 #| out-width: 700px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1850-9
 knitr::include_graphics("img/integration_methods_1.png")
@@ -153,7 +153,7 @@ Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 
 ```{r}
 #| fig-align: center
-#| out-height: 300px
+#| out-height: 200px
 #| out-width: 600px
 ## Source: custom-made? (scRNA-seq_integration slide 9)
 knitr::include_graphics("img/batch_linear_regression_tsne.png")
@@ -186,7 +186,7 @@ knitr::include_graphics("img/mnn_integration.png")
 ```{r}
 #| fig-align: center
 #| out-height: 350px
-#| out-width: 700px
+#| out-width: 900px
 ## Source: https://www.nature.com/articles/s41592-019-0619-0
 knitr::include_graphics("img/integration_with_harmony.png")
 ```
@@ -207,7 +207,7 @@ knitr::include_graphics("img/integration_with_harmony.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
+#| out-height: 450px
 #| out-width: 525px
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
 knitr::include_graphics("img/integration_using_Seuratv3.png")
@@ -222,7 +222,7 @@ knitr::include_graphics("img/integration_using_Seuratv3.png")
 ```{r}
 #| fig-align: center
 #| out-height: 400px
-#| out-width: 650px
+#| out-width: 700px
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
 knitr::include_graphics("img/assembly_integration_Seuratv3.png")
 ```
@@ -377,7 +377,7 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 
 ## Bonus exercises
 
-- Perform batch correction using Harmony (see [Seurat wrapper for Harmony](https://github.com/satijalab/seurat-wrappers)
+- Perform batch correction using Harmony (see [Seurat wrapper for Harmony](https://github.com/satijalab/seurat-wrappers))
 - Compute LISI to evaluate the integration methods
 
 ## Useful links 

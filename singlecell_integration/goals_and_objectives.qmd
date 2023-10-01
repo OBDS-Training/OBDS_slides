@@ -7,8 +7,8 @@ High-level "big picture" objectives of the learning process.
 This should be no more than 3 bullet points.
 -->
 
-- Understand integration and batch correction of single-cell datasets
-- Learn integration and batch correction methods
+- Understand integration and batch correction of single-cell datasets.
+- Learn integration and batch correction methods.
 
 ### Learning objectives
 
@@ -17,6 +17,6 @@ More concrete and measurable outputs.
 This can range from 3 to 8 bullet points.
 -->
 
-- Analyse multiple single-cell RNA-seq datasets without integration
-- Analyse multiple single-cell RNA-seq datasets with integration using Seurat and/or Harmony
-- Compare results
+- Analyse multiple single-cell RNA-seq datasets without integration.
+- Analyse multiple single-cell RNA-seq datasets with integration using Seurat and/or Harmony.
+- Compare results.
