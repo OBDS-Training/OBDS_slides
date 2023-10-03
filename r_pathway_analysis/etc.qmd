@@ -72,6 +72,11 @@ knitr::include_graphics("img/types_method.png")
 - All methods can output a **list of significant gene sets/pathways in the condition under study**
 - <span style="color:green;">Let's focus first on ORA then discuss GSEA in comparison with ORA</span>
 
+<!--
+log2FC of X translates to 2^X-fold increase 
+log2FC of 3 translates to (2^3)8-fold increase
+-->
+
 # Over-representation analysis (ORA)
 
 ## ORA workflow
@@ -350,7 +355,15 @@ knitr::include_graphics("img/gsea_escore_diagram.png")
 
 - Leading edge subset - subset of your genes (present in gene set S) that contributed the most to the ES
 - Correlation with phenotype - plots the ranking metric for each gene
-- ES is normalised relative to the size of gene set to be comparable across gene sets (NES)
+- ES is normalised (NES) to be comparable across gene sets of different sizes 
+
+<!-- 
+Recall that the enrichment score is a function of the size of the gene set nk. This means that enrichment scores must be normalized for gene set size. GSEA solves this problem by applying a transformation to calculated enrichment scores such that they lie on a comparable scale. In particular, this normalized enrichment score (NES) is the enrichment score divided by the expected value (i.e. average) of the corresponding null distribution.  
+
+Given the observed and null normalized enrichment scores, the FDR can be calculated using an approach similar to that described in the previous section (equation (13)).
+
+(https://www.pathwaycommons.org/guide/primers/data_analysis/gsea/)
+-->
 
 ## Significance of enrichment score per gene set
 
