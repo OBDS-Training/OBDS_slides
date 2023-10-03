@@ -1,6 +1,6 @@
 ---
 title: 'Integrated tidyverse exercise'
-subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
+subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-09-27 (updated: `r Sys.Date()`)"
