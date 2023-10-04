@@ -12,7 +12,7 @@ output: html_document
 ### 1. Load libraries.
 
 ```{r}
-options(bitmapType='cairo') # For rendering 
+#options(bitmapType = 'cairo') # For rendering 
 library(dplyr)
 library(tidyverse)
 library(gprofiler2)
@@ -43,6 +43,8 @@ head(all_genes_df)
 ```{r}
 all_genes_tested_df <- all_genes_df %>% 
                           dplyr::filter(padj !="NA")
+
+# P-values set to NA are those from genes with all counts equal to zero (https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-are-some-p-values-set-to-na)
   
 upreg_genes_df <- all_genes_tested_df %>% 
                      dplyr::filter(padj < 0.05 & log2FoldChange > 1)
@@ -54,6 +56,7 @@ downreg_genes_df <- all_genes_tested_df %>%
 - Check the dimensions of the data frames.
 
 ```{r}
+dim(all_genes_df)
 dim(all_genes_tested_df)
 dim(upreg_genes_df)
 dim(downreg_genes_df)
@@ -62,14 +65,14 @@ dim(downreg_genes_df)
 - From each of the 3 data frames, get a vector of the Ensembl ids.
 
 ```{r}
-all_gene_ids <- all_genes_tested_df %>% pull(gene_id)
+all_gene_tested_ids <- all_genes_tested_df %>% pull(gene_id)
 upreg_gene_ids <- upreg_genes_df %>% pull(gene_id)
 downreg_gene_ids <- downreg_genes_df %>% pull(gene_id)
 ```
 
 ### 4. Perform ORA using **gprofiler2**.
 
-a. First, we want to do ORA on upregulated genes  (vs. all genes tested as background). What function from gprofiler2 should we use? What parameters of that function should we include or change? Look at the [documentation](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html). 
+a. First, we want to do ORA on upregulated genes (vs. all genes tested as background). What function from gprofiler2 should we use? What parameters of that function should we include or change? Look at the [documentation](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html). 
 
 ```{r}
 ?gost() # Get help for function
@@ -81,16 +84,17 @@ gost_results_obj <- gost(query = upreg_gene_ids,
                          multi_query = FALSE, 
                          significant = TRUE, 
                          exclude_iea = TRUE, 
-                         measure_underrepresentation = TRUE, 
+                         measure_underrepresentation = FALSE, 
                          evcodes = FALSE, 
                          user_threshold = 0.05, 
                          correction_method = "g_SCS",  
-                         domain_scope = "custom_annotated", #"custom_annotated",  
-                         custom_bg = all_gene_ids, 
+                         domain_scope = "custom_annotated",
+                         custom_bg = all_gene_tested_ids, 
                          numeric_ns = "", 
                          sources = NULL, 
                          as_short_link = FALSE,
                          highlight = FALSE)
+                         
 
 # gost() parameters:
 
@@ -127,9 +131,7 @@ b. Plot our results using a function from gprofiler2. Which one is it?
 ```{r}
 gostplot(gost_results_obj, capped = TRUE, interactive = TRUE)
 
-# 
-
-## size of cirle - term size
+## size of circle - term size
 ```
 
 c. What does `as_short_link = FALSE` do in `gost()` function? 
@@ -145,12 +147,13 @@ gost_results_obj_link <- gost(query = upreg_gene_ids,
                          evcodes = FALSE, 
                          user_threshold = 0.05, 
                          correction_method = "g_SCS",  
-                         domain_scope = "custom_annotated",  
-                         custom_bg = all_gene_ids, 
+                         domain_scope = "custom_annotated",
+                         custom_bg = all_gene_tested_ids, 
                          numeric_ns = "", 
                          sources = NULL, 
                          as_short_link = TRUE,
                          highlight = FALSE)
+
 gost_results_obj_link
 
 # This gives you a url where you can quickly and easily visualise your data and send the link to others to see it too
@@ -160,10 +163,15 @@ gost_results_obj_link
 d. Filter results table for gene sets with between 5-300 genes, inclusive. Examine results subset.
 
 ```{r}
+gost_results_obj_filtered_df <- gost_results_obj$result
+gost_results_obj_filtered_df <- gost_results_obj_filtered_df %>%
+  filter(term_size >= 5 & term_size <= 300) %>% 
+  arrange(p_value)
+
+#
+
 gost_results_obj_filtered <- gost_results_obj
-gost_results_obj_filtered$result <- gost_results_obj_filtered$result %>%
-  filter(term_size >= 5 & term_size <= 300)
-  
+gost_results_obj_filtered$result <- gost_results_obj_filtered_df
 gostplot(gost_results_obj_filtered, capped = TRUE, interactive = TRUE)
 ```
 
@@ -177,7 +185,7 @@ multi_gostquery_results_obj <- gost(query = list("upreg_genes" = upreg_gene_ids,
                                     exclude_iea = TRUE, 
                                     correction_method = "g_SCS", 
                                     domain_scope = "custom_annotated",
-                                    custom_bg = all_gene_ids)
+                                    custom_bg = all_gene_tested_ids)
 ```
 
 f. Can you plot these queries together?
@@ -186,12 +194,12 @@ f. Can you plot these queries together?
 gostplot(multi_gostquery_results_obj, capped = TRUE, interactive = TRUE)
 ```
 
-g. Output the get_version_info() to save the versions of the databases that were used for the analysis!
+g. Output the `get_version_info()` to save the versions of the databases that were used for the analysis!
 ```{r}
 get_version_info('mmusculus')
 ```
 
-### 5. Output the sessionInfo() to have a record of packages used.
+### 5. Output the `sessionInfo()` to have a record of packages used.
 
 ```{r}
 sessionInfo()

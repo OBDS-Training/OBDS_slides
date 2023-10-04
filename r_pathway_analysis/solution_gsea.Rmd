@@ -91,11 +91,18 @@ h_gene_sets <- msigdbr(species = "Mus musculus", # Either scientific or common n
 class(h_gene_sets)
 ```
 
-- The `fgsea()` function accepts a **list** of gene sets. Create this list from **h_gene_sets** using `split()`. 
+- Remove genes in `h_gene_sets` that were not considered in the differential expression analysis.
 
 ```{r}
-hallmark_list <- split(x = h_gene_sets$ensembl_gene,
-                       f = h_gene_sets$gs_name)
+h_gene_sets_filtered <- h_gene_sets %>% 
+  filter(ensembl_gene %in% all_genes_tested_df$gene_id)
+```
+
+- The `fgsea()` function accepts a **list** of gene sets. Create this list from **h_gene_sets** using base function `split()`.
+
+```{r}
+hallmark_list <- split(x = h_gene_sets_filtered$ensembl_gene,
+                       f = h_gene_sets_filtered$gs_name)
 ```
 
 ### 5. Perform GSEA using **fgsea**.
@@ -103,11 +110,10 @@ hallmark_list <- split(x = h_gene_sets$ensembl_gene,
 ```{r}
 fgseaRes <- fgsea(pathways=hallmark_list, 
                   stats=ranks, 
-                  nperm=1000, 
                   maxSize=500)
 ```
 
-- Tidy the result
+- Convert result to tibble and arrange by normalised enrichment score
 
 ```{r}
 fgseaResTidy <- fgseaRes %>%
@@ -115,22 +121,13 @@ fgseaResTidy <- fgseaRes %>%
   arrange(desc(NES))
 ```
 
-- Show in a nice table
+- Plot the normalized enrichment scores per pathway. Arrange the pathways based on NES using `reorder()`. Colour the bar indicating whether or not the gene set / pathway was significant. 
 
 ```{r}
-fgseaResTidy %>% 
-  dplyr::select(-leadingEdge, -ES, -nMoreExtreme) %>% 
-  arrange(padj) %>% 
-  DT::datatable()
-```
-- Plot the normalized enrichment scores. Colour the bar indicating whether or not the gene set / pathway was significant. 
-
-```{r}
-ggplot(fgseaResTidy, aes(reorder(pathway, NES), NES)) +
-  geom_col(aes(fill=padj < 0.05)) +
-  coord_flip() +
-  labs(x="Pathway", y="Normalized Enrichment Score",
-       title="Hallmark pathways NES from GSEA") + 
+ggplot(fgseaResTidy, aes(NES, reorder(pathway, NES))) +
+  geom_col(aes(fill = padj < 0.05)) +
+  labs(x = "Normalized Enrichment Score", y = "",
+       title = "Hallmark pathways NES from GSEA") + 
   theme_minimal()
 ```
 
