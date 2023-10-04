@@ -199,13 +199,13 @@ dds <- DESeqDataSetFromMatrix(
 - Use the function `class()` to demonstrate that the object `dds` is a `DESeqDataSet`.
 
 ```{r}
-
+class(dds)
 ```
 
 - Use the function `is()` to demonstrate that `dds` is also a `SummarizedExperiment`.
 
 ```{r}
-
+is(dds, "SummarizedExperiment")
 ```
 
 - Given that `dds` is a `SummarizedExperiment`, what do the following methods tell you about `dds`?
