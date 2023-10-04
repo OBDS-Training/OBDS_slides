@@ -75,7 +75,7 @@ sample_info <- read_tsv( )
 sample_info
 ```
 
-- What is the class of the column called `cell_type`?
+- What is the type of the column called `cell_type`?
 
 ```{r}
 

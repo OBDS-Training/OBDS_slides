@@ -75,10 +75,10 @@ sample_info <- read_tsv("data/PRJEB18572_sample_info.tsv")
 sample_info
 ```
 
-- What is the class of the column called `cell_type`?
+- What is the type of the column called `cell_type`?
 
 ```{r}
-class(sample_info$cell_type)
+typeof(sample_info$cell_type)
 ```
 
 - Convert the column `cell_type` to a factor.

@@ -466,6 +466,7 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
   and use the function `read_tsv()`
   to import count data from the file `allsamples_counts.tsv.gz`
   into a tibble called `featurecounts_table`.
+  Specify `comment = "#"` to skip lines of comments.
   Display a preview of `featurecounts_table` using the function `glimpse()`.
 - Extract gene metadata from the tibble `featurecounts_table` into a new tibble called `gene_info`.
   Display a preview of `gene_info` using the function `glimpse()`.
@@ -483,7 +484,7 @@ In this lesson, we use RNA-seq data obtained from the European Nucleotide Archiv
   into a tibble called `sample_info`
   using the tidyverse function `read_tsv()`.
   Display the object `sample_info`.
-- What is the class of the column called `cell_type`?
+- What is the type of the column called `cell_type`?
 - Convert the column `cell_type` to a factor.
 - What is the default order of the levels of that factor?
 - One more time, convert the column `cell_type` to a factor,
@@ -1306,6 +1307,7 @@ x <- tibble(
 ggplot(x, aes(SampleName, sizeFactor, fill = dex, group = dex)) +
   geom_col() +
   theme_minimal() +
+  scale_y_continuous(limits = c(0, 1.5)) +
   theme(
     title = element_text(size = 20),
     text = element_text(size = 14),
@@ -1423,7 +1425,7 @@ $$\sim 0 + dex + cell$$
 
 The expression of gene $i$ in sample $j$ is modelled as
 
-$$y = \beta_{0} + \beta_{dex}X_{dex} + \beta_{cell}X_{cell} + \epsilon$$
+$$y_{i,j} = \beta_{0} + \beta_{dex}X_{dex} + \beta_{cell}X_{cell} + \epsilon_{i,j}$$
 :::
 
 ::: {.column width="50%"}
