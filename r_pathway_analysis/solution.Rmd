@@ -12,7 +12,7 @@ output: html_document
 ### 1. Load libraries.
 
 ```{r}
-#options(bitmapType = 'cairo') # For rendering 
+options(bitmapType = 'cairo') # For rendering 
 library(dplyr)
 library(tidyverse)
 library(gprofiler2)
