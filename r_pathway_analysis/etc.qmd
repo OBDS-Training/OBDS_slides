@@ -68,6 +68,10 @@ knitr::include_graphics("img/types_method.png")
    - Similar to FCS but 
    - Unlike the first two, needs pathways with information like type of interactions between genes (e.g. activation or inhibition); <span style="color:red;">not all databases have this information</span>
    - Changing interactions between genes in a set affects PT result but not ORA or FCS
+   
+<!--
+   - "Even if these methods generally produce more precise results, they suffer from the limitation of using a gene topology based on the single cell type in use [24]. Moreover, the topologies of the genes are far from being final and might change as the general biology understanding advances (Nine quick tips for pathway enrichment analysis)"
+-->
 
 - All methods can output a **list of significant gene sets/pathways in the condition under study**
 - <span style="color:green;">Let's focus first on ORA then discuss GSEA in comparison with ORA</span>
@@ -372,6 +376,10 @@ knitr::include_graphics("img/gsea_escore_diagram.png")
 - If genes are ranked in decreasing order from top to bottom:
   + ES > 0 - upregulated genes
   + ES < 0 - downregulated genes
+  
+<!-- 
+For multiple peaks i.e. below and above 0, the maximum of the absolute values will be taken. 
+-->
 
 :::
 

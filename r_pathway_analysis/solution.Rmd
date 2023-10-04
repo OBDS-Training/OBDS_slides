@@ -106,6 +106,8 @@ gost_results_obj <- gost(query = upreg_gene_ids,
 
 ## `domain_scope = "custom_annotated"` - "Use the set of genes that are annotated in the data source and are also included in the user provided background list (documentation)"
 
+## `sources` - "We recommend that initial pathway enrichment analyses includes only biological processes (BPs) of GO and molecular pathways of Reactome. Large pathways are of limited interpretative value, whereas numerous small pathways decrease the statistical power because of excessive multiple testing. (doi: 10.1038/s41596-018-0103-9)"
+
 # gost() output coulumns:
 
 ## query_size - See gprofiler2 documentation
