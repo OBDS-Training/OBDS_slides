@@ -16,7 +16,6 @@ library(dplyr)
 library(tidyverse)
 library(fgsea)
 library(msigdbr)
-library(DT)
 ```
 
 ### 2. Read in output table of differentially expressed genes from DESeq2.
