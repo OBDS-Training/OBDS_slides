@@ -363,8 +363,6 @@ library(RColorBrewer)
 dds_dist <- dist(t(assay(dds_rlog)))
 blue_colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
 pheatmap(as.matrix(dds_dist),
-    clustering_distance_rows = dds_dist,
-    clustering_distance_cols = dds_dist,
     color = blue_colors
 )
 ```

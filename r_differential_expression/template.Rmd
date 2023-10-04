@@ -363,8 +363,6 @@ library(RColorBrewer)
 dds_dist <- 
 blue_colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
 pheatmap(,
-    ,
-    ,
     color = blue_colors
 )
 ```
