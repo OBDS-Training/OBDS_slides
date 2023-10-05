@@ -41,8 +41,8 @@ head(all_genes_df)
   + **downreg_genes_df** object containing all significantly downregulated genes ('padj' < 0.05 & 'log2FoldChange' < -1)
 
 ```{r}
-all_genes_tested_df <- all_genes_df %>% 
-                          dplyr::filter(padj !="NA")
+all_genes_tested_df <- all_genes_df %>%
+  dplyr::filter(!is.na(padj))
 
 # P-values set to NA are those from genes with all counts equal to zero (https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-are-some-p-values-set-to-na)
   

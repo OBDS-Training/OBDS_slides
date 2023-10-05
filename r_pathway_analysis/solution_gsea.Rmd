@@ -29,8 +29,8 @@ all_genes_df <- read_csv("./data/dds_results.csv")
 - Create **all_genes_tested_df** object containing table of all genes tested in the differential expression analysis.
 
 ```{r}
-all_genes_tested_df <- all_genes_df %>% 
-                          dplyr::filter(padj !="NA")
+all_genes_tested_df <- all_genes_df %>%
+  dplyr::filter(!is.na(padj))
 ```
 
 - All we’ll care about later on is the gene identifier and a gene-level statistic to rank the genes i.e. log2FoldChange. Simplify list by getting just those columns.  
