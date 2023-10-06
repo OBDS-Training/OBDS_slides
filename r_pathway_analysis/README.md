@@ -39,6 +39,13 @@ Requirements:
    
 ### 2024 Jan - Liezel
 
+General
+- [ ] During lecture, just focus on needed details and just elaborate 
+when they start asking e.g. (1) in the enrichment 
+score slide just explain enrichment and not focus on other stuff like 
+correlation, leading edge (2) when going through gost function just don't go 
+through all parameters rather focus on how to get the base arguments right
+
 Lesson
 - [ ] Add packages for pathway topology
 - [ ] Mention a simplified explanation of pathway topology
