@@ -59,12 +59,18 @@ Groups 1-3 still display a relationship between sequencing depth and gene expres
 
 Normalisation factors specific to groups of genes rather than constant factor as in global scaling normalisation.
 
-### Steps
+#### Step 1
 
-1. Construct a negative binomial generalised linear model (GLM) for each gene
-  – Log~10~UMI counts (the dependent variable $y$) is modelled against the sequencing depth (predictor variable $x$).
-  - The model accounts for sequencing depth.
-2. Parameter estimates are regularised to avoid model overfitting, pooling information across genes.
+Construct a negative binomial generalised linear model (GLM) for each gene.
+
+::: {.callout-note}
+- Log~10~UMI counts (the dependent variable $y$) is modelled against the sequencing depth (predictor variable $x$).
+- The model accounts for sequencing depth.
+:::
+
+#### Step 2
+
+Parameter estimates are regularised to avoid model overfitting, pooling information across genes.
 
 <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1>
 
