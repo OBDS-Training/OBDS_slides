@@ -104,7 +104,7 @@ Residuals from this model are taken as the normalised expression values.
 Pearson residuals (raw residuals divided by expected standard deviation of residuals) are taken as the scaled expression values
 
 ::: {.callout-note}
-– Accounts for association between gene expression and variance.
+- Accounts for association between gene expression and variance.
 - Can be used to identify genes with unexpectedly high variance.
 :::
 
