@@ -133,7 +133,7 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 
 ## Comparison example
 
-- Sharper biological distinctions
+SCTransform tends to produce sharper distinctions.
 
 ```{r}
 #| fig-align: center
@@ -145,9 +145,15 @@ knitr::include_graphics("img/sct_vs_log_example.png")
 
 ## Exercise: log vs. sctransform normalisation
 
-1. Compare clustering results following basic normalisation and sctransform normalisation – can you notice any differences?
+- Compare clustering results following basic normalisation and sctransform normalisation.
 
-2. Bonus: Perform  ORA pathway analysis on cluster markers (DEGs between clusters) using gprofiler2 and plot the results
+::: {style="text-align: center;"}
+**Can you notice any differences? How would you describe them?**
+:::
+
+#### Bonus
+
+Perform  ORA pathway analysis on cluster markers (DEGs between clusters) using gprofiler2 and plot the results.
 
 ```{r}
 #| fig-align: center

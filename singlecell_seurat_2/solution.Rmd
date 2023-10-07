@@ -22,7 +22,6 @@ library(gprofiler2)
 - use the `readRDS()` function to read in previously saved object
 
 ```{r}
-
 # Need to update the file path here 
 seurat_after_qc <- readRDS(file= "data/seurat_after_qc.rds")
 ```
