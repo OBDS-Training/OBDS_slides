@@ -143,7 +143,7 @@ SCTransform tends to produce sharper distinctions.
 knitr::include_graphics("img/sct_vs_log_example.png")
 ```
 
-## Exercise: log vs. sctransform normalisation
+## Exercise
 
 - Compare clustering results following basic normalisation and sctransform normalisation.
 
