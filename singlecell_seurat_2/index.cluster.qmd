@@ -1,7 +1,7 @@
 ---
 title: 'Single-cell analysis using Seurat, part 2'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
-author: "Updated from Devika Agarwal, Carla Cohen"
+author: "Kevin Rue-Albrecht & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-10-10 (updated: `r Sys.Date()`)"
 date-format: long
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Updated from Devika Agarwal, Carla Cohen -- Single-cell analysis using Seurat, part 2
+    footer: Kevin Rue-Albrecht & Liezel Tamon -- Single-cell analysis using Seurat, part 2
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("./singlecell_seurat_2/index.cluster.html")
 # ^If throwing error, set: 
@@ -53,13 +53,18 @@ NoCite(bib, "R")
 #| child: goals_and_objectives.qmd
 ```
 
+## Credits
+
+- Devika Agarwal
+- Carla Cohen
+
 ## Prerequisites
 
 - An account on the teaching cluster.
 
 ## Set up
 
-- Launch RStudio Server on the teaching cluster.xx
+- Launch RStudio Server on the teaching cluster.
 - Start a new RStudio project called `seurat_2`.
 - Make a copy of the template notebook for this lesson in your RStudio project.
 - Open the notebook and follow along, editing and running the code as needed.
