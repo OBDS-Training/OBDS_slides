@@ -121,7 +121,7 @@ knitr::include_graphics("img/sctransform-fig3.png")
 - All groups of genes show minimal correlation between Pearson residuals and sequencing depth.
 - Residuals represent effectively standardized expression values that are not influenced by technical metrics.
 
-## `SCTransform()` analysis steps
+## SCTransform within a workflow
 
 ```{r}
 #| fig-align: center
