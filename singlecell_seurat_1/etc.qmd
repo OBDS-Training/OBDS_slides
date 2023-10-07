@@ -157,7 +157,7 @@ knitr::include_graphics("img/hashing_protocol.png")
 :::
 
 ::: {style="text-align: center;"}
-**Except, the assay targets a single, different, surface protein for all the cell of each sample.**
+**Except: the assay targets a single identical surface protein for all the cell of each sample.**
 :::
 
 ## Seurat workflow - Overview
