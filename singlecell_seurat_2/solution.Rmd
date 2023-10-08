@@ -12,7 +12,6 @@ library(tidyverse)
 library(patchwork)
 library(DT)
 library(gprofiler2)
-
 ```
 
 # Exercise
@@ -261,7 +260,7 @@ Calculate the markers for these clusters from either the RNA or SCT assay
 
 ```{r}
 
-SetIdent(seurat_after_qc) <- "RNA_snn_res.0.5"
+Idents(seurat_after_qc) <- "RNA_snn_res.0.5"
 seurat_markers_all <- FindAllMarkers(
     seurat_after_qc,
     assay = "RNA",
@@ -270,7 +269,7 @@ seurat_markers_all <- FindAllMarkers(
     logfc.threshold = 0.25
 )
 
-SetIdent(seurat_after_qc) <- "SCT_snn_res.0.5"
+Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
 seurat_markers_all_sct <- FindAllMarkers(
     seurat_after_qc,
     assay = "SCT",
@@ -279,9 +278,10 @@ seurat_markers_all_sct <- FindAllMarkers(
     logfc.threshold = 0.25
 )
 ```
+
 ```{r}
 
-#SetIdent(seurat_after_qc)
+#Idents(seurat_after_qc)
 seurat_after_qc[[]] %>% colnames()
 
 
