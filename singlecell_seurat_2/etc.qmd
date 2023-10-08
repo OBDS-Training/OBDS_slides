@@ -253,9 +253,9 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 
 ## CellhashR: Alternative tool for demultiplexing
 
-- CellhashR is a bit like multiqc and produces QC reports
-- Enables comparison of multiple demultiplexing algorithms
-- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq) 
+- [CellhashR](https://github.com/BimberLab/cellhashR) is a bit like multiqc and produces quality control reports.
+- Enables comparison of multiple demultiplexing algorithms.
+- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq).
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -282,17 +282,20 @@ knitr::include_graphics("img/cellhashR_2.png")
 :::
 ::::
 
-## De-multiplexing samples : HTODemux 
+## HTODemux {.smaller}
+
+### Demonstration
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Example using 8 multiplexed PBMC samples
-  + Demultiplexing convincingly separates cells from the different input samples
-  + Developed a statistical framework to classify each barcode as positive or negative for each HTO
-  + The sample singlets and doublet can be visualised by tSNE plot
-  + This method demonstrates the challenge of identifying singlets and doublets by UMI distribution alone
-  + RNA tSNE shows that all cell types were present in all samples
+Example using 8 multiplexed PBMC samples.
+
+- Demultiplexing convincingly separates cells from the different input samples.
+- Developed a statistical framework to classify each barcode as positive or negative for each HTO (hashtag oligonucleotide).
+- The sample singlets and doublet can be visualised by t-SNE plot.
+- This method demonstrates the challenge of identifying singlets and doublets by UMI distribution alone.
+- RNA t-SNE shows that -- in this case -- all cell types were present in all samples.
 
 :::
 ::: {.column width="50%"}
@@ -309,13 +312,15 @@ knitr::include_graphics("img/HTODemux_example.png")
 :::
 ::::
 
-## De-multiplexing samples : HTODemux 
+## HTODemux 
 
-- HTODemux is implemented via the Seurat package and workflow.
-- Key commands:
-  + `HTODemux()`.  : Performs the demultiplexing
-  + `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
-  + `RidgePlot()`  : Ridge plots for visualisation of demultiplexing results
+HTODemux is implemented in the [Seurat](https://satijalab.org/seurat/) package.
+
+Key commands:
+
+- `HTODemux()`.  : Performs the demultiplexing
+- `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
+- `RidgePlot()`  : Ridge plots for visualisation of demultiplexing results
 
 ```{r}
 #| fig-align: center
