@@ -167,7 +167,7 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 
 ## What is Cell Hashing
 
-- Cell hashing enables processing of multiple samples in the same sequencing run
+Cell hashing enables the processing of cells from multiple samples in the same sequencing lane.
 
 ```{r}
 #| fig-align: center
@@ -177,32 +177,34 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 knitr::include_graphics("img/cell_hashing.png")
 ```
 
-## Why should we use Cell hashing?
+## Why should we use Cell hashing? {.smaller}
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Pros
-  + Low cost
-  + More samples in a single experiment
-  + Super-loading: greater number of cells assayed in a single experiment (5x)
-  + More replicates per experiment
-  + Better detection of multiplets
-  + No technical batch effect
+### Pros
+
+- Low cost.
+- More samples in a single experiment.
+- Super-loading: greater number of cells assayed in a single experiment.
+- More replicates per experiment.
+- Better detection of multiplets.
+- No technical batch effect.
   
 :::
 ::: {.column width="50%"}
 
-- Cons
-  + More complex experimental design
-  + Cell type recovery can suffer
+### Cons
+
+- More complex experimental design.
+- Cell type recovery can suffer.
   
 :::
 ::::
 
  
 ```{r}
-#| fig-align: right
+#| fig-align: center
 #| out-height: 300px
 #| out-width: 700px
 ## Source: https://cite-seq.com/cell-hashing/
@@ -222,10 +224,10 @@ knitr::include_graphics("img/evolution_cell_multiplexing.png")
 
 ## Other cell multiplexing methods
 
-- Lipid and Cholesterol modified oligonucleotides (Multi-Seq)
-- Chemically modified barcodes, covalently linked to cell membrane
-- Nucleus hashing - irreversibly labelling cells with synthetic single –stranded DNA oligos
-- Genetic variation based on SNP calling (natural genetic barcoding) – matched genotype /without matched genotype
+- Lipid and Cholesterol modified oligonucleotides (Multi-Seq).
+- Chemically modified barcodes, covalently linked to cell membrane.
+- Nucleus hashing -- irreversibly labelling cells with synthetic single–stranded DNA oligos.
+- Genetic variation based on SNP calling (natural genetic barcoding) -- with and without matched genotype.
 
 ## Nucleus Hashing
 
