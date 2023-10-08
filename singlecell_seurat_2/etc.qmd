@@ -316,7 +316,7 @@ knitr::include_graphics("img/HTODemux_example.png")
 
 HTODemux is implemented in the [Seurat](https://satijalab.org/seurat/) package.
 
-Key commands:
+### Key commands
 
 - `HTODemux()`.  : Performs the demultiplexing
 - `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
@@ -325,7 +325,7 @@ Key commands:
 ```{r}
 #| fig-align: center
 #| out-height: 280px
-#| out-width: 800px
+#| out-width: 1000px
 ## Source: https://satijalab.org/seurat/articles/hashing_vignette.html
 knitr::include_graphics("img/seurat_HTODemux.png")
 ```
@@ -340,25 +340,33 @@ knitr::include_graphics("img/seurat_HTODemux.png")
 knitr::include_graphics("img/cell_hashing_data.png")
 ```
 
-## Exercise: Demultiplexing HTOs with `HTODemux()`
+## Exercise
 
-- Data
-  + Single cells collected from four cell lines: HEK, K562, KG1 and THP1
-  + Each cell line was further split into three samples (12 samples in total)
-  + Based on this design, we should be able to detect doublets both across and within cell types
-  + Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single lane of 10X.
+### Demultiplexing `HTODemux()`
 
-## Exercise key steps
+#### Data
 
-1. Read in HTO and UMI matrix
-2. Identify barcodes detected in both RNA and HTO
-3. Create SeuratObject with RNA and then add HTO as another assay
-4. Normalise/scale RNA data
-5. Normalise HTO data with CLR normalisation (margin=1)
-6. Demultiplex data using the `HTODemux()`
-7. Evaluate the de-multiplexing classification results with plots
-8. Bonus: Evaluate HTO and RNA based clustering for demultiplexed samples
-9. Bonus: Evaluate RNA based clustering for demultiplexed samples
+- Single cells collected from four cell lines: HEK, K562, KG1 and THP1.
+- Each cell line was further split into three samples (12 samples in total).
+- Based on this design, we should be able to detect doublets both across and within cell types.
+- Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single channel of 10X.
+
+## Exercise
+
+### Workflow
+
+- Read in the HTO and UMI matrices.
+- Identify the barcodes detected in both RNA and HTO.
+- Create a SeuratObject with the RNA data.
+  Then add the HTO data as another assay.
+- Normalise and scale the RNA data.
+- Normalise the HTO data using CLR normalisation.
+- Apply `HTODemux()`.
+- Evaluate the de-multiplexing classification results with plots.
+
+### Bonus
+
+- Evaluate HTO- and RNA-based clustering for demultiplexed samples.
 
 ## Useful links for sctransform and other normalisation methods
 
