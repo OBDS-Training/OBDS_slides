@@ -193,3 +193,34 @@ Use the function `ElbowPlot()` to visualise the amount of variance explained the
 ```{r}
 ElbowPlot(seurat_after_qc, ndims = 100, reduction = "sct.pca")
 ```
+
+### UMAP
+
+Run the function `RunUMAP()` on the Seurat object using the first 20 principal components computed from the SCT assay.
+
+**Hint:**
+
+- Look at the help page to find the argument that lets you specify the dimensionality reduction result that you want to use.
+
+```{r}
+seurat_after_qc <- RunUMAP(
+  object = seurat_after_qc,
+  dims = 1:20,
+  reduction = "sct.pca",
+  reduction.name = "sct.umap"
+)
+```
+
+Compare the UMAP results based on the SCT assay to those based on the RNA assay.
+
+**Hint:**
+
+- Use the `DimPlot()` function to produce each plot.
+- Save each plot as a ggplot object.
+- Combine the plots into a single plot using the `patchwork` package or the function `cowplot::plot_grid()`.
+
+```{r, fig.width=10}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap") + ggtitle("SCT UMAP")
+p1 + p2
+```
