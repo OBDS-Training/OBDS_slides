@@ -153,7 +153,7 @@ knitr::include_graphics("img/sct_vs_log_example.png")
 
 #### Bonus
 
-Perform pathway over-representation analysis(ORA) on cluster markers (i.e, genes differentially expressed between clusters) using [gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/index.html) and visualise the results.
+- Perform pathway over-representation analysis(ORA) on cluster markers (i.e, genes differentially expressed between clusters) using [gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/index.html) and visualise the results.
 
 ```{r}
 #| fig-align: center

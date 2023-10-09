@@ -87,9 +87,6 @@ VlnPlot(object =seurat_after_qc, features = c("nCount_RNA" ,"nCount_SCT") , same
 VlnPlot(object =seurat_after_qc, features = c("nFeature_RNA","nFeature_SCT") , same.y.lims = T)
 ```
 
-
-
-
 ## Bonus-
 - Visualise the distribution of SCT corrected count data for a feature of your choice.
 - Visualise the distribution of SCT logs counts in the data slot for a feature of choice
