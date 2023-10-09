@@ -224,3 +224,51 @@ p1 <- DimPlot(seurat_after_qc, reduction = "umap") + ggtitle("RNA UMAP")
 p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap") + ggtitle("SCT UMAP")
 p1 + p2
 ```
+
+### Clustering
+
+First, compute the graph of nearest neighbours using the function `FindNeighbors()`.
+
+**Hint:**
+
+Look at the help page to find the argument that lets you specify:
+
+- The assay to use.
+- The dimensionality reduction result to use.
+- Which principal components to use.
+  
+```{r}
+seurat_after_qc <- FindNeighbors(
+  object = seurat_after_qc,
+  dims = 1:20,
+  assay = "SCT",
+  reduction = "sct.pca"
+)
+```
+
+Next, compute the cluster label for each cell.
+
+**Hint:**
+
+Look at the help page to find the argument that lets you specify:
+
+- The resolution of the clustering (higher value = more clusters).
+  Set it to 0.5 (just so that we have the same results).
+- The name of the graph to use.
+  Set it 'SCT_snn'.
+
+**What is the default resolution set by the function if you don't specify it? Do you expect more or fewer cluster with a resolution of 0.5?**
+
+> Answer:
+> The default resolution is 0.8.
+> A resolution of 0.5 is smaller, so we expect fewer clusters.
+
+Check the names of the existing graphs (if any).
+
+```{r}
+Graphs(seurat_after_qc)
+```
+
+```{r}
+seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5, graph.name = "SCT_snn")
+```
