@@ -13,13 +13,15 @@ library(Seurat)
 library(gprofiler2)
 ```
 
+## Goal
+
+Compare clustering results following basic normalisation and sctransform normalisation.
+
 ## Exercise
 
 ### Import data
 
-- Compare clustering results following basic normalisation and sctransform normalisation.
-
-**Hint:** Read the file `seurat_after_qc.rds` in the shared resources.
+Read the file `seurat_after_qc.rds` in the shared resources.
 
 ```{r}
 seurat_after_qc <- readRDS(file= "data/seurat_after_qc.rds")
