@@ -9,8 +9,8 @@ format: html
 ```{r}
 #| label: load-packages
 #| include: false
-
 library(Seurat)
+library(gprofiler2)
 ```
 
 ## Exercise
@@ -383,3 +383,28 @@ seurat_markers_all <- FindAllMarkers(
     logfc.threshold = 0.25
 )
 ```
+
+### Over-representation analysis
+
+Use gprofile2 to perform pathway over-representation analysis (ORA) on cluster markers (i.e, genes differentially expressed between clusters) and visualise the results.
+
+**Hint:**
+
+- Make a named list of cluster markers (i.e., each item in the list is a vector of gene symbols, each named after the cluster those markers correspond to).
+  The `split()` function is a good tool to do this in a single step.
+- Give that list of cluster markers (all markers for all clusters at once) to the `gprofiler::gost()` function.
+
+```{r}
+markers_list <- split(
+  x = seurat_markers_all_sct$gene,
+  f = seurat_markers_all_sct$cluster
+)
+gost_sct <- gprofiler2::gost(query = markers_list)
+```
+
+For instance, subset the results to the biological pathways enriched for markers of cluster '0'.
+
+```{r}
+head(subset(gost_sct$result, query == "0" & source == "GO:BP"))
+```
+
