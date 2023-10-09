@@ -10,6 +10,7 @@ format: html
 #| label: load-packages
 #| include: false
 library(Seurat)
+library(tidyverse)
 library(gprofiler2)
 ```
 
@@ -362,7 +363,7 @@ Use the function `FindAllMarkers()` to compute markers for the clusters obtained
 
 ```{r}
 Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
-seurat_markers_all_sct <- FindAllMarkers(
+markers_all_sct <- FindAllMarkers(
     seurat_after_qc,
     assay = "SCT",
     only.pos = TRUE,
@@ -377,7 +378,7 @@ Do the same to compute markers for the clusters obtained using the RNA assay.
 
 ```{r}
 Idents(seurat_after_qc) <- "RNA_snn_res.0.5"
-seurat_markers_all <- FindAllMarkers(
+markers_all <- FindAllMarkers(
     seurat_after_qc,
     assay = "RNA",
     only.pos = TRUE,
@@ -392,16 +393,25 @@ Use gprofile2 to perform pathway over-representation analysis (ORA) on cluster m
 
 **Hint:**
 
+- Filter the cluster markers on adjusted p-value and log fold-change.
 - Make a named list of cluster markers (i.e., each item in the list is a vector of gene symbols, each named after the cluster those markers correspond to).
   The `split()` function is a good tool to do this in a single step.
 - Give that list of cluster markers (all markers for all clusters at once) to the `gprofiler::gost()` function.
+- Set the default assay to 'SCT' and extract the rownames to use as custom background.
 
 ```{r}
+markers_filtered <- markers_all_sct %>% 
+    dplyr::group_by(cluster) %>% 
+    filter(p_val_adj < 0.05) %>% 
+    filter(avg_log2FC > 0.585) %>%
+    dplyr::select(cluster,gene)
 markers_list <- split(
-  x = seurat_markers_all_sct$gene,
-  f = seurat_markers_all_sct$cluster
+  x = markers_filtered$gene,
+  f = markers_filtered$cluster
 )
-gost_sct <- gprofiler2::gost(query = markers_list)
+DefaultAssay(seurat_after_qc) <- "SCT"
+markers_background <- rownames(seurat_after_qc)
+gost_sct <- gprofiler2::gost(query = markers_list, custom_bg = markers_background)
 ```
 
 For instance, subset the results to the biological pathways enriched for markers of cluster '0'.

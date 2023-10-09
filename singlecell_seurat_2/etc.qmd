@@ -318,9 +318,9 @@ HTODemux is implemented in the [Seurat](https://satijalab.org/seurat/) package.
 
 ### Key commands
 
-- `HTODemux()`.  : Performs the demultiplexing
-- `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
-- `RidgePlot()`  : Ridge plots for visualisation of demultiplexing results
+- `HTODemux()` : Performs the demultiplexing.
+- `HTOheatmap()` : Heatmap for visualisation of demultiplexing results.
+- `RidgePlot()` : Ridge plots for visualisation of demultiplexing results.
 
 ```{r}
 #| fig-align: center
