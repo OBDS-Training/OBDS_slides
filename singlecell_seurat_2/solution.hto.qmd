@@ -1,0 +1,410 @@
+---
+title: "Solution: Single-cell analysis using Seurat, part 2"
+author: "Kevin Rue-Albrecht"
+date: "2023-06-08"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+library(Seurat)
+library(gprofiler2)
+```
+
+## Exercise
+
+### Import data
+
+- Compare clustering results following basic normalisation and sctransform normalisation.
+
+**Hint:** Read the file `seurat_after_qc.rds` in the shared resources.
+
+```{r}
+seurat_after_qc <- readRDS(file= "data/seurat_after_qc.rds")
+```
+
+### Default assay
+
+Check the name of the default assay (best practice before using Seurat functions).
+
+```{r}
+DefaultAssay(seurat_after_qc)
+```
+
+### SCTransfrom
+
+Apply SCTransfrom.
+
+**Hint:**
+
+- Refer to the SCTransform vignette available at <https://satijalab.org/seurat/articles/sctransform_vignette.html>.
+- Consider confounding variables to specify in the argument `vars.to.regress=`.
+- Consider the number of variable features to specify in the argument `variable.features.n=`.
+
+```{r}
+seurat_after_qc <- SCTransform(
+  object=seurat_after_qc,
+  assay="RNA",
+  vars.to.regress = c("percent_mt"))
+```
+
+**Note:** The `SCTransform()` function effectively replaces the workflow performed by the functions `NormalizeData()`, `ScaleData` and `FindVariableFeatures()`.
+
+**Where is the new normalisation stored?**
+
+> Answer:
+> Transformed data is stored in a new assay named 'SCT'.
+
+**Note:** The 'SCT' assay is automatically set as the default assay immediately after SCTransform is run.
+
+### Explore SCTransform results
+
+Explore the `seurat_after_qc` object metadata and assays (best practice to get to know the object).
+
+```{r}
+
+```
+
+**Can you see any change in the assays?**
+
+> Answer:
+> Yes, there is a new assay called 'SCT'.
+
+**Can you see any new column(s) in the metadata?**
+
+> Answer:
+> There are two new columns called 'nCount_SCT. and 'nFeature_SCT'.
+
+### Visualise SCTransform results
+
+Use the function `VlnPlot()` to compare the total counts in the RNA and SCT assays, and to compare the number of features detected in each assay.
+
+**Hint:** Force the function to apply the same Y-axis range to all panels in each plot, to make comparisons easier.
+
+```{r}
+# counts
+VlnPlot(object=seurat_after_qc, features = c("nCount_RNA" ,"nCount_SCT") , same.y.lims = T,)
+```
+
+```{r}
+# features
+VlnPlot(object=seurat_after_qc, features = c("nFeature_RNA","nFeature_SCT") , same.y.lims = T)
+```
+
+**Note:**
+
+- The original library size and number of features detected per cell are already present in the Seurat object.
+- `SCTransform` adds two columns of cell metadata for library and number of features detected after SCT normalisation.
+
+## Bonus
+
+### Visualise a feature in the SCT assay
+
+For the feature of your choice (e.g., `LYZ`), using the SCT assay:
+
+- Visualise the distribution of count data.
+- Visualise the distribution of log-counts in the data slot.
+- Visualise the distribution of scaled log-counts.
+
+**Hint:** For each plot, pass the output of `FetchData()` to `ggplot()`, store each plot, and combine them into a single plot using `cowplot::plot_grid()`.
+
+```{r}
+DefaultAssay(seurat_after_qc) <- "SCT"
+ggplot_lyz_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "counts"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+ggplot_lyz_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "data"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "scale.data"), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
+    coord_cartesian(ylim = c(0, 500)) +
+    cowplot::theme_cowplot()
+cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised,ggplot_lyz_scaled, ncol = 1)
+```
+
+## Exercise
+
+### Variable features
+
+Use the function `VariableFeatures()` to display the first 10 variable genes in the SCT assay and compare to first 10 genes in the RNA assay.
+
+**Hint:**
+Look at the help page of the function to find the argument that specified which assay to access.
+
+```{r}
+VariableFeatures(seurat_after_qc, assay = "SCT")[1:10]
+VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+```
+
+**How many genes overlap?**
+
+```{r}
+length(intersect(
+  VariableFeatures(seurat_after_qc, assay = "SCT")[1:10],
+  VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+))
+```
+
+> Answer
+> Seven genes overlap, which is more than half, so encouraging!
+
+### Dimensionality reduction on SCT transformed data
+
+Run a principal component analysis and UMAP on the Seurat object.
+
+**Best practice (Seurat):** Check the Default assay (again!).
+
+```{r}
+DefaultAssay(seurat_after_qc)
+```
+
+**Hint:**
+
+- Consider setting the argument `reduction.name=` to something other than 'pca', to preserve the PCA results based on the 'RNA' assay.
+- It doesn't hurts to set the default again before important steps, even if the default assay already is the desired one, as you might sometimes run code chunks out of order.
+  
+```{r}
+DefaultAssay(seurat_after_qc) <- "SCT"
+seurat_after_qc <- RunPCA(seurat_after_qc, reduction.name = "sct.pca" )
+```
+
+Check the name of the dimensionality reduction results present in the Seurat object now (best practice to get to know the object).
+
+```{r}
+Reductions(seurat_after_qc)
+```
+
+### PCA elbow plot
+
+Use the function `ElbowPlot()` to visualise the amount of variance explained the top principal components for the data produced by SCTransform.
+
+**Hint:** Look at the help page of the function to find the argument that specifies the dimensionality reduction result to use.
+
+**How many principal components would you use for downstream analyses?**
+
+> Answer:
+> We typically use the first 20 principal components in this lesson.
+  
+```{r}
+ElbowPlot(seurat_after_qc, ndims = 100, reduction = "sct.pca")
+```
+
+### UMAP
+
+Run the function `RunUMAP()` on the Seurat object using the first 20 principal components computed from the SCT assay.
+
+**Hint:**
+
+- Look at the help page to find the argument that lets you specify the dimensionality reduction result that you want to use.
+
+```{r}
+seurat_after_qc <- RunUMAP(
+  object = seurat_after_qc,
+  dims = 1:20,
+  reduction = "sct.pca",
+  reduction.name = "sct.umap"
+)
+```
+
+Compare the UMAP results based on the SCT assay to those based on the RNA assay.
+
+**Hint:**
+
+- Use the `DimPlot()` function to produce each plot.
+- Save each plot as a ggplot object.
+- Combine the plots into a single plot using the `patchwork` package or the function `cowplot::plot_grid()`.
+
+```{r, fig.width=10}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap") + ggtitle("SCT UMAP")
+p1 + p2
+```
+
+### Clustering
+
+First, compute the graph of nearest neighbours using the function `FindNeighbors()`.
+
+**Hint:**
+
+Look at the help page to find the argument that lets you specify:
+
+- The assay to use.
+- The dimensionality reduction result to use.
+- Which principal components to use.
+  
+```{r}
+seurat_after_qc <- FindNeighbors(
+  object = seurat_after_qc,
+  dims = 1:20,
+  assay = "SCT",
+  reduction = "sct.pca"
+)
+```
+
+Next, compute the cluster label for each cell.
+
+**Hint:**
+
+Look at the help page to find the argument that lets you specify:
+
+- The resolution of the clustering (higher value = more clusters).
+  Set it to 0.5 (just so that we have the same results).
+- The name of the graph to use.
+  Set it 'SCT_snn'.
+
+**What is the default resolution set by the function if you don't specify it? Do you expect more or fewer cluster with a resolution of 0.5?**
+
+> Answer:
+> The default resolution is 0.8.
+> A resolution of 0.5 is smaller, so we expect fewer clusters.
+
+Check the names of the existing graphs (if any).
+
+```{r}
+Graphs(seurat_after_qc)
+```
+
+```{r}
+seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5, graph.name = "SCT_snn")
+```
+
+## Bonus
+
+### Compare cluster labels using SCT and RNA assays
+
+Use the `table()` function to cross-tabulate the number of cells assigned to each cluster in the workflows using SCT and RNA assays.
+
+**Hint:**
+
+- Look at the column names in the cell metadata to find the name of the columns that contain the cluster labels that you want to compare.
+- Give the two vectors to cluster labels to the `table()` function to cross-tabulate them.
+- Naming the arguments given to the `table()` function make the output easier to intepret.
+
+```{r}
+colnames(seurat_after_qc[[]])
+```
+
+```{r}
+table(
+  RNA=seurat_after_qc$RNA_snn_res.0.5,
+  SCT=seurat_after_qc$SCT_snn_res.0.5
+)
+```
+
+## Exercise
+
+### Visualise cluster labels on the UMAP layout
+
+Color cells by their cluster label in a scatter plot of UMAP coordinates, both based on the SCT assay.
+Compare this with the same plot based on the RNA assay.
+
+**Hint:** Use the `DimPlot()` function to generate the two plots and combine them as you did earlier.
+
+```{r}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap", group.by = "RNA_snn_res.0.5") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap", group.by = "SCT_snn_res.0.5" ) + ggtitle("SCT UMAP")
+p1 + p2
+```
+
+**How would you describe the agreement between the UMAP layout and clustering for SCT vs RNA Assay results?**
+
+> Answer:
+> Not too bad.
+> One additional cluster after SCT.
+> Cells assigned to the same cluster seem to group more cleanly in the SCT workflow.
+
+### Visualise gene expression on the UMAP layout
+
+Colors cells by the expression level of common cell type markers in PBMC data sets.
+
+**Hint:**
+
+- CD14^+^ monocytes: LYZ, CD14
+- CD16 monocytes: FCGR3A, MS4A7
+- CD4^+^ T cells:  CD4, IL76
+- CD8^+^ T cells: CD8A, CD3D
+- NK cells: GNLY, GZMB,NKG7
+- B cells:  MS4A1 , CD79A
+- DC: CST3, FCER1A
+- Platelets: PPBP
+
+```{r, fig.width=10, fig.height=8}
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "sct.umap")
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "umap")
+```
+
+**Would you say that SCT improves the appearance of the plots?**
+
+> Answer:
+> The two layouts are fairly comparable, visually.
+
+## Bonus
+
+### Cluster markers (SCT)
+
+Use the function `FindAllMarkers()` to compute markers for the clusters obtained using the SCT assay.
+
+**Hint:**
+
+- Set the identities that should be used by the `FindAllMarkers()` method.
+- Look at the help page for the various arguments relevant to you.
+- Force the function to use the 'SCT' assay.
+- Force the function to return only positive markers.
+- Force the function to exclude any gene detected in fewer than 25% of each target cluster.
+- Force the function to exclude genes with log fold-change values lower than 0.25.
+
+```{r}
+Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
+seurat_markers_all_sct <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "SCT",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+```
+
+### Cluster markers (RNA)
+
+Do the same to compute markers for the clusters obtained using the RNA assay. 
+
+```{r}
+Idents(seurat_after_qc) <- "RNA_snn_res.0.5"
+seurat_markers_all <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "RNA",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+```
+
+### Over-representation analysis
+
+Use gprofile2 to perform pathway over-representation analysis (ORA) on cluster markers (i.e, genes differentially expressed between clusters) and visualise the results.
+
+**Hint:**
+
+- Make a named list of cluster markers (i.e., each item in the list is a vector of gene symbols, each named after the cluster those markers correspond to).
+  The `split()` function is a good tool to do this in a single step.
+- Give that list of cluster markers (all markers for all clusters at once) to the `gprofiler::gost()` function.
+
+```{r}
+markers_list <- split(
+  x = seurat_markers_all_sct$gene,
+  f = seurat_markers_all_sct$cluster
+)
+gost_sct <- gprofiler2::gost(query = markers_list)
+```
+
+For instance, subset the results to the biological pathways enriched for markers of cluster '0'.
+
+```{r}
+head(subset(gost_sct$result, query == "0" & source == "GO:BP"))
+```
+
