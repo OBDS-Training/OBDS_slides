@@ -10,7 +10,6 @@ format: html
 #| label: load-packages
 #| include: false
 library(Seurat)
-library(gprofiler2)
 ```
 
 ## Goal
@@ -103,5 +102,28 @@ Apply the sequence of functions `NormalizeData()`, `FindVariableFeatures()`, and
 ```{r}
 seurat_citeseq <- NormalizeData(seurat_citeseq)
 seurat_citeseq <- FindVariableFeatures(seurat_citeseq, selection.method = "vst")
-seurat_citeseq <- ScaleData(seurat_citeseq, features = VariableFeatures(hto12_object))
+seurat_citeseq <- ScaleData(seurat_citeseq, features = VariableFeatures(seurat_citeseq))
+```
+
+### Add HTO assay
+
+First, subset the HTO data to barcodes that are now present in the Seurat object.
+Furthermore, subset the features only to HTO tags.
+Lastly, transpose the data so that HTO tags are rows and barcodes are columns.
+
+```{r}
+hto_data_common <- t(hto_data[colnames(seurat_citeseq), 1:12])
+hto_data_common[, 1:4]
+```
+
+Use the function `CreateAssayObject()` to add the HTO data made of the common barcodes as a new assay the Seurat object created earlier.
+Display the updated Seurat object.
+
+**Hint:**
+
+- Add the HTO assay under the name 'HTO'.
+
+```{r}
+seurat_citeseq[["HTO"]] <- CreateAssayObject(counts = hto_data_common)
+seurat_citeseq
 ```
