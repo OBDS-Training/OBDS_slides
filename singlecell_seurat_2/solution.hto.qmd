@@ -26,31 +26,31 @@ Demultiplexing with hashtag oligos (HTOs).
 
 ### Read in the HTO and UMI matrices
 
-Import the UMI matrix from the file `hto12_umi_mtx.rds` and check its class.
+Import the UMI data from the file `hto12_umi_mtx.rds` and check its class.
 
 ```{r}
-hto12_umis <- readRDS("data/hto12_umi_mtx.rds")
-class(hto12_umis)
+umi_data <- readRDS("data/hto12_umi_mtx.rds")
+class(umi_data)
 ```
 
 Check its dimensions.
 
 ```{r}
-dim(hto12_umis)
+dim(umi_data)
 ```
 
 
-Import the HTO matrix from the file `hto12_hto_mtx.rds` and check its class.
+Import the HTO data from the file `hto12_hto_mtx.rds` and check its class.
 
 ```{r}
-hto12_htos <- readRDS("data/hto12_hto_mtx.rds")
-class(hto12_htos)
+hto_data <- readRDS("data/hto12_hto_mtx.rds")
+class(hto_data)
 ```
 
 Check its dimensions.
 
 ```{r}
-dim(hto12_htos)
+dim(hto_data)
 ```
 
 ### Preprocessing
@@ -60,8 +60,16 @@ Subset the HTO data frame to only include barcodes present in the UMI matrix.
 **Hint:**
 
 - Create a character vector that is the intersection of barcodes in the UMI matrix and HTO data frame.
+- Use that character vector to subset to HTO data frame.
 
 ```{r}
-joint_barcodes <- intersect(rownames(hto12_htos), colnames(hto12_umis))
+joint_barcodes <- intersect(rownames(hto_data), colnames(umi_data))
 length(joint_barcodes)
+```
+
+Subset the UMI matrix to include only the joint barcodes, and check the dimensions of the output matrix.
+
+```{r}
+umi_data_common <- umi_data[, joint_barcodes]
+dim(umi_data_common)
 ```
