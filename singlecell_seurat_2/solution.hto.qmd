@@ -171,9 +171,33 @@ seurat_citeseq <- HTODemux(
 seurat_citeseq
 ```
 
+### Inspect demultiplexing outputs
+
 Display and interpret the cell metadata of the Seurat object.
 
 ```{r}
 head(seurat_citeseq[[]])
 ```
 
+Use the `table()` function to tabulate the number of barcodes classified as doublet, negative, and singlet.
+
+```{r}
+table(seurat_citeseq$HTO_classification.global)
+```
+
+Use the function `RidgePlot()` to visualise the distribution of signal for each HTO tag in each sample.
+
+**Hint:**
+
+- To group cell by their assigned sample, set the identity of cells to the 'HTO_maxID' (HTO tag with maximum signal).
+- To keep the plot simple, pick one HTO tag used to label one sample of each cell line.
+
+```{r, fig.height=8, fig.width=10}
+Idents(seurat_citeseq) <- "HTO_maxID"
+RidgePlot(
+  object = seurat_citeseq,
+  assay = "HTO",
+  features = c("HEK-A", "THP1-A", "K562-A", "KG1-A"),
+  ncol = 2
+)
+```
