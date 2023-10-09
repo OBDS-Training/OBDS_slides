@@ -342,3 +342,44 @@ FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS
 
 > Answer:
 > The two layouts are fairly comparable, visually.
+
+## Bonus
+
+### Cluster markers (SCT)
+
+Use the function `FindAllMarkers()` to compute markers for the clusters obtained using the SCT assay.
+
+**Hint:**
+
+- Set the identities that should be used by the `FindAllMarkers()` method.
+- Look at the help page for the various arguments relevant to you.
+- Force the function to use the 'SCT' assay.
+- Force the function to return only positive markers.
+- Force the function to exclude any gene detected in fewer than 25% of each target cluster.
+- Force the function to exclude genes with log fold-change values lower than 0.25.
+
+```{r}
+Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
+seurat_markers_all_sct <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "SCT",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+```
+
+### Cluster markers (RNA)
+
+Do the same to compute markers for the clusters obtained using the RNA assay. 
+
+```{r}
+Idents(seurat_after_qc) <- "RNA_snn_res.0.5"
+seurat_markers_all <- FindAllMarkers(
+    seurat_after_qc,
+    assay = "RNA",
+    only.pos = TRUE,
+    min.pct = 0.25,
+    logfc.threshold = 0.25
+)
+```
