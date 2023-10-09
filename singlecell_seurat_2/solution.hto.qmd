@@ -127,3 +127,23 @@ Display the updated Seurat object.
 seurat_citeseq[["HTO"]] <- CreateAssayObject(counts = hto_data_common)
 seurat_citeseq
 ```
+
+### Normalise the HTO assay
+
+Use `NormalizeData()` to apply the CLR (centered log ratio) transformation to the HTO assay.
+
+**Hint:**
+
+- Set the default assay to 'HTO' prior to running `NormalizeData()`.
+- Set the argument `margin=1` to normalise each HTO tag (rather that each sample).
+
+```{r}
+DefaultAssay(hto12_object) <- "HTO"
+hto12_object <- NormalizeData(hto12_object, assay = "HTO", normalization.method = "CLR" , margin=1)
+```
+
+**Why is the CLR transformation prefered for HTO data?**
+
+> Answer:
+> HTO data is binary: all or nothing.
+> The CLR transformation pulls out this signal.
