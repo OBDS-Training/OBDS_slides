@@ -1,0 +1,45 @@
+---
+title: "Solution: Single-cell analysis using Seurat, part 2"
+author: "Kevin Rue-Albrecht"
+date: "2023-06-08"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(Seurat)
+```
+
+## Exercise
+
+- Compare clustering results following basic normalisation and sctransform normalisation.
+
+**Hint:** Read the file `seurat_after_qc.rds` in the shared resources.
+
+```{r}
+seurat_after_qc <- readRDS(file= "data/seurat_after_qc.rds")
+```
+
+**Best practices (Seurat):** Check the name of the default assay.
+
+```{r}
+DefaultAssay(seurat_after_qc)
+```
+
+**Hint:** Apply SCTransfrom.
+
+- Refer to the SCTransform vignette available at <https://satijalab.org/seurat/articles/sctransform_vignette.html>.
+- Consider confounding variables to specify in the argument `vars.to.regress=`.
+- Consider the number of variable features to specify in the argument `variable.features.n=`.
+
+```{r}
+seurat_after_qc <- SCTransform(
+  object=seurat_after_qc,
+  assay="RNA",
+  vars.to.regress = c("percent_mt"))
+```
+
+**Note:** The `SCTransform()` function effectively replaces the workflow performed by the functions `NormalizeData()`, `ScaleData` and `FindVariableFeatures()`.
