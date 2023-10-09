@@ -138,8 +138,14 @@ Use `NormalizeData()` to apply the CLR (centered log ratio) transformation to th
 - Set the argument `margin=1` to normalise each HTO tag (rather that each sample).
 
 ```{r}
-DefaultAssay(hto12_object) <- "HTO"
-hto12_object <- NormalizeData(hto12_object, assay = "HTO", normalization.method = "CLR" , margin=1)
+DefaultAssay(seurat_citeseq) <- "HTO"
+seurat_citeseq <- NormalizeData(
+  object = seurat_citeseq,
+  assay = "HTO",
+  normalization.method = "CLR" ,
+  margin = 1
+)
+seurat_citeseq
 ```
 
 **Why is the CLR transformation prefered for HTO data?**
