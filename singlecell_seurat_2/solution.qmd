@@ -140,3 +140,41 @@ Look at the help page of the function to find the argument that specified which 
 VariableFeatures(seurat_after_qc, assay = "SCT")[1:10]
 VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
 ```
+
+**How many genes overlap?**
+
+```{r}
+length(intersect(
+  VariableFeatures(seurat_after_qc, assay = "SCT")[1:10],
+  VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+))
+```
+
+> Answer
+> Seven genes overlap, which is more than half, so encouraging!
+
+### Dimensionality reduction on SCT transformed data
+
+Run a principal component analysis and UMAP on the Seurat object.
+
+**Best practice (Seurat):** Check the Default assay (again!).
+
+```{r}
+DefaultAssay(seurat_after_qc)
+```
+
+**Hint:**
+
+- Consider setting the argument `reduction.name=` to something other than 'pca', to preserve the PCA results based on the 'RNA' assay.
+- It doesn't hurts to set the default again before important steps, even if the default assay already is the desired one, as you might sometimes run code chunks out of order.
+  
+```{r}
+DefaultAssay(seurat_after_qc) <- "SCT"
+seurat_after_qc <- RunPCA(seurat_after_qc, reduction.name = "sct.pca" )
+```
+
+Check the name of the dimensionality reduction results present in the Seurat object now (best practice to get to know the object).
+
+```{r}
+Reductions(seurat_after_qc)
+```
