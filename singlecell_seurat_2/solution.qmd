@@ -317,3 +317,28 @@ p1 + p2
 > Not too bad.
 > One additional cluster after SCT.
 > Cells assigned to the same cluster seem to group more cleanly in the SCT workflow.
+
+### Visualise gene expression on the UMAP layout
+
+Colors cells by the expression level of common cell type markers in PBMC data sets.
+
+**Hint:**
+
+- CD14^+^ monocytes: LYZ, CD14
+- CD16 monocytes: FCGR3A, MS4A7
+- CD4^+^ T cells:  CD4, IL76
+- CD8^+^ T cells: CD8A, CD3D
+- NK cells: GNLY, GZMB,NKG7
+- B cells:  MS4A1 , CD79A
+- DC: CST3, FCER1A
+- Platelets: PPBP
+
+```{r, fig.width=10, fig.height=8}
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "sct.umap")
+FeaturePlot(seurat_after_qc, features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"), reduction = "umap")
+```
+
+**Would you say that SCT improves the appearance of the plots?**
+
+> Answer:
+> The two layouts are fairly comparable, visually.
