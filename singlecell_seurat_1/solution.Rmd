@@ -7,7 +7,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(Seurat)
 library(tidyverse)
 ```
 
@@ -53,7 +52,7 @@ str(read10x_data)
 > Answer:
 > 
 > A sparse matrix stores only non-zero values.
-> In a `dgCMatrix`, eah non-zero value is stored as:
+> In a `dgCMatrix`, each non-zero value is stored as:
 > 
 > - the index of its row
 > - the index of its column
