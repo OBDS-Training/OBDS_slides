@@ -272,3 +272,26 @@ Graphs(seurat_after_qc)
 ```{r}
 seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5, graph.name = "SCT_snn")
 ```
+
+## Bonus
+
+### Compare cluster labels using SCT and RNA assays
+
+Use the `table()` function to cross-tabulate the number of cells assigned to each cluster in the workflows using SCT and RNA assays.
+
+**Hint:**
+
+- Look at the column names in the cell metadata to find the name of the columns that contain the cluster labels that you want to compare.
+- Give the two vectors to cluster labels to the `table()` function to cross-tabulate them.
+- Naming the arguments given to the `table()` function make the output easier to intepret.
+
+```{r}
+colnames(seurat_after_qc[[]])
+```
+
+```{r}
+table(
+  RNA=seurat_after_qc$RNA_snn_res.0.5,
+  SCT=seurat_after_qc$SCT_snn_res.0.5
+)
+```
