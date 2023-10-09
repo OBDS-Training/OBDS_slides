@@ -1,7 +1,5 @@
 ## Lesson goals and objectives
 
-<br>
-
 ### Learning goals
 
 <!--
@@ -19,5 +17,5 @@ More concrete and measurable outputs.
 This can range from 3 to 8 bullet points.
 -->
 
-- Perform and compare results of analysis following log and SCTransform normalisation. 
-- Demultiplex 10x samples using Cell Hashing.
+- Perform and compare results of analysis following log normalisation and SCTransform. 
+- Demultiplex 10X samples using cell hashing.
