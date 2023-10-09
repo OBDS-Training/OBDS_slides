@@ -153,3 +153,27 @@ seurat_citeseq
 > Answer:
 > HTO data is binary: all or nothing.
 > The CLR transformation pulls out this signal.
+
+## Demultiplex data using HTO
+
+Use the function `HTODemux()` to estimate the original sample of each cell.
+
+**Hint:**
+
+- Set the argument `positive.quantile=` to a probability of 0.99.
+
+```{r}
+seurat_citeseq <- HTODemux(
+  object = seurat_citeseq,
+  assay = "HTO",
+  positive.quantile = 0.99
+)
+seurat_citeseq
+```
+
+Display and interpret the cell metadata of the Seurat object.
+
+```{r}
+head(seurat_citeseq[[]])
+```
+
