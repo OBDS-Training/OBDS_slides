@@ -1,5 +1,5 @@
 ---
-title: "Solution: Single-cell analysis using Seurat, part 2"
+title: "Template: Single-cell analysis using Seurat, part 2"
 author: "Kevin Rue-Albrecht"
 date: "2023-06-08"
 date-format: long

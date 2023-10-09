@@ -1,5 +1,5 @@
 ---
-title: "Solution: Single-cell analysis using Seurat, part 2 (HTO)"
+title: "Template: Single-cell analysis using Seurat, part 2 (HTO)"
 author: "Kevin Rue-Albrecht"
 date: "2023-06-08"
 date-format: long
@@ -29,7 +29,7 @@ Demultiplexing with hashtag oligos (HTOs).
 Import the UMI data from the file `hto12_umi_mtx.rds` and check its class.
 
 ```{r}
-umi_data <- readRDS("data/hto12_umi_mtx.rds")
+umi_data <- readRDS( )
 class(umi_data)
 ```
 
@@ -43,7 +43,7 @@ dim(umi_data)
 Import the HTO data from the file `hto12_hto_mtx.rds` and check its class.
 
 ```{r}
-hto_data <- readRDS("data/hto12_hto_mtx.rds")
+hto_data <- readRDS( )
 class(hto_data)
 ```
 
@@ -70,7 +70,7 @@ length(joint_barcodes)
 Subset the UMI matrix to include only the joint barcodes, and check the dimensions of the output matrix.
 
 ```{r}
-umi_data_common <- umi_data[, joint_barcodes]
+umi_data_common <- 
 dim(umi_data_common)
 ```
 
@@ -85,9 +85,9 @@ Create a Seurat object from the UMI count matrix made of the common barcodes.
 
 ```{r}
 seurat_citeseq <- CreateSeuratObject(
-  counts = umi_data_common,
-  min.cells = 3,
-  min.features = 200
+  
+  
+  
 )
 ```
 
@@ -101,9 +101,9 @@ Apply the sequence of functions `NormalizeData()`, `FindVariableFeatures()`, and
 - Scale data only for the variable features.
 
 ```{r}
-seurat_citeseq <- NormalizeData(seurat_citeseq)
-seurat_citeseq <- FindVariableFeatures(seurat_citeseq, selection.method = "vst")
-seurat_citeseq <- ScaleData(seurat_citeseq, features = VariableFeatures(seurat_citeseq))
+seurat_citeseq <- 
+seurat_citeseq <- 
+seurat_citeseq <- 
 ```
 
 ### Add HTO assay
@@ -113,7 +113,7 @@ Furthermore, subset the features only to HTO tags.
 Lastly, transpose the data so that HTO tags are rows and barcodes are columns.
 
 ```{r}
-hto_data_common <- t(hto_data[colnames(seurat_citeseq), 1:12])
+hto_data_common <- 
 hto_data_common[, 1:4]
 ```
 
@@ -125,7 +125,7 @@ Display the updated Seurat object.
 - Add the HTO assay under the name 'HTO'.
 
 ```{r}
-seurat_citeseq[["HTO"]] <- CreateAssayObject(counts = hto_data_common)
+
 seurat_citeseq
 ```
 
@@ -139,12 +139,12 @@ Use `NormalizeData()` to apply the CLR (centered log ratio) transformation to th
 - Set the argument `margin=1` to normalise each HTO tag (rather that each sample).
 
 ```{r}
-DefaultAssay(seurat_citeseq) <- "HTO"
+DefaultAssay(seurat_citeseq) <- 
 seurat_citeseq <- NormalizeData(
   object = seurat_citeseq,
-  assay = "HTO",
-  normalization.method = "CLR" ,
-  margin = 1
+  
+  
+  
 )
 seurat_citeseq
 ```
@@ -166,8 +166,8 @@ Use the function `HTODemux()` to estimate the original sample of each cell.
 ```{r}
 seurat_citeseq <- HTODemux(
   object = seurat_citeseq,
-  assay = "HTO",
-  positive.quantile = 0.99
+  
+  
 )
 seurat_citeseq
 ```
@@ -183,7 +183,7 @@ head(seurat_citeseq[[]])
 Use the `table()` function to tabulate the number of barcodes classified as doublet, negative, and singlet.
 
 ```{r}
-table(seurat_citeseq$HTO_classification.global)
+table( )
 ```
 
 Use the function `RidgePlot()` to visualise the distribution of signal for each HTO tag in each sample.
@@ -194,12 +194,12 @@ Use the function `RidgePlot()` to visualise the distribution of signal for each 
 - To keep the plot simple, pick one HTO tag used to label one sample of each cell line.
 
 ```{r, fig.height=8, fig.width=10}
-Idents(seurat_citeseq) <- "HTO_maxID"
+Idents(seurat_citeseq) <- 
 RidgePlot(
   object = seurat_citeseq,
-  assay = "HTO",
-  features = c("HEK-A", "THP1-A", "K562-A", "KG1-A"),
-  ncol = 2
+  
+  
+  
 )
 ```
 
@@ -216,15 +216,11 @@ Use the function `FeatureScatter()` to visualise the signal of two different HTO
 DefaultAssay(seurat_citeseq) <- "HTO"
 FeatureScatter(
   object = seurat_citeseq,
-  feature1 = "HEK-A",
-  feature2 = "HEK-B",
-  group.by = "HTO_classification.global",
-  span = FALSE, smooth = FALSE, shuffle = TRUE
+  
+  
+  
+  
 )
-
-# FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_maxID", span=F, smooth=F, shuffle=T ) 
-
-# FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_secondID", span=F, smooth=F, shuffle=T ) 
 ```
 
 Use the function `VlnPlot()` to visualise the distribution of metadata (e.g., 'nCount_RNA') in predicted doublets, negative, and singlets.
@@ -235,23 +231,21 @@ Use the function `VlnPlot()` to visualise the distribution of metadata (e.g., 'n
 - Consider arguments such as `pt.size=`, `log=`, and `split.by=` to make the plot more informative.
 
 ```{r}
-Idents(seurat_citeseq) <- "HTO_classification.global"
+Idents(seurat_citeseq) <- 
 VlnPlot(
   object = seurat_citeseq,
-  features = "nCount_RNA",
-  pt.size = 0,
-  log = TRUE,
-  split.by = "HTO_maxID"
+  
+  
+  
+  
 )
-# VlnPlot(seurat_citeseq, features = "nCount_RNA", pt.size = 0, log = TRUE)
-# VlnPlot(seurat_citeseq, features = "nCount_HTO", pt.size = 0, log = TRUE)
 ```
 
 Use the function `HTOHeatmap()` to visualise the signal of each HTO tag in each barcode.
 
 ```{r}
 #| fig-height: 8
-HTOHeatmap(seurat_citeseq, assay = "HTO")
+HTOHeatmap( )
 ```
 
 **How do interpret this heat map?**
@@ -267,7 +261,7 @@ HTOHeatmap(seurat_citeseq, assay = "HTO")
 Remove negative and doublet barcodes.
 
 ```{r}
-seurat_citeseq_singlets <- seurat_citeseq[, seurat_citeseq$HTO_classification.global == "Singlet"]
+seurat_citeseq_singlets <- 
 seurat_citeseq_singlets
 ```
 
@@ -275,20 +269,20 @@ Produce a UMAP based on the RNA assay, coloured by the cell line of the assigned
 
 ```{r}
 # Set the default assay
-DefaultAssay(seurat_citeseq_singlets) <- "RNA"
+DefaultAssay(seurat_citeseq_singlets) <- 
 # Typical workflow using the RNA assay
 seurat_citeseq_singlets <- FindVariableFeatures(
   object = seurat_citeseq_singlets,
-  selection.method = "vst"
+  
 )
 seurat_citeseq_singlets <- ScaleData(
   object = seurat_citeseq_singlets,
-  features = VariableFeatures(seurat_citeseq_singlets)
+  
 )
-seurat_citeseq_singlets <- RunPCA(seurat_citeseq_singlets)
+seurat_citeseq_singlets <- RunPCA( )
 # Replace '-A', '-B', and '-C' by nothing, i.e. remove those suffixes
-seurat_citeseq_singlets[["cell_line"]] <- str_replace(seurat_citeseq_singlets$HTO_classification, "-[ABC]", "")
-Idents(seurat_citeseq_singlets) <- "cell_line"
+seurat_citeseq_singlets[["cell_line"]] <- str_replace( )
+Idents(seurat_citeseq_singlets) <- 
 # Plot
-UMAPPlot(seurat_citeseq_singlets)
+UMAPPlot( )
 ```
