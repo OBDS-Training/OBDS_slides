@@ -295,3 +295,25 @@ table(
   SCT=seurat_after_qc$SCT_snn_res.0.5
 )
 ```
+
+## Exercise
+
+### Visualise cluster labels on the UMAP layout
+
+Color cells by their cluster label in a scatter plot of UMAP coordinates, both based on the SCT assay.
+Compare this with the same plot based on the RNA assay.
+
+**Hint:** Use the `DimPlot()` function to generate the two plots and combine them as you did earlier.
+
+```{r}
+p1 <- DimPlot(seurat_after_qc, reduction = "umap", group.by = "RNA_snn_res.0.5") + ggtitle("RNA UMAP")
+p2 <- DimPlot(seurat_after_qc, reduction = "sct.umap", group.by = "SCT_snn_res.0.5" ) + ggtitle("SCT UMAP")
+p1 + p2
+```
+
+**How would you describe the agreement between the UMAP layout and clustering for SCT vs RNA Assay results?**
+
+> Answer:
+> Not too bad.
+> One additional cluster after SCT.
+> Cells assigned to the same cluster seem to group more cleanly in the SCT workflow.
