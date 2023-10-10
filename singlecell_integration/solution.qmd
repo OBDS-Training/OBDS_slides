@@ -231,7 +231,7 @@ pbmc_list
 > Object v2 shows "Active assay: SCT"
 > Object v3 shows "Active assay: SCT"
 
-### Choose feature 
+### Select features for integration
 
 Use the function `SelectIntegrationFeatures()` to select features to use for the integration of the two data sets.
 
@@ -262,4 +262,30 @@ pbmc_list <- PrepSCTIntegration(
   anchor.features = features_for_integration
 )
 pbmc_list
+```
+
+### Integration
+
+Use the function `FindIntegrationAnchors()` to find a set of anchors between a list of Seurat objects.
+We will use these anchors to integrate the two objects in a subsequent step.
+
+```{r}
+anchors_for_integration <- FindIntegrationAnchors(
+  object.list = pbmc_list,
+  anchor.features = features_for_integration,
+  normalization.method = "SCT",
+  dims = 1:30
+)
+anchors_for_integration
+```
+
+Use the function `IntegrateData()` to integrate the two objects.
+
+```{r}
+pbmc_integrated <- IntegrateData(
+  anchorset = anchors_for_integration,
+  dims = 1:30,
+  normalization.method = "SCT"
+)
+pbmc_integrated
 ```
