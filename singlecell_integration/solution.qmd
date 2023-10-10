@@ -382,3 +382,31 @@ DimPlot(
   group.by = c("orig.ident", "integrated_snn_res.0.5", "integrated_snn_res.0.8")
 )
 ```
+
+Use the function `FindAllMarkers()` to identify markers for each cluster at a chosen resolution.
+
+**Hint:**
+
+- Seurat documentation indicates that having used SCTransform v1, you must switch the default assay back to 'RNA' for the computation of cluster markers.
+- You will also need to run `NormalizeData()`, as the 'RNA' assay has not been normalised since the data sets were integrated.
+- You will also need to set the identity of cells to the desired clustering result prior to using `FindAllMarkers()`, as that function does not have any argument to specify the set of clusters to use.
+- You will also need to specify `latent.vars = "orig.ident"` to regress the average effect of the sample of origin in the 'RNA' data, as `NormalizeData()` cannot be used for that.
+- Consider trying different values for `method=` argument, e.g. 'LR'.
+- Consider setting the argument `only.pos = TRUE` to yield only positive markers for each cluster.
+
+**Note:**
+
+- Read the help page of the `FindAllMarkers()` function to learn why `latent.vars` may not have any effect when using certain methods to computer markers.
+
+```{r}
+DefaultAssay(pbmc_integrated) <- "RNA"
+pbmc_integrated <- NormalizeData(pbmc_integrated)
+Idents(pbmc_integrated) <- pbmc_integrated[["integrated_snn_res.0.5"]]
+pbmc_integrated_markers <- FindAllMarkers(
+  object = pbmc_integrated,
+  method = "LR",
+  latent.vars = "orig.ident",
+  only.pos = TRUE
+)
+head(pbmc_integrated_markers)
+```
