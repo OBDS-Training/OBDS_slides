@@ -445,3 +445,14 @@ DoHeatmap(
   features = markers_for_heatmap
 )
 ```
+
+Based on the information collected so far (and other plots from your own initiative):
+
+- How well do you think the clustering has worked?
+- Are you able to identify each cluster?
+- Would you re-evaluate any of the clusters?
+
+> Answer:
+> The resolution of 0.5 used in this solution seems to produce clusters that share groups of markers.
+> This typically suggest over-clustering, whereby 'real' clusters have been fragmented into two or more clusters by an excessively high 'resolution' parameter.
+> However, more detailed analyses may be required to ascertain that those additional cluster are not indeed 'real' sub-populations worthy of being analysed separately.
