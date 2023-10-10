@@ -59,10 +59,38 @@ Use the `merge()` function to create a Seurat object that merges the two data se
 - Consider using the argument `add.cell.ids=` to identify cells for each sample of origin in the merged object.
 
 ```{r}
-seurat_merged <- merge(
+pbmc_merged <- merge(
   x = pbmcv2,
   y = pbmcv3,
   add.cell.ids = c("v2", "v3")
 )
-seurat_merged
+pbmc_merged
+```
+
+Compare the dimensions of the merged Seurat object to those of the two original objects.
+
+```{r}
+dim(pbmc_merged)
+```
+
+
+```{r}
+dim(pbmcv2)
+```
+
+```{r}
+dim(pbmcv3)
+```
+
+
+
+Check the dims of the merged object in comparison to the separate objects
+
+what is the total gene number in the merged object compared to each single object?
+
+```{r}
+dim(pbmcv2)
+dim(pbmcv3)
+dim(seurat_merged)
+head(seurat_merged[[]])
 ```
