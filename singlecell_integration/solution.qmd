@@ -397,6 +397,7 @@ Use the function `FindAllMarkers()` to identify markers for each cluster at a ch
 **Note:**
 
 - Read the help page of the `FindAllMarkers()` function to learn why `latent.vars` may not have any effect when using certain methods to computer markers.
+- You can find the pros and cons of various statistical tests in <https://www.nature.com/articles/nmeth.4612>
 
 ```{r}
 DefaultAssay(pbmc_integrated) <- "RNA"
