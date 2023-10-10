@@ -230,3 +230,19 @@ pbmc_list
 > Answer:
 > Object v2 shows "Active assay: SCT"
 > Object v3 shows "Active assay: SCT"
+
+### Choose feature 
+
+Use the function `SelectIntegrationFeatures()` to select features to use for the integration of the two data sets.
+
+**Note:**
+This function scores features by the number of datasets they are deemed variable in, breaking ties by the median variable feature rank across data sets.
+It returns the top scoring features according to that score.
+
+```{r}
+features_for_integration <- SelectIntegrationFeatures(
+  object.list = pbmc_list,
+  nfeatures = 3000
+)
+length(features_for_integration)
+```
