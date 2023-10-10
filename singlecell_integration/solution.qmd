@@ -23,8 +23,8 @@ Import the two PBMC data sets from the files `pbmcv2_filtered.rds` and `pbmcv3_f
 The RDS files contain object that have already been processed through quality control and filtering, as seen in the Seurat day 1 lesson.
 
 ```{r}
-pbmcv2 <- readRDS(file="data/pbmcv2_filtered.rds")
-pbmcv3 <- readRDS(file="data/pbmcv3_filtered.rds")
+pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS("data/pbmcv3_filtered.rds")
 ```
 
 ### Sanity check
@@ -196,6 +196,6 @@ Import the two PBMC data sets (again!) from the files `pbmcv2_filtered.rds` and 
 For the purpose of this exercise, it is important to reset the input objects, to undo anything we nay have done to those objects in the previous exercise.
 
 ```{r}
-pbmcv2 <- readRDS(file="data/pbmcv2_filtered.rds")
-pbmcv3 <- readRDS(file="data/pbmcv3_filtered.rds")
+pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS("data/pbmcv3_filtered.rds")
 ```
