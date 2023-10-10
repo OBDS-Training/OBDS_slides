@@ -411,3 +411,37 @@ pbmc_integrated_markers <- FindAllMarkers(
 )
 head(pbmc_integrated_markers)
 ```
+
+Visualise the top five markers by log fold-change of each cluster in a heat map.
+
+**Hint:**
+
+- The functions `dply::group_by()` and `dplyr::slice_max()` can be used to extract the genes with the highest log fold-change in each cluster.
+- Save those gene symbols in a character vector.
+- Supply that vector of gene symbols to the function `DoHeatmap()`.
+- Consider using `unique()` to remove duplicates (if any).
+- Consider using the first code chunk below to identify the gene symbols to plot,
+  and the second code chunk to display the heat map.
+- Remember to set the default assay to 'SCT' prior to displaying the heat map,
+  so that the heat map uses the `scale.data` slot of that assay.
+
+**Note:**
+
+- You could also run `ScaleData()` on the 'RNA' assay.
+
+```{r}
+markers_for_heatmap <- pbmc_integrated_markers %>%
+  group_by(cluster) %>%
+  slice_max(order_by = avg_log2FC, n = 5) %>% 
+  pull(gene) %>% 
+  unique()
+markers_for_heatmap
+```
+
+```{r}
+DefaultAssay(pbmc_integrated) <- "SCT"
+DoHeatmap(
+  object = pbmc_integrated,
+  features = markers_for_heatmap
+)
+```
