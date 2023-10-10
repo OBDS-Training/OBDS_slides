@@ -159,3 +159,25 @@ ElbowPlot(pbmc_merged, ndims = 50)
 
 > Answer:
 We typically proceed with 20.
+
+### UMAP
+
+Run the UMAP technique on the chosen number of principal components.
+
+```{r}
+pbmc_merged <- RunUMAP(pbmc_merged, dims = 1:20)
+```
+
+Visualise the UMAP layout.
+
+```{r}
+DimPlot(pbmc_merged, group.by = "orig.ident")
+```
+
+**Can you still see the batch effect?**
+
+> Answer:
+> Sadly, yes.
+> Note that we haven't done anything to correct for it since the PCA,
+> so this is really not a surprise.
+
