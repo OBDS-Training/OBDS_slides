@@ -285,10 +285,17 @@ seurat_citeseq_singlets <- ScaleData(
   object = seurat_citeseq_singlets,
   features = VariableFeatures(seurat_citeseq_singlets)
 )
-seurat_citeseq_singlets <- RunPCA(seurat_citeseq_singlets)
-# Replace '-A', '-B', and '-C' by nothing, i.e. remove those suffixes
+seurat_citeseq_singlets <- RunPCA(
+  object = seurat_citeseq_singlets,
+  reduction.name = "hto_pca")
+seurat_citeseq_singlets <- RunUMAP(
+  object = seurat_citeseq_singlets,
+  dims = 1:12,
+  reduction.name = "hto_umap",
+  reduction = "hto_pca")
+# Make a new column of metadata identifying the cell line for each cell
 seurat_citeseq_singlets[["cell_line"]] <- str_replace(seurat_citeseq_singlets$HTO_classification, "-[ABC]", "")
 Idents(seurat_citeseq_singlets) <- "cell_line"
 # Plot
-UMAPPlot(seurat_citeseq_singlets)
+DimPlot(seurat_citeseq_singlets, reduction = "hto_umap")
 ```
