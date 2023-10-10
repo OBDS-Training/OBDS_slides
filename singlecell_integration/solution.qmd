@@ -259,9 +259,7 @@ Residuals are recomputed for missing features using the stored model parameters 
 ```{r}
 pbmc_list <- PrepSCTIntegration(
   object.list = pbmc_list,
-  anchor.features = features
+  anchor.features = features_for_integration
 )
+pbmc_list
 ```
-
-> After this step, the features present in the scale.data slots of the two objects are the same
-> anchor.features are used in the anchor finding process
