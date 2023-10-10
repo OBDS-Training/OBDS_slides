@@ -220,16 +220,12 @@ VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"))
   Visualise this new metric alongside the previous two in a new violin plot.
 
 ```{r}
-seurat_object[["percent_mt"]] <- PercentageFeatureSet(
-    seurat_object, pattern = "^MT-")
 
-# # OR
-# 
-# seurat_object <- AddMetaData(
-#   object = seurat_object,
-#   metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
-#   col.name = "percent_mt"
-# )
+seurat_object <- AddMetaData(
+   object = seurat_object,
+   metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
+   col.name = "percent_mt"
+)
 
 VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA", "percent_mt"))
 ```
