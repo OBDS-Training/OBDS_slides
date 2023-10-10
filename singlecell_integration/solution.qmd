@@ -148,3 +148,14 @@ DimPlot(pbmc_merged)
 > Yup (sad face).
 > What's worse the batch effect is visible along the first principal component,
 > meaning it accounts for most of the variance in the data set.
+
+Use the function `ElbowPlot()` to determine a good number of principal components to use in the next steps.
+
+```{r}
+ElbowPlot(pbmc_merged, ndims = 50)
+```
+
+**How many principal components would you use?**
+
+> Answer:
+We typically proceed with 20.
