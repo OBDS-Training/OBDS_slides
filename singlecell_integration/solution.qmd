@@ -10,6 +10,7 @@ format: html
 #| label: load-packages
 #| include: false
 library(Seurat)
+library(tidyverse)
 ```
 
 ## Integration without correction
