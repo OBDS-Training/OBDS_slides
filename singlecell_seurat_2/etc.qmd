@@ -6,8 +6,8 @@
 #### Seurat day 1
 
 - `NormalizeData()`
-- `ScaleData()`
 - `FindVariableFeatures()`
+- `ScaleData()`
 
 #### Seurat day 2
 
