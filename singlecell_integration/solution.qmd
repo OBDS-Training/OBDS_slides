@@ -82,15 +82,9 @@ dim(pbmcv2)
 dim(pbmcv3)
 ```
 
+**How do you think the number of features relate across the various objects?**
 
-
-Check the dims of the merged object in comparison to the separate objects
-
-what is the total gene number in the merged object compared to each single object?
-
-```{r}
-dim(pbmcv2)
-dim(pbmcv3)
-dim(seurat_merged)
-head(seurat_merged[[]])
-```
+> Answer:
+> The number of features largely overlaps.
+> The merged data set contains the union of features observed in all input data sets.
+> Features not present in either data set are simply assigned zero counts in the merged object.
