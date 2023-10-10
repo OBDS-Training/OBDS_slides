@@ -199,3 +199,21 @@ For the purpose of this exercise, it is important to reset the input objects, to
 pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
 pbmcv3 <- readRDS("data/pbmcv3_filtered.rds")
 ```
+
+### Preprocessing
+
+Combine the two input Seurat objects into a named list.
+
+```{r}
+pbmc_list <- list("v2" = pbmcv2, "v3" = pbmcv3)
+pbmc_list
+```
+
+Use `lapply()` to run SCTransform on each data set (separately) in the list.
+
+```{r}
+pbmc_list <- lapply(
+  X = pbmc_list, FUN = SCTransform,
+  variable.features.n = 3000, vars.to.regress = "percent.mt"
+)
+```
