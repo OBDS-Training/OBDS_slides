@@ -60,7 +60,7 @@ Subset the HTO data frame to only include barcodes present in the UMI matrix.
 **Hint:**
 
 - Create a character vector that is the intersection of barcodes in the UMI matrix and HTO data frame.
-- Use that character vector to subset to HTO data frame.
+- We will use that character vector to subset to UMI matrix and HTO data sets in downstream steps.
 
 ```{r}
 joint_barcodes <- intersect(rownames(hto_data), colnames(umi_data))
