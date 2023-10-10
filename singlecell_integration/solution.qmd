@@ -88,3 +88,36 @@ dim(pbmcv3)
 > The number of features largely overlaps.
 > The merged data set contains the union of features observed in all input data sets.
 > Features not present in either data set are simply assigned zero counts in the merged object.
+
+# Perform SCTransform normalisation
+
+Do you want to regress any meta.data variables ?
+
+```{r, message = FALSE, warning = FALSE}
+pbmc_merged <- SCTransform(
+  object = pbmc_merged,
+  vars.to.regress = "percent.mt"
+)
+pbmc_merged
+```
+
+Use the `VlnPlot()` to compare the distribution of 'nCount' in the RNA and SCT assays, showing cells from the two samples of origin in separate violins.
+
+**Hint:**
+
+- Look at the help page of the function to use the arguments `features=` and `group.by=` correctly.
+
+```{r}
+VlnPlot(
+  object = pbmc_merged,
+  features = c("nCount_RNA", "nCount_SCT"),
+  pt.size = 0.02,
+  same.y.lims = TRUE,
+  group.by = "orig.ident"
+)
+```
+
+**How good a job did SCT for the normalisation of sequencing depth between the two data sets, in the merged object?**
+
+> Answer:
+> Not too bad, although a shift is still visible.
