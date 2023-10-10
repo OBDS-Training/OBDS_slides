@@ -1,0 +1,68 @@
+---
+title: "Solution: Single-cell integration"
+author: "Kevin Rue-Albrecht"
+date: "2023-06-08"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+library(Seurat)
+```
+
+## Integration without correction
+
+First, we will combine two PBMC data sets without any integration method.
+
+### Import data sets
+
+Import the two PBMC data sets from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+The RDS files contain object that have already been processed through quality control and filtering, as seen in the Seurat day 1 lesson.
+
+```{r}
+pbmcv2 <- readRDS(file="data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS(file="data/pbmcv3_filtered.rds")
+```
+
+### Sanity check
+
+Use the `VlnPlot()` function to visualise the distribution of quality control metrics in the data sets given to you.
+
+It is generally good practice to inspect data sets given to you before taking them any further.
+
+**Hint:**
+
+- Call `VlnPlot()` once for each data set.
+- For each data set, focus on the features 'nFeature_RNA', 'nCount_RNA', and 'percent.mt'.
+
+```{r}
+plot1 <- VlnPlot(pbmcv2, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"))
+plot2 <- VlnPlot(pbmcv3, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"))
+cowplot::plot_grid(plot1, plot2, ncol = 1)
+```
+
+**Can you spot any issue between the two samples?**
+
+> Answer:
+> All quality control features seems to reach higher ranges of values in the 'pbmcv3' sample.
+
+## Merge Seurat objects without correction
+
+Use the `merge()` function to create a Seurat object that merges the two data sets without apply any sort of batch correction.
+
+**Hint:**
+
+- Refer to the Seurat tutorial at <https://satijalab.org/seurat/articles/merge_vignette.html>.
+- Consider using the argument `add.cell.ids=` to identify cells for each sample of origin in the merged object.
+
+```{r}
+seurat_merged <- merge(
+  x = pbmcv2,
+  y = pbmcv3,
+  add.cell.ids = c("v2", "v3")
+)
+seurat_merged
+```
