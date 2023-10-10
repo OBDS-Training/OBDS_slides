@@ -146,3 +146,5 @@ DimPlot(pbmc_merged)
 
 > Answer:
 > Yup (sad face).
+> What's worse the batch effect is visible along the first principal component,
+> meaning it accounts for most of the variance in the data set.
