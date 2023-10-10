@@ -216,4 +216,17 @@ pbmc_list <- lapply(
   X = pbmc_list, FUN = SCTransform,
   variable.features.n = 3000, vars.to.regress = "percent.mt"
 )
+pbmc_list
 ```
+
+**What are the dimensions of each object in the list?**
+
+> Answer:
+> Object v2 shows "24528 features across 859 samples within 2 assays"
+> Object v3 shows "28037 features across 778 samples within 2 assays"
+
+**What is the default assay of each object in the list?**
+
+> Answer:
+> Object v2 shows "Active assay: SCT"
+> Object v3 shows "Active assay: SCT"
