@@ -302,3 +302,23 @@ pbmc_integrated
 ```{r}
 DefaultAssay(pbmc_integrated)
 ```
+
+### Inspection and downstream analysis
+
+Run PCA on the integrated object.
+
+```{r}
+pbmc_integrated <- RunPCA(pbmc_integrated, npcs = 50)
+pbmc_integrated
+```
+
+Use `ElbowPlot()` to choose the number of principal components for downstream analyses.
+
+```{r}
+ElbowPlot(pbmc_integrated, ndims = 50)
+```
+
+**How many principal components woud you choose?**
+
+> Answer:
+> We typically use 20 principal components.
