@@ -49,7 +49,7 @@ cowplot::plot_grid(plot1, plot2, ncol = 1)
 > Answer:
 > All quality control features seems to reach higher ranges of values in the 'pbmcv3' sample.
 
-## Merge Seurat objects without correction
+### Merge Seurat objects without correction
 
 Use the `merge()` function to create a Seurat object that merges the two data sets without apply any sort of batch correction.
 
@@ -89,7 +89,7 @@ dim(pbmcv3)
 > The merged data set contains the union of features observed in all input data sets.
 > Features not present in either data set are simply assigned zero counts in the merged object.
 
-# Perform SCTransform normalisation
+### Perform SCTransform normalisation
 
 Do you want to regress any meta.data variables ?
 
@@ -121,3 +121,28 @@ VlnPlot(
 
 > Answer:
 > Not too bad, although a shift is still visible.
+
+Make sure the default assay is set to 'SCT'.
+
+```{r}
+DefaultAssay(pbmc_merged) <- "SCT"
+```
+
+## PCA
+
+Run PCA.
+
+```{r}
+pbmc_merged <- RunPCA(pbmc_merged)
+```
+
+Visualise the scatter plot of the first two principal components.
+
+```{r}
+DimPlot(pbmc_merged)
+```
+
+**Can you see a batch effect between the two samples?**
+
+> Answer:
+> Yup (sad face).
