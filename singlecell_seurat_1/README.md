@@ -102,3 +102,19 @@ Requirements:
 | Cluster markers and visualisation             | 15:15 |
 | End-of-day GitHub wrap-up                     | 15:45 |
 | **Day End**                                   | 16:00 |
+
+## Log for completed round and task list for next round
+
+### 2023 Oct - Liezel
+
+- Schedule 
+  + Delayed start due to IT setup for 2 new people not in previous R course
+  + Started with normalisation lecture after lunch
+  + Combined (1) normalisation + find variable features + scaling and (2) dimensionality reduction + clustering into one lecture then went on with exercises
+  + Needed 30 minutes next day for finding cluster markers
+
+### 2024 Mar 
+
+Lesson
+- [ ] Remove SCTransform slides
+- [ ] Add figure or discussion on what scaling and centering does?
