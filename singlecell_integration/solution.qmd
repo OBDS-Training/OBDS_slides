@@ -246,3 +246,22 @@ features_for_integration <- SelectIntegrationFeatures(
 )
 length(features_for_integration)
 ```
+
+### Prepare a list of Seurat objects for integration
+
+Use the function `PrepSCTIntegration()` to prepare the list of Seurat objects for integration.
+
+**Note (from the help page):**
+This function ensures that the sctransform residuals for the features specified to `anchor.features` are present in each object in the list.
+This is necessary because the default behavior of `SCTransform()` is to only store the residuals for the features determined to be variable.
+Residuals are recomputed for missing features using the stored model parameters via the `GetResidual()` function.
+
+```{r}
+pbmc_list <- PrepSCTIntegration(
+  object.list = pbmc_list,
+  anchor.features = features
+)
+```
+
+> After this step, the features present in the scale.data slots of the two objects are the same
+> anchor.features are used in the anchor finding process
