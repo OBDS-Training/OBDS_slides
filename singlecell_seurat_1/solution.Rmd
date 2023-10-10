@@ -222,6 +222,15 @@ VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"))
 ```{r}
 seurat_object[["percent_mt"]] <- PercentageFeatureSet(
     seurat_object, pattern = "^MT-")
+
+# # OR
+# 
+# seurat_object <- AddMetaData(
+#   object = seurat_object,
+#   metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
+#   col.name = "percent_mt"
+# )
+
 VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA", "percent_mt"))
 ```
 
@@ -408,6 +417,15 @@ ElbowPlot(seurat_after_qc, ndims = 100)
 > 
 > In this case, the first 20 components seem to capture most of the variance in the data set.
 
+- Calculate percentage variance explained by principal components
+
+```{r}
+pcs_embedings <- Embeddings(seurat_after_qc, reduction = "pca")
+pcs_var <- apply(pca_embedings, 2, var)
+pcs_perc_var <- pcs_var / sum(pcs_var) * 100
+pcs_perc_var
+```
+
 - Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
 
 ```{r}
@@ -556,7 +574,8 @@ VlnPlot(
 ```{r}
 markers_top10_clusters <- seurat_markers_all %>%
     group_by(cluster) %>%
-    top_n(n = 10, wt = avg_log2FC)
+    slice_max(order_by = avg_log2FC, n = 1000)
+
 DoHeatmap(
     seurat_after_qc,
     features = markers_top10_clusters$gene
