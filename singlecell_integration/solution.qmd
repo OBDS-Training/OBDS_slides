@@ -128,7 +128,7 @@ Make sure the default assay is set to 'SCT'.
 DefaultAssay(pbmc_merged) <- "SCT"
 ```
 
-## PCA
+### PCA
 
 Run PCA.
 
@@ -181,3 +181,21 @@ DimPlot(pbmc_merged, group.by = "orig.ident")
 > Note that we haven't done anything to correct for it since the PCA,
 > so this is really not a surprise.
 
+## Integration using SCTransform
+
+**Hint:**
+
+- Refer to the Seurat tutorial at <https://satijalab.org/seurat/articles/integration_introduction.html#performing-integration-on-datasets-normalized-with-sctransform-1 >.
+- The workflow of the 'Seurat v2' integration method varies depending on whether the data sets to merge were normalised using log-normalisation or SCTransform.
+- In this exercise, we use the SCTransform approach (the tutorial above discusses both approaches).
+
+### Import data sets
+
+Import the two PBMC data sets (again!) from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+For the purpose of this exercise, it is important to reset the input objects, to undo anything we nay have done to those objects in the previous exercise.
+
+```{r}
+pbmcv2 <- readRDS(file="data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS(file="data/pbmcv3_filtered.rds")
+```
