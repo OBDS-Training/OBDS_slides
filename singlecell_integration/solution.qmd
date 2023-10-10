@@ -312,13 +312,73 @@ pbmc_integrated <- RunPCA(pbmc_integrated, npcs = 50)
 pbmc_integrated
 ```
 
+Visualise the scatter plot of the first two principal components, and compare with the equivalent plot previously made for data integrated without correction.
+
+```{r}
+plot1 <- DimPlot(pbmc_merged, reduction = "pca")
+plot2 <- DimPlot(pbmc_integrated, reduction = "pca")
+plot1 + plot2
+```
+
+**How do the two plot compare?**
+
+> Answer:
+> Quite a bit better, though there is still some room for improvement.
+
 Use `ElbowPlot()` to choose the number of principal components for downstream analyses.
 
 ```{r}
 ElbowPlot(pbmc_integrated, ndims = 50)
 ```
 
-**How many principal components woud you choose?**
+**How many principal components woud you choose for downstream analyses?**
 
 > Answer:
 > We typically use 20 principal components.
+
+Run the UMAP technique on the chosen number of principal components.
+
+```{r}
+pbmc_integrated <- RunUMAP(pbmc_integrated, dims = 1:20)
+```
+
+Run `FindNeighbors()` and `FindClusters()` on the integrated object.
+
+**Hint:**
+
+- Consider trying multiple resolutions at the same time (e.g., 0.5 and 0.8).
+
+```{r}
+pbmc_integrated <- FindNeighbors(pbmc_integrated, dims = 1:20)
+pbmc_integrated <- FindClusters(pbmc_integrated, resolution = c(0.5, 0.8))
+```
+
+Check the number of clusters defined at each resolution.
+
+**Hint:**
+
+- You can use the `table()` function to tabulate the number of cells for a given resolution and to cross-tabulate the assignments of cells between two resolutions.
+
+```{r}
+table(pbmc_integrated$integrated_snn_res.0.5)
+```
+
+
+```{r}
+table(
+  "0.5" = pbmc_integrated$integrated_snn_res.0.5,
+  "0.8" = pbmc_integrated$integrated_snn_res.0.8
+)
+```
+
+Use the `DimPlot()` function to color cells by their sample of origin, and cluster assignment for selected resolutions.
+
+```{r, fig.height=4, fig.width=12}
+#| fig-height: 4
+#| fig-width: 12
+DimPlot(
+  object = pbmc_integrated,
+  reduction = "umap",
+  group.by = c("orig.ident", "integrated_snn_res.0.5", "integrated_snn_res.0.8")
+)
+```
