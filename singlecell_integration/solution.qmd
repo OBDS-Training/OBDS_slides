@@ -289,7 +289,8 @@ anchors_for_integration <- FindIntegrationAnchors(
   object.list = pbmc_list,
   anchor.features = features_for_integration,
   normalization.method = "SCT",
-  dims = 1:30
+  dims = 1:30,
+  reduction = "cca"
 )
 anchors_for_integration
 ```
