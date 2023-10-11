@@ -411,7 +411,7 @@ Use the function `FindAllMarkers()` to identify markers for each cluster at a ch
 - You will also need to run `NormalizeData()`, as the 'RNA' assay has not been normalised since the data sets were integrated.
 - You will also need to set the identity of cells to the desired clustering result prior to using `FindAllMarkers()`, as that function does not have any argument to specify the set of clusters to use.
 - You will also need to specify `latent.vars = "orig.ident"` to regress the average effect of the sample of origin in the 'RNA' data, as `NormalizeData()` cannot be used for that.
-- Consider trying different values for `method=` argument, e.g. 'LR'.
+- Consider trying different values for `test.use=` argument, e.g. 'LR'.
 - Consider setting the argument `only.pos = TRUE` to yield only positive markers for each cluster.
 
 **Note:**
