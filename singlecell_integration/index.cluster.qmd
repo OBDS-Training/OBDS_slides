@@ -1,7 +1,7 @@
 ---
 title: 'Single-cell dataset integration and batch correction'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
-author: "Updated from Lucy Garner, Kevin Rue-Albrecht, Devika Agarwal, Carla Cohen"
+author: "Kevin Rue-Albrecht & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2023-08-17 (updated: `r Sys.Date()`)"
 date-format: long
@@ -49,6 +49,12 @@ NoCite(bib, "R")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Devika Agarwal
+- Carla Cohen
+- Lucy Garner
 
 ## Prerequisites
 
