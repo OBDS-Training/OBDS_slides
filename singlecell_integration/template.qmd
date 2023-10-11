@@ -436,7 +436,7 @@ Visualise the top five markers by log fold-change of each cluster in a heat map.
 
 **Hint:**
 
-- The functions `dply::group_by()` and `dplyr::slice_max()` can be used to extract the genes with the highest log fold-change in each cluster.
+- The functions `dplyr::group_by()` and `dplyr::slice_max()` can be used to extract the genes with the highest log fold-change in each cluster.
 - Save those gene symbols in a character vector.
 - Supply that vector of gene symbols to the function `DoHeatmap()`.
 - Consider using `unique()` to remove duplicates (if any).
