@@ -11,6 +11,7 @@ format: html
 #| include: false
 library(Seurat)
 library(tidyverse)
+library(harmony)
 ```
 
 ## Integration without correction
@@ -476,3 +477,120 @@ Based on the information collected so far (and other plots from your own initiat
 > The resolution of 0.5 used in this solution seems to produce clusters that share groups of markers.
 > This typically suggest over-clustering, whereby 'real' clusters have been fragmented into two or more clusters by an excessively high 'resolution' parameter.
 > However, more detailed analyses may be required to ascertain that those additional cluster are not indeed 'real' sub-populations worthy of being analysed separately.
+
+## Integration with Harmony
+
+### Import data sets
+
+Import the two PBMC data sets (again!) from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+For the purpose of this exercise, it is important to reset the input objects, to undo anything we nay have done to those objects in the previous exercise.
+
+```{r}
+pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS("data/pbmcv3_filtered.rds")
+```
+
+### Merge Seurat objects without integration
+
+```{r}
+pbmc_merged <- merge(x = pbmcv2, y = pbmcv3)
+pbmc_merged
+```
+
+Run SCTransform.
+
+```{r}
+pbmc_merged <- SCTransform(pbmc_merged)
+pbmc_merged
+```
+
+Run PCA and UMAP.
+
+```{r}
+pbmc_merged <- RunPCA(pbmc_merged)
+pbmc_merged
+```
+
+```{r}
+ElbowPlot(pbmc_merged, ndims = 50)
+```
+
+Run UMAP.
+
+```{r}
+pbmc_merged <- RunUMAP(pbmc_merged, dims = 1:20)
+pbmc_merged
+```
+
+Plot the UMAP coloured by sample of origin (for a brief inspection prior to integration).
+
+```{r}
+DimPlot(pbmc_merged, group.by = "orig.ident")
+```
+
+Run Harmony.
+
+**Hint:**
+
+- Assign the output of the `RunHarmony()` function to a different name,
+  so that you can later compare the data set before and after integration.
+- Look at the help page to identify the argument that specifies the metadata field representing the groups of cells to integrate.
+- Set `plot_convergence=TRUE`.
+  What does this do?
+- Set `dims.use=1:20`.
+  What does this do?
+- Make sure the function uses the 'SCT' assay.
+
+```{r}
+pbmc_harmony <- RunHarmony(
+  object = pbmc_merged,
+  group.by.vars = "orig.ident",
+  plot_convergence = TRUE,
+  dims.use = 1:20,
+  assay.use = "SCT"
+)
+pbmc_harmony
+```
+
+Run `RunUMAP()`, `FindNeighbours()` and `FindClusters()` on the integrated object.
+
+```{r}
+pbmc_harmony <- RunUMAP(
+  object = pbmc_harmony,
+  reduction = "harmony",
+  dims = 1:20,
+  reduction.name = "harmony.umap"
+)
+pbmc_harmony <- FindNeighbors(
+  object = pbmc_harmony,
+  reduction = "harmony",
+  dims = 1:20
+)
+pbmc_harmony <- FindClusters(pbmc_harmony)
+pbmc_harmony
+```
+
+Visualise clusters and batches in the UMAP layout.
+
+```{r, fig.height=4, fig.width=8}
+plot1 <- DimPlot(
+  object = pbmc_harmony,
+  reduction = "harmony.umap",
+  group.by = "SCT_snn_res.0.8",
+  pt.size = 0.1
+)
+plot2 <- DimPlot(
+  object = pbmc_harmony,
+  reduction = "harmony.umap",
+  group.by = "orig.ident",
+  pt.size = 0.1
+)
+plot1 + plot2
+```
+
+**How does the Harmony integration compare with other methods so far (based on the UAMP alone...)?**
+
+> Answer:
+> The two samples look perfectly mixed, better than any other method so far in this lesson.
+> Meanwhile, the clusters identified make sense visually, although whether they make biological sense would need to be ascertained by marker analysis.
