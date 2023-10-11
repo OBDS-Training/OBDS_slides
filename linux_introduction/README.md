@@ -63,9 +63,9 @@ General
 - [ ] Put exercises right after talk? Hard to do in qmd while synchronising exercises on slides and solution
 - [ ] Emphasise thought process when building commands
 - [ ] Emphasise that hash can be used to comment out text
+- [ ] Simplify lecture, talk less and give more time for exercises!
 
 Lesson
 - [ ] Adjust schedule based on slide content adjustments
 - [ ] Maybe move SSH config and key pair to Day 1 but make it like Conda or Mamba installation written on GitHub that they can follow, do it with them and make sure everyone has completed it, this way logging into the cluster is easier in terms of typing
 - [ ] Make sure to explain sequencing terms in Talk 1 (Genomics workflow in Linux)
-      
