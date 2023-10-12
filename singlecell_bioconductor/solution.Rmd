@@ -33,7 +33,7 @@ library(iSEE)
 ```{r}
 library(DropletUtils)
 sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = "data/10x_pbmc5k_nextgem/filtered_feature_bc_matrix"
+    "filtered" = "/storage/shared/resources/single_cell/bioconductor/filtered_feature_bc_matrix"
 ))
 ```
 
@@ -138,12 +138,22 @@ sce
 sce <- scuttle::addPerFeatureQC(sce)
 ```
 
+> Answer:
+>
+> The return value of `scuttle::addPerFeatureQC()` is a `SingleCellExperiment` object.
+> The quality metrics are stored in the `rowData` component of the object.
+> - `mean` = mean count of the gene/feature across all cells
+> - `detected` = percentage of cells with non-zero counts for each gene
+
 ```{r}
 rowData(sce) %>%
     as_tibble() %>%
     ggplot() +
     geom_point(aes(detected / 100 * ncol(sce), log10(mean)))
 ```
+
+> x-axis is number of cells with non-zero counts for feature
+> y-axis is log10 of mean expression across cells
 
 # Exercise
 
@@ -169,8 +179,8 @@ assayNames(sce)
 - Plot the variance against the mean of each gene.
 
 **Note:** how can you tell whether the normalisation was effective?
-  Compare with https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation
-
+  Compare with https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation
+  
 ```{r}
 library(DelayedMatrixStats)
 #
@@ -282,7 +292,7 @@ dec %>%
 
 ```{r}
 set.seed(1234)
-sce <- scater::runPCA(sce, subset_row=hvg)
+sce <- scater::runPCA(sce, subset_row=hvg, scale=TRUE)
 reducedDimNames(sce)
 ```
 
