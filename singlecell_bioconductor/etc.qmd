@@ -429,7 +429,7 @@ Those include:
 
 ### Dimensionality reduction
 
-- Apply PCA; use `fixedPCA()`.
+- Apply PCA; use `scran::fixedPCA()`.
   Set a seed to control reproducibility.
   List the names of dimensionality reduction results available.
 

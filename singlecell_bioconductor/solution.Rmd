@@ -285,7 +285,7 @@ dec %>%
 
 ## Dimensionality reduction
 
-- Apply PCA; use `fixedPCA()`.
+- Apply PCA; use `scran::fixedPCA()`.
   Set a seed to control reproducibility.
   List the names of dimensionality reduction results available.
 
@@ -293,7 +293,7 @@ dec %>%
 
 ```{r}
 set.seed(1234)
-sce <- fixedPCA(sce, subset.row = hvg)
+sce <- scran::fixedPCA(sce, subset.row = hvg)
 reducedDimNames(sce)
 ```
 
