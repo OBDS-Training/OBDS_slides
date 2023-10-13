@@ -250,11 +250,11 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 
 - Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
 
-  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
+**Hint:** Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
-  + What is the return value?
-    Where are the quality metrics stored?
-    What is the difference with `scuttle::perCellQCMetrics()`?
+- What is the return value?
+  Where are the quality metrics stored?
+  What is the difference with `scuttle::perCellQCMetrics()`?
 
 - Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `r BiocStyle::CRANpkg("ggplot2")`.
 

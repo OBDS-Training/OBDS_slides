@@ -52,13 +52,9 @@ sce <-
 
 ## Quality control
 
-- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `scuttle` and/or `scater`.
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
 
-  + Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
-
-  + What is the return value?
-    Where are the quality metrics stored?
-    What is the difference with `scuttle::perCellQCMetrics()`?
+**Hint:** Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
 
 ```{r}
 is.mito <- 
@@ -70,6 +66,10 @@ library(scuttle)
 sce <- scuttle::addPerCellQC(   )
 
 ```
+
+- What is the return value?
+  Where are the quality metrics stored?
+  What is the difference with `scuttle::perCellQCMetrics()`?
 
 > Answer:
 >
