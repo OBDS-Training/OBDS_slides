@@ -3,18 +3,18 @@
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Seurat day 1
-  + `NormalizeData()`
-  + `ScaleData()`
-  + `FindVariableFeatures()`
-- Seurat day 2
-  + `SCTransform()`
-- Normalisation is done to remove influence of technical effects (e.g. sequencing depth) while preserving biological heterogeneity
-- Benchmarking study of methods `r Citep(bib, "ahlmann-eltze_comparison_2023")`
+#### Seurat day 1
 
+- `NormalizeData()`
+- `FindVariableFeatures()`
+- `ScaleData()`
+
+#### Seurat day 2
+
+- `SCTransform()`
 :::
-::: {.column width="50%"}
 
+::: {.column width="50%"}
 ```{r}
 #| fig-align: center
 #| out-height: 525px
@@ -22,15 +22,17 @@
 ## Source: custom-made? (2-scRNA-seq_day2 slide 4)
 knitr::include_graphics("img/seurat_workflow.png")
 ```
-
 :::
 ::::
 
-## Conceptual differences between methods 
+## Conceptual differences between methods
+
 <!-- Old slide is about limitation of log normalisation (slide 5) -->
 <!-- I think with this figure, we can remove slide  5 and 8 -->
 <!-- Essentially highlight that with sctransform, variance is normalised consistently across expression levels -->
 <!-- unlike log normalisation, which is more effective only on low to medium expressed genes -->
+
+<!-- I've reinserted slide 5 and 8, because I think they should be dropped from Seurat day 1 anyway. To be discussed. -->
 
 ```{r}
 #| fig-align: center
@@ -39,16 +41,43 @@ knitr::include_graphics("img/seurat_workflow.png")
 ## Source: ahlmann-eltze_comparison_2023
 knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ```
+
 `r Citet(bib, "ahlmann-eltze_comparison_2023")`
 
-## sctransform `r Citep(bib, "hafemeister_normalization_2019")`
+## Log-normalisation has limitations
 
-- Gene group-specific factor used to normalise genes rather than constant factor as in global scaling normalisation
-1. Construct negative binomial generalised linear model (GLM) for each gene – sequencing depth on x (independent variable), log~10~(UMI count) on y (dependent variable)
-   + Accounts for sequencing depth by default
-2. Parameter estimates regularised (adjusted) to avoid model overfitting – pool information across genes
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 600px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/sctransform-fig1.png")
+```
 
-## sctransform model parameters
+Traditional log-normalisation only normalises low/medium-abundance genes effectively.
+
+Groups 1-3 still display a relationship between sequencing depth and gene expression after log-normalisation.
+
+## The SCTransform method
+
+Normalisation factors specific to groups of genes rather than constant factor as in global scaling normalisation.
+
+#### Step 1
+
+Construct a negative binomial generalised linear model (GLM) for each gene.
+
+::: {.callout-note}
+- Log~10~UMI counts (the dependent variable $y$) is modelled against the sequencing depth (predictor variable $x$).
+- The model accounts for sequencing depth.
+:::
+
+#### Step 2
+
+Parameter estimates are regularised to avoid model overfitting, pooling information across genes.
+
+`r Citep(bib, "hafemeister_normalization_2019")`
+
+## The SCTransform model
 
 ```{r}
 #| fig-align: center
@@ -57,16 +86,42 @@ knitr::include_graphics("img/huber2023_differences_transformations.png.webp")
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
 knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 ```
+
 `r Citet(bib, "hafemeister_normalization_2019")`
 
-## sctransform
+## The SCTransform method (continued)
 
-3. Second round of NB regression, constraining parameters of model to be those learned from previous step
-4. Residuals from this model are the normalised expression values
-5. Pearson residuals (raw residuals divided by expected standard deviation of residuals) are the scaled expression values – account for association between gene expression and variance
-   + Can be used to identify genes with unexpectedly high variance
+#### Step 3
 
-## `SCTransform()` analysis steps
+Second round of NB regression, constraining parameters of model to be those learned from previous step.
+
+#### Step 4
+
+Residuals from this model are taken as the normalised expression values.
+
+#### Step 5
+
+Pearson residuals (raw residuals divided by expected standard deviation of residuals) are taken as the scaled expression values
+
+::: {.callout-note}
+- Accounts for association between gene expression and variance.
+- Can be used to identify genes with unexpectedly high variance.
+:::
+
+## SCTransform is effective across wider range of expression
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 600px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/sctransform-fig3.png")
+```
+
+- All groups of genes show minimal correlation between Pearson residuals and sequencing depth.
+- Residuals represent effectively standardized expression values that are not influenced by technical metrics.
+
+## SCTransform within a workflow
 
 ```{r}
 #| fig-align: center
@@ -78,7 +133,7 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 
 ## Comparison example
 
-- Sharper biological distinctions
+SCTransform tends to produce sharper distinctions.
 
 ```{r}
 #| fig-align: center
@@ -88,16 +143,22 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 knitr::include_graphics("img/sct_vs_log_example.png")
 ```
 
-## Exercise: log vs. sctransform normalisation
+## Exercise
 
-1. Compare clustering results following basic normalisation and sctransform normalisation – can you notice any differences?
+- Compare clustering results following basic normalisation and sctransform normalisation.
 
-2. Bonus: Perform  ORA pathway analysis on cluster markers (DEGs between clusters) using gprofiler2 and plot the results
+::: {style="text-align: center;"}
+**Can you notice any differences? How would you describe them?**
+:::
+
+#### Bonus
+
+- Perform pathway over-representation analysis(ORA) on cluster markers (i.e, genes differentially expressed between clusters) using [gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/index.html) and visualise the results.
 
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 900px
+#| out-height: 350px
+#| out-width: 800px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 11, see notes in slide)
 knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```
@@ -106,7 +167,7 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 
 ## What is Cell Hashing
 
-- Cell hashing enables processing of multiple samples in the same sequencing run
+Cell hashing enables the processing of cells from multiple samples in the same sequencing lane.
 
 ```{r}
 #| fig-align: center
@@ -116,32 +177,34 @@ knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 knitr::include_graphics("img/cell_hashing.png")
 ```
 
-## Why should we use Cell hashing?
+## Why should we use Cell hashing? {.smaller}
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Pros
-  + Low cost
-  + More samples in a single experiment
-  + Super-loading: greater number of cells assayed in a single experiment (5x)
-  + More replicates per experiment
-  + Better detection of multiplets
-  + No technical batch effect
+### Pros
+
+- Low cost.
+- More samples in a single experiment.
+- Super-loading: greater number of cells assayed in a single experiment.
+- More replicates per experiment.
+- Better detection of multiplets.
+- No technical batch effect.
   
 :::
 ::: {.column width="50%"}
 
-- Cons
-  + More complex experimental design
-  + Cell type recovery can suffer
+### Cons
+
+- More complex experimental design.
+- Cell type recovery can suffer.
   
 :::
 ::::
 
  
 ```{r}
-#| fig-align: right
+#| fig-align: center
 #| out-height: 300px
 #| out-width: 700px
 ## Source: https://cite-seq.com/cell-hashing/
@@ -161,10 +224,10 @@ knitr::include_graphics("img/evolution_cell_multiplexing.png")
 
 ## Other cell multiplexing methods
 
-- Lipid and Cholesterol modified oligonucleotides (Multi-Seq)
-- Chemically modified barcodes, covalently linked to cell membrane
-- Nucleus hashing - irreversibly labelling cells with synthetic single –stranded DNA oligos
-- Genetic variation based on SNP calling (natural genetic barcoding) – matched genotype /without matched genotype
+- Lipid and Cholesterol modified oligonucleotides (Multi-Seq).
+- Chemically modified barcodes, covalently linked to cell membrane.
+- Nucleus hashing -- irreversibly labelling cells with synthetic single–stranded DNA oligos.
+- Genetic variation based on SNP calling (natural genetic barcoding) -- with and without matched genotype.
 
 ## Nucleus Hashing
 
@@ -190,9 +253,9 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 
 ## CellhashR: Alternative tool for demultiplexing
 
-- CellhashR is a bit like multiqc and produces QC reports
-- Enables comparison of multiple demultiplexing algorithms
-- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq) 
+- [CellhashR](https://github.com/BimberLab/cellhashR) is a bit like multiqc and produces quality control reports.
+- Enables comparison of multiple demultiplexing algorithms.
+- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq).
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -219,17 +282,20 @@ knitr::include_graphics("img/cellhashR_2.png")
 :::
 ::::
 
-## De-multiplexing samples : HTODemux 
+## HTODemux {.smaller}
+
+### Demonstration
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Example using 8 multiplexed PBMC samples
-  + Demultiplexing convincingly separates cells from the different input samples
-  + Developed a statistical framework to classify each barcode as positive or negative for each HTO
-  + The sample singlets and doublet can be visualised by tSNE plot
-  + This method demonstrates the challenge of identifying singlets and doublets by UMI distribution alone
-  + RNA tSNE shows that all cell types were present in all samples
+Example using 8 multiplexed PBMC samples.
+
+- Demultiplexing convincingly separates cells from the different input samples.
+- Developed a statistical framework to classify each barcode as positive or negative for each HTO (hashtag oligonucleotide).
+- The sample singlets and doublet can be visualised by t-SNE plot.
+- This method demonstrates the challenge of identifying singlets and doublets by UMI distribution alone.
+- RNA t-SNE shows that -- in this case -- all cell types were present in all samples.
 
 :::
 ::: {.column width="50%"}
@@ -246,18 +312,20 @@ knitr::include_graphics("img/HTODemux_example.png")
 :::
 ::::
 
-## De-multiplexing samples : HTODemux 
+## HTODemux 
 
-- HTODemux is implemented via the Seurat package and workflow.
-- Key commands:
-  + `HTODemux()`.  : Performs the demultiplexing
-  + `HTOheatmap()` : Heatmap for visualisation of demultiplexing results
-  + `RidgePlot()`  : Ridge plots for visualisation of demultiplexing results
+HTODemux is implemented in the [Seurat](https://satijalab.org/seurat/) package.
+
+### Key commands
+
+- `HTODemux()` : Performs the demultiplexing.
+- `HTOheatmap()` : Heatmap for visualisation of demultiplexing results.
+- `RidgePlot()` : Ridge plots for visualisation of demultiplexing results.
 
 ```{r}
 #| fig-align: center
 #| out-height: 280px
-#| out-width: 800px
+#| out-width: 1000px
 ## Source: https://satijalab.org/seurat/articles/hashing_vignette.html
 knitr::include_graphics("img/seurat_HTODemux.png")
 ```
@@ -272,25 +340,33 @@ knitr::include_graphics("img/seurat_HTODemux.png")
 knitr::include_graphics("img/cell_hashing_data.png")
 ```
 
-## Exercise: Demultiplexing HTOs with `HTODemux()`
+## Exercise
 
-- Data
-  + Single cells collected from four cell lines: HEK, K562, KG1 and THP1
-  + Each cell line was further split into three samples (12 samples in total)
-  + Based on this design, we should be able to detect doublets both across and within cell types
-  + Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single lane of 10X.
+### Demultiplexing `HTODemux()`
 
-## Exercise key steps
+#### Data
 
-1. Read in HTO and UMI matrix
-2. Identify barcodes detected in both RNA and HTO
-3. Create SeuratObject with RNA and then add HTO as another assay
-4. Normalise/scale RNA data
-5. Normalise HTO data with CLR normalisation (margin=1)
-6. Demultiplex data using the `HTODemux()`
-7. Evaluate the de-multiplexing classification results with plots
-8. Bonus: Evaluate HTO and RNA based clustering for demultiplexed samples
-9. Bonus: Evaluate RNA based clustering for demultiplexed samples
+- Single cells collected from four cell lines: HEK, K562, KG1 and THP1.
+- Each cell line was further split into three samples (12 samples in total).
+- Based on this design, we should be able to detect doublets both across and within cell types.
+- Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single channel of 10X.
+
+## Exercise
+
+### Workflow
+
+- Read in the HTO and UMI matrices.
+- Identify the barcodes detected in both RNA and HTO.
+- Create a SeuratObject with the RNA data.
+  Then add the HTO data as another assay.
+- Normalise and scale the RNA data.
+- Normalise the HTO data using CLR normalisation.
+- Apply `HTODemux()`.
+- Evaluate the de-multiplexing classification results with plots.
+
+### Bonus
+
+- Evaluate HTO- and RNA-based clustering for demultiplexed samples.
 
 ## Useful links for sctransform and other normalisation methods
 
