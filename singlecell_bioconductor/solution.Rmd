@@ -18,6 +18,7 @@ library(DelayedMatrixStats)
 library(uwot)
 library(Rtsne)
 library(scran)
+library(scater)
 library(iSEE)
 ```
 
@@ -134,6 +135,9 @@ sce
 
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
 
+**Hint:** For instance, visualise the fraction of cells with non-zero counts on the x-axis,
+  and the log10-transformed mean expression on the y-axis.
+
 ```{r}
 sce <- scuttle::addPerFeatureQC(sce)
 ```
@@ -151,9 +155,6 @@ rowData(sce) %>%
     ggplot() +
     geom_point(aes(detected / 100 * ncol(sce), log10(mean)))
 ```
-
-> x-axis is number of cells with non-zero counts for feature
-> y-axis is log10 of mean expression across cells
 
 # Exercise
 
@@ -179,7 +180,7 @@ assayNames(sce)
 - Plot the variance against the mean of each gene.
 
 **Note:** how can you tell whether the normalisation was effective?
-  Compare with https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation
+  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
   
 ```{r}
 library(DelayedMatrixStats)
@@ -284,15 +285,15 @@ dec %>%
 
 ## Dimensionality reduction
 
-- Apply PCA; use `scater` or `BiocSingular`.
+- Apply PCA; use `fixedPCA()`.
   Set a seed to control reproducibility.
   List the names of dimensionality reduction results available.
 
-**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+**Note:** only give the set of highly variable genes to the `scran::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 ```{r}
 set.seed(1234)
-sce <- scater::runPCA(sce, subset_row=hvg, scale=TRUE)
+sce <- fixedPCA(sce, subset.row = hvg)
 reducedDimNames(sce)
 ```
 
@@ -300,12 +301,12 @@ reducedDimNames(sce)
   List the names of dimensionality reduction results available each time.
 
 ```{r}
-sce <- scater::runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
+sce <- runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
 
 ```{r}
-sce <- scater::runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
+sce <- runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
 

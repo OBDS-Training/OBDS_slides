@@ -255,12 +255,15 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 - What is the return value?
   Where are the quality metrics stored?
   What is the difference with `scuttle::perCellQCMetrics()`?
+- Visualise library size, genes detected and mitochondrial fraction as three violin plots;
+  use `r BiocStyle::CRANpkg("ggplot2")`.
+- Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI,
+  and more than 1,500 genes detected.
+- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()`
+  to compute per-feature quality metrics, and visualise those metrics.
 
-- Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `r BiocStyle::CRANpkg("ggplot2")`.
-
-- Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
-
-- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+**Hint:** For instance, visualise the fraction of cells with non-zero counts on the x-axis,
+  and the log10-transformed mean expression on the y-axis.
 
 ## Bioconductor workflow - Normalisation
 
@@ -333,7 +336,7 @@ knitr::include_graphics("img/scran-fig3.png")
 - Plot the variance against the mean of each gene.
 
 **Note:** how can you tell whether the normalisation was effective?
-  Compare with <https://osca.bioconductor.org/feature-selection.html#quantifying-per-gene-variation>
+  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
 
 <br/>
 
@@ -426,11 +429,11 @@ Those include:
 
 ### Dimensionality reduction
 
-- Apply PCA; use `r BiocStyle::Biocpkg("scater")` or `r BiocStyle::Biocpkg("BiocSingular")`.
+- Apply PCA; use `fixedPCA()`.
   Set a seed to control reproducibility.
   List the names of dimensionality reduction results available.
 
-**Note:** only give the set of highly variable genes to the `scater::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+**Note:** only give the set of highly variable genes to the `scran::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
 
 - Apply UMAP and t-SNE successively on the output of the PCA.
   List the names of dimensionality reduction results available each time.
