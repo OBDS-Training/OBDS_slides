@@ -356,9 +356,9 @@ Select features for downstream analyses, e.g. highly variable genes; use `r Bioc
 knitr::include_graphics("img/overview-analysis-dimensionality.png")
 ```
 
-## Dimensionality reduction
+## Dimensionality reduction {.smaller}
 
-The packages `r BiocStyle::Biocpkg("scater")` and `r BiocStyle::Biocpkg("BiocSingular")` provide several common dimensionality reduction methods.
+The packages `r BiocStyle::Biocpkg("scater")`, `r BiocStyle::Biocpkg("scran")`, and `r BiocStyle::Biocpkg("BiocSingular")` provide several common dimensionality reduction methods.
 
 Those include:
 
@@ -366,19 +366,15 @@ Those include:
 
 ::: {.column width="50%"}
 - `scater::runPCA()` / `BiocSingular::runPCA()`
-
+- `scran::fixedPCA()`
 - `scater::runTSNE()`
-
 - `scater::runUMAP()`
 :::
 
 ::: {.column width="50%"}
 - `BiocSingular::runSVD()`
-
 - `BiocSingular::runExactSVD()`
-
 - `BiocSingular::runIrlbaSVD()`
-
 - `BiocSingular::runRandomSVD()`
 :::
 ::::
