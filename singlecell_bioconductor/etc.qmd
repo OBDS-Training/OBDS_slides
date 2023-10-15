@@ -561,8 +561,8 @@ shiny::runApp(app, port=1234)
 #| echo: true
 #| eval: false
 initial_panel_list <- list(
-  ReducedDimensionPlot(PanelWidth=4L),
-  RowDataTable(PanelWidth=8L)
+  ReducedDimensionPlot(PanelWidth = 4L),
+  RowDataTable(PanelWidth = 8L)
 )
 iSEE::iSEE(sce, initial = initial_panel_list)
 ```
