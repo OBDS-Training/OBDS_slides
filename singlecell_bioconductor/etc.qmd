@@ -186,7 +186,7 @@ knitr::include_graphics("img/overview-analysis.png")
 knitr::include_graphics("img/overview-analysis-import.png")
 ```
 
-## Import single-cell data using Bioconductor
+## Import single-cell data using Bioconductor {.smaller}
 
 The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities for reading and preprocessing single-cell data.
 
@@ -204,19 +204,14 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 
 ## Exercise
 
-### Import scRNA-seq data and create a SingleCellExperiment object
+### Import scRNA-seq data and create a SingleCellExperiment object {.smaller}
 
 - Import the filtered matrix into R; use `r BiocStyle::Biocpkg("DropletUtils")`.
 
-**Note:** use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
-  Check the difference without using the `samples` argument.
-
-- Print the object.
-  What can you tell about its contents?
-
-- What can you tell from the object metadata?
-
-**Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
+::: {.callout-note}
+Use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a convenient name to each sample.
+Check the difference without using the `samples` argument.
+:::
 
 ## Bioconductor workflow - Quality control and filtering
 
@@ -228,7 +223,7 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
 knitr::include_graphics("img/overview-analysis-qc-filter.png")
 ```
 
-## Computing metrics for quality control
+## Computing metrics for quality control {.smaller}
 
 The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused on the preprocessing and quality control of single-cell gene expression data.
 
@@ -249,21 +244,15 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 ### Quality control
 
 - Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
-
-**Hint:** Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
-
-- What is the return value?
-  Where are the quality metrics stored?
-  What is the difference with `scuttle::perCellQCMetrics()`?
 - Visualise library size, genes detected and mitochondrial fraction as three violin plots;
   use `r BiocStyle::CRANpkg("ggplot2")`.
 - Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI,
   and more than 1,500 genes detected.
+
+### Bonus
+
 - Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()`
   to compute per-feature quality metrics, and visualise those metrics.
-
-**Hint:** For instance, visualise the fraction of cells with non-zero counts on the x-axis,
-  and the log10-transformed mean expression on the y-axis.
 
 ## Bioconductor workflow - Normalisation
 
@@ -275,24 +264,19 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 knitr::include_graphics("img/overview-analysis-normalise.png")
 ```
 
-## Normalisation strategies 
+## Normalisation strategies {.smaller}
 
-The packages `r BiocStyle::Biocpkg("scuttle")` and `r BiocStyle::Biocpkg("scran")` host methods for the most common and popular normalisation strategies.
+The package `r BiocStyle::Biocpkg("scuttle")` hosts methods for the most common and popular normalisation strategies.
 
 ### scuttle
 
 - `scuttle::logNormCounts()` computes log-transformed normalized expression values.
   This includes the computation of size factors using `scater::librarySizeFactors()`.
-
-### scran
-
-- `scran::computeSumFactors()` implements the deconvolution strategy from (Lun et al., 2016).
-
-  + This function is now superseded by `scuttle::computePooledFactors`.
+- `scuttle::computePooledFactors` implements the deconvolution strategy from (Lun et al., 2016).
 
 `r NoCite(bib, "lun2016workflow")`
 
-## scran: Deconvoluting size factors from cell pools
+## scran: Deconvoluting size factors from cell pools  {.smaller}
 
 :::: {.columns}
 
@@ -324,23 +308,12 @@ knitr::include_graphics("img/scran-fig3.png")
 
 ### Normalisation
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scater")`.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `r BiocStyle::Biocpkg("scuttle")`.
   Display the names of the assays available after that step.
 
-**Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
-  What is the return value?
-  Where can you find the normalised counts?
-
-<br/>
+### Bonus
 
 - Plot the variance against the mean of each gene.
-
-**Note:** how can you tell whether the normalisation was effective?
-  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
-
-<br/>
-
-- When would you rather use `scuttle::computePooledFactors` instead?
 
 ## Bioconductor workflow - Feature selection
 

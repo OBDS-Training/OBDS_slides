@@ -160,27 +160,28 @@ rowData(sce) %>%
 
 ## Normalisation
 
-- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle` and/or `scran`.
-  Display the names of the assays available after that step.
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle`.
 
-**Note:** use `scuttle::logNormCounts()` to compute log-normalised counts.
-  What is the return value?
-  Where can you find the normalised counts?
+**Note:**
+
+- Use `scuttle::logNormCounts()` to compute log-normalised counts.
 
 ```{r}
 sce <- scuttle::logNormCounts(sce)
 assayNames(sce)
 ```
 
+- What is the return value?
+- Where can you find the normalised counts?
+
 > Answer:
 > 
 > The return value of `scuttle::logNormCounts()` is a `SingleCellExperiment` object.
 > The normalised counts are stored as a new assay called `"logcounts"`.
 
-- Plot the variance against the mean of each gene.
+### Bonus
 
-**Note:** how can you tell whether the normalisation was effective?
-  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
+- Plot the variance against the mean of each gene (use `ggplot2`)
   
 ```{r}
 library(DelayedMatrixStats)
@@ -203,6 +204,9 @@ plot_logcounts <- ggplot(plot_data, aes(mean, variance)) +
 cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 ```
 
+- How can you tell whether the normalisation was effective?
+  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
+  
 > Answer:
 > 
 > After normalisation, the relationship between variance and mean is relatively flat (i.e., inexistant).
