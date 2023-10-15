@@ -423,9 +423,9 @@ markers <- scran::findMarkers(   )
 
 ```
 
-- Visualise the expression of selected markers:
+Visualise the expression of selected markers:
 
-  + As a dot plot, optionally with a violin layer.
+- As a dot plot, optionally with a violin layer.
 
 ```{r}
 marker_id <-    
@@ -440,8 +440,8 @@ marker_name <-
 
 ```
 
-  + On a dimensionality reduction layout.
-    Compare with the cluster labels.
+- On a dimensionality reduction layout.
+  Compare with the cluster labels.
 
 ```{r}
 gg_marker <-  

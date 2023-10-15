@@ -462,7 +462,7 @@ They may not always agree with each other, often helping to diagnose over- or un
 knitr::include_graphics("img/overview-analysis-markers.png")
 ```
 
-## Identifying cluster markers
+## Identifying cluster markers {.smaller}
 
 The package `r BiocStyle::Biocpkg("scran")` provides several methods for identifying cluster markers.
 
@@ -480,12 +480,11 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 - Use `scran::findMarkers()` to identify markers for each cluster.
   Display the metadata of markers for the first cluster.
 
-- Visualise the expression of selected markers:
+Visualise the expression of selected markers:
 
-  + As a dot plot, optionally with a violin layer.
-  
-  + On a dimensionality reduction layout.
-    Compare with the cluster labels.
+- As a dot plot, optionally with a violin layer.
+- On a dimensionality reduction layout.
+  Compare with the cluster labels.
 
 ## Bioconductor workflow - Interactive visualisation
 

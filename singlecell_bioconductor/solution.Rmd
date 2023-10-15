@@ -462,9 +462,9 @@ rowData(sce)[rownames(markers[[1]]),] %>%
     head()
 ```
 
-- Visualise the expression of selected markers:
+Visualise the expression of selected markers:
 
-  + As a dot plot, optionally with a violin layer.
+- As a dot plot, optionally with a violin layer.
 
 ```{r}
 marker_id <- rownames(markers$`1`)[1]
@@ -480,8 +480,8 @@ colData(sce) %>%
     scale_color_viridis_c()
 ```
 
-  + On a dimensionality reduction layout.
-    Compare with the cluster labels.
+- On a dimensionality reduction layout.
+  Compare with the cluster labels.
 
 ```{r}
 gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
