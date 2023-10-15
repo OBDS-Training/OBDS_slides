@@ -438,14 +438,14 @@ colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membershi
 Cluster cells using `scran`.
 
 - Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
-
 - Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with that "ideal" number of PCs.
   Assign the cluster label to a cell metadata column named `"label"`.
-
 - Visualise the assigned cluster on your preferred dimensionality reduction layout.
 
-**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
-  They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
+::: {.callout-note}
+Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
+They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
+:::
 
 ### Bonus point
 
