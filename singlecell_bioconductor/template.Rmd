@@ -205,20 +205,6 @@ dec
 > Answer:
 > 
 
-- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
-
-How do you interpret those different values?
-
-```{r}
-ggplot(as_tibble(dec)) +
-    geom_point(aes(mean, total), color = "black") +
-    geom_point(aes(mean, bio), color = "blue") +
-    geom_point(aes(mean, tech), color = "red")
-```
-
-> Answer:
-> 
-
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
@@ -246,6 +232,22 @@ length(hvg)
 
 > Answer:
 > 
+> 
+
+### Bonus
+
+- Visualise the relation between the mean expression of each gene and the total/biological/technical variance of each gene.
+
+How do you interpret those different values?
+
+```{r}
+ggplot(as_tibble(dec)) +
+    geom_point(aes(mean, total), color = "black") +
+    geom_point(aes(mean, bio), color = "blue") +
+    geom_point(aes(mean, tech), color = "red")
+```
+
+> Answer:
 > 
 
 # Exercise

@@ -325,7 +325,7 @@ knitr::include_graphics("img/scran-fig3.png")
 knitr::include_graphics("img/overview-analysis-variable-features.png")
 ```
 
-## Feature selection
+## Feature selection {.smaller}
 
 The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflow to identify and select features that display a high amount of biological variance.
 
@@ -340,20 +340,11 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 Select features for downstream analyses, e.g. highly variable genes; use `r BiocStyle::Biocpkg("scran")`.
 
 - Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
-  What is the output?
-
-- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
-
-How do you interpret those different values?
-
-<br/>
-
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
-What is the output?
-How many genes do you identify?
-Where are those genes located in the mean-variance plot?
-What happens to this plot if you set more stringent thresholds to define highly variable genes?
+### Bonus
+
+- Visualise the relation between the mean expression of each gene and the total/biological/technical variance of each gene; use `r BiocStyle:::CRANpkg("ggplot2")`.
 
 ## Bioconductor workflow - Dimensionality reduction
 

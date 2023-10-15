@@ -236,25 +236,6 @@ dec
 > 
 > A `DataFrame`, with one row per feature.
 
-- Visualise the relation between the mean expression of each gene and the total / biological / technical variance of each gene.
-
-How do you interpret those different values?
-
-```{r}
-ggplot(as_tibble(dec)) +
-    geom_point(aes(mean, total), color = "black") +
-    geom_point(aes(mean, bio), color = "blue") +
-    geom_point(aes(mean, tech), color = "red")
-```
-
-> Answer:
-> 
-> - Total variance = empirically calculated.
-> - Technical variance = mean trend fitted
-> - Biological = (total variance) - (technical variance)
-> 
-> Yes, biological variance can be negative (less variable than expected for that mean expression).
-
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
@@ -284,6 +265,27 @@ dec %>%
 > Output of `scran::getTopHVGs()` is a character vector of feature identifiers.
 > 
 > The genes are located at the highest values of variance (toward the top of the plot).
+
+### Bonus
+
+- Visualise the relation between the mean expression of each gene and the total/biological/technical variance of each gene.
+
+How do you interpret those different values?
+
+```{r}
+ggplot(as_tibble(dec)) +
+    geom_point(aes(mean, total), color = "black") +
+    geom_point(aes(mean, bio), color = "blue") +
+    geom_point(aes(mean, tech), color = "red")
+```
+
+> Answer:
+> 
+> - Total variance = empirically calculated.
+> - Technical variance = mean trend fitted
+> - Biological = (total variance) - (technical variance)
+> 
+> Yes, biological variance can be negative (less variable than expected for that mean expression).
 
 # Exercise
 
