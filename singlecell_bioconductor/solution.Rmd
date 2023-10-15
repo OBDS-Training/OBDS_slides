@@ -292,10 +292,12 @@ ggplot(as_tibble(dec)) +
 ## Dimensionality reduction
 
 - Apply PCA; use `scran::fixedPCA()`.
-  Set a seed to control reproducibility.
   List the names of dimensionality reduction results available.
 
-**Note:** only give the set of highly variable genes to the `scran::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+**Note:**
+
+- Only give the set of highly variable genes to the `scran::runPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+- Set a seed to control reproducibility.
 
 ```{r}
 set.seed(1234)
@@ -303,7 +305,7 @@ sce <- scran::fixedPCA(sce, subset.row = hvg)
 reducedDimNames(sce)
 ```
 
-- Apply UMAP and t-SNE successively on the output of the PCA.
+- Apply UMAP and t-SNE successively, each time on the output of the PCA.
   List the names of dimensionality reduction results available each time.
 
 ```{r}
@@ -333,9 +335,12 @@ sce_umap
 ## Bonus point
 
 - Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
-  Name the output `sce_denoise`.
-  How many components remain after denoising?
-  Visualise a UMAP of the denoised PCA and compare.
+
+**Note:**
+
+- Name the output `sce_denoise`.
+- How many components remain after denoising?
+- Visualise a UMAP of the denoised PCA and compare.
 
 ```{r}
 sce_denoise <- scran::denoisePCA(sce, dec, subset.row=hvg)
