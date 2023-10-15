@@ -110,7 +110,7 @@ knitr::include_graphics("img/workflow-osca.png")
 knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
-**Source:** <https://osca.bioconductor.org/data-infrastructure.html>
+**Source:** <https://bioconductor.org/books/3.17/OSCA.intro/the-singlecellexperiment-class.html>
 :::
 
 ::: {.column width="50%"}
