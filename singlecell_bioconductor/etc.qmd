@@ -80,7 +80,7 @@ knitr::include_graphics("img/workflow-osca.png")
 :::
 
 ::: {.column width="50%"}
-**Source:** <https://osca.bioconductor.org/overview.html#data-processing-and-downstream-analysis>
+**Source:** <https://bioconductor.org/books/3.17/OSCA.intro/analysis-overview.html>
 
 <br/>
 
