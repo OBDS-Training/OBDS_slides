@@ -2,9 +2,21 @@
 
 Slide contents
 
+## Citations
+
 Citation to <i class="fa-brands fa-r-project"></i> with parentheses `r Citep(bib, "R")`.
 
 Citation to <i class="fa-brands fa-r-project"></i> without parentheses `r Citet(bib, "R")`.
+
+## Equations
+
+This line contains an inline \LaTeX{} equation $K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$ inserted using a single `$` symbol.
+
+Below is the same equation on its own line, using double `$` symbols:
+
+$$K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$$
+
+Do you notice the difference?
 
 ## References
 
