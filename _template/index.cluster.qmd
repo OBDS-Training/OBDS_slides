@@ -15,8 +15,12 @@ format:
     css: styles.css
     fontsize: 1.5em
     footer: Repeat author name here -- Repeat title here
-# run the following line after knitting to convert HTML to PDF
-# renderthis::to_pdf("index.cluster.html")
+## run the following line to render HTML
+# quarto::quarto_render("index.cluster.qmd")
+## run the following line to render PDF (from HTML above)
+# renderthis::to_pdf("index.cluster.html", "index.cluster.pdf")
+## run the following line to render the solution
+# quarto::quarto_render("solution.qmd")
 ---
 
 ```{r}
