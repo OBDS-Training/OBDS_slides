@@ -1,17 +1,22 @@
+# Rstudio
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+# osx
 .DS_Store
+# rendering
 *.html
 *.tex
 *.pdf
 *.log
-data
 libs/
 index_files/
 index.cluster_files/
 figure-html/
+# renv
 renv/
 renv.lock
 .Rprofile
+# misc
+data
