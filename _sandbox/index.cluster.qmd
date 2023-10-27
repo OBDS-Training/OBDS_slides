@@ -1,0 +1,72 @@
+---
+title: 'Title goes here'
+subtitle: 'Subtitle goes here'
+author: "Author name goes here"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "1999-12-31"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Repeat author name here -- Repeat title here
+# run the following line after knitting to convert HTML to PDF
+# renderthis::to_pdf("index.cluster.html")
+---
+
+```{r}
+#| label: setup
+#| include: false
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 120)
+```
+
+```{r}
+#| label: load_refs
+#| include: false
+#| cache: false
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+NoCite(bib, "R")
+```
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
+
+## Equations
+
+This line contains an inline \LaTeX{} equation $K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$ inserted using a single `$` symbol.
+
+Below is the same equation on its own line, using double `$` symbols:
+
+$$K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$$
+
+Do you notice the difference?
+
+## Prerequisites
+
+- An account on the teaching cluster.
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster.
+
+```{r}
+#| child: etc.qmd
+```
