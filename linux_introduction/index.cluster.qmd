@@ -16,7 +16,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer:  -- Introduction to the Linux command line
+    footer: Liezel Tamon -- Introduction to the Linux command line
 ## run the following line to render HTML
 # quarto::quarto_render("index.cluster.qmd")
 ## run the following line to render PDF (from HTML above)
