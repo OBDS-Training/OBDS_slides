@@ -1378,8 +1378,7 @@ Outliers *not* shrunk toward the fitted trend.
 :::
 
 ::: {.column width="50%"}
-$$K_{ij} \sim \textrm{NB}(\mu_{ij},
-\alpha_i)$$
+$$K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$$
 
 With
 counts $K_{ij}$ for gene $i$, sample $j$,
