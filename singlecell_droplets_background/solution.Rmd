@@ -29,7 +29,7 @@ library(sessioninfo)
 ```{r}
 library(DropletUtils)
 sce <- DropletUtils::read10xCounts(
-  samples = c("pbmc5k" = "data/raw_feature_bc_matrix"),
+  samples = c("pbmc5k" = "data/5k_pbmc_v3_nextgem/raw_feature_bc_matrix"),
   col.names = TRUE
 )
 sce
@@ -116,7 +116,7 @@ ggplot(plot_data, aes(PC1, PC2, color = empty_droplet)) +
 
 ```{r}
 sce_filtered_cellranger <- DropletUtils::read10xCounts(
-  samples = c("pbmc5k" = "data/filtered_feature_bc_matrix"),
+  samples = c("pbmc5k" = "data/5k_pbmc_v3_nextgem/filtered_feature_bc_matrix"),
   col.names = TRUE
 )
 # sce_filtered_cellranger
