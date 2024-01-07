@@ -9,8 +9,11 @@ Slurm script is based on [Kevin's template](https://github.com/kevinrue/OBDS_scr
 ### 2024 Jan - Liezel
 
 Lesson
-- [ ] Emphasise that the commands in slurm template script can be removed for the exercises, saw many not deleting those demo commands
-- [ ] Make sure not to put solutions in same directory as template because although they can't read the solutions, they can still see they exist because they read permissions on directory to view the template, this confused them last round
-- [ ] Modify template to have sleep so it will stay on queue
-- [ ] Emphasise what are comments on template, what are slurm options and what are commands
-- [ ] Provide an simplified template without a lot of comments?
+- [x] Emphasise that the commands in slurm template script can be removed for the exercises, saw many not deleting those demo commands
+- [x] Make sure not to put solutions in same directory as template because although they can't read the solutions, they can still see they exist because they read
+permissions on directory to view the template, this confused them last round
+  + Instead of deleting, solutions are in the directory as tarball
+- [x] Modify template to have sleep so it will stay on queue
+- [x] Emphasise what are comments on template, what are slurm options and what are commands
+- [x] Provide an simplified template without a lot of comments?
+  + Just emphasise which lines are comments
