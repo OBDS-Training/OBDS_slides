@@ -10,6 +10,8 @@ execute:
 
 ## Talk 2 Exercise 1 – Files and directories part 1 {#sec-Talk2Exercise1}
 
+Give paths to course working directory and resources directory.
+
 1.Log into the server using `ssh`.
 
 ```{bash}
@@ -28,13 +30,13 @@ pwd
 ls -a
 ```
 
-4. Change into your course working directory, **/var/scratch/\<username>**.
+4. Change into your course working directory.
 
 ```{bash}
 cd <course working dir>
 ```
 
-5. Change into the resources directory, **/storage/exet4759/resources**. List files in and/or explore the directory.
+5. Change into the resources directory. List files in and/or explore the directory.
 
 ```{bash}
 cd <absolute path>                        # Or
@@ -81,7 +83,7 @@ cd <course working dir>
 mkdir 1_linux; cd 1_linux
 ```
 
-3. Copy **SRR2121685h_1.fastq** from **<resources dir>/1_linux/1_linux_intro/** in resources directory to your **1_linux** directory.
+3. Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to your **1_linux** directory.
 
 ```{bash}
 cp <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
@@ -117,7 +119,7 @@ mv SRR2121685h_1.fastq 1_linux_intro
 mv -i SRR2121685h_1.fastq 1_linux_intro
 ```
 
-8. Change the permissions of your **manpage.txt** file so that only you have read and write permission
+8. Change the permissions of your **manpage.txt** file so that only you have read and write permission.
 
 ```{bash}
 cd 1_linux_intro
@@ -125,14 +127,14 @@ ls -l manpage.txt
 chmod go-r manpage.txt
 ```
 
-9. Create a new directory within your home directory called **obds_linux**
+9. Create a new directory within your home directory called **obds_linux**.
 
 ```{bash}
 cd ~
 mkdir obds_linux
 ```
 
-10. Change into the created directory & make a copy of your **manpage.txt** but call it **copy.txt**
+10. Change into the created directory & make a copy of your **manpage.txt** but call it **copy.txt**.
 
 ```{bash}
 cd obds_linux

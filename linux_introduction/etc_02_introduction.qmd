@@ -64,7 +64,6 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 ## Linux shell - Terminology alert!
 
 - Most widely used shell for Linux is **Bash** (Bourne Again Shell)
-  + Default shell in the OBDS server but others are available for use
 - A **terminal emulator** (e.g. Git Bash, macOS Terminal app) is used to interact with the shell, providing the **command-line interface (CLI)**, where user inputs commands
   + The command-line prompt (input field) is indicated by a certain character depending on the OS ($ for Linux)
 
@@ -96,11 +95,11 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Anatomy of a Linux command
 
-- Basic part/s (<span style="color:red;">\<arrows></span> indicates a variable which should be replaced)
+- Basic part/s (<span style="color:red;">\<arrows></span> indicates that this part is to be replaced accordingly, removing also the arrows)
   + \<command>      
   + \<command> \<argument> 
   + \<command> \<options> \<argument> 
-  
+
 - Types of commands
   + **Shell builtin** - Built into the shell itself
   + **Executable program** - Any external software in the system path (where OS looks for executable programs)
@@ -117,6 +116,10 @@ $ which head            # ‘which’ returns the path of the file to be execute
 /usr/bin/head
 ```
 
+- <span style="color:red;">Note!</span>
+  + \<arrows> - indicates that this part is to be replaced accordingly, removing also the arrows
+  + '$' - indicates the command-line prompt (input field) and so it should not be included when typing the command
+  
 ## Linux command options
 
 - Commands have options that modify their functions
@@ -173,7 +176,7 @@ knitr::include_graphics("img/help_head.png")
 
 - Different ways
   + Google search!
-  + Use in combination with command-line ways for more information that is accurate and up to date
+  + Use in combination with command-line ways for information compatible with your system
 
 ```{r}
 #| fig-align: center
@@ -314,7 +317,6 @@ knitr::include_graphics("img/sample_working_tree.png")
   #| fig-align: center
   ```
   + Always use tab autocompletion to avoid typos 
-    - Command-line interpreters may figure out whether you need a command or file path
   + `ls` output can be set to be coloured to indicate the type of each file 
     - <span style="color:indigo;">Directory</span>
     - File
@@ -344,14 +346,14 @@ $ less <filename>           # Like more but allows backward movement, "less is m
                             # Up and down arrow keys to scroll one line up or down
                             # Left and right arrow keys to scroll one screen worth 
                               left or right across contents
-                              
-                            # Similar to more, use space bar to scroll down one 
-                              screen worth of contents
-                            # Similar to more, exit anytime with 'q'
                             # Unlike more, reaching end will not terminate 
                               interactive viewer
 ```
 
+ + For both `more` and `less`
+   - Use space bar to scroll down one screen worth of contents
+   - Exit anytime with 'q'
+   
 # Coffee break (20 mins)
 
 @sec-Talk2Exercise1
@@ -461,7 +463,7 @@ knitr::include_graphics("img/ls_long_output_labeled.png")
 
 - Linux is a multi-user OS
 - So important that access to read, write and execute each file or directory is controlled
-- Each file is owned by exactly one user
+- Each file is owned by exactly one **user**
 
 ```{r}
 #| fig-align: center
@@ -474,18 +476,15 @@ knitr::include_graphics("img/ls_long_output.png")
 ## File permissions – group & other
 
 - A **group** is a collection of one or more users
-- Each user can be a member of multiple groups 
-- A file can be owned by exactly one group
-- To see the groups that your user currently belongs to, type:
+- Each user can belong to multiple groups
+- A file is owned by exactly one group
+- To view your current user groups, use the command:
 ```
 $ groups
 ```
 - The last category that you can assign permissions for is the **other** category
-  + Any user that is not the file owner and 
-  + is not a member of the group that owns the file
-- This allows you to set permissions that will apply to anyone outside of the two control groups
-  + Any user that is not the file owner and
-  + is not a member of the group that owns the file
+  + Not the file owner and 
+  + Not a member of the group that owns the file
 
 ## Types of file permissions
 
@@ -546,35 +545,6 @@ $ ls -l file1.txt
 -rwx------ 1 dsims root 2981 Apr 26  2020 file1.txt
 ```
 
-## Using octal notation for file permissions
-
-- Octal notation is more compact but takes more practice to read and write
-- Each type of permission is assigned a numerical value
-  + **4** for **read** permission
-  + **2** for **write** permission
-  + **1** for **execute** permission
-- We sum the numbers for each category to give a single unique number for each combination of permissions
-- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
-
-## Changing file permissions using octal notation
-
-- We can change file permissions with ``chmod`` using octal notation
-
-  ```
-  $ chmod 700 file1.txt
-  $ ls -l file1.txt
-  -rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
-  ```
-
-- File permissions can be displayed in octal format using ``stat``
-
-  ```
-  stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
-  755: jupyter_notebooks
-  644: mm10.blacklist.bed.gz
-  ```
-  + -c - use the specified format instead of the default
-
 ## Viewing and editing files on the command line using interactive text editors
 
 - No graphical interface or mouse required
@@ -593,6 +563,8 @@ $ nano <filename>
 
 ## Working with nano
 
+<span style="color:green;">**DEMO**</span>
+
 - The arrow keys can be used to move the cursor through the file
 - Common keyboard shortcuts are displayed at the bottom of the editor
   + The ^ symbol represents the Control key
@@ -604,8 +576,6 @@ $ nano <filename>
   + When prompted for the ‘File Name to Write’, immediately press the Return key to use the current
   file name (or edit file name as needed)
   
-<span style="color:green;">**DEMO**</span>
-
 ## Creating files and directories
 
 <br>
@@ -693,14 +663,14 @@ $ file?.*                       # Multiple wildcards can be used in the same pat
   + Deleting all the hard links to a file will effectively delete the file itself
   + Hard links cannot span physical devices (a server or cluster can have multiple disks)
   + Hard links cannot reference directories but only files
-- The advantage of hard links is that they remain working even when they are moved
+- The advantage of hard links is that they remain working even when they are moved because they point to the data itself
 - Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated
 
 ## Hard & symbolic links to files and directories
 
-- Symbolic links can point to target files using absolute or relative paths (relative to location of symlink)
-  + With absolute paths, symlink will continue to point to the same location even if the symlink itself is moved
-  + With relative paths, symlink will point to a new location if the symlink itself is moved (relative to new location of symlink)
+- Symbolic links can point to target files using absolute or relative paths
+  + When using absolute paths, symlink will keep working even if it's moved
+  + When using relative paths (relative to location of symlink), symlink will not work when it is moved
 
 ```
 $ ln file1 link1.csv            # Create hard link
@@ -713,12 +683,13 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
 - Files can be:
   + Plain text - contain only characters of readable materials that can be displayed by most text editors
   + Binary - not plain text (e.g. compiled programs, images)
-- Many files use a standardised internal organisation called a file format
-  + Having a standard allows for consistency
-  + Enables software to easily extract defined information
-- Many programs make use of file extensions in their input and output file names:
-  + To parse the contents of input files according to their format 
-  + To indicate the format used to write the contents of their output files
+- Many files follow a standardised internal organisation known as a file format
+  + Ensures consistency
+  + Enables programs to easily extract defined information
+- Adding a file extension can indicate the file format
+- Programs often rely on file extensions in input and output file names
+  + Input: To parse file contents based on their format
+  + Output: To indicate the format used to write file contents
 
 - Good habit to use an appropriate file extension even just using the generic '.txt' to indicate that the file contains plain text information
 
@@ -729,11 +700,11 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
   + .fastq (.fq) - sequence information with quality scores
   + .sam, .bam - alignments of sequences to a reference genome
   + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
-- In bioinformatics, binary file formats are commonly used to store compressed versions of equivalent plain text files (e.g. the SAM and BAM file formats).
+- In bioinformatics, binary formats (e.g., SAM and BAM) are commonly used to compress equivalent plain text files
 
-- Renaming a file and changing its file extension will not cause any error if the new file extension does not match the format of the contents
-- Mismatch between file extension and format of contents may only be detected when the file is actively used by a program that relies on the file extension
-
+- Changing the file extension itself does not alter the actual content of the file
+  + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
+  
 # Coffee break (20 mins) then Talk 2 Exercise 2
 
 @sec-Talk2Exercise2
@@ -753,3 +724,33 @@ Talk 2 Advanced Exercise 3 - Octal permissions
 PrintBibliography(bib)
 ```
 
+# Advanced topics
+
+## Using octal notation for file permissions
+
+- Octal notation is more compact but takes more practice to read and write
+- Each type of permission is assigned a numerical value
+  + **4** for **read** permission
+  + **2** for **write** permission
+  + **1** for **execute** permission
+- We sum the numbers for each category to give a single unique number for each combination of permissions
+- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
+
+## Changing file permissions using octal notation
+
+- We can change file permissions with ``chmod`` using octal notation
+
+  ```
+  $ chmod 700 file1.txt
+  $ ls -l file1.txt
+  -rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
+  ```
+
+- File permissions can be displayed in octal format using ``stat``
+
+  ```
+  stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
+  755: jupyter_notebooks
+  644: mm10.blacklist.bed.gz
+  ```
+  + -c - use the specified format instead of the default

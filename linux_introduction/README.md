@@ -55,17 +55,21 @@ Requirements:
 ### 2024 Jan - Liezel
 
 General
-- [ ] Change exercises to add resources symbolics links to working directory early on to make next exercises easier
-- [ ] Discuss with group how to store shared resources
+- [x] Change exercises to add resources symbolics links to working directory early on to make next exercises easier
+  + Removed paths, give it on the day as Kevin does
+- [x] Discuss with group how to store shared resources
 - [ ] Change SSH config and key pair location and approach as detailed in Day 1 README.md
-- [ ] For both Day 1 and Day 2, maybe allow more time for doing the commands than listening to lecture
-- [ ] Remove $ before lecture code
-- [ ] Put exercises right after talk? Hard to do in qmd while synchronising exercises on slides and solution
-- [ ] Emphasise thought process when building commands
-- [ ] Emphasise that hash can be used to comment out text
-- [ ] Simplify lecture, talk less and give more time for exercises!
+- [x] For both Day 1 and Day 2, maybe allow more time for doing the commands than listening to lecture
+- [x] Remove $ before lecture code
+  + Keep $ to different command from output of command in slides
+- [x] Put exercises right after talk? Hard to do in qmd while synchronising exercises on slides and solution
+  + Separate lecture and exercise pdf so they can open both at the same time and put side by side
+- [x] Emphasise thought process when building commands
+- [x] Emphasise that hash can be used to comment out text
+- [x] Simplify lecture, talk less and give more time for exercises!
 
 Lesson
 - [ ] Adjust schedule based on slide content adjustments
 - [ ] Maybe move SSH config and key pair to Day 1 but make it like Conda or Mamba installation written on GitHub that they can follow, do it with them and make sure everyone has completed it, this way logging into the cluster is easier in terms of typing
-- [ ] Make sure to explain sequencing terms in Talk 1 (Genomics workflow in Linux)
+- [x] Make sure to explain sequencing terms in Talk 1 (Genomics workflow in Linux)
+  + Removed line mentioning peak calling, atac-seq etc to avoid confusion and avoid using time to discuss these methods

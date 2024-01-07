@@ -3,10 +3,10 @@ title: 'Introduction to the Linux command line'
 subtitle: 'Genomics on the Linux command Line'
 author: "Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-11 (updated: `r Sys.Date()`)"
+date: "2024-01-15 (updated: `r Sys.Date()`)"
 date-format: long
 execute: 
-  echo: true
+  echo: false
 format:
   revealjs: 
     slide-number: true
