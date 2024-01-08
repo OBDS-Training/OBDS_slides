@@ -1,5 +1,5 @@
 ---
-title: "Solution: Introduction to the Linux command line"
+title: "Solution: Introduction to the Linux command line, part 2"
 format: html
 engine: knitr
 execute: 
@@ -65,6 +65,7 @@ killall sleep
 ```{bash}
 htop # Then type 'u', select username then press Return 
 # To go back to original view, type 'u', select 'All users' then press Return
+# F10 to quit htop
 ```
 
 9. Sort the processes output by memory usage.
@@ -256,7 +257,7 @@ md5sum -c --ignore-missing md5sum.txt
 
 ## Talk 3 Exercise 1 – Working directory
 
-6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly. 
+6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
 
 ```{bash}
 # Go to Ensembl home, Downloads tab, FTP Download section then the table links 
@@ -270,6 +271,7 @@ md5sum -c --ignore-missing md5sum.txt
 # really (or still) exists or not
 
 cd ../2_genome/
+# Download Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 wget \
 https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz &
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS &
@@ -282,14 +284,13 @@ sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 
 ## Talk 3 Exercise 1 – Working directory
 
-7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome/** and check it downloaded correctly.
+7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
 
 ```{bash}
 wget \
 https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz &
-wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS &
-ls  # Because there is an existing CHECKSUMS for the genome, it downloaded GTF
-    # CHECKSUMS as CHECKSUMS.1; you can rename the two files
+wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS > CHECKSUMS_GTF &
+ls  # Because there is an existing CHECKSUMS for the genome, it downloaded GTF CHECKSUMS as CHECKSUMS.1
 cat CHECKSUMS.1 | grep 'Mus_musculus.GRCm38.102.gtf.gz'
 sum Mus_musculus.GRCm38.102.gtf.gz
 ```
@@ -301,13 +302,15 @@ nano readme.txt  # Or
 touch readme.txt
 ```
 
-9. Create a third directory called **3_analysis** and a subdirectory called **1_fastqc**.
+9. Create a third directory called **3_analysis** in your **rnaseq** directory. Change into the new directory and create a subdirectory called **1_fastqc**. View rnaseq directory structure using `tree`.
 
 ```{bash}
 cd ..
 mkdir 3_analysis
-cd 3_analysis/
+cd 3_analysis
 mkdir 1_fastqc
+cd ..
+tree
 ```
 
 ## Talk 3 Exercise 1 – Working directory
@@ -315,6 +318,6 @@ mkdir 1_fastqc
 10. Create an analysis lab-book called **rnaseq_commands.sh** in **3_analysis/**.
 
 ```{bash}
-nano rnaseq_commands_<username>.sh  # Or
-touch rnaseq_commands_<username>.sh
+cd 3_analysis
+touch rnaseq_commands.sh
 ```
