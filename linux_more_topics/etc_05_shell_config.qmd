@@ -366,7 +366,7 @@ $ scp obds-bastion:<source path> <destination path>
 
 # Talk 2 Exercise 1 (Shell configuration) and 2 (Working with modules)
 
-@sec-Talk2Exercise1
+<!-- @sec-Talk2Exercise1 -->
 
 <!--
 ## Useful links

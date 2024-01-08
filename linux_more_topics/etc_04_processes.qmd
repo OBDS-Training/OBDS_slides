@@ -18,7 +18,6 @@
   + **Stopped** - process has been stopped, usually by receiving a termination signal (either from user or system)
   + **Zombie** - process has been halted but it still has an entry in the table of processes
 
-
 ## Foreground and background processes
 
 - By default, command executed interactively in the Bash session of a Terminal application are run in the **foreground**
@@ -68,7 +67,7 @@ knitr::include_graphics("img/jobs_option.png")
 ::: {.column width="45%"}
 
 - If you have more than one process running in the background:
-  + Type fg followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
+  + Type 'fg' followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
   
 - In the `jobs` output 
   + '+' - job that would be brought to the foreground by default
@@ -254,7 +253,7 @@ knitr::include_graphics("img/nohup.png")
 
 # Talk 1 Exercise 1 - Linux processes & system resources
 
-@sec-Talk1Exercise1
+<!-- @sec-Talk1Exercise1 -->
 
 ## References
 

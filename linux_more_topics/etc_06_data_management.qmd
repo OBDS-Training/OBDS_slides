@@ -214,7 +214,7 @@ $ wget \
 
 - ArrayExpress (EBI)
 - ENA – European Nucleotide archive (EBI)
-- GEO - Gene expression Omnibus (NCBI)
+- GEO – Gene expression Omnibus (NCBI)
 - SRA – Short Read Archive (NCBI)
 - Download published datasets
   + Raw sequencing data (fastq files)
@@ -224,10 +224,11 @@ $ wget \
 ## Verify integrity of downloads
 
 - We can check if files have downloaded correctly using checksums
-- Checksum tools generate a unique code (checksum) for each file
-- There are multiple checksum algorithms `md5sum`, `sha256sum`, `sum` etc.
-- These commands are useful if the remote provider ran any of the command themselves and made available the output for each file 
-- Users can then run the same command on their own copy of the downloaded files, and compare the output with that of the provider
+- A **checksum** is a value or code derived from digital data to verify its integrity
+  + Like a unique fingerprint of a data
+- `md5sum`, `sha256sum`, `sum` are examples of commands to calculate and verify checksums
+  + They differ in algorithms used to calculate checksum
+- Users can compare locally generated checksums with those provided by the source to verify file integrity
 
 ## Verify integrity of downloads
 
@@ -252,7 +253,7 @@ knitr::include_graphics("img/md5_file.png")
 
 ## Verify integrity of downloads
 
-- ENA uses `md5sum` 
+- ENA uses `md5sum`
 
 ```
 $ wget http…/md5sum.txt     # Download reference checksum file to local system
@@ -272,12 +273,12 @@ knitr::include_graphics("img/md5sum-c.png")
 
 - `wget`
 - `curl`
-   + Like `wget`, can be used for downloading files from the Internet 
+   + Like `wget`, `curl` can be used for downloading files from the Internet 
    + The two have differences in terms of other functionality e.g. `wget` can download recursively
    
 # Talk 3 Exercise 1 - Working directory
 
-@sec-Talk3Exercise1
+<!-- @sec-Talk3Exercise1 -->
 
 ## References
 
