@@ -569,6 +569,9 @@ $ nano <filename>
 - Common keyboard shortcuts are displayed at the bottom of the editor
   + The ^ symbol represents the Control key
   + For instance, ^X indicates that pressing the Control + x will exit the interactive text editor
+  + Control + k - to delete/cut a line
+  + Control + w - to search for a text
+  + Control + w + v - to go to end of document
 
 - To save edits made to a file:
   + Press Control + x to initiate the exit from the editor
