@@ -18,8 +18,6 @@ Give paths to course working directory and resources directory.
 ```{bash}
 #| echo: true
 ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
-
-# Accept authenticity of these remote hosts by typing 'yes' and provide passwords.
 ```
 
 2. Establish your current location in the file system.

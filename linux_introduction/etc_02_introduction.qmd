@@ -116,8 +116,21 @@ $ which head            # ‘which’ returns the path of the file to be execute
 /usr/bin/head
 ```
 
+## Anatomy of a Linux command
+
+```
+$ type cd               # ‘type’ shows the type of command
+cd is a shell builtin
+
+$ type head
+head is /usr/bin/head
+      
+$ which head            # ‘which’ returns the path of the file to be executed
+/usr/bin/head
+```
+
 - <span style="color:red;">Note!</span>
-  + \<arrows> - indicates that this part is to be replaced accordingly, removing also the arrows
+  + \<arrows> - indicate that this part is to be replaced accordingly, removing also the arrows
   + '$' - indicates the command-line prompt (input field) and so it should not be included when typing the command
   
 ## Linux command options
@@ -365,36 +378,18 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 - We can log into a remote target host (e.g. server or cluster) using `ssh`
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
-- Simply put, the protocol uses a username and password to authenticate a user on the target host
-  ```
-  $ ssh <target username>@<target host>
-  ```
-  + If prompted for authenticity of host and whether to continue connecting, type 'yes' (usually appears when connecting the first time)
-  + This then prompts for the password for the user account on target host 
-
+  + The protocol uses a username and password to authenticate a user on the target host
+ 
 ## Remote connection to a Linux server *via* a jump host
 
 - Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
-  ```
-  $ ssh -J <jump username>@<jump host> <target username>@<target host> 
-
-  # OR
-
-  $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
-  ```
-  + -o - Can be used to give options in the format used in the configuration file (TBD)
-
 - To connect to the OBDS server (obds), we do need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
-  ```
-  $ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <target username>@obds
-  ```
-  + If prompted for authenticity of host and whether to continue connecting, type 'yes'
-  + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
+ 
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
-  + <span style="color:red;">In our case, the user accounts on bastion and obds are the same!</span>
+  + <span style="color:red;">In our case, the user accounts on bastion and obds are the same</span>
 
-- <span style="color:red;">Note that we do not always have to go through a jump host!</span>
+- <span style="color:red;">Note that we do not always have to go through a jump host</span>
  
 ## Remote Connection to a Linux Server
 
@@ -402,6 +397,8 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
   + Press Control + d
+
+<span style="color:green;">**Do together**</span>
 
 <!-- ## Side note for tomorrow! -->
 
