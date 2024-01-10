@@ -283,7 +283,7 @@ done
   
 # Talk 3 Exercise 1 and advanced exercises (optional)
 
-@sec-Talk3Exercise1
+<!-- @sec-Talk3Exercise1 -->
 
 <br>
 

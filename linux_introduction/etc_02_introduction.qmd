@@ -356,7 +356,7 @@ $ less <filename>           # Like more but allows backward movement, "less is m
    
 # Coffee break (20 mins)
 
-@sec-Talk2Exercise1
+<!-- @sec-Talk2Exercise1 -->
 
 ## Remote connection to a Linux server
 
@@ -403,15 +403,15 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
   + Type 'logout' and press the Return key
   + Press Control + d
 
-## Side note for tomorrow!
+<!-- ## Side note for tomorrow! -->
 
-- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture
+<!-- - Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture -->
 
-- We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server)
+<!-- - We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server) -->
 
 # Talk 2 Exercise 1 then Lunch break (60 mins)
 
-@sec-Talk2Exercise1
+<!-- @sec-Talk2Exercise1 -->
 
 ## Changing how you view files using ``ls`` options
 
@@ -710,7 +710,7 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
   
 # Coffee break (20 mins) then Talk 2 Exercise 2
 
-@sec-Talk2Exercise2
+<!-- @sec-Talk2Exercise2 -->
 
 <br>
 
