@@ -90,89 +90,34 @@ du -sh .
 
 ## Talk 2 Exercise 1 – Shell configuration {#sec-Talk2Exercise1}
 
-**Connecting to the OBDS server (obds) *via* a bastion host (bastion@imm.ox.ac.uk) using SSH key pair**
-
-1. On your local machine, change into **~/.ssh/** to check for existing key pairs and/or 'config' file. <span style="color:red;">Let us know if you have!</span>
-
-```{bash}
-cd ~/.ssh/; ls     
-# Having 'known_hosts' and 'known_hosts.old' files is okay
-# Let us know if you have a 'config' file. Also, if you have 'id_ecdsa' and 
-# 'id_ecdsa.pub' 
-# files because these will also be the names of the keys we will create.
-```
-
-If okay to proceed, create an SSH key pair as shown on the lecture slides. When prompted, leave file and passphrase blank (for this course only) by just pressing the Return key. Check if both private and public keys were successfully generated.
-
-```{bash}
-ssh-keygen -t ecdsa -b 521 
-ls      # id_ecdsa and id_ecdsa.pub files created
-```
-
-## Talk 2 Exercise 1 – Shell configuration
-
-2. Still on your local machine, copy the public key to the jump host (**bastion.imm.ox.ac.uk**). 
-
-```{bash}
-ssh-copy-id -i ~/.ssh/id_ecdsa <username>@bastion.imm.ox.ac.uk
-```
-
-If successful, you should be able to connect to jump host i.e. `ssh <username>@bastion.imm.ox.ac.uk` without entering account password.
-
-Now, working on your local machine, copy the public key to the target host (**obds**) via the jump host.
-
-```{bash}
-ssh-copy-id -i ~/.ssh/id_ecdsa \
-            -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
-```
-
-If successful, you should be able to connect to OBDS server via jump host i.e. `ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds` without entering account password.
-
-3. To easily connect to the server *via* the bastion host, configure your ssh client. Working on your local machine, copy the OBDS config file template (**/storage/exet4759/resources/1_linux/2_linux_config/config**) from the OBDS server and transfer to your local ~/.ssh folder.
-
-```{bash}
-scp -o ProxyJump=<username>@bastion.imm.ox.ac.uk \
-<username>@obds:/storage/exet4759/resources/1_linux/2_linux_config/config ~/.ssh
-```
-
-## Talk 2 Exercise 1 – Shell configuration
-
-4. Edit the config file using a terminal text editor to add your username in the appropriate places.
-
-5. From your local machine, connect to the OBDS server using the ssh key pair and shortcut for the ssh connection to the server on your config file. 
-
-```{bash}
-ssh obds-bastion
-```
-
-## Talk 2 Exercise 1 – Shell configuration
-
-6. Locate your **.bashrc** in your home directory.
+1. Locate your **.bash_aliases** in your home directory.
 
 ```{bash}
 cd ~; ls -a
 ```
 
-7. If file does not exist, create **.bash_aliases** in your home directory. 
+2. If file does not exist, create **.bash_aliases** in your home directory. 
 
 ```{bash}
 touch ~/.bash_aliases
 ```
 
-8. Use a terminal text editor to open your **.bash_aliases** and add the **alias la='ls -alhF'**. So usually aliases are added to .bashrc but because the current .bashrc already contains a lot of text that we don't want to accidentally modify, we can put aliases to **.bash_aliases**, which is set to be automatically sourced when you log in to the OBDS server. 
+3. Use a terminal text editor to open your **.bash_aliases** and add the **alias la='ls -alhF'**.
 
 ```{bash}
 nano .bash_aliases     
 ```
 
-9. Add aliases to **.bash_aliases** for the resources directory and your course working directory.
+4. Add aliases to **.bash_aliases** for the resources directory and your course working directory.
 
 ```{bash}
-alias resdir='cd /storage/exet4759/resources/'
-alias cwdir='cd /var/scratch/<username>/'
+alias resdir='cd <resources dir>'
+alias cwdir='cd <course working dir>'
 ```
 
-10. To apply the changes, open a new terminal (or type `source .bash_aliases` on the current terminal). Check that your aliases work. 
+5. To apply the changes, open a new terminal. Check that your aliases work.
+
+<!-- 10. To apply the changes, open a new terminal (or type `source .bash_aliases` on the current terminal). Check that your aliases work. -->
 
 ## Talk 2 Exercise 2 – Modules {#sec-Talk2Exercise2}
 

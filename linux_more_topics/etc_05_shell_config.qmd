@@ -2,7 +2,7 @@
 
 ## Overview
 
-- The .bashrc file
+- Shell configuration
 - Aliases
 - Environment variables e.g. the system path, $PATH
 - Environment modules
@@ -20,6 +20,12 @@
   + Set aliases (shortcuts)
   + Set environment variables
   + Load environment modules (not recommended)
+  
+<br>
+
+- Sometimes, instead of directly editing the ~/.bashrc file, another configuration file, **~/.bash_aliases**, can be created and used for user-defined configuration
+  + This file is also typically loaded automatically by the Bash shell
+  + In this course, we will be modifying this file
  
 ## Aliases
 
@@ -152,199 +158,13 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 
 ```{r}
 #| fig-align: center
-#| out-height: 450px
-#| out-width: 550px
+#| out-height: 350px
+#| out-width: 400px
 ## Source: CCB Doks
 knitr::include_graphics("img/ssh-key-pair.png")
 ```
 
-## Setting up a public-private key pair
-
-- On your local machine, SSH key pairs and configuration files are stored in a hidden directory within your home directory called .ssh
-  ```
-  $ cd ~/.ssh                         # Create if it doesn't exist
-  ```
-  + <span style="color:red;">Before generating, check whether you have existing SSH keys in ~/.ssh on your local machine. Let us know!</span>
-
-- Generate private and public keys / files
-  ```
-  $ ssh-keygen -t ecdsa -b 521        
-  ```
-  + -t - To specify the type of SSH key pair
-  + -b - To specify the number of bits in the key -- recommended values depend on type / algorithm and current state of technology -- longer keys stronger i.e. harder to crack but slows down encryption / decryption process
-
-## Setting up a public-private key pair
-
-- You will be prompted for: 
-  + A file name for both keys (if you leave blank by pressing Return key -- id_\<ssh key type> by default e.g. id_ecdsa)
-  + A passphrase 
-    - Ideally, always set a passphrase for maximum security, but for now let's just leave the passphrase blank (just press Return key) 
-
-- The command creates files in **~/.ssh/**:
-  + A private key (file), **'id_ecdsa'** 
-  + A public key (file), **'id_ecdsa.pub'** 
-- Please ensure that the private key has only read and write permissions for user and no permissions for group or other 
-
-## Adding the public key to a remote server
-
-- The public key, generated and saved as a file on the local machine, needs to be copied to the target host
-
-  ```
-  $ ssh-copy-id -i ~/.ssh/id_ecdsa <target username>@<target host>
-  ```
-  + This will prompt for password of your account on target host
-  + If the public key indeed does not exist on the target host yet, you will be prompted for your password -- Type it, and press the Return key
-  + This adds the public key to the file ~/.ssh/authorized_keys on the target host
-
-- Once the public key has been copied you can log into the host using the SSH key pair for authentication rather than your passwords
-  + But this will still prompt for the SSH key passphrase if you have it
-
-## Adding the private key to SSH agent
-
-- To avoid typing your SSH key passphrase every time you use the key, you can add your key to an SSH authentication agent
-  + <span style="color:red;">Skip this step if you did not provide an SSH key passphrase</span>
-
-  ```
-  $ eval `ssh-agent -s`           # Activate SSH agent
-  $ ssh-add ~/.ssh/id_ecdsa       # Add private key to agent
-  ```
-  + <span style="color:red;">Note that the agent activation and key addition have to be done every time you start a 'session'</span>
-    - Say you started a new terminal window, you have to run the two commands again! We can get rid of these steps using the SSH config file (TBD)!
- 
-## Adding the public key to both jump and target hosts
-
-- If connecting through a jump host as in our case, the public key has to be copied to the jump host and then copied to the target host
-
-```
-$ ssh-copy-id -i ~/.ssh/id_ecdsa <username>@bastion.imm.ox.ac.uk
-
-# If successful, you should be able to connect to the jump host without your account password 
-
-# and then now, we can copy the same public key to target host
-
-$ ssh-copy-id -i ~/.ssh/id_ecdsa -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
-```
-
-<br>
-
-- A single SSH key pair can be used to authenticate and access multiple hosts, provided that you have added the corresponding public key to the ~/.ssh/authorized_keys file on each of those hosts for the intended user
-  + We used the same SSH key pair for the jump host and target host
-  
-- <span style="color:green;">At this point, you should be able to log into the OBDS server *via* bastion host without entering passwords for your accounts in both hosts</span>
-
-## Configuring the SSH client 
-
-- With the SSH key pair, we added extra security as well as avoided entering multiple passwords but the command we have to use to connect to the OBDS server is still pretty long! 
-  + and will be longer if we need more options to configure the connection
-
-```
-$ ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
-```
-
-- We can create an SSH config file to 
-  + Shorten `ssh` command we type every time we connect 
-  + Easily add other `ssh` options to configure connections
-  + Specify SSH key pairs to be used for each or multiple hosts
- 
-- Create a file called config in your local ~/.ssh directory
-
-```
-$ cd ~/.ssh
-$ nano config
-```
-
-## Configuring the SSH client
-
-Config file to access the OBDS server:
-
-:::: {.columns}
-
-::: {.column width="60%"}
-
-```
-Host bastion
-    HostName bastion.imm.ox.ac.uk
-    User <username>
-    IdentityFile ~/.ssh/id_ecdsa
-
-Host obds-bastion
-    HostName obds
-    User <username>
-    IdentityFile ~/.ssh/id_ecdsa
-    ProxyJump bastion
-    # for RStudio
-    LocalForward localhost:8787 localhost:8787
-    # for FileZilla
-    LocalForward localhost:3111 localhost:22
-```
-
-:::
-
-::: {.column width="40%"}
-
-  + **Host** - creates a new set of parameters, can specify a nickname for the host
-  + **IdentityFile** - specifies the path to the private SSH key file that you created earlier on your local machine
-  + **User** - username on host (can be different between jump and target hosts)
-  + **ProxyJump** - establish connection through a jump host (earlier nicknamed as bastion)
-  + **LocalForward** - specify connection between a port of local machine to a port of target host, offering a particular "service" (8787 often used for RStudio, 22 often used for SSH connection)
-  
-:::
-
-::::
-
-## Configuring the SSH client
-
-- Specifying global default parameters to be applied on all hosts:
-
-```
-Host *                            
-    IdentityFile ~/.ssh/id_ecdsa  # If using an SSH key pair as a default if not 
-                                    specified later on for a particular host
-    
-# For macOS only, add these so there's no need to enter passphrase when starting remote connection
-
-    AddKeysToAgent yes            # Whether keys should be automatically added 
-                                    to a running ssh-agent
-    UseKeychain yes               # Whether passphrases are stored in the 
-                                    keychain (macOS app)
-```
-  + '*' matches all host names, making those parameters global defaults unless overwritten in subsequent declaration
-
-## Remote connection to the OBDS server
-
-- OBDS config file template:
-
-```
-Host *
-    IdentityFile ~/.ssh/id_ecdsa
-    AddKeysToAgent yes
-#    UseKeychain no
-
-Host bastion
-    HostName bastion.imm.ox.ac.uk
-    User exet4759
-#    IdentityFile ~/.ssh/id_ecdsa
-
-Host obds-bastion
-    HostName obds
-    User exet4759
-#    IdentityFile ~/.ssh/id_ecdsa
-    ProxyJump bastion
-    # for RStudio
-    LocalForward localhost:8787 localhost:8787
-    # for FileZilla
-    LocalForward localhost:3111 localhost:22
-```
-
-- Once you have the config file, the original `ssh` command to connect to the OBDS server *via* the bastion host can be simplified: 
-
-```
-# From
-ssh -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds
-
-# To
-ssh obds-bastion
-```
+<span style="color:green;">Do together</span>
 
 ## Transferring files across systems on the command line using `scp`
 
