@@ -75,12 +75,12 @@ Requirements:
 
 | Activity                                                      |  Time |
 |---------------------------------------------------------------|-------|
-| Welcome and introductions                                     | 09:30 |
+| Welcome, introductions, setup                                 | 09:30 |
 | Talk 1 - Genomics on the Linux command line                   | 10:00 |
-| Talk 2 - Introduction to the Linux command line, part 1       | 10:30 |
+| Talk 2 - Introduction to the Linux command line               | 10:30 |
 | **Morning Break**                                             | 11:00 |
 | Talk 2 Exercise 1                                             | 11:20 |
-| Talk 2 - Introduction to the Linux command line, part 2       | 11:50 |
+| Talk 2 - Introduction to the Linux command line, continue     | 11:50 |
 | **Lunch Break**                                               | 12:30 |
 | Talk 2 Exercise 2                                             | 13:30 |
 | Talk 3 - Working with files and streams in Linux              | 14:10 |
