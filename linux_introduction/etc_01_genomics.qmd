@@ -223,10 +223,10 @@ Course outline:
 ## Useful links
 
 - [Illumina course on imaging and base calling (Video)](https://support.illumina.com/content/dam/illumina-support/courses/MiSeq_Imaging_and_Base_Calling/story_html5.html)
-- [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/)
+<!-- - [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/) -->
 - [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
-- [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics)
-- [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools)
+<!-- - [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics) -->
+<!-- - [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools) -->
 
 ## References
 
