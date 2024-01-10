@@ -4,6 +4,7 @@ format: html
 engine: knitr
 execute: 
   eval: false
+  echo: false
 ---
 
 # Day 1 Exercises
@@ -15,7 +16,10 @@ Give paths to course working directory and resources directory.
 1. Log into the server using `ssh`.
 
 ```{bash}
-ssh -J username@bastion.imm.ox.ac.uk username@obds
+#| echo: true
+ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
+
+# Accept authenticity of these remote hosts by typing 'yes' and provide passwords.
 ```
 
 2. Establish your current location in the file system.
