@@ -1,4 +1,4 @@
-Slurm script is based on [Kevin's template](https://github.com/kevinrue/OBDS_scripts/blob/main/slurm_template_short.sh)
+Slurm script template and solutions (in [OBDS-Training/OBDS_Syllabus](https://github.com/OBDS-Training/OBDS_Syllabus) GitHub repository) are based on [Kevin's template](https://github.com/kevinrue/OBDS_scripts/blob/main/slurm_template_short.sh)
 
 ### 2023 Sep - Liezel
 
