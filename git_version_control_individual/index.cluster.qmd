@@ -3,7 +3,7 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: 'Genomics on the Linux command Line'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-13 (updated: `r Sys.Date()`)"
+date: "2024-01-17 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -61,15 +61,12 @@ High-level "big picture" objectives of the learning process.
 More concrete and measurable outputs.
 -->
 
-- Set up an SSH key pair.
-- Configure <i class="fab fa-git"></i>.
-- _Initialise_ a personal repository for this course, on <i class="fab fa-github"></i> GitHub.
-- _Clone_ a copy of the repository on the teaching cluster.
-- Create and edit files in the repository on the teaching cluster, and _commit_ those changes.
-- _Push_ your changes to the <i class="fab fa-github"></i> GitHub clone of the repository.
-- Edit files on the <i class="fab fa-github"></i> GitHub clone of the repository.
-- _Pull_ updates from the <i class="fab fa-github"></i> GitHub clone to the clone of the repository on the teaching cluster.
-- Examine the _log_ of the shared repository, on <i class="fab fa-github"></i> GitHub and on the teaching cluster.
+- Create a <i class="fab fa-github"></i> GitHub account.
+- Connect your account on the teaching cluster to your <i class="fab fa-github"></i> GitHub account.
+- Create a <i class="fab fa-git"></i> repository.
+- Track version of files in a <i class="fab fa-git"></i> repository.
+- Transfer changes in your <i class="fab fa-git"></i> repository between the teaching cluster and the <i class="fab fa-github"></i> GitHub website.
+- Examine the history of changes in your <i class="fab fa-git"></i> repository.
 
 ## Prerequisites
 
@@ -78,7 +75,7 @@ More concrete and measurable outputs.
 
 ## Set up
 
-- Connect to the University VPN.
+- Connect to the VPN.
 - Open a terminal application on your computer.
 - Connect to the teaching cluster over SSH.
 
