@@ -546,17 +546,15 @@ $ ls -l file1.txt
 
 - No graphical interface or mouse required
 - Tools
-  + Vim and Emacs 
-    - Been around for 40 years, widely used, large number of add-ons
+  + Vim
+    - Development started in 1988, widely used, large number of add-ons
     - Can be heavily customised (e.g. keyword highlighting, code auto-completion)
     - But users need to learn a set of keyboard shortcuts
-  + Nano - more basic and so recommended for beginners
-- To edit a file, type either one of these
-```
-$ vim <filename>  
-$ emacs <filename>
-$ nano <filename>
-```
+  + Nano -  relatively newer, more basic and so recommended for beginners
+- To edit a file, type:
+  ```
+  $ nano <filename>
+  ```
 
 ## Working with nano
 
