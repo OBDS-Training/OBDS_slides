@@ -43,6 +43,15 @@ Requirements:
 | Talk 2 and 3 Advanced exercises                               | 15:30 |
 | **Day End**                                                   | 16:00 |
 
+## Linux Day 1 setup/reminders (first 30 minutes)
+
+- Slack channel
+- Give link to OneDrive folder with materials
+- Check for Windows users and check if Git Bash installed
+- Show slide with 
+  + WIMM IT account activation instructions
+  + Instructions to email IT help desk to get access to WIMM VPN service and point to instructions to get access to WIMM VPN service which they can do during free time
+
 ## Log for completed round and task list for next round
 
 ### 2023 Sep - Liezel
