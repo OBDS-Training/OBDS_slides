@@ -10,7 +10,7 @@
 
 ## Learn to process genomics data on Linux using an example RNA-seq workflow
 
-- Goal: Identify differentially expressed genes between conditions
+- Example goal of RNA-seq: Identify differentially expressed genes between conditions
 - Most common workflow:
 
 ```{r, rnaseq_workflow}
@@ -41,7 +41,7 @@ knitr::include_graphics("img/Cluster_Generation.png")
 ```
 :::
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 - Sequence
 
 ```{r}
@@ -63,8 +63,9 @@ knitr::include_graphics("img/illumina_sequencing.png")
 - Usually compressed using `gzip` to save disk space
 - File extensions .fastq, .fq (uncompressed) or .fastq.gz, .fq.gz (compressed)
 - For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastq.gz
-- For paired-end files reads should be in the same order 
-- Each entry consists of 4 lines:
+  + Paired-end sequencing enables both ends of fragment to be sequenced e.g. for better alignment, detecting fusion genes, transcript variants
+  + For paired-end files reads should be in the same order 
+- Each entry for a read consists of 4 lines:
 
 ```{r}
 #| fig-align: center
@@ -74,6 +75,13 @@ knitr::include_graphics("img/illumina_sequencing.png")
 knitr::include_graphics("img/fastq.png")
 ```
 
+<!-- ### Notes -->
+
+<!-- Because the distance between each paired read is known (based on the insert size selected during library preparation), alignment algorithms can use this information to map the reads over repetitive regions more precisely. This results in much better alignment of the reads, especially across difficult-to-sequence, repetitive regions of the genome. -->
+
+<!-- insert - fragment without sequencing adapters, insert size selected varies based on purpose of experiment -->
+<!-- fragment - insert with sequencing adapters -->
+
 ## Per-base quality score of a read
 
 :::: {.columns}
@@ -81,8 +89,7 @@ knitr::include_graphics("img/fastq.png")
 ::: {.column width="35%"}
 - Base quality is based on base error probability (**e**)
 - Storing **e** (per base) can take up a lot of space, so 
-  + **e** → Phred quality score (**Q**) → ASCII code (by adding 33) → single ASCII character
-  + **Q** = -10 log~10~ (**e**)
+  + **e** → Phred quality score (**Q** = -10 log~10~ (**e**)) → ASCII code (by adding 33) → single ASCII character
   + So by using single-digit ASCII characters, the base quality representations align with called bases in FASTQ
 
 ```{r}
@@ -108,6 +115,13 @@ knitr::include_graphics("img/quality_score_table.png")
 
 ::::
 
+<!-- ### Notes -->
+
+<!-- - Base call accuracy  -->
+<!--   + Probability that a given base is called incorrectly by the sequencer -->
+<!--   + An incorrect base call probability of 1 in 100, means that every 100 bp sequencing read will likely contain an error -->
+<!--   + During a run, error rates can be derived by comparing the called bases to the reference sequence or known control sequences -->
+
 ## RNA-seq workflow and example tools
 
 ```{r}
@@ -124,11 +138,10 @@ knitr::include_graphics("img/rnaseq_workflow_tools.png")
 
 ::: {.column width="35%"}
 
-- **FastQC** tool
+- **FastQC** tool to summarise base quality data from millions of reads
 - Produces an HTML report per FASTQ containing graphical summaries of
   + Base quality scores
   + Sequence content analyses
-- Summarises results using a traffic light overview
 <!-- 
 **MultiQC** tool can be used to compile per-FASTQ reports `r Citep(bib, "#ewels_multiqc_2016")`  
 -->
@@ -153,7 +166,7 @@ knitr::include_graphics("img/fastqc.png")
 ## Step 2: Read mapping / alignment
 
 - Find the position(s) in the reference genome where each short read sequence aligns with the fewest mismatches
-- String matching problem
+<!-- - String matching problem -->
 - Must allow small differences (sequencing errors or polymorphisms)
 - Must be fast (millions of short reads)
 
@@ -177,7 +190,7 @@ All contain sequence alignment (read mapping) information
 - **SAM**
 
   + **S**equence **A**lignment **M**ap
-  + Text file
+  + Human-readable text file
 :::
 
 ::: {.column width="33%"}

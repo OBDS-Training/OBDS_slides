@@ -4,14 +4,14 @@ format: html
 engine: knitr
 execute: 
   eval: false
-  echo: false
+  echo: true
 ---
 
 # Day 1 Exercises
 
 ## Talk 2 Exercise 1 – Files and directories part 1 {#sec-Talk2Exercise1}
 
-Give paths to course working directory and resources directory.
+Ask instructor for paths to course working directory and resources directory.
 
 1. Log into the server using `ssh`.
 
@@ -190,7 +190,7 @@ stat --help
 man stat
 ```
 
-2. Display the octal permission for all the files in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
+2. Display the octal permission/s for file/s in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
 
 ```{bash}
 stat -c "%a: %n - %s bytes" *

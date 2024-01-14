@@ -29,12 +29,12 @@
 - Streams can be redirected to new destinations – including files – using the symbols '>', '<', and variants thereof
 
 ```
-$ command1 < file1              # Input file1 to stdin for command1
-$ command1 > file1              # Write standard output of command1 to file1
-$ command1 >> file1             # Append standard output of command1 to file1
-                                # '>' overwrites to a file
-$ command1 2> file2             # Write error output of command1 to file2
-$ command1 >! file1             # Overwrite existing file1 with output of command1
+$ command1 < file1      # Input file1 to stdin for command1
+$ command1 > file1      # Write standard output of command1 to file1,
+                          overwriting if file exists (a prompt may appear)
+$ command1 >! file1     # Force overwriting of existing file1 with output of command1
+$ command1 >> file1     # Append standard output of command1 to file1
+$ command1 2> file2     # Write error output of command1 to file2
 ```
 
 - Redirecting the standard error and output (preferably to separate files) can be extremely helpful for diagnosing errors and bugs and for asking help
@@ -100,7 +100,7 @@ $ gzip -c file1.txt > compressed.txt.gz
 - Compress an entire directory or a single file
 
 ```
-$ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+$ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file/s
 ```
   + -c = **C**reate an archive
   + -z = Compress the archive with g**z**ip
@@ -113,10 +113,10 @@ $ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
 - Good practice to compress all non-trivial text files
 
 ```
-$ gzip file1 	                # Compress file1 in place (adds .gz file extension)
+$ gzip file1 	                  # Compress file1 in place (adds .gz file extension)
 $ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file 
                                   extension)
-$ gunzip -c file1.gz 	        # Decompress file1 to standard out (can be 
+$ gunzip -c file1.gz > f1.txt   # Decompress file1 to standard out (can be 
                                   redirected to a file)
 $ zcat file1.gz                 # Print compressed file to the terminal
 $ zless file1.gz                # Interactively scroll through compressed files 
@@ -133,13 +133,17 @@ $ tar -xzf jpg.tar.gz           # Extract files from an archive
 
 - Search files and print only lines that match a given pattern
 - Line-based i.e. returns all lines that match the pattern
-- Pattern to search for must be given as a regular expression
+- Pattern to search for must be given as a regular expression (type of syntax to describe patterns)
   + Does not always need to include special wildcard characters
   + Can be as simple as the exact sequence of characters to search for
   
 ```
 $ grep <options> <pattern> <file>
+
+# Line starting with "error"
 $ grep –i “error” pipeline.log
+
+$ grep “^error” pipeline.log     
 $ grep –c “chr1” p300.bed
 $ grep –v “chr5” p300.bed
 ```
@@ -169,7 +173,7 @@ $ cut -f3 file1.tsv             # Extract only the third field from a tab
                                   delimited file
 $ cut –f1,4 –d ‘,’ file2.csv    # Extract the first and fourth columns from 
                                   a comma delimited file
-                                # Default delimiter is tab (\t)
+                                # -d delim, default delimiter is tab (\t)
 ```
 
 ## Sorting files with `sort`
@@ -187,6 +191,8 @@ $ sort -t, --key=2 --key=1n file1.txt
   + \-\-key=2 - Second field should be used to order lines, in alphabetical order of that field
   + \-\-key=1n - First field should be used to break ties, in numerical order of that field
   
+<!-- By default, if keys are not given, sort uses entire lines for comparison -->
+
 ## Removing duplicate rows with `uniq`
 
 - Remove duplicated lines, or count the number of occurrences of each distinct line in a file
@@ -212,7 +218,7 @@ $ sort file1.txt | uniq
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-width: 900px
+#| out-width: 750px
 ## Source: 
 knitr::include_graphics("img/search_find.png")
 ```
@@ -221,7 +227,7 @@ knitr::include_graphics("img/search_find.png")
 
 ## Loops in Bash
 
-- Iterate over lists of items, files and directories
+- Iterate over lists of values, inputs, files or directories
 - When repeatedly executing the same set of commands on a series of inputs, loops can be used to:
   + Define a set of input
   + Define a set of commands

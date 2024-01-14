@@ -95,7 +95,7 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Anatomy of a Linux command
 
-- Basic part/s (<span style="color:red;">\<arrows></span> indicates that this part is to be replaced accordingly, removing also the arrows)
+- Basic part/s
   + \<command>      
   + \<command> \<argument> 
   + \<command> \<options> \<argument> 
@@ -250,6 +250,8 @@ $ cd Desktop                # Change directory
 
 $ pwd
 /home/<user>/Desktop
+
+$ cd ~                      # Change into your home directory
 ```
 
 ## Working with Paths 
@@ -292,7 +294,7 @@ knitr::include_graphics("img/sample_working_tree.png")
 ::: {.column width="40%"}
 
 - Relative paths 
-  + Relative paths are relative to the current working directory
+  + Relative paths are relative to the current working directory or where your are currently
   + Does not start with '/'
 
     ```
@@ -384,16 +386,16 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 - Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
 
-- To connect to the OBDS server (obds), we do need to use University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+- To connect to the OBDS server (obds), one method is to connect to the University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
  
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
-  + <span style="color:red;">In our case, the user accounts on bastion and obds are the same</span>
+  + <span style="color:red;">In our case, the user accounts on bastion and obds remote hosts are the same</span>
 
 - <span style="color:red;">Note that we do not always have to go through a jump host</span>
  
 ## Remote Connection to a Linux Server
 
-- To logout, use any of the following:
+- To log out from the remote hosts, use any of the following:
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
   + Press Control + d
@@ -430,6 +432,12 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 :::
 
+<!-- ### Notes -->
+
+<!-- Short options can be bundled, needs less typing but less readabable -->
+<!-- Long options more readable and descriptive -->
+<!-- Choosing what format to follow boils down mainly to preference -->
+
 ::: {.column width="50%"}
 
 ```{r}
@@ -445,6 +453,14 @@ knitr::include_graphics("img/ls_options.png")
 ::::
 
 ## File properties and permissions
+
+<!-- ### Notes -->
+
+<!-- The owner does not have to be part of the group that owns the file. -->
+<!-- The owner can modify owner permissions. -->
+<!-- A member of the group that owns the file can modify group permissions. -->
+<!-- Other users can modify permissions if the owner grants them that privilege. -->
+<!-- You can have no read permission but still have write permission i.e. you can edit but you do not really see what's in the file (dangerous) -->
 
 ```{r}
 #| fig-align: center
@@ -516,12 +532,13 @@ knitr::include_graphics("img/alphabetic_notation.png")
   + Make script files executable
   
 - Do not change file permissions to give other users access to your own files and directories
-- Instead, contact the system administrators to request directories that are set up with shared access for collaborators (e.g. projects in the CCB cluster)
+- Instead, contact the system administrators to request directories that are set up with shared access for collaborators 
+<!-- (e.g. projects in the CCB cluster) -->
   
 ## Changing file permissions using alphabetic notation
 
 - We can change file permissions with ``chmod`` using alphabetic notation
-- `chmod` <permissions> <file or directory>
+- `chmod` \<permissions> \<file or directory>
   + **u** for user, **g** for group, **o** for other
   + **--** to deny access, **+** to give access
   + **r** for read, **w** for write, **x** for execute
@@ -641,7 +658,7 @@ $ rmdir dir1 dir2                       # Will only remove empty directories
   + \* - Matches any sequence of characters 
   + ? - Matches any single character
 
-- Example globs (term used in Linux):
+<!-- - Example globs (term used in Linux): -->
 ```
 $ ls *.jpg                      # Lists all files with the .jpg extension
 $ ls sample1*                   # Lists all files which start with sample1
@@ -698,7 +715,7 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
   + .fastq (.fq) - sequence information with quality scores
   + .sam, .bam - alignments of sequences to a reference genome
   + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
-- In bioinformatics, binary formats (e.g., SAM and BAM) are commonly used to compress equivalent plain text files
+- In bioinformatics, binary formats (e.g., BAM, CRAM) are commonly used to compress equivalent plain text files
 
 - Changing the file extension itself does not alter the actual content of the file
   + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension

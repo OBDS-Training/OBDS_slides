@@ -53,10 +53,6 @@ bib <- ReadBib("bibliography.bib")
 # NoCite(bib, "R")
 ```
 
-```{r}
-#| child: goals_and_objectives.qmd
-```
-
 ## Credits
 
 - David Sims
@@ -68,6 +64,10 @@ bib <- ReadBib("bibliography.bib")
 - An account on the teaching server or cluster
 - VPN to remotely connect to the University network
 - Git Bash for Microsoft Windows users
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
 
 ```{r}
 #| child: etc_01_genomics.qmd
