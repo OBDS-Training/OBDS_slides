@@ -663,7 +663,7 @@ $ rmdir dir1 dir2                       # Will only remove empty directories
 $ ls *.jpg                      # Lists all files with the .jpg extension
 $ ls sample1*                   # Lists all files which start with sample1
 $ ls *temp*                     # Lists all files with temp anywhere in the file name
-$ file?.*                       # Multiple wildcards can be used in the same pattern
+$ ls file?.*                       # Multiple wildcards can be used in the same pattern
 ```
 
 ## Hard & symbolic links to files and directories
