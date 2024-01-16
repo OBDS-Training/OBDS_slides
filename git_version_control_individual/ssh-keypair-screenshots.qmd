@@ -4,7 +4,7 @@
 
 ```{r}
 #| fig-align: center
-#| out-height: 450px
+#| out-height: 400px
 #| out-width: 1000px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-add-ssh-key.png")
@@ -16,7 +16,7 @@ knitr::include_graphics("img/github-add-ssh-key.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 450px
+#| out-height: 500px
 #| out-width: 1000px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-add-ssh-key-form.png")

@@ -123,7 +123,7 @@ knitr::include_graphics("img/git-clone-collaboration.svg")
 ::: {.column width="50%"}
 ### Git clones
 
-- Each contributor has a copy (i.e., _clone_) of the repository on their own computer.
+- Each contributor has a full copy (i.e., _clone_) of the repository on their own computer.
 - Commits are first made in one _clone_.
 - Commits can then be _pushed_ and _pulled_ from one _clone_ to another.
 - _Remote_ repositories must be accessible through a public URL to interact with them.
@@ -133,8 +133,8 @@ knitr::include_graphics("img/git-clone-collaboration.svg")
 
 ### Note
 
-- _Clones_ do not communicate automatically with each other; they are not always synchronised.
-- Contributors generally interact with a "central" repository online (e.g., GitHub); not directly with each other's _clone_.
+- _Clones_ do **not** communicate automatically with each other; they are **not** always synchronised.
+- Contributors generally interact with a "central" repository online (e.g., <i class="fab fa-github"></i> GitHub); not directly with each other's _clone_.
 
 ## (Avoid) Conflicts between remote repositories
 
