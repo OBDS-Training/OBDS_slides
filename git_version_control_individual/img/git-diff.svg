@@ -1,1 +1,48 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 659.83 242.41"><defs><style>.cls-1,.cls-3,.cls-7{fill:#1d1d1b;}.cls-2,.cls-5,.cls-6{fill:none;stroke:#1d1d1b;stroke-miterlimit:10;}.cls-3{font-size:20px;}.cls-3,.cls-7{font-family:MyriadPro-Regular, Myriad Pro;}.cls-4{letter-spacing:-0.01em;}.cls-5{stroke-dasharray:6.12 6.12;}.cls-6{stroke-linecap:square;}.cls-7{font-size:12px;}.cls-8{letter-spacing:-0.01em;}</style></defs><circle class="cls-1" cx="59.42" cy="164.71" r="9.31"/><circle class="cls-1" cx="140.76" cy="164.71" r="9.31"/><line class="cls-2" x1="68.73" y1="164.71" x2="125.41" y2="164.71"/><path class="cls-1" d="M131.44,164.71a30.15,30.15,0,0,0-8.54,4.76l1.72-4.76L122.9,160A30.12,30.12,0,0,0,131.44,164.71Z"/><text class="cls-3" transform="translate(48.49 141.01)">C1</text><text class="cls-3" transform="translate(129.83 141.21)">C2</text><text class="cls-3" transform="translate(546.74 170.46)">mas<tspan class="cls-4" x="34.24" y="0">t</tspan><tspan x="40.74" y="0">er</tspan></text><circle class="cls-1" cx="299.63" cy="164.71" r="9.31"/><line class="cls-2" x1="150.07" y1="164.71" x2="284.29" y2="164.71"/><path class="cls-1" d="M290.32,164.71a30.34,30.34,0,0,0-8.55,4.76l1.72-4.76L281.77,160A30.31,30.31,0,0,0,290.32,164.71Z"/><text class="cls-3" transform="translate(290.32 141.41)">C3</text><circle class="cls-1" cx="385.67" cy="164.71" r="9.31"/><text class="cls-3" transform="translate(376.36 141.01)">C4</text><line class="cls-2" x1="308.95" y1="164.71" x2="370.04" y2="165.11"/><path class="cls-1" d="M376.07,165.15a30.35,30.35,0,0,0-8.58,4.7l1.75-4.74-1.68-4.77A30.11,30.11,0,0,0,376.07,165.15Z"/><line class="cls-2" x1="394.98" y1="164.49" x2="397.98" y2="164.51"/><line class="cls-5" x1="404.11" y1="164.55" x2="450.01" y2="164.85"/><line class="cls-2" x1="453.07" y1="164.87" x2="456.07" y2="164.89"/><path class="cls-1" d="M462.11,164.93a30.35,30.35,0,0,0-8.58,4.7l1.75-4.74-1.69-4.77A30.17,30.17,0,0,0,462.11,164.93Z"/><line class="cls-6" x1="59.42" y1="98.03" x2="299.34" y2="97.08"/><line class="cls-6" x1="59.42" y1="105.61" x2="59.42" y2="98.03"/><line class="cls-6" x1="299.49" y1="104.76" x2="299.49" y2="97.18"/><text class="cls-7" transform="translate(147.45 88.72)"><tspan class="cls-8">g</tspan><tspan x="6.64" y="0">it diff C1 C3</tspan></text><line class="cls-6" x1="385.67" y1="98.05" x2="460.37" y2="97.75"/><line class="cls-6" x1="385.67" y1="105.63" x2="385.67" y2="98.05"/><line class="cls-6" x1="460.53" y1="105.63" x2="460.53" y2="98.05"/><text class="cls-7" transform="translate(406.53 87.48)"><tspan class="cls-8">g</tspan><tspan x="6.64" y="0">it diff</tspan></text><line class="cls-6" x1="299.73" y1="54.36" x2="460.11" y2="53.73"/><line class="cls-6" x1="299.58" y1="62.09" x2="299.58" y2="54.51"/><line class="cls-6" x1="460.26" y1="61.6" x2="460.26" y2="54.02"/><text class="cls-7" transform="translate(340.6 44.71)"><tspan class="cls-8">g</tspan><tspan x="6.64" y="0">it diff C3</tspan></text></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 659.8 242.4" style="enable-background:new 0 0 659.8 242.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#1D1D1B;}
+	.st1{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
+	.st2{font-family:'ArialMT';}
+	.st3{font-size:20px;}
+	.st4{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;stroke-dasharray:6.12,6.12;}
+	.st5{fill:none;stroke:#1D1D1B;stroke-linecap:square;stroke-miterlimit:10;}
+	.st6{font-family:'Courier';}
+	.st7{font-size:12px;}
+</style>
+<circle class="st0" cx="59.4" cy="164.7" r="9.3"/>
+<circle class="st0" cx="140.8" cy="164.7" r="9.3"/>
+<line class="st1" x1="68.7" y1="164.7" x2="125.4" y2="164.7"/>
+<path class="st0" d="M131.4,164.7c-3.1,1.1-6,2.7-8.5,4.8l1.7-4.8l-1.7-4.7C125.5,162,128.4,163.6,131.4,164.7z"/>
+<text transform="matrix(1 0 0 1 48.49 141.01)" class="st0 st2 st3">C1</text>
+<text transform="matrix(1 0 0 1 129.83 141.21)" class="st0 st2 st3">C2</text>
+<text transform="matrix(1 0 0 1 546.74 170.46)" class="st0 st2 st3">mas</text>
+<text transform="matrix(1 0 0 1 580.98 170.46)" class="st0 st2 st3">t</text>
+<text transform="matrix(1 0 0 1 587.48 170.46)" class="st0 st2 st3">er</text>
+<circle class="st0" cx="299.6" cy="164.7" r="9.3"/>
+<line class="st1" x1="150.1" y1="164.7" x2="284.3" y2="164.7"/>
+<path class="st0" d="M290.3,164.7c-3.1,1.1-6,2.7-8.5,4.8l1.7-4.8l-1.7-4.7C284.3,162,287.2,163.6,290.3,164.7z"/>
+<text transform="matrix(1 0 0 1 290.32 141.41)" class="st0 st2 st3">C3</text>
+<circle class="st0" cx="385.7" cy="164.7" r="9.3"/>
+<text transform="matrix(1 0 0 1 376.36 141.01)" class="st0 st2 st3">C4</text>
+<line class="st1" x1="309" y1="164.7" x2="370" y2="165.1"/>
+<path class="st0" d="M376.1,165.1c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7l-1.7-4.8C370.1,162.4,373,164,376.1,165.1z"/>
+<line class="st1" x1="395" y1="164.5" x2="398" y2="164.5"/>
+<line class="st4" x1="404.1" y1="164.6" x2="450" y2="164.9"/>
+<line class="st1" x1="453.1" y1="164.9" x2="456.1" y2="164.9"/>
+<path class="st0" d="M462.1,164.9c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7l-1.7-4.8C456.1,162.2,459,163.8,462.1,164.9z"/>
+<line class="st5" x1="59.4" y1="98" x2="299.3" y2="97.1"/>
+<line class="st5" x1="59.4" y1="105.6" x2="59.4" y2="98"/>
+<line class="st5" x1="299.5" y1="104.8" x2="299.5" y2="97.2"/>
+<line class="st5" x1="385.7" y1="98.1" x2="460.4" y2="97.8"/>
+<line class="st5" x1="385.7" y1="105.6" x2="385.7" y2="98.1"/>
+<line class="st5" x1="460.5" y1="105.6" x2="460.5" y2="98.1"/>
+<line class="st5" x1="299.7" y1="54.4" x2="460.1" y2="53.7"/>
+<line class="st5" x1="299.6" y1="62.1" x2="299.6" y2="54.5"/>
+<line class="st5" x1="460.3" y1="61.6" x2="460.3" y2="54"/>
+<text transform="matrix(1 0 0 1 343.0768 48.3497)" class="st6 st7">git diff C3</text>
+<text transform="matrix(1 0 0 1 122.9002 89.9996)" class="st6 st7">git diff C1 C3</text>
+<text transform="matrix(1 0 0 1 394.9802 89.9997)" class="st6 st7">git diff</text>
+</svg>
