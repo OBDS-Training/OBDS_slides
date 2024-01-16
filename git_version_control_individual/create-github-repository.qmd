@@ -31,8 +31,8 @@ knitr::include_graphics("img/github-new-repository.png")
 ::: {.column width="60%"}
 ```{r}
 #| fig-align: center
-#| out-height: 600px
-#| out-width: 600px
+#| out-height: 500px
+#| out-width: 500px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-new-repository-form.png")
 ```
