@@ -458,7 +458,7 @@ and click the pencil above the file on the right.
 ```{r}
 #| fig-align: center
 #| out-height: 300px
-#| out-width: 575px
+#| out-width: 750px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-readme-view.png")
 ```
