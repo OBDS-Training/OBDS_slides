@@ -53,15 +53,15 @@ bib <- ReadBib("bibliography.bib")
 # NoCite(bib, "R")
 ```
 
-```{r}
-#| child: goals_and_objectives.qmd
-```
-
 ## Credits
 
 - David Sims
 - Charlie George
 - Kevin Rue-Albrecht ([CCB Doks](https://obds-training.github.io/Help/))
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
 
 ## Prerequisites
 

@@ -51,7 +51,10 @@ knitr::include_graphics("img/linux_file_tree.png")
 
 - Symbols to avoid in file names
   + e.g. % $ £ “ ‘ / \ | =
-  + Do not put spaces into your file or directory names
+  + Do not put spaces into your file or directory names 
+    ```
+    $ ls My Directory # Interpret as two separate input arguments / directories
+    ```
   + Use underscore or dash to separate words e.g. file_name.txt
 
 ## Name files carefully
@@ -154,6 +157,8 @@ my_project/
   + Use symbolic links (`ln -s`) to keep data together without copying files
 - Regularly check your disk usage and available disk / quota with `du`
 
+# Accessing files from remote hosts and other online databases
+
 ## Transferring files using FileZilla
 
 - The [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) is a free solution for transferring files between computers via FTP/SFTP/FTPS protocols
@@ -221,6 +226,13 @@ $ wget \
   + Processed results (bed, count matrix)
   + Metadata (experiment details, sample processing, data analysis)
 
+## Downloading remote files using the command line
+
+- `wget`
+- `curl`
+   + Like `wget`, `curl` can be used for downloading files from the Internet 
+   + The two have differences in terms of other functionality e.g. `wget` can download recursively
+
 ## Verify integrity of downloads
 
 - We can check if files have downloaded correctly using checksums
@@ -269,13 +281,6 @@ $ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compar
 knitr::include_graphics("img/md5sum-c.png")
 ```
 
-## Downloading remote files using the command line
-
-- `wget`
-- `curl`
-   + Like `wget`, `curl` can be used for downloading files from the Internet 
-   + The two have differences in terms of other functionality e.g. `wget` can download recursively
-   
 # Talk 3 Exercise 1 - Working directory
 
 <!-- @sec-Talk3Exercise1 -->

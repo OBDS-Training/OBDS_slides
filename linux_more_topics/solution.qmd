@@ -4,6 +4,7 @@ format: html
 engine: knitr
 execute: 
   eval: false
+  echo: false
 ---
 
 # Day 2 Exercises

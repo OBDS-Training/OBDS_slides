@@ -51,18 +51,20 @@ $ alias wd='cd </path/to/working_dir/> && pwd && ls
 ## Environment variables
 
 - Can be user defined and modified
-  + A number of environment variables are often set in the Bash session
+  + A number of environment variables are often already available in the Bash session
 
 ```
 $ echo $HOME            # Set for each user to their own home directory
-$ ls $HOME              # Use in commands
-$ echo $USER            # Set for each user to their own username
-$ mkdir $USER
-$ printenv              # Print currently defined environment variables
+$ echo $USER            # Username
 $ printenv USER         # Print $USER
 ```
 
-- Above are among the most commonly used variables but user can define any number of custom variable names using `export`
+<!-- $ ls $HOME              # Use in commands -->
+<!-- $ echo $USER            # Set for each user to their own username -->
+<!-- $ mkdir $USER -->
+<!-- $ printenv              # Print currently defined environment variables -->
+
+- Above are among the most commonly used variables but users can define any number of custom variable names using `export`
 - Some programs might expect users to define additional environment variables
 
 ```
