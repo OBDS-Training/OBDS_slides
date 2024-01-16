@@ -151,7 +151,7 @@ knitr::include_graphics("img/branch-and-merge.svg")
 
 - Branching allows you to work on different things independently from each other.
 - Merging combines the changes made on a branch to those made on another branch.
-  + Typically, "feature" branches are merged to the main branch.
+  + Typically, "side" branches are merged to the main branch.
 - Branches can contain any number of commits before being merged.
 - Branches do not have to be merged; they can be abandoned and deleted (great for experimenting).
 
