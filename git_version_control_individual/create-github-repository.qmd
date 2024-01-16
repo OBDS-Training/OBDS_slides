@@ -44,7 +44,7 @@ knitr::include_graphics("img/github-new-repository-form.png")
 
 ### Create a repository on <i class="fab fa-github"></i> GitHub
 
-The new repository - if initialised with a README file - should appear as follows.
+The new repository -- if initialised with a `README.md` file -- should appear as follows.
 
 ```{r}
 #| fig-align: center

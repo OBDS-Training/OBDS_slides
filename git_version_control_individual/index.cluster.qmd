@@ -145,7 +145,7 @@ git clone git@github.com:<username>/<repository>.git
 #| out-height: 300px
 #| out-width: 500px
 ## Source: Kevin Rue-Albrecht (Adobe Illustrator)
-knitr::include_graphics("img/git-clone-collaboration.svg")
+knitr::include_graphics("img/git-clone-url.svg")
 ```
 :::
 
