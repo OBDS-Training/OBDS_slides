@@ -263,7 +263,7 @@ wc -l cpg*.bed      # Check if sum of cpg_chr5.bed and cpg_nochr5.bed lines
                     # equal to cpg.bed lines 
 ```
 
-8. With the **cpg.bed** file count how many unique intervals (rows) are on each chromosome (column1).
+8. With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
   Hint: you will need to pipe together 3 commands.
 
 ```{bash}
