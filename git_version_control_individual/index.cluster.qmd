@@ -15,7 +15,9 @@ format:
     css: styles.css
     fontsize: 1.5em
     footer: Kevin Rue-Albrecht -- Version control using <i class="fab fa-git"></i> and <i class="fab fa-github"></i> GitHub
-# run the following line after knitting to convert HTML to PDF
+# To convert HTML to PDF
+# - in the R console, set working directory to the one that contains this file
+# - run the following line
 # renderthis::to_pdf("index.cluster.html")
 ---
 
