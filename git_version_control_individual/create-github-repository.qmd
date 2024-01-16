@@ -19,16 +19,26 @@ knitr::include_graphics("img/github-new-repository.png")
 
 ### Create a repository on <i class="fab fa-github"></i> GitHub
 
+:::: {.columns}
+
+::: {.column width="40%"}
+<br/>
+
 - Fill the form as needed.
 - When ready, click the green button labelled `Create repository`.
+:::
 
+::: {.column width="60%"}
 ```{r}
 #| fig-align: center
-#| out-height: 425px
-#| out-width: 475px
+#| out-height: 600px
+#| out-width: 600px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-new-repository-form.png")
 ```
+:::
+
+::::
 
 ## Exercise
 
