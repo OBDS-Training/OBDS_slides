@@ -468,9 +468,23 @@ knitr::include_graphics("img/github-readme-view.png")
 ```{r}
 #| fig-align: center
 #| out-height: 500px
-#| out-width: 600px
+#| out-width: 750px
 ## Source: Kevin Rue-Albrecht (Screenshot)
 knitr::include_graphics("img/github-readme-edit.png")
+```
+
+::: {style="text-align: center;"}
+**Click the green button `Commit changes...` when you are ready.**
+:::
+
+## Commit changes on <i class="fab fa-github"></i> GitHub
+
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 750px
+## Source: Kevin Rue-Albrecht (Screenshot)
+knitr::include_graphics("img/github-readme-commit.png")
 ```
 
 ::: {style="text-align: center;"}
