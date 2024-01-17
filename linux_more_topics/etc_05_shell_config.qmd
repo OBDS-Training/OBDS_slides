@@ -168,24 +168,6 @@ knitr::include_graphics("img/ssh-key-pair.png")
 
 <span style="color:green;">Do together</span>
 
-## Transferring files across systems on the command line using `scp`
-
-- Transferring files *via* bastion host from OBDS server to local machine:
-```
-$ scp -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds:<source path> <destination path>
-```
-
-- With the SSH config, we can simplify to:
-```
-$ scp obds-bastion:<source path> <destination path>
-```
-
-- `scp` vs. `rsync`
-   + `scp` - Straightforward copying of files using SSH
-   + `rsync` - Synchronises files and directories between a source and a destination 
-
-- <`scp` | `rsync`> \<options> \<source> \<destination>
-
 # Talk 2 Exercise 1 (Shell configuration) and 2 (Working with modules)
 
 <!-- @sec-Talk2Exercise1 -->
