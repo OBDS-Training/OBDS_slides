@@ -226,7 +226,7 @@ It has many appealing features that make it an essential tool for data analysts,
 - Provides flexibility to customize document styles and layouts.
 - Streamlines the process of creating reproducible research.
 
-## Create a new R Markdown file
+## Create a new R Markdown file (do together)
 
 - Open the `New R Markdown` wizard.
 - Type a title of your choice and your full name in the form.
@@ -396,8 +396,8 @@ colMeans()
 #| eval: false
 #| echo: true
 # Sorting
-sort()
-order()
+sort()  # Outputs sorted input
+order() # Outputs indices to sort input
 
 # Combining data frames
 merge()
