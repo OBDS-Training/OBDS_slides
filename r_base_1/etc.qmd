@@ -60,7 +60,7 @@ rownames(ip)
 
 ## Installing packages
 
-- On the CCB server, packages are managed by the administrators.
+- On the CCB cluster, packages are managed by the administrators.
   Email <help@imm.ox.ac.uk> and ask for the package to be installed.
 - In a regular <i class="fab fa-r-project"></i> session, use the function `install.packages()`, e.g.
 
@@ -113,7 +113,7 @@ The RStudio application is usually divided in four quadrants:
 - Individual lines of code can be evaluated in the <i class="fab fa-r-project"></i> console using the `Run` button or the keys `Control` + `Enter` (Windows) / `Command` + `Enter` (macOS).
   - The cursor can be anywhere in the line of code to evaluate.
 - Multiple lines of code can be evaluated in the <i class="fab fa-r-project"></i> console by selecting them and using the same actions as above.
-  - The *entire* line must selected to evaluate it all.
+  - The *entire* line must be selected to evaluate it all.
   - Selecting part of a line evaluates only the selected part.
 - An entire <i class="fab fa-r-project"></i> script can be evaluated using the `Source` button, or `Control` + `Shift` + `Enter` (Windows) / `Command` + `Shift` + `Enter` (macOS).
 
@@ -135,7 +135,7 @@ print(input_data) # display input data
 - The hash symbol `#` can be used to add comments in your code.
 - Anything on the line after the `#` will *not* be evaluated.
   - Lines that start with `#` are entirely ignored.
-- On macOS, `#` is obtained using `Alt` + `3`.
+- On macOS, `#` is obtained using `Option` + `3`.
 - You can select multiple lines of code and press `Control` + `Shift` + `C` (Windows) / `Command` + `Shift` + `C` (macOS) to comment them all in one action.
 
 ## The RStudio <i class="fab fa-r-project"></i> console
@@ -184,8 +184,9 @@ Other context-dependent panes include:
 
 ## Opening a session on RStudio Server
 
-- Navigate to <http://localhost:8787/>.
+- Navigate to <https://obds.imm.ox.ac.uk>.
 - Log in using your username (SSO) and WIMM IT password.
+- Click `New Session`, choose RStudio Pro, then click `Start Session`.
 
 ```{r}
 #| fig-align: center
@@ -696,7 +697,7 @@ colnames(m)
 
 ## Dimension names
 
-The function `dimnames()` can also be used to get of replace row and column names simultaneously, as a list of two character vectors, e.g.
+The function `dimnames()` can also be used to get or replace row and column names simultaneously, as a list of two character vectors, e.g.
 
 ```{r}
 #| echo: true
@@ -736,7 +737,7 @@ Subset
 Names
 
 - `rownames()` returns the names of the rows in a matrix.
-- `colnames()` returns the names of the rows in a matrix.
+- `colnames()` returns the names of the columns in a matrix.
 - `dimnames()` returns the names of the dimensions in a matrix (rows, columns).
 
 Miscellaneous
@@ -1116,7 +1117,7 @@ head(iris)
 
 ## Warnings
 
-- Certains symbols (including space) are automatically replaced by the dot symbol `.`.
+- Certain symbols (including space) are automatically replaced by the dot symbol `.`.
 - Duplicate column names are automatically de-duplicated using suffixes.
 
 ```{r}
@@ -1284,7 +1285,7 @@ write.table(x, file = "results.tsv", sep = "\t")
   That is: `1`, `2`, `3`, `4`, `5`, `1`, `2`, `3`, `4`, `5`, ....
   The length of the vector should be `50`.
 - Now, create the same vector as before, but this time repeat `1`, ten times, then `2`, ten times, and so on.
-  That is: `1`, `1`, ..., 2, 2, ..., 5, 5.
+  That is: `1`, `1`, ..., `2`, `2`, ..., `5`, `5`.
   The length of the vector should also be `50`.
 
 ## Exercise (bonus)

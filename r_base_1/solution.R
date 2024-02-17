@@ -210,7 +210,7 @@ c(seq(101, 103, 1),
 rep(1:5, times=10)
 
 # - Now, create the same vector as before, but this time repeat `1`, ten times, then `2`, ten times, and so on.
-#   That is: `1`, `1`, ..., 2, 2, ..., 5, 5.
+#   That is: `1`, `1`, ..., `2`, `2`, ..., `5`, `5`.
 #   The length of the vector should also be `50`.
 
 rep(1:5, each=10)
