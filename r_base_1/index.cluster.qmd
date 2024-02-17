@@ -3,7 +3,7 @@ title: 'Introduction to base <i class="fab fa-r-project"></i>'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht (based on slides by Nicki Gray)"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-18 (updated: `r Sys.Date()`)"
+date: "2024-02-19 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -55,10 +55,8 @@ NoCite(bib, "R")
 
 ## Set up
 
-- Open a terminal application on your computer.
-- Edit `~/.ssh/config` to set up port forwarding for the teaching server.
-- Connect to the teaching over SSH with port forwarding.
-- Open a new tab in your web browser and navigate to <http://localhost:8787/>.
+- Open OpenVPN Connect and connect to the WIMM VPN using your WIMM IT username and password.
+- Open a new tab in your web browser and navigate to <https://obds.imm.ox.ac.uk> to use RStudio in the teaching server.
 - Type your WIMM IT username (SSO) and password.
 
 ```{r}
