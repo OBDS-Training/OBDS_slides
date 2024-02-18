@@ -60,8 +60,9 @@ rownames(ip)
 
 ## Installing packages
 
-- On the CCB cluster, packages are managed by the administrators.
-  Email <help@imm.ox.ac.uk> and ask for the package to be installed.
+- On the OBDS and CCB clusters, packages are managed by the administrators.
+- In you work on the CCB cluster, 
+  email <help@imm.ox.ac.uk> and ask for the package to be installed.
 - In a regular <i class="fab fa-r-project"></i> session, use the function `install.packages()`, e.g.
 
 ```{r}
