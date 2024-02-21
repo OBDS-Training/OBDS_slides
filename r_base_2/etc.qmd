@@ -1092,7 +1092,7 @@ while (i < 5) {
 
 The `repeat` loop iterates until the `break` keyword is encountered.
 
-This type of loop is mainly intended for interactive prompte, e.g.
+This type of loop is mainly intended for interactive prompt, e.g.
 
 ```{r}
 #| eval: false
