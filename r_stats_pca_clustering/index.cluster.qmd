@@ -60,8 +60,8 @@ NoCite(bib, "R")
 
 ## Credits
 
-- Kevin Rue-Albrecht
 - Liezel Tamon
+- Kevin Rue-Albrecht
 
 ## Prerequisites
 

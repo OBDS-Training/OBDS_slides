@@ -51,8 +51,8 @@ NoCite(bib, "R")
 
 ## Credits
 
-- Kevin Rue-Albrecht
 - Liezel Tamon
+- Kevin Rue-Albrecht
 - Based on slides by Nicki Gray.
 
 ## Prerequisites
