@@ -3,7 +3,7 @@ title: 'Introduction to the tidyverse'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-26 (updated: `r Sys.Date()`)"
+date: "2024-02-27 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -51,6 +51,11 @@ NoCite(bib, "tidyverse")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Liezel Tamon
+- Kevin Rue-Albrecht
 
 ## Prerequisites
 
