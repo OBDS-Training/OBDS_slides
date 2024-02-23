@@ -3,7 +3,7 @@ title: 'Statistics, dimensionality reduction, and cluster analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-20"
+date: "2023-09-21"
 date-format: long
 format:
   revealjs: 
@@ -57,6 +57,11 @@ NoCite(bib, "R")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Kevin Rue-Albrecht
+- Liezel Tamon
 
 ## Prerequisites
 

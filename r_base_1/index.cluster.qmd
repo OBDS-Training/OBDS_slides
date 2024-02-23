@@ -45,14 +45,15 @@ bib <- ReadBib("bibliography.bib")
 NoCite(bib, "R")
 ```
 
-## Credits
-
-- Based on slides by Nicki Gray.
-- Liezel Tamon
-
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Kevin Rue-Albrecht
+- Liezel Tamon
+- Based on slides by Nicki Gray.
 
 ## Prerequisites
 

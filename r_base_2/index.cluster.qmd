@@ -49,6 +49,12 @@ NoCite(bib, "R")
 #| child: goals_and_objectives.qmd
 ```
 
+## Credits
+
+- Kevin Rue-Albrecht
+- Liezel Tamon
+- Based on slides by Nicki Gray.
+
 ## Prerequisites
 
 - An account on the teaching cluster.
