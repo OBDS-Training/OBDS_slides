@@ -3,7 +3,7 @@ title: 'Object Oriented Programming (OOP)'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-25 (updated: `r Sys.Date()`)"
+date: "2024-02-26 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- Introduction to base <i class="fab fa-r-project"></i>
+    footer: Kevin Rue-Albrecht -- Object Oriented Programming (OOP)
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
