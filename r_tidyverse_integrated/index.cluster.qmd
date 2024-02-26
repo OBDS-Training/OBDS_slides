@@ -3,7 +3,7 @@ title: 'Integrated tidyverse exercise'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-09-27 (updated: `r Sys.Date()`)"
+date: "2024-02-28 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -49,6 +49,11 @@ NoCite(bib, "R")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Liezel Tamon
+- Kevin Rue-Albrecht
 
 <!--
 Docs:
