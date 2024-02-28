@@ -2,7 +2,7 @@
 
 Today's lesson is one large exercise.
 
-You are expected you to use <i class="fab fa-r-project"></i> and `tidyverse` functions seen in previous lessons to assemble a workflow and complete the following analysis:
+You are expected to use <i class="fab fa-r-project"></i> and `tidyverse` functions seen in previous lessons to assemble a workflow and complete the following analysis:
 
 - Import gene expression data from an Excel file.
 
