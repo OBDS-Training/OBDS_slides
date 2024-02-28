@@ -66,7 +66,7 @@ sample_info
 
 > Metadata key:
 > 
-> [NIH AJCC staging system](https://www.cancer.gov/publications/dictionaries/ca> ncer-terms/def/ajcc-staging-system)
+> [NIH AJCC staging system](https://www.cancer.gov/about-cancer/diagnosis-staging/staging)
 > 
 > - grade: how abnormal the cancer cells and tissue look under a microscope
 > - T: size of the tumor and any spread of cancer into nearby tissue
