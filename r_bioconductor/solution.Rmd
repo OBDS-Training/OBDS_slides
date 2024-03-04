@@ -180,7 +180,7 @@ browseVignettes("Biostrings")
   What is the class of the object?
 
 ```{r}
-truseq_adapters <- Biostrings::readAAStringSet("data/TruSeq3-PE-2.fa")
+truseq_adapters <- Biostrings::readDNAStringSet("data/TruSeq3-PE-2.fa")
 truseq_adapters
 ```
 
@@ -335,7 +335,7 @@ colnames(mcols(gtf_data))
 
 ```{r}
 gtf_ACTB <- subset(gtf_data, gene_name == "ACTB")
-nrow(gtf_ACTB)
+length(gtf_ACTB)
 ```
 
 - How many transcripts do the annotations describe for that gene?
@@ -545,7 +545,7 @@ demo_count_matrix <- matrix(
   ))
 demo_rowdata <- DataFrame(
   symbol = head(letters, 4),
-  length = c(1234, 5678)
+  length = c(1234, 5678, 1710, 1300)
   )
 demo_coldata <- DataFrame(
   condition = c("control", "treated"),
