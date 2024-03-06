@@ -51,7 +51,7 @@ NoCite(bib, "R")
 
 ## Credits
 
-- Majority of content from Charlie George
+- Charlie George
 
 ## Prerequisites
 
