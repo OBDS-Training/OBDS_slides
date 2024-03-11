@@ -1,7 +1,7 @@
 ---
 title: "Solution: Single-cell analysis using Seurat, part 2 (HTO)"
 author: "Kevin Rue-Albrecht"
-date: "2023-06-08"
+date: "2024-03-12"
 date-format: long
 format: html
 ---
@@ -218,8 +218,8 @@ FeatureScatter(
   object = seurat_citeseq,
   feature1 = "HEK-A",
   feature2 = "HEK-B",
-  group.by = "HTO_classification.global",
-  span = FALSE, smooth = FALSE, shuffle = TRUE
+  group.by = "HTO_classification.global"#,
+  #span = FALSE, smooth = FALSE, shuffle = TRUE
 )
 
 # FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_maxID", span=F, smooth=F, shuffle=T ) 
