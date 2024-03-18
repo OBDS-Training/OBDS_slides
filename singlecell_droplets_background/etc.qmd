@@ -108,7 +108,7 @@ A table including the probability that each cell is an empty droplet.
 
 - Import the raw matrix into <i class="fab fa-r-project"></i>.
   Make a `SingleCellExperiment` object called `sce`.
-- Remove droplets without any count at all.
+- Remove droplets without any count at all (using base <i class="fab fa-r-project"></i> code).
 
 This will massively speed up downstream steps, while removing unquestionable
 empty droplets.
