@@ -68,7 +68,7 @@ knitr::include_graphics("img/tsne_batch_effect.png")
 
 - But remember, it won’t always make sense to integrate everything!
 
-## Integration
+## Panoramic integration
 
 <!-- ## Stitched panorama illustration -->
 
@@ -207,10 +207,10 @@ knitr::include_graphics("img/integration_with_harmony.png")
 
 ```{r}
 #| fig-align: center
-#| out-height: 450px
+#| out-height: 400px
 #| out-width: 525px
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
-knitr::include_graphics("img/integration_using_Seuratv3.png")
+knitr::include_graphics("img/integration-seurat-cca.jpg")
 ```
 `r Citet(bib, "stuart_comprehensive_2019")`
 
