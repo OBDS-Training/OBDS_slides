@@ -3,7 +3,7 @@ title: 'Single-cell analysis using Seurat, part 1'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-10-09 (updated: `r Sys.Date()`)"
+date: "2024-06-03 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 

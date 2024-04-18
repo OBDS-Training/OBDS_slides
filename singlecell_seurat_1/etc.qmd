@@ -811,7 +811,7 @@ The interpretability of clusters relies on the ability to identify features acti
 ```{r}
 #| fig-align: center
 #| fig-height: 5
-ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.3")), aes(UMAP_1, UMAP_2, color = RNA_snn_res.0.3)) +
+ggplot(FetchData(seurat_object, vars = c("umap_1", "umap_2", "RNA_snn_res.0.3")), aes(umap_1, umap_2, color = RNA_snn_res.0.3)) +
     geom_point(size = 1) +
     cowplot::theme_cowplot()
 ```
@@ -821,7 +821,7 @@ ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "RNA_snn_res.0.3"))
 ```{r}
 #| fig-align: center
 #| fig-height: 5
-ggplot(FetchData(seurat_object, vars = c("UMAP_1", "UMAP_2", "CD3E")), aes(UMAP_1, UMAP_2, color = CD3E)) +
+ggplot(FetchData(seurat_object, vars = c("umap_1", "umap_2", "CD3E")), aes(umap_1, umap_2, color = CD3E)) +
     geom_point(size = 1) +
     cowplot::theme_cowplot()
 ```
