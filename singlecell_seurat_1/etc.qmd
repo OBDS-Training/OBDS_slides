@@ -274,6 +274,8 @@ See `help("Idents", package = "SeuratObject")`.
 
 ### Accessing the contents of a Seurat object
 
+_Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial) and read the help page of the suggested functions._
+
 - Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 - Use `Assays()` to list the names of assays available in the Seurat object.
 - Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
@@ -401,15 +403,16 @@ FeatureScatter(seurat_object, feature1 = "nCount_RNA", feature2 = "LYZ", slot = 
 
 ### Quality control and visualisation
 
-- The library size and number of features detected per cell is already present in the Seurat object.
-  Use the function `VlnPlot()` to display them in a single violin plot.
-- Use the function `PercentageFeatureSet()` to compute the fraction of reads
-  assigned to mitochondrial genes in each cell.
-  Store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
-  Visualise this new metric alongside the previous two in a new violin plot.
-- Visualise a scatter plot of the proportion of mitochondrial UMIs against the library size in each cell.
-- Create a new Seurat object, called `seurat_after_qc`, that is subsetted to cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial features, and more than 1,500 features detected.
-  How many cells were removed in this step?
+_Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial) and read the help page of the suggested functions._
+
+- The library size and number of features detected per cell are already present in the per-cell metadata of the Seurat object, under the names `"nCount_RNA"` and `"nFeature_RNA"`.
+  Use `VlnPlot()` to display them in a single violin plot.
+- Use `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
+  Combine this with `AddMetaData()` to store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
+  Finally, use `VlnPlot()` to visualise this new metric alongside the previous two in a new violin plot.
+- Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs (`"percent_mt"`) on the Y-axis against the library size (`"nCount_RNA"`) on the X-axis.
+- Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial features, and more than 1,500 features detected.
+- Combine the `dim()` function with the subtraction operator to determine how many cells were removed in this step.
 
 ## Seurat workflow - Normalisation
 
