@@ -86,31 +86,20 @@ dim(   ) - dim(   )
 
 ## Accessing the contents of a Seurat object
 
-- Query the name of the default assay in the Seurat object.
+- Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 
 ```{r}
 
 ```
 
-- List the names of assays available in the Seurat object.
+- Use `Assays()` to list the names of assays available in the Seurat object.
 
 ```{r}
 
 ```
 
-- Display the first six rows and six columns of the RNA assay data.
-  What function do you use?
-  Which arguments do you need to supply, and which ones are optional?
-
-```{r}
-
-```
-
-> Answer:
-> 
-
-- Display the entire data.frame of per-cell metadata (first six rows).
-  What column names do you see?
+- Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
+  What happens if you do not specify the `layer` argument?
 
 ```{r}
 
@@ -119,7 +108,13 @@ dim(   ) - dim(   )
 > Answer:
 > 
 
-- Fetch one column of metadata using `[[`.
+- Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
+
+```{r}
+
+```
+
+- Use the `[[]]` operator to fetch only one column of metadata.
   What type of object do you get back?
 
 ```{r}
@@ -129,7 +124,7 @@ dim(   ) - dim(   )
 > Answer:
 > 
 
-- Instead,fetch the same column of metadata using `$`.
+- Instead, use the `$` operator to fetch the same column of metadata.
   What type of object do you get back this time?
 
 ```{r}
@@ -139,7 +134,8 @@ dim(   ) - dim(   )
 > Answer:
 > 
 
-- Use the function `FetchData()` to access the library size and expression of the feature named `"LYZ"` (first six rows).
+- Use `FetchData()` to access the metadata column `"nCount_RNA"` and the counts of the gene named `"LYZ"`.
+  Combine this with `head()` to display only the first few rows.
   What type of object do you get back?
 
 ```{r}
