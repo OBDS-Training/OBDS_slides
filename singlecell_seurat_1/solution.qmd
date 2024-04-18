@@ -430,13 +430,13 @@ seurat_after_qc <- FindNeighbors(seurat_after_qc, dims = 1:20)
 > 
 > The help page states that the function `FindNeighbors()` uses principal components 1 through 10, by default.
 
-- What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
+- Use `Graphs()` to display the names of the nearest neighbour graphs that are now stored in the Seurat object.
 
 ```{r}
 Graphs(seurat_after_qc)
 ```
 
-- Then, compute cluster labels.
+- Use `FindClusters() to identify clusters in the data set.
   What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
   Do you expect more or fewer clusters following that change?
@@ -458,7 +458,7 @@ seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 > Also keep in mind that some parameters of the upstream `FindNeighbors()` function
 > can affect the ability to find clusters in the resulting graph.
 
-- Visualise the cluster labels on the UMAP scatter plot.
+- Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.
   How would you describe the agreement between the UMAP layout and the clustering results?
 
 ```{r}
