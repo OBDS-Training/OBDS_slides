@@ -180,25 +180,38 @@ knitr::include_graphics("img/overview-analysis.png")
 knitr::include_graphics("img/overview-analysis-import.png")
 ```
 
+## Seurat functions
+
+In the coming exercise, we will be using the following functions:
+
+- `Read10X()` with the arguments:
+  - `data.dir`
+- `CreateSeuratObject()` with the arguments:
+  - `counts`
+  - `project`
+  - `min.cells`
+  - `min.features`
+
 ## Exercise
 
 ### Import scRNA-seq data and create a Seurat object
 
+_Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial) and read the help page of the suggested functions._
+
 - Load the `r BiocStyle::CRANpkg("Seurat")` package.
-- Use the function `Read10X()` to import data in the directory `filtered_feature_bc_matrix/` 
-  as an object named `read10x_data`.
-  What class of object does the function return?
-- Have a look at the object and its structure (e.g., first 15 rows and 6 columns).
+- Use the function `Read10X()` to import data from the directory `filtered_feature_bc_matrix/` 
+  as an object named `read10x_data` in your R session.
+- Display the first 15 rows and 4 columns of the object using indexing.
+- Display the structure of the object using `str()`.
   What is a sparse matrix and how does it store data?
-- How many features and barcodes (i.e., cells) are present in the data set?
-- Create a Seurat object using the function `CreateSeuratObject()`
-  and the object `read10x_data`.
+- Use the `dim()` function to determine the number of features and barcodes (i.e., cells) in the data set.
+- Create a Seurat object using the function `CreateSeuratObject()`.
   Name the object `seurat_object`.
   Include features detected in at least 3 cells,
   and cells where at least 200 features detected.
   Name the project `pbmc5k`.
   How many features and barcodes are left in the Seurat object?
-- How many features and cells were filtered out when you created the Seurat object?
+- Combine the `dim()` function with the subtraction operator to determine how many features and cells were filtered out when you created the Seurat object.
 
 ## Contents of a Seurat object
 
