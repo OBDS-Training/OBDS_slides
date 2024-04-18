@@ -302,7 +302,7 @@ For instance:
 #| eval: false
 subset(
     x = seurat_object,
-    cells = WhichCells(seurat_object, expression = LYZ > 300),
+    cells = WhichCells(seurat_object, expression = LYZ > 300, slot = "counts"),
     features = VariableFeatures(object = seurat_object)
 )
 ```
