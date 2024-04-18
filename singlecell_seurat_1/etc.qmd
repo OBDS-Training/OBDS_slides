@@ -535,7 +535,9 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 - `FindVariableFeatures()` identifies features that show the highest amount of variability relative to their mean expression.
 - `VariableFeaturePlot()` produces a "mean-variance" scatter plot that is good for diagnostics.
 
-<br/>
+::: {.callout-note}
+**Heteroscedasticity**: feature with higher mean expression naturally have more room for larger variance.
+:::
 
 :::: {.columns}
 
@@ -564,8 +566,6 @@ VariableFeaturePlot(seurat_object)
 :::
 
 ::::
-
-Heteroscedasticity: feature with higher mean expression naturally have room for larger variance.
 
 ## Scaling data
 
