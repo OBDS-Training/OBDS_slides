@@ -250,7 +250,7 @@ cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised, ncol = 1)
 
 ## Variable features and scaling
 
-- Identify variable features in the normalised RNA assay of the Seurat object.
+- Use `FindVariableFeatures()` to identify variable features in the normalised RNA assay of the Seurat object.
   Use the `"vst"` method and select the 2,000 most variable features.
   What does this subsetting do, and what are our motivations for doing it?
 
@@ -263,7 +263,7 @@ seurat_after_qc <- FindVariableFeatures(
 > Answer:
 > 
 
-- What is the function to display the name of variable features in a Seurat object (e.g., first 10)?
+- Combine `VariableFeatures()` and `head()` to display the names of the first few variable features in the Seurat object.
   How can you control which assay the variable features are pull from?
 
 ```{r}
@@ -273,7 +273,7 @@ seurat_after_qc <- FindVariableFeatures(
 > Answer:
 > 
 
-- Use the function `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
+- Use `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
   How would you use this plot?
 
 ```{r}
@@ -283,8 +283,8 @@ VariableFeaturePlot(   )
 > Answer:
 > 
 
-- Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
-  What are the motivations for removing those two sources of variation?
+- Use `ScaleData()` to scale the normalised RNA assay of the Seurat object, regressing the the fraction of UMI counts assigned to mitochondrial features.
+  What are the motivations for removing that source of variation?
 
 ```{r}
 seurat_after_qc <- ScaleData(

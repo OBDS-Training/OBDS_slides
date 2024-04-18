@@ -269,7 +269,7 @@ cowplot::plot_grid(ggplot_counts_raw, ggplot_data_normalised, ncol = 1)
 
 ## Variable features and scaling
 
-- Identify variable features in the normalised RNA assay of the Seurat object.
+- Use `FindVariableFeatures()` to identify variable features in the normalised RNA assay of the Seurat object.
   Use the `"vst"` method and select the 2,000 most variable features.
   What does this subsetting do, and what are our motivations for doing it?
 
@@ -291,11 +291,11 @@ seurat_after_qc <- FindVariableFeatures(
 > Seurat stores the scaled data matrix and a lot of downstream results in dense matrices -- as opposed to sparse matrices -- which use much more memory.
 > Limiting the amount of features to work is one way of reducing the memory footprint and requirements for an analysis.
 
-- What is the function to display the name of variable features in a Seurat object (e.g., first 10)?
+- Combine `VariableFeatures()` and `head()` to display the names of the first few variable features in the Seurat object.
   How can you control which assay the variable features are pull from?
 
 ```{r}
-VariableFeatures(seurat_after_qc)[1:10]
+head(VariableFeatures(seurat_after_qc))
 ```
 
 > The target assay can be specific using the `assay` argument:
@@ -304,7 +304,7 @@ VariableFeatures(seurat_after_qc)[1:10]
 > Otherwise, the default assay is used.
 > The default assay can be changed using `DefaultAssay(seurat_after_qc) <- "RNA"`.
 
-- Use the function `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
+- Use `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
   How would you use this plot?
 
 ```{r}
@@ -316,19 +316,18 @@ VariableFeaturePlot(seurat_after_qc)
 > This plot can help decide whether the number of variable features selected is suitable for the data set at hand.
 > Ideally, variable features should appear as outliers relative to the trend set by the majority of features in the data set.
 
-- Scale the normalised RNA assay of the Seurat object, regressing the library size and the fraction of UMI counts assigned to mitochondrial features.
-  What are the motivations for removing those two sources of variation?
+- Use `ScaleData()` to scale the normalised RNA assay of the Seurat object, regressing the the fraction of UMI counts assigned to mitochondrial features.
+  What are the motivations for removing that source of variation?
 
 ```{r}
 seurat_after_qc <- ScaleData(
     object = seurat_after_qc,
-    vars.to.regress = c("nCount_RNA", "percent_mt")
+    vars.to.regress = "percent_mt"
 )
 ```
 
-> Library size can give an unfair advantage to cells that achieved a higher capture rate of their RNA transcripts.
-> 
 > Cells with a higher percentage of UMI counts assigned to mitochondrial features often represent "leaky" broken cells that lost some of their cytoplasmic RNA transcripts that was not captured nor sequenced.
+> If those cells are not removed or corrected for, they can introduce unwanted variation in the data set that can affect downstream analyses.
 
 # Exercise
 
