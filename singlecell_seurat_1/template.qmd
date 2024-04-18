@@ -355,7 +355,7 @@ ElbowPlot(   )
 
 > 
 
-- Use `RunUMAP() to run the UMAP technique on your selected number of principal components.
+- Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
 
 ```{r}
 seurat_after_qc <- RunUMAP(   )

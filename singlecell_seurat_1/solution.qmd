@@ -402,7 +402,7 @@ ElbowPlot(seurat_after_qc, ndims = 100)
 > 
 > In this case, the first 20 components seem to capture most of the variance in the data set.
 
-- Use `RunUMAP() to run the UMAP technique on your selected number of principal components.
+- Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
 
 ```{r}
 seurat_after_qc <- RunUMAP(seurat_after_qc, dims = 1:20)
