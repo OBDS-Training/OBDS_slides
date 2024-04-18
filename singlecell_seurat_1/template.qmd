@@ -300,10 +300,10 @@ seurat_after_qc <- ScaleData(
 
 ## Dimensionality reduction
 
-- Run a principal component analysis on the Seurat object.
+- Use `RunPCA()` to run a principal component analysis on the Seurat object.
   Which features are used by the method in the default settings?
   How could you change this?
-  How do you read the message output of the function `RunPCA()`?
+  How do you read the message displayed by the function `RunPCA()`?
 
 ```{r}
 seurat_after_qc <- RunPCA(   )
@@ -312,7 +312,7 @@ seurat_after_qc <- RunPCA(   )
 > Answer:
 > 
 
-- List the names of dimensionality reduction results available in the Seurat object.
+- Use `Reductions()` to list the names of dimensionality reduction results available in the Seurat object.
 
 ```{r}
 
@@ -324,9 +324,13 @@ seurat_after_qc <- RunPCA(   )
 PCAPlot(   )
 ```
 
+```{r}
+DimPlot(   )
+```
+
 ## Bonus
 
-- Make a scatterplot of the first and second PCA components yourself using `ggplot2`.
+- Use `ggplot()` to make a scatterplot of the first and second PCA components.
 
 ```{r}
 # Use this code chunk to prepare a data.frame for ggplot2
@@ -335,12 +339,14 @@ head(pca_data)
 ```
 
 ```{r}
+# Use this code chunk to call ggplot()
 ggplot(pca_data,   ) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
 
-- Visualise the amount of variance explained the top principal components (number of your choice).
+- Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
+  Use argument `ndims` to control the number of principal components to plot.
   How many principal components would you use for downstream analyses?
 
 ```{r}
@@ -349,7 +355,7 @@ ElbowPlot(   )
 
 > 
 
-- Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
+- Use `RunUMAP() to run the UMAP technique on your selected number of principal components.
 
 ```{r}
 seurat_after_qc <- RunUMAP(   )
@@ -360,9 +366,9 @@ UMAPPlot(seurat_after_qc)
 
 ## Clustering
 
-- Compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- Use `FindNeighbors()` to compute the graph of nearest neighbours.
   Which principal components are used by default?
-  Instead, specify the number of principal components that you have chosen earlier.
+  Instead, specify the set of principal components that you have chosen earlier.
 
 ```{r}
 seurat_after_qc <- FindNeighbors(   )

@@ -660,19 +660,20 @@ DimPlot(..., reduction = "pca", ...)
 
 ### Dimensionality reduction
 
-- Run a principal component analysis on the Seurat object.
+- Use `RunPCA()` to run a principal component analysis on the Seurat object.
   Which features are used by the method in the default settings?
   How could you change this?
-  How do you read the message output of the function `RunPCA()`?
-- List the names of dimensionality reduction results available in the Seurat object.
+  How do you read the message displayed by the function `RunPCA()`?
+- Use `Reductions()` to list the names of dimensionality reduction results available in the Seurat object.
 - Use `PCAPlot()` or `DimPlot()` to produce a scatterplot of the first and second PCA components.
 
 ### Bonus
 
-- Make a scatterplot of the first and second PCA components yourself using `r BiocStyle::CRANpkg("ggplot2")`.
-- Visualise the amount of variance explained the top principal components (number of your choice).
+- Use `ggplot()` to make a scatterplot of the first and second PCA components.
+- Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
+  Use argument `ndims` to control the number of principal components to plot.
   How many principal components would you use for downstream analyses?
-- Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
+- Use `RunUMAP() to run the UMAP technique on your selected number of principal components.
 
 ## Seurat workflow - Clustering
 
@@ -739,9 +740,9 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
 
 ### Clustering
 
-- Compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- Use `FindNeighbors()` to compute the graph of nearest neighbours.
   Which principal components are used by default?
-  Instead, specify the number of principal components that you have chosen earlier.
+  Instead, specify the set of principal components that you have chosen earlier.
 - What are the names of the nearest neighbour graphs that are now stored in the Seurat object?
 - Finally, compute cluster labels.
   What is the default setting for the `resolution` argument?

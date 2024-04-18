@@ -333,10 +333,10 @@ seurat_after_qc <- ScaleData(
 
 ## Dimensionality reduction
 
-- Run a principal component analysis on the Seurat object.
+- Use `RunPCA()` to run a principal component analysis on the Seurat object.
   Which features are used by the method in the default settings?
   How could you change this?
-  How do you read the message output of the function `RunPCA()`?
+  How do you read the message displayed by the function `RunPCA()`?
 
 ```{r}
 seurat_after_qc <- RunPCA(seurat_after_qc)
@@ -354,7 +354,7 @@ seurat_after_qc <- RunPCA(seurat_after_qc)
 > that shows the names of the features with the highest positive and negative loadings on a set of principal components.
 > This gives a qualitative view that can help the intepretation of those axes of variation in the data set.
 
-- List the names of dimensionality reduction results available in the Seurat object.
+- Use `Reductions()` to list the names of dimensionality reduction results available in the Seurat object.
 
 ```{r}
 Reductions(seurat_after_qc)
@@ -366,23 +366,30 @@ Reductions(seurat_after_qc)
 PCAPlot(seurat_after_qc)
 ```
 
+```{r}
+DimPlot(seurat_after_qc, reduction = "pca")
+```
+
 ## Bonus
 
-- Make a scatterplot of the first and second PCA components yourself using `ggplot2`.
+- Use `ggplot()` to make a scatterplot of the first and second PCA components.
 
 ```{r}
-# Use this code chunk to prepare a data.frame for ggplot2
+# Use this code chunk to prepare and display a data.frame for ggplot2
 pca_data <- FetchData(seurat_after_qc, vars = c("PC_1", "PC_2"))
 head(pca_data)
 ```
 
 ```{r}
+# Use this code chunk to call ggplot()
 ggplot(pca_data, aes(PC_1, PC_2)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
 
-- Visualise the amount of variance explained the top principal components (number of your choice).
+- Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
+  Use argument `ndims` to control the number of principal components to plot.
+  What is the maximum number of principal components that you can plot?
   How many principal components would you use for downstream analyses?
 
 ```{r}
@@ -391,12 +398,19 @@ ElbowPlot(seurat_after_qc, ndims = 100)
 
 > Answer:
 > 
+> By default, `RunPCA()` computes 50 principal components. If you want to see more principal components, you need to re-run `RunPCA()` with a higher value for the `npcs` argument. 
+> 
 > In this case, the first 20 components seem to capture most of the variance in the data set.
 
-- Run the UMAP technique on your selected number of principal components and visualise the result as a scatterplot.
+- Use `RunUMAP() to run the UMAP technique on your selected number of principal components.
 
 ```{r}
 seurat_after_qc <- RunUMAP(seurat_after_qc, dims = 1:20)
+```
+
+- Use `UMAPPlot()` to visualise the UMAP layout.
+
+```{r}
 UMAPPlot(seurat_after_qc)
 ```
 
@@ -404,9 +418,9 @@ UMAPPlot(seurat_after_qc)
 
 ## Clustering
 
-- Compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- Use `FindNeighbors()` to compute the graph of nearest neighbours.
   Which principal components are used by default?
-  Instead, specify the number of principal components that you have chosen earlier.
+  Instead, specify the set of principal components that you have chosen earlier.
 
 ```{r}
 seurat_after_qc <- FindNeighbors(seurat_after_qc, dims = 1:20)
