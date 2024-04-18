@@ -384,7 +384,7 @@ seurat_after_qc <- FindNeighbors(   )
 
 ```
 
-- Use `FindClusters() to identify clusters in the data set.
+- Use `FindClusters()` to identify clusters in the data set.
   What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
   Do you expect more or fewer clusters following that change?

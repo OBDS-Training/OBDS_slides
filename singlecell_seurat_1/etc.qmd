@@ -744,7 +744,7 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
   Which principal components are used by default?
   Instead, specify the set of principal components that you have chosen earlier.
 - Use `Graphs()` to display the names of the nearest neighbour graphs that are now stored in the Seurat object.
-- Use `FindClusters() to identify clusters in the data set.
+- Use `FindClusters()` to identify clusters in the data set.
   What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
   Do you expect more or fewer clusters following that change?
