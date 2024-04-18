@@ -198,7 +198,7 @@ VlnPlot(   )
 
 ```
 
-- Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial features, and more than 1,500 features detected.
+- Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial genes, and more than 1,500 genes detected.
 
 ```{r}
 seurat_after_qc <- subset(
@@ -221,7 +221,7 @@ dim(   ) - dim(   )
 
 ## Normalisation
 
-- Normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
+- Use `NormalizeData()` to normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
 
 ```{r}
 seurat_after_qc <- NormalizeData(
@@ -232,7 +232,7 @@ seurat_after_qc <- NormalizeData(
 
 ## Bonus
 
-- Visualise the distribution of raw counts and normalised data for a feature of your choice.
+- Combine `ggplot()` and `FetchData()` to visualise the distribution of raw counts and normalised data for a gene of your choice.
 
 ```{r}
 ggplot_lyz_raw <- ggplot(   ) +

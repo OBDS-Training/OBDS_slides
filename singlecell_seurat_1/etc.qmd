@@ -411,7 +411,7 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
   Combine this with `AddMetaData()` to store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
   Finally, use `VlnPlot()` to visualise this new metric alongside the previous two in a new violin plot.
 - Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs (`"percent_mt"`) on the Y-axis against the library size (`"nCount_RNA"`) on the X-axis.
-- Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial features, and more than 1,500 features detected.
+- Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial genes, and more than 1,500 genes detected.
 - Combine the `dim()` function with the subtraction operator to determine how many cells were removed in this step.
 
 ## Seurat workflow - Normalisation
@@ -475,11 +475,11 @@ ggplot(FetchData(seurat_object, vars = "LYZ", slot = "data"), aes(LYZ)) +
 
 ### Normalisation
 
-- Normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
+- Use `NormalizeData()` to normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
 
 ### Bonus
 
-- Visualise the distribution of raw counts and normalised data for a feature of your choice.
+- Combine `ggplot()` and `FetchData()` to visualise the distribution of raw counts and normalised data for a gene of your choice.
 
 ## Seurat workflow - Variable features and scaling
 
