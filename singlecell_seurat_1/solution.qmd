@@ -167,7 +167,7 @@ head(FetchData(object = seurat_object, vars = c("nCount_RNA", "LYZ"), layer = "c
 `WhichCells()` returns the names of cells that match a logical expression.
 
 ```{r}
-WhichCells(seurat_object, expression = LYZ > 300)
+WhichCells(seurat_object, expression = LYZ > 300, slot = "counts")
 ```
 
 `VariableFeatures()` returns the names of variable features (for a given assay, if computed).
@@ -181,7 +181,7 @@ VariableFeatures(seurat_object)
 ```{r}
 subset(
     x = seurat_object,
-    cells = WhichCells(seurat_object, expression = LYZ > 300),
+    cells = WhichCells(seurat_object, expression = LYZ > 300, slot = "counts"),
     features = VariableFeatures(object = seurat_object)
 )
 ```
