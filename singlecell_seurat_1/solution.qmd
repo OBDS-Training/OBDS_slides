@@ -4,8 +4,10 @@ author: "Kevin Rue-Albrecht"
 date: "18/04/2024"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#| label: setup
+#| include: false
+library(Seurat)
 library(tidyverse)
 ```
 
@@ -475,9 +477,8 @@ UMAPPlot(seurat_after_qc)
 
 ## Identify cluster markers
 
-- Use the function `FindAllMarkers()` to identify
-  positive markers for all clusters,
-  filtering markers that are detected in at least 25% of the cluster,
+- Use `FindAllMarkers()` to identify positive markers for all clusters,
+  keeping only markers that are detected in at least 25% of the target cluster,
   and with a log fold-change greater than `0.25`.
   Assign the result to an object named `seurat_markers_all`.
   What is the class of that object?
@@ -501,7 +502,8 @@ class(seurat_markers_all)
 > To use a different set of identities, use `Idents(seurat_after_qc) <- name` to use a different column of cell metadata as the active identity,
 > before running the function `FindAllMarkers()`.
 
-- How do you read the contents of the object `seurat_markers_all`?
+- Use `head()` to display the first few rows of the object `seurat_markers_all`.
+  How do you read the contents of that object?
   How do you know which features are the markers of each cluster?
 
 ```{r}
@@ -516,13 +518,14 @@ head(seurat_markers_all)
 > while the columns `pct.1` and `pct.2` indicate the fraction of cells with detectable expression of the feature in each group of cells tested
 > (group 1 is the cluster tested, group 2 comprises every other cell in the data set).
 
-- Filter and display the top 10 markers for cluster 3.
+- Combine `subset()` and `head()` to filter and display the first few markers for cluster `3`.
 
 ```{r}
-subset(seurat_markers_all, cluster == 3)[1:10, ]
+head(subset(seurat_markers_all, cluster == 3))
 ```
 
-- Visualise the expression of the top 4 marker for cluster 3 on a UMAP layout.
+- Use `FeaturePlot()` to visualise the expression of the first 4 marker for cluster `3` on a UMAP layout.
+  You may want to combine the function `subset()` and the `[]` operator to select the gene names to visualise.
 
 ```{r}
 FeaturePlot(
@@ -531,13 +534,14 @@ FeaturePlot(
 )
 ```
 
-- Visualise the expression of those same 4 marker as a violin plot.
+- Use `VlnPlot()` to visualise the same 4 markers as a violin plot.
   Do you have any particular preference between the two types of plots?
 
 ```{r}
 VlnPlot(
     seurat_after_qc,
-    features = subset(seurat_markers_all, cluster == 3)[1:4, "gene"]
+    features = subset(seurat_markers_all, cluster == 3)[1:4, "gene"],
+    ncol = 2
 )
 ```
 
@@ -550,15 +554,16 @@ VlnPlot(
 > However, this depends on the quality of the clustering.
 
 - Use `DoHeatmap()` to visualise the top 10 (positive) markers for each cluster.
-  Hint: you may want to use the function `dplyr::group_by()`.
+  You may want to use `dplyr::group_by()` and `dplyr::slice_max()` to select the genes to visualise.
+  You may also want to use `unique()` to avoid any duplicated gene names in the cluster markers.
 
 ```{r}
 markers_top10_clusters <- seurat_markers_all %>%
     group_by(cluster) %>%
-    slice_max(order_by = avg_log2FC, n = 1000)
+    slice_max(order_by = avg_log2FC, n = 10)
 
 DoHeatmap(
     seurat_after_qc,
-    features = markers_top10_clusters$gene
+    features = unique(markers_top10_clusters$gene)
 )
 ```

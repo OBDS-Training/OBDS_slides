@@ -409,9 +409,8 @@ seurat_after_qc <-
 
 ## Identify cluster markers
 
-- Use the function `FindAllMarkers()` to identify
-  positive markers for all clusters,
-  filtering markers that are detected in at least 25% of the cluster,
+- Use `FindAllMarkers()` to identify positive markers for all clusters,
+  keeping only markers that are detected in at least 25% of the target cluster,
   and with a log fold-change greater than `0.25`.
   Assign the result to an object named `seurat_markers_all`.
   What is the class of that object?
@@ -430,7 +429,8 @@ class(seurat_markers_all)
 > Answer:
 > 
 
-- How do you read the contents of the object `seurat_markers_all`?
+- Use `head()` to display the first few rows of the object `seurat_markers_all`.
+  How do you read the contents of that object?
   How do you know which features are the markers of each cluster?
 
 ```{r}
@@ -440,23 +440,25 @@ head(seurat_markers_all)
 > Answer:
 > 
 
-- Filter and display the top 10 markers for cluster 3.
+- Combine `subset()` and `head()` to filter and display the first few markers for cluster `3`.
 
 ```{r}
 
 ```
 
-- Visualise the expression of the top 4 marker for cluster 3 on a UMAP layout.
+- Use `FeaturePlot()` to visualise the expression of the first 4 marker for cluster `3` on a UMAP layout.
+  You may want to combine the function `subset()` and the `[]` operator to select the gene names to visualise.
 
 ```{r}
 
 ```
 
-- Visualise the expression of those same 4 marker as a violin plot.
+- Use `VlnPlot()` to visualise the same 4 markers as a violin plot.
   Do you have any particular preference between the two types of plots?
 
 ```{r}
 VlnPlot(
+    
     
     
 )
@@ -466,7 +468,8 @@ VlnPlot(
 > 
 
 - Use `DoHeatmap()` to visualise the top 10 (positive) markers for each cluster.
-  Hint: you may want to use the function `dplyr::group_by()`.
+  You may want to use `dplyr::group_by()` and `dplyr::slice_max()` to select the genes to visualise.
+  You may also want to use `unique()` to avoid any duplicated gene names in the cluster markers.
 
 ```{r}
 markers_top10_clusters <- seurat_markers_all %>%
