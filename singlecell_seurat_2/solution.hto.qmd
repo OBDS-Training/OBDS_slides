@@ -149,6 +149,12 @@ seurat_citeseq <- NormalizeData(
 seurat_citeseq
 ```
 
+> Note for Seurat v5
+> The default behaviour of split.by has changed.
+> Separate violin plots are now plotted side-by-side.
+> To restore the old behaviour of a single split violin,
+> set split.plot = TRUE.
+
 **Why is the CLR transformation prefered for HTO data?**
 
 > Answer:
