@@ -3,7 +3,7 @@ title: 'Single-cell analysis using Seurat, part 2'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-03-12 (updated: `r Sys.Date()`)"
+date: "2024-06-04 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -17,9 +17,6 @@ format:
     footer: Kevin Rue-Albrecht & Liezel Tamon -- Single-cell analysis using Seurat, part 2
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
-# ^If throwing error, set: 
-#options(pagedown.remote.maxattempts=40) # number of attempt in total
-#options(pagedown.remote.sleeptime=2) # time in second between attempt
 ---
 
 ```{r}
