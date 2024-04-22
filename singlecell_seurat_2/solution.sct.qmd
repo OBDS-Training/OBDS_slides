@@ -24,6 +24,8 @@ Compare clustering results following basic normalisation and sctransform normali
 
 - Use `readRDS()` to import a preprocessed object from the file `seurat_after_qc.rds`.
 
+This object is the result of the Seurat workflow that we performed together yesterday.
+
 ```{r}
 seurat_after_qc <- readRDS("data/seurat_after_qc.rds")
 ```

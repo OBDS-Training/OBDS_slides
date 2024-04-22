@@ -126,13 +126,28 @@ knitr::include_graphics("img/sctransform-fig3.png")
 
 ## SCTransform within a workflow
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
 ```{r}
 #| fig-align: center
-#| out-height: 550px
+#| out-height: 450px
 #| out-width: 575px
 ## Source: custom-made? (2-scRNA-seq_day2 slide 10)
 knitr::include_graphics("img/sct_analysis_steps.png")
 ```
+:::
+
+::: {.column width="50%"}
+`SCTransform()` replaces:
+
+- `NormalizeData()`
+- `ScaleData()`
+- `FindVariableFeatures()`
+:::
+
+::::
 
 ## Comparison example
 
