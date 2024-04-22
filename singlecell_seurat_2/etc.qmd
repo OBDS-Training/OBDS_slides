@@ -261,14 +261,14 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 
 ## CellhashR: Alternative tool for demultiplexing
 
-[CellhashR](https://github.com/BimberLab/cellhashR):
+[CellhashR](https://github.com/BimberLab/cellhashR)
 
 - Produces quality control reports.
 - Enables comparison of multiple demultiplexing algorithms.
 - Generates a consensus call from multiple algorithms
   (e.g.,
-  [HTODemux()][seurat-htodemux],
-  [hashedDrops()][dropletutils-hasheddrops],
+  [HTODemux][seurat-htodemux],
+  [hashedDrops][dropletutils-hasheddrops],
   [Multi-Seq][multi-seq]).
 
 :::: {.columns}
