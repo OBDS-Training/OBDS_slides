@@ -100,66 +100,6 @@ That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("
 knitr::include_graphics("img/cellranger_count_output.png")
 ```
 
-## CITE-seq / Feature barcoding
-
-```{r}
-#| fig-align: center
-#| out-height: 60px
-#| out-width: 400px
-## Source: https://cite-seq.com/
-knitr::include_graphics("img/cite-seq-antibody.png")
-```
-
-```{r}
-#| fig-align: center
-#| out-height: 400px
-#| out-width: 600px
-## Source: https://cite-seq.com/
-knitr::include_graphics("img/cite-seq-protocol.png")
-```
-
-::: {style="text-align: center;"}
-**Antibodies bind to proteins (detection), barcodes are sequenced (quantification)**
-:::
-
-## Cell hashing
-
-```{r}
-#| fig-align: center
-#| out-height: 250px
-#| out-width: 600px
-## Source: https://cite-seq.com/cell-hashing/
-knitr::include_graphics("img/hashing_protocol.png")
-```
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Experimental
-
-- Tag samples with distinct HTO.
-- Pool (i.e., "multiplex") samples.
-- Sequence HTO and GEX (gene expression).
-:::
-
-::: {.column width="50%"}
-### Computational
-
-- Quantify HTO and GEX.
-- De-multiplex samples in each pool.
-- Analyse GEX of cells identified.
-:::
-
-::::
-
-::: {style="text-align: center;"}
-**Basically the same principle as CITE-seq.**
-:::
-
-::: {style="text-align: center;"}
-**Except: the assay targets a single identical surface protein for all the cell of each sample.**
-:::
-
 ## Seurat workflow - Overview
 
 ```{r}
