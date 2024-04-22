@@ -137,11 +137,10 @@ VlnPlot(
 
 ### Visualise a feature in the SCT assay
 
-For the feature of your choice (e.g., `LYZ`), using the SCT assay:
-
-- Visualise the distribution of count data.
-- Visualise the distribution of log-counts in the data slot.
-- Visualise the distribution of scaled log-counts.
+- For the feature of your choice (e.g., `LYZ`), using the `SCT` assay, compare the distribution of:
+  - raw count data in the `counts` slot.
+  - log-normalised counts in the `data` slot
+  - scaled log-normalised counts in the `scaled` slot.
 
 **Hint:** For each plot, pass the output of `FetchData()` to `ggplot()`, store each plot, and combine them into a single plot using `cowplot::plot_grid()`.
 
@@ -149,17 +148,20 @@ For the feature of your choice (e.g., `LYZ`), using the SCT assay:
 #| fig.height = 10
 DefaultAssay(seurat_after_qc) <- "SCT"
 ggplot_lyz_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "counts"), aes(LYZ)) +
-    geom_histogram(fill = "grey", color = "black", bins = 100) +
-    coord_cartesian(ylim = c(0, 500)) +
-    cowplot::theme_cowplot()
+  geom_histogram(fill = "grey", color = "black", bins = 100) +
+  coord_cartesian(ylim = c(0, 500)) + 
+  ggtitle("counts") +
+  cowplot::theme_cowplot()
 ggplot_lyz_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "data"), aes(LYZ)) +
-    geom_histogram(fill = "grey", color = "black", bins = 100) +
-    coord_cartesian(ylim = c(0, 500)) +
-    cowplot::theme_cowplot()
+  geom_histogram(fill = "grey", color = "black", bins = 100) +
+  coord_cartesian(ylim = c(0, 500)) +
+  ggtitle("data") +
+  cowplot::theme_cowplot()
 ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "scale.data"), aes(LYZ)) +
-    geom_histogram(fill = "grey", color = "black", bins = 100) +
-    coord_cartesian(ylim = c(0, 500)) +
-    cowplot::theme_cowplot()
+  geom_histogram(fill = "grey", color = "black", bins = 100) +
+  coord_cartesian(ylim = c(0, 500)) +
+  ggtitle("scaled") +
+  cowplot::theme_cowplot()
 cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised,ggplot_lyz_scaled, ncol = 1)
 ```
 
