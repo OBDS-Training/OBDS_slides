@@ -383,7 +383,7 @@ Total: 12 samples.
 
 ### Bonus
 
-- Evaluate HTO- and RNA-based clustering for demultiplexed samples.
+- Compare and evaluate HTO- and RNA- based clustering for demultiplexed samples.
 
 ## Useful links for sctransform and other normalisation methods
 
