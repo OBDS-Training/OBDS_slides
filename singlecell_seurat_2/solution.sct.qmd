@@ -16,23 +16,34 @@ library(gprofiler2)
 
 ## Goal
 
-Compare clustering results following basic normalisation and sctransform normalisation.
+Compare clustering results following standard "LogNormalize" normalisation and "SCTransform" normalisation.
 
 ## Exercise
 
 ### Import data
 
-- Use `readRDS()` to import a preprocessed object from the file `seurat_after_qc.rds`.
+- Use `readRDS()` to import a preprocessed object from the file `seurat_after_qc.rds` provided.
 
 This object is the result of the Seurat workflow that we performed together yesterday.
+It is given to you again to make sure we all start from the same point.
 
 ```{r}
 seurat_after_qc <- readRDS("data/seurat_after_qc.rds")
 ```
 
+- Display the Seurat object.
+
+```{r}
+seurat_after_qc
+```
+
+This is good practice in a notebook, to keep a record of how your object looks at different stages of the analysis.
+
 ### Default assay
 
-Check the name of the default assay (best practice before using Seurat functions).
+- Check the name of the active assay.
+
+This is best practice before using Seurat functions that rely on the active assay.
 
 ```{r}
 DefaultAssay(seurat_after_qc)
@@ -40,7 +51,7 @@ DefaultAssay(seurat_after_qc)
 
 ### SCTransfrom
 
-Apply SCTransfrom.
+- Apply SCTransform to the Seurat object.
 
 **Hint:**
 
@@ -58,27 +69,34 @@ seurat_after_qc <- SCTransform(
 
 **Note:** The `SCTransform()` function effectively replaces the workflow performed by the functions `NormalizeData()`, `ScaleData` and `FindVariableFeatures()`.
 
-**Where is the new normalisation stored?**
-
-> Answer:
-> Transformed data is stored in a new assay named 'SCT'.
-
-**Note:** The 'SCT' assay is automatically set as the default assay immediately after SCTransform is run.
-
-**Note:** The 'SCT' assay may have less features because SCTransform() calls sctransform::vst() with default argument min_cells = 5, which means to use only that have been detected in at least 5 cells.
-
-### Explore SCTransform results
-
-Explore the `seurat_after_qc` object assays and metadata (best practice to get to know the object).
+- Display the Seurat object again.
 
 ```{r}
 seurat_after_qc
 ```
 
+**What changed since you last displayed the object? Where are the normalised data stored?**
+
+> Answer:
+>
+> The number of features in the object has changed.
+> It nearly doubled, which can be explained by the fact that there are now two assays in the object: 'RNA' and 'SCT'.
+> 
+> The active assay has changed from 'RNA' to 'SCT'.
+
+**Note:** 
+
+- The `SCT` assay may have less features because `SCTransform()` calls `sctransform::vst()` with default argument `min_cells = 5`, which only retains features detected in at least 5 cells.
+
+### Explore SCTransform results
+
+- Take the time to explore the object metadata.
+
+This is good practice to get to know the object.
+
 ```{r}
 head(seurat_after_qc[[]])
 ```
-
 
 **Can you see any change in the assays?**
 
