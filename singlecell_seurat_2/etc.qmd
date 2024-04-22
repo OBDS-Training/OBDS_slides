@@ -19,7 +19,7 @@
 #| fig-align: center
 #| out-height: 525px
 #| out-width: 400px
-## Source: Kevin Rue-Albrecht (Seurat day 1)
+## Source: Kevin Rue-Albrecht (Adobe Illustrator)
 knitr::include_graphics("img/seurat_workflow.png")
 ```
 :::
