@@ -90,18 +90,13 @@ seurat_after_qc
 
 ### Explore SCTransform results
 
-- Take the time to explore the object metadata.
+- Display the cell metadata stored in the object.
 
-This is good practice to get to know the object.
+This is good practice to keep track of information stored in the object.
 
 ```{r}
 head(seurat_after_qc[[]])
 ```
-
-**Can you see any change in the assays?**
-
-> Answer:
-> Yes, there is a new assay called 'SCT'.
 
 **Can you see any new column(s) in the metadata?**
 
@@ -110,9 +105,13 @@ head(seurat_after_qc[[]])
 
 ### Visualise SCTransform results
 
-Use the function `VlnPlot()` to compare the total counts in the RNA and SCT assays, and to compare the number of features detected in each assay.
+- Use `VlnPlot()` to compare the total counts in the RNA and SCT assays, and to compare the number of features detected in each assay.
 
-**Hint:** Force the function to apply the same Y-axis range to all panels in each plot, to make comparisons easier.
+**Hint:**
+
+- Force the function to apply the same Y-axis range to all panels in each plot, to make comparisons easier.
+- The original library size (in the 'RNA' assay) is already present in the cell metadata as `nCount_RNA`.
+- `SCTransform` automatically adds two columns of cell metadata for library and number of features detected after SCT normalisation, as `nCount_SCT` and `nFeature_SCT`.
 
 ```{r}
 # counts
@@ -123,6 +122,8 @@ VlnPlot(
 )
 ```
 
+- Repeat the same for the number of features detected in the two assays.
+
 ```{r}
 # features
 VlnPlot(
@@ -131,11 +132,6 @@ VlnPlot(
   same.y.lims = TRUE
 )
 ```
-
-**Note:**
-
-- The original library size and number of features detected per cell are already present in the Seurat object.
-- `SCTransform` adds two columns of cell metadata for library and number of features detected after SCT normalisation.
 
 ## Bonus
 
