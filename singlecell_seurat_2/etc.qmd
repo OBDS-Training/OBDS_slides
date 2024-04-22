@@ -29,6 +29,7 @@ knitr::include_graphics("img/seurat_workflow.png")
 
 <!-- Old slide is about limitation of log normalisation (slide 5) -->
 <!-- I think with this figure, we can remove slide 5 and 8 -->
+<!-- Kevin: oh wait, I think maybe you're referring to the original PPTX -->
 <!-- I've reinserted slide 5 and 8, because I think they should be dropped from Seurat day 1 anyway. To be discussed. -->
 
 ```{r}
@@ -222,14 +223,17 @@ knitr::include_graphics("img/why_cell_hashing.png")
 ## Source: https://cite-seq.com/cell-hashing/
 knitr::include_graphics("img/evolution_cell_multiplexing.png")
 ```
+
 `r Citet(bib, "cheng_multiplexing_2021")`
 
 ## Other cell multiplexing methods
 
-- Lipid and Cholesterol modified oligonucleotides (Multi-Seq).
+- Lipid and Cholesterol modified oligonucleotides ([Multi-Seq][multi-seq]).
 - Chemically modified barcodes, covalently linked to cell membrane.
 - Nucleus hashing -- irreversibly labelling cells with synthetic single–stranded DNA oligos.
 - Genetic variation based on SNP calling (natural genetic barcoding) -- with and without matched genotype.
+
+<!-- Kevin: This list should really link to examples online. -->
 
 ## Nucleus Hashing
 
@@ -240,6 +244,7 @@ knitr::include_graphics("img/evolution_cell_multiplexing.png")
 ## Source: https://www.nature.com/articles/s41467-019-10756-2
 knitr::include_graphics("img/nucleus_hashing.png")
 ```
+
 `r Citet(bib, "gaublomme_nuclei_2019")`
 
 ## Genetic demultiplexing (e.g. Vireo)
@@ -251,13 +256,20 @@ knitr::include_graphics("img/nucleus_hashing.png")
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1865-2
 knitr::include_graphics("img/genetic_demultiplexing.png")
 ```
+
 `r Citet(bib, "huang_vireo_2019")`
 
 ## CellhashR: Alternative tool for demultiplexing
 
-- [CellhashR](https://github.com/BimberLab/cellhashR) is a bit like multiqc and produces quality control reports.
+[CellhashR](https://github.com/BimberLab/cellhashR):
+
+- Produces quality control reports.
 - Enables comparison of multiple demultiplexing algorithms.
-- Can generate a consensus call from multiple algorithms (HTODemux, hashedDrops, Multi-Seq).
+- Generates a consensus call from multiple algorithms
+  (e.g.,
+  [HTODemux()][seurat-htodemux],
+  [hashedDrops()][dropletutils-hasheddrops],
+  [Multi-Seq][multi-seq]).
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -400,3 +412,7 @@ knitr::include_graphics("img/cell_hashing_data.png")
 #| results: asis
 PrintBibliography(bib)
 ```
+
+[multi-seq]: https://www.nature.com/articles/s41592-019-0433-8
+[seurat-htodemux]: https://satijalab.org/seurat/
+[dropletutils-hasheddrops]: https://bioconductor.org/packages/release/bioc/html/DropletUtils.html
