@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht & Liezel Tamon -- Single-cell analysis using Seurat, part 2
+    footer: Liezel Tamon -- Single-cell analysis using Seurat, part 2
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 # ^If throwing error, set: 
@@ -57,6 +57,7 @@ NoCite(bib, "R")
 
 - Devika Agarwal
 - Carla Cohen
+- Kevin Rue-Albrecht
 
 ## Prerequisites
 
