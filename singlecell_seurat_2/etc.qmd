@@ -29,9 +29,6 @@ knitr::include_graphics("img/seurat_workflow.png")
 
 <!-- Old slide is about limitation of log normalisation (slide 5) -->
 <!-- I think with this figure, we can remove slide 5 and 8 -->
-<!-- Essentially highlight that with sctransform, variance is normalised consistently across expression levels -->
-<!-- unlike log normalisation, which is more effective only on low to medium expressed genes -->
-
 <!-- I've reinserted slide 5 and 8, because I think they should be dropped from Seurat day 1 anyway. To be discussed. -->
 
 ```{r}
@@ -43,6 +40,11 @@ knitr::include_graphics("img/huber2023_differences_transformations.png")
 ```
 
 `r Citet(bib, "ahlmann-eltze_comparison_2023")`
+
+::: {.notes}
+Highlight that with SCTransform, variance is normalised consistently across expression levels,
+unlike log-normalisation which is more effective on low to medium expression levels.
+:::
 
 ## Log-normalisation has limitations
 

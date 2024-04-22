@@ -91,6 +91,18 @@ seurat_citeseq <- CreateSeuratObject(
 )
 ```
 
+> Note:
+> 
+> The `dgTMatrix` class represents sparse matrices in triplet format:
+> - `i`, the row
+> - `j`, the column
+> - `x`, the value
+> 
+> The `dgCMatrix`class represents sparse matrices in compressed column format:
+> This format stores column-oriented  data structures.
+> It is more efficient for matrices with more non-zero elements,
+> especially when operations involve columns.
+
 ### Preprocessing
 
 Apply the sequence of functions `NormalizeData()`, `FindVariableFeatures()`, and `ScaleData()`.
