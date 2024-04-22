@@ -95,7 +95,7 @@ knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 
 #### Step 3
 
-Second round of NB regression, constraining parameters of model to be those learned from previous step.
+Second round of Negative Binomial (NB) regression, constraining parameters of model to be those learned from previous step.
 
 #### Step 4
 
