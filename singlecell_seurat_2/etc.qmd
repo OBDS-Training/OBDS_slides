@@ -360,8 +360,11 @@ knitr::include_graphics("img/cell_hashing_data.png")
 
 #### Data
 
-- Single cells collected from four cell lines: HEK, K562, KG1 and THP1.
-- Each cell line was further split into three samples (12 samples in total).
+- Single cells collected from four cell lines: HEK, K562, KG1, and THP1.
+- Each cell line was further split into three samples: A, B, and C.
+
+Total: 12 samples.
+
 - Based on this design, we should be able to detect doublets both across and within cell types.
 - Each sample was labelled with a hashing antibody mixture (CD29 and CD45), pooled, and run on a single channel of 10X.
 
@@ -371,7 +374,7 @@ knitr::include_graphics("img/cell_hashing_data.png")
 
 - Read in the HTO and UMI matrices.
 - Identify the barcodes detected in both RNA and HTO.
-- Create a SeuratObject with the RNA data.
+- Create a Seurat object with the RNA data.
   Then add the HTO data as another assay.
 - Normalise and scale the RNA data.
 - Normalise the HTO data using CLR normalisation.
