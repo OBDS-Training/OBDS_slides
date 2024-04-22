@@ -22,7 +22,7 @@ Compare clustering results following basic normalisation and sctransform normali
 
 ### Import data
 
-Read the file `seurat_after_qc.rds` in the shared resources.
+- Use `readRDS()` to import a preprocessed object from the file `seurat_after_qc.rds`.
 
 ```{r}
 seurat_after_qc <- readRDS("data/seurat_after_qc.rds")
