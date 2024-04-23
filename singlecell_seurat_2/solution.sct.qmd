@@ -90,7 +90,7 @@ seurat_after_qc
 
 ### Explore SCTransform results
 
-- Display the cell metadata stored in the object.
+- Combine `head()` and `[[]]` to display the cell metadata stored in the object.
 
 This is good practice to keep track of information stored in the object.
 
@@ -110,9 +110,10 @@ head(seurat_after_qc[[]])
 
 **Hint:**
 
-- Force the function to apply the same Y-axis range to all panels in each plot, to make comparisons easier.
 - The original library size (in the 'RNA' assay) is already present in the cell metadata as `nCount_RNA`.
 - `SCTransform` automatically adds two columns of cell metadata for library and number of features detected after SCT normalisation, as `nCount_SCT` and `nFeature_SCT`.
+- Use the argument `features=` to specify the name of cell metadata columns that contain the total counts for the 'RNA' and 'SCT' assays, respectively. 
+- Use the argument `same.y.lims=` to force all y-axes to use the same range of values, to make comparisons easier.
 
 ```{r}
 VlnPlot(
@@ -256,6 +257,7 @@ ElbowPlot(seurat_after_qc, ndims = 50, reduction = "sct.pca")
 **How many principal components would you use for downstream analyses?**
 
 > Answer:
+> 
 > We typically use the first 20 principal components in this lesson.
 
 ### UMAP
