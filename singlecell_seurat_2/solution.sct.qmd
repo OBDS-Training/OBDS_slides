@@ -1,7 +1,7 @@
 ---
 title: "Solution: Single-cell analysis using Seurat, part 2"
-author: "Kevin Rue-Albrecht"
-date: "2024-03-12"
+author: "Kevin Rue-Albrecht & Liezel Tamon"
+date: "2024-04-23"
 date-format: long
 format: html
 ---
@@ -25,7 +25,7 @@ Compare clustering results following standard "LogNormalize" normalisation and "
 - Use `readRDS()` to import a preprocessed object from the file `seurat_after_qc.rds` provided.
 
 This object is the result of the Seurat workflow that we performed together yesterday.
-It is given to you again to make sure we all start from the same point.
+It is given to you again today to make sure we all start from the same point here.
 
 ```{r}
 seurat_after_qc <- readRDS("data/seurat_after_qc.rds")
@@ -33,11 +33,11 @@ seurat_after_qc <- readRDS("data/seurat_after_qc.rds")
 
 - Display the Seurat object.
 
+This is generally good practice, to keep a record of how your object looks at different stages of the analysis.
+
 ```{r}
 seurat_after_qc
 ```
-
-This is good practice in a notebook, to keep a record of how your object looks at different stages of the analysis.
 
 ### Default assay
 
@@ -51,7 +51,7 @@ DefaultAssay(seurat_after_qc)
 
 ### SCTransfrom
 
-- Use `SCTransform()` to apply the SCTransform method to the Seurat object.
+- Use `SCTransform()` on the Seurat object to apply the SCTransform method.
 
 **Hint:**
 
@@ -86,7 +86,7 @@ seurat_after_qc
 
 **Note:** 
 
-- The `SCT` assay may have less features because `SCTransform()` calls `sctransform::vst()` with default argument `min_cells = 5`, which only retains features detected in at least 5 cells.
+- The 'SCT' assay may have less features than the 'RNA' assay because `SCTransform()` calls `sctransform::vst()` with default argument `min_cells = 5`, which only retains features detected in at least 5 cells.
 
 ### Explore SCTransform results
 
@@ -101,11 +101,12 @@ head(seurat_after_qc[[]])
 **Can you see any new column(s) in the metadata?**
 
 > Answer:
-> There are two new columns called 'nCount_SCT. and 'nFeature_SCT'.
+> 
+> There are two new columns called 'nCount_SCT'. and 'nFeature_SCT'.
 
 ### Visualise SCTransform results
 
-- Use `VlnPlot()` to compare the total counts in the RNA and SCT assays, and to compare the number of features detected in each assay.
+- Use `VlnPlot()` to compare the total counts in the 'RNA' and 'SCT' assays.
 
 **Hint:**
 
@@ -114,21 +115,19 @@ head(seurat_after_qc[[]])
 - `SCTransform` automatically adds two columns of cell metadata for library and number of features detected after SCT normalisation, as `nCount_SCT` and `nFeature_SCT`.
 
 ```{r}
-# counts
 VlnPlot(
   object = seurat_after_qc,
-  features = c("nCount_RNA" ,"nCount_SCT"),
+  features = c("nCount_RNA", "nCount_SCT"),
   same.y.lims = TRUE
 )
 ```
 
-- Repeat the same for the number of features detected in the two assays.
+- Do the same thing to compare the number of features detected in the two assays.
 
 ```{r}
-# features
 VlnPlot(
   object = seurat_after_qc,
-  features = c("nFeature_RNA","nFeature_SCT"),
+  features = c("nFeature_RNA", "nFeature_SCT"),
   same.y.lims = TRUE
 )
 ```
@@ -137,12 +136,16 @@ VlnPlot(
 
 ### Visualise a feature in the SCT assay
 
-- For the feature of your choice (e.g., `LYZ`), using the `SCT` assay, compare the distribution of:
-  - raw count data in the `counts` slot.
-  - log-normalised counts in the `data` slot
-  - scaled log-normalised counts in the `scaled` slot.
+- For the feature of your choice (e.g., 'LYZ'), using the 'SCT' assay, compare the distribution of:
+  - raw count data in the 'counts' slot.
+  - log-normalised counts in the 'data' slot
+  - scaled log-normalised counts in the 'scaled' slot.
 
-**Hint:** For each plot, pass the output of `FetchData()` to `ggplot()`, store each plot, and combine them into a single plot using `cowplot::plot_grid()`.
+**Hint:**
+
+- For each plot, pass the output of `FetchData()` to `ggplot()`.
+- Store each plot as a separate object.
+- Use cowplot::plot_grid() to combine all the plots into a single image.
 
 ```{r}
 #| fig.height = 10
@@ -172,60 +175,66 @@ cowplot::plot_grid(
 
 ### Variable features
 
-- Use `VariableFeatures()` to display the first `10` variable genes in the `SCT` assay.
+- Combine `VariableFeatures()` and `head()` to display the first 10 variable genes in the 'SCT' assay.
 
 **Hint:**
-Refer to the help page of the function to identify the argument that specified which assay to access.
+
+- For `VariableFeatures()`, use the `assay=` argument to specify the assay to use.
+- For `head()`, use the `n=` argument to specify how many genes to display.
 
 ```{r}
 head(VariableFeatures(seurat_after_qc, assay = "SCT"), n = 10)
 ```
 
-- Repeat the same task for the `RNA` assay.
+- Repeat the same task for the 'RNA' assay.
 
 ```{r}
 head(VariableFeatures(seurat_after_qc, assay = "RNA"), n = 10)
 ```
 
-- Combine the code above with `length()` and `intersect()` to display the number of genes that overlap.
+- Combine the code above with `length()` and `intersect()` to display the number of genes that overlap the two subsets of variable genes.
 
 ```{r}
 length(intersect(
-  VariableFeatures(seurat_after_qc, assay = "SCT")[1:10],
-  VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+  head(VariableFeatures(seurat_after_qc, assay = "SCT"), 10),
+  head(VariableFeatures(seurat_after_qc, assay = "RNA"), 10)
 ))
 ```
 
 **How many genes overlap? What is your takeaway message from it?**
 
 > Answer:
+> 
 > Seven genes overlap, which is more than half, which is encouraging!
+
+<!-- TODO: determine what controls the order of the variable genes returned. Are they ordered by variance? -->
 
 ### Dimensionality reduction on SCT transformed data
 
-Run a principal component analysis and UMAP on the Seurat object.
+- First, use `DefaultAssay()` to display the active assay (again!).
 
-- First, display the active assay (again!).
-
-It is best practice to check (and set) the active assay before key steps when working with Seurat.
+It is best practice to check that the active assay is correct before key steps when working with Seurat.
+Even better, it doesn't hurt to set the active assay to the desired one explicitly, to avoid any doubt.
 
 ```{r}
 DefaultAssay(seurat_after_qc)
+DefaultAssay(seurat_after_qc) <- "SCT"
 ```
 
-- 
+- Use `RunPCA()` to run a principal component analysis on the Seurat object.
 
 **Hint:**
 
-- Consider setting the argument `reduction.name=` to something other than 'pca', to preserve the PCA results based on the 'RNA' assay.
-- It doesn't hurt to set the default again before important steps, even if the default assay already is the desired one, as you might sometimes run code chunks out of order.
+- Set the argument `reduction.name=` to something other than 'pca', to avoid overwriting the existing PCA results based on the RNA assay.
+  For instance, you could use 'sct.pca'.
   
 ```{r}
-DefaultAssay(seurat_after_qc) <- "SCT"
 seurat_after_qc <- RunPCA(seurat_after_qc, reduction.name = "sct.pca")
 ```
 
-Check the name of the dimensionality reduction results present in the Seurat object now (best practice to get to know the object).
+- Use `Reductions()` to display the name of the dimensionality reduction results present in the Seurat object at this point.
+
+It is good practice to keep track of information stored in the object throughout the workflow.
 
 ```{r}
 Reductions(seurat_after_qc)
@@ -233,26 +242,31 @@ Reductions(seurat_after_qc)
 
 ### PCA elbow plot
 
-Use the function `ElbowPlot()` to visualise the amount of variance explained by the top principal components for the data produced by SCTransform.
+- Use `ElbowPlot()` to produce a plot that shows the amount of variance explained by the top principal components (by amount of variance captured).
 
-**Hint:** Look at the help page of the function to find the argument that specifies the dimensionality reduction result to use.
+**Hint:**
 
-**How many principal components would you use for downstream analyses?**
-
-> Answer:
-> We typically use the first 20 principal components in this lesson.
+- Use the argument `ndims=` to control the number of principal components displayed (up to the number of principal components computed earlier).
+- Use the `reduction=` argument to specify the dimensionality reduction result to use.
   
 ```{r}
 ElbowPlot(seurat_after_qc, ndims = 50, reduction = "sct.pca")
 ```
 
+**How many principal components would you use for downstream analyses?**
+
+> Answer:
+> We typically use the first 20 principal components in this lesson.
+
 ### UMAP
 
-Run the function `RunUMAP()` on the Seurat object using the first 20 principal components computed from the SCT assay.
+- Use `RunUMAP()` on the Seurat object, using the first 20 principal components computed earlier.
 
 **Hint:**
 
-- Look at the help page to find the argument that lets you specify the dimensionality reduction result that you want to use.
+- Use the argument `reduction=` to specify the dimensionality reduction result to use.
+- Set the argument `dims=` to specify the principal components to use.
+- Set the argument `reduction.name=` to something other than "umap", to avoid overwriting the existing UMAP results based on the RNA assay. For instance, you could use "sct.umap".
 
 ```{r}
 seurat_after_qc <- RunUMAP(
@@ -263,13 +277,13 @@ seurat_after_qc <- RunUMAP(
 )
 ```
 
-Compare the UMAP results based on the SCT assay to those based on the RNA assay.
+- Use `DimPlot()` (twice) to display the two UMAP plots obtained using the RNA and SCT assays, respectively.
 
 **Hint:**
 
 - Use the `DimPlot()` function to produce each plot.
-- Save each plot as a ggplot object.
-- Combine the plots into a single plot using the `patchwork` package or the function `cowplot::plot_grid()`.
+- Save each plot as a separate ggplot object.
+- Use the `+` operator form the 'patchwork' package or the function `cowplot::plot_grid()` to combine the ggplot objects into a single image.
 
 ```{r, fig.width=10}
 plot1 <- DimPlot(seurat_after_qc, reduction = "umap") + 
@@ -281,71 +295,63 @@ plot1 + plot2
 
 ### Clustering
 
-First, compute the graph of nearest neighbours using the function `FindNeighbors()`.
+- Use `FindNeighbors()` to compute the graph of nearest neighbours.
 
 **Hint:**
 
-Look at the help page to find the argument that lets you specify:
-
-- The assay to use.
-- The dimensionality reduction result to use.
-- Which principal components to use.
+- Set the argument `dims=` to specify the principal components to use.
+- Use the argument `reduction=` to specify the dimensionality reduction result to use.
   
 ```{r}
 seurat_after_qc <- FindNeighbors(
   object = seurat_after_qc,
   dims = 1:20,
-  assay = "SCT",
   reduction = "sct.pca"
 )
 ```
 
-Next, compute the cluster label for each cell.
+- Use `FindClusters()` to compute a cluster label for each cell.
 
 **Hint:**
 
-Look at the help page to find the argument that lets you specify:
-
-- The resolution of the clustering (higher value = more clusters).
-  Set it to 0.5 (just so that we have the same results).
-- The name of the graph to use.
-  Set it 'SCT_snn'.
-
-**What is the default resolution set by the function if you don't specify it? Do you expect more or fewer cluster with a resolution of 0.5?**
-
-> Answer:
-> The default resolution is 0.8.
-> A resolution of 0.5 is smaller, so we expect fewer clusters.
-
-Check the names of the existing graphs (if any).
-
-```{r}
-Graphs(seurat_after_qc)
-```
+- Set the argument `resolution=` to the value `0.5`. There is no right or wrong answer; we just want to have the same results here.
+- 
 
 ```{r}
 seurat_after_qc <- FindClusters(
   object = seurat_after_qc,
-  resolution = 0.5,
-  graph.name = "SCT_snn"
+  resolution = 0.5
 )
+```
+
+**Note:**
+
+- If unspecified, the argument `graph.name=` will concatenate the name of the active assay with '_snn' to determine the graph to use; [source code](https://github.com/satijalab/seurat/blob/c54e57d3423b3f711ccd463e14965cc8de86c31b/R/clustering.R#L433).
+- Higher resolution, more clusters.
+
+- For the record, use `Graphs()` to display the name of the graphs present in the Seurat object.
+
+```{r}
+Graphs(seurat_after_qc)
 ```
 
 ## Bonus
 
 ### Compare cluster labels using SCT and RNA assays
 
-Use the `table()` function to cross-tabulate the number of cells assigned to each cluster in the workflows using SCT and RNA assays.
-
-**Hint:**
-
-- Look at the column names in the cell metadata to find the name of the columns that contain the cluster labels that you want to compare.
-- Give the two vectors to cluster labels to the `table()` function to cross-tabulate them.
-- Naming the arguments given to the `table()` function make the output easier to intepret.
+- Combine `colnames()` and `[[]]` to display the name of the columns of cell metadata present in the Seurat object.
 
 ```{r}
 colnames(seurat_after_qc[[]])
 ```
+
+- Use `table()` to compare the number of cells assigned to each cluster using the 'SCT' and 'RNA' assays, respectively.
+
+**Hint:**
+
+- Given two vectors of cluster labels, `table()` will display a table counting the number of cells assigned to each combination of cluster labels.
+- Use the names of cell metadata columns displayed above to identify the two columns that contain the two sets of cluster labels.
+- Name the arguments given to `table()`, for instance 'RNA' and 'SCT', to make the output easier to read and intepret.
 
 ```{r}
 table(
