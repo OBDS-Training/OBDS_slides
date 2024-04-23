@@ -364,10 +364,16 @@ table(
 
 ### Visualise cluster labels on the UMAP layout
 
-Color cells by their cluster label in a scatter plot of UMAP coordinates, both based on the SCT assay.
-Compare this with the same plot based on the RNA assay.
+- Use `DimPlot()` (twice) to colour cells by their cluster label on a UMAP layout, for results based on the 'RNA' and 'SCT' assay, respectively.
 
-**Hint:** Use the `DimPlot()` function to generate the two plots and combine them as you did earlier.
+**Hint:**
+
+- Use `DimPlot()` twice to produce the two separate plots for 'RNA' and 'SCT', respectively.
+- Specifically, show the 'RNA' clusters on the 'RNA' UMAP layout, and the 'SCT' cluster on the 'SCT' UMAP layout.
+- Use the argument `reduction=` to specify the dimensionality reduction result to use in each plot.
+- Use the argument `group.by=` to specify the metadata column to colour each plot by.
+- Optionally, use the argument `label=` to add a label for each cluster in each plot.
+- Optionally, use `ggtitle()` to add a title to each plot (to identify them more easily).
 
 ```{r}
 plot1 <- DimPlot(
@@ -387,60 +393,76 @@ plot2 <- DimPlot(
 plot1 + plot2
 ```
 
-**How would you describe the agreement between the UMAP layout and clustering for SCT vs RNA Assay results?**
+**Based on this plot alone, do you have any preference for either the standard LogNormalize method or the SCTransform method?**
 
 > Answer:
-> Not too bad.
-> Additional clusters after SCT.
-> Cells assigned to the same cluster seem to group more cleanly in the SCT workflow.
+> 
+> The two methods largely agree with each other, suggesting that either one is acceptable.
+> 
+> The SCTransform method produces a couple of additional small clusters.
+> This could be an advantage (higher sensitivity) or an issue (e.g., over-clustering).
+> Only additional downstream analyses can answer that.
+> 
+> Visually, clusters edges seem cleaner in the UMAP produced by the SCT workflow.
 
 ### Visualise gene expression on the UMAP layout
 
-Colors cells by the expression level of common cell type markers in PBMC data sets.
+- Use `FeaturePlot()` to colour cells by the expression level of common cell type markers for PBMC for the UMAP layout based on the 'SCT' assay.
 
 **Hint:**
 
-- CD14^+^ monocytes: LYZ, CD14
-- CD16 monocytes: FCGR3A, MS4A7
-- CD4^+^ T cells:  CD4, IL76
-- CD8^+^ T cells: CD8A, CD3D
-- NK cells: GNLY, GZMB,NKG7
-- B cells:  MS4A1 , CD79A
-- DC: CST3, FCER1A
-- Platelets: PPBP
+- Use the argument `features=` to specify the names of the genes to colour cells by.
+- Use the argument `reduction=` to specify the name of the dimensionality reduction result to use in each plot.
+
+```
+- CD14 positive monocytes : LYZ, CD14
+- CD16 monocytes          : FCGR3A, MS4A7
+- CD4 positive T cells    : CD4, IL76
+- CD8 positive T cells    : CD8A, CD3D
+- NK cells                : GNLY, GZMB,NKG7
+- B cells                 : MS4A1 , CD79A
+- DC                      : CST3, FCER1A
+- Platelets               : PPBP
+```
 
 ```{r, fig.width=10, fig.height=8}
 FeaturePlot(
   object = seurat_after_qc,
-  features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"),
+  features = c("LYZ", "FCGR3A", "CD4", "CD8A", "GNLY", "MS4A1", "CST3", "PPBP"),
   reduction = "sct.umap"
 )
+```
+
+- Repeat the same plot for the UMAP layout based on the 'RNA' assay.
+
+```{r}
 FeaturePlot(
   object = seurat_after_qc,
-  features = c("LYZ","FCGR3A","CD4","CD8A","GNLY","MS4A1","CST3","PPBP"),
+  features = c("LYZ", "FCGR3A", "CD4", "CD8A", "GNLY", "MS4A1", "CST3", "PPBP"),
   reduction = "umap"
 )
 ```
 
-**Would you say that SCT improves the appearance of the plots?**
+**Do you think SCT improves the appearance of these particular plots?**
 
 > Answer:
-> The two layouts are fairly comparable, visually.
+> 
+> Visually, the two layouts are fairly comparable.
 
 ## Bonus
 
 ### Cluster markers (SCT)
 
-Use the function `FindAllMarkers()` to compute markers for the clusters obtained using the SCT assay.
+- Use `FindAllMarkers()` to compute markers for the clusters obtained using the SCT assay.
 
 **Hint:**
 
-- Set the identities that should be used by the `FindAllMarkers()` method.
-- Look at the help page for the various arguments relevant to you.
-- Force the function to use the 'SCT' assay.
-- Force the function to return only positive markers.
-- Force the function to exclude any gene detected in fewer than 25% of each target cluster.
-- Force the function to exclude genes with log fold-change values lower than 0.25.
+- Before using `FindAllMarkers()`, use `Idents()` to set the cell identities that should be used by `FindAllMarkers()`.
+  `FindAllMarkers()` itself does not have an argument to specify cell identities.
+- Use the argument `assay=` to specify the assay to use.
+- Optionally, use the argument `only.pos=` to request only positive markers (higher expression in the target cluster).
+- Use the argument `min.pct=` to request markers detected in at least 25% of cells in the target cluster.
+- Set the argument `logfc.threshold=` to 0.25, requesting markers showing a log fold-change greater than that value.
 
 ```{r}
 Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
@@ -453,39 +475,25 @@ markers_all_sct <- FindAllMarkers(
 )
 ```
 
-### Cluster markers (RNA)
-
-Do the same to compute markers for the clusters obtained using the RNA assay. 
-
-```{r}
-Idents(seurat_after_qc) <- "RNA_snn_res.0.5"
-markers_all <- FindAllMarkers(
-    seurat_after_qc,
-    assay = "RNA",
-    only.pos = TRUE,
-    min.pct = 0.25,
-    logfc.threshold = 0.25
-)
-```
-
 ### Over-representation analysis
 
-Use gprofile2 to perform pathway over-representation analysis (ORA) on cluster markers (i.e, genes differentially expressed between clusters) and visualise the results.
+- Use `gprofiler2::gost()` to perform pathway over-representation analysis (ORA) on cluster markers (i.e, genes differentially expressed between clusters) and visualise the results.
 
 **Hint:**
 
-- Filter the cluster markers on adjusted p-value and log fold-change.
-- Make a named list of cluster markers (i.e., each item in the list is a vector of gene symbols, each named after the cluster those markers correspond to).
-  The `split()` function is a good tool to do this in a single step.
-- Give that list of cluster markers (all markers for all clusters at once) to the `gprofiler::gost()` function.
-- Set the default assay to 'SCT' and extract the rownames to use as custom background.
+- Prepare a named list where names are cluster labels and values are vectors of marker gene symbols for each cluster.
+  - First, combine `dplyr::group_by()`, `dplyr::filter()`, and `dplyr::select()` to produce a table of filtered markers.
+  - Specifically, filter marker genes for an adjusted p-value lower than 0.05 and an average log2 fold-change greater than `log2(1.5)` (i.e, a fold-change greater than 1.5).
+  - Then, use `split()` to make a list from a vector of cluster labels and gene names.
+- Use `DefaultAssay()` to set the assay to 'SCT', to avoid any doubt.
+- Use `rownames()` to extract the gene symbols in the active assay of the Seurat object. Save those in an object that represents the background set of genes for the ORA analysis.
+- For `gprofiler2::gost()`, use the argument `query=` to provide the named list of markers, and the argument `custom_bg=` to provide the background set of genes.
 
 ```{r}
 markers_filtered <- markers_all_sct %>% 
     dplyr::group_by(cluster) %>% 
-    filter(p_val_adj < 0.05) %>% 
-    filter(avg_log2FC > 0.585) %>%
-    dplyr::select(cluster,gene)
+    dplyr::filter(p_val_adj < 0.05 & avg_log2FC > 0.585) %>% 
+    dplyr::select(cluster, gene)
 markers_list <- split(
   x = markers_filtered$gene,
   f = markers_filtered$cluster
@@ -495,9 +503,8 @@ markers_background <- rownames(seurat_after_qc)
 gost_sct <- gprofiler2::gost(query = markers_list, custom_bg = markers_background)
 ```
 
-For instance, subset the results to the biological pathways enriched for markers of cluster '0'.
+- Combine `head()` and `subset()` to display the first few biological pathways enriched in the markers of cluster '0'.
 
 ```{r}
 head(subset(gost_sct$result, query == "0" & source == "GO:BP"))
 ```
-
