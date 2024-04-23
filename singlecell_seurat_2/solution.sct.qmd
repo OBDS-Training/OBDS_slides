@@ -41,7 +41,7 @@ This is good practice in a notebook, to keep a record of how your object looks a
 
 ### Default assay
 
-- Check the name of the active assay.
+- Use `DefaultAssay()` to check the name of the active assay.
 
 This is best practice before using Seurat functions that rely on the active assay.
 
@@ -51,7 +51,7 @@ DefaultAssay(seurat_after_qc)
 
 ### SCTransfrom
 
-- Apply SCTransform to the Seurat object.
+- Use `SCTransform()` to apply the SCTransform method to the Seurat object.
 
 **Hint:**
 
@@ -162,24 +162,32 @@ ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "sca
   coord_cartesian(ylim = c(0, 500)) +
   ggtitle("scaled") +
   cowplot::theme_cowplot()
-cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised,ggplot_lyz_scaled, ncol = 1)
+cowplot::plot_grid(
+  ggplot_lyz_raw,
+  ggplot_lyz_normalised,
+  ggplot_lyz_scaled, ncol = 1)
 ```
 
 ## Exercise
 
 ### Variable features
 
-Use the function `VariableFeatures()` to display the first 10 variable genes in the SCT assay and compare to first 10 genes in the RNA assay.
+- Use `VariableFeatures()` to display the first `10` variable genes in the `SCT` assay.
 
 **Hint:**
-Look at the help page of the function to find the argument that specified which assay to access.
+Refer to the help page of the function to identify the argument that specified which assay to access.
 
 ```{r}
-VariableFeatures(seurat_after_qc, assay = "SCT")[1:10]
-VariableFeatures(seurat_after_qc, assay = "RNA")[1:10]
+head(VariableFeatures(seurat_after_qc, assay = "SCT"), n = 10)
 ```
 
-**How many genes overlap?**
+- Repeat the same task for the `RNA` assay.
+
+```{r}
+head(VariableFeatures(seurat_after_qc, assay = "RNA"), n = 10)
+```
+
+- Combine the code above with `length()` and `intersect()` to display the number of genes that overlap.
 
 ```{r}
 length(intersect(
@@ -188,18 +196,24 @@ length(intersect(
 ))
 ```
 
-> Answer
-> Seven genes overlap, which is more than half, so encouraging!
+**How many genes overlap? What is your takeaway message from it?**
+
+> Answer:
+> Seven genes overlap, which is more than half, which is encouraging!
 
 ### Dimensionality reduction on SCT transformed data
 
 Run a principal component analysis and UMAP on the Seurat object.
 
-**Best practice (Seurat):** Check the Default assay (again!).
+- First, display the active assay (again!).
+
+It is best practice to check (and set) the active assay before key steps when working with Seurat.
 
 ```{r}
 DefaultAssay(seurat_after_qc)
 ```
+
+- 
 
 **Hint:**
 
