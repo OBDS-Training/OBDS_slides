@@ -21,7 +21,7 @@ library(tidyverse)
 library(Seurat)
 ```
 
-- Use the function `Read10X()` to import data from the directory `filtered_feature_bc_matrix/` 
+- Use `Read10X()` to import data from the directory `filtered_feature_bc_matrix/` 
   as an object named `read10x_data` in your R session.
 
 ```{r}
