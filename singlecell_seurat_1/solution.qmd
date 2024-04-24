@@ -440,12 +440,13 @@ UMAPPlot(seurat_after_qc)
 ## Clustering
 
 - Use `FindNeighbors()` to compute the graph of nearest neighbours.
-  Which principal components are used by default?
-  Instead, specify the set of principal components that you have chosen earlier.
+  Use the argument `dims=` to specify the set of principal components that you have chosen earlier.
 
 ```{r}
 seurat_after_qc <- FindNeighbors(seurat_after_qc, dims = 1:20)
 ```
+
+**Which principal components are used by default?**
 
 > Answer:
 > 
@@ -458,21 +459,28 @@ Graphs(seurat_after_qc)
 ```
 
 - Use `FindClusters()` to identify clusters in the data set.
-  What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
-  Do you expect more or fewer clusters following that change?
-  What other parameters would you also try to experiment with?
 
 ```{r}
 seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 ```
 
+**What is the default setting for the `resolution` argument?**
+
 > Answer:
 > 
 > The `resolution` argument has a default value of `0.8`.
+
+**Do you expect more or fewer clusters following that change?**
+
+> Answer:
 > 
 > A smaller resolution intuitively implies fewer clusters.
 > We may take the time to confirm this in a bonus exercise, if we have time.
+
+**What other parameters would you also try to experiment with?**
+
+> Answer:
 > 
 > Other parameters that can have a major impact on clustering results include `algorithm`, `method`, and `modularity.fxn`.
 >
@@ -480,11 +488,12 @@ seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 > can affect the ability to find clusters in the resulting graph.
 
 - Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.
-  How would you describe the agreement between the UMAP layout and the clustering results?
 
 ```{r}
 UMAPPlot(seurat_after_qc)
 ```
+
+**How would you describe the agreement between the UMAP layout and the clustering results?**
 
 > Answer:
 > 

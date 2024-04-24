@@ -395,28 +395,25 @@ UMAPPlot(seurat_after_qc)
 ## Clustering
 
 - Use `FindNeighbors()` to compute the graph of nearest neighbours.
-  Which principal components are used by default?
-  Instead, specify the set of principal components that you have chosen earlier.
+  Use the argument `dims=` to specify the set of principal components that you have chosen earlier.
 
 ```{r}
 seurat_after_qc <- FindNeighbors(   )
 ```
 
+**Which principal components are used by default?**
+
 > Answer:
 > 
-> The help page states that the function `FindNeighbors()` uses principal components 1 through 10, by default.
 
 - Use `Graphs()` to display the names of the nearest neighbour graphs that are now stored in the Seurat object.
 
 ```{r}
-
+Graphs(seurat_after_qc)
 ```
 
 - Use `FindClusters()` to identify clusters in the data set.
-  What is the default setting for the `resolution` argument?
   Instead, set it to `0.5`.
-  Do you expect more or fewer clusters following that change?
-  What other parameters would you also try to experiment with?
 
 ```{r}
 seurat_after_qc <- 
@@ -425,10 +422,9 @@ seurat_after_qc <-
 > 
 
 - Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.
-  How would you describe the agreement between the UMAP layout and the clustering results?
 
 ```{r}
-
+UMAPPlot(seurat_after_qc)
 ```
 
 > 
