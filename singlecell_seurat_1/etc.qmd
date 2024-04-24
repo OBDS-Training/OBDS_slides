@@ -773,8 +773,8 @@ DoHeatmap(
   keeping only markers that are detected in at least 25% of the target cluster,
   and with a log fold-change greater than `0.25`.
   Assign the result to an object named `seurat_markers_all`.
-  What is the class of that object?
   How do you control the set of clusters that are used?
+- Use `class()` to display the class of `seurat_markers_all`.
 - Use `head()` to display the first few rows of the object `seurat_markers_all`.
   How do you read the contents of that object?
   How do you know which features are the markers of each cluster?

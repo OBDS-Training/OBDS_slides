@@ -509,8 +509,6 @@ UMAPPlot(seurat_after_qc)
   keeping only markers that are detected in at least 25% of the target cluster,
   and with a log fold-change greater than `0.25`.
   Assign the result to an object named `seurat_markers_all`.
-  What is the class of that object?
-  How do you control the set of clusters that are used?
 
 ```{r}
 seurat_markers_all <- FindAllMarkers(
@@ -519,24 +517,33 @@ seurat_markers_all <- FindAllMarkers(
     min.pct = 0.25,
     logfc.threshold = 0.25
 )
+```
+
+**How do you control the set of clusters that are used?**
+
+> Answer:
+> 
+> The function uses the active identity in the Seurat object as a grouping variable.
+> To use a different set of identities, use `Idents(seurat_after_qc) <- name` to use a different column of cell metadata as the active identity,
+> before running the function `FindAllMarkers()`.
+
+- Use `class()` to display the class of `seurat_markers_all`.
+
+```{r}
 class(seurat_markers_all)
 ```
 
 > Answer:
 > 
 > The function `FindAllMarkers()` returns a `data.frame`.
->
-> The function uses the active identity in the Seurat object as a grouping variable.
-> To use a different set of identities, use `Idents(seurat_after_qc) <- name` to use a different column of cell metadata as the active identity,
-> before running the function `FindAllMarkers()`.
 
 - Use `head()` to display the first few rows of the object `seurat_markers_all`.
-  How do you read the contents of that object?
-  How do you know which features are the markers of each cluster?
 
 ```{r}
 head(seurat_markers_all)
 ```
+
+**How do you read the contents of that object? How do you know which features are the markers of each cluster?**
 
 > Answer:
 > 
@@ -563,7 +570,6 @@ FeaturePlot(
 ```
 
 - Use `VlnPlot()` to visualise the same 4 markers as a violin plot.
-  Do you have any particular preference between the two types of plots?
 
 ```{r}
 VlnPlot(
@@ -572,6 +578,8 @@ VlnPlot(
     ncol = 2
 )
 ```
+
+**Do you have any particular preference between the two types of plots?**
 
 > Answer:
 > 

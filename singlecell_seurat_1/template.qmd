@@ -451,21 +451,26 @@ UMAPPlot(seurat_after_qc)
   keeping only markers that are detected in at least 25% of the target cluster,
   and with a log fold-change greater than `0.25`.
   Assign the result to an object named `seurat_markers_all`.
-  What is the class of that object?
-  How do you control the set of clusters that are used?
 
 ```{r}
 seurat_markers_all <- FindAllMarkers(
-    
-    
-    
-    
+    seurat_after_qc,
+    only.pos =  ,
+    min.pct =  ,
+    logfc.threshold =  
 )
-class(seurat_markers_all)
 ```
+
+**How do you control the set of clusters that are used?**
 
 > Answer:
 > 
+
+- Use `class()` to display the class of `seurat_markers_all`.
+
+```{r}
+class(seurat_markers_all)
+```
 
 - Use `head()` to display the first few rows of the object `seurat_markers_all`.
   How do you read the contents of that object?
@@ -475,20 +480,25 @@ class(seurat_markers_all)
 head(seurat_markers_all)
 ```
 
+**How do you read the contents of that object? How do you know which features are the markers of each cluster?**
+
 > Answer:
 > 
 
 - Combine `subset()` and `head()` to filter and display the first few markers for cluster `3`.
 
 ```{r}
-
+head(subset(seurat_markers_all,  ))
 ```
 
 - Use `FeaturePlot()` to visualise the expression of the first 4 marker for cluster `3` on a UMAP layout.
   You may want to combine the function `subset()` and the `[]` operator to select the gene names to visualise.
 
 ```{r}
-
+FeaturePlot(
+    seurat_after_qc,
+    features = 
+)
 ```
 
 - Use `VlnPlot()` to visualise the same 4 markers as a violin plot.
@@ -496,11 +506,13 @@ head(seurat_markers_all)
 
 ```{r}
 VlnPlot(
-    
-    
-    
+    seurat_after_qc,
+    features =  ,
+    ncol = 
 )
 ```
+
+**Do you have any particular preference between the two types of plots?**
 
 > Answer:
 > 
@@ -511,10 +523,11 @@ VlnPlot(
 
 ```{r}
 markers_top10_clusters <- seurat_markers_all %>%
-    
-    
+    group_by( ) %>%
+    slice_max(order_by =  , n =  )
+
 DoHeatmap(
-    
-    
+    seurat_after_qc,
+    features = unique( )
 )
 ```
