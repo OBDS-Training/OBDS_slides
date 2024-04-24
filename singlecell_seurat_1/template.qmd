@@ -201,18 +201,18 @@ seurat_object <- AddMetaData(
 VlnPlot(seurat_object,  )
 ```
 
-- Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs (`"percent_mt"`) on the Y-axis against the library size (`"nCount_RNA"`) on the X-axis.
+- Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs ('percent_mt') on the Y-axis against the library size ('nCount_RNA') on the X-axis.
 
 ```{r}
-
+FeatureScatter(object = seurat_object, feature1 = , feature2 = )
 ```
 
 - Use `subset()` to create a new Seurat object, called `seurat_after_qc`, that contains only the cells that have more than 4,500 UMI counts, less than 15% of UMI counts assigned to mitochondrial genes, and more than 1,500 genes detected.
 
 ```{r}
 seurat_after_qc <- subset(
-    
-    
+    x = seurat_object,
+    subset = 
 )
 seurat_after_qc
 ```
@@ -227,12 +227,12 @@ ncol(   ) - ncol(   )
 
 ## Normalisation
 
-- Use `NormalizeData()` to normalise the RNA assay of the Seurat object (after quality control) using the `"LogNormalize"` method.
+- Use `NormalizeData()` to normalise the RNA assay of the Seurat object (after quality control) using the 'LogNormalize' method.
 
 ```{r}
 seurat_after_qc <- NormalizeData(
-    
-    
+    object = seurat_after_qc,
+    normalization.method = 
 )
 ```
 
@@ -257,40 +257,44 @@ cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised, ncol = 1)
 ## Variable features and scaling
 
 - Use `FindVariableFeatures()` to identify variable features in the normalised RNA assay of the Seurat object.
-  Use the `"vst"` method and select the 2,000 most variable features.
-  What does this subsetting do, and what are our motivations for doing it?
+  Use the 'vst' method and select the 2,000 most variable features.
 
 ```{r}
 seurat_after_qc <- FindVariableFeatures(
-    
+  object = seurat_after_qc,
+  selection.method = ,
+  nfeatures = 
 )
 ```
+
+**What does this subsetting do, and what are our motivations for doing it?**
 
 > Answer:
 > 
 
 - Combine `VariableFeatures()` and `head()` to display the names of the first few variable features in the Seurat object.
-  How can you control which assay the variable features are pull from?
 
 ```{r}
-
+head(VariableFeatures(seurat_after_qc))
 ```
+
+**How can you control which assay the variable features are pull from?**
 
 > Answer:
 > 
 
 - Use `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
-  How would you use this plot?
 
 ```{r}
-VariableFeaturePlot(   )
+VariableFeaturePlot(seurat_after_qc)
 ```
+
+**How would you use this plot?**
 
 > Answer:
 > 
 
 - Use `ScaleData()` to scale the normalised RNA assay of the Seurat object, regressing the the fraction of UMI counts assigned to mitochondrial features.
-  What are the motivations for removing that source of variation?
 
 ```{r}
 seurat_after_qc <- ScaleData(
@@ -298,6 +302,8 @@ seurat_after_qc <- ScaleData(
     
 )
 ```
+
+**What are the motivations for removing that source of variation?**
 
 > Answer:
 > 
