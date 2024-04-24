@@ -141,15 +141,15 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 - Load the `r BiocStyle::CRANpkg("Seurat")` package.
 - Use `Read10X()` to import data from the directory `filtered_feature_bc_matrix/` 
   as an object named `read10x_data` in your R session.
-- Display the first 15 rows and 4 columns of the object using indexing.
+- Display the first 15 rows and 4 columns of `read10x_data` using `[]`.
 - Display the structure of the object using `str()`.
   What is a sparse matrix and how does it store data?
 - Use the `dim()` function to determine the number of features and barcodes (i.e., cells) in the data set.
-- Create a Seurat object using the function `CreateSeuratObject()`.
-  Name the object `seurat_object`.
+- Use `CreateSeuratObject()` to create a Seurat object.
+  Name the object 'seurat_object'.
   Include features detected in at least 3 cells,
   and cells where at least 200 features detected.
-  Name the project `pbmc5k`.
+  Name the project 'pbmc5k'.
   How many features and barcodes are left in the Seurat object?
 - Combine the `dim()` function with the subtraction operator to determine how many features and cells were filtered out when you created the Seurat object.
 
@@ -218,14 +218,14 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 - Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 - Use `Assays()` to list the names of assays available in the Seurat object.
-- Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
-  What happens if you do not specify the `layer` argument?
+- Combine `GetAssayData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
+  What happens if you do not specify the `layer=` argument?
 - Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
 - Use the `[[]]` operator to fetch only one column of metadata.
   What type of object do you get back?
 - Instead, use the `$` operator to fetch the same column of metadata.
   What type of object do you get back this time?
-- Use `FetchData()` to access the metadata column `"nCount_RNA"` and the counts of the gene named `"LYZ"`.
+- Use `FetchData()` to access the metadata column 'nCount_RNA' and the counts of the gene named 'LYZ'.
   Combine this with `head()` to display only the first few rows.
   What type of object do you get back?
 

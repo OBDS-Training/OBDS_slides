@@ -30,18 +30,19 @@ read10x_data <- Read10X(
 )
 ```
 
-- Display the first 15 rows and 4 columns of the object using indexing.
+- Display the first 15 rows and 4 columns of `read10x_data` using `[]`.
 
 ```{r}
 read10x_data[1:15, 1:4]
 ```
 
-- Display the structure of the object using `str()`.
-  What is a sparse matrix and how does it store data?
+- Use `str()` to display the structure of `read10x_data`.
 
 ```{r}
 str(read10x_data)
 ```
+
+**What is a sparse matrix and how does it store data?**
 
 > Answer:
 > 
@@ -54,7 +55,7 @@ str(read10x_data)
 > The memory-efficiency of sparse matrices increase with the fraction of zero values
 > in the matrix.
 
-- Use the `dim()` function to determine the number of features and barcodes (i.e., cells) in the data set.
+- Use the `dim()` function to display the number of features and barcodes (i.e., cells) in the data set.
 
 ```{r}
 dim(read10x_data)
@@ -64,12 +65,11 @@ dim(read10x_data)
 > 
 > 33,538 features and 5,155 barcodes.
 
-- Create a Seurat object using the function `CreateSeuratObject()`.
-  Name the object `seurat_object`.
+- Use `CreateSeuratObject()` to create a Seurat object.
+  Name the object 'seurat_object'.
   Include features detected in at least 3 cells,
   and cells where at least 200 features detected.
-  Name the project `pbmc5k`.
-  How many features and barcodes are left in the Seurat object?
+  Name the project 'pbmc5k'.
 
 ```{r}
 seurat_object <- CreateSeuratObject(
@@ -80,6 +80,8 @@ seurat_object <- CreateSeuratObject(
 )
 seurat_object
 ```
+
+**How many features and barcodes are left in the Seurat object?**
 
 > Answer:
 > 
@@ -111,13 +113,13 @@ DefaultAssay(object = seurat_object)
 Assays(object = seurat_object)
 ```
 
-- Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
+- Combine `GetAssayData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
 
 ```{r}
 GetAssayData(object = seurat_object, layer = "counts")[1:6, 1:4]
 ```
 
-**What happens if you do not specify the `layer` argument?**
+**What happens if you do not specify the `layer=` argument?**
 
 > Answer:
 > 
@@ -153,13 +155,14 @@ head(seurat_object$nCount_RNA)
 > 
 > The `$` symbol returns a named vector.
 
-- Use `FetchData()` to access the metadata column `"nCount_RNA"` and the counts of the gene named `"LYZ"`.
+- Use `FetchData()` to access the metadata column 'nCount_RNA' and the counts of the gene named 'LYZ'.
   Combine this with `head()` to display only the first few rows.
-  What type of object do you get back?
 
 ```{r}
 head(FetchData(object = seurat_object, vars = c("nCount_RNA", "LYZ"), layer = "counts"))
 ```
+
+**What type of object do you get back?**
 
 > Answer:
 > 
