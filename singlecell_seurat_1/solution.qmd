@@ -130,22 +130,24 @@ head(seurat_object[[]])
 ```
 
 - Use the `[[]]` operator to fetch only one column of metadata.
-  What type of object do you get back?
 
 ```{r}
 head(seurat_object[["nCount_RNA"]])
 ```
+
+**What type of object do you get back?**
 
 > Answer:
 > 
 > The `[[` symbol returns a `data.frame`.
 
 - Instead, use the `$` operator to fetch the same column of metadata.
-  What type of object do you get back this time?
 
 ```{r}
 head(seurat_object$nCount_RNA)
 ```
+
+**What type of object do you get back this time?**
 
 > Answer:
 > 
@@ -229,15 +231,11 @@ seurat_after_qc <- subset(
 seurat_after_qc
 ```
 
-- Combine the `dim()` function with the subtraction operator to determine how many cells were removed in this step.
+- Combine the `ncol()` function with the subtraction operator to determine how many cells were removed in this step.
 
 ```{r}
-dim(seurat_after_qc) - dim(seurat_object)
+ncol(seurat_after_qc) - ncol(seurat_object)
 ```
-
-> Answer:
-> 
-> 896 cells were removed in this step.
 
 # Exercise
 

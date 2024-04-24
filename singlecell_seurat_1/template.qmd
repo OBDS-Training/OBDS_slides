@@ -116,11 +116,12 @@ dim(   ) - dim(   )
 ```
 
 - Use the `[[]]` operator to fetch only one column of metadata.
-  What type of object do you get back?
 
 ```{r}
 
 ```
+
+**What type of object do you get back?**
 
 > Answer:
 > 
@@ -131,6 +132,8 @@ dim(   ) - dim(   )
 ```{r}
 
 ```
+
+**What type of object do you get back this time?**
 
 > Answer:
 > 
@@ -209,14 +212,11 @@ seurat_after_qc <- subset(
 seurat_after_qc
 ```
 
-- Combine the `dim()` function with the subtraction operator to determine how many cells were removed in this step.
+- Combine the `ncol()` function with the subtraction operator to determine how many cells were removed in this step.
 
 ```{r}
-dim(   ) - dim(   )
+ncol(   ) - ncol(   )
 ```
-
-> Answer:
-> 
 
 # Exercise
 
