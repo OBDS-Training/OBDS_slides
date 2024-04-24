@@ -99,11 +99,12 @@ dim(   ) - dim(   )
 ```
 
 - Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
-  What happens if you do not specify the `layer` argument?
 
 ```{r}
 
 ```
+
+**What happens if you do not specify the `layer` argument?**
 
 > Answer:
 > 

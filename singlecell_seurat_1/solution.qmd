@@ -112,11 +112,12 @@ Assays(object = seurat_object)
 ```
 
 - Combine `GetAssayData()` and indexing to display the first six rows and four columns of the RNA assay data.
-  What happens if you do not specify the `layer` argument?
 
 ```{r}
 GetAssayData(object = seurat_object, layer = "counts")[1:6, 1:4]
 ```
+
+**What happens if you do not specify the `layer` argument?**
 
 > Answer:
 > 
