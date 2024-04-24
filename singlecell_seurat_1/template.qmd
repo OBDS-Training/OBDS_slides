@@ -313,13 +313,17 @@ seurat_after_qc <- ScaleData(
 ## Dimensionality reduction
 
 - Use `RunPCA()` to run a principal component analysis on the Seurat object.
-  Which features are used by the method in the default settings?
-  How could you change this?
-  How do you read the message displayed by the function `RunPCA()`?
 
 ```{r}
-seurat_after_qc <- RunPCA(   )
+seurat_after_qc <- RunPCA(seurat_after_qc)
 ```
+
+**Which features are used by the method in the default settings? How could you change this?**
+
+> Answer:
+> 
+
+**How do you read the message displayed by the function `RunPCA()`?**
 
 > Answer:
 > 
@@ -327,17 +331,17 @@ seurat_after_qc <- RunPCA(   )
 - Use `Reductions()` to list the names of dimensionality reduction results available in the Seurat object.
 
 ```{r}
-
+Reductions(seurat_after_qc)
 ```
 
 - Use `PCAPlot()` or `DimPlot()` to produce a scatterplot of the first and second PCA components.
 
 ```{r}
-PCAPlot(   )
+PCAPlot(seurat_after_qc)
 ```
 
 ```{r}
-DimPlot(   )
+DimPlot(seurat_after_qc, reduction =  )
 ```
 
 ## Bonus
@@ -345,32 +349,44 @@ DimPlot(   )
 - Use `ggplot()` to make a scatterplot of the first and second PCA components.
 
 ```{r}
-# Use this code chunk to prepare a data.frame for ggplot2
-pca_data <- FetchData(   )
+# Use this code chunk to prepare and display a data.frame for ggplot2
+pca_data <- FetchData(seurat_after_qc, vars =  )
 head(pca_data)
 ```
 
 ```{r}
 # Use this code chunk to call ggplot()
-ggplot(pca_data,   ) +
+ggplot(pca_data, aes( )) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
 
 - Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
   Use argument `ndims` to control the number of principal components to plot.
-  How many principal components would you use for downstream analyses?
 
 ```{r}
 ElbowPlot(   )
 ```
 
+**What is the maximum number of principal components that you can plot?**
+
+> Answer:
+> 
+
+**How many principal components would you use for downstream analyses?**
+
+> Answer:
 > 
 
 - Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
 
 ```{r}
-seurat_after_qc <- RunUMAP(   )
+seurat_after_qc <- RunUMAP(seurat_after_qc, dims = 1:20)
+```
+
+- Use `UMAPPlot()` to visualise the UMAP layout.
+
+```{r}
 UMAPPlot(seurat_after_qc)
 ```
 

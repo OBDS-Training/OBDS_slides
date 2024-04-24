@@ -348,13 +348,12 @@ seurat_after_qc <- ScaleData(
 ## Dimensionality reduction
 
 - Use `RunPCA()` to run a principal component analysis on the Seurat object.
-  Which features are used by the method in the default settings?
-  How could you change this?
-  How do you read the message displayed by the function `RunPCA()`?
 
 ```{r}
 seurat_after_qc <- RunPCA(seurat_after_qc)
 ```
+
+**Which features are used by the method in the default settings? How could you change this?**
 
 > Answer:
 > 
@@ -364,6 +363,10 @@ seurat_after_qc <- RunPCA(seurat_after_qc)
 > 
 > A custom set of features (e.g., all of them!) can be given to the argument `features`.
 
+**How do you read the message displayed by the function `RunPCA()`?**
+
+> Answer:
+> 
 > The `RunPCA()` function produces a message in the console
 > that shows the names of the features with the highest positive and negative loadings on a set of principal components.
 > This gives a qualitative view that can help the intepretation of those axes of variation in the data set.
@@ -403,16 +406,20 @@ ggplot(pca_data, aes(PC_1, PC_2)) +
 
 - Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
   Use argument `ndims` to control the number of principal components to plot.
-  What is the maximum number of principal components that you can plot?
-  How many principal components would you use for downstream analyses?
 
 ```{r}
 ElbowPlot(seurat_after_qc, ndims = 100)
 ```
 
+**What is the maximum number of principal components that you can plot?**
+
 > Answer:
 > 
 > By default, `RunPCA()` computes 50 principal components. If you want to see more principal components, you need to re-run `RunPCA()` with a higher value for the `npcs` argument. 
+
+**How many principal components would you use for downstream analyses?**
+
+> Answer:
 > 
 > In this case, the first 20 components seem to capture most of the variance in the data set.
 

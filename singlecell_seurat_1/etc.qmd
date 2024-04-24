@@ -614,6 +614,7 @@ DimPlot(..., reduction = "pca", ...)
   Use argument `ndims` to control the number of principal components to plot.
   How many principal components would you use for downstream analyses?
 - Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
+- Use `UMAPPlot()` to visualise the UMAP layout.
 
 ## Seurat workflow - Clustering
 
