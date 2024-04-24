@@ -248,7 +248,7 @@ and provide extra features `r Citep(bib, "germain2020scdblfinder")`.
 | `sce` | A `SummarizedExperiment` or count matrix. |
 | `clusters` | Optional cluster assignments (if omitted, will run clustering). |
 | `samples` | Vector indicating which sample each cell belong to. Samples are understood to be processed independently. |
-| `artificialDoublets` | Approximate number of doublets to identify (if omitted, will be $5 \times nbClusters^2$). |
+| `artificialDoublets` | Approximate number of artificial doublets to create. |
 | `k` | Number of nearest neighbours for KNN graph. |
 
 Bioconductor: `r BiocStyle::Biocpkg("scDblFinder")`.

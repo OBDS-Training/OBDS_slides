@@ -1,9 +1,9 @@
 ---
 title: 'Empty droplets, doublets and ambient RNA'
 subtitle: 'Single-cell Genomics in <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht"
+author: "Kevin Rue-Albrecht, Liezel Tamon, Lena Morrill Gavarro"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-10-17 (updated: `r Sys.Date()`)"
+date: "2024-03-19 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
