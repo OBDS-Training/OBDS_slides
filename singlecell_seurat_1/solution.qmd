@@ -459,13 +459,13 @@ Graphs(seurat_after_qc)
 ```
 
 - Use `FindClusters()` to identify clusters in the data set.
-  Instead, set it to `0.5`.
+  Set the argument `resolution=` to `0.5`.
 
 ```{r}
 seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 ```
 
-**What is the default setting for the `resolution` argument?**
+**What is the default setting for the `resolution=` argument?**
 
 > Answer:
 > 

@@ -686,8 +686,8 @@ Increasingly large data sets are prohibitively costly in time and memory to comp
   Which principal components are used by default?
 - Use `Graphs()` to display the names of the nearest neighbour graphs that are now stored in the Seurat object.
 - Use `FindClusters()` to identify clusters in the data set.
-  Instead, set it to `0.5`.
-  What is the default setting for the `resolution` argument?
+  Set the argument `resolution=` to `0.5`.
+  What is the default setting for the `resolution=` argument?
   Do you expect more or fewer clusters following that change?
   What other parameters would you also try to experiment with?
 - Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.

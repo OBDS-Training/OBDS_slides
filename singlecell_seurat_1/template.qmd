@@ -413,12 +413,25 @@ Graphs(seurat_after_qc)
 ```
 
 - Use `FindClusters()` to identify clusters in the data set.
-  Instead, set it to `0.5`.
+  Set the argument `resolution=` to `0.5`.
 
 ```{r}
 seurat_after_qc <- 
 ```
 
+**What is the default setting for the `resolution=` argument?**
+
+> Answer:
+> 
+
+**Do you expect more or fewer clusters following that change?**
+
+> Answer:
+> 
+
+**What other parameters would you also try to experiment with?**
+
+> Answer:
 > 
 
 - Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.
@@ -427,6 +440,7 @@ seurat_after_qc <-
 UMAPPlot(seurat_after_qc)
 ```
 
+> Answer:
 > 
 
 # Exercise
