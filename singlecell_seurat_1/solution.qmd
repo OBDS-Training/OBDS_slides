@@ -198,7 +198,7 @@ subset(
 
 ## Quality control and visualisation
 
-- The library size and number of features detected per cell are already present in the per-cell metadata of the Seurat object, under the names `"nCount_RNA"` and `"nFeature_RNA"`.
+- The library size and number of features detected per cell are already present in the per-cell metadata of the Seurat object, under the names 'nCount_RNA' and 'nFeature_RNA'.
   Use `VlnPlot()` to display them in a single violin plot.
 
 ```{r}
@@ -206,7 +206,7 @@ VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"))
 ```
 
 - Use `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
-  Combine this with `AddMetaData()` to store the metric in the cell metadata of the Seurat object, under the name `"percent_mt"`.
+  Combine this with `AddMetaData()` to store the metric in the cell metadata of the Seurat object, under the name 'percent_mt'.
   Finally, use `VlnPlot()` to visualise this new metric alongside the previous two in a new violin plot.
 
 ```{r}
