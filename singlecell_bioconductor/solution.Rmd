@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "05/10/2022"
+date: "17/03/2024"
 output: html_document
 ---
 
@@ -87,7 +87,7 @@ table(is.mito)
     
 ```{r}
 library(scuttle)
-sce <- scuttle::addPerCellQC(sce, percent_top = 50, subsets = list(MT=is.mito))
+sce <- scuttle::addPerCellQC(sce, percent.top = 50, subsets = list(MT=is.mito))
 colnames(colData(sce))
 ```
 
@@ -317,6 +317,8 @@ reducedDimNames(sce)
 sce <- runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
+
+> `external_neighbors=TRUE` - "replaces the internal nearest neighbor search in the UMAP implementation with our parallelized approximate search." - OSCA
 
 - Visualise the scatterplot of cells produced by each of those dimensionality reduction methods.
   Considering coloring points with quality control metrics.

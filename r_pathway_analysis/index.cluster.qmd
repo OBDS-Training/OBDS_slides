@@ -1,9 +1,9 @@
 ---
 title: 'Gene set / Pathway enrichment analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
-author: "Updated from Charlie George"
+author: "Liezel Tamon, Charlie George"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-10-05"
+date: "2024-03-06"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Updated from Charlie George -- Gene set/Pathway enrichment analysis in <i class="fab fa-r-project"></i>
+    footer: Liezel Tamon, Charlie George -- Gene set/Pathway enrichment analysis in <i class="fab fa-r-project"></i>
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
@@ -48,6 +48,10 @@ NoCite(bib, "R")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Charlie George
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ High-level "big picture" objectives of the learning process.
 This should be no more than 3 bullet points.
 -->
 
-- Learn alternative normalisation methods. 
+- Discuss alternative normalisation methods. 
 - Understand cell (de)multiplexing.
 
 ### Learning objectives
