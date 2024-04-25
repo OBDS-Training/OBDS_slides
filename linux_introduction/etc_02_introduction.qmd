@@ -726,33 +726,6 @@ knitr::include_graphics("img/links.png")
 knitr::include_graphics("img/links.png")
 ```
 
-## File types and extensions
- 
-- Files can be:
-  + Plain text - contain only characters of readable materials that can be displayed by most text editors
-  + Binary - not plain text (e.g. compiled programs, images)
-- Many files follow a standardised internal organisation known as a file format
-  + Ensures consistency
-  + Enables programs to easily extract defined information
-- Adding a file extension can indicate the file format
-- Programs often rely on file extensions in input and output file names
-  + Input: To parse file contents based on their format
-  + Output: To indicate the format used to write file contents
-
-- Good habit to use an appropriate file extension even just using the generic '.txt' to indicate that the file contains plain text information
-
-## File types and extensions
-
-- There are several biological file formats
-  + .fasta - biological sequence information
-  + .fastq (.fq) - sequence information with quality scores
-  + .sam, .bam - alignments of sequences to a reference genome
-  + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
-- In bioinformatics, binary formats (e.g., BAM, CRAM) are commonly used to compress equivalent plain text files
-
-- Changing the file extension itself does not alter the actual content of the file
-  + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
-  
 # Talk 2 Exercise 2
 
 ## Useful links

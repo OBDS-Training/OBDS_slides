@@ -296,6 +296,63 @@ knitr::include_graphics("img/bed.png")
 
 -->
 
+# Review concepts
+
+## File types and extensions
+ 
+- Files can be:
+  + Plain text - contain only characters of readable materials that can be displayed by most text editors
+  + Binary - not plain text (e.g. compiled programs, images)
+- Many files follow a standardised internal organisation known as a file format
+  + Ensures consistency
+  + Enables programs to easily extract defined information
+- Adding a file extension can indicate the file format
+  + .fasta - biological sequence information
+  + .fastq (.fq) - sequence information with quality scores
+  + .sam, .bam - alignments of sequences to a reference genome
+  + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
+  
+## File types and extensions
+
+- Programs often rely on file extensions in input and output file names
+  + Input: To parse file contents based on their format
+  + Output: To indicate the format used to write file contents
+- Good habit to use an appropriate file extension even just using the generic '.txt' to indicate that the file contains plain text information
+- **Changing the file extension itself does not alter the actual content of the file**
+  + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
+  
+## Computer system terminology
+
+- An **HPC system** e.g. **cluster** is like a massive kitchen with multiple food stations (nodes), each manned by a team of chefs (CPUs) with multiple sous-chefs (cores)
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+  + **HPC system** - Collection or network of nodes that can run jobs in parallel 
+  + **Node** - Each node (e.g. server) is a separate machine that contains its own CPU(s) cores, memory, storage
+  + **CPU** - Like the brain of a computer doing all the thinking and calculations
+    - **Memory** (random-access memory or RAM)is used by computer to store data temporarily while doing tasks, while **storage** is where files are stored permanently
+  + **Core** - A CPU can have multiple cores; each core can handle its own set of jobs / tasks i.e. having multiple cores allows running jobs in parallel
+  + **Thread** - A thread is like a smaller unit of work that a core can handle; multiple threads can run on a single core if needed
+    - Imagine a sous-chef who can multitask; each task the sous-chef is working on at the same time can be considered a thread
+
+:::
+
+::: {.column width="30%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 600px
+## Source: 
+knitr::include_graphics("img/hpc_diagram.png")
+```
+
+:::
+
+::::
+
 ## Useful links
 
 - [Illumina course on imaging and base calling (Video)](https://support.illumina.com/content/dam/illumina-support/courses/MiSeq_Imaging_and_Base_Calling/story_html5.html)
