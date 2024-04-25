@@ -60,7 +60,7 @@ knitr::include_graphics("img/illumina_sequencing.png")
 ## **File format (sequence)**: Raw sequencing data as **FASTQ**
 
 - FASTQ files can have millions of entries
-- Usually compressed using `gzip` to save disk space
+- Usually compressed using `gzip` to save disk space (hence the file extension below)
 - File extensions .fastq, .fq (uncompressed) or .fastq.gz, .fq.gz (compressed)
 - For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastq.gz
   + Paired-end sequencing enables both ends of fragment to be sequenced e.g. for better alignment, detecting fusion genes, transcript variants
@@ -103,12 +103,21 @@ knitr::include_graphics("img/quality_score_accuracy.png")
 :::
 
 ::: {.column width="65%"}
+
 ```{r}
 #| fig-align: center
 #| out-height: 600px
 #| out-width: 1000px
 ## Source: https://www.illumina.com/documents/products/technotes/technote_Q-Scores.pdf
-knitr::include_graphics("img/quality_score_table.png")
+#knitr::include_graphics("img/quality_score_table.png")
+```
+
+```{r}
+#| fig-align: center
+#| out-height: 150px
+#| out-width: 800px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 10)
+knitr::include_graphics("img/fastq.png")
 ```
 
 :::
@@ -233,22 +242,7 @@ Course outline:
 ```{r, rnaseq_workflow}
 ```
 
-## Useful links
-
-- [Illumina course on imaging and base calling (Video)](https://support.illumina.com/content/dam/illumina-support/courses/MiSeq_Imaging_and_Base_Calling/story_html5.html)
-<!-- - [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/) -->
-- [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
-<!-- - [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics) -->
-<!-- - [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools) -->
-
-## References
-
-```{r}
-#| results: asis
-PrintBibliography(bib)
-```
-
-# Bonus topics
+# Other file formats
 
 ## **File format (sequence)**: Reference genome as **FASTA**
 
@@ -301,3 +295,18 @@ knitr::include_graphics("img/bed.png")
 - NGS technology (e.g. Illumina technology)
 
 -->
+
+## Useful links
+
+- [Illumina course on imaging and base calling (Video)](https://support.illumina.com/content/dam/illumina-support/courses/MiSeq_Imaging_and_Base_Calling/story_html5.html)
+<!-- - [Data Wrangling and Processing for Genomics](https://datacarpentry.org/wrangling-genomics/) -->
+- [Reference for different genomics file formats](http://genome.ucsc.edu/FAQ/FAQformat.html)
+<!-- - [Curated list of Bioinformatics software](https://github.com/danielecook/Awesome-Bioinformatics) -->
+<!-- - [Another curated list of Bioinformatics software](https://github.com/RipollJ/awesome-bioinfo-tools) -->
+
+## References
+
+```{r}
+#| results: asis
+PrintBibliography(bib)
+```

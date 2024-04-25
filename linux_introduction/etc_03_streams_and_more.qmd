@@ -41,10 +41,10 @@ $ command1 2> file2     # Write error output of command1 to file2
 
 ## Linux pipes to pass information between commands
 
-- Linux philosophy is that one tool should only perform only one task
-  + Complex workflows may be broken down into smaller tasks that can be resolved by combining multiple tools
-- Tools can be combined using pipes represented by '|'
-- Pipes connect the standard output of one command to the standard input of another 
+- Aside from files, streams can be redirected between commands
+- The Linux philosophy is to make one tool for one task
+- So to perform more complex operations we can combine multiple tools/commands using pipes
+- Pipes take the standard output from one command and direct it to the standard input of the subsequent command
 
 ```
 $ <command1> | <command2> 
@@ -53,12 +53,18 @@ $ cat file1.txt | wc -l
 
 ## Combining commands
 
-- Generally, successive commands are executed in separate statements but certain characters can be used combine multiple commands in a single statement
+- Another way to combine commands is to simply run commands one after another using a semi-colon
 
 ```
 $ <command1>; <command2>        # Execute command1 and then command2 (left to right)
-$ <command1> && <command2>      # Execute command2 only if command1 is sucessful 
-$ <command1> || <command2>      # Execute command2 only if command1 fails 
+```
+
+- If multiple commands are dependent on each other, we can run them conditionally
+
+```
+$ <command1> && <command2>  # Double ampersand - Execute command2 only if command1 is 
+                              sucessful 
+$ <command1> || <command2>  # Double pipe - Execute command2 only if command1 fails 
 ```
 
 ## (De)compressing files with `gzip` and `gunzip`
@@ -66,17 +72,19 @@ $ <command1> || <command2>      # Execute command2 only if command1 fails
 - Raw data files and files created during analyses can be large (up to hundreds of GB)
 - Compressing files is an efficient way to save disk space
 
-- You can compress your files using gzip to save disk space
-```
-$ gzip filename.fq
-```
+- You can compress your files using **gzip** to save disk space
+
+  ```
+  $ gzip filename.fq
+  ```
 
   + This will add a .gz suffix to the existing file e.g. filename.fq.gz
 
-- To decompress the gzipped file
-```
-$ gunzip filename.fq.gz
-```
+- To decompress the gzipped file, use **gunzip**
+
+  ```
+  $ gunzip filename.fq.gz
+  ```
 
 - Many programs support gzip compressed input files
   + So no need to decompress before use
@@ -96,24 +104,29 @@ $ gzip -c file1.txt > compressed.txt.gz
 - `tar` stands for tape archive, an archiving file format
 - A tar archive combines multiple files and directories into a single file 
 - Optionally, tar archives can be further compressed during their creation
-- `tar` creates, modifies and extracts files that are archived in the tar format
-- Compress an entire directory or a single file
+<!-- - `tar` creates, modifies and extracts files that are archived in the tar format -->
+- Works on entire directory or a single file
 
-```
-$ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file/s
-```
+  ```
+  $ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file/s
+  ```
   + -c = **C**reate an archive
   + -z = Compress the archive with g**z**ip
   + -v = **V**erbose to display progress in the terminal while creating the archive
   + -f = To specify the **f**ile name (path) of the archive file to create
 
-## (De)compressing files
+- `tar` can also be used to extract files from a tar archive
 
-- Compression turns text files into binary files to save hard disk space
-- Good practice to compress all non-trivial text files
+  ```
+  $ tar -xzvf name-of-archive.tar.gz  # Extract files from an archive
+  ```
+
+## (De)compressing and/or archiving files
+
+- Good practice to compress and/or archive all non-trivial text files
 
 ```
-$ gzip file1 	                  # Compress file1 in place (adds .gz file extension)
+$ gzip file1 	                # Compress file1 in place (adds .gz file extension)
 $ gunzip file1.gz 	            # Decompress file1 in place (removes .gz file 
                                   extension)
 $ gunzip -c file1.gz > f1.txt   # Decompress file1 to standard out (can be 
@@ -124,6 +137,8 @@ $ zless file1.gz                # Interactively scroll through compressed files
 $ tar -czf jpg.tar.gz *.jpg     # Create a compressed archive from multiple files
 $ tar -xzf jpg.tar.gz           # Extract files from an archive
 ```
+
+# More commands
 
 ## Searching within files using ``grep``
 

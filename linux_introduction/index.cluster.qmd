@@ -1,9 +1,9 @@
 ---
 title: 'Introduction to the Linux command line'
 subtitle: 'Genomics on the Linux command Line'
-author: "Liezel Tamon"
+author: "Charlie George & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-01-15 (updated: `r Sys.Date()`)"
+date: "2024-04-29 (updated: `r Sys.Date()`)"
 date-format: long
 execute: 
   echo: false
@@ -16,7 +16,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Liezel Tamon -- Introduction to the Linux command line
+    footer: Charlie George & Liezel Tamon -- Introduction to the Linux command line
 ## run the following line to render HTML
 # quarto::quarto_render("index.cluster.qmd")
 ## run the following line to render PDF (from HTML above)
@@ -57,13 +57,13 @@ bib <- ReadBib("bibliography.bib")
 
 - David Sims
 - Charlie George
-- Kevin Rue-Albrecht ([CCB Doks](https://obds-training.github.io/Help/))
+- Kevin Rue-Albrecht
 
-## Prerequisites
+<!-- ## Prerequisites -->
 
-- An account on the teaching server or cluster
-- VPN to remotely connect to the University network
-- Git Bash for Microsoft Windows users
+<!-- - An account on the teaching server or cluster -->
+<!-- - VPN to remotely connect to the University network -->
+<!-- - Git Bash for Microsoft Windows users -->
 
 ```{r}
 #| child: goals_and_objectives.qmd

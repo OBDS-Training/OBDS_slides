@@ -17,7 +17,7 @@ Ask instructor for paths to course working directory and resources directory.
 
 ```{bash}
 #| echo: true
-ssh -J <username>@bastion.imm.ox.ac.uk <username>@obds
+ssh <username>@obds
 ```
 
 2. Establish your current location in the file system.
@@ -226,7 +226,7 @@ cd bed
 wc -l *.bed
 ```
 
-4. Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place and then head the compressed file. What do you notice about the compressed file?
+4. Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place using `gzip` and then head the compressed file. What do you notice about the compressed file?
 
 ```{bash}
 head -n 5 cpg.bed
@@ -234,7 +234,7 @@ gzip cpg.bed
 head cpg.bed.gz
 ```
 
-5. Decompress the **cpg.bed** file in place.
+5. Decompress the **cpg.bed.gz** file (generated from 4) in place using `gunzip`.
 
 ```{bash}
 gunzip cpg.bed.gz

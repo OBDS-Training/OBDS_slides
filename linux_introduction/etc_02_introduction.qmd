@@ -56,7 +56,8 @@ Nice explanation in https://www.freecodecamp.org/news/command-line-for-beginners
 https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolinuxandshells
 -->
 
-- Linux is an Operating System (OS), like MS Windows and macOS, but open source (source code is freely available!) 
+- Linux is an Operating System (OS), like MS Windows and macOS, but open source (source code is freely available!)
+- Typically, we interact with the OS by clicking on visual elements like windows, icons, and menus to execute tasks but we can also do this through a **shell**
 - All OS have a  **shell** (a command-line interpreter) for us to communicate with the OS
   + The **shell** takes commands from the keyboard and gives them to the OS to perform
 - There are different shells differing in syntax and characteristics
@@ -66,6 +67,8 @@ https://www.freecodecamp.org/news/the-linux-commands-handbook/#introductiontolin
 - Most widely used shell for Linux is **Bash** (Bourne Again Shell)
 - A **terminal emulator** (e.g. Git Bash, macOS Terminal app) is used to interact with the shell, providing the **command-line interface (CLI)**, where user inputs commands
   + The command-line prompt (input field) is indicated by a certain character depending on the OS ($ for Linux)
+
+<span style="color:green;">**Open terminal emulator**</span>
 
 :::: {.columns}
 
@@ -95,28 +98,22 @@ knitr::include_graphics("img/linux_shell_emulator.png")
 
 ## Anatomy of a Linux command
 
-- Basic part/s
+- We write and send commands to shell to execute tasks
+
+- Ways to write commands - <span style="color:green;">**DEMO using `ls`**</span>
   + \<command>      
   + \<command> \<argument> 
   + \<command> \<options> \<argument> 
 
-- Types of commands
-  + **Shell builtin** - Built into the shell itself
-  + **Executable program** - Any external software in the system path (where OS looks for executable programs)
-  + **Alias** - User-defined command built using other commands (To Be Discussed)
-
-```
-$ type cd               # ‘type’ shows the type of command
-cd is a shell builtin
-
-$ type head
-head is /usr/bin/head
-      
-$ which head            # ‘which’ returns the path of the file to be executed
-/usr/bin/head
-```
+- <span style="color:red;">Note!</span>
+  + \<arrows> - indicate that this part is to be replaced accordingly, removing also the arrows
 
 ## Anatomy of a Linux command
+
+- Types of commands
+  + **Shell builtin** - Built into the shell itself
+  + **Executable program** - Any external software in the system path (where OS looks for executable programs, To Be Discussed)
+  + **Alias** - User-defined command built using other commands (To Be Discussed / TBD)
 
 ```
 $ type cd               # ‘type’ shows the type of command
@@ -130,7 +127,6 @@ $ which head            # ‘which’ returns the path of the file to be execute
 ```
 
 - <span style="color:red;">Note!</span>
-  + \<arrows> - indicate that this part is to be replaced accordingly, removing also the arrows
   + '$' - indicates the command-line prompt (input field) and so it should not be included when typing the command
   
 ## Linux command options
@@ -150,6 +146,45 @@ $ which -a head         # -a to print all matching paths of each argument
 /usr/bin/head
 /bin/head
 ```
+
+## Changing how you view files using ``ls`` options
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Short options can be bundled
+  ```
+  $ ls -l -t -a -h -F
+
+  $ ls -ltahF    
+  ```
+  + -l - Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
+  + -t - Sort files by modification time (newest first)
+  + -a - Show hidden files
+  + -h - Human readable numbers
+  + -F - Append an indicator to the end of each listed name (e.g. '/' for a directory)
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-align: center
+#| out-height: 375px
+#| out-width: 450px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/ls_options.png")
+```
+
+:::
+
+::::
+
+- Short vs. long format
+  + Short options can be bundled so less typing but less readabable
+  + Long options more readable and descriptive
+  + Choosing what format to follow boils down mainly to preference
 
 ## Getting help with Linux commands
 
@@ -222,47 +257,54 @@ knitr::include_graphics("img/tab_autocompletion.png")
 
 ## Linux file system tree
 
+:::: {.columns}
+
+::: {.column width="20%"}
+
 - In Linux, everything is a file organised in a tree structure
 - A directory is just a file containing names of other files
 - All directories branch off from the **root** ('/') directory
 - **home** ('~') is your personal (user) directory
 
+:::
+
+::: {.column width="80%"}
+
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 700px
+#| out-height: 600px
+#| out-width: 1000px
 ## Source: https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained
 knitr::include_graphics("img/linux_file_tree.png")
 ```
+
+:::
+
+::::
 
 ## Linux commands to navigate the file structure
 
 - Basic commands
 
 ```
-$ pwd                       # Show present working directory
-/home/<user>                # When you log into the OBDS server, the working directory
+$ pwd                       # Present Working Directory
+/home/imm/<user>            # When you log into the teaching server, the working directory
                               is initially set to the user’s home directory
-$ ls                 
+$ ls                        # LiSt files
 Desktop  Documents  Downloads...
 
-$ cd Desktop                # Change directory
-
-$ pwd
-/home/<user>/Desktop
-
-$ cd ~                      # Change into your home directory
+$ cd Desktop                # Change Directory
 ```
 
 ## Working with Paths 
 
-Path is the location to a file
+Every file has a path - location of a file
 
 :::: {.columns}
 
 ::: {.column width="40%"}
 
-- There are two types of paths, absolute and relative
+- There are two ways to indicate paths, absolute and relative
 - Absolute paths
   + Absolute paths always starts with the root directory ('/')
   + Given by `realpath`
@@ -271,6 +313,8 @@ Path is the location to a file
     $ realpath foo
     /home/mthomas/class_stuff/foo
     ```
+  + Each location separated by '/'
+  
 :::
 
 ::: {.column width="60%"}
@@ -294,8 +338,8 @@ knitr::include_graphics("img/sample_working_tree.png")
 ::: {.column width="40%"}
 
 - Relative paths 
-  + Relative paths are relative to the current working directory or where your are currently
-  + Does not start with '/'
+  + Relative paths are relative to the current working directory or where you are currently
+  + Does not start with the root directory ('/')
 
     ```
     $ pwd 
@@ -306,8 +350,8 @@ knitr::include_graphics("img/sample_working_tree.png")
     ```
 
 - Path shortcuts
-  + .  (full stop)     current directory 
   + .. (2 full stops)  parent / previous directory
+  + .  (full stop)     current directory 
   + ~  (tilde)         home directory
   + /  (forward slash) root directory
   
@@ -369,8 +413,6 @@ $ less <filename>           # Like more but allows backward movement, "less is m
    - Use space bar to scroll down one screen worth of contents
    - Exit anytime with 'q'
    
-# Coffee break (20 mins)
-
 <!-- @sec-Talk2Exercise1 -->
 
 ## Remote connection to a Linux server
@@ -382,25 +424,20 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 - SSH (secure shell) is an encrypted network protocol for establishing a secure remote connection to a target host
   + The protocol uses a username and password to authenticate a user on the target host
  
-## Remote connection to a Linux server *via* a jump host
-
-- Sometimes, the connection has to be through a jump (bastion / proxy) host as an intermediary or gateway for extra security
-
-- To connect to the OBDS server (obds), one method is to connect to the University VPN and go through the WIMM jump host (bastion.imm.ox.ac.uk)
+- To connect to the OBDS server (obds)
+  1. Connect to WIMM VPN
+  2. Use this command:
  
-  + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
-  + <span style="color:red;">In our case, the user accounts on bastion and obds remote hosts are the same</span>
-
-- <span style="color:red;">Note that we do not always have to go through a jump host</span>
- 
-## Remote Connection to a Linux Server
+  ```
+  $ ssh <username>@obds
+  ```
+  
+<span style="color:green;">**Do together**</span>
 
 - To log out from the remote hosts, use any of the following:
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
   + Press Control + d
-
-<span style="color:green;">**Do together**</span>
 
 <!-- ## Side note for tomorrow! -->
 
@@ -408,51 +445,18 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 <!-- - We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server) -->
 
-# Talk 2 Exercise 1 then Lunch break (60 mins)
+# Talk 2 Exercise 1
 
 <!-- @sec-Talk2Exercise1 -->
 
-## Changing how you view files using ``ls`` options
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-- Short options can be bundled
-  ```
-  $ ls -l -t -a -h -F
-
-  $ ls -ltahF    
-  ```
-  + -l - Long format, displaying detailed information (e.g. permissions, size, timestamp of latest update)
-  + -t - Sort files by modification time (newest first)
-  + -a - Show hidden files
-  + -h - Human readable numbers
-  + -F - Append an indicator to the end of each listed name (e.g. '/' for a directory)
-
-:::
-
-<!-- ### Notes -->
-
-<!-- Short options can be bundled, needs less typing but less readabable -->
-<!-- Long options more readable and descriptive -->
-<!-- Choosing what format to follow boils down mainly to preference -->
-
-::: {.column width="50%"}
-
-```{r}
-#| fig-align: center
-#| out-height: 375px
-#| out-width: 450px
-## Source: https://1000logos.net/unix-logo/#
-knitr::include_graphics("img/ls_options.png")
-```
-
-:::
-
-::::
+- Reminders
+  + Give paths to course working directory and resources directory
+  + Take note of commonly used paths
+  + Can open multiple terminals to easily figure out paths
 
 ## File properties and permissions
+
+- `ls -l` used to display file permissions
 
 <!-- ### Notes -->
 
@@ -470,7 +474,7 @@ knitr::include_graphics("img/ls_options.png")
 knitr::include_graphics("img/ls_long_output_labeled.png")
 ```
 
-- `ls -l` used to display file permissions
+- Permissions in Linux can be assigned to three categories: **owner**, **group**, and **other**
 
 ## File permissions - owner
 
@@ -526,7 +530,7 @@ knitr::include_graphics("img/alphabetic_notation.png")
 
 ## Changing file permissions using alphabetic notation
 
-- Most commonly, changes in file permissions are made to
+- Often, changes in file permissions are made to
   + Strategically control access
   + Make valuable files (e.g. raw sequencing data) read-only, to avoid accidentally deleting them
   + Make script files executable
@@ -538,7 +542,7 @@ knitr::include_graphics("img/alphabetic_notation.png")
 ## Changing file permissions using alphabetic notation
 
 - We can change file permissions with ``chmod`` using alphabetic notation
-- `chmod` \<permissions> \<file or directory>
+- `chmod` \<permission notation> \<file or directory>
   + **u** for user, **g** for group, **o** for other
   + **--** to deny access, **+** to give access
   + **r** for read, **w** for write, **x** for execute
@@ -558,6 +562,8 @@ $ chmod go-rwx file1.txt    # Can be bundled together when applying same
 $ ls -l file1.txt
 -rwx------ 1 dsims root 2981 Apr 26  2020 file1.txt
 ```
+
+# More commands
 
 ## Viewing and editing files on the command line using interactive text editors
 
@@ -602,7 +608,7 @@ $ touch <filename>      # Create new empty file (can create several at a time)
 $ nano <filename>       # Open new empty file in nano editor
                         # If file exists, will open file for editing
                                 
-$ mkdir <dir1>          # Create new directory
+$ mkdir <dir1>          # MaKe DIRectory
 $ mkdir <dir1> <dir2>   # Create multiple new directories
 ```
 
@@ -611,7 +617,7 @@ $ mkdir <dir1> <dir2>   # Create multiple new directories
 <br>
 
 ```
-$ cp file1 file2                # Copy file to new file
+$ cp file1 file2                # CoPy file to new file
 $ cp -n file1 file2             # Do not overwrite if file2 exists
 $ cp file1 dir1/                # Copy file to new directory
 $ cp -r dir1/ dir2/             # 'cp' needs -r to recursively copy contents of 
@@ -621,9 +627,9 @@ $ cp -r dir1/ dir2/             # 'cp' needs -r to recursively copy contents of
                                   created inside dir2/
 
 
-$ mv file1 file1.csv            # Rename file
-$ mv file1 dir1/file.csv        # Move file to new directory and rename 
+$ mv file1 dir1/file.csv        # MoVe file to new directory and rename 
                                   (-n to not overwrite)
+$ mv file1 file1.csv            # Rename file
 $ mv dir1/ dir2/                # Rename directory, no need for -r
                                 # But if dir2/ exists, dir1/ will be moved to dir2/ 
 ```
@@ -633,13 +639,13 @@ $ mv dir1/ dir2/                # Rename directory, no need for -r
 <br>
 
 ```
-$ rm file1                              # Remove file
+$ rm file1                              # ReMove file
 $ rm file1.txt file1.csv file2* *.csv   # Remove multiple files, use wildcard (*)
                                         # Also delete all files whose names start with 
                                           file2 and all files that end with .csv
 $ rm -r dir1                            # Remove directory and contents     
 $ rm -rv dir1                           # Verbosely display list of files to be removed
-$ rmdir dir1                            # Remove empty directory, will raise an 
+$ rmdir dir1                            # ReMove DIRectory (empty), will raise an 
                                           error if directory is not empty
 $ rmdir dir1 dir2                       # Will only remove empty directories
 ```
@@ -650,7 +656,7 @@ $ rmdir dir1 dir2                       # Will only remove empty directories
   
 - **<span style="color:green;">Make sure to try the commands you have seen on your own later!</span>**
 
-## Using wildcards (*)
+## Using wildcards
 
 - Wildcards are special characters that match one or more characters in filenames
 - Therefore they are used to specify groups of file names matching a pattern
@@ -663,7 +669,7 @@ $ rmdir dir1 dir2                       # Will only remove empty directories
 $ ls *.jpg                      # Lists all files with the .jpg extension
 $ ls sample1*                   # Lists all files which start with sample1
 $ ls *temp*                     # Lists all files with temp anywhere in the file name
-$ ls file?.*                       # Multiple wildcards can be used in the same pattern
+$ ls file?.*                    # Multiple wildcards can be used in the same pattern
 ```
 
 ## Hard & symbolic links to files and directories
@@ -674,6 +680,17 @@ $ ls file?.*                       # Multiple wildcards can be used in the same 
   + Easier to keep files up to date across different places
 - A **hard link** is a pointer to the data itself (spot on the hard drive)
 - A **symbolic link** (soft link or abbreviated symlinks) is a file that contains a text pointer to the path of a file or directory
+
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 700px
+## Source: https://medium.com/@eitanmayer/hard-vs-symbolic-links-f0584a5d1db5
+knitr::include_graphics("img/links.png")
+```
+
+## Hard & symbolic links to files and directories
+
 - Symbolic links overcome disadvantages of hard links:
   + Deleting all the hard links to a file will effectively delete the file itself
   + Hard links cannot span physical devices (a server or cluster can have multiple disks)
@@ -681,16 +698,32 @@ $ ls file?.*                       # Multiple wildcards can be used in the same 
 - The advantage of hard links is that they remain working even when they are moved because they point to the data itself
 - Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated
 
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 700px
+## Source: https://medium.com/@eitanmayer/hard-vs-symbolic-links-f0584a5d1db5
+knitr::include_graphics("img/links.png")
+```
+
 ## Hard & symbolic links to files and directories
 
+- `ln` to create hard and symbolic links
+  ```
+  $ ln file1 link1.csv            # Create hard link
+  $ ln -s file1 link1.csv         # Create symbolic link for a file
+  $ ln -s dir1 link1              # Create symbolic link for a directory
+  ```
 - Symbolic links can point to target files using absolute or relative paths
   + When using absolute paths, symlink will keep working even if it's moved
   + When using relative paths (relative to location of symlink), symlink will not work when it is moved
 
-```
-$ ln file1 link1.csv            # Create hard link
-$ ln -s file1 link1.csv         # Create symbolic link for a file
-$ ln -s dir1 link1              # Create symbolic link for a directory
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 700px
+## Source: https://medium.com/@eitanmayer/hard-vs-symbolic-links-f0584a5d1db5
+knitr::include_graphics("img/links.png")
 ```
 
 ## File types and extensions
@@ -720,13 +753,7 @@ $ ln -s dir1 link1              # Create symbolic link for a directory
 - Changing the file extension itself does not alter the actual content of the file
   + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
   
-# Coffee break (20 mins) then Talk 2 Exercise 2
-
-<!-- @sec-Talk2Exercise2 -->
-
-<br>
-
-Talk 2 Advanced Exercise 3 - Octal permissions
+# Talk 2 Exercise 2
 
 ## Useful links
 
@@ -769,3 +796,5 @@ PrintBibliography(bib)
   644: mm10.blacklist.bed.gz
   ```
   + -c - use the specified format instead of the default
+
+# Talk 2 Advanced Exercise 3 - Octal permissions
