@@ -53,7 +53,8 @@ knitr::include_graphics("img/linux_file_tree.png")
   + e.g. % $ £ “ ‘ / \ | =
   + Do not put spaces into your file or directory names 
     ```
-    $ ls My Directory # Interpret as two separate input arguments / directories
+    # Interpret as two separate input arguments / directories
+    $ ls My Directory
     ```
   + Use underscore or dash to separate words e.g. file_name.txt
 
@@ -112,7 +113,7 @@ my_project/
 - Record all the steps used to process data
 - Include links to relevant websites, files, reports or plots
 - Record your observations, conclusions, and ideas for future work
-- Include your lab notebook in a git repo, and upload to GitHub regularly
+- Include your lab notebook in a git repository, and upload to GitHub regularly
 
 ## Backup your work
 
@@ -165,14 +166,10 @@ my_project/
 
   + `scp` \<options> \<source path> \<destination path>
   
-- Typing on the local machine, we can transfer files *via* bastion host from OBDS server to local machine:
-```
-$ scp -o ProxyJump=<username>@bastion.imm.ox.ac.uk <username>@obds:<source path> <destination path>
-```
+- Typing on the local machine, we can transfer files from OBDS server to local machine:
 
-- With the SSH config, we can simplify to:
 ```
-$ scp obds-bastion:<source path> <destination path>
+$ scp <username>@obds:<source path> <destination path>
 ```
 
 - `scp` vs. `rsync`
@@ -182,7 +179,7 @@ $ scp obds-bastion:<source path> <destination path>
 ## Transferring files using FileZilla
 
 - The [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) is a free solution for transferring files between computers via FTP/SFTP/FTPS protocols
-  + Transfer files between a local computer (where the FileZilla Client is installed) and a remote computer (e.g. CCB cluster)
+  + Transfer files between a local computer (where the FileZilla Client is installed) and a remote computer
 
 :::: {.columns}
 
@@ -208,7 +205,7 @@ knitr::include_graphics("img/filezilla-drop-areas.png")
 
 - Or use ssh key
 
-<span style="color:green;">DEMO connection to CCB cluster</span>
+<span style="color:green;">DEMO</span>
 
 :::
 
@@ -262,9 +259,15 @@ $ wget \
   + They differ in algorithms used to calculate checksum
 - Users can compare locally generated checksums with those provided by the source to verify file integrity
 
+<span style="color:green;">Illustrate</span>
+
+- Note that public databases differ in commands they use
+
 ## Verify integrity of downloads
 
 - Ensembl uses `sum` 
+
+<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
 
 ```
 $ wget http…/CHECKSUMS      # Download reference checksum file to local system
@@ -280,8 +283,6 @@ $ sum <downloaded file>     # Generate checksum for downloaded file and compare
 ## Source: CCB Doks
 knitr::include_graphics("img/md5_file.png")
 ```
-
-<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
 
 ## Verify integrity of downloads
 
@@ -301,7 +302,7 @@ $ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compar
 knitr::include_graphics("img/md5sum-c.png")
 ```
 
-# Talk 3 Exercise 1 - Working directory
+# Talk 3 Exercise
 
 <!-- @sec-Talk3Exercise1 -->
 

@@ -50,14 +50,13 @@
 knitr::include_graphics("img/jobs.png")
 ```
 
-```{r}
-#| fig-align: center
-#| out-height: 300px
-#| out-width: 400px
-## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 5)
-knitr::include_graphics("img/jobs_option.png")
-```
-
+- In the `jobs` output 
+  + '+' - job that would be brought to the foreground by default
+  + '-' - second job that would be brought to the foreground by default
+  
+- If you have more than one process running in the background:
+  + Type 'fg' followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
+  
 :::
 
 ::: {.column width="5%"}
@@ -66,12 +65,13 @@ knitr::include_graphics("img/jobs_option.png")
 
 ::: {.column width="45%"}
 
-- If you have more than one process running in the background:
-  + Type 'fg' followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
-  
-- In the `jobs` output 
-  + '+' - job that would be brought to the foreground by default
-  + '-' - second job that would be brought to the foreground by default
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 400px
+## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 5)
+knitr::include_graphics("img/jobs_option.png")
+```
   
 :::
 
@@ -118,56 +118,6 @@ $ ps -u <username>        # Show all processes for <username>
 - `jobs` output is specific to the shell session while `ps` is more system-wide, able to return all processes
 
 - When a processes has completed it will no longer appear in this process table
-
-## Real-time monitoring with `top`
-
-- Monitor processes and resource usage in real time
-- Shows all processes running, not just yours
-- Information is displayed as a table that can be filtered, for example to show processes for specific users, and sorted by different columns
-- Above the table, a header displays system-wide information 
-
-```
-$ top
-```
-
-```{r}
-#| fig-align: center
-#| out-height: 350px
-#| out-width: 1000px
-## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 7)
-knitr::include_graphics("img/top_from_slide.png")
-```
-
-## Real-time monitoring with `htop`
-
-- Improved and more user-friendly version of `top`, commonly installed on Linux computers
-- Presents the same information as `top`, but in a more graphical and colour-coded way
- - Launches an interactive process viewer
- - Can use mouse and keyboard (f-keys) to interact with it
-
-```{r}
-#| fig-align: center
-#| out-height: 450px
-#| out-width: 900px
-## Source: CCB Doks
-knitr::include_graphics("img/htop-annotated.png")
-```
-
-##  Monitoring hard disk usage with `du`
-
-- Frequently useful to know disk usage
-  + HPC clusters often charge for disk space
-  + They may use a quota system to limit disk usage
-
-```
-$ du -h             # Show directory space usage in human readable form
-79K   ./slurm       # Works recursively showing usage in each subdirectory by default
-8.2MB ./rnaseq
-17M   .
-
-$ du -hs            # Show total directory space usage in human readable form
-17M   .
-```
 
 ## Terminating processes with `kill` or `killall`
 
@@ -216,18 +166,67 @@ knitr::include_graphics("img/killall.png")
 
 ::::
 
-## Terminating shell session and exiting the terminal
+## Real-time monitoring with `top`
 
-- Log out of the server using any of these
-  + Type 'exit' and press Return key 
-  + Type 'logout' and press Return key 
-  + Press Control + d
+- Monitor processes and resource usage in real time
+- Shows all processes running, not just yours
+- Information is displayed as a table that can be filtered, for example to show processes for specific users, and sorted by different columns
+- Above the table, a header displays system-wide information
+
+<span style="color:green;">**Discuss further using exercise**</span>
+
+```
+$ top
+```
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 1000px
+## Source: custom-made (obds_sep2023/04_Managing_linux_processes_and_system_resources.pptx, slide 7)
+knitr::include_graphics("img/top_from_slide.png")
+```
+
+## Real-time monitoring with `htop`
+
+- Improved and more user-friendly version of `top`, commonly installed on Linux computers
+- Presents the same information as `top`, but in a more graphical and colour-coded way
+ - Launches an interactive process viewer
+ - Can use mouse and keyboard (f-keys) to interact with it
+
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 900px
+## Source: CCB Doks
+knitr::include_graphics("img/htop-annotated.png")
+```
+
+##  Monitoring hard disk usage with `du`
+
+- Frequently useful to know disk usage
+  + HPC clusters often charge for disk space
+  + They may use a quota system to limit disk usage
+
+```
+$ du -h             # Show directory space usage in human readable form
+79K   ./slurm       # Works recursively showing usage in each subdirectory by default
+8.2MB ./rnaseq
+17M   .
+
+$ du -hs            # Show total directory space usage in human readable form
+17M   .
+```
+
+## Exiting the terminal
+
+- You can exit the terminal in several ways:
+  + logout, exit or Control+d
+  + Loss of internet / VPN for remote sessions, power loss causing an unexpected outage of computing systems
+Sends a hangup signal (HUP) to all dependent processes
+
   
-- Connection to a Bash session on a remote host may be lost for a number of reasons
-  + Loss of internet or VPN for remote sessions
-  + Power loss causing an unexpected outage of computing systems
-
-- When connection is lost, the HUP (hangup) signal is sent to the Bash session 
+- Existing sends a hangup signal (HUP) to all dependent processes
   + HUP signal prompts the session to terminate commands (including background processes) that are currently running, potentially resulting in lost work for users
 
 ## Resilience to loss of connection
@@ -238,13 +237,17 @@ knitr::include_graphics("img/killall.png")
   + By default, does not save stderr so should be explicitly redirected
 
 ```
-$ nohup <command> &        # '&' commonly used with nohup to launch process in 
-                             background
-$ nohup wc -l file1.txt > stdout.txt 2> stderr.txt &
+# '&' commonly used with nohup to launch process in background
+$ nohup <command> &
+
+# > or 2> can be in any order
+$ nohup wc -l file1.txt > stdout.txt 2> stderr.txt & 
 ```
 
+<br>
+
 ```{r}
-#| fig-align: center
+#| fig-align: left
 #| out-height: 50px
 #| out-width: 700px
 ## Source: CCB Doks
