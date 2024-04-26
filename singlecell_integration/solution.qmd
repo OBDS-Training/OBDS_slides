@@ -78,3 +78,26 @@ obj <- FindClusters(obj, resolution = 2, cluster.name = "unintegrated_clusters")
 table(obj$unintegrated_clusters)
 ```
 
+- Use `RunUMAP()` to compute a UMAP layout.
+
+**Hint:**
+
+- Use argument `dims = 1:30`, to match the number of principal components used for clustering.
+- Use argument `reduction = "pca"`, to match the input data used for clustering.
+- Use argument `reduction.name = "umap.unintegrated"`, to distinguish this UMAP from the ones we will compute later with integration.
+
+```{r}
+obj <- RunUMAP(obj, dims = 1:30, reduction = "pca", reduction.name = "umap.unintegrated")
+```
+
+- Use `DimPlot()` to display the unintegrated UMAP layout.
+
+**Hint:**
+
+- Use the argument `group.by = "orig.ident"` to colour by experiment.
+
+```{r}
+# visualize by batch and cell type annotation
+# cell type annotations were previously added by Azimuth
+DimPlot(obj, reduction = "umap.unintegrated", group.by = "orig.ident")
+```
