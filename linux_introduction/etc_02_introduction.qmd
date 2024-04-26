@@ -450,9 +450,71 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 <!-- @sec-Talk2Exercise1 -->
 
 - Reminders
-  + Give paths to course working directory and resources directory
+  + Give paths:
+    - course working directory - "/project/<username>"
+    - resources directory - "/project/shared/resources/1_linux"
   + Take note of commonly used paths
   + Can open multiple terminals to easily figure out paths
+  + Practice using keyboard shortcuts and Tab autocompletion
+
+## Talk 2 Exercise 1 – Files and directories part 1 {#sec-Talk2Exercise1}
+
+Ask instructor for paths to course working directory and resources directory.
+
+1. Log into the server using `ssh`.
+
+```{bash, echo: true, eval = FALSE}
+ssh <username>@obds
+```
+
+2. Establish your current location in the file system.
+
+```{bash, eval = FALSE}
+pwd
+```
+
+3. List all the files and directories in your current directory including hidden files, which starts with '.' (full stop). Use ways to get help with commands to figure this out! :)
+
+```{bash, eval = FALSE}
+ls -a
+```
+
+4. Change into your course working directory.
+
+```{bash, eval = FALSE}
+cd <course working dir>
+```
+
+5. Change into the resources directory. List files in and/or explore the directory, try using `tree` command.
+
+```{bash, eval = FALSE}
+cd <absolute path>                        # Or
+cd <relative path from current location>
+ls
+tree
+```
+
+6. Change into the directory, **1_linux_intro**, in the resources directory.
+
+```{bash, eval = FALSE}
+cd <resources dir>/1_linux/1_linux_intro
+```
+
+7. View the file **manpage.txt** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`).
+
+```{bash, eval = FALSE}
+<command> manpage.txt
+```
+
+8. What type of command is `history`? What is it for?
+
+```{bash, eval = FALSE}
+type history        # history is a shell builtin
+history --help      # To see previously executed commands
+# By default, bash command history from current session is written on ~/.bash_history 
+# but writing will only happen after you log out, see help of history or better to
+# read more online if interested with this file!
+```
 
 ## File properties and permissions
 
@@ -728,6 +790,116 @@ knitr::include_graphics("img/links.png")
 
 # Talk 2 Exercise 2
 
+## Talk 2 Exercise 2 - Files and directories part 2 {#sec-Talk2Exercise2}
+
+1. Change into your course working directory. 
+
+```{bash, eval = FALSE}
+cd <course working dir>
+```
+
+2. Create a new directory called **1_linux** and change directory into it. 
+
+```{bash, eval = FALSE}
+mkdir 1_linux; cd 1_linux
+```
+
+Create a directory, **1_linux_intro**, in your **1_linux** directory and change directory into it.
+
+```{bash, eval = FALSE}
+mkdir 1_linux_intro; cd 1_linux_intro
+```
+
+3. Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to your **1_linux_intro** directory. You can open a new terminal to help find the path to the file.
+
+```{bash, eval = FALSE}
+cp <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
+```
+
+4. View the file **SRR2121685h_1.fastq** on the command line (try `cat`, `wc`, `head` and `tail`, `more` and `less`). Also try viewing using a
+terminal text editor (making sure not to save unintended edits). 
+
+```{bash, eval = FALSE}
+<command> SRR2121685h_1.fastq
+```
+
+5. How many lines does the fastq have? How many reads does it have?
+
+```{bash, eval = FALSE}
+wc -l SRR2121685h_1.fastq
+40 SRR2121685h_1.fastq  # With 40 lines and given 4 lines per read, 10 reads
+```
+
+## Talk 2 Exercise 2 - Files and directories part 2
+
+6. Change into your **1_linux_intro** directory and check contents.
+
+```{bash, eval = FALSE}
+cd <course working dir>/1_linux/1_linux_intro
+ls
+```
+
+7. Again, copy **SRR2121685h_1.fastq** from resources directory to your **1_linux_intro** directory. Did you get a prompt asking to overwrite same file? If not, what option can you use to get a prompt? 
+
+```{bash, eval = FALSE}
+cp SRR2121685h_1.fastq 1_linux_intro
+cp -i SRR2121685h_1.fastq 1_linux_intro
+```
+
+8. Copy **manpage.txt** from resources directory to your **1_linux_intro** directory. Change the permissions of your copy of **manpage.txt** so that only you have read and write permission.
+
+```{bash, eval = FALSE}
+cp <resources dir>/1_linux/1_linux_intro/manpage.txt .
+ls -l manpage.txt
+chmod go-r manpage.txt
+```
+
+9. Create a new directory within your home directory called **obds_linux**.
+
+```{bash, eval = FALSE}
+cd ~
+mkdir obds_linux
+```
+
+10. Change into the created directory & make a copy of your **manpage.txt** but call it **copy.txt**.
+
+```{bash, eval = FALSE}
+cd obds_linux
+cp <course working dir>/1_linux/1_linux_intro/manpage.txt copy.txt
+```
+
+## Talk 2 Exercise 2 - Files and directories part 2
+
+11. Open **copy.txt** in a terminal text editor (e.g. nano), remove the ‘usage’ line and save this modified version as **edit.txt**. 
+
+```{bash, eval = FALSE}
+nano copy.txt
+```
+
+12. Create a symbolic link to your copy of **SRR2121685h_1.fastq** called **symlink.fastq**. Inspect files with `ls`. View the fastq again using the symlink. 
+
+```{bash, eval = FALSE}
+ln -s <course working dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq symlink.fastq
+ls -l                     # Notice symlink.fastq pointing to target file 
+nano symlink.fastq
+```
+
+13. Delete plain text files at the same time.
+
+```{bash, eval = FALSE}
+rm *.txt
+```
+
+14. Delete the **obds_linux** directory, try using `rmdir` then `rm -ir`. 
+
+```{bash, eval = FALSE}
+cd ..
+rmdir obds_linux        # Won't work with directory that is not empty
+rm obds_linux           # Need -r since obds_linux is a directory
+rm -r obds_linux        # Won't prompt at all that directory is not empty
+rm -ir obds_linux       # Prompt before every removal
+```
+
 ## Useful links
 
 - [Classic SysAdmin: The Linux Filesystem Explained](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-the-linux-filesystem-explained)
@@ -770,4 +942,27 @@ PrintBibliography(bib)
   ```
   + -c - use the specified format instead of the default
 
-# Talk 2 Advanced Exercise 3 - Octal permissions
+# Talk 2 Advanced Exercise 3
+
+## Talk 2 Advanced Exercise 3 - Octal permissions
+
+1. Look up the usage of the `stat` command.
+
+```{bash, eval = FALSE}
+stat --help
+man stat
+```
+
+2. Display the octal permission/s for file/s in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
+
+```{bash, eval = FALSE}
+stat -c "%a: %n - %s bytes" *
+```
+
+3. Create a new text file called **test.txt** in your **1_linux_intro** and set the file permissions using octal notation to allow read, write and execute access only for you. 
+
+```{bash, eval = FALSE}
+cd <course working dir>/1_linux/1_linux_intro
+touch test.txt
+chmod 700 test.txt
+```

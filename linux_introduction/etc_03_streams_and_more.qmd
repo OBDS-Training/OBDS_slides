@@ -312,6 +312,97 @@ Talk 2 Advanced Exercise 3 - Octal permissions
 <br>
 Talk 3 Advanced exercise 2 - Loops
 
+## Talk 3 Exercise 1 - Working with files and streams {#sec-Talk3Exercise1}
+
+1. Copy compressed tar archive **dnase1_new.tar.gz** from resources directory to your **1_linux_intro** directory.
+
+```{bash, eval = FALSE}
+cd <course working dir>/1_linux/1_linux_intro
+cp <resources dir>/1_linux/1_linux_intro/dnase1_new.tar.gz .
+```
+
+2. Decompress and extract the archive using `tar`. Check if successful. 
+
+```{bash, eval = FALSE}
+tar -xzf dnase1_new.tar.gz      # There will be a directory named 'bed'
+```
+
+3. Move into the **bed** directory and count the number of lines in each **.bed** file.
+
+```{bash, eval = FALSE}
+cd bed
+wc -l *.bed
+```
+
+4. Print the first 5 lines of the file **cpg.bed**. Compress the **cpg.bed** file in place using `gzip` and then head the compressed file. What do you notice about the compressed file?
+
+```{bash, eval = FALSE}
+head -n 5 cpg.bed
+gzip cpg.bed
+head cpg.bed.gz
+```
+
+5. Decompress the **cpg.bed.gz** file (generated from 4) in place using `gunzip`.
+
+```{bash, eval = FALSE}
+gunzip cpg.bed.gz
+ls -l
+head cpg.bed
+```
+
+6. Extract all the lines in **cpg.bed** containing regions on chromosome 5 to a new file called **cpg_chr5.bed**.
+
+```{bash, eval = FALSE}
+grep chr5 cpg.bed > cpg_chr5.bed
+```
+
+7. Extract all of the entries EXCEPT those on chr5 to another file called **cpg_nochr5.bed**.
+
+```{bash, eval = FALSE}
+grep -v chr5 cpg.bed > cpg_nochr5.bed
+```
+
+How can you check that this command has worked?
+
+```{bash, eval = FALSE}
+wc -l cpg*.bed      # Check if sum of cpg_chr5.bed and cpg_nochr5.bed lines 
+                    # equal to cpg.bed lines 
+```
+
+8. With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
+  Hint: you will need to pipe together 3 commands.
+
+```{bash, eval = FALSE}
+cut -f 1 cpg.bed | sort | uniq -c
+```
+
+## Talk 3 Exercise 1 - Working with files and streams
+
+9. Use `find` to find all files in your course working directory with 'dnase' in their names. How many are there?
+
+```{bash, eval = FALSE}
+find <course working dir> -type f -name '*dnase*' | wc -l
+```
+
+10. Find all the **.bed** files in your course working directory and count the number of lines in each file.
+
+```{bash, eval = FALSE}
+find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
+```
+
+## Talk 3 Advanced Exercise 2 - Loops
+
+1. Create files containing subsets of cpg.bed for chromosomes, chr20, chr21 and chr22.
+
+```{bash, eval = FALSE}
+cd <course working dir>/1_linux/1_linux_intro/bed
+
+for chr in chr20 chr21 chr22
+do
+    grep ${chr} cpg.bed > cpg_${chr}.bed
+done
+```
+
 ## References
 
 ```{r}

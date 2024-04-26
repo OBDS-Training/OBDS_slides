@@ -91,7 +91,7 @@ Create a directory, **1_linux_intro**, in your **1_linux** directory and change 
 mkdir 1_linux_intro; cd 1_linux_intro
 ```
 
-3. Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to your **1_linux_intro** directory.
+3. Copy **SRR2121685h_1.fastq** from **1_linux/1_linux_intro/** in resources directory to your **1_linux_intro** directory. You can open a new terminal to help find the path to the file.
 
 ```{bash}
 cp <resources dir>/1_linux/1_linux_intro/SRR2121685h_1.fastq . 
@@ -286,12 +286,13 @@ find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
 
 ## Talk 3 Advanced Exercise 2 - Loops
 
-1. Create files containing subsets of cpg.bed for each chromosome.
+1. Create files containing subsets of cpg.bed for chromosomes, chr20, chr21 and chr22.
 
 ```{bash}
 cd <course working dir>/1_linux/1_linux_intro/bed
-for chr in $(cut -f 1 cpg.bed | sort | uniq)
+
+for chr in chr20 chr21 chr22
 do
-    grep $chr cpg.bed > cpg_${chr}.bed
+    grep ${chr} cpg.bed > cpg_${chr}.bed
 done
 ```
