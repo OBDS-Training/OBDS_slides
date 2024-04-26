@@ -62,7 +62,7 @@ knitr::include_graphics("img/illumina_sequencing.png")
 - FASTQ files can have millions of entries
 - Usually compressed using `gzip` to save disk space (hence the file extension below)
 - File extensions .fastq, .fq (uncompressed) or .fastq.gz, .fq.gz (compressed)
-- For paired-end reads, there are two files usually named _r1.fastq.gz and _r2.fastq.gz
+- For paired-end reads, there are two files usually named _R1.fastq.gz and _R2.fastq.gz
   + Paired-end sequencing enables both ends of fragment to be sequenced e.g. for better alignment, detecting fusion genes, transcript variants
   + For paired-end files reads should be in the same order 
 - Each entry for a read consists of 4 lines:
