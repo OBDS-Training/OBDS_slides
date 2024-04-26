@@ -236,7 +236,10 @@ $ wget \
 
 - ArrayExpress (EBI)
 - ENA – European Nucleotide archive (EBI)
+- ENCODE - Encyclopedia of DNA Elements
 - GEO – Gene expression Omnibus (NCBI)
+- GTEx - Genotype-Tissue Expression
+- HCA - Human Cell Atlas
 - SRA – Short Read Archive (NCBI)
 - Download published datasets
   + Raw sequencing data (fastq files)
@@ -265,41 +268,46 @@ $ wget \
 
 ## Verify integrity of downloads
 
-- Ensembl uses `sum` 
-
-<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
+- ENA uses `md5sum`
 
 ```
-$ wget http…/CHECKSUMS      # Download reference checksum file to local system
-$ cat CHECKSUMS             # Print reference checksum
-$ sum <downloaded file>     # Generate checksum for downloaded file and compare 
-                              to value in reference checksum file
+$ wget http…/md5sum.txt   # Download files along with reference checksum file to
+                            your working machine
+$ cat md5sum.txt          # View reference checksum file
 ```
 
 ```{r}
 #| fig-align: center
-#| out-height: 150px
-#| out-width: 800px
+#| out-height: 70px
+#| out-width: 600px
 ## Source: CCB Doks
 knitr::include_graphics("img/md5_file.png")
 ```
 
-## Verify integrity of downloads
-
-- ENA uses `md5sum`
-
 ```
-$ wget http…/md5sum.txt     # Download reference checksum file to local system
-$ md5sum –c md5sum.txt      # Generate checksum for downloaded file and compare 
-                              to value in reference checksum file
+$ md5sum –c md5sum.txt    # Generate checksum for downloaded file/s and command also 
+                            compares to value in reference checksum file
 ```
 
 ```{r}
 #| fig-align: center
-#| out-height: 150px
-#| out-width: 800px
+#| out-height: 70px
+#| out-width: 600px
 ## Source: CCB Doks
 knitr::include_graphics("img/md5sum-c.png")
+```
+
+- Ensembl uses `sum` 
+
+<!-- <span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span> -->
+
+```
+$ wget http…/CHECKSUMS    # Download files along with reference checksum file to
+                            your working machine
+$ cat CHECKSUMS           # View reference checksum file
+$ sum <downloaded file>   # Generate checksum for downloaded file
+                          # Then can compare by eye to value in reference checksum 
+                            file
 ```
 
 # Talk 3 Exercise
