@@ -3,7 +3,7 @@ title: 'RNA-seq differential expression analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-10-04"
+date: "2024-03-05"
 date-format: long
 format:
   revealjs: 
@@ -54,6 +54,11 @@ NoCite(bib, "deseq2_package")
 ```{r}
 #| child: goals_and_objectives.qmd
 ```
+
+## Credits
+
+- Liezel Tamon
+- Kevin Rue-Albrecht
 
 ## Prerequisites
 

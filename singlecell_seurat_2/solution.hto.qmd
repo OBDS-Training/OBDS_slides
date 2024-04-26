@@ -1,7 +1,7 @@
 ---
 title: "Solution: Single-cell analysis using Seurat, part 2 (HTO)"
 author: "Kevin Rue-Albrecht"
-date: "2023-06-08"
+date: "2024-03-12"
 date-format: long
 format: html
 ---
@@ -91,6 +91,18 @@ seurat_citeseq <- CreateSeuratObject(
 )
 ```
 
+> Note:
+> 
+> The `dgTMatrix` class represents sparse matrices in triplet format:
+> - `i`, the row
+> - `j`, the column
+> - `x`, the value
+> 
+> The `dgCMatrix`class represents sparse matrices in compressed column format:
+> This format stores column-oriented  data structures.
+> It is more efficient for matrices with more non-zero elements,
+> especially when operations involve columns.
+
 ### Preprocessing
 
 Apply the sequence of functions `NormalizeData()`, `FindVariableFeatures()`, and `ScaleData()`.
@@ -148,6 +160,12 @@ seurat_citeseq <- NormalizeData(
 )
 seurat_citeseq
 ```
+
+> Note for Seurat v5
+> The default behaviour of split.by has changed.
+> Separate violin plots are now plotted side-by-side.
+> To restore the old behaviour of a single split violin,
+> set split.plot = TRUE.
 
 **Why is the CLR transformation prefered for HTO data?**
 
@@ -218,8 +236,8 @@ FeatureScatter(
   object = seurat_citeseq,
   feature1 = "HEK-A",
   feature2 = "HEK-B",
-  group.by = "HTO_classification.global",
-  span = FALSE, smooth = FALSE, shuffle = TRUE
+  group.by = "HTO_classification.global"#,
+  #span = FALSE, smooth = FALSE, shuffle = TRUE
 )
 
 # FeatureScatter(hto12_object,feature1 = "HEK-A",feature2 = "HEK-B", group.by = "HTO_maxID", span=F, smooth=F, shuffle=T ) 
