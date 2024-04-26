@@ -180,8 +180,79 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
 
 <!-- @sec-Talk2Exercise1 -->
 
+
+## Talk 2 Exercise 1 – Shell configuration {#sec-Talk2Exercise1}
+
+1. Locate your **.bash_aliases** in your home directory.
+
+```{bash, eval = FALSE}
+cd ~; ls -a
+```
+
+2. If file does not exist, create **.bash_aliases** in your home directory. 
+
+```{bash, eval = FALSE}
+touch ~/.bash_aliases
+```
+
+3. Use a terminal text editor to open your **.bash_aliases** and add the **alias la='ls -alhF'**.
+
+```{bash, eval = FALSE}
+nano .bash_aliases     
+```
+
+4. Add aliases to **.bash_aliases** for the resources directory and your course working directory.
+
+```{bash, eval = FALSE}
+alias resdir='cd <resources dir>'
+alias cwdir='cd <course working dir>'
+```
+
+5. To apply the changes, source the modified .bash_aliases file. Check that your aliases work.
+
+```{bash, eval = FALSE}
+source ~/.bash_aliases
+la
+```
+
+## Talk 2 Exercise 2 – Modules {#sec-Talk2Exercise2}
+
+1. List the available modules on the server.
+
+```{bash, eval = FALSE}
+module avail
+```
+
+2. Search module list for available fastqc versions.
+
+```{bash, eval = FALSE}
+module search fastqc
+```
+
+3. Load the fastqc module and use `which` to confirm it has worked. 
+Look at the system path, then unload the module and check it again.
+
+```{bash, eval = FALSE}
+which fastqc
+module add fastqc/0.11.9 
+which fastqc
+
+echo $PATH
+module unload fastqc
+echo $PATH
+```
+
 <!--
-## Useful links
+3. Try using the module system to load different versions of programs you are familiar with.
+Look at how system path changes.
+
+```{bash, eval = FALSE}
+module add cellranger/2.1.1
+module list
+module unload cellranger
+module list
+module add cellranger/7.1.0
+```
 -->
 
 ## Remote connection to a Linux server

@@ -258,6 +258,84 @@ knitr::include_graphics("img/nohup.png")
 
 <!-- @sec-Talk1Exercise1 -->
 
+## Talk 1 Exercise 1 – Linux processes & system resources {#sec-Talk1Exercise1}
+
+1. Start a new process in the foreground using the `sleep`.
+
+```{bash, eval = FALSE}
+sleep 300
+```
+
+2. Pause the process and send it to the background.
+
+```{bash, eval = FALSE}
+# Control + z then
+bg
+```
+
+3. Check the status of running processes.
+
+```{bash, eval = FALSE}
+ps
+jobs
+```
+
+4. Start a new sleep process in the background.
+
+```{bash, eval = FALSE}
+sleep 350 &
+```
+
+5. Kill the first process.
+
+```{bash, eval = FALSE}
+ps # Or 
+jobs -l # -l To additionally display PID
+
+kill <PID>
+```
+
+6. Bring the second process to the foreground and terminate it.
+
+```{bash, eval = FALSE}
+fg   # Then Control + c
+```
+
+7. Start 3 sleep (background) processes and kill them all by name using a single command.
+
+```{bash, eval = FALSE}
+sleep 300 & sleep 300 & sleep 300 & # Or just input separate lines
+killall sleep
+```
+
+8. Look for all the processes for your username using `htop`.
+
+```{bash, eval = FALSE}
+htop # Then type 'u', select username then press Return 
+# To go back to original view, type 'u', select 'All users' then press Return
+# F10 to quit htop
+```
+
+9. Sort the processes output by memory usage.
+
+```{bash, eval = FALSE}
+htop # Then click on column header
+```
+
+10. Find the total memory usage, total tasks and running tasks on the server.
+
+```{bash, eval = FALSE}
+# Information on top section (dynamic because info is real-time, no single answer)
+htop 
+```
+
+11. Check the total disk usage in your home directory.
+
+```{bash, eval = FALSE}
+cd ~ 
+du -sh .
+```
+
 ## References
 
 ```{r}

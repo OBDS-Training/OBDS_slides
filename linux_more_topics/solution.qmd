@@ -116,9 +116,12 @@ alias resdir='cd <resources dir>'
 alias cwdir='cd <course working dir>'
 ```
 
-5. To apply the changes, open a new terminal. Check that your aliases work.
+5. To apply the changes, source the modified .bash_aliases file. Check that your aliases work.
 
-<!-- 10. To apply the changes, open a new terminal (or type `source .bash_aliases` on the current terminal). Check that your aliases work. -->
+```{bash}
+source ~/.bash_aliases
+la
+```
 
 ## Talk 2 Exercise 2 – Modules {#sec-Talk2Exercise2}
 
@@ -171,17 +174,17 @@ cd <course working dir>/1_linux/
 mkdir rnaseq
 ```
 
-2. Change into your **rnaseq/**. Create subdirectories called **1_fastq** and **2_genome**.
+2. Change into your **rnaseq/**. Create subdirectories called **fastq** and **genome**.
 
 ```{bash}
 cd rnaseq/
-mkdir 1_fastq 2_genome
+mkdir fastq genome
 ```
 
-3. Create symbolic links to a pair of fastq files in the rnaseq resources directory, in **1_fastq/**.
+3. Create symbolic links to a pair of fastq files in the rnaseq resources directory, in **fastq/**.
 
 ```{bash}
-cd 1_fastq/
+cd fastq/
 ls <resources dir>/1_linux/rnaseq/
 ln -s <resources dir>/1_linux/rnaseq/ERR1755082_1.fastq.gz ERR1755082_1.fastq.gz
 ln -s <resources dir>/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
@@ -189,7 +192,7 @@ ln -s <resources dir>/1_linux/rnaseq/ERR1755082_2.fastq.gz ERR1755082_2.fastq.gz
 
 ## Talk 3 Exercise 1 – Working directory 
 
-4. Copy the file **md5sum.txt** from rnaseq resources directory to **1_fastq**.
+4. Copy the file **md5sum.txt** from rnaseq resources directory to **fastq**.
 
 ```{bash}
 cp <resources dir>/1_linux/rnaseq/md5sum.txt md5sum.txt
@@ -203,7 +206,7 @@ md5sum -c --ignore-missing md5sum.txt
 
 ## Talk 3 Exercise 1 – Working directory
 
-6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **2_genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
+6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
 
 ```{bash}
 # Go to Ensembl home, Downloads tab, FTP Download section then the table links 
@@ -216,7 +219,7 @@ md5sum -c --ignore-missing md5sum.txt
 # this approach is subject to typos and also you are not sure whether the link
 # really (or still) exists or not
 
-cd ../2_genome/
+cd ../genome/
 # Download Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 wget \
 https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz &
@@ -230,40 +233,38 @@ sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 
 ## Talk 3 Exercise 1 – Working directory
 
-7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **2_genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
+7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
 
 ```{bash}
+#| echo: true
 wget \
 https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz &
-wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS > CHECKSUMS_GTF &
+wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS &
 ls  # Because there is an existing CHECKSUMS for the genome, it downloaded GTF CHECKSUMS as CHECKSUMS.1
 cat CHECKSUMS.1 | grep 'Mus_musculus.GRCm38.102.gtf.gz'
 sum Mus_musculus.GRCm38.102.gtf.gz
 ```
 
-8. Create a **readme.txt** file in the **2_genome/** detailing how you obtained the public data files.
+8. Create a **README.txt** file in the **genome/** detailing how you obtained the public data files.
 
 ```{bash}
-nano readme.txt  # Or
-touch readme.txt
+nano README.txt  # Or
+touch README.txt
 ```
 
-9. Create a third directory called **3_analysis** in your **rnaseq** directory. Change into the new directory and create a subdirectory called **1_fastqc**. View rnaseq directory structure using `tree`.
+<!-- 9. Create a third directory called **3_analysis** in your **rnaseq** directory. Change into the new directory and create a subdirectory called **1_fastqc**. View rnaseq directory structure using `tree`. -->
+
+<!-- ```{bash} -->
+<!-- cd .. -->
+<!-- mkdir 3_analysis -->
+<!-- cd 3_analysis -->
+<!-- mkdir 1_fastqc -->
+<!-- cd .. -->
+<!-- tree -->
+<!-- ``` -->
+
+9. Create an analysis lab-book called **rnaseq_commands.txt** in **rnaseq/**.
 
 ```{bash}
-cd ..
-mkdir 3_analysis
-cd 3_analysis
-mkdir 1_fastqc
-cd ..
-tree
-```
-
-## Talk 3 Exercise 1 – Working directory
-
-10. Create an analysis lab-book called **rnaseq_commands.sh** in **3_analysis/**.
-
-```{bash}
-cd 3_analysis
-touch rnaseq_commands.sh
+touch rnaseq_commands.txt
 ```
