@@ -310,7 +310,7 @@ $ sum <downloaded file>   # Generate checksum for downloaded file
                             file
 ```
 
-# Talk 3 Exercise
+# Talk 3 Exercise 1
 
 <!-- @sec-Talk3Exercise1 -->
 
@@ -421,3 +421,35 @@ touch rnaseq_commands.txt
 #| results: asis
 PrintBibliography(bib)
 ```
+
+# Bonus topics
+
+## Advanced shell configuration 
+
+- You may come across other Bash startup files other than ~/.bashrc e.g. ~/.profile, ~/.bash_profile
+
+- Those other files perform a task similar to ~/.bashrc, but with subtle differences with respect to the order and the environment in which they are executed
+
+- <span style="color:red;">We strongly discourage users from editing or creating those other files, stick with editing ~/.bashrc!</span>
+
+## Advanced shell configuration - ~/.inputrc file
+
+- This file allows you to customise how keystrokes are interpreted in the terminal emulator
+- Like ~/.bashrc, it is a hidden file in the home directory that is applied on login
+- Common shortcuts added to ~/.inputrc are:
+  + In case of ambiguity when using tab completion, display options right away instead of asking whether to display them or not
+  ```
+  set show-all-if-ambiguous on
+  ```
+  
+  + Search history of commands (forward or backward) starting with the pattern you typed (could be a command therefore)
+  + "\<key combination>":\<command>
+  
+  ```
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
+  ```
+  
+  + [List of key combinations and commands from Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
+
+<span style="color:green;">DEMO on OBDS server</span>
