@@ -141,6 +141,29 @@ knitr::include_graphics("img/fastq.png")
 knitr::include_graphics("img/rnaseq_workflow_tools.png")
 ```
 
+## File types and extensions
+ 
+- Files can be:
+  + Plain text - contain only characters of readable materials that can be displayed by most text editors
+  + Binary - not plain text (e.g. compiled programs, images)
+- Many files follow a standardised internal organisation known as a file format
+  + Ensures consistency
+  + Enables programs to easily extract defined information
+- Adding a file extension can indicate the file format
+  + .fasta - biological sequence information
+  + .fastq (.fq) - sequence information with quality scores
+  + .sam, .bam - alignments of sequences to a reference genome
+  + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
+  
+## File types and extensions
+
+- Programs often rely on file extensions in input and output file names
+  + Input: To parse file contents based on their format
+  + Output: To indicate the format used to write file contents
+- Good habit to use an appropriate file extension even just using the generic '.txt' to indicate that the file contains plain text information
+- **Changing the file extension itself does not alter the actual content of the file**
+  + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
+  
 ## Step 1: Read quality control 
 
 :::: {.columns}
@@ -262,6 +285,16 @@ Course outline:
 knitr::include_graphics("img/fasta.png")
 ```
 
+## **File format (annotation)**: **GFF/GTF**
+
+```{r}
+#| fig-align: center
+#| out-height: 400px
+#| out-width: 1000px
+## Source: custom-made (obds_sep2023/01_Genomics_on_the_linux_command_line.pptx, slide 19)
+knitr::include_graphics("img/gtf.png")
+```
+
 ## **File format (annotation)**: **BED**
 
 - Genomic intervals
@@ -277,10 +310,6 @@ knitr::include_graphics("img/bed.png")
 ```
 
 <!-- 
-
-## **File format (annotation)**: **GFF**
-
-## **File format (annotation)**: **GTF**
 
 ## Key concepts and considerations
 
@@ -306,31 +335,8 @@ knitr::include_graphics("img/bed.png")
 knitr::include_graphics("img/file_types.png")
 ```
 
-# Review concepts
+<span style="color:gray;">Charlie George</span>
 
-## File types and extensions
- 
-- Files can be:
-  + Plain text - contain only characters of readable materials that can be displayed by most text editors
-  + Binary - not plain text (e.g. compiled programs, images)
-- Many files follow a standardised internal organisation known as a file format
-  + Ensures consistency
-  + Enables programs to easily extract defined information
-- Adding a file extension can indicate the file format
-  + .fasta - biological sequence information
-  + .fastq (.fq) - sequence information with quality scores
-  + .sam, .bam - alignments of sequences to a reference genome
-  + .gtf, .bed - genomic coordinates of sequence features (e.g. exons, peaks)
-  
-## File types and extensions
-
-- Programs often rely on file extensions in input and output file names
-  + Input: To parse file contents based on their format
-  + Output: To indicate the format used to write file contents
-- Good habit to use an appropriate file extension even just using the generic '.txt' to indicate that the file contains plain text information
-- **Changing the file extension itself does not alter the actual content of the file**
-  + But a mismatch of file format and file extension may cause errors if a program expects a specific format based on the extension
-  
 ## Computer system terminology
 
 - An **HPC system** e.g. **cluster** is like a massive kitchen with multiple food stations (nodes), each manned by a team of chefs (CPUs) with multiple sous-chefs (cores)
@@ -340,7 +346,7 @@ knitr::include_graphics("img/file_types.png")
 ::: {.column width="70%"}
 
   + **HPC system** - Collection or network of nodes that can run jobs in parallel 
-  + **Node** - Each node (e.g. server) is a separate machine that contains its own CPU(s) cores, memory, storage
+  + **Node** - Each node (e.g. server) is a separate machine that contains its own CPU cores, memory, storage
   + **CPU** - Like the brain of a computer doing all the thinking and calculations
     - **Memory** (random-access memory or RAM)is used by computer to store data temporarily while doing tasks, while **storage** is where files are stored permanently
   + **Core** - A CPU can have multiple cores; each core can handle its own set of jobs / tasks i.e. having multiple cores allows running jobs in parallel

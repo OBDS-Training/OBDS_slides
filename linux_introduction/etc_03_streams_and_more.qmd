@@ -238,79 +238,9 @@ $ sort file1.txt | uniq
 knitr::include_graphics("img/search_find.png")
 ```
 
-# Advanced topics
-
-## Loops in Bash
-
-- Iterate over lists of values, inputs, files or directories
-- When repeatedly executing the same set of commands on a series of inputs, loops can be used to:
-  + Define a set of input
-  + Define a set of commands
-  + Execute the set of commands on the set of inputs
-
-:::: {.columns}
-
-::: {.column width="33%"}
-
-- Iterate over fixed inputs 
-
-```
-$
-for i in 2 5 3
-do
-  echo "start"
-  echo "value of i: '$i'"
-  echo "end"
-done
-```
-
-:::
-
-::: {.column width="33%"}
-
-- Iterate over integers
-
-```
-$
-for i in {1..3}
-do
-  echo "value of i: '$i'"
-done
-```
-
-:::
-
-::: {.column width="33%"}
-
-- Iterate over files
-
-```
-$
-for file in *.txt
-do
-  wc -l $file
-done
-```
-
-:::
-
-::::
-
-## Loops in Bash
-
-- Tips
-  + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
-  + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
-  
-# Talk 3 Exercise 1 and advanced exercises (optional)
+# Talk 3 Exercise 1
 
 <!-- @sec-Talk3Exercise1 -->
-
-<br>
-
-Talk 2 Advanced Exercise 3 - Octal permissions
-<br>
-Talk 3 Advanced exercise 2 - Loops
 
 ## Talk 3 Exercise 1 - Working with files and streams {#sec-Talk3Exercise1}
 
@@ -390,7 +320,125 @@ find <course working dir> -type f -name '*dnase*' | wc -l
 find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
 ```
 
-## Talk 3 Advanced Exercise 2 - Loops
+# Bonus topics
+
+## Using octal notation for file permissions
+
+- Octal notation is more compact but takes more practice to read and write
+- Each type of permission is assigned a numerical value
+  + **4** for **read** permission
+  + **2** for **write** permission
+  + **1** for **execute** permission
+- We sum the numbers for each category to give a single unique number for each combination of permissions
+- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
+
+## Changing file permissions using octal notation
+
+- We can change file permissions with ``chmod`` using octal notation
+
+  ```
+  $ chmod 700 file1.txt
+  $ ls -l file1.txt
+  -rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
+  ```
+
+- File permissions can be displayed in octal format using ``stat``
+
+  ```
+  stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
+  755: jupyter_notebooks
+  644: mm10.blacklist.bed.gz
+  ```
+  + -c - use the specified format instead of the default
+
+## Loops in Bash
+
+- Iterate over lists of values, inputs, files or directories
+- When repeatedly executing the same set of commands on a series of inputs, loops can be used to:
+  + Define a set of input
+  + Define a set of commands
+  + Execute the set of commands on the set of inputs
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+- Iterate over fixed inputs 
+
+```
+$
+for i in 2 5 3
+do
+  echo "start"
+  echo "value of i: '$i'"
+  echo "end"
+done
+```
+
+:::
+
+::: {.column width="33%"}
+
+- Iterate over integers
+
+```
+$
+for i in {1..3}
+do
+  echo "value of i: '$i'"
+done
+```
+
+:::
+
+::: {.column width="33%"}
+
+- Iterate over files
+
+```
+$
+for file in *.txt
+do
+  wc -l $file
+done
+```
+
+:::
+
+::::
+
+## Loops in Bash
+
+- Tips
+  + When writing a new loop, consider testing it on a small set of inputs before executing it on the full set of inputs
+  + Consider adding commands that display informative messages during the execution of the loop e.g. using `echo` to print messages on stdout
+  
+# Bonus exercises
+
+## Bonus exercises - Octal permissions
+
+1. Look up the usage of the `stat` command.
+
+```{bash, eval = FALSE}
+stat --help
+man stat
+```
+
+2. Display the octal permission/s for file/s in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
+
+```{bash, eval = FALSE}
+stat -c "%a: %n - %s bytes" *
+```
+
+3. Create a new text file called **test.txt** in your **1_linux_intro** and set the file permissions using octal notation to allow read, write and execute access only for you. 
+
+```{bash, eval = FALSE}
+cd <course working dir>/1_linux/1_linux_intro
+touch test.txt
+chmod 700 test.txt
+```
+
+## Bonus exercises - Loops
 
 1. Create files containing subsets of cpg.bed for chromosomes, chr20, chr21 and chr22.
 

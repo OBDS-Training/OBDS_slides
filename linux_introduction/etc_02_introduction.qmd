@@ -153,6 +153,18 @@ $ which -a head         # -a to print all matching paths of each argument
 
 ::: {.column width="50%"}
 
+```{r}
+#| fig-align: center
+#| out-height: 375px
+#| out-width: 450px
+## Source: https://1000logos.net/unix-logo/#
+knitr::include_graphics("img/ls_options.png")
+```
+
+:::
+
+::: {.column width="50%"}
+
 - Short options can be bundled
   ```
   $ ls -l -t -a -h -F
@@ -164,18 +176,6 @@ $ which -a head         # -a to print all matching paths of each argument
   + -a - Show hidden files
   + -h - Human readable numbers
   + -F - Append an indicator to the end of each listed name (e.g. '/' for a directory)
-
-:::
-
-::: {.column width="50%"}
-
-```{r}
-#| fig-align: center
-#| out-height: 375px
-#| out-width: 450px
-## Source: https://1000logos.net/unix-logo/#
-knitr::include_graphics("img/ls_options.png")
-```
 
 :::
 
@@ -451,9 +451,9 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
 
 - Reminders
   + Give paths:
-    - course working directory - "/project/<username>"
-    - resources directory - "/project/shared/resources/1_linux"
-  + Take note of commonly used paths
+    - Course working directory - "/project/\<username>"
+    - Resources directory - "/project/shared/resources/1_linux"
+  + Note down commonly used paths and other important details - Use text editor, OneNote etc.
   + Can open multiple terminals to easily figure out paths
   + Practice using keyboard shortcuts and Tab autocompletion
 
@@ -463,7 +463,7 @@ Ask instructor for paths to course working directory and resources directory.
 
 1. Log into the server using `ssh`.
 
-```{bash, echo: true, eval = FALSE}
+```{bash, echo = TRUE, eval = FALSE}
 ssh <username>@obds
 ```
 
@@ -473,7 +473,7 @@ ssh <username>@obds
 pwd
 ```
 
-3. List all the files and directories in your current directory including hidden files, which starts with '.' (full stop). Use ways to get help with commands to figure this out! :)
+3. List all the files and directories in your current directory including hidden files, which starts with '.' (full stop). Use ways to get help with commands to figure this out!
 
 ```{bash, eval = FALSE}
 ls -a
@@ -909,60 +909,4 @@ rm -ir obds_linux       # Prompt before every removal
 ```{r}
 #| results: asis
 PrintBibliography(bib)
-```
-
-# Advanced topics
-
-## Using octal notation for file permissions
-
-- Octal notation is more compact but takes more practice to read and write
-- Each type of permission is assigned a numerical value
-  + **4** for **read** permission
-  + **2** for **write** permission
-  + **1** for **execute** permission
-- We sum the numbers for each category to give a single unique number for each combination of permissions
-- Each permissions category (owner, group, other) is represented by a number between **0** (no permission) and **7** (all permission)
-
-## Changing file permissions using octal notation
-
-- We can change file permissions with ``chmod`` using octal notation
-
-  ```
-  $ chmod 700 file1.txt
-  $ ls -l file1.txt
-  -rwx------ 1 dsims obds 2981 Apr 26  2021 file1.txt
-  ```
-
-- File permissions can be displayed in octal format using ``stat``
-
-  ```
-  stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
-  755: jupyter_notebooks
-  644: mm10.blacklist.bed.gz
-  ```
-  + -c - use the specified format instead of the default
-
-# Talk 2 Advanced Exercise 3
-
-## Talk 2 Advanced Exercise 3 - Octal permissions
-
-1. Look up the usage of the `stat` command.
-
-```{bash, eval = FALSE}
-stat --help
-man stat
-```
-
-2. Display the octal permission/s for file/s in your copy of **1_linux/1_linux_intro** directory, showing only permissions, file names and total size in bytes of files. 
-
-```{bash, eval = FALSE}
-stat -c "%a: %n - %s bytes" *
-```
-
-3. Create a new text file called **test.txt** in your **1_linux_intro** and set the file permissions using octal notation to allow read, write and execute access only for you. 
-
-```{bash, eval = FALSE}
-cd <course working dir>/1_linux/1_linux_intro
-touch test.txt
-chmod 700 test.txt
 ```
