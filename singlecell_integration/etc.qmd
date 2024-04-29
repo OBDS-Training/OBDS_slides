@@ -28,12 +28,13 @@
 knitr::include_graphics("img/merged_vs_integrated.png")
 ```
 
-- Pros
-  + More cells
-  + More replicates
-  + More power
-  + More information/complementary views
-  + Identify more cell types
+#### Benefits
+
+- More cells
+- More replicates
+- More power
+- More information/complementary views
+- Identify more cell types
   
 :::
 ::::
