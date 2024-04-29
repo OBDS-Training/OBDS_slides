@@ -54,7 +54,6 @@ NoCite(bib, "R")
 
 - Devika Agarwal
 - Carla Cohen
-- Lucy Garner
 
 ## Prerequisites
 
