@@ -1,160 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 876.3 395.5" style="enable-background:new 0 0 876.3 395.5;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#1D1D1B;}
-	.st1{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;}
-	.st2{font-family:'ArialMT';}
-	.st3{font-size:20px;}
-	.st4{fill:none;stroke:#1D1D1B;stroke-miterlimit:10;stroke-dasharray:5.87,5.87;}
-	.st5{fill:#FFFFFF;stroke:#1D1D1B;stroke-miterlimit:10;}
-	.st6{fill:#E30613;}
-	.st7{font-size:12px;}
-	.st8{fill:#0B7E35;}
-	.st9{fill:#009640;}
-	.st10{font-family:'Courier';}
-	.st11{font-size:18px;}
-</style>
-<ellipse transform="matrix(6.652046e-02 -0.9978 0.9978 6.652046e-02 -270.1454 363.8503)" class="st0" cx="59.4" cy="326.3" rx="9.3" ry="9.3"/>
-<circle class="st0" cx="140.8" cy="326.3" r="9.3"/>
-<line class="st1" x1="68.7" y1="326.3" x2="125.4" y2="326.3"/>
-<path class="st0" d="M131.4,326.3c-3.1,1.1-6,2.7-8.5,4.7l1.7-4.8l-1.7-4.8C125.5,323.5,128.4,325.2,131.4,326.3z"/>
-<text transform="matrix(1 0 0 1 48.49 302.58)" class="st0 st2 st3">C1</text>
-<text transform="matrix(1 0 0 1 129.83 302.78)" class="st0 st2 st3">C2</text>
-<circle class="st0" cx="299.6" cy="326.3" r="9.3"/>
-<line class="st1" x1="150.1" y1="326.3" x2="284.3" y2="326.3"/>
-<path class="st0" d="M290.3,326.3c-3.1,1.1-6,2.7-8.5,4.8l1.7-4.8l-1.7-4.8C284.3,323.6,287.2,325.2,290.3,326.3z"/>
-<text transform="matrix(1 0 0 1 290.32 302.98)" class="st0 st2 st3">C3</text>
-<circle class="st0" cx="385.7" cy="326.3" r="9.3"/>
-<text transform="matrix(1 0 0 1 376.36 302.58)" class="st0 st2 st3">C4</text>
-<line class="st1" x1="309" y1="326.3" x2="370" y2="326.7"/>
-<path class="st0" d="M376.1,326.7c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7l-1.7-4.8C370.1,324,373,325.6,376.1,326.7z"/>
-<line class="st1" x1="395" y1="326.1" x2="398" y2="326.1"/>
-<line class="st4" x1="403.9" y1="326.1" x2="588.7" y2="327.3"/>
-<line class="st1" x1="591.6" y1="327.4" x2="594.6" y2="327.4"/>
-<path class="st0" d="M600.7,327.4c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7l-1.7-4.8C594.7,324.7,597.6,326.3,600.7,327.4z"/>
-<rect x="90.8" y="218.7" class="st1" width="180.9" height="32.1"/>
-<rect x="140.8" y="250.8" class="st1" width="0.8" height="22.5"/>
-<circle class="st0" cx="609.3" cy="326.8" r="9.3"/>
-<text transform="matrix(1 0 0 1 600.04 303.06)" class="st0 st2 st3">C5</text>
-<rect x="542.6" y="211.7" class="st1" width="226" height="32.1"/>
-<rect x="609.4" y="243.9" class="st1" width="0.8" height="22.5"/>
-<rect x="25" y="55.5" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 33.21 75.71)" class="st6 st2 st7">def fun</text>
-<text transform="matrix(1 0 0 1 68.81 75.71)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 74.35 75.71)" class="st6 st2 st7">tion1</text>
-<text transform="matrix(1 0 0 1 33.67 91.37)" class="st8 st2 st7">def fun</text>
-<text transform="matrix(1 0 0 1 69.27 91.37)" class="st8 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 74.81 91.37)" class="st8 st2 st7">tion2</text>
-<rect x="121.8" y="62.6" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 129.97 82.8)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 146.75 82.8)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 152.28 82.8)" class="st6 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 193.52 82.8)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 200.32 82.8)" class="st6 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 130.43 98.46)" class="st8 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 147.21 98.46)" class="st8 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 152.74 98.46)" class="st8 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 193.14 98.46)" class="st8 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 199.93 98.46)" class="st8 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 137.73 152.25)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 154.51 152.25)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 160.04 152.25)" class="st6 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 201.28 152.25)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 208.08 152.25)" class="st6 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 138.19 167.91)" class="st8 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 154.97 167.91)" class="st8 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 160.5 167.91)" class="st8 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 200.9 167.91)" class="st8 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 207.69 167.91)" class="st8 st2 st7">)</text>
-<rect x="216.6" y="67.8" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 224.74 121.83)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 241.52 121.83)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 247.05 121.83)" class="st6 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 288.29 121.83)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 295.09 121.83)" class="st6 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 225.2 137.49)" class="st8 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 241.98 137.49)" class="st8 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 247.51 137.49)" class="st8 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 287.91 137.49)" class="st8 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 294.7 137.49)" class="st8 st2 st7">)</text>
-<rect x="25" y="33.3" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 66.79 47.67)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 76.92 47.67)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 80.89 47.67)" class="st0 st2 st7">ipt1.</text>
-<text transform="matrix(1 0 0 1 103.14 47.67)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 109.88 47.67)" class="st0 st2 st7">y</text>
-<rect x="121.8" y="40.4" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 163.55 54.75)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 173.68 54.75)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 177.65 54.75)" class="st0 st2 st7">ipt2.</text>
-<text transform="matrix(1 0 0 1 199.9 54.75)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 206.64 54.75)" class="st0 st2 st7">y</text>
-<rect x="216.6" y="46.3" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 258.38 60.67)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 268.51 60.67)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 272.48 60.67)" class="st0 st2 st7">ipt3.</text>
-<text transform="matrix(1 0 0 1 294.73 60.67)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 301.47 60.67)" class="st0 st2 st7">y</text>
-<rect x="493.7" y="50.3" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 501.86 70.53)" class="st9 st2 st7">def fun</text>
-<text transform="matrix(1 0 0 1 537.46 70.53)" class="st9 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 543 70.53)" class="st9 st2 st7">tion</text>
-<text transform="matrix(1 0 0 1 502.32 86.19)" class="st6 st2 st7">def fun</text>
-<text transform="matrix(1 0 0 1 537.92 86.19)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 543.46 86.19)" class="st6 st2 st7">tion2</text>
-<rect x="590.4" y="57.4" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 598.63 77.61)" class="st9 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 615.41 77.61)" class="st9 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 620.94 77.61)" class="st9 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 662.18 77.61)" class="st9 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 668.98 77.61)" class="st9 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 599.08 93.27)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 615.86 93.27)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 621.39 93.27)" class="st6 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 661.79 93.27)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 668.58 93.27)" class="st6 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 606.38 147.06)" class="st9 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 623.16 147.06)" class="st9 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 628.69 147.06)" class="st9 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 669.93 147.06)" class="st9 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 676.73 147.06)" class="st9 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 606.84 162.72)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 623.6201 162.72)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 629.15 162.72)" class="st6 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 669.55 162.72)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 676.34 162.72)" class="st6 st2 st7">)</text>
-<rect x="685.2" y="62.6" class="st5" width="132.3" height="123.7"/>
-<text transform="matrix(1 0 0 1 693.4 116.64)" class="st9 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 710.1801 116.64)" class="st9 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 715.71 116.64)" class="st9 st2 st7">tion1(a, </text>
-<text transform="matrix(1 0 0 1 756.95 116.64)" class="st9 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 763.75 116.64)" class="st9 st2 st7">)</text>
-<text transform="matrix(1 0 0 1 693.85 132.3)" class="st6 st2 st7">fun</text>
-<text transform="matrix(1 0 0 1 710.63 132.3)" class="st6 st2 st7">c</text>
-<text transform="matrix(1 0 0 1 716.16 132.3)" class="st6 st2 st7">tion2(a, </text>
-<text transform="matrix(1 0 0 1 756.56 132.3)" class="st6 st2 st7">b</text>
-<text transform="matrix(1 0 0 1 763.35 132.3)" class="st6 st2 st7">)</text>
-<rect x="493.7" y="28.1" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 535.44 42.48)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 545.57 42.48)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 549.54 42.48)" class="st0 st2 st7">ipt1.</text>
-<text transform="matrix(1 0 0 1 571.79 42.48)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 578.53 42.48)" class="st0 st2 st7">y</text>
-<rect x="590.4" y="35.2" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 632.2 49.56)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 642.33 49.56)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 646.3 49.56)" class="st0 st2 st7">ipt2.</text>
-<text transform="matrix(1 0 0 1 668.55 49.56)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 675.29 49.56)" class="st0 st2 st7">y</text>
-<rect x="685.2" y="41.1" class="st5" width="132.3" height="22.2"/>
-<text transform="matrix(1 0 0 1 727.03 55.48)" class="st0 st2 st7">sc</text>
-<text transform="matrix(1 0 0 1 737.16 55.48)" class="st0 st2 st7">r</text>
-<text transform="matrix(1 0 0 1 741.13 55.48)" class="st0 st2 st7">ipt3.</text>
-<text transform="matrix(1 0 0 1 763.38 55.48)" class="st0 st2 st7">p</text>
-<text transform="matrix(1 0 0 1 770.1201 55.48)" class="st0 st2 st7">y</text>
-<text transform="matrix(1 0 0 1 100.1938 239.1733)" class="st2 st7">Renamed function to function2</text>
-<text transform="matrix(1 0 0 1 550.3315 232.9454)" class="st2 st7">Revert “Renamed function to function2”</text>
-<text transform="matrix(1 0 0 1 429.4502 352.7687)" class="st10 st11">git revert C2</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 876.3 395.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        fill: red;
+      }
+
+      .cls-4, .cls-5, .cls-6, .cls-7 {
+        font-size: 12px;
+      }
+
+      .cls-4, .cls-6 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-8 {
+        stroke-width: 0px;
+      }
+
+      .cls-8, .cls-9, .cls-7 {
+        fill: #1d1d1b;
+      }
+
+      .cls-9 {
+        font-size: 20px;
+      }
+
+      .cls-9, .cls-5, .cls-10, .cls-7 {
+        isolation: isolate;
+      }
+
+      .cls-9, .cls-5, .cls-7 {
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-5, .cls-10 {
+        fill: #000;
+      }
+
+      .cls-10 {
+        font-family: Courier, Courier;
+        font-size: 18px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-6 {
+        fill: #009245;
+      }
+
+      .cls-3 {
+        stroke-dasharray: 0 0 5.9 5.9;
+      }
+    </style>
+  </defs>
+  <circle class="cls-8" cx="59.4" cy="326.3" r="9.3" transform="translate(-271.2 352.9) rotate(-84.3)"/>
+  <circle class="cls-8" cx="140.8" cy="326.3" r="9.3"/>
+  <line class="cls-2" x1="68.7" y1="326.3" x2="125.4" y2="326.3"/>
+  <path class="cls-8" d="M131.4,326.3c-3.1,1.1-6,2.7-8.5,4.7l1.7-4.8-1.7-4.8c2.6,2.1,5.5,3.8,8.5,4.9Z"/>
+  <text class="cls-9" transform="translate(48.5 302.6)"><tspan x="0" y="0">C1</tspan></text>
+  <text class="cls-9" transform="translate(129.8 302.8)"><tspan x="0" y="0">C2</tspan></text>
+  <circle class="cls-8" cx="299.6" cy="326.3" r="9.3"/>
+  <line class="cls-2" x1="150.1" y1="326.3" x2="284.3" y2="326.3"/>
+  <path class="cls-8" d="M290.3,326.3c-3.1,1.1-6,2.7-8.5,4.8l1.7-4.8-1.7-4.8c2.5,2.1,5.4,3.7,8.5,4.8Z"/>
+  <text class="cls-9" transform="translate(290.3 303)"><tspan x="0" y="0">C3</tspan></text>
+  <circle class="cls-8" cx="385.7" cy="326.3" r="9.3"/>
+  <text class="cls-9" transform="translate(376.4 302.6)"><tspan x="0" y="0">C4</tspan></text>
+  <line class="cls-2" x1="309" y1="326.3" x2="370" y2="326.7"/>
+  <path class="cls-8" d="M376.1,326.7c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7-1.7-4.8c2.5,2.1,5.4,3.7,8.5,4.8Z"/>
+  <line class="cls-2" x1="395" y1="326.1" x2="398" y2="326.1"/>
+  <line class="cls-3" x1="403.9" y1="326.1" x2="588.7" y2="327.3"/>
+  <line class="cls-2" x1="591.6" y1="327.4" x2="594.6" y2="327.4"/>
+  <path class="cls-8" d="M600.7,327.4c-3.1,1.1-6,2.7-8.6,4.7l1.8-4.7-1.7-4.8c2.5,2.1,5.4,3.7,8.5,4.8Z"/>
+  <rect class="cls-2" x="90.8" y="218.7" width="200.5" height="32.1"/>
+  <rect class="cls-2" x="140.8" y="250.8" width=".8" height="22.5"/>
+  <circle class="cls-8" cx="609.3" cy="326.8" r="9.3"/>
+  <text class="cls-9" transform="translate(600 303.1)"><tspan x="0" y="0">C5</tspan></text>
+  <rect class="cls-2" x="542.6" y="211.7" width="247.9" height="32.1"/>
+  <rect class="cls-2" x="609.4" y="243.9" width=".8" height="22.5"/>
+  <rect class="cls-1" x="25" y="55.5" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="121.8" y="62.6" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="216.6" y="67.8" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="25" y="33.3" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(66.8 47.7)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(76.9 47.7)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(80.9 47.7)"><tspan x="0" y="0">ipt1.</tspan></text>
+  <text class="cls-7" transform="translate(103.1 47.7)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(109.9 47.7)"><tspan x="0" y="0">y</tspan></text>
+  <rect class="cls-1" x="121.8" y="40.4" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(163.6 54.8)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(173.7 54.8)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(177.6 54.8)"><tspan x="0" y="0">ipt2.</tspan></text>
+  <text class="cls-7" transform="translate(199.9 54.8)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(206.6 54.8)"><tspan x="0" y="0">y</tspan></text>
+  <rect class="cls-1" x="216.6" y="46.3" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(258.4 60.7)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(268.5 60.7)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(272.5 60.7)"><tspan x="0" y="0">ipt3.</tspan></text>
+  <text class="cls-7" transform="translate(294.7 60.7)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(301.5 60.7)"><tspan x="0" y="0">y</tspan></text>
+  <rect class="cls-1" x="493.7" y="50.3" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="590.4" y="57.4" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="685.2" y="62.6" width="132.3" height="123.7"/>
+  <rect class="cls-1" x="493.7" y="28.1" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(535.4 42.5)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(545.6 42.5)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(549.5 42.5)"><tspan x="0" y="0">ipt1.</tspan></text>
+  <text class="cls-7" transform="translate(571.8 42.5)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(578.5 42.5)"><tspan x="0" y="0">y</tspan></text>
+  <rect class="cls-1" x="590.4" y="35.2" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(632.2 49.6)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(642.3 49.6)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(646.3 49.6)"><tspan x="0" y="0">ipt2.</tspan></text>
+  <text class="cls-7" transform="translate(668.5 49.6)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(675.3 49.6)"><tspan x="0" y="0">y</tspan></text>
+  <rect class="cls-1" x="685.2" y="41.1" width="132.3" height="22.2"/>
+  <text class="cls-7" transform="translate(727 55.5)"><tspan x="0" y="0">sc</tspan></text>
+  <text class="cls-7" transform="translate(737.2 55.5)"><tspan x="0" y="0">r</tspan></text>
+  <text class="cls-7" transform="translate(741.1 55.5)"><tspan x="0" y="0">ipt3.</tspan></text>
+  <text class="cls-7" transform="translate(763.4 55.5)"><tspan x="0" y="0">p</tspan></text>
+  <text class="cls-7" transform="translate(770.1 55.5)"><tspan x="0" y="0">y</tspan></text>
+  <text class="cls-5" transform="translate(100.2 239.2)"><tspan x="0" y="0">Renamed old_nane to new_name</tspan></text>
+  <text class="cls-5" transform="translate(550.3 232.9)"><tspan x="0" y="0">Revert “Renamed old_nane to new_name”</tspan></text>
+  <text class="cls-10" transform="translate(429.5 352.8)"><tspan x="0" y="0">git revert C2</tspan></text>
+  <text class="cls-4" transform="translate(33.9 73.8)"><tspan x="0" y="0">def old_name</tspan></text>
+  <text class="cls-6" transform="translate(34.3 89.9)"><tspan x="0" y="0">def new_name</tspan></text>
+  <text class="cls-4" transform="translate(130.7 80.3)"><tspan x="0" y="0">old_name(x)</tspan></text>
+  <text class="cls-6" transform="translate(130.9 96.4)"><tspan x="0" y="0">new_name(x)</tspan></text>
+  <text class="cls-4" transform="translate(223.9 88.4)"><tspan x="0" y="0">old_name(x)</tspan></text>
+  <text class="cls-6" transform="translate(224.1 104.4)"><tspan x="0" y="0">new_name(x)</tspan></text>
+  <text class="cls-6" transform="translate(499.6 86.3)"><tspan x="0" y="0">def old_name</tspan></text>
+  <text class="cls-4" transform="translate(499.9 70.3)"><tspan x="0" y="0">def new_name</tspan></text>
+  <text class="cls-6" transform="translate(596.4 92.8)"><tspan x="0" y="0">old_name(x)</tspan></text>
+  <text class="cls-4" transform="translate(596.5 76.8)"><tspan x="0" y="0">new_name(x)</tspan></text>
+  <text class="cls-6" transform="translate(689.5 100.8)"><tspan x="0" y="0">old_name(x)</tspan></text>
+  <text class="cls-4" transform="translate(689.6 84.8)"><tspan x="0" y="0">new_name(x)</tspan></text>
 </svg>
