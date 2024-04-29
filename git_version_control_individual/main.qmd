@@ -315,6 +315,12 @@ Alternatively, we could have used the following command to explicitly push
 git push origin main
 ```
 
+## File size limit
+
+> GitHub limits the size of files allowed in repositories. If you attempt to add or update a file that is larger than 50 MiB, you will receive a warning from Git. The changes will still successfully push to your repository, but you can consider removing the commit to minimize performance impact. For more information, see "Removing files from a repository's history."
+
+Source: <https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits>
+
 ## The repository history
 
 ### On <i class="fab fa-github"></i> GitHub
