@@ -1,21 +1,18 @@
 ## Integration
 
-- Data integration enables us to combine single-cell RNA-seq experiments
+Data integration enables us to combine single-cell RNA-seq experiments.
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Multiple samples from different
-  + Individuals
-  + Anatomical sites
-  + Species
-  + Technologies (10X vs. DropSeq)
+Multiple samples from different:
+
+- Individuals
+- Anatomical sites
+- Species
+- Technologies (10X vs. DropSeq)
 - Experimental conditions
-  + Control vs. stimulated
-  + Healthy vs. diseased
-  + Genetic WT vs. KO
-- Multiple modalities
-  + Combine scRNA-seq and scATAC-seq
+- Modalities (i.e., data types)
 
 :::
 ::: {.column width="50%"}
