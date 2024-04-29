@@ -183,8 +183,8 @@ knitr::include_graphics("img/git-clone-url.svg")
 But first, create a `git` subdirectory in your personal OBDS directory and change directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-mkdir /var/scratch/$USER/git
-cd /var/scratch/$USER/git
+mkdir /project/$USER/git
+cd /project/$USER/git
 ```
 
 Now, clone your repository into that `git` subdirectory.
