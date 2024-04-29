@@ -39,19 +39,20 @@ knitr::include_graphics("img/merged_vs_integrated.png")
 ## Motivation
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 
-- We aim to keep **biological variation** while removing batch effects
-  + Logistical constraints usually require data to be generated across multiple batches
-  + Processing of batches is subject to uncontrollable technical differences (e.g., operator, reagents)
-  + Resulting in systematic differences in the observed expression in cells from different batches
-  
-- Batch effects are problematic as they can be major drivers of heterogeneity in the data
-  + Masking relevant biological differences
-  + Complicating interpretation of the results
+We aim to keep **biological variation** while removing batch effects.
+
+- Logistical constraints usually require data to be generated across multiple batches.
+- Processing of batches is subject to uncontrollable technical differences (e.g., operator, reagents).
+- Resulting in systematic differences in the observed expression in cells from different batches.
+
+Batch effects are problematic as they can be major drivers of heterogeneity in the data.
+- Masking relevant biological differences
+- Complicating interpretation of the results
 
 :::
-::: {.column width="50%"}
+::: {.column width="40%"}
 
 ```{r}
 #| fig-align: center
@@ -64,7 +65,9 @@ knitr::include_graphics("img/tsne_batch_effect.png")
 :::
 ::::
 
-- But remember, it won’t always make sense to integrate everything!
+::: {style="text-align: center;"}
+But remember, it won’t always make sense to integrate everything!
+:::
 
 ## Panoramic integration
 
