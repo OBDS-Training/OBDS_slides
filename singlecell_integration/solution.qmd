@@ -8,6 +8,7 @@ date: "2024-04-26"
 #| label: load-packages
 #| include: false
 library(Seurat)
+library(SeuratWrappers)
 ```
 
 ## Preamble
@@ -101,3 +102,119 @@ obj <- RunUMAP(obj, dims = 1:30, reduction = "pca", reduction.name = "umap.unint
 # cell type annotations were previously added by Azimuth
 DimPlot(obj, reduction = "umap.unintegrated", group.by = "orig.ident")
 ```
+
+## One-line integration using Seurat v5
+
+Refer to the section [Perform streamlined (one-line) integrative analysis](https://satijalab.org/seurat/articles/seurat5_integration#perform-streamlined-one-line-integrative-analysis) in the Seurat vignette.
+
+- Display the Seurat object one more time before performing any integration.
+
+This summarised view of the Seurat object will be useful to compare with later versions of the object after performing integration using different methods.
+
+```{r}
+obj
+```
+
+- Use `IntegrateLayers()` to perform integration using the `CCAIntegration` method.
+
+**Hint:**
+
+- Set the argument `orig.reduction = "pca"` to specify the dimensionality reduction to use for correction.
+- Set the argument `new.reduction = "integrated.cca"` to specify the name of the new integrated dimensionality reduction result to create.
+- Set the argument `verbose = FALSE` to suppress messages otherwise displayed during the execution of the function.
+
+```{r}
+obj <- IntegrateLayers(
+  object = obj, method = CCAIntegration,
+  orig.reduction = "pca", new.reduction = "integrated.cca",
+  verbose = FALSE
+)
+```
+
+- Display the Seurat object.
+
+```{r}
+obj
+```
+
+**Note:**
+
+You should see a new dimensionality reduction result called `integrated.cca`.
+
+- Use `IntegrateLayers()` to perform integration using the `RPCAIntegration` method.
+
+**Hint:**
+
+- Set the argument `orig.reduction = "pca"` to specify the dimensionality reduction to use for correction.
+- Set the argument `new.reduction = "integrated.rpca"` to specify the name of the new integrated dimensionality reduction result to create.
+- Set the argument `verbose = FALSE` to suppress messages otherwise displayed during the execution of the function.
+
+```{r}
+obj <- IntegrateLayers(
+  object = obj, method = RPCAIntegration,
+  orig.reduction = "pca", new.reduction = "integrated.rpca",
+  verbose = FALSE
+)
+```
+
+- Display the Seurat object.
+
+```{r}
+obj
+```
+
+**Note:**
+
+You should see a new dimensionality reduction result called `integrated.rpca`.
+
+- Use `IntegrateLayers()` to perform integration using the `HarmonyIntegration` method.
+
+**Hint:**
+
+- Set the argument `orig.reduction = "pca"` to specify the dimensionality reduction to use for correction.
+- Set the argument `new.reduction = "harmony"` to specify the name of the new integrated dimensionality reduction result to create.
+- Set the argument `verbose = FALSE` to suppress messages otherwise displayed during the execution of the function.
+
+```{r}
+obj <- IntegrateLayers(
+  object = obj, method = HarmonyIntegration,
+  orig.reduction = "pca", new.reduction = "harmony",
+  verbose = FALSE
+)
+```
+
+- Display the Seurat object.
+
+```{r}
+obj
+```
+
+**Note:**
+
+You should see a new dimensionality reduction result called `harmony`.
+
+- Use `IntegrateLayers()` to perform integration using the `FastMNNIntegration` method.
+
+**Hint:**
+
+- This method requires the package `SeuratWrappers`.
+- Set the argument `new.reduction = "integrated.mnn"` to specify the name of the new integrated dimensionality reduction result to create.
+- Set the argument `verbose = FALSE` to suppress messages otherwise displayed during the execution of the function.
+
+```{r}
+obj <- IntegrateLayers(
+  object = obj, method = FastMNNIntegration,
+  new.reduction = "integrated.mnn",
+  verbose = FALSE
+)
+```
+
+- Display the Seurat object.
+
+```{r}
+obj
+```
+
+**Note:**
+
+You should see a new dimensionality reduction result called `integrated.mnn`.
