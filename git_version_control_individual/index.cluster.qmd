@@ -3,7 +3,7 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: 'Genomics on the Linux command Line'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-01-17 (updated: `r Sys.Date()`)"
+date: "2024-05-01 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
