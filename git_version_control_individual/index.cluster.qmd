@@ -3,7 +3,7 @@ title: 'Version control using <i class="fab fa-git"></i> and <i class="fab fa-gi
 subtitle: 'Genomics on the Linux command Line'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-01-17 (updated: `r Sys.Date()`)"
+date: "2024-05-01 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -75,6 +75,34 @@ More concrete and measurable outputs.
 - A [<i class="fab fa-github"></i> GitHub](https://github.com/) account.
 - An account on the teaching cluster.
 
+## Github special packages for academics
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Student Developer Pack
+
+- Variety of tools and services to help students develop their coding skills.
+- Free access to various developer tools, cloud services, and learning resources from GitHub's partners
+- [GitHub Pro](https://docs.github.com/en/get-started/learning-about-github/githubs-plans#github-pro),
+  [AWS Educate](https://aws.amazon.com/education/awseducate/),
+  [JetBrains IDEs](https://www.jetbrains.com/ides/),
+  [Namecheap](https://www.namecheap.com/), etc.
+
+Students can apply for this pack using their student status verification.
+:::
+
+::: {.column width="50%"}
+#### Teacher Toolbox
+
+- Resources to help teachers effectively manage and deliver courses related to coding.
+- [GitHub Classroom](https://classroom.github.com/), which allows teachers to create assignments, distribute them to students, and track their progress.
+- Access educational resources, training materials, and support to enhance their teaching methods
+
+Verification of teacher status is typically required for accessing these resources.
+:::
+
+::::
 ## Set up
 
 - Connect to the VPN.
@@ -155,8 +183,8 @@ knitr::include_graphics("img/git-clone-url.svg")
 But first, create a `git` subdirectory in your personal OBDS directory and change directory.
 
 ```{bash, eval=FALSE, echo=TRUE}
-mkdir /var/scratch/$USER/git
-cd /var/scratch/$USER/git
+mkdir /project/$USER/git
+cd /project/$USER/git
 ```
 
 Now, clone your repository into that `git` subdirectory.
