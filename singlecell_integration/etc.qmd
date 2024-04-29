@@ -302,10 +302,10 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 
 ## Evaluating integration
 
-- Quantitative evaluation of two independent mouse cell atlas datasets (Tran Ang, et al., 2020).
+- Quantitative evaluation of two independent mouse cell atlas datasets.
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="40%"}
 
 - Metrics
   + ASW (average silhouette width)
@@ -318,11 +318,11 @@ knitr::include_graphics("img/evaluation_integration_1.png")
   + Higher kBET is "better".
 
 :::
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ```{r}
 #| fig-align: center
-#| out-height: 300px
+#| out-height: 250px
 #| out-width: 600px
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1850-9
 knitr::include_graphics("img/evaluation_integration_1.png")
