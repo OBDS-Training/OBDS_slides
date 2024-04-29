@@ -9,6 +9,7 @@ date: "2024-04-26"
 #| include: false
 library(Seurat)
 library(SeuratWrappers)
+library(patchwork)
 ```
 
 ## Preamble
@@ -197,7 +198,7 @@ You should see a new dimensionality reduction result called `harmony`.
 
 **Hint:**
 
-- This method requires the package `SeuratWrappers`.
+- The `FastMNNIntegration` method requires the package `SeuratWrappers`.
 - Set the argument `new.reduction = "integrated.mnn"` to specify the name of the new integrated dimensionality reduction result to create.
 - Set the argument `verbose = FALSE` to suppress messages otherwise displayed during the execution of the function.
 
@@ -219,3 +220,52 @@ obj
 
 You should see a new dimensionality reduction result called `integrated.mnn`.
 
+## Compare and evaluate integration methods
+
+At this point, you have applied a number of different integration methods to the data set, each of them storing their own integrated dimensionality reduction results under a different name in the same Seurat object.
+
+This gives you the opportunity to compare the various methods to each other, which is good practice to make sure that you end up using a method that is suitable for your own data set.
+
+In a simpler workflow, you could run just one method and carry on with it.
+However, you wouldn't know how well this method perform without comparing it to another method.
+
+- Use `FindNeighbors()` and `FindClusters()` to compute cluster labels on the data integrated using the CCA method.
+
+**Hint:**
+
+- For `FindNeighbors()`, set the arguments `reduction = "integrated.cca"` and `dims = 1:30`.
+- For `FindClusters()`, set the arguments `resolution = 2` and `cluster.name = "cca_clusters"`.
+
+```{r}
+obj <- FindNeighbors(obj, reduction = "integrated.cca", dims = 1:30)
+obj <- FindClusters(obj, resolution = 2, cluster.name = "cca_clusters")
+```
+
+- Use `RunUMAP()` and `DimPlot()` to compute and display the UMAP layout of the data integrated using CCA coloured twice: once coloured by experiment, once coloured by cluster label.
+
+**Hint:**
+
+- For `FindNeighbors()`, set the arguments `reduction = "integrated.cca"`, `dims = 1:30`, and `reduction.name = "umap.cca"`.
+- For `DimPlot()`, set the arguments `reduction = "umap.cca"`, `group.by = c("orig.ident", "cca_clusters")`, `combine = FALSE`, and `label.size = 2`.
+- Assign the output of `DimPlot()` to a new object called `p1`, to capture it for displaying it later.
+
+```{r}
+obj <- RunUMAP(obj, reduction = "integrated.cca", dims = 1:30, reduction.name = "umap.cca")
+p1 <- DimPlot(
+  obj,
+  reduction = "umap.cca",
+  group.by = c("orig.ident", "cca_clusters"),
+  combine = FALSE,
+  label.size = 2
+)
+```
+
+- Use `wrap_plots()` to display the object `p1`.
+
+**Hint:**
+
+- The `wrap_plots()` function is implemented in the package `patchwork`.
+
+```{r}
+wrap_plots(p1)
+```
