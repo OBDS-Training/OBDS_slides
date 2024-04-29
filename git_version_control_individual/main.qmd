@@ -410,13 +410,14 @@ index 0000000..e69de29
 
 The `git diff` sub-command can be used to compare two states of the repository.
 
-It is possible to compare all the changes between a reference and a target commits using the syntax 
+It is possible to compare all the changes between two commits using the syntax:
 
 ```{bash, eval=FALSE, echo=TRUE}
-git diff reference_commit target_commit
+git diff old_commit new_commit
 ```
 
 - The order of commit identifiers control the changes that are shown as "added" or "removed".
+- Typically, the older commit is given first, so that "additions" were added in the more recent commit relative to the older commit.
 
 It is also possible to compare the current state of files in the repository - including uncommitted changes - to any commit of the repository.
 
