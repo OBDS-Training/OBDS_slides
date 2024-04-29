@@ -193,17 +193,18 @@ knitr::include_graphics("img/integration_with_harmony.png")
 ```
 `r Citet(bib, "korsunsky_fast_2019")`
 
-## Integration using Seurat v3 (CCA)
+## Integration using CCA (Seurat v2, 2018)
 
 :::: {.columns}
+
 ::: {.column width="50%"}
-
-- Seurat v3 identifies correspondences between cells in different experiments.
-- These “anchors” can be used to harmonize datasets into a single reference.
-- Reference labels and data can be projected onto query datasets.
-- Extends beyond RNA-seq to single-cell protein, chromatin, and spatial data.
-
+- Learns a shared gene correlation structure that is conserved between the data sets.
+- As an optional step, it identifies individual cells that cannot be well described by this shared structure.
+- Aligns the data sets into a conserved low-dimensional space, using nonlinear 'warping' algorithms to normalize for differences in feature scale.
+- Proceeds with an integrated downstream analysis.
+- Performs comparative analysis on aligned subpopulations between the data sets.
 :::
+
 ::: {.column width="50%"}
 
 ```{r}
@@ -213,23 +214,40 @@ knitr::include_graphics("img/integration_with_harmony.png")
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
 knitr::include_graphics("img/integration-seurat-cca.jpg")
 ```
-`r Citet(bib, "stuart_comprehensive_2019")`
+`r Citet(bib, "butler_2018_integrating")`
 
 :::
+
 ::::
 
 ## "Assembly" integration in Seurat v3
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Seurat v3 identifies correspondences between cells in different experiments.
+- These “anchors” can be used to harmonize datasets into a single reference.
+- Reference labels and data can be projected onto query datasets.
+- Extends beyond RNA-seq to single-cell protein, chromatin, and spatial data.
+:::
+
+::: {.column width="50%"}
 ```{r}
 #| fig-align: center
-#| out-height: 400px
-#| out-width: 700px
+#| out-height: 325px
+#| out-width: 600px
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
 knitr::include_graphics("img/assembly_integration_Seuratv3.png")
 ```
 `r Citet(bib, "stuart_comprehensive_2019")`
+:::
+::::
+
+### Features
 
 :::: {.columns}
+
 ::: {.column width="50%"}
 
 - Filter out anchors whose correspondence is unsupported based on untransformed data
