@@ -355,6 +355,8 @@ wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
 - Use `wrap_plots()` to display the plots stored in all the objects `plots_unintegrated`, `plots_cca`, `plots_harmony`, and `plots_mnn`, in a grid of four columns.
 
 ```{r}
+#| fig-width: 14
+#| fig-height: 7
 wrap_plots(c(plots_unintegrated, plots_cca, plots_harmony, plots_mnn), ncol = 4, byrow = FALSE)
 ```
 
