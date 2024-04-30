@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell droplet quality control"
 author: "Kevin Rue-Albrecht"
-date: "05/10/2022"
+date: "19/03/2024"
 output: html_document
 ---
 
@@ -95,7 +95,7 @@ plot_data <- tibble(
 )
 ggplot(plot_data, aes(empty_droplet, MT_percent)) +
   geom_jitter(width = 0.1, height = 0) +
-  scale_y_continuous(trans = "log10") +
+  #scale_y_continuous(trans = "log10") +
   cowplot::theme_cowplot()
 ```
 
