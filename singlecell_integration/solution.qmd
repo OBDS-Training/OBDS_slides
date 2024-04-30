@@ -231,14 +231,20 @@ You should see a new dimensionality reduction result called `integrated.mnn`.
 
 ## Compare and evaluate integration methods
 
-### Clustering and dimensionality reduction
-
 At this point, you have applied a number of different integration methods to the data set, each of them storing their own integrated dimensionality reduction results under a different name in the same Seurat object.
 
 This gives you the opportunity to compare the various methods to each other, which is good practice to make sure that you end up using a method that is suitable for your own data set.
 
 In a simpler workflow, you could run just one method and carry on with it.
 However, you wouldn't know how well this method perform without comparing it to another method.
+
+### Clustering and dimensionality reduction
+
+One way of rapidly visualising and assessing the overall performance of integration methods is to feed their output into a downstream workflow that consists of clustering and dimensionality reduction.
+
+In turn, those results can be visualised as scatter plots in reduced dimension coloured by batch and cluster labels.
+A good integration method should bring biologically similar cells from various batches together in reduced dimensions, while keeping biologically distinct cell types apart.
+However, expectations will largely depend on the nature of the experiment and the cellular composition of the batches being integrated, for instance.
 
 - Use `FindNeighbors()` and `FindClusters()` to compute cluster labels on the data integrated using the CCA method.
 
@@ -361,3 +367,38 @@ wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
 #| fig-height: 7
 wrap_plots(c(plots_unintegrated, plots_cca, plots_harmony, plots_mnn), ncol = 4, byrow = FALSE)
 ```
+
+### Marker gene expression
+
+Another angle from which integration results can be inspected is the expression of reliable marker genes in the clusters identified downstream of each integration method.
+
+However, note that those clusters are not purely direct results of the integration methods, but in this case also depend on the parameters of `FindNeighbors()` and `FindClusters()`, which may complicate their fair comparison and require some level of fine-tuning to refine the clustering results.
+
+- Use `VlnPlot()`, `NoLegend()`, and `ggtitle()` to visualise the expression of the gene 'CD8A' across each set of clusters (after each integration method as well as the unintegrated clusters).
+
+**Hint:**
+
+- 
+plots_unintegrated, plots_cca, plots_harmony, plots_mnn
+```{r}
+#| fig-width: 7
+#| fig-height: 3
+vln_unintegrated <- VlnPlot(
+  obj,
+  features = "CD8A", group.by = "unintegrated_clusters"
+) + NoLegend() + ggtitle("CD8A - Unintegrated Clusters")
+vln_cca <- VlnPlot(
+  obj, "CD8A",
+  group.by = "cca_clusters"
+) + NoLegend() + ggtitle("CD8A - CCA Clusters")
+vln_harmony <- VlnPlot(
+  obj, "CD8A",
+  group.by = "harmony_clusters"
+) + NoLegend() + ggtitle("CD8A - Harmony Clusters")
+vln_mnn <- VlnPlot(
+  obj, "CD8A",
+  group.by = "mnn_clusters"
+) + NoLegend() + ggtitle("CD8A - MNN Clusters")
+vln_unintegrated | vln_cca | vln_harmony | vln_mnn
+```
+
