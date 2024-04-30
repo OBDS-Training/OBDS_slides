@@ -96,12 +96,21 @@ obj <- RunUMAP(obj, dims = 1:30, reduction = "pca", reduction.name = "umap.unint
 
 **Hint:**
 
-- Use the argument `group.by = "orig.ident"` to colour by experiment.
+- Use the argument `group.by = c("orig.ident", "unintegrated_clusters")` to colour by experiment and by cluster without integration.
+- Use the argument `combine = FALSE` to receive a list of `ggplot` objects rather than a combined plot.
+- Assign the output of `DimPlot()` to an object called `plots_unintegrated`, to capture it for displaying it again later.
+- Use `wrap_plots()` -- from the `cowplot` package -- to display the list of plots in `plots_unintegrated`.
 
 ```{r}
 # visualize by batch and cell type annotation
 # cell type annotations were previously added by Azimuth
-DimPlot(obj, reduction = "umap.unintegrated", group.by = "orig.ident")
+plots_unintegrated <- DimPlot(
+  obj,
+  reduction = "umap.unintegrated",
+  group.by = c("orig.ident", "unintegrated_clusters"),
+  combine = FALSE
+)
+wrap_plots(plots_unintegrated)
 ```
 
 ## One-line integration using Seurat v5
@@ -247,11 +256,11 @@ obj <- FindClusters(obj, resolution = 2, cluster.name = "cca_clusters")
 
 - For `FindNeighbors()`, set the arguments `reduction = "integrated.cca"`, `dims = 1:30`, and `reduction.name = "umap.cca"`.
 - For `DimPlot()`, set the arguments `reduction = "umap.cca"`, `group.by = c("orig.ident", "cca_clusters")`, `combine = FALSE`, and `label.size = 2`.
-- Assign the output of `DimPlot()` to a new object called `p1`, to capture it for displaying it later.
+- Assign the output of `DimPlot()` to a new object called `plots_cca`, to capture it for displaying it later.
 
 ```{r}
 obj <- RunUMAP(obj, reduction = "integrated.cca", dims = 1:30, reduction.name = "umap.cca")
-p1 <- DimPlot(
+plots_cca <- DimPlot(
   obj,
   reduction = "umap.cca",
   group.by = c("orig.ident", "cca_clusters"),
@@ -260,12 +269,92 @@ p1 <- DimPlot(
 )
 ```
 
-- Use `wrap_plots()` to display the object `p1`.
+- Use `wrap_plots()` to display the plots stored in the object `plots_cca`.
 
 **Hint:**
 
 - The `wrap_plots()` function is implemented in the package `patchwork`.
 
 ```{r}
-wrap_plots(p1)
+wrap_plots(plots_cca)
 ```
+
+- Use `wrap_plots()` to display the plots in the object `plots_cca` alongside those in the object `plots_unintegrated`.
+
+**Hint:**
+
+- Use `c()` to combine the plots from the two objects.
+- Use the argument `ncol = 2` to arrange the plots in a grid of two columns (one column for each object).
+- Use the argument `byrow = FALSE` to fill the grid of plots by column (one column for each object).
+
+```{r}
+wrap_plots(c(plots_unintegrated, plots_cca), ncol = 2, byrow = FALSE)
+```
+
+- Repeat the process of clustering and plotting for the other integration methods.
+
+**Hint:**
+
+- Use `FindNeighbors()` and `FindClusters()` to compute cluster labels on the data integrated using the CCA method.
+- Use `RunUMAP()` and `DimPlot()` to compute and display the UMAP layout of the data integrated using CCA coloured twice: once coloured by experiment, once coloured by cluster label.
+- Assign each output of `DimPlot()` to a new, unique, object name.
+- Use `wrap_plots()` to display the plots in each object alongside those in the object `plots_unintegrated`.
+
+```{r}
+obj <- FindNeighbors(obj, reduction = "integrated.rpca", dims = 1:30)
+obj <- FindClusters(obj, resolution = 2, cluster.name = "rpca_clusters")
+obj <- RunUMAP(obj, reduction = "integrated.rpca", dims = 1:30, reduction.name = "umap.rpca")
+plots_rpca <- DimPlot(
+  obj,
+  reduction = "umap.rpca",
+  group.by = c("orig.ident", "rpca_clusters"),
+  combine = FALSE, label.size = 2
+)
+wrap_plots(c(plots_unintegrated, plots_rpca), ncol = 2, byrow = FALSE)
+```
+
+```{r}
+obj <- FindNeighbors(obj, reduction = "harmony", dims = 1:30)
+obj <- FindClusters(obj, resolution = 2, cluster.name = "harmony_clusters")
+obj <- RunUMAP(obj, reduction = "harmony", dims = 1:30, reduction.name = "umap.harmony")
+plots_harmony <- DimPlot(
+  obj,
+  reduction = "umap.harmony",
+  group.by = c("orig.ident", "harmony_clusters"),
+  combine = FALSE, label.size = 2
+)
+wrap_plots(c(plots_unintegrated, plots_harmony), ncol = 2, byrow = FALSE)
+```
+
+```{r}
+obj <- FindNeighbors(obj, reduction = "integrated.mnn", dims = 1:30)
+obj <- FindClusters(obj, resolution = 2, cluster.name = "mnn_clusters")
+obj <- RunUMAP(obj, reduction = "integrated.mnn", dims = 1:30, reduction.name = "umap.mnn")
+plots_mnn <- DimPlot(
+  obj,
+  reduction = "umap.mnn",
+  group.by = c("orig.ident", "mnn_clusters"),
+  combine = FALSE, label.size = 2
+)
+wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
+```
+
+```{r}
+obj <- FindNeighbors(obj, reduction = "integrated.mnn", dims = 1:30)
+obj <- FindClusters(obj, resolution = 2, cluster.name = "mnn_clusters")
+obj <- RunUMAP(obj, reduction = "integrated.mnn", dims = 1:30, reduction.name = "umap.mnn")
+plots_mnn <- DimPlot(
+  obj,
+  reduction = "umap.mnn",
+  group.by = c("orig.ident", "mnn_clusters"),
+  combine = FALSE, label.size = 2
+)
+wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
+```
+
+- Use `wrap_plots()` to display the plots stored in all the objects `plots_unintegrated`, `plots_cca`, `plots_harmony`, and `plots_mnn`, in a grid of four columns.
+
+```{r}
+wrap_plots(c(plots_unintegrated, plots_cca, plots_harmony, plots_mnn), ncol = 4, byrow = FALSE)
+```
+
