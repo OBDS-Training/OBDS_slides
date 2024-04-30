@@ -359,4 +359,3 @@ wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
 #| fig-height: 7
 wrap_plots(c(plots_unintegrated, plots_cca, plots_harmony, plots_mnn), ncol = 4, byrow = FALSE)
 ```
-
