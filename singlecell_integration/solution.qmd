@@ -231,6 +231,8 @@ You should see a new dimensionality reduction result called `integrated.mnn`.
 
 ## Compare and evaluate integration methods
 
+### Clustering and dimensionality reduction
+
 At this point, you have applied a number of different integration methods to the data set, each of them storing their own integrated dimensionality reduction results under a different name in the same Seurat object.
 
 This gives you the opportunity to compare the various methods to each other, which is good practice to make sure that you end up using a method that is suitable for your own data set.
