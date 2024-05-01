@@ -386,7 +386,7 @@ However, note that those clusters are not purely direct results of the integrati
 - Use `+ NoLegend()` to remove legends from the plot produced by `VlnPlot()`.
 - Use `+ ggtitle()` to add a unique title to each plot produced by `VlnPlot()`.
 - Note that `ggtitle()` is implemented in the package `ggplot2`.
-- Use the `|` operator (from the `patchwork` package) to pack all the plots into a single line (see `?plot_arithmetic`).
+- Use the `|` operator (from the `patchwork` package) to pack all the plots into a single line (see `?plot_arithmetic` and [Stacking and packing](https://patchwork.data-imaginist.com/articles/guides/assembly.html#stacking-and-packing)).
 
 ```{r}
 #| fig-width: 12
@@ -417,5 +417,18 @@ vln_mnn <- VlnPlot(
   NoLegend() +
   ggtitle("CD8A - MNN Clusters")
 vln_unintegrated | vln_cca | vln_harmony | vln_mnn
+```
+
+- Use `DimPlot()` to display the set of clusters obtained using CCA integration on the UMAP layout obtained using each of the integration methods.
+
+```{r}
+#| fig-width: 12
+#| fig-height: 3
+umap_unintegrated_cca <- DimPlot(obj, reduction = "umap.unintegrated", group.by = c("cca_clusters"))
+umap_cca_cca <- DimPlot(obj, reduction = "umap.cca", group.by = c("cca_clusters"))
+umap_rpca_cca <- DimPlot(obj, reduction = "umap.rpca", group.by = c("cca_clusters"))
+umap_harmony_cca <- DimPlot(obj, reduction = "umap.harmony", group.by = c("cca_clusters"))
+umap_mnn_cca <- DimPlot(obj, reduction = "umap.mnn", group.by = c("cca_clusters"))
+umap_unintegrated_cca | umap_cca_cca | umap_rpca_cca | umap_harmony_cca | umap_mnn_cca
 ```
 
