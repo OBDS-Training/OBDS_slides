@@ -85,9 +85,9 @@ Create a Seurat object from the UMI count matrix made of the common barcodes.
 
 ```{r}
 seurat_citeseq <- CreateSeuratObject(
-  
-  
-  
+  counts = ,
+  min.cells = ,
+  min.features = 
 )
 ```
 
@@ -101,9 +101,9 @@ Apply the sequence of functions `NormalizeData()`, `FindVariableFeatures()`, and
 - Scale data only for the variable features.
 
 ```{r}
-seurat_citeseq <- 
-seurat_citeseq <- 
-seurat_citeseq <- 
+seurat_citeseq <- NormalizeData(seurat_citeseq)
+seurat_citeseq <- FindVariableFeatures(seurat_citeseq, selection.method = "vst")
+seurat_citeseq <- ScaleData(seurat_citeseq, features = VariableFeatures(seurat_citeseq))
 ```
 
 ### Add HTO assay
@@ -113,7 +113,7 @@ Furthermore, subset the features only to HTO tags.
 Lastly, transpose the data so that HTO tags are rows and barcodes are columns.
 
 ```{r}
-hto_data_common <- 
+hto_data_common <- t(hto_data[colnames(seurat_citeseq), 1:12])
 hto_data_common[, 1:4]
 ```
 
@@ -125,7 +125,7 @@ Display the updated Seurat object.
 - Add the HTO assay under the name 'HTO'.
 
 ```{r}
-
+seurat_citeseq[["HTO"]] <- CreateAssayObject(counts =  )
 seurat_citeseq
 ```
 
@@ -142,9 +142,9 @@ Use `NormalizeData()` to apply the CLR (centered log ratio) transformation to th
 DefaultAssay(seurat_citeseq) <- 
 seurat_citeseq <- NormalizeData(
   object = seurat_citeseq,
-  
-  
-  
+  assay = ,
+  normalization.method = ,
+  margin =
 )
 seurat_citeseq
 ```
@@ -166,8 +166,8 @@ Use the function `HTODemux()` to estimate the original sample of each cell.
 ```{r}
 seurat_citeseq <- HTODemux(
   object = seurat_citeseq,
-  
-  
+  assay = "HTO",
+  positive.quantile = 
 )
 seurat_citeseq
 ```
@@ -197,9 +197,9 @@ Use the function `RidgePlot()` to visualise the distribution of signal for each 
 Idents(seurat_citeseq) <- 
 RidgePlot(
   object = seurat_citeseq,
-  
-  
-  
+  assay = "HTO",
+  features = ,
+  ncol = 2
 )
 ```
 
@@ -213,13 +213,13 @@ Use the function `FeatureScatter()` to visualise the signal of two different HTO
   Look at the help page to explain why those values are desirable.
 
 ```{r}
-DefaultAssay(seurat_citeseq) <- "HTO"
+DefaultAssay(seurat_citeseq) <- 
 FeatureScatter(
   object = seurat_citeseq,
-  
-  
-  
-  
+  feature1 = ,
+  feature2 = ,
+  group.by = ,
+  #span = FALSE, smooth = FALSE, shuffle = TRUE
 )
 ```
 
@@ -234,10 +234,10 @@ Use the function `VlnPlot()` to visualise the distribution of metadata (e.g., 'n
 Idents(seurat_citeseq) <- 
 VlnPlot(
   object = seurat_citeseq,
-  
-  
-  
-  
+  features = ,
+  pt.size = ,
+  log = ,
+  split.by = 
 )
 ```
 
@@ -245,7 +245,7 @@ Use the function `HTOHeatmap()` to visualise the signal of each HTO tag in each 
 
 ```{r}
 #| fig-height: 8
-HTOHeatmap( )
+HTOHeatmap(seurat_citeseq, assay = "HTO")
 ```
 
 **How do interpret this heat map?**
@@ -269,20 +269,27 @@ Produce a UMAP based on the RNA assay, coloured by the cell line of the assigned
 
 ```{r}
 # Set the default assay
-DefaultAssay(seurat_citeseq_singlets) <- 
+DefaultAssay(seurat_citeseq_singlets) <- "RNA"
 # Typical workflow using the RNA assay
 seurat_citeseq_singlets <- FindVariableFeatures(
   object = seurat_citeseq_singlets,
-  
+  selection.method = "vst"
 )
 seurat_citeseq_singlets <- ScaleData(
   object = seurat_citeseq_singlets,
-  
+  features = VariableFeatures(seurat_citeseq_singlets)
 )
-seurat_citeseq_singlets <- RunPCA( )
-# Replace '-A', '-B', and '-C' by nothing, i.e. remove those suffixes
-seurat_citeseq_singlets[["cell_line"]] <- str_replace( )
-Idents(seurat_citeseq_singlets) <- 
+seurat_citeseq_singlets <- RunPCA(
+  object = seurat_citeseq_singlets,
+  reduction.name = "hto_pca")
+seurat_citeseq_singlets <- RunUMAP(
+  object = seurat_citeseq_singlets,
+  dims = 1:12,
+  reduction.name = "hto_umap",
+  reduction = "hto_pca")
+# Make a new column of metadata identifying the cell line for each cell
+seurat_citeseq_singlets[["cell_line"]] <- str_replace(seurat_citeseq_singlets$HTO_classification, "-[ABC]", "")
+Idents(seurat_citeseq_singlets) <- "cell_line"
 # Plot
-UMAPPlot( )
+DimPlot(seurat_citeseq_singlets, reduction = "hto_umap")
 ```
