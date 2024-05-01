@@ -10,6 +10,7 @@ date: "2024-04-26"
 library(Seurat)
 library(SeuratWrappers)
 library(patchwork)
+library(ggplot2)
 ```
 
 ## Preamble
@@ -378,27 +379,42 @@ However, note that those clusters are not purely direct results of the integrati
 
 **Hint:**
 
-- 
+- Use `VlnPlot()` once for each set of clusters: 'unintegrated_clusters', 'cca_clusters', 'harmony_clusters', 'mnn_clusters'.
+- Use the argument `features = "CD8A"` to specify the name of the gene for which to visualise the expression level on the Y-axis.
+- Use the argument `group.by =` to specify the set of clusters to visualise in each plot.
+- Use `+ NoLegend()` to remove legends from the plot produced by `VlnPlot()`.
+- Use `+ ggtitle()` to add a unique title to each plot produced by `VlnPlot()`.
+- Note that `ggtitle()` is implemented in the package `ggplot2`.
+
 plots_unintegrated, plots_cca, plots_harmony, plots_mnn
 ```{r}
-#| fig-width: 7
+#| fig-width: 10
 #| fig-height: 3
 vln_unintegrated <- VlnPlot(
   obj,
-  features = "CD8A", group.by = "unintegrated_clusters"
-) + NoLegend() + ggtitle("CD8A - Unintegrated Clusters")
+  features = "CD8A",
+  group.by = "unintegrated_clusters"
+) +
+  NoLegend() +
+  ggtitle("CD8A - Unintegrated Clusters")
 vln_cca <- VlnPlot(
   obj, "CD8A",
   group.by = "cca_clusters"
-) + NoLegend() + ggtitle("CD8A - CCA Clusters")
+) +
+  NoLegend() +
+  ggtitle("CD8A - CCA Clusters")
 vln_harmony <- VlnPlot(
   obj, "CD8A",
   group.by = "harmony_clusters"
-) + NoLegend() + ggtitle("CD8A - Harmony Clusters")
+) +
+  NoLegend() +
+  ggtitle("CD8A - Harmony Clusters")
 vln_mnn <- VlnPlot(
   obj, "CD8A",
   group.by = "mnn_clusters"
-) + NoLegend() + ggtitle("CD8A - MNN Clusters")
+) +
+  NoLegend() +
+  ggtitle("CD8A - MNN Clusters")
 vln_unintegrated | vln_cca | vln_harmony | vln_mnn
 ```
 
