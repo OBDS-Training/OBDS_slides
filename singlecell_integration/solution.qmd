@@ -419,7 +419,23 @@ vln_mnn <- VlnPlot(
 vln_unintegrated | vln_cca | vln_harmony | vln_mnn
 ```
 
+### Visualising information combined across integration methods
+
+All of the information produced by the various integration methods being stored in the same Seurat object, it is possible to produce figures that visualise information combined across integration methods.
+
+For instance, the clustering results obtained using integration methods may be used to colour scatter plots of cells in dimensionality reduction results produced by any of the other integration methods, including unintegrated data.
+
+Conversely, the dimensionality reduction result obtained using one of the integration methods may be coloured by the set of clustering results obtained by each of the integration methods.
+
+This can be used to visually assess the agreement between the various integration methods, using dimensionality reduction as a proxy for clustering for one integration method, and colouring for the other integration method.
+
 - Use `DimPlot()` to display the set of clusters obtained using CCA integration on the UMAP layout obtained using each of the integration methods.
+
+**Hint:**
+
+- Use `Idents()` to set the identity of cells to 'cca_clusters'.
+- Use `DimPlot()` once for each UMAP layout: 'umap.unintegrated', 'umap.cca', 'umap.rpca', 'umap.harmony', and 'umap.mnn'.
+- Assign each output of `DimPlot()` to a new unique object name, to capture it for displaying it again later.
 
 ```{r}
 #| fig-width: 12
@@ -431,4 +447,3 @@ umap_harmony_cca <- DimPlot(obj, reduction = "umap.harmony", group.by = c("cca_c
 umap_mnn_cca <- DimPlot(obj, reduction = "umap.mnn", group.by = c("cca_clusters"))
 umap_unintegrated_cca | umap_cca_cca | umap_rpca_cca | umap_harmony_cca | umap_mnn_cca
 ```
-
