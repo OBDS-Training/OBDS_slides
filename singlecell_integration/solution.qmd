@@ -380,13 +380,14 @@ However, note that those clusters are not purely direct results of the integrati
 **Hint:**
 
 - Use `VlnPlot()` once for each set of clusters: 'unintegrated_clusters', 'cca_clusters', 'harmony_clusters', 'mnn_clusters'.
+- Assign each output of `VlnPlot()` to a new unique object name, to capture it for displaying it again later.
 - Use the argument `features = "CD8A"` to specify the name of the gene for which to visualise the expression level on the Y-axis.
 - Use the argument `group.by =` to specify the set of clusters to visualise in each plot.
 - Use `+ NoLegend()` to remove legends from the plot produced by `VlnPlot()`.
 - Use `+ ggtitle()` to add a unique title to each plot produced by `VlnPlot()`.
 - Note that `ggtitle()` is implemented in the package `ggplot2`.
+- Use the `|` operator (from the `patchwork` package) to pack all the plots into a single line (see `?plot_arithmetic`).
 
-plots_unintegrated, plots_cca, plots_harmony, plots_mnn
 ```{r}
 #| fig-width: 12
 #| fig-height: 3
