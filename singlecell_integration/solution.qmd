@@ -388,7 +388,7 @@ However, note that those clusters are not purely direct results of the integrati
 
 plots_unintegrated, plots_cca, plots_harmony, plots_mnn
 ```{r}
-#| fig-width: 10
+#| fig-width: 12
 #| fig-height: 3
 vln_unintegrated <- VlnPlot(
   obj,
