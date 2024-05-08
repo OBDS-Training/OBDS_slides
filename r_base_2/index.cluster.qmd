@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to base <i class="fab fa-r-project"></i> -- Day 2'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht, Liezel Tamon, Charlie George"
+author: "Kevin Rue-Albrecht, Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2024-05-08 (updated: `r Sys.Date()`)"
 date-format: long
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht, Liezel Tamon, Charlie George -- Introduction to base <i class="fab fa-r-project"></i> -- Day 2
+    footer: Kevin Rue-Albrecht, Liezel Tamon -- Introduction to base <i class="fab fa-r-project"></i> -- Day 2
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
