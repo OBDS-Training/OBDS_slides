@@ -228,54 +228,12 @@ metadata(demo_granges)
 
 ::::
 
-## Bioconductor has its own DataFrame class
-
-:::: {.columns}
-
-::: {.column width="50%"}
-A Bioconductor `DataFrame` is constructed like a base R `data.frame`.
-
-```{r}
-#| echo: true
-library(S4Vectors)
-demo_DataFrame <- DataFrame(
-    column1 = c("A", "B"),
-    column2 = c(1, 2)
-)
-demo_DataFrame
-```
-:::
-
-::: {.column width="50%"}
-However, a `DataFrame` can have additional metadata columns.
-
-```{r}
-#| echo: true
-mcols(demo_DataFrame) <- DataFrame(
-  column_type = c("character", "numeric")
-)
-mcols(demo_DataFrame)
-```
-:::
-
-::::
-
-```{r}
-#| fig-align: center
-#| out-height: 175px
-knitr::include_graphics("img/dataframe-mcols.svg")
-```
-
-::: {.notes}
-- Note how row names are automatically set in the metadata, to the solumn names of the main `DataFrame`.
-:::
-
 ## BiocIO
 
 TODO
 
-This used to be a slide about rtracklayer.
-The `import()` function is now hosted in BiocIO.
+This used to be a slide about `r BiocStyle::Biocpkg("rtracklayer")`.
+The `import()` function is now hosted in `r BiocStyle::Biocpkg("BiocIO")`.
 
 ## Exercise
 
