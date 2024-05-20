@@ -3,7 +3,7 @@ title: 'Introduction to Bioconductor'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2023-10-03 (updated: `r Sys.Date()`)"
+date: "2024-05-20 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 

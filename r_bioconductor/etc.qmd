@@ -270,34 +270,19 @@ knitr::include_graphics("img/dataframe-mcols.svg")
 - Note how row names are automatically set in the metadata, to the solumn names of the main `DataFrame`.
 :::
 
-## rtracklayer
+## BiocIO
 
-:::: {.columns}
+TODO
 
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-#| out-height: 400px
-#| out-width: 350px
-knitr::include_graphics("img/biocviews-annotation.png")
-```
-:::
-
-::: {.column width="50%"}
-- The package `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
-  - e.g., UCSC
-- To that end, it also provides functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
-  - e.g., GFF, BED, bedGraph, BigWig
-:::
-
-::::
+This used to be a slide about rtracklayer.
+The `import()` function is now hosted in BiocIO.
 
 ## Exercise
 
-### rtracklayer
+### BiocIO
 
-- Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
-- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `rtracklayer::import()`.
+- Load the `r BiocStyle::Biocpkg("BiocIO")` package.
+- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `BiocIO::import()`.
   Assign value to an object called `gtf_data`.
 - What are the metadata columns available in the object?
 - Use the function `subset()` to filter the annotations for the gene `ACTB`.
