@@ -1,7 +1,7 @@
 ---
-title: "Pathway and gene set enrichment analysis, ORA"
+title: "Pathway and gene set enrichment analysis"
 author: "Updated from Charlie George"
-date: "06/03/2024"
+date: "22/05/2024"
 output: html_document
 ---
 
