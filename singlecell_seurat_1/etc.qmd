@@ -155,7 +155,7 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 ## Contents of a Seurat object
 
-::: {.small-table}
+::: {.small-font-size}
 | Slot | Purpose |
 | :--- | :------ |
 | `assays` | List of `Assay` objects. |
