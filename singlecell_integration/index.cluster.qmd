@@ -3,7 +3,7 @@ title: 'Single-cell dataset integration and batch correction'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-03-12 (updated: `r Sys.Date()`)"
+date: "2024-06-05 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -52,8 +52,10 @@ NoCite(bib, "R")
 
 ## Credits
 
-- Devika Agarwal
+- Liezel Tamon
 - Carla Cohen
+- Devika Agarwal
+- Kevin Rue-Albrecht
 
 ## Prerequisites
 

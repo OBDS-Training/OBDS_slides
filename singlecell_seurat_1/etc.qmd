@@ -155,13 +155,28 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 ## Contents of a Seurat object
 
-```{r}
-#| fig-align: center
-## Source: https://github.com/satijalab/seurat/wiki/Seurat#slots
-knitr::include_graphics("img/seurat-slots.png")
-```
+::: {.small-table}
+| Slot | Purpose |
+| :--- | :------ |
+| `assays` | List of `Assay` objects. |
+| `meta.data` | `data.frame` of cell metadata. |
+| `active.assay` | Name of the active (i.e., default) assay. (character scalar) |
+| `active.ident` | Vector of active identity for each cell. (factor) |
+| `graphs` | List of `Graph` objects. |
+| `neighbors` | List of `Neighbor` objects. Empty unless `return.neighbor = TRUE`. |
+| `reductions` | List of `DimReduc` objects. |
+| `images` | List of `SpatialImage` objects. |
+| `project.name` | Optional user-defined project name. (character scalar) |
+| `misc` | List of user-defined miscellaneous information. |
+| `version` | Version of Seurat used when creating the object. |
+| `commands` | List of `SeuratCommand` objects. |
+| `tools` | Empty list. Tool developers can store any internal data from their methods here. |
+:::
 
-<https://github.com/satijalab/seurat/wiki/Seurat#slots>
+Sources:
+
+- <https://github.com/satijalab/seurat/wiki/Seurat#slots>
+- <https://github.com/satijalab/seurat-object>
 
 ## Assay objects
 
