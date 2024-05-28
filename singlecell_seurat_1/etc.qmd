@@ -200,7 +200,8 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 - `FetchData()` is a generalised version of `[[` that returns multiple pieces of per-cell information as a `data.frame` (e.g., feature expression, dimensionality reduction coordinates, metadata).
   + You need to find out the names of the variables available in the various components of your own Seurat object.
 - `$` is used to access one column of cell metadata as a `vector`.
-- `GetAssayData()` returns the (sparse) matrix for a given assay.
+- `LayerData()` returns the (sparse) matrix for a given assay.
+  (This used to be `GetAssayData()` in Seurat v4.)
 
 ... but a lot of the slots do not have dedicated functions.
 Instead they are directly accessed using `@`, e.g. `seurat_object@project.name`.
@@ -233,8 +234,7 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 - Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 - Use `Assays()` to list the names of assays available in the Seurat object.
-- Combine `GetAssayData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
-  What happens if you do not specify the `layer=` argument?
+- Combine `LayerData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
 - Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
 - Use the `[[]]` operator to fetch only one column of metadata.
   What type of object do you get back?
