@@ -173,10 +173,12 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 | `tools` | Empty list. Tool developers can store any internal data from their methods here. |
 :::
 
+::: {.small-font-size}
 Sources:
 
 - <https://github.com/satijalab/seurat/wiki/Seurat#slots>
 - <https://github.com/satijalab/seurat-object>
+:::
 
 ## Assay objects
 
