@@ -335,6 +335,18 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
 ```
 
+- `AddMetaData()` is the preferred method to add one or more columns of metadata to a Seurat object (or an `Assay` object).
+
+```{r}
+#| echo: true
+#| eval: false
+seurat_object <- AddMetaData(
+   object = seurat_object,
+   metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
+   col.name = "percent_mt"
+)
+```
+
 - `VlnPlot()` produces a violin plot for a selection of per-cell features, including gene expression, quality control metrics, and dimensionality reduction results available in a Seurat object.
 - `FeatureScatter()` produces a scatter plot of two per-cell features,
   e.g., two features, a feature and quality control metric.
