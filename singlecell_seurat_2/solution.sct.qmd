@@ -1,6 +1,6 @@
 ---
 title: "Solution: Single-cell analysis using Seurat, part 2"
-author: "Kevin Rue-Albrecht & Liezel Tamon"
+author: "Kevin Rue-Albrecht"
 date: "2024-06-04"
 date-format: long
 format: html
