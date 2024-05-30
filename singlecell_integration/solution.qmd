@@ -447,3 +447,25 @@ umap_harmony_cca <- DimPlot(obj, reduction = "umap.harmony", group.by = c("cca_c
 umap_mnn_cca <- DimPlot(obj, reduction = "umap.mnn", group.by = c("cca_clusters"))
 umap_unintegrated_cca | umap_cca_cca | umap_rpca_cca | umap_harmony_cca | umap_mnn_cca
 ```
+
+### Quantitively compare with LISI
+
+```{r}
+reduction_names <- c("pca", "integrated.cca", "integrated.rpca", "harmony", "integrated.mnn")
+batch_variable <- "orig.ident"
+
+median_lisi <- vapply(reduction_names, USE.NAMES = TRUE, FUN.VALUE = numeric(1), FUN = function(reduction){
+  lisi_mx <- lisi::compute_lisi(Embeddings(seu, "reduction"), meta_data = obj[[]], label_colnames = batch_variable)
+  return(median(lisi_mx[,1]))
+})
+```
+
+```{r}
+median_lisi_tidy <- enframe(median_lisi, name = "reduction", value = "median_lisi") %>% 
+  arrange(desc(median_lisi))
+```
+
+```{r}
+ggplot(median_lisi_tidy, aes(reduction, median_lisi)) +
+  geom_col()
+```
