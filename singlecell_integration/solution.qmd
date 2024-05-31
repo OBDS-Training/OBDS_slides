@@ -111,6 +111,9 @@ plots_unintegrated <- DimPlot(
   group.by = c("orig.ident", "unintegrated_clusters"),
   combine = FALSE
 )
+plots_unintegrated[[2]] <- plots_unintegrated[[2]] + guides(
+    color = guide_legend(ncol = 2)
+  )
 wrap_plots(plots_unintegrated)
 ```
 
@@ -295,6 +298,9 @@ plots_cca <- DimPlot(
   combine = FALSE,
   label.size = 2
 )
+plots_cca[[2]] <- plots_cca[[2]] + guides(
+  color = guide_legend(ncol = 2)
+)
 ```
 
 - Use `wrap_plots()` to display the plots stored in the object `plots_cca`.
@@ -351,6 +357,9 @@ plots_harmony <- DimPlot(
   group.by = c("orig.ident", "harmony_clusters"),
   combine = FALSE, label.size = 2
 )
+plots_harmony[[2]] <- plots_harmony[[2]] + guides(
+    color = guide_legend(ncol = 2)
+  )
 wrap_plots(c(plots_unintegrated, plots_harmony), ncol = 2, byrow = FALSE)
 ```
 
@@ -364,18 +373,8 @@ plots_mnn <- DimPlot(
   group.by = c("orig.ident", "mnn_clusters"),
   combine = FALSE, label.size = 2
 )
-wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
-```
-
-```{r}
-obj <- FindNeighbors(obj, reduction = "integrated.mnn", dims = 1:30, assay = "RNA")
-obj <- FindClusters(obj, resolution = 2, cluster.name = "mnn_clusters", graph.name = "RNA_snn")
-obj <- RunUMAP(obj, reduction = "integrated.mnn", dims = 1:30, reduction.name = "umap.mnn")
-plots_mnn <- DimPlot(
-  obj,
-  reduction = "umap.mnn",
-  group.by = c("orig.ident", "mnn_clusters"),
-  combine = FALSE, label.size = 2
+plots_mnn[[2]] <- plots_mnn[[2]] + guides(
+  color = guide_legend(ncol = 2)
 )
 wrap_plots(c(plots_unintegrated, plots_mnn), ncol = 2, byrow = FALSE)
 ```
@@ -397,13 +396,16 @@ plots_rpca.sct <- DimPlot(
   group.by = c("orig.ident", "rpca.sct_clusters"),
   combine = FALSE, label.size = 2
 )
+plots_rpca.sct[[2]] <- plots_rpca.sct[[2]] + guides(
+  color = guide_legend(ncol = 2)
+)
 wrap_plots(c(plots_unintegrated, plots_rpca.sct), ncol = 2, byrow = FALSE)
 ```
 
 - Use `wrap_plots()` to display the plots stored in all the objects `plots_unintegrated`, `plots_cca`, `plots_harmony`, and `plots_mnn`, in a grid of four columns.
 
 ```{r}
-#| fig-width: 7
+#| fig-width: 8
 #| fig-height: 14
 wrap_plots(c(plots_unintegrated, plots_cca, plots_harmony, plots_mnn, plots_rpca.sct), ncol = 2, byrow = TRUE)
 ```
