@@ -504,8 +504,8 @@ median_lisi <- vapply(reduction_names, USE.NAMES = TRUE, FUN.VALUE = numeric(1),
 
 ```{r}
 median_lisi_tidy <- data.frame(
-  reduction = factor(median_lisi_tidy$reduction, levels = reduction_names),
-  median_lisi = median_lisi_tidy$median_lisi
+  reduction = factor(names(median_lisi), levels = reduction_names),
+  median_lisi = median_lisi
 ) %>% 
   arrange(desc(median_lisi))
 ```
