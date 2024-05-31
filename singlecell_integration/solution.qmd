@@ -11,6 +11,7 @@ library(Seurat)
 library(SeuratWrappers)
 library(patchwork)
 library(ggplot2)
+library(dplyr)
 ```
 
 ## Preamble
@@ -502,7 +503,6 @@ median_lisi <- vapply(reduction_names, USE.NAMES = TRUE, FUN.VALUE = numeric(1),
 ```
 
 ```{r}
-library(dplyr)
 median_lisi_tidy <- data.frame(
   reduction = factor(median_lisi_tidy$reduction, levels = reduction_names),
   median_lisi = median_lisi_tidy$median_lisi
