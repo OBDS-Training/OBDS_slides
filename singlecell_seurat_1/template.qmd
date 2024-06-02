@@ -100,16 +100,11 @@ DefaultAssay(object = seurat_object)
 Assays(object = seurat_object)
 ```
 
-- Combine `GetAssayData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
+- Combine `LayerData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
 
 ```{r}
-GetAssayData(object = seurat_object, layer =  )[ , ]
+LayerData(object = seurat_object, layer =  )[ , ]
 ```
-
-**What happens if you do not specify the `layer=` argument?**
-
-> Answer:
-> 
 
 - Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
 

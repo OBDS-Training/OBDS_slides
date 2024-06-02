@@ -48,6 +48,11 @@ bib <- ReadBib("bibliography.bib")
 #| child: goals_and_objectives.qmd
 ```
 
+## Credits
+
+- Liezel Tamon
+- Kevin Rue-Albrecht
+
 ## Prerequisites
 
 - An account on the teaching cluster.

@@ -598,7 +598,7 @@ Note:
 
 ### Descriptive statistics
 
-- Use `readRDS()` to load the file `/storage/shared/resources/r/base_2/my_day2matrix.rds` and assign the object to the name `m`.
+- Use `readRDS()` to load the file `my_day2matrix.rds` and assign the object to the name `m`.
 - Compute the sum of values in each row and add those values as a new column in the matrix.
 - Run the command `data("ToothGrowth")` to load the builtin data set `ToothGrowth`.
 - Open the help page for the `ToothGrowth` data set, to learn more about it.
@@ -707,7 +707,7 @@ df1 <- data.frame(
 #| eval: true
 #| echo: true
 df2 <- data.frame(
-    sample = c("A", "B", "C", "D"),
+    sample_id = c("A", "B", "C", "D"),
     group = c("control", "control", "treated", "treated")
 )
 ```
@@ -719,7 +719,7 @@ df2 <- data.frame(
 The `by=` argument can be used if the columns have exactly the same name in the two data frames.
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: true
 merge(x = df1, y = df2, by = "sample")
 ```
@@ -729,7 +729,7 @@ Alternatively, the arguments `by.x=` and `by.y=` can be used, whether the column
 ```{r}
 #| eval: true
 #| echo: true
-merge(x = df1, y = df2, by.x = "sample", by.y = "sample")
+merge(x = df1, y = df2, by.x = "sample", by.y = "sample_id")
 ```
 
 ## Combining partially overlapping data frames
@@ -854,7 +854,7 @@ survey_data <- data.frame(
 
 # Lunch break
 
-## User defined functions
+## User-defined functions
 
 New functions can be created and assigned to names in the workspace, e.g.
 

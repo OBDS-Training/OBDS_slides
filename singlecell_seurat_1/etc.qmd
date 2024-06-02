@@ -155,23 +155,53 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 ## Contents of a Seurat object
 
-```{r}
-#| fig-align: center
-## Source: https://github.com/satijalab/seurat/wiki/Seurat#slots
-knitr::include_graphics("img/seurat-slots.png")
-```
+::: {.small-font-size}
+| Slot | Purpose |
+| :--- | :------ |
+| `assays` | List of `Assay` objects. |
+| `meta.data` | `data.frame` of cell metadata. |
+| `active.assay` | Name of the active (i.e., default) assay. (character scalar) |
+| `active.ident` | Vector of active identity for each cell. (factor) |
+| `graphs` | List of `Graph` objects. |
+| `neighbors` | List of `Neighbor` objects. Empty unless `return.neighbor = TRUE`. |
+| `reductions` | List of `DimReduc` objects. |
+| `images` | List of `SpatialImage` objects. |
+| `project.name` | Optional user-defined project name. (character scalar) |
+| `misc` | Empty list. Users can store miscellaneous information here. |
+| `version` | Version of Seurat used when creating the object. |
+| `commands` | List of `SeuratCommand` objects. |
+| `tools` | Empty list. Tool developers can store any internal data from their methods here. |
+:::
 
-<https://github.com/satijalab/seurat/wiki/Seurat#slots>
+::: {.small-font-size}
+Sources:
+
+- <https://github.com/satijalab/seurat/wiki/Seurat#slots> (last updated in 2020)
+- <https://github.com/satijalab/seurat-object>
+:::
 
 ## Assay objects
 
-```{r}
-#| fig-align: center
-## Source: https://github.com/satijalab/seurat/wiki/Assay#slots
-knitr::include_graphics("img/seurat-assay-slots.png")
-```
+::: {.small-font-size}
+| Slot | Purpose |
+| :--- | :------ |
+| `layers` | List of matrix-like objects (e.g., `counts`, `data`, `scale.data`). |
+| `cells` | A `LogMap` object indicating whether each cell is present in each layer. |
+| `features` | A `LogMap` object indicating whether each feature is present in each layer. |
+| `default` | Index of the default layer. (integer) |
+| `assay.orig` | Those slots will be used in the future to track the provenance of individual assays^[1]^. |
+| `meta.data` | `data.frame` of feature metadata. |
+| `misc` | Empty list. Users can store miscellaneous information here. |
+| `key` | Prefix to use for explicitly accessing features from this assay (e.g., `rna_CD3E`). |
+:::
 
-<https://github.com/satijalab/seurat/wiki/Assay#slots>
+::: {.small-font-size}
+Sources:
+
+- <https://github.com/satijalab/seurat/wiki/Seurat#slots> (2018)
+- <https://github.com/satijalab/seurat-object>
+- ^[1]^ <https://github.com/satijalab/seurat/issues/2562#issuecomment-582160681>
+:::
 
 ## Accessing the contents of a Seurat object
 
@@ -185,7 +215,8 @@ called `r BiocStyle::CRANpkg("SeuratObject")`.
 - `FetchData()` is a generalised version of `[[` that returns multiple pieces of per-cell information as a `data.frame` (e.g., feature expression, dimensionality reduction coordinates, metadata).
   + You need to find out the names of the variables available in the various components of your own Seurat object.
 - `$` is used to access one column of cell metadata as a `vector`.
-- `GetAssayData()` returns the (sparse) matrix for a given assay.
+- `LayerData()` returns the (sparse) matrix for a given assay.
+  (This used to be `GetAssayData()` in Seurat v4.)
 
 ... but a lot of the slots do not have dedicated functions.
 Instead they are directly accessed using `@`, e.g. `seurat_object@project.name`.
@@ -218,8 +249,7 @@ _Use the [Seurat - Guided Clustering Tutorial](https://satijalab.org/seurat/arti
 
 - Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 - Use `Assays()` to list the names of assays available in the Seurat object.
-- Combine `GetAssayData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
-  What happens if you do not specify the `layer=` argument?
+- Combine `LayerData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
 - Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
 - Use the `[[]]` operator to fetch only one column of metadata.
   What type of object do you get back?
@@ -303,6 +333,18 @@ ggplot(seurat_object[[]], aes(nFeature_RNA)) +
 #| echo: true
 #| eval: false
 PercentageFeatureSet(seurat_object, pattern = "^CCL|^CXCL")
+```
+
+- `AddMetaData()` is the preferred method to add one or more columns of metadata to a Seurat object (or an `Assay` object).
+
+```{r}
+#| echo: true
+#| eval: false
+seurat_object <- AddMetaData(
+   object = seurat_object,
+   metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
+   col.name = "percent_mt"
+)
 ```
 
 - `VlnPlot()` produces a violin plot for a selection of per-cell features, including gene expression, quality control metrics, and dimensionality reduction results available in a Seurat object.

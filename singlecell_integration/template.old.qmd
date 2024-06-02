@@ -1,0 +1,596 @@
+---
+title: "Solution: Single-cell integration"
+author: "Kevin Rue-Albrecht"
+date: "2023-06-08"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| include: false
+library(Seurat)
+library(tidyverse)
+```
+
+## Integration without correction
+
+First, we will combine two PBMC data sets without any integration method.
+
+### Import data sets
+
+Import the two PBMC data sets from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+The RDS files contain object that have already been processed through quality control and filtering, as seen in the Seurat day 1 lesson.
+
+```{r}
+pbmcv2 <- readRDS( )
+pbmcv3 <- readRDS( )
+```
+
+### Sanity check
+
+Use the `VlnPlot()` function to visualise the distribution of quality control metrics in the data sets given to you.
+
+It is generally good practice to inspect data sets given to you before taking them any further.
+
+**Hint:**
+
+- Call `VlnPlot()` once for each data set.
+- For each data set, focus on the features 'nFeature_RNA', 'nCount_RNA', and 'percent.mt'.
+
+```{r}
+plot1 <- VlnPlot( )
+plot2 <- VlnPlot( )
+
+```
+
+**Can you spot any issue between the two samples?**
+
+> Answer:
+> 
+
+### Merge Seurat objects without correction
+
+Use the `merge()` function to create a Seurat object that merges the two data sets without apply any sort of batch correction.
+
+**Hint:**
+
+- Refer to the Seurat tutorial at <https://satijalab.org/seurat/articles/merge_vignette.html>.
+- Consider using the argument `add.cell.ids=` to identify cells for each sample of origin in the merged object.
+
+```{r}
+pbmc_merged <- merge(
+  
+  
+  
+)
+pbmc_merged
+```
+
+Compare the dimensions of the merged Seurat object to those of the two original objects.
+
+```{r}
+dim(pbmc_merged)
+```
+
+```{r}
+dim(pbmcv2)
+```
+
+```{r}
+dim(pbmcv3)
+```
+
+**How do you think the number of features relate across the various objects?**
+
+> Answer:
+> 
+> 
+> 
+
+### Perform SCTransform normalisation
+
+Do you want to regress any meta.data variables ?
+
+```{r, message = FALSE, warning = FALSE}
+pbmc_merged <- SCTransform(
+  object = pbmc_merged,
+  vars.to.regress = 
+)
+pbmc_merged
+```
+
+Use the `VlnPlot()` to compare the distribution of 'nCount' in the RNA and SCT assays, showing cells from the two samples of origin in separate violins.
+
+**Hint:**
+
+- Look at the help page of the function to use the arguments `features=` and `group.by=` correctly.
+
+```{r}
+VlnPlot(
+  object = pbmc_merged,
+  
+  
+  
+  
+)
+```
+
+**How good a job did SCT for the normalisation of sequencing depth between the two data sets, in the merged object?**
+
+> Answer:
+> 
+
+Make sure the default assay is set to 'SCT'.
+
+```{r}
+DefaultAssay(pbmc_merged) <- "SCT"
+```
+
+### PCA
+
+Run PCA.
+
+```{r}
+pbmc_merged <- RunPCA( )
+```
+
+Visualise the scatter plot of the first two principal components.
+
+```{r}
+DimPlot( )
+```
+
+**Can you see a batch effect between the two samples?**
+
+> Answer:
+> 
+> 
+> 
+
+Use the function `ElbowPlot()` to determine a good number of principal components to use in the next steps.
+
+```{r}
+ElbowPlot(pbmc_merged,  )
+```
+
+**How many principal components would you use?**
+
+> Answer:
+> 
+
+### UMAP
+
+Run the UMAP technique on the chosen number of principal components.
+
+```{r}
+pbmc_merged <- RunUMAP(pbmc_merged,  )
+```
+
+Visualise the UMAP layout.
+
+```{r}
+DimPlot(pbmc_merged,  )
+```
+
+**Can you still see the batch effect?**
+
+> Answer:
+> 
+> 
+> 
+
+## Integration using SCTransform
+
+**Hint:**
+
+- Refer to the Seurat tutorial at <https://satijalab.org/seurat/articles/integration_introduction.html#performing-integration-on-datasets-normalized-with-sctransform-1 >.
+- The workflow of the 'Seurat v2' integration method varies depending on whether the data sets to merge were normalised using log-normalisation or SCTransform.
+- In this exercise, we use the SCTransform approach (the tutorial above discusses both approaches).
+
+### Import data sets
+
+Import the two PBMC data sets (again!) from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+For the purpose of this exercise, it is important to reset the input objects, to undo anything we nay have done to those objects in the previous exercise.
+
+```{r}
+pbmcv2 <- readRDS( )
+pbmcv3 <- readRDS( )
+```
+
+### Preprocessing
+
+Combine the two input Seurat objects into a named list.
+
+```{r}
+pbmc_list <- list("v2" = pbmcv2, "v3" = pbmcv3)
+pbmc_list
+```
+
+Use `lapply()` to run SCTransform on each data set (separately) in the list.
+
+**Hint:**
+
+- The function `SCTransform()` must be given to the argument `FUN=`.
+- The `...` argument of `lapply()` can be used to pass arguments to the function given to `FUN=`,
+  e.g. `variable.features.n = 3000` and `vars.to.regress = "percent.mt"`
+
+```{r}
+pbmc_list <- lapply(
+  X = pbmc_list,
+  
+  
+  
+)
+pbmc_list
+```
+
+**What are the dimensions of each object in the list?**
+
+> Answer:
+> 
+> 
+
+**What is the default assay of each object in the list?**
+
+> Answer:
+> 
+> 
+
+### Select features for integration
+
+Use the function `SelectIntegrationFeatures()` to select features to use for the integration of the two data sets.
+
+**Note:**
+This function scores features by the number of datasets they are deemed variable in, breaking ties by the median variable feature rank across data sets.
+It returns the top scoring features according to that score.
+
+```{r}
+features_for_integration <- SelectIntegrationFeatures(
+  object.list = pbmc_list,
+  
+)
+length(features_for_integration)
+```
+
+### Prepare a list of Seurat objects for integration
+
+Use the function `PrepSCTIntegration()` to prepare the list of Seurat objects for integration.
+
+**Note (from the help page):**
+This function ensures that the sctransform residuals for the features specified to `anchor.features` are present in each object in the list.
+This is necessary because the default behavior of `SCTransform()` is to only store the residuals for the features determined to be variable.
+Residuals are recomputed for missing features using the stored model parameters via the `GetResidual()` function.
+
+```{r}
+pbmc_list <- PrepSCTIntegration(
+  object.list = pbmc_list,
+  
+)
+pbmc_list
+```
+
+### Integration
+
+Use the function `FindIntegrationAnchors()` to find a set of anchors between a list of Seurat objects.
+We will use these anchors to integrate the two objects in a subsequent step.
+
+**Hint:**
+
+- Look at the help page to specify the following arguments.
+- Use the normalisation method 'SCT'.
+- Use the first 30 dimensions of the CCA.
+
+```{r}
+anchors_for_integration <- FindIntegrationAnchors(
+  object.list = pbmc_list,
+  
+  
+  
+  
+)
+anchors_for_integration
+```
+
+Use the function `IntegrateData()` to integrate the two objects.
+
+**Hint:**
+
+- Look at the help page to specify the following arguments.
+- Use the normalisation method 'SCT'.
+- Use the first 30 dimensions in the anchor weighting procedure.
+
+```{r}
+pbmc_integrated <- IntegrateData(
+  
+  
+  
+)
+pbmc_integrated
+```
+
+**Note:**
+
+- If `normalization.method = "LogNormalize"`,
+  the integrated data is returned to the `data` slot and can be treated as log-normalized, corrected data.
+- If `normalization.method = "SCT"`, the integrated data is returned to the `scale.data` slot and can be treated as centered, corrected Pearson residuals.
+- Refer to the 'Details' section of `?IntegrateData` for advice when integrating more than two samples. 
+
+**What is the default assay now?**
+
+```{r}
+DefaultAssay(pbmc_integrated)
+```
+
+### Inspection and downstream analysis
+
+Run PCA on the integrated object.
+
+```{r}
+pbmc_integrated <- RunPCA(pbmc_integrated,  )
+pbmc_integrated
+```
+
+Visualise the scatter plot of the first two principal components, and compare with the equivalent plot previously made for data integrated without correction.
+
+```{r}
+plot1 <- DimPlot( )
+plot2 <- DimPlot( )
+plot1 + plot2
+```
+
+**How do the two plot compare?**
+
+> Answer:
+> Quite a bit better, though there is still some room for improvement.
+
+Use `ElbowPlot()` to choose the number of principal components for downstream analyses.
+
+```{r}
+ElbowPlot(pbmc_integrated, ndims = 50)
+```
+
+**How many principal components woud you choose for downstream analyses?**
+
+> Answer:
+> We typically use 20 principal components.
+
+Run the UMAP technique on the chosen number of principal components.
+
+```{r}
+pbmc_integrated <- RunUMAP(pbmc_integrated,  )
+```
+
+Run `FindNeighbors()` and `FindClusters()` on the integrated object.
+
+**Hint:**
+
+- Consider trying multiple resolutions at the same time (e.g., 0.5 and 0.8).
+
+```{r}
+pbmc_integrated <- FindNeighbors(pbmc_integrated,  )
+pbmc_integrated <- FindClusters(pbmc_integrated,  )
+```
+
+Check the number of clusters defined at each resolution.
+
+**Hint:**
+
+- You can use the `table()` function to tabulate the number of cells for a given resolution and to cross-tabulate the assignments of cells between two resolutions.
+
+```{r}
+table( )
+```
+
+
+```{r}
+table(
+    = ,
+    = 
+)
+```
+
+Use the `DimPlot()` function to color cells by their sample of origin, and cluster assignment for selected resolutions.
+
+```{r, fig.height=4, fig.width=12}
+#| fig-height: 4
+#| fig-width: 12
+DimPlot(
+  object = pbmc_integrated,
+  
+  
+)
+```
+
+Use the function `FindAllMarkers()` to identify markers for each cluster at a chosen resolution.
+
+**Hint:**
+
+- Seurat documentation indicates that having used SCTransform v1, you must switch the default assay back to 'RNA' for the computation of cluster markers.
+- You will also need to run `NormalizeData()`, as the 'RNA' assay has not been normalised since the data sets were integrated.
+- You will also need to set the identity of cells to the desired clustering result prior to using `FindAllMarkers()`, as that function does not have any argument to specify the set of clusters to use.
+- You will also need to specify `latent.vars = "orig.ident"` to regress the average effect of the sample of origin in the 'RNA' data, as `NormalizeData()` cannot be used for that.
+- Consider trying different values for `test.use=` argument, e.g. 'LR'.
+- Consider setting the argument `only.pos = TRUE` to yield only positive markers for each cluster.
+
+**Note:**
+
+- Read the help page of the `FindAllMarkers()` function to learn why `latent.vars` may not have any effect when using certain methods to computer markers.
+- You can find the pros and cons of various statistical tests in <https://www.nature.com/articles/nmeth.4612>
+
+```{r}
+DefaultAssay(pbmc_integrated) <- 
+pbmc_integrated <- NormalizeData(pbmc_integrated)
+Idents(pbmc_integrated) <- 
+pbmc_integrated_markers <- FindAllMarkers(
+  object = pbmc_integrated,
+  
+  
+  
+)
+head(pbmc_integrated_markers)
+```
+
+Visualise the top five markers by log fold-change of each cluster in a heat map.
+
+**Hint:**
+
+- The functions `dplyr::group_by()` and `dplyr::slice_max()` can be used to extract the genes with the highest log fold-change in each cluster.
+- Save those gene symbols in a character vector.
+- Supply that vector of gene symbols to the function `DoHeatmap()`.
+- Consider using `unique()` to remove duplicates (if any).
+- Consider using the first code chunk below to identify the gene symbols to plot,
+  and the second code chunk to display the heat map.
+- Remember to set the default assay to 'SCT' prior to displaying the heat map,
+  so that the heat map uses the `scale.data` slot of that assay.
+
+**Note:**
+
+- You could also run `ScaleData()` on the 'RNA' assay.
+
+```{r}
+markers_for_heatmap <- pbmc_integrated_markers %>%
+  
+  
+  
+  
+markers_for_heatmap
+```
+
+```{r}
+DefaultAssay(pbmc_integrated) <- 
+DoHeatmap(
+  object = pbmc_integrated,
+  
+)
+```
+
+Based on the information collected so far (and other plots from your own initiative):
+
+- How well do you think the clustering has worked?
+- Are you able to identify each cluster?
+- Would you re-evaluate any of the clusters?
+
+> Answer:
+> The resolution of 0.5 used in this solution seems to produce clusters that share groups of markers.
+> This typically suggest over-clustering, whereby 'real' clusters have been fragmented into two or more clusters by an excessively high 'resolution' parameter.
+> However, more detailed analyses may be required to ascertain that those additional cluster are not indeed 'real' sub-populations worthy of being analysed separately.
+
+## Integration with Harmony
+
+### Import data sets
+
+Import the two PBMC data sets (again!) from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
+
+For the purpose of this exercise, it is important to reset the input objects, to undo anything we nay have done to those objects in the previous exercise.
+
+```{r}
+pbmcv2 <- readRDS( )
+pbmcv3 <- readRDS( )
+```
+
+### Merge Seurat objects without integration
+
+```{r}
+pbmc_merged <- merge( )
+pbmc_merged
+```
+
+Run SCTransform.
+
+```{r}
+pbmc_merged <- SCTransform( )
+pbmc_merged
+```
+
+Run PCA and UMAP.
+
+```{r}
+pbmc_merged <- RunPCA( )
+pbmc_merged
+```
+
+```{r}
+ElbowPlot(pbmc_merged, ndims = 50)
+```
+
+Run UMAP.
+
+```{r}
+pbmc_merged <- RunUMAP(pbmc_merged,  )
+pbmc_merged
+```
+
+Plot the UMAP coloured by sample of origin (for a brief inspection prior to integration).
+
+```{r}
+DimPlot(pbmc_merged,  )
+```
+
+Run Harmony.
+
+**Hint:**
+
+- Assign the output of the `RunHarmony()` function to a different name,
+  so that you can later compare the data set before and after integration.
+- Look at the help page to identify the argument that specifies the metadata field representing the groups of cells to integrate.
+- Set `plot_convergence=TRUE`.
+  What does this do?
+- Set `dims.use=1:20`.
+  What does this do?
+- Make sure the function uses the 'SCT' assay.
+
+```{r}
+pbmc_harmony <- RunHarmony(
+  object = pbmc_merged,
+  
+  
+  
+  
+)
+pbmc_harmony
+```
+
+Run `RunUMAP()`, `FindNeighbours()` and `FindClusters()` on the integrated object.
+
+```{r}
+pbmc_harmony <- RunUMAP(
+  object = pbmc_harmony,
+  
+  
+  
+)
+pbmc_harmony <- FindNeighbors(
+  object = pbmc_harmony,
+  
+  
+)
+pbmc_harmony <- FindClusters( )
+pbmc_harmony
+```
+
+Visualise clusters and batches in the UMAP layout.
+
+```{r, fig.height=4, fig.width=8}
+plot1 <- DimPlot(
+  object = pbmc_harmony,
+  
+  
+  pt.size = 0.1
+)
+plot2 <- DimPlot(
+  object = pbmc_harmony,
+  
+  
+  pt.size = 0.1
+)
+plot1 + plot2
+```
+
+**How does the Harmony integration compare with other methods so far (based on the UAMP alone...)?**
+
+> Answer:
+> 
+> 
