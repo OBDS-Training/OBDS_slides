@@ -511,6 +511,9 @@ median_lisi_tidy <- data.frame(
 ```
 
 ```{r}
-ggplot(median_lisi_tidy, aes(reduction, median_lisi)) +
-  geom_col()
+#| fig.width = 7, fig.height = 5
+ggplot(median_lisi_tidy, aes(reorder(reduction, median_lisi, decreasing = TRUE), median_lisi)) +
+  geom_col() +
+  labs(x = "Integration method", y = "Median lisi") +
+  theme_classic()
 ```
