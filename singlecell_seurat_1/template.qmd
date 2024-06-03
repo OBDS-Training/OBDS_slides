@@ -1,11 +1,12 @@
 ---
-title: "Template: Single-cell analysis with Seurat, day 1"
+title: "Solution: Single-cell analysis with Seurat, day 1"
 author: "Kevin Rue-Albrecht"
-date: "18/04/2024"
+date: "03/06/2024"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#| label: setup
+#| include: false
 library(Seurat)
 library(tidyverse)
 ```
@@ -17,7 +18,7 @@ library(tidyverse)
 - Load the `Seurat` package.
 
 ```{r}
-library( )
+library(Seurat)
 ```
 
 - Use `Read10X()` to import data from the directory `filtered_feature_bc_matrix/` 
@@ -25,14 +26,14 @@ library( )
 
 ```{r}
 read10x_data <- Read10X(
-    
+    data.dir = 
 )
 ```
 
 - Display the first 15 rows and 4 columns of `read10x_data` using `[]`.
 
 ```{r}
-
+read10x_data[ , ]
 ```
 
 - Use `str()` to display the structure of `read10x_data`.
@@ -45,14 +46,16 @@ str(read10x_data)
 
 > Answer:
 > 
+> 
 
 - Use the `dim()` function to display the number of features and barcodes (i.e., cells) in the data set.
 
 ```{r}
-
+dim(read10x_data)
 ```
 
 > Answer:
+> 
 > 
 
 - Use `CreateSeuratObject()` to create a Seurat object.
@@ -75,13 +78,16 @@ seurat_object
 
 > Answer:
 > 
+> 
 
 - Combine the `dim()` function with the subtraction operator to determine how many features and cells were filtered out when you created the Seurat object.
 
 ```{r}
-dim(   ) - dim(   )
+dim( ) - dim( )
 ```
 
+> Answer:
+> 
 > 
 
 # Exercise
@@ -91,19 +97,19 @@ dim(   ) - dim(   )
 - Use `DefaultAssay()` to query the name of the active assay in the Seurat object.
 
 ```{r}
-DefaultAssay(object = seurat_object)
+DefaultAssay( )
 ```
 
 - Use `Assays()` to list the names of assays available in the Seurat object.
 
 ```{r}
-Assays(object = seurat_object)
+Assays( )
 ```
 
 - Combine `LayerData()` and `[]` to display the first six rows and first four columns of the RNA assay data.
 
 ```{r}
-LayerData(object = seurat_object, layer =  )[ , ]
+LayerData(object = , layer = )[ ,  ]
 ```
 
 - Combine `head()` and the `[[]]` operator to display the first few rows entire data.frame of per-cell metadata.
@@ -122,6 +128,7 @@ head(seurat_object[[ ]])
 
 > Answer:
 > 
+> 
 
 - Instead, use the `$` operator to fetch the same column of metadata.
 
@@ -133,17 +140,19 @@ head(seurat_object$ )
 
 > Answer:
 > 
+> 
 
 - Use `FetchData()` to access the metadata column 'nCount_RNA' and the counts of the gene named 'LYZ'.
   Combine this with `head()` to display only the first few rows.
 
 ```{r}
-head(FetchData(object = seurat_object, vars =  , layer =  ))
+head(FetchData(object = , vars = , layer = ))
 ```
 
 **What type of object do you get back?**
 
 > Answer:
+> 
 > 
 
 # Demo
@@ -180,7 +189,7 @@ subset(
   Use `VlnPlot()` to display them in a single violin plot.
 
 ```{r}
-VlnPlot(seurat_object,  )
+VlnPlot(seurat_object, features = , layer = )
 ```
 
 - Use `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
@@ -190,10 +199,10 @@ VlnPlot(seurat_object,  )
 ```{r}
 seurat_object <- AddMetaData(
    object = seurat_object,
-   metadata =  ,
-   col.name =  
+   metadata = PercentageFeatureSet(seurat_object, pattern = ),
+   col.name = 
 )
-VlnPlot(seurat_object,  )
+VlnPlot(seurat_object, features = , layer = )
 ```
 
 - Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs ('percent_mt') on the Y-axis against the library size ('nCount_RNA') on the X-axis.
@@ -215,7 +224,7 @@ seurat_after_qc
 - Combine the `ncol()` function with the subtraction operator to determine how many cells were removed in this step.
 
 ```{r}
-ncol(   ) - ncol(   )
+ncol( ) - ncol( )
 ```
 
 # Exercise
@@ -236,15 +245,15 @@ seurat_after_qc <- NormalizeData(
 - Combine `ggplot()` and `FetchData()` to visualise the distribution of raw counts and normalised data for a gene of your choice.
 
 ```{r}
-ggplot_lyz_raw <- ggplot(   ) +
-    geom_histogram(   ) +
+ggplot_counts_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = ), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
     cowplot::theme_cowplot()
-ggplot_lyz_normalised <- ggplot(   ) +
-    geom_histogram(   ) +
+ggplot_data_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = ), aes(LYZ)) +
+    geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
     cowplot::theme_cowplot()
-cowplot::plot_grid(ggplot_lyz_raw, ggplot_lyz_normalised, ncol = 1)
+cowplot::plot_grid(ggplot_counts_raw, ggplot_data_normalised, ncol = 1)
 ```
 
 # Exercise
@@ -266,6 +275,11 @@ seurat_after_qc <- FindVariableFeatures(
 
 > Answer:
 > 
+> Reason 1:
+> 
+> 
+> Reason 2:
+> 
 
 - Combine `VariableFeatures()` and `head()` to display the names of the first few variable features in the Seurat object.
 
@@ -276,6 +290,7 @@ head(VariableFeatures(seurat_after_qc))
 **How can you control which assay the variable features are pull from?**
 
 > Answer:
+> 
 > 
 
 - Use `VariableFeaturePlot()` to visualise the scatter plot of standardised variance against average expression.
@@ -288,19 +303,21 @@ VariableFeaturePlot(seurat_after_qc)
 
 > Answer:
 > 
+> 
 
 - Use `ScaleData()` to scale the normalised RNA assay of the Seurat object, regressing the the fraction of UMI counts assigned to mitochondrial features.
 
 ```{r}
 seurat_after_qc <- ScaleData(
-    
-    
+    object = seurat_after_qc,
+    vars.to.regress = 
 )
 ```
 
 **What are the motivations for removing that source of variation?**
 
 > Answer:
+> 
 > 
 
 # Exercise
@@ -310,17 +327,19 @@ seurat_after_qc <- ScaleData(
 - Use `RunPCA()` to run a principal component analysis on the Seurat object.
 
 ```{r}
-seurat_after_qc <- RunPCA(seurat_after_qc)
+seurat_after_qc <- RunPCA( )
 ```
 
 **Which features are used by the method in the default settings? How could you change this?**
 
 > Answer:
 > 
+> 
 
 **How do you read the message displayed by the function `RunPCA()`?**
 
 > Answer:
+> 
 > 
 
 - Use `Reductions()` to list the names of dimensionality reduction results available in the Seurat object.
@@ -336,7 +355,7 @@ PCAPlot(seurat_after_qc)
 ```
 
 ```{r}
-DimPlot(seurat_after_qc, reduction =  )
+DimPlot(seurat_after_qc, reduction = )
 ```
 
 ## Bonus
@@ -345,13 +364,13 @@ DimPlot(seurat_after_qc, reduction =  )
 
 ```{r}
 # Use this code chunk to prepare and display a data.frame for ggplot2
-pca_data <- FetchData(seurat_after_qc, vars =  )
+pca_data <- FetchData(seurat_after_qc, vars = )
 head(pca_data)
 ```
 
 ```{r}
 # Use this code chunk to call ggplot()
-ggplot(pca_data, aes( )) +
+ggplot(pca_data, aes(PC_1, PC_2)) +
     geom_point(size = 0.2) +
     cowplot::theme_cowplot()
 ```
@@ -360,23 +379,25 @@ ggplot(pca_data, aes( )) +
   Use argument `ndims` to control the number of principal components to plot.
 
 ```{r}
-ElbowPlot(   )
+ElbowPlot(seurat_after_qc, ndims = )
 ```
 
 **What is the maximum number of principal components that you can plot?**
 
 > Answer:
 > 
+> 
 
 **How many principal components would you use for downstream analyses?**
 
 > Answer:
 > 
+> 
 
 - Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
 
 ```{r}
-seurat_after_qc <- RunUMAP(seurat_after_qc, dims = 1:20)
+seurat_after_qc <- RunUMAP(seurat_after_qc, dims = )
 ```
 
 - Use `UMAPPlot()` to visualise the UMAP layout.
@@ -393,12 +414,13 @@ UMAPPlot(seurat_after_qc)
   Use the argument `dims=` to specify the set of principal components that you have chosen earlier.
 
 ```{r}
-seurat_after_qc <- FindNeighbors(   )
+seurat_after_qc <- FindNeighbors(seurat_after_qc, dims = )
 ```
 
 **Which principal components are used by default?**
 
 > Answer:
+> 
 > 
 
 - Use `Graphs()` to display the names of the nearest neighbour graphs that are now stored in the Seurat object.
@@ -411,22 +433,25 @@ Graphs(seurat_after_qc)
   Set the argument `resolution=` to `0.5`.
 
 ```{r}
-seurat_after_qc <- 
+seurat_after_qc <- FindClusters(seurat_after_qc, resolution = )
 ```
 
 **What is the default setting for the `resolution=` argument?**
 
 > Answer:
 > 
+> 
 
 **Do you expect more or fewer clusters following that change?**
 
 > Answer:
 > 
+> 
 
 **What other parameters would you also try to experiment with?**
 
 > Answer:
+> 
 > 
 
 - Use `UMAPPlot()` to visualise the cluster labels on the UMAP scatter plot.
@@ -435,7 +460,10 @@ seurat_after_qc <-
 UMAPPlot(seurat_after_qc)
 ```
 
+**How would you describe the agreement between the UMAP layout and the clustering results?**
+
 > Answer:
+> 
 > 
 
 # Exercise
@@ -450,15 +478,16 @@ UMAPPlot(seurat_after_qc)
 ```{r}
 seurat_markers_all <- FindAllMarkers(
     seurat_after_qc,
-    only.pos =  ,
-    min.pct =  ,
-    logfc.threshold =  
+    only.pos = ,
+    min.pct = 
+    logfc.threshold = 
 )
 ```
 
 **How do you control the set of clusters that are used?**
 
 > Answer:
+> 
 > 
 
 - Use `class()` to display the class of `seurat_markers_all`.
@@ -467,9 +496,11 @@ seurat_markers_all <- FindAllMarkers(
 class(seurat_markers_all)
 ```
 
+> Answer:
+> 
+> 
+
 - Use `head()` to display the first few rows of the object `seurat_markers_all`.
-  How do you read the contents of that object?
-  How do you know which features are the markers of each cluster?
 
 ```{r}
 head(seurat_markers_all)
@@ -479,11 +510,12 @@ head(seurat_markers_all)
 
 > Answer:
 > 
+> 
 
 - Combine `subset()` and `head()` to filter and display the first few markers for cluster `3`.
 
 ```{r}
-head(subset(seurat_markers_all,  ))
+head(subset(seurat_markers_all, cluster == ))
 ```
 
 - Use `FeaturePlot()` to visualise the expression of the first 4 marker for cluster `3` on a UMAP layout.
@@ -492,17 +524,16 @@ head(subset(seurat_markers_all,  ))
 ```{r}
 FeaturePlot(
     seurat_after_qc,
-    features = 
+    features = subset(seurat_markers_all, cluster == )[, ]
 )
 ```
 
 - Use `VlnPlot()` to visualise the same 4 markers as a violin plot.
-  Do you have any particular preference between the two types of plots?
 
 ```{r}
 VlnPlot(
     seurat_after_qc,
-    features =  ,
+    features = subset(seurat_markers_all, cluster == )[, ],
     ncol = 
 )
 ```
@@ -511,6 +542,7 @@ VlnPlot(
 
 > Answer:
 > 
+> 
 
 - Use `DoHeatmap()` to visualise the top 10 (positive) markers for each cluster.
   You may want to use `dplyr::group_by()` and `dplyr::slice_max()` to select the genes to visualise.
@@ -518,11 +550,17 @@ VlnPlot(
 
 ```{r}
 markers_top10_clusters <- seurat_markers_all %>%
-    group_by( ) %>%
-    slice_max(order_by =  , n =  )
+    group_by(cluster) %>%
+    slice_max(order_by = avg_log2FC, n = 10)
 
 DoHeatmap(
     seurat_after_qc,
     features = unique( )
 )
+```
+
+# Session info
+
+```{r}
+sessionInfo()
 ```
