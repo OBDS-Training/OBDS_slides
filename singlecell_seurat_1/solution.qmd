@@ -1,7 +1,7 @@
 ---
 title: "Solution: Single-cell analysis with Seurat, day 1"
 author: "Kevin Rue-Albrecht"
-date: "18/04/2024"
+date: "03/06/2024"
 ---
 
 ```{r}
@@ -196,7 +196,7 @@ subset(
   Use `VlnPlot()` to display them in a single violin plot.
 
 ```{r}
-VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"))
+VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA"), layer = "counts")
 ```
 
 - Use `PercentageFeatureSet()` to compute the fraction of reads assigned to mitochondrial genes in each cell.
@@ -209,7 +209,7 @@ seurat_object <- AddMetaData(
    metadata = PercentageFeatureSet(seurat_object, pattern = "^MT-"),
    col.name = "percent_mt"
 )
-VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA", "percent_mt"))
+VlnPlot(seurat_object, c("nCount_RNA", "nFeature_RNA", "percent_mt"), layer = "counts")
 ```
 
 - Use `FeatureScatter()` to sisualise a scatter plot of the proportion of mitochondrial UMIs ('percent_mt') on the Y-axis against the library size ('nCount_RNA') on the X-axis.
@@ -252,11 +252,11 @@ seurat_after_qc <- NormalizeData(
 - Combine `ggplot()` and `FetchData()` to visualise the distribution of raw counts and normalised data for a gene of your choice.
 
 ```{r}
-ggplot_counts_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "counts"), aes(LYZ)) +
+ggplot_counts_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = "counts"), aes(LYZ)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
     cowplot::theme_cowplot()
-ggplot_data_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "data"), aes(LYZ)) +
+ggplot_data_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = "data"), aes(LYZ)) +
     geom_histogram(fill = "grey", color = "black", bins = 100) +
     coord_cartesian(ylim = c(0, 500)) +
     cowplot::theme_cowplot()
