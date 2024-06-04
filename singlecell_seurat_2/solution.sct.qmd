@@ -138,9 +138,9 @@ VlnPlot(
 ### Visualise a feature in the SCT assay
 
 - For the feature of your choice (e.g., 'LYZ'), using the 'SCT' assay, compare the distribution of:
-  - raw count data in the 'counts' slot.
-  - log-normalised counts in the 'data' slot
-  - scaled log-normalised counts in the 'scaled' slot.
+  - raw count data in the 'counts' layer.
+  - log-normalised counts in the 'data' layer
+  - scaled log-normalised counts in the 'scaled' layer.
 
 **Hint:**
 
@@ -151,17 +151,17 @@ VlnPlot(
 ```{r}
 #| fig.height = 10
 DefaultAssay(seurat_after_qc) <- "SCT"
-ggplot_lyz_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "counts"), aes(LYZ)) +
+ggplot_lyz_raw <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = "counts"), aes(LYZ)) +
   geom_histogram(fill = "grey", color = "black", bins = 100) +
   coord_cartesian(ylim = c(0, 500)) + 
   ggtitle("counts") +
   cowplot::theme_cowplot()
-ggplot_lyz_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "data"), aes(LYZ)) +
+ggplot_lyz_normalised <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = "data"), aes(LYZ)) +
   geom_histogram(fill = "grey", color = "black", bins = 100) +
   coord_cartesian(ylim = c(0, 500)) +
   ggtitle("data") +
   cowplot::theme_cowplot()
-ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", slot = "scale.data"), aes(LYZ)) +
+ggplot_lyz_scaled <- ggplot(FetchData(seurat_after_qc, vars = "LYZ", layer = "scale.data"), aes(LYZ)) +
   geom_histogram(fill = "grey", color = "black", bins = 100) +
   coord_cartesian(ylim = c(0, 500)) +
   ggtitle("scaled") +
