@@ -332,67 +332,20 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 :::
 ::::
 
-## Exercise 1 - joint analysis of two PBMC datasets (without integration)
+## Exercise part 1 - Merging two PBMC data sets without integration
 
 1. Import the two RDS files into R & plot metadata covariates
 2. Create a merged Seurat object containing both sets of data
-3. On the merged Seurat object, perform the general steps of a Seurat analysis workflow:
+3. On the merged Seurat object, perform the general steps of a Seurat analysis workflow using log-normalisation (i.e., not sctransform) until cluster analysis.
+4. Produce a UMAP of the merged data set, coloring cells by data set of origin and unsupervised cluster.
+5. Discuss.
 
-:::: {.columns}
-::: {.column width="50%"}
+## Exercise part 2 - integrate datasets using Seurat v5
 
-   - 3.1. SCTransform
-     + Perform `SCTransform()`
-     + Use `VlnPlot()` to visualise the effect of `SCTransform()` on nCount
-     + Plot the variable features
-   - 3.2. PCA
-     + Perform PCA
-     + Visualise
-     + Select how many PCs to use for downstream functions
-
-:::
-::: {.column width="50%"}
-
-   - 3.3. UMAP
-     + Perform UMAP
-     + Visualise
-     + Optional: Do cells cluster by cell type?
-:::
-::::
-
-## Exercise 2 - integrate datasets using Seurat v3
-
-:::: {.columns}
-::: {.column width="50%"}
-
-1. Set up
-   - Import the RDS files
-   - Generate a named list of the two objects
-   - Apply scTransform across the list
-   - Select the integration features
-   - Prepare objects for integration
-   - Optional: compare similarity of variable features
-
-2. Perform integration
-   - Find Integration Anchors
-   - Integrate the two objects
-
-:::
-::: {.column width="50%"}
-
-3. Analysis of integrated data
-   - Perform & visualise PCA 
-   - Run UMAP, find neighbours, find clusters
-   - Visualise the clusters on a UMAP
-   - Plot some canonical PBMC markers to identify clusters
-
-4. Identify markers that distinguish each cluster
-   - Find the top markers for each cluster
-   - Filer the top 5 markers and plot on Heatmap and Dotplot
-   - Optional: explore different markers and parameters, then assign each cluster a cell identity
-
-:::
-::::
+1. Use `IntegrateLayers()` in Seurat v5 to run a range of integration methods.
+2. For each integration method, repeat the workflow until cluster analysis.
+3. Compare UMAP plots coloured by data set of origin and unsupervised cluster for each integration methods as well as the merged data set without integration.
+4. Compute quality control metrics to evaluate the performance of integration methods quantitatively.
 
 ## Bonus exercises
 
