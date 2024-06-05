@@ -347,11 +347,6 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 3. Compare UMAP plots coloured by data set of origin and unsupervised cluster for each integration methods as well as the merged data set without integration.
 4. Compute quality control metrics to evaluate the performance of integration methods quantitatively.
 
-## Bonus exercises
-
-- Perform batch correction using Harmony (see [Seurat wrapper for Harmony](https://github.com/satijalab/seurat-wrappers))
-- Compute LISI to evaluate the integration methods
-
 ## Useful links 
 
 - [Computational principles and challenges in single-cell data integration](https://www.nature.com/articles/s41587-021-00895-7)
