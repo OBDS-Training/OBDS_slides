@@ -1,7 +1,7 @@
 ---
 title: "Solution: Single-cell integration"
 author: "Kevin Rue-Albrecht & Liezel Tamon"
-date: "2024-04-26"
+date: "2024-06-05"
 ---
 
 ```{r}
@@ -24,18 +24,25 @@ Some of the functions required for this workflow are only mentioned in this vign
 - Use `readRDS()` to import two prefiltered PBMC data sets from the files `pbmcv1_filtered.rds` and `pbmcv2_filtered.rds`.
 
 ```{r}
-pbmv1 <- readRDS("data/integration/pbmcv1_filtered.rds")
-pbmv2 <- readRDS("data/integration/pbmcv2_filtered.rds")
+pbmcv1 <- readRDS("data/pbmcv1_filtered.rds")
+pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
 ```
 
 Those RDS files contain objects that have been preprocessed through quality control and filtering, as demonstrated in the Seurat day 1 lesson.
+
+- Display the two objects to inspect them.
+
+```{r}
+pbmcv1
+pbmcv2
+```
 
 ## Prepare the data sets for integration
 
 - Use `merge()` to combine the two Seurat objects into a single object.
 
 ```{r}
-obj <- merge(pbmv1, pbmv2)
+obj <- merge(pbmcv1, pbmcv2)
 ```
 
 In previous versions of Seurat, the integration workflow would have required the data to be represented as distinct Seurat objects.
