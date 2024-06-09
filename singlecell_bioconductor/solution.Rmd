@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "17/03/2024"
+date: "10/06/2024"
 output: html_document
 ---
 
@@ -34,7 +34,7 @@ library(iSEE)
 ```{r}
 library(DropletUtils)
 sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = "data/10x_pbmc5k_nextgem/filtered_feature_bc_matrix"
+    "filtered" = "data/filtered_feature_bc_matrix"
 ))
 ```
 
@@ -463,6 +463,9 @@ rowData(sce)[rownames(markers[[1]]),] %>%
     as.data.frame() %>% 
     head()
 ```
+
+> summary.logFC - log-fold change from the comparison with the lowest  
+p-value
 
 Visualise the expression of selected markers:
 
