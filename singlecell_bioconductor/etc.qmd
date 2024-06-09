@@ -365,18 +365,19 @@ Those include:
 :::: {.columns}
 
 ::: {.column width="50%"}
-- `scater::runPCA()` / `BiocSingular::runPCA()`
+<!-- - `scater::runPCA()` / `BiocSingular::runPCA()` -->
+- `scater::runPCA()`
 - `scran::fixedPCA()`
 - `scater::runTSNE()`
 - `scater::runUMAP()`
 :::
 
-::: {.column width="50%"}
-- `BiocSingular::runSVD()`
-- `BiocSingular::runExactSVD()`
-- `BiocSingular::runIrlbaSVD()`
-- `BiocSingular::runRandomSVD()`
-:::
+<!-- ::: {.column width="50%"} -->
+<!-- - `BiocSingular::runSVD()` -->
+<!-- - `BiocSingular::runExactSVD()` -->
+<!-- - `BiocSingular::runIrlbaSVD()` -->
+<!-- - `BiocSingular::runRandomSVD()` -->
+<!-- ::: -->
 ::::
 
 ### Important notes
