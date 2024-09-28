@@ -138,13 +138,22 @@ $ which head            # ‘which’ returns the path of the file to be execute
 
 <br>
 
-```
-$ which head
-/usr/bin/head
+<!-- ``` -->
+<!-- $ which head -->
+<!-- /usr/bin/head -->
 
-$ which -a head         # -a to print all matching paths of each argument
-/usr/bin/head
-/bin/head
+<!-- $ which -a head         # -a to print all matching paths of each argument -->
+<!-- /usr/bin/head -->
+<!-- /bin/head -->
+<!-- ``` -->
+
+```
+$ ls -l     # -l List files and other details
+
+-rw-r--r-- 1 exet4759 domain users  270 Jan 15  2024 history_day1_linux.txt
+-rw-r--r-- 1 exet4759 domain users   57 Jan 17  2024 md5_checksums
+drwxr-xr-x 4 exet4759 domain users 4096 Jan 22  2024 obds
+drwxr-xr-x 3 exet4759 domain users 4096 Sep  1  2023 R
 ```
 
 ## Changing how you view files using ``ls`` options
@@ -340,20 +349,20 @@ knitr::include_graphics("img/sample_working_tree.png")
 - Relative paths 
   + Relative paths are relative to the current working directory or where you are currently
   + Does not start with the root directory ('/')
-
-    ```
-    $ pwd 
-    /home/mthomas/class_stuff/foo
-    
-    $ cd ../bar     # Go to bar
-    $ cd ../../bin  # Go to bin
-    ```
-
 - Path shortcuts
   + .. (2 full stops)  parent / previous directory
   + .  (full stop)     current directory 
   + ~  (tilde)         home directory
   + /  (forward slash) root directory
+  
+
+```
+$ pwd 
+/home/mthomas/class_stuff/foo
+    
+$ cd ../bar     # Go to bar
+$ cd ../../bin  # Go to bin    
+```
   
 :::
 
@@ -438,12 +447,6 @@ We will do exercises on the Linux OBDS teaching server so how to connect to it?
   + Type 'exit' and press the Return key
   + Type 'logout' and press the Return key
   + Press Control + d
-
-<!-- ## Side note for tomorrow! -->
-
-<!-- - Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) for tomorrow's lecture -->
-
-<!-- - We will use this program to transfer files between your local machine and a remote target host (e.g. OBDS server) -->
 
 # Talk 2 Exercise 1
 
@@ -757,8 +760,9 @@ knitr::include_graphics("img/links.png")
   + Deleting all the hard links to a file will effectively delete the file itself
   + Hard links cannot span physical devices (a server or cluster can have multiple disks)
   + Hard links cannot reference directories but only files
-- The advantage of hard links is that they remain working even when they are moved because they point to the data itself
-- Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated
+
+<!-- - The advantage of hard links is that they remain working even when they are moved because they point to the data itself -->
+<!-- - Symbolic link becomes unusable if original file is moved or deleted unless the path it points to is updated -->
 
 ```{r}
 #| fig-align: center
@@ -776,9 +780,9 @@ knitr::include_graphics("img/links.png")
   $ ln -s file1 link1.csv         # Create symbolic link for a file
   $ ln -s dir1 link1              # Create symbolic link for a directory
   ```
-- Symbolic links can point to target files using absolute or relative paths
-  + When using absolute paths, symlink will keep working even if it's moved
-  + When using relative paths (relative to location of symlink), symlink will not work when it is moved
+<!-- - Symbolic links can point to target files using absolute or relative paths -->
+<!--   + When using absolute paths, symlink will keep working even if it's moved -->
+<!--   + When using relative paths (relative to location of symlink), symlink will not work when it is moved -->
 
 ```{r}
 #| fig-align: center
@@ -839,11 +843,12 @@ cd <course working dir>/1_linux/1_linux_intro
 ls
 ```
 
-7. Again, copy **SRR2121685h_1.fastq** from resources directory to your **1_linux_intro** directory. Did you get a prompt asking to overwrite same file? If not, what option can you use to get a prompt? 
+7. Again, copy **SRR2121685h_1.fastq** from resources directory to your **1_linux_intro** directory. Did you get a warning about overwriting the existing file? If not, what option can you use to get a prompt? What option can you use to not overwrite a file?
 
 ```{bash, eval = FALSE}
 cp SRR2121685h_1.fastq 1_linux_intro
 cp -i SRR2121685h_1.fastq 1_linux_intro
+cp -n SRR2121685h_1.fastq 1_linux_intro
 ```
 
 8. Copy **manpage.txt** from resources directory to your **1_linux_intro** directory. Change the permissions of your copy of **manpage.txt** so that only you have read and write permission.

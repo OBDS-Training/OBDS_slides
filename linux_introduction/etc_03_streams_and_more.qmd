@@ -41,8 +41,8 @@ $ command1 2> file2     # Write error output of command1 to file2
 
 ## Linux pipes to pass information between commands
 
-- Aside from files, streams can be redirected between commands
-- The Linux philosophy is to make one tool for one task
+- Aside from redirecting streams between commands and files, streams can be redirected between commands
+<!-- - The Linux philosophy is to make one tool for one task -->
 - So to perform more complex operations we can combine multiple tools/commands using pipes
 - Pipes take the standard output from one command and direct it to the standard input of the subsequent command
 
@@ -51,7 +51,7 @@ $ <command1> | <command2>
 $ cat file1.txt | wc -l
 ```
 
-## Combining commands
+## More ways to combine commands
 
 - Another way to combine commands is to simply run commands one after another using a semi-colon
 
@@ -213,8 +213,6 @@ $ sort -t, --key=2 --key=1n file1.txt
 - Remove duplicated lines, or count the number of occurrences of each distinct line in a file
 
 ```
-$ cut –f1,4 –d ‘,’ file2.csv         # Extract the first and fourth columns from 
-                                       a comma delimited file
 $ uniq file1.txt                     # Remove duplicate lines, display on screen
 $ uniq –c file1.txt                  # Prefix lines by the number of occurrences
 $ uniq –u file1.txt > uniqlines.txt  # Only print unique lines
@@ -237,6 +235,12 @@ $ sort file1.txt | uniq
 ## Source: 
 knitr::include_graphics("img/search_find.png")
 ```
+
+## Reminder for tomorrow
+
+- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) and/or [Cyberduck](https://cyberduck.io/download/) for tomorrow's lecture
+
+- These programs are used for transferring files between your local machine and a remote machine (e.g. OBDS server)
 
 # Talk 3 Exercise 1
 
@@ -299,7 +303,7 @@ wc -l cpg*.bed      # Check if sum of cpg_chr5.bed and cpg_nochr5.bed lines
                     # equal to cpg.bed lines 
 ```
 
-8. With the **cpg.bed** file count how many intervals (rows) are on each chromosome (column1).
+8. With the **cpg.bed** file count how many intervals (rows) are from each chromosome (column1).
   Hint: you will need to pipe together 3 commands.
 
 ```{bash, eval = FALSE}
@@ -343,13 +347,14 @@ find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
   ```
 
 - File permissions can be displayed in octal format using ``stat``
+  + ``stat`` displays detailed information about files or file systems
+  + -c - use the specified format instead of the default
 
   ```
   stat -c "%a: %n" *              # %a: access rights in octal, %n: file name
   755: jupyter_notebooks
   644: mm10.blacklist.bed.gz
   ```
-  + -c - use the specified format instead of the default
 
 ## Loops in Bash
 

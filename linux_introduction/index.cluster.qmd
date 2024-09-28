@@ -3,7 +3,7 @@ title: 'Introduction to the Linux command line'
 subtitle: 'Genomics on the Linux command Line'
 author: "Charlie George & Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-04-29 (updated: `r Sys.Date()`)"
+date: "2024-09-30 (updated: `r Sys.Date()`)"
 date-format: long
 execute: 
   echo: false

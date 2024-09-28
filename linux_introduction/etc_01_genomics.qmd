@@ -267,6 +267,18 @@ Course outline:
 
 # Other file formats
 
+## File formats
+
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 900px
+## Source: Charlie's data
+knitr::include_graphics("img/file_types.png")
+```
+
+<span style="color:gray;">Charlie George</span>
+
 ## **File format (sequence)**: Reference genome as **FASTA**
 
 - Designed for storing multiple biological sequences
@@ -325,17 +337,7 @@ knitr::include_graphics("img/bed.png")
 
 -->
 
-## File formats
-
-```{r}
-#| fig-align: center
-#| out-height: 500px
-#| out-width: 900px
-## Source: Charlie's data
-knitr::include_graphics("img/file_types.png")
-```
-
-<span style="color:gray;">Charlie George</span>
+<!-- 
 
 ## Computer system terminology
 
@@ -368,6 +370,8 @@ knitr::include_graphics("img/hpc_diagram.png")
 :::
 
 ::::
+
+-->
 
 ## Useful links
 
