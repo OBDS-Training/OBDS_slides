@@ -120,11 +120,12 @@ cd <course working dir>/1_linux/1_linux_intro
 ls
 ```
 
-7. Again, copy **SRR2121685h_1.fastq** from resources directory to your **1_linux_intro** directory. Did you get a prompt asking to overwrite same file? If not, what option can you use to get a prompt? 
+7. Again, copy **SRR2121685h_1.fastq** from resources directory to your **1_linux_intro** directory. Did you get a warning about overwriting the existing file? If not, what option can you use to get a prompt? What option can you use to not overwrite a file?
 
 ```{bash}
 cp SRR2121685h_1.fastq 1_linux_intro
 cp -i SRR2121685h_1.fastq 1_linux_intro
+cp -n SRR2121685h_1.fastq 1_linux_intro
 ```
 
 8. Copy **manpage.txt** from resources directory to your **1_linux_intro** directory. Change the permissions of your copy of **manpage.txt** so that only you have read and write permission.
