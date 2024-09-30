@@ -321,7 +321,7 @@ find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
 
 # Reminder
 
-- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) and/or [Cyberduck](https://cyberduck.io/download/) for tomorrow's lecture
+- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) and/or [Cyberduck](https://cyberduck.io/download/)
 
 - These programs are used for transferring files between your local machine and a remote machine (e.g. OBDS server)
 
