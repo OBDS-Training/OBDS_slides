@@ -17,10 +17,11 @@
 - Typically, new accounts on Linux servers are created with an initial copy of ~/.bashrc file 
 
 - Used to configure the shell environment
-  + Set aliases (shortcuts)
+  + Set aliases
   + Set environment variables
-  + Load environment modules (not recommended)
-  
+
+  <!-- + Load environment modules (not recommended) -->
+
 <br>
 
 - Sometimes, instead of directly editing the ~/.bashrc file, another configuration file, **~/.bash_aliases**, can be created and used for user-defined configuration

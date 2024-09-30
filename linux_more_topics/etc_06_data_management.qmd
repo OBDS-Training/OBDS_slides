@@ -230,7 +230,7 @@ $ wget \
        ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-<span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span>
+<span style="color:green;">DEMO with exercises [Ensembl](http://www.ensembl.org/index.html)</span>
 
 ## Downloading public sequencing data
 
