@@ -11,12 +11,12 @@
 ## Linux streams to pass information to and from files 
 
 - Streams are mechanisms to move data from one place to another 
-- Few common scenarios that use streams:
-  + Passing the contents – not the name! – of a file as the input to a command
-  + Passing the output of a command as the input to another command
-  + Writing the output of a command to a (new or existing) file
+<!-- - Few common scenarios that use streams: -->
+<!--   + Passing the contents – not the name! – of a file as the input to a command -->
+<!--   + Passing the output of a command as the input to another command -->
+<!--   + Writing the output of a command to a (new or existing) file -->
 
-- Some standard streams are commonly referred to in Linux as:
+- Standard streams:
   + **Standard input (stdin)**: the default place from which input to the system is taken
   + **Standard output (stdout)**: the default place where a process (i.e. command) can write output
   + **Standard error (stderr)**: the default place where a process (i.e. command) can write error messages
@@ -51,7 +51,7 @@ $ <command1> | <command2>
 $ cat file1.txt | wc -l
 ```
 
-## More ways to combine commands
+## Combining commands
 
 - Another way to combine commands is to simply run commands one after another using a semi-colon
 
@@ -148,9 +148,10 @@ $ tar -xzf jpg.tar.gz           # Extract files from an archive
 
 - Search files and print only lines that match a given pattern
 - Line-based i.e. returns all lines that match the pattern
-- Pattern to search for must be given as a regular expression (type of syntax to describe patterns)
-  + Does not always need to include special wildcard characters
-  + Can be as simple as the exact sequence of characters to search for
+- Regular expressions are used to encode pattern
+<!-- - Pattern to search for must be given as a regular expression (type of syntax to describe patterns) -->
+<!--   + Does not always need to include special wildcard characters -->
+<!--   + Can be as simple as the exact sequence of characters to search for -->
   
 ```
 $ grep <options> <pattern> <file>
@@ -236,12 +237,6 @@ $ sort file1.txt | uniq
 knitr::include_graphics("img/search_find.png")
 ```
 
-## Reminder for tomorrow
-
-- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) and/or [Cyberduck](https://cyberduck.io/download/) for tomorrow's lecture
-
-- These programs are used for transferring files between your local machine and a remote machine (e.g. OBDS server)
-
 # Talk 3 Exercise 1
 
 <!-- @sec-Talk3Exercise1 -->
@@ -323,6 +318,12 @@ find <course working dir> -type f -name '*dnase*' | wc -l
 ```{bash, eval = FALSE}
 find <course working dir> -type f -name '*.bed' -exec wc -l {} \;
 ```
+
+# Reminder
+
+- Please download the [FileZilla Client](https://filezilla-project.org/download.php?platform=osx) and/or [Cyberduck](https://cyberduck.io/download/) for tomorrow's lecture
+
+- These programs are used for transferring files between your local machine and a remote machine (e.g. OBDS server)
 
 # Bonus topics
 
