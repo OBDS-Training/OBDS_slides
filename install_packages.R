@@ -1,0 +1,5 @@
+remotes::install_github("immunogenomics/LISI")
+remotes::install_github("satijalab/seurat-wrappers")
+remotes::install_github("satijalab/seurat-data")
+remotes::install_github("satijalab/azimuth")
+remotes::install_github("chris-mcginnis-ucsf/DoubletFinder")
