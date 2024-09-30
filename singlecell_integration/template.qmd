@@ -341,7 +341,7 @@ wrap_plots( )
 
 - Set the default assay back to `"SCT"` before trying to analyse the sctransform-normalised data.
 - You may also specify `assay = "SCT"` for extra clarity.
-- You may also specify `assay = "SCT"` for extra clarity.
+- You may also specify `graph.name = "SCT_snn"` for extra clarity.
 
 ```{r}
 DefaultAssay(obj) <- 
