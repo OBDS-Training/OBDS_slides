@@ -55,7 +55,7 @@ knitr::include_graphics("img/jobs.png")
   + '-' - second job that would be brought to the foreground by default
   
 - If you have more than one process running in the background:
-  + Type 'fg' followed by the integer number next to the command that you want to bring to the foreground (e.g. fg 2)
+  + Type 'fg' followed by the integer number next to the command that you want to bring to the foreground (e.g. fg %2)
   
 :::
 
