@@ -211,15 +211,28 @@ knitr::include_graphics("img/filezilla-drop-areas.png")
 
 ::::
 
-## Downloading remote files using the command line
+## Downloading public sequencing data
 
-- We can use the Linux command line tool `wget` to download remote files e.g. from public databases like Ensembl
-
+- ArrayExpress (EBI)
+- ENA – European Nucleotide archive (EBI)
+- ENCODE - Encyclopedia of DNA Elements
 - Ensembl is the European database for reference genome sequence and annotation data
   + DNA, RNA and protein sequence data
   + Gene & genome annotations
     + Coding and non-coding transcripts
     + Repeats, CpG islands etc.
+- GEO – Gene expression Omnibus (NCBI)
+- GTEx - Genotype-Tissue Expression
+- HCA - Human Cell Atlas
+- SRA – Short Read Archive (NCBI)
+- Download published datasets
+  + Raw sequencing data (fastq files)
+  + Processed results (bed, count matrix)
+  + Metadata (experiment details, sample processing, data analysis)
+  
+## Downloading remote files using the command line
+
+- We can use the Linux command line tool `wget` to download remote files e.g. from public databases like Ensembl
 
 ```
 $ wget ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
@@ -230,21 +243,7 @@ $ wget \
        ftp://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 ```
 
-<span style="color:green;">DEMO with exercises [Ensembl](http://www.ensembl.org/index.html)</span>
-
-## Downloading public sequencing data
-
-- ArrayExpress (EBI)
-- ENA – European Nucleotide archive (EBI)
-- ENCODE - Encyclopedia of DNA Elements
-- GEO – Gene expression Omnibus (NCBI)
-- GTEx - Genotype-Tissue Expression
-- HCA - Human Cell Atlas
-- SRA – Short Read Archive (NCBI)
-- Download published datasets
-  + Raw sequencing data (fastq files)
-  + Processed results (bed, count matrix)
-  + Metadata (experiment details, sample processing, data analysis)
+<!-- <span style="color:green;">DEMO with exercises [Ensembl](http://www.ensembl.org/index.html)</span> -->
 
 ## Downloading remote files using the command line
 
@@ -258,22 +257,32 @@ $ wget \
 - We can check if files have downloaded correctly using checksums
 - A **checksum** is a value or code derived from digital data to verify its integrity
   + Like a unique fingerprint of a data
+  
+  ```{r}
+  #| fig-align: center
+  #| out-height: 70px
+  #| out-width: 600px
+  ## Source: CCB Doks
+  knitr::include_graphics("img/md5_file.png")
+  ```
+  
 - `md5sum`, `sha256sum`, `sum` are examples of commands to calculate and verify checksums
-  + They differ in algorithms used to calculate checksum
-- Users can compare locally generated checksums with those provided by the source to verify file integrity
 
-<span style="color:green;">Illustrate</span>
+<!--   + They differ in algorithms used to calculate checksum -->
 
-- Note that public databases differ in commands they use
+- Users can compare locally generated checksums with those provided by the source/databases to verify file integrity
+  - Note that public databases differ in commands they use
+
+<!-- <span style="color:green;">Illustrate</span> -->
 
 ## Verify integrity of downloads
 
 - ENA uses `md5sum`
 
 ```
-$ wget http…/md5sum.txt   # Download files along with reference checksum file to
-                            your working machine
-$ cat md5sum.txt          # View reference checksum file
+$ wget <http…/md5sum.txt>  # Download files along with reference checksum file to
+                             your working machine
+$ cat md5sum.txt           # View reference checksum file
 ```
 
 ```{r}
@@ -285,8 +294,8 @@ knitr::include_graphics("img/md5_file.png")
 ```
 
 ```
-$ md5sum –c md5sum.txt    # Generate checksum for downloaded file/s and command also 
-                            compares to value in reference checksum file
+$ md5sum –c md5sum.txt     # Generate checksum for downloaded file/s and command also 
+                             compares to value in reference checksum file
 ```
 
 ```{r}
@@ -302,12 +311,12 @@ knitr::include_graphics("img/md5sum-c.png")
 <!-- <span style="color:green;">DEMO [Ensembl](http://www.ensembl.org/index.html)</span> -->
 
 ```
-$ wget http…/CHECKSUMS    # Download files along with reference checksum file to
-                            your working machine
-$ cat CHECKSUMS           # View reference checksum file
-$ sum <downloaded file>   # Generate checksum for downloaded file
-                          # Then can compare by eye to value in reference checksum 
-                            file
+$ wget <http…/CHECKSUMS>   # Download files along with reference checksum file to
+                             your working machine
+$ cat CHECKSUMS            # View reference checksum file
+$ sum <downloaded file>    # Generate checksum for downloaded file
+                           # Then can compare by eye to value in reference checksum 
+                             file
 ```
 
 # Talk 3 Exercise 1
@@ -353,7 +362,7 @@ cp <resources dir>/1_linux/rnaseq/md5sum.txt md5sum.txt
 md5sum -c --ignore-missing md5sum.txt
 ``` 
 
-6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
+6. Download the fasta file for the mouse genome (GRCm38, release 102) from Ensembl to **genome/**.
 
 ```{bash, eval = FALSE}
 # Go to Ensembl home, Downloads tab, FTP Download section then the table links 
@@ -369,7 +378,21 @@ md5sum -c --ignore-missing md5sum.txt
 cd ../genome/
 # Download Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 wget \
-https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz &
+https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
+```
+
+7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **genome/**.
+
+```{bash, eval = FALSE}
+wget \
+https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz
+```
+
+## Bonus exercises
+
+1. Check if genome downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
+
+```{bash, eval = FALSE}
 wget https://ftp.ensembl.org/pub/release-102/fasta/mus_musculus/dna/CHECKSUMS &
 cat CHECKSUMS | grep 'Mus_musculus.GRCm38.dna.primary_assembly.fa.gz'
 sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
@@ -378,20 +401,16 @@ sum Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 # checksums value (generated using sum command) for the file you downloaded
 ```
 
-## Talk 3 Exercise 1 – Working directory
+2. Check if GTF file downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
 
-7. Download the annotation GTF file for the mouse (release 102) genome from Ensembl to **genome/** and check it downloaded correctly using the CHECKSUMS file that can also be downloaded from the database.
-
-```{bash, echo = TRUE, eval = FALSE}
-wget \
-https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/Mus_musculus.GRCm38.102.gtf.gz &
+```{bash, eval = FALSE}
 wget https://ftp.ensembl.org/pub/release-102/gtf/mus_musculus/CHECKSUMS &
 ls  # Because there is an existing CHECKSUMS for the genome, it downloaded GTF CHECKSUMS as CHECKSUMS.1
 cat CHECKSUMS.1 | grep 'Mus_musculus.GRCm38.102.gtf.gz'
 sum Mus_musculus.GRCm38.102.gtf.gz
 ```
 
-8. Create a **README.txt** file in the **genome/** detailing how you obtained the public data files.
+3. Create a **README.txt** file in the **genome/** detailing how you obtained the public data files.
 
 ```{bash, eval = FALSE}
 nano README.txt  # Or
@@ -409,7 +428,7 @@ touch README.txt
 <!-- tree -->
 <!-- ``` -->
 
-9. Create an analysis lab-book called **rnaseq_commands.txt** in **rnaseq/**.
+4. Create an analysis lab-book called **rnaseq_commands.txt** in **rnaseq/**.
 
 ```{bash, eval = FALSE}
 touch rnaseq_commands.txt
