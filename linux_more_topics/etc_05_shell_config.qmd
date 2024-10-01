@@ -54,7 +54,6 @@ $ alias wd='cd </path/to/working_directory/> && pwd && ls'
 $ source ~/.bashrc
 $ source ~/.bash_aliases
 ```
-  
 
 ## Environment variables
 
@@ -73,10 +72,10 @@ $ echo $USER            # Username
 $ printenv USER         # Print $USER
 ```
 
-<!-- $ ls $HOME              # Use in commands -->
-<!-- $ echo $USER            # Set for each user to their own username -->
-<!-- $ mkdir $USER -->
-<!-- $ printenv              # Print currently defined environment variables -->
+$ ls $HOME              # Use in commands
+$ echo $USER            # Set for each user to their own username
+$ mkdir $USER
+$ printenv              # Print currently defined environment variables
 
 - Above are among the most commonly used variables but users can define any number of custom variable names using `export`
 
@@ -115,7 +114,7 @@ using the module system
 
 ```
 $ module avail                              # List modules currently available
-$ module avail python                       # Search for specific pattern of 
+$ module avail python                       # Search for specific pattern of
                                               module names
 $ module search python
 
@@ -135,11 +134,9 @@ knitr::include_graphics("img/module_add.png")
 ```
 
 ```
-$ module unload <module name>               # Unload 
-$ module purge                              # Unload all loaded modules 
+$ module unload <module name>               # Unload
+$ module purge                              # Unload all loaded modules
 ```
-
-<!--
 
 ## Remote connection to a Linux server
 
@@ -175,9 +172,9 @@ $ ssh -o ProxyJump=<jump username>@<jump host> <target username>@<target host>
   + **This then prompts for 2 passwords**, 1 for the jump host and 1 for the target host, that should be entered every time you want to connect
   + <span style="color:red;">For people within the University, the username is your SSO for both hosts</span>
 
--->
+# Talk 2 Exercise 1 (Shell configuration)
 
-# Talk 2 Exercise 1 (Shell configuration) and 2 (Working with modules)
+<!-- # Talk 2 Exercise 1 (Shell configuration) and 2 (Working with modules) -->
 
 <!-- @sec-Talk2Exercise1 -->
 
@@ -230,12 +227,12 @@ module avail
 module search fastqc
 ```
 
-3. Load the fastqc module and use `which` to confirm it has worked. 
+3. Load the fastqc module and use `which` to confirm it has worked.
 Look at the system path, then unload the module and check it again.
 
 ```{bash, eval = FALSE}
 which fastqc
-module add fastqc/0.11.9 
+module add fastqc/0.11.9
 which fastqc
 
 echo $PATH
@@ -243,7 +240,6 @@ module unload fastqc
 echo $PATH
 ```
 
-<!--
 3. Try using the module system to load different versions of programs you are familiar with.
 Look at how system path changes.
 
@@ -254,7 +250,6 @@ module unload cellranger
 module list
 module add cellranger/7.1.0
 ```
--->
 
 ## Remote connection to a Linux server
 
