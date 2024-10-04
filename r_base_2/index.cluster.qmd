@@ -3,7 +3,7 @@ title: 'Introduction to base <i class="fab fa-r-project"></i> -- Day 2'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht, Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-05-08 (updated: `r Sys.Date()`)"
+date: "2024-10-09 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
