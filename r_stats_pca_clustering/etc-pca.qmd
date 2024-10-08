@@ -643,7 +643,7 @@ knitr::include_graphics("img/tsne-swiss-roll.png")
 
 ::::
 
-<https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1>
+[StatQuest: t-SNE, Clearly Explained](https://www.youtube.com/watch?v=NEaUSP4YerM)
 
 ## Non-linear dimensionality reduction methods in action
 
