@@ -1,0 +1,559 @@
+---
+title: "Solution: Statistics, dimensionality reduction, and clustering"
+author: "Kevin Rue-Albrecht"
+date: "2024-10-10"
+date-format: long
+format: html
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Demo
+
+### The standard normal distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-5, 5, 0.1)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pnorm <- pnorm(q = data_quantiles) 
+head(data_pnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pnorm)
+```
+
+#### qnorm()
+
+The function `qnorm()` takes as input a vector of probabilities between 0 and 1.
+
+```{r}
+data_probabilities <- seq(from = 0, to = 1, by = 0.02)
+head(data_probabilities)
+```
+
+The function `qnorm()` the quantiles (i.e., values) that correspond to those probabilities.
+
+```{r}
+data_qnorm <- qnorm(p = data_probabilities) 
+head(data_qnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_probabilities, data_qnorm)
+```
+
+#### dnorm
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-5, 5, 0.2)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_dnorm <- dnorm(x = data_quantiles) 
+head(data_dnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_dnorm)
+```
+
+#### rnorm
+
+```{r}
+data_rnorm <- rnorm(n = 100)
+head(data_rnorm)
+```
+
+```{r}
+hist(data_rnorm, breaks = 20)
+```
+
+## Demo
+
+### A parameterised normal distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-500, 500, 50)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pnorm <- pnorm(q = data_quantiles, mean = 50, sd = 100)
+head(data_pnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pnorm)
+```
+
+#### qnorm()
+
+The function `qnorm()` takes as input a vector of probabilities between 0 and 1.
+
+```{r}
+data_probabilities <- seq(from = 0, to = 1, by = 0.02)
+head(data_probabilities)
+```
+
+The function `qnorm()` the quantiles (i.e., values) that correspond to those probabilities.
+
+```{r}
+data_qnorm <- qnorm(p = data_probabilities, mean = 50, sd = 100) 
+head(data_qnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_probabilities, data_qnorm)
+```
+
+#### dnorm
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(-500, 500, 50)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_dnorm <- dnorm(x = data_quantiles, mean = 50, sd = 100) 
+head(data_dnorm)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_dnorm)
+```
+
+#### rnorm
+
+```{r}
+data_rnorm <- rnorm(n = 100, mean = 50, sd = 100)
+head(data_rnorm)
+```
+
+```{r}
+hist(data_rnorm, breaks = 20)
+```
+
+## Demo
+
+### A parameterised binomial distribution
+
+#### pnorm()
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(0, 50, 1)
+head(data_quantiles)
+```
+
+The function `pnorm()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_pbinom <- pbinom(q = data_quantiles, size = 50, prob = 0.1)
+head(data_pbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_pbinom)
+```
+
+#### qbinom()
+
+The function `qbinom()` takes as input a vector of probabilities between 0 and 1.
+
+```{r}
+data_probabilities <- seq(from = 0, to = 1, by = 0.02)
+head(data_probabilities)
+```
+
+The function `qbinom()` the quantiles (i.e., values) that correspond to those probabilities.
+
+```{r}
+data_qbinom <- qbinom(p = data_probabilities, size = 50, prob = 0.1)
+head(data_qbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_probabilities, data_qbinom)
+```
+
+#### dbinom
+
+The quantiles represent a set of possible values in the distribution.
+
+```{r}
+data_quantiles <- seq(0, 50, 1)
+head(data_quantiles)
+```
+
+The function `pbinom()` returns the probability of a observing a value less or equal to each quantile given.
+
+```{r}
+data_dbinom <- dbinom(x = data_quantiles, size = 50, prob = 0.1)
+head(data_dbinom)
+```
+
+The base R `plot()` function can be used to quickly plot each quantile and its probability. 
+
+```{r}
+plot(data_quantiles, data_dbinom)
+```
+
+#### rbinom
+
+```{r}
+data_rbinom <- rbinom(n = 100, size = 50, prob = 0.1)
+head(data_rbinom)
+```
+
+```{r}
+hist(data_rbinom, breaks = 20)
+```
+
+## Demo
+
+### Quantiles
+
+```{r}
+data_rnorm <- rnorm(n = 1000, mean = 50, sd = 100)
+quantile(data_rnorm, probs = seq(0, 1, 0.1))
+```
+
+```{r}
+plot(
+  seq(0, 1, 0.1),
+  quantile(data_rnorm, probs = seq(0, 1, 0.1))
+)
+```
+
+## Demo
+
+### Parametric t-test
+
+```{r}
+set.seed(1)
+x <- rnorm(n = 1000, mean = 0, sd = 1)
+y <- rnorm(n = 2000, mean = 1, sd = 1)
+```
+
+In base R, `par(mfrow=c(i, j)))` can be used to display plots in a grid of `i` rows and `j` columns.
+
+```{r}
+#| fig-height: 7
+par(mfrow = c(2, 1))
+hist(x, breaks = 30)
+hist(y, breaks = 30)
+par(mfrow = c(1, 1 ))
+```
+
+
+```{r}
+t.test(x, y)
+```
+
+```{r}
+t.test(y, x)
+```
+
+## Demo
+
+### Paired test
+
+Simulate a vector of values `x`.
+Then simulate values `y` that are systematically 2 units greater than their `x` counterpart,
+with a bit of noise (normally distributed).
+
+```{r}
+set.seed(1)
+n_sample <- 10
+x <- runif(n = n_sample, min = 10, max = 20)
+y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
+```
+
+The average difference between `y` and `x` values is approximately 2, as intended. 
+
+```{r}
+mean(y - x)
+```
+
+```{r}
+t.test(x, y, paired = TRUE)
+```
+
+## Demo
+
+### Non-parametric tests
+
+```{r}
+set.seed(1)
+x <- runif(n = 10, min = 1, max = 11)
+y <- runif(n = 5, min = 3, max = 13)
+```
+
+```{r}
+wilcox.test(x, y)
+```
+
+```{r}
+wilcox.test(x, y, alternative = "less")
+```
+
+## Demo
+
+### Analysis of Variance (ANOVA)
+
+```{r}
+set.seed(1)
+n_sample <- 1000
+x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
+x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
+x3 <- x2 + 0 + rnorm(n = n_sample, mean = 0, sd = 0.5)
+data_aov <- data.frame(
+  value = c(x1, x2, x3),
+  group = c(
+    rep("x1", length(x1)),
+    rep("x2", length(x2)),
+    rep("x3", length(x3))
+  )
+)
+head(data_aov)
+```
+
+```{r}
+aov_result <- aov(value ~ group, data_aov)
+aov_result
+```
+
+```{r}
+summary(aov_result)
+```
+
+## Demo
+
+### Fisher’s Exact Test
+
+```{r}
+data_fisher <- matrix(
+  data = c(12, 4, 3, 23),
+  nrow = 2, ncol = 2,
+  dimnames = list(
+    c("DE", "Not DE"),
+    c("In pathway", "Not in pathway")
+  )
+)
+data_fisher
+```
+
+```{r}
+fisher.test(data_fisher)
+```
+
+## Demo
+
+### Multiple-testing correction
+
+```{r}
+data_p_values <- runif(1E3, min = 0, max = 1)
+data_p_adjusted <- p.adjust(data_p_values, method = "BH")
+head(sort(data_p_adjusted))
+```
+
+```{r}
+#| fig-height: 7
+par(mfrow = c(2, 1))
+hist(data_p_values, xlim = c(0, 1), breaks = seq(0, 1, 0.05))
+hist(data_p_adjusted, xlim = c(0, 1), breaks = seq(0, 1, 0.05))
+par(mfrow = c(1, 1))
+```
+
+## Exercise
+
+### Setup
+
+- Import the `iris` data set.
+
+```{r}
+data("iris")
+```
+
+- Separate the matrix of measurements in a new object named `iris_features`.
+
+```{r}
+iris_features <- iris[, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")]
+head(iris_features)
+```
+
+## Exercise
+
+### Apply Principal Components Analysis (PCA)
+
+The `prcomp()` function allows you to standardise the data as part of the principal components analysis itself.
+
+- Apply PCA, centering and scaling the matrix of features.
+  Assign the result to an object called `pca_iris`.
+
+```{r}
+pca_iris <- prcomp(iris_features, center = TRUE, scale. = TRUE)
+pca_iris
+```
+
+- Examine the object `pca_iris`.
+  Display the loading of each feature on each principal component.
+
+```{r}
+str(pca_iris)
+```
+
+```{r}
+pca_iris$rotation
+```
+
+- Visualise the PCA projection using `plot()`.
+
+```{r}
+plot(pca_iris$x[, "PC1"], pca_iris$x[, "PC2"])
+```
+
+### Bonus point
+
+- Edit the plot above, coloring data points according to their class label.
+
+```{r}
+plot(pca_iris$x[, "PC1"], pca_iris$x[, "PC2"], col = iris$Species)
+```
+
+## Exercise
+
+### Variance explained
+
+- Compute the variance explained by principal components, using information present in the return value of the `prcomp()` function.
+
+```{r}
+explained_variance_ratio <- pca_iris$sdev ^ 2 / sum(pca_iris$sdev ^ 2)
+explained_variance_ratio
+```
+
+- Visualise the variance explained by each principal component using `barplot()`.
+
+```{r}
+barplot(explained_variance_ratio)
+```
+
+# Exercise
+
+## Hierarchical clustering
+
+- Perform hierarchical clustering on the `iris_features` data set,
+  using the `euclidean` distance and method `ward.D2`.
+  Use the functions `dist()` and `hclust()`.
+
+```{r}
+dist_iris <- dist(iris_features, method = "euclidean")
+hclust_iris_ward <- hclust(dist_iris, method = "ward.D2")
+hclust_iris_ward
+```
+
+- Plot the clustering tree using `plot()`.
+
+```{r}
+plot(hclust_iris_ward, labels = FALSE)
+```
+
+How many clusters would you call from a visual inspection of the tree?
+
+> Answer:
+> - Visually: two major clusters.
+> - One could argue for three - maybe four - clusters, depending on follow-up analyses.
+
+- Cut the tree in 3 clusters and extract the cluster label for each flower.
+  Use the function `cutree()`.
+
+```{r}
+iris_hclust_ward_labels <- cutree(hclust_iris_ward, k = 3)
+iris_hclust_ward_labels
+```
+
+- Repeat clustering using 3 other agglomeration methods:
+
+  + `complete`
+  + `average`
+  + `single`
+
+```{r}
+# complete
+hclust_iris_complete <- hclust(dist_iris, method = "complete")
+iris_hclust_complete_labels <- cutree(hclust_iris_complete, k = 3)
+iris_hclust_complete_labels
+```
+
+```{r}
+# average
+hclust_iris_average <- hclust(dist_iris, method = "average")
+iris_hclust_average_labels <- cutree(hclust_iris_average, k = 3)
+iris_hclust_average_labels
+```
+
+```{r}
+# single
+hclust_iris_single <- hclust(dist_iris, method = "single")
+iris_hclust_single_labels <- cutree(hclust_iris_single, k = 3)
+iris_hclust_single_labels
+```
+
+- Compare clustering results on scatter plots of the data using `plot()`.
+
+```{r}
+#| fig-width: 7
+#| fig-height: 7
+par(mfrow = c(2, 2))
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_ward_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_complete_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_average_labels)
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris_hclust_single_labels)
+par(mfrow = c(1, 1))
+```
