@@ -935,7 +935,9 @@ Best practice is to give arguments in the order of the function definition where
 
 Note:
 
-- To find the hypotenuse, add the squares of the other sides, then take the square root, i.e. $\sqrt{a^2 + b^2}$
+- To find the hypotenuse, add the squares of the other sides, then take the square root, i.e. $\sqrt{a^2 + b^2}$.
+- Square root function in R is `sqrt()`.
+- Use `^` to square numbers in R.
 
 ## Applying functions on matrices
 
