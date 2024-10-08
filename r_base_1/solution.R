@@ -114,19 +114,28 @@ boxoffice <- c(35, 15, 15, 62, 3, 10, 321, 79, 39, 1.5)
 genre <- c("Comedy", "Horror", "Drama", "Adventure", "Drama", "SciFi", "Comedy", "Documentary", "SciFi", "Documentary")
 
 # - What is the name of the 10^th^ movie?
+movie[10]
 
 # - What are the genres of the first four movies?
+genre[1:4]
 
 # - In the movie names, 'Spice World' should be 'The Naked Gun’.
 #   Correct the name.
+movie[movie == "Spice World"] <- "The Naked Gun"
 
 # - What were the names of the movies made before the year 1990?
+movie[year %in% c("1985", "1988")]
+# OR
+movie[as.integer(year) < 1990]
 
 # - What were the names of the movies in the 'Comedy' genre?
+movie[genre == "Comedy"]
 
 #   - What were their combined total box office?
+sum(boxoffice)
 
 # - What is the name of the movie that made less than $50 million dollars *and* was a documentary?
+movie[boxoffice < 50 & genre == "Documentary"]
 
 ## Exercise ----
 
