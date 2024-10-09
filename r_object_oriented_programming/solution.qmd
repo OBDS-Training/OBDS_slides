@@ -1,0 +1,152 @@
+---
+title: "Example code for R S3 object oriented programming"
+author: "Kevin Rue-Albrecht"
+date: "09/10/2024"
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Demo
+
+### Character
+
+```{r}
+character_object <- "A"
+character_object
+```
+
+```{r}
+str(character_object)
+```
+
+```{r}
+class(character_object)
+```
+
+```{r}
+attributes(character_object)
+```
+
+```{r}
+character_object2 <- c("A", "B", "A", "C")
+character_object2
+```
+
+```{r}
+str(character_object2)
+```
+
+```{r}
+class(character_object2)
+```
+
+```{r}
+attributes(character_object2)
+```
+
+## Demo
+
+### Factors
+
+```{r, include=TRUE}
+factor_object <- factor(c("A", "B", "A", "C"))
+factor_object
+```
+
+```{r}
+str(factor_object)
+```
+
+```{r}
+class(factor_object)
+```
+
+```{r}
+attributes(factor_object)
+```
+
+```{r}
+attr(factor_object, "levels")
+```
+
+```{r}
+attr(factor_object, "class")
+```
+
+## Demo
+
+### Data-frames
+
+```{r}
+dataframe_object <- data.frame(
+  numbers = c(4, 2, 1),
+  strings = c("C", "B", "D")
+  )
+dataframe_object
+```
+
+```{r}
+class(dataframe_object)
+```
+
+```{r, include=TRUE}
+str(dataframe_object)
+```
+
+```{r}
+attributes(dataframe_object)
+```
+
+## Demo
+
+### Matrices
+
+```{r}
+matrix_object <- matrix(
+  data = c(1, 2, 3, 4, 5, 6, 7, 8),
+  nrow = 2,
+  byrow = TRUE
+  )
+matrix_object
+```
+
+```{r}
+class(matrix_object)
+```
+
+```{r}
+str(matrix_object)
+```
+
+```{r}
+attributes(matrix_object)
+```
+
+```{r}
+attr(matrix_object, "dim")
+```
+
+## Demo
+
+### S3 method dispatch
+
+```{r}
+methods("print") %>% head(14)
+```
+
+```{r}
+print.factor(factor_object)
+```
+
+```{r}
+print.factor(character_object)
+```
+
+```{r}
+print.default(character_object)
+```
