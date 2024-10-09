@@ -53,7 +53,8 @@ attributes(character_object2)
 
 ### Factors
 
-```{r, include=TRUE}
+```{r}
+#| include: true
 factor_object <- factor(c("A", "B", "A", "C"))
 factor_object
 ```
@@ -94,7 +95,8 @@ dataframe_object
 class(dataframe_object)
 ```
 
-```{r, include=TRUE}
+```{r}
+#| include: true
 str(dataframe_object)
 ```
 
