@@ -324,11 +324,11 @@ mcols(demo_DataFrame)
 library(rtracklayer)
 ```
 
-- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `rtracklayer::import()`.
+- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `BiocIO::import()`.
   Assign value to an object called `gtf_data`.
 
 ```{r}
-gtf_data <- rtracklayer::import(   )
+gtf_data <- BiocIO::import(   )
 gtf_data
 ```
 

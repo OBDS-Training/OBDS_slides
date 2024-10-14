@@ -328,7 +328,7 @@ library(rtracklayer)
   Assign value to an object called `gtf_data`.
 
 ```{r}
-gtf_data <- rtracklayer::import("data/Homo_sapiens.GRCh38.104.gtf.gz")
+gtf_data <- BiocIO::import("data/Homo_sapiens.GRCh38.104.gtf.gz")
 gtf_data
 ```
 
