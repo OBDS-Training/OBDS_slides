@@ -1,0 +1,465 @@
+---
+title: "Solution: Differential expression analysis for RNA-seq data"
+author: "Kevin Rue-Albrecht"
+date: "2024/10/22"
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(DESeq2)
+options(width = 120)
+```
+
+## Exercise
+
+### Import gene data and metadata
+
+- Load the `tidyverse` package,
+  and use the function `read_tsv()`
+  to import count data from the file `allsamples_counts.tsv.gz`
+  into a tibble called `featurecounts_table`.
+  Display a preview of `featurecounts_table` using `glimpse()`.
+
+```{r}
+library(tidyverse)
+featurecounts_table <- read_tsv("data/allsamples_counts.tsv.gz", comment = "#")
+glimpse(featurecounts_table)
+```
+
+- Extract gene metadata from the tibble `featurecounts_table` into a new tibble called `gene_info`.
+  Display a preview of `gene_info` using `glimpse()`.
+
+```{r}
+gene_info <- featurecounts_table %>%
+    column_to_rownames("Geneid") %>%
+    select(Chr, Start, End, Strand, Length)
+glimpse(gene_info)
+```
+
+- Similarly, extract the read counts per sample from `featurecounts_table`
+  into a numeric matrix called `counts_table`.
+  Display the first few rows of `counts_table` using `head()`.
+
+```{r}
+counts_table <- featurecounts_table %>%
+    column_to_rownames("Geneid") %>%
+    select(-Chr, -Start, -End, -Strand, -Length) %>%
+    as.matrix()
+head(counts_table)
+```
+
+- Display the dimensions of the matrix `counts_table`.
+
+```{r}
+dim(counts_table)
+```
+
+- What does the function `storage.mode()` tell you about `counts_table`?
+
+```{r}
+storage.mode(counts_table)
+```
+
+## Exercise
+
+### Import sample metadata
+
+- Import sample metadata from the file `PRJEB18572_sample_info.tsv`
+  into a tibble called `sample_info`
+  using the tidyverse function `read_tsv()`.
+  Display the object `sample_info`.
+
+```{r}
+sample_info <- read_tsv("data/PRJEB18572_sample_info.tsv")
+sample_info
+```
+
+- What is the type of the column called `cell_type`?
+
+```{r}
+typeof(sample_info$cell_type)
+```
+
+- Convert the column `cell_type` to a factor.
+
+```{r}
+sample_info$cell_type <- as.factor(sample_info$cell_type)
+```
+
+- What is the default order of the levels of that factor?
+
+```{r}
+levels(sample_info$cell_type)
+```
+
+- One more time, convert the column `cell_type` to a factor,
+  this time setting the levels of that factor to be `CD8` first, then `CD4`.
+  Demonstrate that it worked.
+
+```{r}
+sample_info$cell_type <- factor(sample_info$cell_type, levels = c("CD8", "CD4"))
+levels(sample_info$cell_type)
+```
+
+**How does the order of the levels impact the differential expression analysis?**
+
+- What other columns might we want to include in the experimental design of our differential expression analysis?
+  Convert those to factors too.
+  Display the full tibble `sample_info` again.
+
+```{r}
+sample_info$genotype <- factor(sample_info$genotype, c("Egr2_Kin", "Egr2_Egr3_KO"))
+sample_info$replicate <- factor(sample_info$replicate, c(1, 2, 3))
+sample_info
+```
+
+## Exercise
+
+### Sanity check and preprocess data
+
+- Check whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
+
+```{r}
+colnames(counts_table) == sample_info$sample_id
+```
+
+- If not, display the two sets of sample names.
+  (Hint: you display them individually, or as two columns in a single tibble, for easier side-by-side comparison).
+
+```{r}
+tibble(
+    counts_table = colnames(counts_table),
+    sample_info = sample_info$sample_id
+)
+```
+
+**What makes the two sets of sample names different from each other?**
+
+- Remove `.bam` from the column names of the matrix to match the `sample_id` column of the sample metadata.
+
+```{r}
+colnames(counts_table) <- colnames(counts_table) %>%
+    str_replace(".bam","")
+```
+
+- Check (again) whether sample names in the count matrix (column names) and sample meta (column `sample_id`) match.
+
+```{r}
+# option 1: get a vector of pairwise comparisons
+colnames(counts_table) == sample_info$sample_id
+# option 2: get a single overall answer whether the two whole vectors are identical
+identical(
+    colnames(counts_table),
+    sample_info$sample_id
+)
+```
+
+## Exercise
+
+### Construct a DESeqDataSet object
+
+- Load the package `DESeq2`
+  and use the function `DESeqDataSetFromMatrix()`
+  to construct a `DESeqDataSet` called `dds`
+  using the count matrix `counts_table`
+  and the tibble `sample_info`.
+  Define an experimental design that includes only `cell_type` for now.
+
+```{r}
+library(DESeq2)
+dds <- DESeqDataSetFromMatrix(
+    countData = counts_table,
+    colData = sample_info,
+    design = ~ cell_type
+)
+```
+
+- Rewrite the code above, adding a line using the function `storage.mode()` to avoid the message "converting counts to integer mode", printed by the function `DESeqDataSetFromMatrix()`.
+
+```{r}
+storage.mode(counts_table) <- "integer"
+dds <- DESeqDataSetFromMatrix(
+    countData = counts_table,
+    colData = sample_info,
+    design = ~ cell_type
+)
+```
+
+- Display the `dds` object.
+
+```{r}
+dds
+```
+
+## Exercise
+
+### Explore a DESeqDataSet object
+
+- Use the function `class()` to demonstrate that the object `dds` is a `DESeqDataSet`.
+
+```{r}
+class(dds)
+```
+
+- Use the function `is()` to demonstrate that `dds` is also a `SummarizedExperiment`.
+
+```{r}
+is(dds, "SummarizedExperiment")
+```
+
+- Given that `dds` is a `SummarizedExperiment`, what do the following methods tell you about `dds`?
+  + `assayNames()`
+  + `assays()`
+  + `assay()`
+  + `colData()`
+  + `rowData()`
+  + `metadata()`
+
+```{r}
+assayNames(dds)
+assays(dds)
+head(assay(dds, "counts"))
+colData(dds)
+rowData(dds)
+metadata(dds)
+```
+
+- Furthermore, as a `DESeqDataSet`, what do the following methods tell you about `dds`?
+  + `counts()`
+  + `design()`
+  + `sizeFactors()`
+  + `dispersions()`
+
+```{r}
+head(counts(dds))
+design(dds)
+sizeFactors(dds)
+dispersions(dds)
+```
+
+- As a `SummarizedExperiment`, the `dds` object can also be indexed using `[`.
+  Extract the rows 1 to 5 and columns 1 to 4.
+  Display the result without assigning it to any object.
+
+```{r}
+dds[1:5, 1:4]
+```
+
+## Exercise
+
+### Filter out lowly genes expressed
+
+- Use the functions `counts()` and `rowSums()`
+  to count the number of samples in which each gene is expressed
+  (i.e., strictly more than zero read counts).
+  Use that information to extract genes expressed in at least 4 samples
+  into a new object called `dds_filtered`.
+  Display the object `dds_filtered`.
+
+```{r}
+dds_filtered <- dds[rowSums(counts(dds) > 0) >= 4, ]
+dds_filtered
+```
+
+**How many genes remain after filtering?**
+
+### Bonus point(s)
+
+Explore different cut-offs and filtering strategies, e.g.
+
+- Change the minimum read count cut-off from 0 to higher values.
+- Change the number of samples in which genes should be detected above the read count cut-off.
+- Keep only genes detected above the read count cut-off in all the samples of either cell type.
+
+```{r}
+keep <- counts(dds) %>%
+    as.data.frame() %>% 
+    rownames_to_column("gene_id") %>% 
+    as_tibble() %>%
+    pivot_longer(-gene_id) %>% 
+    left_join(
+        colData(dds) %>% as_tibble(),
+        by = c("name" = "sample_id")) %>% 
+    group_by(gene_id, cell_type) %>% 
+    summarise(all_samples = all(value > 0)) %>% 
+    summarise(all_samples_any_celltype = any(all_samples)) %>% 
+    filter(all_samples_any_celltype) %>% 
+    pull(gene_id)
+dds[keep, ]
+```
+
+## Exercise
+
+### Preprocessing for exploratory analysis and quality control
+
+- Use the function `rlog()` to transform the counts data using the 'regularised log' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_rlog`.
+  Display the object `dds_rlog`.
+  What is the class of the object?
+
+```{r}
+dds_rlog <- rlog(dds_filtered, blind=TRUE)
+dds_rlog
+```
+
+### Bonus point(s)
+
+- Use the function `vst()` to transform the counts data using the 'variance stabilizing' transformation.
+  Leave the argument `blind=` set to its default value `TRUE`.
+  Assign the result to a new object named `dds_vst`.
+  Display the object `dds_vst`.
+  What is the class of the object?
+
+```{r}
+dds_vst <- vst(dds_filtered, blind=TRUE)
+dds_vst
+```
+
+**Can you spot differences between the rlog() and vst() outputs?**
+
+> Answer:
+> Some rowData() names are different.
+
+## Exercise
+
+### Exploratory analysis and quality control
+
+Using either of the objects `dds_rlog` or `dds_vst` produced earlier.
+
+- Use the function `plotPCA()`.
+  Set the argument `intgroup` to `"cell_type"`.
+
+```{r}
+plotPCA(dds_rlog, intgroup='cell_type') +
+    coord_fixed(ratio = 5)
+```
+
+**How many samples do you count?**
+
+### Bonus point(s)
+
+- Use the functions `assay()` and `cor()`
+  to compute a correlation matrix between samples using the "spearman" method.
+  Load the `pheatmap` package and use the function `pheatmap()`
+  to plot a heat map of correlations between samples.
+
+```{r, message=FALSE}
+library(pheatmap)
+dds_cor <- cor(assay(dds_rlog), method="spearman")
+pheatmap(dds_cor)
+```
+
+**What can you tell from the scale of correlation values?**
+
+- Use the functions `assay()`, `t()` and `dist()`
+  to compute the Euclidean distance matrix between samples.
+  Use the function `pheatmap()`
+  to plot a heat map of distances between samples.
+
+```{r, message=FALSE}
+library(RColorBrewer)
+dds_dist <- dist(t(assay(dds_rlog)))
+blue_colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(as.matrix(dds_dist),
+    color = blue_colors
+)
+```
+
+- Confirm that the suspicious samples are duplicate of each other.
+
+```{r}
+# first pair of duplicates
+identical(
+    counts(dds_filtered)[, "ERR1755082"],
+    counts(dds_filtered)[, "ERR1755088"]
+)
+# second pair of duplicates
+identical(
+    counts(dds_filtered)[, "ERR1755083"],
+    counts(dds_filtered)[, "ERR1755089"]
+)
+```
+
+- Index the `dds_filtered` object to extract the unique samples
+  into a new object called `dds_filtered_unique`.
+  Display the sample metadata of the new object
+  (compare with objects prior to indexing).
+
+```{r}
+keep <- setdiff(colnames(dds_filtered), c("ERR1755088", "ERR1755089"))
+dds_filtered_unique <- dds_filtered[, keep]
+dds_filtered_unique
+```
+
+## Exercise
+
+### Perform differential expression analysis
+
+- Display the design formula stored in the object `dds_filtered_unique`
+  and check it against the sample metadata stored in the same object
+  to confirm that it is still valid
+  with respect to the differential expression analysis that we wish to perform.
+
+```{r}
+design(dds_filtered_unique)
+```
+
+```{r}
+colData(dds_filtered_unique)
+```
+
+- Use the function `DESeq()` to perform the differential expression analysis
+  on the object `dds_filtered_unique`.
+  Re-assign the output to the same name.
+  Display the object.
+
+```{r}
+dds_filtered_unique <- DESeq(dds_filtered_unique)
+dds_filtered_unique
+```
+
+**What differences can you see with this object printed earlier in the notebook?**
+
+- Use the function `results()` to extract the differential expression results
+  from the object `dds_filtered_unique`.
+  Assign the result to an object called `dds_results`.
+
+```{r}
+dds_results <- results(dds_filtered_unique)
+dds_results
+```
+
+**How do you know that extracted the results for the desired contrast?**
+
+> Answer:
+> "Wald test p-value: cell type CD4 vs CD8"
+> Better yet, use the additional arguments of the function 'results()'
+> to explicitly fetch the desired contrast results.
+
+```{r}
+results(dds_filtered_unique, contrast = c("cell_type", "CD4", "CD8"))
+```
+
+- What does the function `summary()` tell you about the object `dds_results`?
+
+```{r}
+summary(dds_results)
+```
+
+> Answer:
+> - Number and fraction of significantly up-regulated genes.
+> - Number and fraction of significantly down-regulated genes.
+> - Number and fraction of outliers (?)
+> - Number and fraction of lowly expressed genes excluded by independent filtering.
+
+- Export the table of differential expression results to a CSV file.
+
+```{r}
+x <- dds_results %>% 
+  as.data.frame() %>% 
+  rownames_to_column("gene_id")
+write_csv(x, "dds_results.csv")
+```
