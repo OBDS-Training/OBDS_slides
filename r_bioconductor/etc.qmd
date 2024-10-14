@@ -297,12 +297,12 @@ knitr::include_graphics("img/biocviews-annotation.png")
 ### rtracklayer
 
 - Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
-- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `rtracklayer::import()`.
+- Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `BiocIO::import()`.
   Assign value to an object called `gtf_data`.
 - What are the metadata columns available in the object?
-- Use the function `subset()` to filter the annotations for the gene `ACTB`.
+- Use the function `S4Vectors::subset()` to filter the annotations for the gene `ACTB`.
 - How many transcripts do the annotations describe for that gene?
-- Subset the annotations to exons, and use the `split()` function to separate exons from different transcripts.
+- Subset the annotations to exons, and use the `S4Vectors::split()` function to separate exons from different transcripts.
   What is the class of the object that is returned?
 
 ## Annotations - An example
