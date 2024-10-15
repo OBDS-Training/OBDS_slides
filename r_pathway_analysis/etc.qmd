@@ -81,19 +81,19 @@ log2FC of X translates to 2^X-fold increase
 log2FC of 3 translates to (2^3)8-fold increase
 -->
 
-# Over-representation analysis (ORA)
+<!-- # Over-representation analysis (ORA) -->
 
-## ORA workflow
+<!-- ## ORA workflow -->
 
-```{r}
-#| fig-align: center
-#| out-height: 500px
-#| out-width: 700px
-## Source: https://biostatsquid.com/pathway-enrichment-analysis-explained/ 
-knitr::include_graphics("img/ora_diagram.png")
-```
+<!-- ```{r} -->
+<!-- #| fig-align: center -->
+<!-- #| out-height: 500px -->
+<!-- #| out-width: 700px -->
+<!-- ## Source: https://biostatsquid.com/pathway-enrichment-analysis-explained/  -->
+<!-- knitr::include_graphics("img/ora_diagram.png") -->
+<!-- ``` -->
 
-[Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM)
+<!-- [Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM) -->
 
 ## ORA workflow
 
@@ -310,19 +310,19 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 
 - **Gene set enrichment analysis (GSEA)** is a tool classified under FCS approaches
 
+<!-- ## GSEA (vs. ORA) workflow -->
+
+<!-- ```{r} -->
+<!-- #| fig-align: center -->
+<!-- #| out-height: 500px -->
+<!-- #| out-width: 900px -->
+<!-- ## Source: https://biostatsquid.com/gene-set-enrichment-analysis/ -->
+<!-- knitr::include_graphics("img/gsea_vs_ora_diagram.png") -->
+<!-- ``` -->
+
+<!-- [Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM) -->
+
 ## GSEA (vs. ORA) workflow
-
-```{r}
-#| fig-align: center
-#| out-height: 500px
-#| out-width: 900px
-## Source: https://biostatsquid.com/gene-set-enrichment-analysis/
-knitr::include_graphics("img/gsea_vs_ora_diagram.png")
-```
-
-[Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM)
-
-## GSEA workflow
 
 <span style="color:red;">**Difference vs. ORA**</span>
 
