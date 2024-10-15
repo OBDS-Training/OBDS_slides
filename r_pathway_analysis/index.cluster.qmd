@@ -3,7 +3,7 @@ title: 'Gene set / Pathway enrichment analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue Albrecht, Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-05-22"
+date: "2024-10-23"
 date-format: long
 format:
   revealjs: 
