@@ -111,8 +111,8 @@ Reference: <https://ggplot2.tidyverse.org/reference/#section-geoms>
 
 - `geom_point()` - scatter plot, requires `x` and `y`.
 - `geom_histogram()` - histogram, requires `x` (continuous).
-- `geom_bar()` - histogram, requires `x` (categorical).
-- `geom_col()` - histogram, requires `x` and `y`.
+- `geom_bar()` - bar plot, requires `x` (categorical).
+- `geom_col()` - bar plot, requires `x` and `y`.
 - `geom_boxplot()` - boxplot, requires `x` and/or `y`.
 - `geom_line()` - connect consecutive observations with line, requires `x` and `y`.
 
