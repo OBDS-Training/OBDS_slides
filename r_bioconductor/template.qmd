@@ -1,5 +1,5 @@
 ---
-title: "Solution: Introduction to Bioconductor"
+title: "Template: Introduction to Bioconductor"
 author: "Kevin Rue-Albrecht"
 date: "2024-10-21 (updated: `r Sys.Date()`)"
 ---
