@@ -228,7 +228,7 @@ metadata(demo_granges)
 
 ::::
 
-## Bioconductor has its own DataFrame class
+## Bioconductor has its own DataFrame class {visibility="hidden"}
 
 :::: {.columns}
 
@@ -270,7 +270,7 @@ knitr::include_graphics("img/dataframe-mcols.svg")
 - Note how row names are automatically set in the metadata, to the solumn names of the main `DataFrame`.
 :::
 
-## rtracklayer
+## BiocIO (and rtracklayer)
 
 :::: {.columns}
 
@@ -286,17 +286,18 @@ knitr::include_graphics("img/biocviews-annotation.png")
 ::: {.column width="50%"}
 - The package `r BiocStyle::Biocpkg("rtracklayer")`  was developed as an extensible framework for interacting with multiple genome browsers
   - e.g., UCSC
-- To that end, it also provides functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
+- To that end, it also provided functionality for manipulating annotation tracks in various formats (currently  and 2bit built-in)
   - e.g., GFF, BED, bedGraph, BigWig
+- The `import()` and `export()` functions are now hosted in `r BiocStyle::Biocpkg("BiocIO")`.
 :::
 
 ::::
 
 ## Exercise
 
-### rtracklayer
+### BiocIO
 
-- Load the `r BiocStyle::Biocpkg("rtracklayer")` package.
+- Load the `r BiocStyle::Biocpkg("BiocIO")` package.
 - Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `BiocIO::import()`.
   Assign value to an object called `gtf_data`.
 - What are the metadata columns available in the object?

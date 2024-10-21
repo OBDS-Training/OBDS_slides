@@ -12,7 +12,7 @@ library(tidyverse)
 library(Biostrings)
 library(BSgenome)
 library(BSgenome.Hsapiens.UCSC.hg38.masked)
-library(rtracklayer)
+library(BiocIO)
 library(org.Hs.eg.db)
 library(biomaRt)
 library(SummarizedExperiment)
@@ -316,12 +316,12 @@ mcols(demo_DataFrame)
 
 # Exercise
 
-## rtracklayer
+## BiocIO
 
-- Load the `rtracklayer` package.
+- Load the `BiocIO` package.
 
 ```{r}
-library(rtracklayer)
+library(BiocIO)
 ```
 
 - Import the file `Homo_sapiens.GRCh38.104.gtf.gz` using the function `BiocIO::import()`.
