@@ -1,3 +1,4 @@
+BiocManager::install(c("hexbin", "apeglm"))
 remotes::install_github("immunogenomics/LISI")
 remotes::install_github("satijalab/seurat-wrappers")
 remotes::install_github("satijalab/seurat-data")
