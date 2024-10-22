@@ -304,23 +304,23 @@ plot(dispersionFunction(dds))
 
 ::::
 
-## Constructing a DESetDataSet object
+## Constructing a DESeqDataSet object
 
-The first step of a `r BiocStyle::Biocpkg("DESeq2")` workflow is to construct a `DESetDataSet` object.
+The first step of a `r BiocStyle::Biocpkg("DESeq2")` workflow is to construct a `DESeqDataSet` object.
 
 - Combines all the key information in a single object.
 - Makes it easy for package functions to find information in standard places and formats.
 
 ### Methods
 
-`DESetDataSet` objects can be constructed from various inputs:
+`DESeqDataSet` objects can be constructed from various inputs:
 
 - The function `DESeqDataSet()` takes a *SummarizedExperiment* object and a design *formula*.
 - The function `DESeqDataSetFromMatrix()` takes a counts *matrix*, a *data.frame* of sample metadata, and a design *formula*.
 - The function `DESeqDataSetFromHTSeqCount()` takes a *data.frame* of sample names, associated count files and metadata, and a design *formula*.
 - The function `DESeqDataSetFromTximport()` takes the *list* output of the function `tximport()`.
 
-## Constructing a DESetDataSet object from a matrix
+## Constructing a DESeqDataSet object from a matrix
 
 ```{r}
 knitr::include_graphics("img/construct-desseqdataset.png")
