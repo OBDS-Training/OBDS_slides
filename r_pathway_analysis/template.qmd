@@ -86,7 +86,7 @@ b. Plot our results using a function from gprofiler2. Which one is it?
 
 ```
 
-c. What does `as_short_link = FALSE` do in `gost()` function? 
+c. What does `as_short_link = TRUE` do in `gost()` function? 
 
 ```{r}
 gost_results_obj_link <- 

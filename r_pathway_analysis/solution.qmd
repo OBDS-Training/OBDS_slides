@@ -139,7 +139,7 @@ gostplot(gost_results_obj, capped = TRUE, interactive = TRUE)
 ## size of circle - term size
 ```
 
-c. What does `as_short_link = FALSE` do in `gost()` function? 
+c. What does `as_short_link = TRUE` do in `gost()` function? 
 
 ```{r}
 gost_results_obj_link <- gost(query = upreg_gene_ids, 
