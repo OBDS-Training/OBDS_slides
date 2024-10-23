@@ -14,7 +14,6 @@ date: "23/10/2024"
 
 ```{r}
 options(bitmapType = 'cairo') # For rendering 
-library(dplyr)
 library(tidyverse)
 library(gprofiler2)
 ```
