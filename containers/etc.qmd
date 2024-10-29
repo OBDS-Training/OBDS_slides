@@ -155,6 +155,39 @@ apptainer exec \
   /package/containers/ubuntu/ubuntu-22.sif bash 
 ```
 
+## Exercise
+
+In the container:
+
+```
+/project/shared/resources/containers/R-4.3.0.sif
+```
+
+Execute the command:
+
+```bash
+R --version
+```
+
+## Exercise
+
+In the container: 
+
+```
+/project/shared/resources/containers/R-4.3.0.sif
+```
+
+Execute the R script:
+
+```
+/project/shared/resources/7_containers/installed_packages.R
+```
+
+### Hints
+
+- Use the `Rscript` command to execute the script.
+- Bind the directory that contains the script to the container.
+
 ## References
 
 ```{r}
