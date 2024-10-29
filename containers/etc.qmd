@@ -84,6 +84,32 @@ They can be found in the directory `/package/containers/`.
 └── builder         # Ubuntu + compilers & libraries
 ```
 
+## Using Containers
+
+Given a container file, Apptainer commands can execute commands in the container in various ways.
+
+For instance, the following commands both launch a Bash shell within the given container.
+
+### shell
+
+The `shell` sub-command specifically opens an interactive shell in the given container:
+
+```bash
+apptainer shell /package/containers/ubuntu/ubuntu-22.sif
+```
+
+### exec
+
+The `exec` sub-command execute any given command in the given container:
+
+```bash
+apptainer exec /package/containers/ubuntu/ubuntu-22.sif bash
+```
+
+::: {.callout-note}
+In practice, both can provide a Bash shell, but `shell` is explicitly intended for interactive use, while `exec` is more suited for single-command execution
+:::
+
 ## References
 
 ```{r}
