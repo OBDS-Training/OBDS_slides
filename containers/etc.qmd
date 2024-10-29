@@ -1,22 +1,29 @@
-## Slide title
+# What are containers?
 
-Slide contents
+## What are containers?
 
-## Citations
+- Consistent, reproducible environments.
+- Bundles of code, libraries, and dependencies.
+- Secure environments separated from data on the host system.
 
-Citation to <i class="fa-brands fa-r-project"></i> with parentheses `r Citep(bib, "R")`.
+```{r}
+#| fig-cap: "Illustration of a container isolating software on a host (Source: Kevin Rue)."
+##| out-height: 300px
+knitr::include_graphics("img/containers-draft-02-slide-04.svg")
+```
 
-Citation to <i class="fa-brands fa-r-project"></i> without parentheses `r Citet(bib, "R")`.
+## Multiple containers isolate software on a single host
 
-## Equations
+```{r}
+#| fig-cap: "Illustration of multiple containers on a single host (Source: Kevin Rue)."
+knitr::include_graphics("img/containers-draft-02-slide-05.svg")
+```
 
-This line contains an inline \LaTeX{} equation $K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$ inserted using a single `$` symbol.
+## Reproducible Research
 
-Below is the same equation on its own line, using double `$` symbols:
-
-$$K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$$
-
-Do you notice the difference?
+- Contains all code dependencies including operating system dependencies.
+- Can reproduce exact environment of different systems.
+- Conda only reproduces installed software but has OS dependencies.
 
 ## References
 

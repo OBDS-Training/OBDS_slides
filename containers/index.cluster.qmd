@@ -57,11 +57,13 @@ NoCite(bib, "R")
 
 ## Prerequisites
 
-- An account on the teaching cluster.
+- An account on the OBDS server.
 
 ## Set up
 
-- Launch RStudio Server on the teaching cluster.
+- Connect to OpenVPN (make sure you are not simultaneously connected to the University VPN).
+- Open a new Terminal window.
+- Connect to the OBDS server over SSH.
 
 ```{r}
 #| child: etc.qmd
