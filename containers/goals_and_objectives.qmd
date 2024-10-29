@@ -1,0 +1,23 @@
+## Lesson goals and objectives
+
+### Learning goals
+
+<!--
+High-level "big picture" objectives of the learning process.
+This should be no more than 3 bullet points.
+-->
+
+- Describe what containers are and how they facilitate reproducibility.
+- Demonstrate how containers can be used on JADE.
+- Demonstrate how to create and run new containers.
+
+### Learning objectives
+
+<!--
+More concrete and measurable outputs.
+This can range from 3 to 8 bullet points.
+-->
+
+- Execute commands reproducibly within containers.
+- Create and use your own containers.
+- Run interactive containers as Slurm jobs.

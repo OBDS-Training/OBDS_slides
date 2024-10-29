@@ -1,0 +1,68 @@
+---
+title: 'Using Containers For Reproducible Research'
+subtitle: 'Oxford Biomedical Data Science Training Programme'
+author: "Kevin Rue"
+institute: "Oxford Biomedical Data Science Training Programme"
+date: "2024-10-29"
+date-format: long
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/ox_brand1_pos.gif
+    css: styles.css
+    fontsize: 1.5em
+    footer: Kevin Rue -- Using Containers For Reproducible Research
+## run the following line to render HTML
+# quarto::quarto_render("index.cluster.qmd")
+## run the following line to render PDF (from HTML above)
+# renderthis::to_pdf("index.cluster.html", "index.cluster.pdf")
+## run the following line to render the solution
+# quarto::quarto_render("solution.qmd")
+---
+
+```{r}
+#| label: setup
+#| include: false
+stopifnot(requireNamespace("htmltools"))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+options(width = 120)
+```
+
+```{r}
+#| label: load_refs
+#| include: false
+#| cache: false
+options(htmltools.dir.version = FALSE)
+library(RefManageR)
+BibOptions(
+  check.entries = FALSE,
+  bib.style = "authoryear",
+  cite.style = "authoryear",
+  max.names = 2,
+  no.print.fields = c("issn", "url", "abstract", "number", "urldate", "month", "pages", "file", "note"),
+  style = "markdown",
+  hyperlink = "to.doc",
+  dashed = TRUE)
+bib <- ReadBib("bibliography.bib")
+# NoCite adds entries in the bibliography without the need to insert an explicit citation.
+NoCite(bib, "R")
+```
+
+```{r}
+#| child: goals_and_objectives.qmd
+```
+
+## Prerequisites
+
+- An account on the teaching cluster.
+
+## Set up
+
+- Launch RStudio Server on the teaching cluster.
+
+```{r}
+#| child: etc.qmd
+```
