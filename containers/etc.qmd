@@ -161,7 +161,7 @@ apptainer exec \
 In the container:
 
 ```
-/project/shared/resources/containers/R-4.3.0.sif
+/project/shared/resources/containers/.../R-4.3.0.sif
 ```
 
 Execute the command:
@@ -175,13 +175,13 @@ R --version
 In the container: 
 
 ```
-/project/shared/resources/containers/R-4.3.0.sif
+/project/shared/resources/containers/.../R-4.3.0.sif
 ```
 
 Execute the R script:
 
 ```
-/project/shared/resources/7_containers/installed_packages.R
+/project/shared/resources/containers/.../installed_packages.R
 ```
 
 ### Hints
@@ -200,7 +200,7 @@ bioconductor/bioconductor_docker:devel
 Execute the R script:
 
 ```
-/project/shared/resources/7_containers/installed_packages.R
+/project/shared/resources/containers/.../installed_packages.R
 ```
 
 Visually compare the output (R version, list of packages) with the previous exercise.
@@ -210,7 +210,7 @@ Visually compare the output (R version, list of packages) with the previous exer
 In the container:
 
 ```
-/project/shared/resources/containers/fastqc.sif
+/project/shared/resources/containers/.../fastqc.sif
 ```
 
 Run the FastQC program as follows
@@ -308,7 +308,7 @@ If the definition requires a local base image, you may have to build that one fi
 Using the prepared container definition file:
 
 ```
-/project/shared/resources/containers/samtools.def
+/project/shared/resources/containers/.../samtools.def
 ```
 
 Build an image file called `samtools.sif` in your project directory.
@@ -333,12 +333,131 @@ The process is not straightforward but documented at <https://lumin.imm.ox.ac.uk
 
 In this lesson, we follow those instructions, adapted to the OBDS server.
 
-## RStudio Server Containers on the OBDS Server
+## Running an RStudio Server Container on the OBDS Server
 
 ```{r}
 #| fig-cap: "Illustration of RStudio Server containers on the OBDS server (Source: Kevin Rue)."
 knitr::include_graphics("img/containers-draft-02-slide-29.svg")
 ```
+
+## What the RStudio Server Container Does
+
+The container runs an instance of RStudio server on a port specific to each user.
+
+### How?
+
+- User IDs are numbers.
+- The container uses the ID of the user running the container to calculate a unique port number within an acceptable range of values.
+
+### What then?
+
+Step 1. Run an instance of the container as a Slurm job.
+
+Step 2. While the container is running, connect to the port that runs your own instance of the RStudio Server.
+
+::: {.callout-note}
+Step 2 is not straightforward. We give you a semi-automated script for that.
+:::
+
+## Exercise
+
+### Running the RStudio Server Container
+
+For this first part of the process, you must run the following commands **on the OBDS server**.
+
+Submit a Slurm job that runs the container.
+
+```bash
+sbatch /project/shared/resources/containers/.../rstudio-container.sh
+```
+
+Check that the job is running.
+
+```bash
+squeue –me
+```
+
+Display the contents of the job output file (substitute `JOBID` by the job identifier reported by the previous command).
+
+```bash
+cat slurm-JOBID.out
+```
+
+Make a note of the password displayed by the last command. You will need it in the second part of the process.
+
+## Exercise
+
+### Connecting to your RStudio Server Container
+
+This first part of the process takes place **on your own computer** (not on your OBDS account).
+
+Make a copy of the appropriate script below .
+
+- Windows: `connect-to-wn-rstudio.bat`
+- Linux / macOS: `connect-to-wn-rstudio.sh`
+
+Run the script.
+
+- Windows: double click on the file.
+- Linux / macOS: In a terminal, type `bash connect-to-rstudio-server-obds.sh`.
+
+Follow the instructions displayed by the script.
+
+- Type your username when prompted (first time only^[The username will be cached in a file in your home directory for subsequent uses.])
+- Open a web browser tab to <http://localhost:8888>
+- Log in using you SSO (username) and the random password copied earlier.
+
+## Using a Custom Package Library with the RStudio Server Container
+
+In the `apptainer run` command, bind a directory using the `-B` option.
+
+```bash
+–B /project/username/my_library
+```
+
+Submit a Slurm job that runs the container.
+
+```bash
+sbatch /project/shared/resources/containers/.../rstudio-container.sh
+```
+
+In the Rstudio Server session, add the same directory to your R library path.
+
+```r
+.libPaths("/project/username/my_library/")
+```
+
+Install your favourite packages.
+
+```r
+install.packages("tidyverse")
+```
+
+### Key points
+
+- The packages will be installed in the bound directory (first in the library path).
+- The directory (and packages) will remain after the container is terminated and can be re-used by other containers.
+
+# Summary
+
+## Summary
+
+Containers provide a fixed environment to facilitate reproducible work.
+
+Containers can be shared, locally or online.
+
+New containers can be created, from minimal operating systems or from other containers.
+
+You are encouraged to create and share your own containers:
+
+- You can install any version of any software in your own containers.
+- You can ask more disk quota if you run out of storage for containers.
+
+## Further Reading
+
+- [WIMM CCB documentation](https://lumin.imm.ox.ac.uk/containers/) (Requires SSO)
+- [Apptainer documentation](https://apptainer.org/documentation/)
+- [BMRC documentation](https://www.medsci.ox.ac.uk/for-staff/resources/bmrc/scientific-software-directory)
 
 ## References
 
