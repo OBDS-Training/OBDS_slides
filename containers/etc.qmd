@@ -8,7 +8,6 @@
 
 ```{r}
 #| fig-cap: "Illustration of a container isolating software on a host (Source: Kevin Rue)."
-##| out-height: 300px
 knitr::include_graphics("img/containers-draft-02-slide-04.svg")
 ```
 
@@ -294,11 +293,11 @@ apptainer build <filename>.sif <filename>.def
 
 Image files can be copied, but will only work on systems that have the same CPU architecture.
 
-{{< fa triangle-exclamation >}} Faster, with a major caveat.
+`r fa("triangle-exclamation")` Faster, with a major caveat.
 
 Definition files can be used to build more copies of the same image on other systems.
 
-{{< fa thumbs-up >}} Slower, but CPU compatibility is guaranteed.
+`r fa("thumbs-up")` Slower, but CPU compatibility is guaranteed.
 
 ::: {.callout-note}
 If the definition requires a local base image, you may have to build that one first (and so on).
@@ -323,6 +322,23 @@ Choose a program that you already know how to use.
 Write a definition file and create an image that includes that program.
 
 Run a test command to prove that the program is successfully installed in the container.
+
+## RStudio Server in a Container
+
+On OBDS and JADE, the standard RStudio server restricts memory allowance in interactive sessions for fair usage between users.
+
+A container image that contains RStudio server can be run as a job on a compute node of JADE
+
+The process is not straightforward but documented at <https://lumin.imm.ox.ac.uk/R-cbrg/#rstudio-container>.
+
+In this lesson, we follow those instructions, adapted to the OBDS server.
+
+## RStudio Server Containers on the OBDS Server
+
+```{r}
+#| fig-cap: "Illustration of RStudio Server containers on the OBDS server (Source: Kevin Rue)."
+knitr::include_graphics("img/containers-draft-02-slide-29.svg")
+```
 
 ## References
 

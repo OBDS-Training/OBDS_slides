@@ -27,6 +27,7 @@ format:
 #| label: setup
 #| include: false
 stopifnot(requireNamespace("htmltools"))
+stopifnot(require("fontawesome"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 options(width = 120)
 ```
