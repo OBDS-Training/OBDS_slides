@@ -188,6 +188,41 @@ Execute the R script:
 - Use the `Rscript` command to execute the script.
 - Bind the directory that contains the script to the container.
 
+## Exercise
+
+In the Docker container accessible online:
+
+```
+bioconductor/bioconductor_docker:devel
+```
+
+Execute the R script:
+
+```
+/project/shared/resources/7_containers/installed_packages.R
+```
+
+Visually compare the output (R version, list of packages) with the previous exercise.
+
+## Exercise
+
+In the container:
+
+```
+/project/shared/resources/containers/fastqc.sif
+```
+
+Run the FastQC program as follows
+
+- In the container, the fastqc command is already on the PATH.
+- Use the shared input file `1_linux/rnaseq/ERR1755082_1.fastq.gz`.
+- Write the output under your own project directory.
+
+### Hints
+
+- Create the output directory yourself and pass the full path to the `fastqc` command.
+- Remember to bind input and output directories to the container.
+
 ## References
 
 ```{r}
