@@ -110,6 +110,51 @@ apptainer exec /package/containers/ubuntu/ubuntu-22.sif bash
 In practice, both can provide a Bash shell, but `shell` is explicitly intended for interactive use, while `exec` is more suited for single-command execution
 :::
 
+## Support for Docker Images
+
+Apptainer can also run Docker images from online repositories.
+
+```bash
+apptainer exec docker://ubuntu:22.04 bash
+```
+
+Apptainer caches downloaded containers to the user’s home directory.
+
+To avoid quota issues, change the cache location in your `.bash_aliases`.
+
+```bash
+export APPTAINER_CACHEDIR=/project/example/myname/mycontainers
+```
+
+## Accessing Data on the Host System
+
+Containers mainly provide software.
+
+Containers must be given controlled access to the host system for:
+
+- Accessing input data files
+- Storing output data files
+
+Access to specific directories is given by 'mounting' (also known as 'binding') the relevant directories on the host system to specific paths accessible from within the container.
+
+## Mounting (or Binding)
+
+```bash
+apptainer exec -B /project/sysadmin /package/containers/ubuntu/ubuntu-22.sif bash 
+```
+
+- The `-B` option 'binds' a directory to the container.
+- By default, containers can read and write to bounds directories,
+  unless ‘read-only’ is specified^[<https://apptainer.org/docs/user/main/bind_paths_and_mounts.html>].
+- Multiple directories can be bound to the same container, repeating the `-B` option as many times as necessary.
+
+```bash
+apptainer exec \
+  -B /project/sysadmin \
+  -B /package/python-cbrg \
+  /package/containers/ubuntu/ubuntu-22.sif bash 
+```
+
 ## References
 
 ```{r}
