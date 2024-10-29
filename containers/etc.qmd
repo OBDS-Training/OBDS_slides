@@ -139,6 +139,8 @@ Access to specific directories is given by 'mounting' (also known as 'binding') 
 
 ## Mounting (or Binding)
 
+### Example
+
 ```bash
 apptainer exec -B /project/sysadmin /package/containers/ubuntu/ubuntu-22.sif bash 
 ```
@@ -222,6 +224,105 @@ Run the FastQC program as follows
 
 - Create the output directory yourself and pass the full path to the `fastqc` command.
 - Remember to bind input and output directories to the container.
+
+# Creating Containers
+
+## Creating containers
+
+Step 1: Write a definition file.
+
+A definition file generally refers to an existing image to use as a basis for the new image.
+
+A definition file is organised into sections^[<https://apptainer.org/docs/user/main/definition_files.html#sections>].
+
+### Key sections
+
+`%help` : message displayed by the run-help command.
+
+`%post` : commands to modify the container (e.g., download files, install software, create directories).
+
+`%environment` : define environment variables.
+
+## Example Definition File
+
+```bash
+bootstrap: localimage
+From: /project/shared/resources/containers/miniforge.sif
+
+%help
+ Miniforge 24.3.0-0 (Mamba 1.5.8 + Conda 24.1.2) + FastQC
+
+%environment
+ export PATH=/usr/local/mamba/bin:$PATH
+
+%post
+ mamba install -q -y -c bioconda fastqc
+```
+
+## Header and Bootstrap Agent
+
+The bootstrap agent indicates where the base image should be obtained from^[<https://apptainer.org/docs/user/main/definition_files.html#header>].
+
+In this lesson we use the following agents:
+
+- `docker` , for images hosted online on Docker Hub.
+
+```
+bootstrap: docker
+From: ubuntu:22.04
+```
+
+- `localimage` , for images saved on the teaching server.
+
+```
+bootstrap: localimage
+From: /project/shared/resources/containers/miniforge.sif
+```
+
+## Building a Container
+
+```bash
+apptainer build <filename>.sif <filename>.def
+```
+
+### Remember
+
+- `*.sif` is used for image files.
+- `*.def` is used for definition files.
+
+## Sharing a Container
+
+Image files can be copied, but will only work on systems that have the same CPU architecture.
+
+{{< fa triangle-exclamation >}} Faster, with a major caveat.
+
+Definition files can be used to build more copies of the same image on other systems.
+
+{{< fa thumbs-up >}} Slower, but CPU compatibility is guaranteed.
+
+::: {.callout-note}
+If the definition requires a local base image, you may have to build that one first (and so on).
+:::
+
+## Exercise
+
+Using the prepared container definition file:
+
+```
+/project/shared/resources/containers/samtools.def
+```
+
+Build an image file called `samtools.sif` in your project directory.
+
+Test the image, running the command `samtools`.
+
+## Exercise
+
+Choose a program that you already know how to use.
+
+Write a definition file and create an image that includes that program.
+
+Run a test command to prove that the program is successfully installed in the container.
 
 ## References
 
