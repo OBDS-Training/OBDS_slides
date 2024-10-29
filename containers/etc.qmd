@@ -21,9 +21,68 @@ knitr::include_graphics("img/containers-draft-02-slide-05.svg")
 
 ## Reproducible Research
 
-- Contains all code dependencies including operating system dependencies.
-- Can reproduce exact environment of different systems.
-- Conda only reproduces installed software but has OS dependencies.
+### Containers
+
+- Contain all code dependencies including operating system dependencies.
+- Can reproduce the exact same environment on different host operating systems.
+
+### For comparison
+
+- [Conda](https://anaconda.org/anaconda/conda) only reproduces installed software
+  but has different sets of dependencies for different operating systems.
+
+# Using Containers
+
+## Containers Engines
+
+### Docker
+
+- One of the first and most famous.
+- Caveat: requires administrator permissions to run.
+
+### Singularity
+
+- Gained popularity over Docker thanks to the absence of administrator requirement.
+
+### Apptainer
+
+- A fork of Singularity.
+  Chosen for JADE cluster and OBDS server.
+
+## Containers: Images and Definition Files
+
+### Image Files
+
+Container images use the `*.sif` file extension.
+
+- Those are the files that contain the actual data.
+
+### Definition Files
+
+Container definitions use the `*.def` extension.
+
+- Those are scripts that describe the container and were used to create the corresponding image files.
+
+::: {.callout-note}
+In this lesson, we will initially use existing images to run commands before writing our own definitions and creating our own images.
+:::
+
+## Containers on JADE
+
+The IT team of the JADE cluster prepared a small set of containers that can help you get started.
+
+They can be found in the directory `/package/containers/`.
+
+```
+/package/containers/
+│
+├── centos          # CentOS container, mimics previous cluster
+├── ubuntu          # Basic Ubuntu container, mimics JADE
+├── R-4.3.0         # Ubuntu + R 4.3.0
+├── rstudio-server  # R 4.3.0 + RStudio Server
+├── miniforge       # Ubuntu + Miniforge
+└── builder         # Ubuntu + compilers & libraries
+```
 
 ## References
 
