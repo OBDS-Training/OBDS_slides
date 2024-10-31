@@ -30,13 +30,14 @@ read10x_data <- Read10X(
 )
 ```
 
-- Display the first 15 rows and 4 columns of `read10x_data` using `[]`.
+- Display the first 15 rows and 4 columns of `read10x_data` using the syntax `object[rows, columns]`.
 
 ```{r}
 read10x_data[ , ]
 ```
 
-- Use `str()` to display the structure of `read10x_data`.
+- Display the structure of `read10x_data` using the syntax `str(object)`.
+  Can you use the output to describe what a sparse matrix is and how it stores data?
 
 ```{r}
 str(read10x_data)
@@ -48,7 +49,7 @@ str(read10x_data)
 > 
 > 
 
-- Use the `dim()` function to display the number of features and barcodes (i.e., cells) in the data set.
+- Use the syntax `dim(object)` function to determine the number of features and barcodes (i.e., cells) in `read10x_data`.
 
 ```{r}
 dim(read10x_data)
@@ -59,7 +60,7 @@ dim(read10x_data)
 > 
 
 - Use `CreateSeuratObject()` to create a Seurat object.
-  Name the object 'seurat_object'.
+  Name the object `seurat_object`.
   Include features detected in at least 3 cells,
   and cells where at least 200 features detected.
   Name the project 'pbmc5k'.
@@ -80,7 +81,7 @@ seurat_object
 > 
 > 
 
-- Combine the `dim()` function with the subtraction operator to determine how many features and cells were filtered out when you created the Seurat object.
+- Use the syntax `dim(object1) - dim(object2)` to determine how many features and cells were filtered out when you created `seurat_object` based on `read10x_data`.
 
 ```{r}
 dim( ) - dim( )
