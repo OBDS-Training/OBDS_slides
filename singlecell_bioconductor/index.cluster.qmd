@@ -3,7 +3,7 @@ title: 'Single-cell RNA-seq analysis using Bioconductor'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht and Liezel Tamon"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-06-10 (updated: `r Sys.Date()`)"
+date: "2024-11-11 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
