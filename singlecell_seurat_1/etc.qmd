@@ -652,7 +652,7 @@ DimPlot(..., reduction = "pca", ...)
 ### Bonus
 
 - Use `ggplot()` to make a scatterplot of the first and second PCA components.
-- Use `ElbowPlot()` to visualise the amount of variance explained the principal components that capture most variance.
+- Use `ElbowPlot()` to visualise the amount of variance explained by the principal components that capture most variance.
   Use argument `ndims` to control the number of principal components to plot.
   How many principal components would you use for downstream analyses?
 - Use `RunUMAP()` to run the UMAP technique on your selected number of principal components.
