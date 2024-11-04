@@ -158,16 +158,18 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 - `ScaleData()`
 - `FindVariableFeatures()`
 
-`SCTransform()` [version 2](https://doi.org/10.1186/s13059-021-02584-9):
+`SCTransform()` v2 `r Citep(bib, "choudhary_comparison_2022")`:
 
 -  Able to perform downstream differential expression analyses (see [vignette](https://satijalab.org/seurat/archive/v4.3/sctransform_v2_vignette))
 - "Improved speed, memory consumption, stability of parameter estimates, and identification of variable features"
 
-**When to use `SCTransform()`?**
-
 :::
 
 ::::
+
+<div style="text-align: center;">
+**When to use `SCTransform()`?**
+</div>
 
 ## Comparison example
 
@@ -201,6 +203,13 @@ knitr::include_graphics("img/umap_lognorm_vs_sct.png")
 knitr::include_graphics("img/Gprofiler2_exercise_result.png")
 ```
 
+## Useful links for sctransform and other normalisation methods
+
+- [sctransform paper](https://doi.org/10.1186/s13059-019-1874-1)
+- [sctransform v2 paper](https://doi.org/10.1186/s13059-021-02584-9)
+- [sctransform vignette](https://satijalab.org/seurat/articles/sctransform_vignette.html)
+- [Comparison of transformations for single-cell RNA-seq data, 2023](https://doi.org/10.1038/s41592-023-01814-1)
+
 # Cell Hashing
 
 ## What is Cell Hashing
@@ -231,6 +240,10 @@ knitr::include_graphics("img/cell_hashing.png")
   
 :::
 ::: {.column width="50%"}
+
+::: {.notes}
+Super-loading is intentional loading of a much higher number of cells than typically recommended, which normally is not encouraged as it increases probability of multiplets. But with cell hashing, super-loading is more acceptable as cell hashing allows more effective identification of multiples.
+:::
 
 ### Cons
 
@@ -293,6 +306,12 @@ knitr::include_graphics("img/genetic_demultiplexing.png")
 ```
 
 `r Citet(bib, "huang_vireo_2019")`
+
+::: {.notes}
+Identify informative SNPs.
+If available, reference genotypes of each donor are used to match SNP profiles more accurately.
+Cluster cells based on SNP profiles.
+:::
 
 ## CellhashR: Alternative tool for demultiplexing
 
@@ -379,6 +398,10 @@ HTODemux is implemented in the [Seurat](https://satijalab.org/seurat/) package.
 knitr::include_graphics("img/seurat_HTODemux.png")
 ```
 
+::: {.notes}
+K = number of samples + 1 to account for e.g. negative barcode cluster
+:::
+
 ## Cell Hashing data
 
 ```{r}
@@ -419,13 +442,6 @@ Total: 12 samples.
 ### Bonus
 
 - Compare and evaluate HTO- and RNA- based clustering for demultiplexed samples.
-
-## Useful links for sctransform and other normalisation methods
-
-- [sctransform paper](https://doi.org/10.1186/s13059-019-1874-1)
-- [sctransform v2 paper](https://doi.org/10.1186/s13059-021-02584-9)
-- [sctransform vignette](https://satijalab.org/seurat/articles/sctransform_vignette.html)
-- [Comparison of transformations for single-cell RNA-seq data, 2023](https://doi.org/10.1038/s41592-023-01814-1)
 
 ## Useful links for cell hashing
 
