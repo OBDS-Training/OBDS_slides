@@ -25,6 +25,45 @@ knitr::include_graphics("img/seurat_workflow.png")
 :::
 ::::
 
+## Log-normalisation has limitations
+
+```{r}
+#| fig-align: center
+#| out-height: 350px
+#| out-width: 1000px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/librarysize_vs_meanexp.png")
+```
+`r Citet(bib, "hafemeister_normalization_2019")`
+
+Traditional log-normalisation only normalises low/medium-abundance genes effectively.
+
+Groups 1-3 still display a relationship between sequencing depth and gene expression after log-normalisation.
+
+## SCTransform is effective across wider range of expression
+
+All groups of genes show minimal correlation between Pearson residuals and sequencing depth.
+
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 600px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/correlation_librarysize_vs_meanexp.png")
+```
+
+Residuals represent effectively standardized expression values that are not influenced by technical metrics.
+
+## SCTransform is effective across wider range of expression
+
+```{r}
+#| fig-align: center
+#| out-height: 250px
+#| out-width: 1000px
+## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
+knitr::include_graphics("img/librarysize_vs_varexp.png")
+```
+
 ## Conceptual differences between methods
 
 <!-- Old slide is about limitation of log normalisation (slide 5) -->
@@ -47,20 +86,6 @@ Highlight that with SCTransform, variance is normalised consistently across expr
 unlike log-normalisation which is more effective on low to medium expression levels.
 :::
 
-## Log-normalisation has limitations
-
-```{r}
-#| fig-align: center
-#| out-height: 400px
-#| out-width: 600px
-## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
-knitr::include_graphics("img/sctransform-fig1.png")
-```
-
-Traditional log-normalisation only normalises low/medium-abundance genes effectively.
-
-Groups 1-3 still display a relationship between sequencing depth and gene expression after log-normalisation.
-
 ## The SCTransform method
 
 Normalisation factors specific to groups of genes rather than constant factor as in global scaling normalisation.
@@ -78,7 +103,7 @@ Construct a negative binomial generalised linear model (GLM) for each gene.
 
 Parameter estimates are regularised to avoid model overfitting, pooling information across genes.
 
-`r Citep(bib, "hafemeister_normalization_2019")`
+`r Citet(bib, "hafemeister_normalization_2019")`
 
 ## The SCTransform model
 
@@ -111,19 +136,6 @@ Pearson residuals (raw residuals divided by expected standard deviation of resid
 - Can be used to identify genes with unexpectedly high variance.
 :::
 
-## SCTransform is effective across wider range of expression
-
-```{r}
-#| fig-align: center
-#| out-height: 400px
-#| out-width: 600px
-## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1874-1
-knitr::include_graphics("img/sctransform-fig3.png")
-```
-
-- All groups of genes show minimal correlation between Pearson residuals and sequencing depth.
-- Residuals represent effectively standardized expression values that are not influenced by technical metrics.
-
 ## SCTransform within a workflow
 
 :::: {.columns}
@@ -145,6 +157,14 @@ knitr::include_graphics("img/sct_analysis_steps.png")
 - `NormalizeData()`
 - `ScaleData()`
 - `FindVariableFeatures()`
+
+`SCTransform()` [version 2](https://doi.org/10.1186/s13059-021-02584-9):
+
+-  Able to perform downstream differential expression analyses (see [vignette](https://satijalab.org/seurat/archive/v4.3/sctransform_v2_vignette))
+- "Improved speed, memory consumption, stability of parameter estimates, and identification of variable features"
+
+**When to use `SCTransform()`?**
+
 :::
 
 ::::
@@ -403,6 +423,7 @@ Total: 12 samples.
 ## Useful links for sctransform and other normalisation methods
 
 - [sctransform paper](https://doi.org/10.1186/s13059-019-1874-1)
+- [sctransform v2 paper](https://doi.org/10.1186/s13059-021-02584-9)
 - [sctransform vignette](https://satijalab.org/seurat/articles/sctransform_vignette.html)
 - [Comparison of transformations for single-cell RNA-seq data, 2023](https://doi.org/10.1038/s41592-023-01814-1)
 
