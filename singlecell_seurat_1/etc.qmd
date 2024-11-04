@@ -282,7 +282,7 @@ subset(
 - `merge()` combines the information from two Seurat objects into one.
 
 ... and more miscellaneous functions such as `colMeans()`, `colSums()`, `rowMeans()` and `rowSums()`.
-See `help("Seurat-methods")`.
+See `??"Seurat-methods"`.
 
 ## Seurat workflow - Quality control and filtering
 
