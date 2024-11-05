@@ -470,7 +470,7 @@ FeaturePlot(
 Idents(seurat_after_qc) <- "SCT_snn_res.0.5"
 markers_all_sct <- FindAllMarkers(
     seurat_after_qc,
-    assay = "SCT",
+    assay = "RNA", # Refer to this vignette (https://satijalab.org/seurat/archive/v4.3/sctransform_v2_vignette) to perform differential expression using SCT (v2) assay
     only.pos = TRUE,
     min.pct = 0.25,
     logfc.threshold = 0.25
