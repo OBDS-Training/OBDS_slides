@@ -25,6 +25,15 @@ knitr::include_graphics("img/seurat_workflow.png")
 :::
 ::::
 
+::: {.notes}
+SCTransform() parameters:
+# reference.SCT.model - see ?FindTransferAnchors(recompute.residuals)
+# do.correct.umi = FALSE - RNA counts will be used for SCT counts
+# residual.features = NUNLL - there will be residuals in data layer for all genes
+# latent.data - If vars not currently in metadata
+# do.scale = FALSE - Not scaling by default because variance stabilised, refer to https://github.com/satijalab/seurat/issues/7018
+:::
+
 ## Log-normalisation has limitations
 
 ```{r}
@@ -125,11 +134,7 @@ Second round of Negative Binomial (NB) regression, constraining parameters of mo
 
 #### Step 4
 
-Residuals from this model are taken as the normalised expression values.
-
-#### Step 5
-
-Pearson residuals (raw residuals divided by expected standard deviation of residuals) are taken as the scaled expression values
+Pearson residuals (residuals from model divided by expected standard deviation of residuals) are taken as the scaled expression values
 
 ::: {.callout-note}
 - Accounts for association between gene expression and variance.
