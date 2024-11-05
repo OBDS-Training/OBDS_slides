@@ -167,7 +167,7 @@ seurat_citeseq
 > To restore the old behaviour of a single split violin,
 > set split.plot = TRUE.
 
-**Why is the CLR transformation prefered for HTO data?**
+**Why is the CLR transformation preferred for HTO data?**
 
 > Answer:
 > HTO data is binary: all or nothing.
