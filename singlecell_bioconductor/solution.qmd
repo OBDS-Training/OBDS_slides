@@ -1,0 +1,539 @@
+---
+title: "Example code for single-cell analysis using Bioconductor"
+author: "Kevin Rue-Albrecht"
+date: "2024-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE}
+library(tidyverse)
+library(cowplot)
+library(DropletUtils)
+library(SummarizedExperiment)
+library(DelayedMatrixStats)
+library(uwot) # Package for implementing the UMAP dimensionality reduction method
+library(Rtsne)
+library(scran)
+library(scater)
+library(iSEE)
+```
+
+# Exercise
+
+## Import scRNA-seq data and create a SingleCellExperiment object
+
+- Import the filtered matrix into R; use `DropletUtils`.
+
+**Note:** use the `samples=` argument of the `DropletUtils::read10xCounts()` function to give a memorable name to each sample.
+  Check the difference without using the `samples` argument.
+
+```{r}
+library(DropletUtils)
+sce <- DropletUtils::read10xCounts(samples = c(
+    "filtered" = "data/filtered_feature_bc_matrix"
+))
+```
+
+- Print the object.
+  What can you tell about its contents?
+  
+```{r}
+sce
+```
+
+> Answer:
+>
+> - Class of object.
+> - Dimensions (features, cells)
+> - names of metadata fields available
+> - names of assays available
+> - names of features (row names)
+> - names of feature metadata columns available
+> - names of cells (column names)
+> - names of cell metadata columns available
+> - names of dimensionality reduction matrices available
+> - name of the default experiment
+> - names of alternative experiments available
+
+- What can you tell from the object metadata?
+
+**Note:** slots of `SummarizedExperiment` objects are typically accessed using functions of the same name, e.g. `metadata()`.
+
+```{r}
+metadata(sce)
+```
+
+> Answer:
+>
+> If the `samples=` argument was used in `DropletUtils::read10xCounts()`,
+> the `Samples` metadata field tracks the path to the data files for each sample.
+
+# Exercise
+
+## Quality control
+
+- Compute and visualise quality control metrics (library size, genes detected, mitochondrial fraction); use `r BiocStyle::Biocpkg("scuttle")` and/or `r BiocStyle::Biocpkg("scater")`.
+
+**Hint:** Identify mitochondrial genes and pass those to the `subsets` argument of the `scuttle::addPerCellQC()` function.
+
+```{r}
+is.mito <- grepl("^MT-", rowData(sce)$Symbol)
+table(is.mito)
+```
+    
+```{r}
+library(scuttle)
+sce <- scuttle::addPerCellQC(sce, percent.top = 50, subsets = list(MT=is.mito))
+colnames(colData(sce))
+```
+
+- What is the return value?
+  Where are the quality metrics stored?
+  What is the difference with `scuttle::perCellQCMetrics()`?
+
+> Answer:
+>
+> The return value of `scuttle::addPerCellQC()` is a `SingleCellExperiment` object.
+> The quality metrics are stored in the `colData` component of the object.
+> - `sum` = total UMI counts in the main experiment
+> - `detected` = number of features detected
+> - `percent.top_50` = fraction of UMI assigned to the 50 most abundant features. We expect reads to come from a broad range of genes given the different functions performed by a cell. A high value may suggest low cell quality if a disproportionate amount of reads come from stress-response genes and the like.
+> - `subsets_MT_sum` = total UMI across mitochondrial genes
+> - `total` = total UMI across main and alternative experiments
+
+- Visualise library size, genes detected and mitochondrial fraction as three violin plots; use `ggplot2`.
+
+```{r}
+plot1 <- colData(sce) %>%
+    as_tibble() %>% 
+    ggplot() +
+    geom_violin(aes(Sample, sum)) +
+    labs(x = "Total UMI", y = "Value")
+plot2 <- colData(sce) %>%
+    as_tibble() %>% 
+    ggplot() +
+    geom_violin(aes(Sample, detected)) +
+    labs(x = "Genes detected", y = "Value")
+plot3 <- colData(sce) %>%
+    as_tibble() %>% 
+    ggplot() +
+    geom_violin(aes(Sample, subsets_MT_percent)) +
+    labs(x = "Percentage mitochondrial", y = "Value")
+cowplot::plot_grid(plot1, plot2, plot3, nrow = 1)
+```
+
+- Filter cells, keeping those with more than 4,500 UMI, less than 15% mitochondrial UMI, and more than 1,500 genes detected. 
+
+```{r}
+sce <- sce[, sce$sum > 4500 & sce$subsets_MT_percent < 15 & sce$detected > 1500]
+sce
+```
+
+- Similarly, use `scuttle::perFeatureQCMetrics()` or `scuttle::addPerFeatureQC()` to compute per-feature quality metrics, and visualise those metrics.
+
+**Hint:** For instance, visualise the fraction of cells with non-zero counts on the x-axis,
+  and the log10-transformed mean expression on the y-axis.
+
+```{r}
+sce <- scuttle::addPerFeatureQC(sce)
+```
+
+> Answer:
+>
+> The return value of `scuttle::addPerFeatureQC()` is a `SingleCellExperiment` object.
+> The quality metrics are stored in the `rowData` component of the object.
+> - `mean` = mean count of the gene/feature across all cells
+> - `detected` = percentage of cells with non-zero counts for each gene
+
+```{r}
+rowData(sce) %>%
+    as_tibble() %>%  
+    ggplot() +
+    geom_point(aes(detected / 100 * ncol(sce), log10(mean)))
+```
+
+# Exercise
+
+## Normalisation
+
+- Convert the counts into normalized expression values to eliminate cell-specific biases (e.g., in capture efficiency); use `scuttle`.
+
+**Note:**
+
+- Use `scuttle::logNormCounts()` to compute log-normalised counts.
+
+```{r}
+sce <- scuttle::logNormCounts(sce)
+assayNames(sce)
+```
+
+- What is the return value?
+- Where can you find the normalised counts?
+
+> Answer:
+> 
+> The return value of `scuttle::logNormCounts()` is a `SingleCellExperiment` object.
+> The normalised counts are stored as a new assay called `"logcounts"`.
+
+### Bonus
+
+- Plot the variance against the mean of each gene (use `ggplot2`)
+  
+```{r}
+library(DelayedMatrixStats)
+#
+x <- DelayedArray(assay(sce, "counts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_counts <- ggplot(plot_data, aes(mean, variance)) +
+    geom_point()
+#
+x <- DelayedArray(assay(sce, "logcounts"))
+plot_data <- tibble(
+    mean = DelayedMatrixStats::rowMeans2(x),
+    variance = DelayedMatrixStats::rowVars(x)
+)
+plot_logcounts <- ggplot(plot_data, aes(mean, variance)) +
+    geom_point()
+cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
+```
+
+- How can you tell whether the normalisation was effective?
+  Compare with <https://bioconductor.org/books/3.17/OSCA.basic/feature-selection.html#quantifying-per-gene-variation>
+  
+> Answer:
+> 
+> After normalisation, the relationship between variance and mean is relatively flat (i.e., inexistant).
+
+- When would you rather use `scuttle::computePooledFactors` instead?
+
+> Answer:
+> 
+> When normalisation should be performed independently within individual clusters.
+
+# Exercise
+
+## Feature selection
+
+Select features for downstream analyses, e.g. highly variable genes; use `scran`.
+
+- Use `scran::modelGeneVar()` to model the variance of the log-expression profiles for each gene.
+  What is the output?
+
+```{r}
+library(scran)
+dec <- scran::modelGeneVar(sce)
+dec
+```
+
+> Answer:
+> 
+> A `DataFrame`, with one row per feature.
+
+- Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
+
+What is the output?
+How many genes do you identify?
+Where are those genes located in the mean vs. (biological) variance plot?
+What happens to this plot if you set more stringent thresholds to define highly variable genes?
+
+
+```{r}
+# Return 10% of genes with biological variance > 0
+hvg <- scran::getTopHVGs(dec, prop=0.1)
+length(hvg)
+```
+
+```{r}
+dec %>%
+    as_tibble() %>%
+    mutate(
+        gene_id = rownames(dec),
+        hvg = gene_id %in% hvg
+    ) %>%
+    ggplot() +
+    geom_point(aes(mean, bio, color = hvg))
+```
+
+> Answer:
+> 
+> Output of `scran::getTopHVGs()` is a character vector of feature identifiers.
+> 
+> The genes are located at the highest values of variance (toward the top of the plot).
+
+### Bonus
+
+- Visualise the relation between the mean expression of each gene and the total/biological/technical variance of each gene.
+
+How do you interpret those different values?
+
+```{r}
+ggplot(as_tibble(dec)) +
+    geom_point(aes(mean, total), color = "black") +
+    geom_point(aes(mean, bio), color = "blue") +
+    geom_point(aes(mean, tech), color = "red")
+```
+
+> Answer:
+> 
+> - Total variance = empirically calculated.
+> - Technical variance = mean trend fitted
+> - Biological = (total variance) - (technical variance)
+> 
+> Yes, biological variance can be negative (less variable than expected for that mean expression).
+
+# Exercise
+
+## Dimensionality reduction
+
+- Apply PCA; use `scran::fixedPCA()`.
+  List the names of dimensionality reduction results available.
+
+**Note:**
+
+- Only give the set of highly variable genes to the `scran::fixedPCA()` function, to save time, memory, and to focus on biologically informative genes in the data set.
+- Set a seed to control reproducibility.
+
+```{r}
+set.seed(1234)
+sce <- scran::fixedPCA(sce, subset.row = hvg)
+reducedDimNames(sce)
+```
+
+- Apply UMAP and t-SNE successively, each time on the output of the PCA.
+  List the names of dimensionality reduction results available each time.
+
+```{r}
+sce <- runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
+reducedDimNames(sce)
+```
+
+```{r}
+sce <- runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
+reducedDimNames(sce)
+```
+
+::: {.notes}
+`external_neighbors=TRUE` - "replaces the internal nearest neighbor search in the UMAP implementation with our parallelized approximate search." - OSCA
+
+See details of runUMAP help page for external_neighbors=TRUE
+:::
+
+- Visualise the scatterplot of cells produced by each of those dimensionality reduction methods.
+  Considering coloring points with quality control metrics.
+  
+```{r}
+sce_umap <- reducedDim(x = sce, type = "UMAP") %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    bind_cols(colData(sce) %>% as_tibble()) %>%
+    ggplot() +
+    geom_point(aes(UMAP1, UMAP2, color=subsets_MT_percent)) +
+    cowplot::theme_cowplot()
+sce_umap
+```
+  
+## Bonus point
+
+- Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
+
+**Note:**
+
+- Name the output `sce_denoise`.
+- How many components remain after denoising?
+- Visualise a UMAP of the denoised PCA and compare.
+
+```{r}
+sce_denoise <- scran::denoisePCA(sce, dec, subset.row=hvg)
+ncol(reducedDim(sce_denoise, "PCA"))
+```
+
+> Answer:
+> 
+> The denoise PCA returned 5 principal components.
+
+```{r}
+sce_denoise <- scater::runUMAP(sce_denoise, dimred = 'PCA', external_neighbors=TRUE)
+reducedDimNames(sce_denoise)
+```
+
+```{r}
+sce_denoise_umap <- reducedDim(x = sce_denoise, type = "UMAP") %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    bind_cols(colData(sce_denoise) %>% as_tibble()) %>%
+    ggplot() +
+    geom_point(aes(UMAP1, UMAP2, color=subsets_MT_percent)) +
+    cowplot::theme_cowplot()
+plot_grid(
+    sce_umap + theme(legend.position = "bottom"),
+    sce_denoise_umap + theme(legend.position = "bottom"),
+    nrow = 1)
+```
+
+# Exercise
+
+## Clustering
+
+Cluster cells using `scran`.
+
+- Start with `scran::getClusteredPCs()` to cluster cells after using varying number of PCs, and pick the number of PCs using a heuristic based on the number of clusters.
+
+```{r}
+output <- scran::getClusteredPCs(reducedDim(sce, "PCA"))
+metadata(output)$chosen
+```
+
+- Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with that "ideal" number of PCs.
+  Assign the cluster label to a cell metadata column named `"label"`.
+
+```{r, message=FALSE}
+g <- scran::buildSNNGraph(t(reducedDim(sce, "PCA")), d = 13)
+colData(sce)[["label"]] <- factor(igraph::cluster_louvain(g)$membership)
+```
+
+- Visualise the assigned cluster on your preferred dimensionality reduction layout.
+
+**Note:** Dimensionality reduction and clustering are two separate methods both based on the PCA coordinates.
+  They may not always agree with each other, often helping to diagnose over- or under-clustering, as well as parameterisation of dimensionality reduction methods.
+
+```{r}
+gg_snn <- reducedDim(x = sce, type = "UMAP") %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    bind_cols(colData(sce) %>% as_tibble()) %>%
+    slice_sample(prop = 1) %>%
+    ggplot() +
+    geom_point(aes(UMAP1, UMAP2, color=label)) +
+    cowplot::theme_cowplot()
+gg_snn
+```
+
+## Bonus point
+
+- Test different numbers of principal components and compare results.
+
+```{r, message=FALSE}
+snn_plots <- list()
+for (d in c(5, 10, 13, 15)) {
+    g <- scran::buildSNNGraph(t(reducedDim(sce, "PCA")), d = d)
+    colData(sce)[[sprintf("snn_d", d)]] <- factor(igraph::cluster_louvain(g)$membership)
+    gg_d <- reducedDim(x = sce, type = "UMAP") %>%
+        as.data.frame() %>%
+        as_tibble() %>%
+        bind_cols(colData(sce) %>% as_tibble()) %>%
+        slice_sample(prop = 1) %>%
+        ggplot() +
+        geom_point(aes(UMAP1, UMAP2, color=snn_d), size = 0.2) +
+        labs(title = d) +
+        cowplot::theme_cowplot()
+    snn_plots[[as.character(d)]] <- gg_d
+}
+plot_grid(plotlist = snn_plots, ncol = 2)
+```
+
+
+- Try `scran::quickCluster()`; identify key parameters and compare results.
+
+```{r}
+sce$quickCluster <- scran::quickCluster(sce)
+
+gg_cluster <- reducedDim(x = sce, type = "UMAP") %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    bind_cols(colData(sce) %>% as_tibble()) %>%
+     slice_sample(prop = 1) %>%
+    ggplot() +
+    geom_point(aes(UMAP1, UMAP2, color=quickCluster)) +
+    cowplot::theme_cowplot()
+gg_cluster
+```
+
+# Exercise
+
+## Cluster markers
+
+- Use `scran::findMarkers()` to identify markers for each cluster.
+  Display the metadata of markers for the first cluster.
+
+```{r}
+markers <- scran::findMarkers(x = sce, sce$label, direction = "up")
+rowData(sce)[rownames(markers[[1]]),] %>% 
+    as.data.frame() %>% 
+    head()
+```
+
+> summary.logFC - log-fold change from the comparison with the lowest  
+p-value
+
+Visualise the expression of selected markers:
+
+- As a dot plot, optionally with a violin layer.
+
+```{r}
+#marker_id <- rownames(markers$`1`)[1]
+marker_id <- "ENSG00000271503"
+marker_name <- rowData(sce)[marker_id, "Symbol"]
+colData(sce) %>%
+    as_tibble() %>%
+    mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
+    ggplot(aes(label, marker)) +
+    geom_violin(aes(fill = label)) +
+    geom_point() +
+    labs(title = marker_id, subtitle = marker_name) +
+    scale_color_viridis_c()
+```
+
+- On a dimensionality reduction layout.
+  Compare with the cluster labels.
+
+```{r}
+gg_marker <- reducedDim(x = sce, type = "UMAP") %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    mutate(marker = assay(sce, "logcounts")[marker_id, ]) %>%
+    slice_sample(prop = 1) %>% 
+    ggplot() +
+    geom_point(aes(UMAP1, UMAP2, color=marker), size = 0.1) +
+    scale_color_viridis_c() +
+    labs(title = marker_id, subtitle = marker_name) +
+    cowplot::theme_cowplot()
+plot_grid(gg_marker, gg_snn)
+```
+
+# Exercise
+
+## Interactive visualisation
+
+- Use `iSEE::iSEE()` to launch an interactive web-application to visualise the contents of the `SingleCellExperiment` object.
+
+```{r}
+library(iSEE)
+panelDefaults(Downsample = TRUE)
+app <- iSEE(sce)
+if (interactive()) {
+  shiny::runApp(app)
+}
+```
+
+## Bonus point
+
+- Preconfigure the application to start with a subset of panels, e.g.
+
+```{r}
+initial_panel_list <- list(
+  ReducedDimensionPlot(PanelWidth=4L),
+  RowDataTable(PanelWidth=8L),
+    ReducedDimensionPlot(PanelWidth=4L)
+)
+app <- iSEE::iSEE(sce, initial = initial_panel_list)
+if (interactive()) {
+  shiny::runApp(app)
+}
+```
