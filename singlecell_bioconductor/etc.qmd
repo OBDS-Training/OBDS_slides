@@ -540,7 +540,8 @@ shiny::runApp(app, port=1234)
 ## iSEE - interactive SummarizedExperiment Explorer
 
 ::: {style="text-align: center;"}
-`iSEE(sce, voice=TRUE)`
+`iSEE(sce, voice=TRUE)`, [iSEE - Speech recognition](https://youtu.be/0crFZLwAJOE)
+
 :::
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
