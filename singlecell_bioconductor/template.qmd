@@ -181,12 +181,6 @@ cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 > Answer:
 > 
 
-- When would you rather use `scuttle::computePooledFactors` instead?
-
-> Answer:
-> 
-> 
-
 # Exercise
 
 ## Feature selection

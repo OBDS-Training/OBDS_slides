@@ -211,12 +211,6 @@ cowplot::plot_grid(plot_counts, plot_logcounts, nrow = 1)
 > 
 > After normalisation, the relationship between variance and mean is relatively flat (i.e., inexistant).
 
-- When would you rather use `scuttle::computePooledFactors` instead?
-
-> Answer:
-> 
-> When normalisation should be performed independently within individual clusters.
-
 # Exercise
 
 ## Feature selection
@@ -468,6 +462,8 @@ rowData(sce)[rownames(markers[[1]]),] %>%
     as.data.frame() %>% 
     head()
 ```
+
+> "The set of genes with Top ≤ X is the union of the top X genes (ranked by p-value) from each pairwise comparison involving a given cluster. For example, the set of all genes with Top values of 1 contains the gene with the lowest p-value from each comparison. Similarly, the set of genes with Top values less than or equal to 10 contains the top 10 genes from each comparison. The Top field represents findMarkers()’s approach to consolidating multiple pairwise comparisons into a single ranking for each cluster; each DataFrame produced by findMarkers() will order genes based on the Top value by default." - From <https://bioconductor.org/books/3.12/OSCA/marker-detection.html>
 
 > summary.logFC - log-fold change from the comparison with the lowest  
 p-value
