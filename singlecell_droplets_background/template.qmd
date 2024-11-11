@@ -390,8 +390,8 @@ plotDimReduceFeature(
   dim1 = ,
   dim2 = ,
   features = c("CD3D", "CD3E", "GNLY",
-  			 "LYZ", "S100A8", "S100A9",
-  			 "CD79A", "CD79B", "MS4A1"),
+               "LYZ", "S100A8", "S100A9",
+               "CD79A", "CD79B", "MS4A1"),
   exactMatch = 
 )
 ```
