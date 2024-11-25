@@ -184,11 +184,7 @@ apptainer exec \
 
 ## Exercise
 
-In the container:
-
-```
-/project/shared/resources/containers/.../R-4.3.0.sif
-```
+In the container: `r-4.3.0.sif`
 
 Execute the command:
 
@@ -198,17 +194,14 @@ R --version
 
 ## Exercise
 
-In the container: 
+In the container: `r-4.3.0.sif`
 
-```
-/project/shared/resources/containers/.../R-4.3.0.sif
-```
+Execute the R script: `installed_packages.R`
 
-Execute the R script:
+Hint:
 
-```
-/project/shared/resources/containers/.../installed_packages.R
-```
+- Use the Bash command `Rscript`
+- The full command should look like `Rscript /path/to/installed_packages.R`.
 
 ### Hints
 
