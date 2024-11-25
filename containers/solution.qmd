@@ -39,29 +39,54 @@ apptainer exec \
 
 ## Exercise
 
-In the container: `/project/shared/resources/containers/.../R-4.3.0.sif`
+In the container: `r-4.3.0.sif`
 
 Execute the command: `R --version`.
 
 ```bash
 apptainer exec \
-  -B /project/shared/resources \
-  -B /project/$USER \
   /project/shared/resources/containers/r-4.3.0/r-4.3.0.sif \
   R --version 
 ```
 
 ## Exercise
 
-In the container: `/project/shared/resources/containers/.../R-4.3.0.sif`
+In the container: `r-4.3.0.sif`
 
 Execute the R script: `installed_packages.R`
 
 ```bash
 apptainer exec \
   -B /project/shared/resources \
-  -B /project/$USER \
   /project/shared/resources/containers/r-4.3.0/r-4.3.0.sif \
   Rscript /project/shared/resources/containers/scripts/installed_packages.R
 ```
 
+## Exercise
+
+In the Docker container accessible online: `bioconductor/bioconductor_docker:devel`
+
+Execute the R script: `installed_packages.R`
+
+```bash
+apptainer exec \
+  -B /project/shared/resources \
+  docker://bioconductor/bioconductor_docker:devel \
+  Rscript /project/shared/resources/containers/scripts/installed_packages.R
+```
+
+Hint:
+
+- Before you run the `apptainer exec` command,
+  make sure that the environment variable `APPTAINER_CACHEDIR` is set in your Bash session.
+- The first time you run an `apptainer exec` command on a new remote container,
+  the command will likely take a minute or two to download the container files.
+  If you see messages like "Copying blob" and "info unpack layer",
+  you are on the right track, keep waiting!
+
+Visually compare the output (R version, list of packages) with the previous exercise.
+
+> Answer:
+> 
+> 128 packages installed in this container instead of 34 in the local one.
+> (25th November 2024)
