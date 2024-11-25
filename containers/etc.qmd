@@ -37,7 +37,7 @@ knitr::include_graphics("img/containers-draft-02-slide-05.svg")
 ### Docker
 
 - One of the first and most famous.
-- Caveat: requires administrator permissions to run.
+- **Caveat:** requires administrator permissions to run.
 
 ### Singularity
 
@@ -83,6 +83,32 @@ They can be found in the directory `/package/containers/`.
 └── builder         # Ubuntu + compilers & libraries
 ```
 
+## Containers on OBDS
+
+On OBDS, we replicated some of those containers (and more) in preparation for the exercises.
+
+They can be found in the directory `/project/shared/resources/containers/`.
+
+
+```
+/project/shared/resources/containers/
+├── builder
+│   ├── builder.def
+│   └── builder.sif
+├── fastqc
+│   ├── fastqc.def
+│   └── fastqc.sif
+├── miniforge
+│   ├── miniforge.def
+│   └── miniforge.sif
+├── samtools
+│   ├── samtools.def
+│   └── samtools.sif
+└── ubuntu-22
+    ├── ubuntu-22.def
+    └── ubuntu-22.sif
+```
+
 ## Using Containers
 
 Given a container file, Apptainer commands can execute commands in the container in various ways.
@@ -94,7 +120,7 @@ For instance, the following commands both launch a Bash shell within the given c
 The `shell` sub-command specifically opens an interactive shell in the given container:
 
 ```bash
-apptainer shell /package/containers/ubuntu/ubuntu-22.sif
+apptainer shell /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif
 ```
 
 ### exec
@@ -102,7 +128,7 @@ apptainer shell /package/containers/ubuntu/ubuntu-22.sif
 The `exec` sub-command execute any given command in the given container:
 
 ```bash
-apptainer exec /package/containers/ubuntu/ubuntu-22.sif bash
+apptainer exec /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash
 ```
 
 ::: {.callout-note}
@@ -141,7 +167,7 @@ Access to specific directories is given by 'mounting' (also known as 'binding') 
 ### Example
 
 ```bash
-apptainer exec -B /project/sysadmin /package/containers/ubuntu/ubuntu-22.sif bash 
+apptainer exec -B /project/shared/resources /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash 
 ```
 
 - The `-B` option 'binds' a directory to the container.
@@ -151,9 +177,9 @@ apptainer exec -B /project/sysadmin /package/containers/ubuntu/ubuntu-22.sif bas
 
 ```bash
 apptainer exec \
-  -B /project/sysadmin \
-  -B /package/python-cbrg \
-  /package/containers/ubuntu/ubuntu-22.sif bash 
+  -B /project/shared/resources \
+  -B /project/$USER \
+  /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash 
 ```
 
 ## Exercise

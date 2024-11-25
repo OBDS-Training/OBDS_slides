@@ -3,7 +3,7 @@ title: 'Using Containers For Reproducible Research'
 subtitle: 'Oxford Biomedical Data Science Training Programme'
 author: "Kevin Rue"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-10-29"
+date: "2024-12-04"
 date-format: long
 format:
   revealjs: 
@@ -62,7 +62,12 @@ NoCite(bib, "R")
 
 ## Set up
 
-- Connect to OpenVPN (make sure you are not simultaneously connected to the University VPN).
+- Connect to OpenVPN
+
+::: {.callout-note}
+Make sure you are *not* simultaneously connected to the University VPN.
+:::
+
 - Open a new Terminal window.
 - Connect to the OBDS server over SSH.
 

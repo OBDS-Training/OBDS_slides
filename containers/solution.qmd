@@ -5,23 +5,49 @@ date: "1999-12-31"
 format: html
 ---
 
-## Quarto
+## Demo
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```bash
+apptainer shell /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif
 ```
 
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
+```bash
+apptainer exec /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+```bash
+apptainer exec docker://ubuntu:22.04 bash
+```
+
+Add this line to your `~/.bash_aliases`
+
+```bash
+export APPTAINER_CACHEDIR=/project/$USER/apptainer_cache
+```
+
+```bash
+apptainer exec -B /project/shared/resources /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash 
+```
+
+```bash
+apptainer exec \
+  -B /project/shared/resources \
+  -B /project/$USER \
+  /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif \
+  bash 
+```
+
+## Exercise
+
+In the container: `/project/shared/resources/containers/.../R-4.3.0.sif`
+
+Execute the command: `R --version`.
+
+```bash
+apptainer exec \
+  -B /project/shared/resources \
+  -B /project/$USER \
+  /project/shared/resources/containers/r-4.3.0/r-4.3.0.sif \
+  R --version 
+```
+
