@@ -192,16 +192,15 @@ Execute the command:
 R --version
 ```
 
+### Hints
+
+- Use the `apptainer exec` command.
+
 ## Exercise
 
 In the container: `r-4.3.0.sif`
 
 Execute the R script: `installed_packages.R`
-
-Hint:
-
-- Use the Bash command `Rscript`
-- The full command should look like `Rscript /path/to/installed_packages.R`.
 
 ### Hints
 
@@ -216,13 +215,9 @@ In the Docker container accessible online:
 bioconductor/bioconductor_docker:devel
 ```
 
-Execute the R script:
+Execute the R script: `installed_packages.R`
 
-```
-/project/shared/resources/containers/.../installed_packages.R
-```
-
-Hint:
+### Hints
 
 - Before you run the `apptainer exec` command,
   make sure that the environment variable `APPTAINER_CACHEDIR` is set in your Bash session.
@@ -235,16 +230,12 @@ Visually compare the output (R version, list of packages) with the previous exer
 
 ## Exercise
 
-In the container:
-
-```
-/project/shared/resources/containers/.../fastqc.sif
-```
+In the container: `fastqc.sif`
 
 Run the FastQC program as follows
 
 - In the container, the fastqc command is already on the PATH.
-- Use the shared input file `1_linux/rnaseq/ERR1755082_1.fastq.gz`.
+- Use the shared input file `ERR1755082_1.fastq.gz`.
 - Write the output under your own project directory.
 
 ### Hints

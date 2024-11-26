@@ -7,27 +7,43 @@ format: html
 
 ## Demo
 
+### Using containers
+
+#### apptainer shell
+
 ```bash
 apptainer shell /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif
 ```
+
+#### apptainer exec
 
 ```bash
 apptainer exec /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash
 ```
 
+### Support for Docker Images
+
+Before you run the following command...
+
 ```bash
 apptainer exec docker://ubuntu:22.04 bash
 ```
 
-Add this line to your `~/.bash_aliases`
+... add this line to your `~/.bash_aliases`!
 
 ```bash
 export APPTAINER_CACHEDIR=/project/$USER/apptainer_cache
 ```
 
+### Mounting (or Binding)
+
+### Single directory
+
 ```bash
 apptainer exec -B /project/shared/resources /project/shared/resources/containers/ubuntu-22/ubuntu-22.sif bash 
 ```
+
+### Multiple directories
 
 ```bash
 apptainer exec \
@@ -43,6 +59,10 @@ In the container: `r-4.3.0.sif`
 
 Execute the command: `R --version`.
 
+Hint:
+
+- Use the `apptainer exec` command.
+
 ```bash
 apptainer exec \
   /project/shared/resources/containers/r-4.3.0/r-4.3.0.sif \
@@ -54,6 +74,13 @@ apptainer exec \
 In the container: `r-4.3.0.sif`
 
 Execute the R script: `installed_packages.R`
+
+Hint:
+
+- Use the Bash command `Rscript`
+- The full command should look like `Rscript /path/to/installed_packages.R`.
+- The directory that contains the R script should be bound to the container,
+  to be visible from inside the container.
 
 ```bash
 apptainer exec \
@@ -90,3 +117,43 @@ Visually compare the output (R version, list of packages) with the previous exer
 > 
 > 128 packages installed in this container instead of 34 in the local one.
 > (25th November 2024)
+
+In the container: `fastqc.sif`
+
+Run the FastQC program as follows
+
+- In the container, the fastqc command is already on the PATH.
+- Use the shared input file `ERR1755082_1.fastq.gz`.
+- Write the output under your own project directory.
+
+### Hints
+
+- Create the output directory yourself and pass the full path to the `fastqc` command.
+- Remember to bind input and output directories to the container.
+
+## Exercise
+
+In the container: `fastqc.sif`
+
+Run the FastQC program as follows
+
+- In the container, the fastqc command is already on the PATH.
+- Use the shared input file `ERR1755082_1.fastq.gz`.
+- Write the output under your own project directory.
+
+### Hints
+
+- Create the output directory yourself and pass the full path to the `fastqc` command.
+- Remember to bind input and output directories to the container.
+
+```bash
+# Create output directory
+mkdir -p /project/$USER/containers/fastqc
+# Run FASTQC
+apptainer exec \
+  -B /project/shared/resources \
+   /project/shared/resources/containers/fastqc/fastqc.sif \
+  fastqc \
+    -o /project/$USER/containers/fastqc \
+    /project/shared/resources/containers/fastqc/ERR1755082_1.fastq.gz
+```
