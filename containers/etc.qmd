@@ -204,8 +204,10 @@ Execute the R script: `installed_packages.R`
 
 ### Hints
 
-- Use the `Rscript` command to execute the script.
-- Bind the directory that contains the script to the container.
+- Use the Bash command `Rscript`
+- The full command should look like `Rscript /path/to/installed_packages.R`.
+- The directory that contains the R script must be bound to the container,
+  to be visible from inside the container.
 
 ## Exercise
 
