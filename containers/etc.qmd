@@ -543,34 +543,65 @@ How might that impact the reproducibility of your work?
 
 ## Using a Custom Package Library with the RStudio Server Container
 
-In the `apptainer run` command, bind a directory using the `-B` option.
+Manually create an empty directory that will act as an R library:
 
 ```bash
-–B /project/username/my_library
+mkdir /project/$USER/my_r_library
 ```
 
-Submit a Slurm job that runs the container.
+Make a copy of the `rstudio-container.sh` script.
 
 ```bash
-sbatch /project/shared/resources/containers/.../rstudio-container.sh
+cp \
+  /project/shared/resources/containers/rstudio-server/rstudio-container.sh \
+  /project/$USER/rstudio-container.sh
 ```
 
-In the Rstudio Server session, add the same directory to your R library path.
+Edit the `apptainer run` to bind the directory of your custom R library.
+
+```bash
+apptainer run \
+  --writable-tmpfs \
+  -B $TMPDIR:/tmp \
+  -B /project/$USER/my_r_library \
+  /project/shared/resources/containers/rstudio-server/rstudio-server.sif
+```
+
+Submit a Slurm job that runs the container using that customised script.
+
+```bash
+sbatch /project/$USER/rstudio-container.sh
+```
+
+In the Rstudio Server session, set your library path to the same directory.
 
 ```r
-.libPaths("/project/username/my_library/")
+.libPaths("/project/USERNAME/my_r_library") # edit USERNAME !
 ```
 
-Install your favourite packages.
+Install your favourite package(s).
 
 ```r
-install.packages("tidyverse")
+install.packages("BiocManager")
 ```
 
-### Key points
+## Why Using a Custom R Library?
 
-- The packages will be installed in the bound directory (first in the library path).
-- The directory (and packages) will remain after the container is terminated and can be re-used by other containers.
+The packages will be installed in the bound directory (first in the library path).
+
+The directory (and packages) will remain after the container is terminated and can be re-used by other containers.
+
+The same container for RStudio Server can be re-used for multiple projects.
+
+Custom libraries (one or more!) can be plugged to the container when the Slurm job is submitted.
+
+Individual projects can use different libraries.
+
+### Caveat
+
+The R libraries are not part of the container,
+and thus reproducibility is not guaranteed if you add, update, or remove
+packages from those libraries.
 
 # Summary
 
