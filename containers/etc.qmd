@@ -364,6 +364,8 @@ Run a test command to prove that the program is successfully installed in the co
 **Free for all!**
 :::
 
+# Interactive Applications Containerised
+
 ## RStudio Server in a Container
 
 On OBDS and JADE, the standard RStudio server restricts memory allowance in interactive sessions for fair usage between users.
