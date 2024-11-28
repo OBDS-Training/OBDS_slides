@@ -165,3 +165,39 @@ apptainer exec \
     -o /project/$USER/containers/fastqc \
     /project/shared/resources/containers/fastqc/ERR1755082_1.fastq.gz
 ```
+
+## Exercise
+
+Using the prepared container definition file: `samtools.def`
+
+First, build an image file called `samtools.sif` in your project directory.
+
+```bash
+apptainer build \
+  /project/$USER/samtools.sif \
+  /project/shared/resources/containers/samtools/samtools.def
+```
+
+Then, test the image, simply running the command `samtools`.
+
+```bash
+apptainer exec \
+  /project/$USER/samtools.sif \
+  samtools
+```
+
+## Exercise
+
+Choose a program that you already know how to use.
+
+Write a definition file and create an image that includes that program.
+
+```bash
+# Free for all!
+```
+
+Run a test command to prove that the program is successfully installed in the container.
+
+```bash
+# Free for all!
+```

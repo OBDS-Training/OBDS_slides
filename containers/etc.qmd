@@ -266,7 +266,7 @@ A definition file is organised into sections^[<https://apptainer.org/docs/user/m
 
 ## Example Definition File
 
-```bash
+```yaml
 bootstrap: localimage
 From: /project/shared/resources/containers/miniforge.sif
 
@@ -327,15 +327,30 @@ If the definition requires a local base image, you may have to build that one fi
 
 ## Exercise
 
-Using the prepared container definition file:
+Using the prepared container definition file: `samtools.def`
 
+First, build an image file called `samtools.sif` in your project directory.
+
+Then, test the image, simply running the command `samtools`.
+
+```yaml
+Bootstrap: localimage
+From: /storage/olin0164/containers/2024-10/miniforge/miniforge.sif
+
+%post
+  export DEBIAN_FRONTEND=noninteractive
+  apt update -y ; apt-get clean
+  rm -rf /var/lib/apt/lists/*
+
+  mamba init --system  # create /etc/profile.d/conda.sh
+  . /etc/profile.d/conda.sh  # init Conda
+  mamba create -n my-samtools -c bioconda -c conda-forge samtools -y  # setup your Conda environment
+
+%environment
+  export SINGULARITY_SHELL=/bin/bash
+  . /etc/profile.d/conda.sh
+  conda activate my-samtools  # auto-load your Conda environment
 ```
-/project/shared/resources/containers/.../samtools.def
-```
-
-Build an image file called `samtools.sif` in your project directory.
-
-Test the image, running the command `samtools`.
 
 ## Exercise
 
@@ -344,6 +359,10 @@ Choose a program that you already know how to use.
 Write a definition file and create an image that includes that program.
 
 Run a test command to prove that the program is successfully installed in the container.
+
+::: {style="text-align: center;"}
+**Free for all!**
+:::
 
 ## RStudio Server in a Container
 
