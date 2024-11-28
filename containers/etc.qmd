@@ -368,9 +368,9 @@ Run a test command to prove that the program is successfully installed in the co
 
 ## RStudio Server in a Container
 
-On OBDS and JADE, the standard RStudio server restricts memory allowance in interactive sessions for fair usage between users.
+On OBDS and JADE, the standard RStudio server restricts memory allowance in interactive sessions for fair usage between users on login nodes.
 
-A container image that contains RStudio server can be run as a job on a compute node of JADE
+As an alternative, a container image that contains RStudio server can be run as a job on a compute node of JADE, or directly on the OBDS login node.
 
 The process is not straightforward but documented at <https://lumin.imm.ox.ac.uk/R-cbrg/#rstudio-container>.
 
