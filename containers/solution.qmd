@@ -119,6 +119,9 @@ Execute the R script: `installed_packages.R`
 ### Solution
 
 ```bash
+# Check whether the environment variable is set
+echo $APPTAINER_CACHEDIR
+# Run the script
 apptainer exec \
   -B /project/shared/resources \
   docker://bioconductor/bioconductor_docker:devel \
@@ -136,15 +139,16 @@ Visually compare the output (R version, list of packages) with the previous exer
 
 In the container: `fastqc.sif`
 
-Run the FastQC program as follows
-
-- In the container, the fastqc command is already on the PATH.
-- Use the shared input file `ERR1755082_1.fastq.gz`.
-- Write the output under your own project directory.
+Run the FastQC program on the input file `ERR1755082_1.fastq.gz`,
+and direct the output to your own project directory.
 
 ### Hints
 
-- Create the output directory yourself and pass the full path to the `fastqc` command.
+- In the container, the `fastqc` command is already on the PATH.
+- The input file `ERR1755082_1.fastq.gz` is stored in the shared resources, next to the container file.
+- For tidiness, manually create a subdirectory in your project directory,
+  and pass the path to this directory to the `fastqc` command.
+- The full command should look like `fastqc -o /path/to/output /path/to/input`.
 - Remember to bind input and output directories to the container.
 
 ### Solution
@@ -155,7 +159,8 @@ mkdir -p /project/$USER/containers/fastqc
 # Run FASTQC
 apptainer exec \
   -B /project/shared/resources \
-   /project/shared/resources/containers/fastqc/fastqc.sif \
+  -B /project/$USER \
+  /project/shared/resources/containers/fastqc/fastqc.sif \
   fastqc \
     -o /project/$USER/containers/fastqc \
     /project/shared/resources/containers/fastqc/ERR1755082_1.fastq.gz
