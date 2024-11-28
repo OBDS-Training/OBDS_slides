@@ -201,3 +201,79 @@ Run a test command to prove that the program is successfully installed in the co
 ```bash
 # Free for all!
 ```
+
+## Exercise
+
+### Step 1. Running the RStudio Server Container
+
+For this first part of the process, you must run the following commands **on the OBDS server**.
+
+Change directory to your project directory.
+
+```bash
+cd /project/$USER
+```
+
+Submit a Slurm job that runs the container.
+
+```bash
+sbatch /project/shared/resources/containers/rstudio-server/rstudio-container.sh
+```
+
+Check that the job is running.
+
+```bash
+squeue --me
+```
+
+Display the contents of the job output file (substitute `*` by the job identifier reported by the previous command).
+
+```bash
+cat slurm-*.out
+```
+
+Make a note of the password displayed by the last command. You will need it in the second part of the process.
+
+## Exercise
+
+### Step 2. Connecting to your RStudio Server Container
+
+This second part of the process takes place **on your own computer** (not on your OBDS account).
+
+Download (from OneDrive) a copy of either script below depending on your operating system.
+
+- Windows: `connect-to-wn-rstudio.bat`
+- Linux / macOS: `connect-to-wn-rstudio.sh`
+
+Run the script.
+
+- Windows: double click on the file.
+- Linux / macOS: In a terminal, type `bash connect-to-rstudio-server-obds.sh`.
+
+Follow the instructions displayed by the script.
+
+- Type your username when prompted (first time only^[The username will be cached in a file in your home directory for subsequent uses.])
+- Open a web browser tab to <http://localhost:8888>
+- Log in using you SSO (username) and the random password copied earlier.
+
+## Exercise
+
+### Step 3. Get to work!
+
+Have a play with the RStudio interface. Here are some ideas:
+
+- Check the initial working directory of the R session.
+- Check the library path(s).
+- Check the list of packages installed.
+- Install packages.
+
+Where do packages get installed?
+How might that impact the reproducibility of your work?
+
+> Answer:
+> 
+> Apptainer automatically binds your home directory to the container.
+> R typically defaults to installing packages in a subdirectory of your home directory.
+> In that case, you would be forced to use that same library for all your projects.
+> Moreover, you could run into quota issues on HPC clusters that impose strict quotas on home directories.
+

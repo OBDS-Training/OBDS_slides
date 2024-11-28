@@ -400,6 +400,28 @@
          d="m 11,67.27557 h 819 v 461 H 11 Z"
          id="path100" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath32-0">
+      <path
+         d="m 11,67.27557 h 819 v 461 H 11 Z"
+         transform="matrix(4.1666667,0,0,-4.1638422,-1369.6758,1713.9857)"
+         id="path32-2" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath88-5">
+      <path
+         d="m 11,67.27557 h 819 v 461 H 11 Z"
+         id="path88-8" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath88-8">
+      <path
+         d="m 11,67.27557 h 819 v 461 H 11 Z"
+         id="path88-0" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="namedview1"
@@ -410,14 +432,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.85276669"
-     inkscape:cx="208.14603"
-     inkscape:cy="476.0974"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
-     inkscape:window-x="1728"
-     inkscape:window-y="25"
-     inkscape:window-maximized="1"
+     inkscape:zoom="1.4836996"
+     inkscape:cx="312.73177"
+     inkscape:cy="158.05086"
+     inkscape:window-width="1728"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="360"
+     inkscape:window-maximized="0"
      inkscape:current-layer="g1">
     <inkscape:page
        x="6.2948726e-07"
@@ -701,6 +723,12 @@
        transform="matrix(1.3333333,0,0,-1.3333333,0,793.7008)"
        clip-path="url(#clipPath88)" />
     <path
+       id="path87-0"
+       d="m 227.0139,257.8115 87.8309,-1e-4 v -1.1383 l -87.8309,1e-4 z m 86.6933,2.8456 6.825,-3.4148 -6.825,-3.4148 z"
+       style="fill:#002147;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,-5.651144,634.43696)"
+       clip-path="url(#clipPath88-8)" />
+    <path
        id="path89"
        d="m 227.1191,135.2983 87.7256,-1e-4 V 134.16 l -87.7256,1e-4 z m 86.5881,2.8456 6.825,-3.4148 -6.825,-3.4148 z"
        style="fill:#002147;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -738,5 +766,23 @@
        style="fill:#002147;fill-opacity:1;fill-rule:nonzero;stroke:none"
        transform="matrix(1.3333333,0,0,-1.3333333,0,793.7008)"
        clip-path="url(#clipPath100)" />
+    <rect
+       style="fill:#ffffff"
+       id="rect1"
+       width="181.97754"
+       height="38.41748"
+       x="196.47708"
+       y="270.12415" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Arial Unicode MS';-inkscape-font-specification:'Arial Unicode MS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="189.13953"
+       y="296.13065"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         x="189.13953"
+         y="296.13065"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:'Arial Unicode MS';-inkscape-font-specification:'Arial Unicode MS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">https://obds.imm.ox.ac.uk</tspan></text>
   </g>
 </svg>

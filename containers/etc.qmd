@@ -389,7 +389,7 @@ The container runs an instance of RStudio server on a port specific to each user
 
 ### How?
 
-- User IDs are numbers.
+- On UNIX system, user IDs are numbers.
 - The container uses the ID of the user running the container to calculate a unique port number within an acceptable range of values.
 
 ### What then?
@@ -402,39 +402,116 @@ Step 2. While the container is running, connect to the port that runs your own i
 Step 2 is not straightforward. We give you a semi-automated script for that.
 :::
 
+## Example
+
+### Step 1. Run an instance of the container as a Slurm job
+
+Submitting the job.
+
+```
+$ sbatch /project/shared/resources/containers/rstudio-server/rstudio-container.sh
+Submitted batch job 107
+```
+
+Checking that the job is running.
+
+```
+$ squeue --me
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+              1075      long  rstudio olin0164  R      16:29      1 obds
+```
+
+Reveal the randomly generated password in the job output file.
+
+```
+$ cat slurm-1075.out 
+/tmp
+Your RStudio password = hFtOzSOPcs1XnZ1PxWP3R0xJ
+```
+
+## Example
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Step 2. Connect to the container
+
+```
+% bash bin/connect-to-wn-rstudio-obds.sh 
+***********************************
+* Enter your password if prompted *
+***********************************
+Querying CCB for your personal SSH port number ...
+Querying CCB for your Slurm job running RStudio ...
+****************************************
+*          CCB RStudio tunnel          *
+****************************************
+* Creating SSH tunnel:                 *
+* your PC -> OBDS                      *
+* After connecting, no more feedback   *
+* is given so assume successful.       *
+* In web browser open:                 *
+*                                      *
+*      +-----------------------+       *
+*      | http://localhost:8888 |       *
+*      +-----------------------+       *
+*                                      *
+****************************************
+```
+:::
+
+::: {.column width="50%"}
+### Step 3. Get to work!
+
+```{r}
+#| fig-cap: "Working in the containerised RStudio server (Source: Kevin Rue)."
+#| out-width: "100%"
+knitr::include_graphics("img/rstudio-container-obds-install.png")
+```
+:::
+
+::::
+
+
 ## Exercise
 
-### Running the RStudio Server Container
+### Step 1. Running the RStudio Server Container
 
 For this first part of the process, you must run the following commands **on the OBDS server**.
+
+Change directory to your project directory.
+
+```bash
+cd /project/$USER
+```
 
 Submit a Slurm job that runs the container.
 
 ```bash
-sbatch /project/shared/resources/containers/.../rstudio-container.sh
+sbatch /project/shared/resources/containers/rstudio-server/rstudio-container.sh
 ```
 
 Check that the job is running.
 
 ```bash
-squeue –me
+squeue --me
 ```
 
-Display the contents of the job output file (substitute `JOBID` by the job identifier reported by the previous command).
+Display the contents of the job output file (substitute `*` by the job identifier reported by the previous command).
 
 ```bash
-cat slurm-JOBID.out
+cat slurm-*.out
 ```
 
 Make a note of the password displayed by the last command. You will need it in the second part of the process.
 
 ## Exercise
 
-### Connecting to your RStudio Server Container
+### Step 2. Connecting to your RStudio Server Container
 
-This first part of the process takes place **on your own computer** (not on your OBDS account).
+This second part of the process takes place **on your own computer** (not on your OBDS account).
 
-Make a copy of the appropriate script below .
+Download (from OneDrive) a copy of either script below depending on your operating system.
 
 - Windows: `connect-to-wn-rstudio.bat`
 - Linux / macOS: `connect-to-wn-rstudio.sh`
@@ -449,6 +526,20 @@ Follow the instructions displayed by the script.
 - Type your username when prompted (first time only^[The username will be cached in a file in your home directory for subsequent uses.])
 - Open a web browser tab to <http://localhost:8888>
 - Log in using you SSO (username) and the random password copied earlier.
+
+## Exercise
+
+### Step 3. Get to work!
+
+Have a play with the RStudio interface. Here are some ideas:
+
+- Check the initial working directory of the R session.
+- Check the library path(s).
+- Check the list of packages installed.
+- Install packages.
+
+Where do packages get installed?
+How might that impact the reproducibility of your work?
 
 ## Using a Custom Package Library with the RStudio Server Container
 
