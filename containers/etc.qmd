@@ -148,7 +148,8 @@ Apptainer caches downloaded containers to the user’s home directory.
 To avoid quota issues, change the cache location in your `.bash_aliases`.
 
 ```bash
-export APPTAINER_CACHEDIR=/project/example/myname/mycontainers
+mkdir /project/$USER/mycontainers
+export APPTAINER_CACHEDIR=/project/$USER/mycontainers
 ```
 
 ## Accessing Data on the Host System
@@ -513,8 +514,8 @@ This second part of the process takes place **on your own computer** (not on you
 
 Download (from OneDrive) a copy of either script below depending on your operating system.
 
-- Windows: `connect-to-wn-rstudio.bat`
-- Linux / macOS: `connect-to-wn-rstudio.sh`
+- Windows: [`connect-to-wn-rstudio.bat`](https://datashare.molbiol.ox.ac.uk/public/project/sims-lab/albrecht/obds/connect-to-wn-rstudio.bat)
+- Linux / macOS: [`connect-to-wn-rstudio.sh`](https://datashare.molbiol.ox.ac.uk/public/project/sims-lab/albrecht/obds/connect-to-wn-rstudio.sh)
 
 Run the script.
 
