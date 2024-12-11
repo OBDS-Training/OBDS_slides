@@ -1,0 +1,69 @@
+---
+title: "Barcode rank plot"
+author: "Kevin Rue"
+date: "2024-12-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DropletUtils)
+library(scales)
+library(scater)
+library(tidyverse)
+```
+
+## Load example data
+
+```{r}
+sce <- DropletUtils::read10xCounts("data/raw_feature_bc_matrix/")
+sce
+```
+
+## Compute barcode statistics
+
+```{r}
+barcode_stats <- scater::perCellQCMetrics(sce)
+barcode_stats
+rm(sce)
+```
+
+## Remove empty barcodes
+
+```{r}
+barcode_stats <- as_tibble(barcode_stats[barcode_stats$sum > 0,])
+barcode_stats
+```
+
+## Compute rank
+
+```{r}
+barcode_stats <- barcode_stats %>% 
+  arrange(desc(sum)) %>% 
+  mutate(rank = row_number())
+barcode_stats
+```
+
+## Barcode rank plot
+
+```{r}
+umi_breaks <- 10^(-1:10)
+umi_minor_breaks <- rep(c(1, 2, 5), 12)*(10^rep(-1:10, each=3))
+barcode_breaks <- 10^(-1:10)
+barcode_minor_breaks <- 10^rep(-1:10)
+ggplot(barcode_stats, aes(x = rank, y = sum)) +
+  geom_line() +
+  scale_x_log10(breaks = barcode_breaks, minor_breaks = barcode_minor_breaks, labels = label_number(scale_cut = cut_short_scale())) +
+  scale_y_log10(breaks = umi_breaks, minor_breaks = umi_minor_breaks, labels = label_number(scale_cut = cut_short_scale())) +
+  theme_bw() +
+    guides(
+    x = guide_axis(minor.ticks = TRUE),
+    y = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    y = "UMI counts",
+    x = "Barcodes"
+  ) +
+  coord_cartesian(xlim = c(1, max(barcode_stats$rank) * 2), ylim = c(0.5, max(barcode_stats$sum) * 2), expand = FALSE)
+```
+
