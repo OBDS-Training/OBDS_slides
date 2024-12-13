@@ -16,7 +16,7 @@ library(tidyverse)
 ## Load example data
 
 ```{r}
-sce <- DropletUtils::read10xCounts("data/raw_feature_bc_matrix/")
+sce <- DropletUtils::read10xCounts("data/pbmc_1k_v3_raw_feature_bc_matrix/raw_feature_bc_matrix/")
 sce
 ```
 
@@ -67,3 +67,25 @@ ggplot(barcode_stats, aes(x = rank, y = sum)) +
   coord_cartesian(xlim = c(1, max(barcode_stats$rank) * 2), ylim = c(0.5, max(barcode_stats$sum) * 2), expand = FALSE)
 ```
 
+## Add threshold information
+
+```{r}
+umi_threshold <- 100
+barcodes_above_threshold <- sum(barcode_stats >= umi_threshold)
+ggplot(barcode_stats, aes(x = rank, y = sum)) +
+  geom_line() +
+  geom_hline(yintercept = umi_threshold, linetype = "dashed", colour = "red") +
+  geom_label(aes(x = 10, y = umi_threshold, label = format(barcodes_above_threshold, big.mark = ",")), hjust = 0, colour = "red") +
+  scale_x_log10(breaks = barcode_breaks, minor_breaks = barcode_minor_breaks, labels = label_number(scale_cut = cut_short_scale())) +
+  scale_y_log10(breaks = umi_breaks, minor_breaks = umi_minor_breaks, labels = label_number(scale_cut = cut_short_scale())) +
+  theme_bw() +
+    guides(
+    x = guide_axis(minor.ticks = TRUE),
+    y = guide_axis(minor.ticks = TRUE)
+  ) +
+  labs(
+    y = "UMI counts",
+    x = "Barcodes"
+  ) +
+  coord_cartesian(xlim = c(1, max(barcode_stats$rank) * 2), ylim = c(0.5, max(barcode_stats$sum) * 2), expand = FALSE)
+```
