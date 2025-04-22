@@ -88,54 +88,17 @@ last_matrix
 # - Assign a list of five items of different data types to a list named `l`.
 
 l <- list(
-    c(1, 3, 4),
-    c(1+3i, 3-1i),
-    c(TRUE, FALSE, TRUE),
-    c("hello", "world"),
-    c(6L, 2L, 3L)
+  c(1, 3, 4),
+  c(1+3i, 3-1i),
+  c(TRUE, FALSE, TRUE),
+  c("hello", "world"),
+  c(6L, 2L, 3L)
 )
 l
 
 # - Extract the elements at position 3 and 5 of `l` as a single new list.
 
 l[c(3, 5)]
-
-## Exercise (bonus) ----
-
-### Indexing vectors ----
-
-# Run the code below to initialise data for this exercise.
-
-movie <- c(
-  "Whatever Works", "It Follows", "Love and Mercy", "The Goonies", "Jiro Dreams of Sushi", "There Will be Blood", "Moon",
-  "Spice World", "Serenity", "Finding Vivian Maier")
-year <- c("2009", "2015", "2015", "1985", "2012", "2007", "2009", "1988", "2005", "2014")
-boxoffice <- c(35, 15, 15, 62, 3, 10, 321, 79, 39, 1.5)
-genre <- c("Comedy", "Horror", "Drama", "Adventure", "Drama", "SciFi", "Comedy", "Documentary", "SciFi", "Documentary")
-
-# - What is the name of the 10^th^ movie?
-movie[10]
-
-# - What are the genres of the first four movies?
-genre[1:4]
-
-# - In the movie names, 'Spice World' should be 'The Naked Gun’.
-#   Correct the name.
-movie[movie == "Spice World"] <- "The Naked Gun"
-
-# - What were the names of the movies made before the year 1990?
-movie[year %in% c("1985", "1988")]
-# OR
-movie[as.integer(year) < 1990]
-
-# - What were the names of the movies in the 'Comedy' genre?
-movie[genre == "Comedy"]
-
-#   - What were their combined total box office?
-sum(boxoffice)
-
-# - What is the name of the movie that made less than $50 million dollars *and* was a documentary?
-movie[boxoffice < 50 & genre == "Documentary"]
 
 ## Exercise ----
 
@@ -184,6 +147,43 @@ dim(filtered_gene_data)
 #   Include column names but not row names.
 
 write.table(filtered_gene_data, "filtered_gene_regions.tsv", sep = "\t", quote = FALSE, row.names = FALSE)
+
+## Exercise (bonus) ----
+
+### Indexing vectors ----
+
+# Run the code below to initialise data for this exercise.
+
+movie <- c(
+  "Whatever Works", "It Follows", "Love and Mercy", "The Goonies", "Jiro Dreams of Sushi", "There Will be Blood", "Moon",
+  "Spice World", "Serenity", "Finding Vivian Maier")
+year <- c("2009", "2015", "2015", "1985", "2012", "2007", "2009", "1988", "2005", "2014")
+boxoffice <- c(35, 15, 15, 62, 3, 10, 321, 79, 39, 1.5)
+genre <- c("Comedy", "Horror", "Drama", "Adventure", "Drama", "SciFi", "Comedy", "Documentary", "SciFi", "Documentary")
+
+# - What is the name of the 10^th^ movie?
+movie[10]
+
+# - What are the genres of the first four movies?
+genre[1:4]
+
+# - In the movie names, 'Spice World' should be 'The Naked Gun’.
+#   Correct the name.
+movie[movie == "Spice World"] <- "The Naked Gun"
+
+# - What were the names of the movies made before the year 1990?
+movie[year %in% c("1985", "1988")]
+# OR
+movie[as.integer(year) < 1990]
+
+# - What were the names of the movies in the 'Comedy' genre?
+movie[genre == "Comedy"]
+
+#   - What were their combined total box office?
+sum(boxoffice)
+
+# - What is the name of the movie that made less than $50 million dollars *and* was a documentary?
+movie[boxoffice < 50 & genre == "Documentary"]
 
 ## Exercise (bonus) ----
 
