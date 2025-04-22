@@ -52,11 +52,11 @@ NoCite(bib, "R")
 
 ## Credits
 
+- Kevin Rue-Albrecht
 - Liezel Tamon
+- Carla Cohen
 - Devika Agarwal
 - Lucy Garner
-- Carla Cohen
-- Kevin Rue-Albrecht
 
 ## Prerequisites
 
