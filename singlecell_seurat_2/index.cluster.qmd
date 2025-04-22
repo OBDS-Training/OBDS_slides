@@ -1,9 +1,9 @@
 ---
 title: 'Single-cell analysis using Seurat, part 2'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht & Liezel Tamon"
+author: "Lucy Garner"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-11-05 (updated: `r Sys.Date()`)"
+date: "2025-06-03 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht & Liezel Tamon -- Single-cell analysis using Seurat, part 2
+    footer: Lucy Garner -- Single-cell analysis using Seurat, part 2
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
@@ -52,7 +52,9 @@ NoCite(bib, "R")
 
 ## Credits
 
+- Liezel Tamon
 - Devika Agarwal
+- Lucy Garner
 - Carla Cohen
 - Kevin Rue-Albrecht
 
