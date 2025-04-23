@@ -1,9 +1,9 @@
 ---
 title: 'Gene set / Pathway enrichment analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
-author: "Kevin Rue Albrecht, Liezel Tamon"
+author: "Devika Agarwal & Kevin Rue"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-10-23"
+date: "2025-05-22"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue Albrecht, Liezel Tamon -- Gene set/Pathway enrichment analysis in <i class="fab fa-r-project"></i>
+    footer: Devika Agarwal & Kevin Rue -- Gene set/Pathway enrichment analysis in <i class="fab fa-r-project"></i>
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---

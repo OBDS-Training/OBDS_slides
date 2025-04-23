@@ -1,9 +1,9 @@
 ---
 title: 'RNA-seq differential expression analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
-author: "Kevin Rue-Albrecht"
+author: "Devika Agarwal & Kevin Rue"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-10-22"
+date: "2025-05-21"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht -- Differential expression analysis in <i class="fab fa-r-project"></i>
+    footer: Devika Agarwal & Kevin Rue -- Differential expression analysis in <i class="fab fa-r-project"></i>
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---

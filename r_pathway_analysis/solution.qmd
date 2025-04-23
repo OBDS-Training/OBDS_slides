@@ -8,11 +8,13 @@ date: "23/10/2024"
 
 - The major aims of this exercise is to get you used to reading online tool documentation, playing with different parameters of the relevant functions and interpreting outputs.
 
+
 # ORA
 
 ### 1. Load libraries.
 
 ```{r}
+#| message: false
 options(bitmapType = 'cairo') # For rendering 
 library(tidyverse)
 library(gprofiler2)
