@@ -37,7 +37,12 @@ m[2]
 # - Multiply the second element of `m` by `4`.
 # What happens? Why?
 
-try(m[2] * 4)
+try(
+  m[2] * 4
+)
+
+## NOTE: Try try() function is only here to prevent the predictable error
+##       from crashing the script.
 
 # - Make a vector `c` that contains four *named* character scalars.
 
