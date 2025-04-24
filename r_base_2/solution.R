@@ -171,7 +171,7 @@ merge(x = buildings, y = survey_data, by.x = "site", by.y = "location")
 
 # Summarising groups of data ----
 
-# Compute the mean of each numeric column each month in the airquality data frame.
+# Compute the mean of each numeric column each month in the `airquality` data frame using `aggregate()`.
 # Make sure NA values are removed.
 
 aggregate(x = airquality, by = list(Month = airquality$Month), FUN = mean, na.rm = TRUE)
@@ -180,11 +180,7 @@ aggregate(x = airquality, by = list(Month = airquality$Month), FUN = mean, na.rm
 # Make sure the grouping column is called Month in the return value.
 # Make sure NA values are removed.
 
-airquality_aggregated <- aggregate(x = airquality["Solar.R"], by = list(Month = airquality$Month), FUN = mean, na.rm = TRUE)
-
-# Compute the standard deviation of the column Solar.R in the aggregated data generated in the previous step.
-
-sd(airquality_aggregated$Solar.R)
+aggregate(x = airquality["Solar.R"], by = list(Month = airquality$Month), FUN = mean, na.rm = TRUE)
 
 # Exercise ----
 

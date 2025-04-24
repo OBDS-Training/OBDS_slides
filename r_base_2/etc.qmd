@@ -845,12 +845,11 @@ survey_data <- data.frame(
 
 ### Summarising groups of data
 
-- Compute the mean of each numeric column each month in the `airquality` data frame.
+- Compute the mean of each numeric column each month in the `airquality` data frame using `aggregate()`.
   - Make sure `NA` values are removed.
 - Compute the mean of the `Solar.R` column each month.
   - Make sure the grouping column is called `Month` in the return value.
   - Make sure `NA` values are removed.
-- Compute the standard deviation of the column `Solar.R` in the aggregated data generated in the previous step.
 
 # Lunch break
 
