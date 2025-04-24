@@ -1042,7 +1042,7 @@ tapply(X = values, INDEX = groups, FUN = sum)
 #### Part 1
 
 - Create a vector of integers from 1 to 10.
-- Compute the square of each value in the vector using either `lapply()` or `sapply()`.
+- Compute the log2 of each value in the vector using either `lapply()` or `sapply()`.
 - Compare the outputs of `lapply()` and `sapply()` in the previous step.
 
 #### Part 2

@@ -209,14 +209,10 @@ hypothenuse(1, 2)
 
 v <- 1:10
 
-# Compute the square of each value in the vector using either lapply() or sapply().
+# Compute the log2 of each value in the vector using either lapply() or sapply().
 
-square <- function(x) {
-    x^2
-}
-
-lapply(v, square)
-sapply(v, square)
+lapply(v, log2)
+sapply(v, log2)
 
 # Compare the outputs of lapply() and sapply() in the previous step.
 
