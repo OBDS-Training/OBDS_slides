@@ -1,3 +1,7 @@
+#####################
+# OBDS base R day 2 #
+#####################
+
 # Exercise ---- 
 
 # Workspace management ----
@@ -9,6 +13,14 @@ b <- "some text"
 c <- TRUE
 
 # Save your script.
+
+## macOS: Command-S
+
+## Windows: Control-S
+
+## RStudio menu bar:
+## - File
+## - Save as...
 
 # Save all objects in your workspace to an .RData file.
 
