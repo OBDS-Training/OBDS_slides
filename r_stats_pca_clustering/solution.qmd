@@ -421,7 +421,7 @@ par(mfrow = c(1, 1))
 data("iris")
 ```
 
-- Separate the matrix of measurements in a new object named `iris_features`.
+- Create a new object named `iris_features` that only contains the columns of numerical measurements.
 
 ```{r}
 iris_features <- iris[, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")]

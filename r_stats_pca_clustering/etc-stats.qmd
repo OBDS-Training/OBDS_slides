@@ -444,8 +444,8 @@ A $t$-test should only be applied to compare two normal distributions.
 ```{r}
 #| echo: true
 set.seed(1)
-x <- rnorm(n = 1000, mean = 0, sd = 1)
-y <- rnorm(n = 2000, mean = 1, sd = 1)
+a <- rnorm(n = 1000, mean = 0, sd = 1)
+b <- rnorm(n = 2000, mean = 1, sd = 1)
 ```
 
 ```{r}
@@ -453,8 +453,8 @@ y <- rnorm(n = 2000, mean = 1, sd = 1)
 #| fig-height: 6
 #| fig-width: 7
 test_data <- bind_rows(
-  tibble(group = "x", value = x),
-  tibble(group = "y", value = y)
+  tibble(group = "x", value = a),
+  tibble(group = "y", value = b)
 )
 ggplot(test_data, aes(value)) +
   geom_histogram(fill = "grey", color = "black") +
@@ -468,14 +468,14 @@ An unpaired t-test should be used when there is no pairing relationship between 
 
 ```{r}
 #| echo: true
-t.test(x, y)
+t.test(a, b)
 ```
 
 The second argument is used as reference (i.e., denominator).
 
 ```{r}
 #| echo: true
-t.test(y, x)
+t.test(b, a)
 ```
 :::
 
@@ -492,16 +492,16 @@ For each sample, the two measurements are related to one another; e.g. patients 
 #| echo: true
 set.seed(1)
 n_sample <- 10
-x <- runif(n = n_sample, min = 10, max = 20)
-y <- x + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
+a <- runif(n = n_sample, min = 10, max = 20)
+b <- a + 2 + rnorm(n = n_sample, mean = 0, sd = 1)
 ```
 
 ```{r}
 test_data <- tibble(
   sample = paste("sample", seq_len(n_sample)),
-  x = x,
-  y = y
-) %>% pivot_longer(cols = c(x, y), names_to = "variable")
+  a = a,
+  b = b
+) %>% pivot_longer(c(a, b), names_to = "variable")
 ```
 
 ```{r}
@@ -509,10 +509,10 @@ test_data <- tibble(
 #| fig-height: 6
 #| fig-width: 7
 ggplot(test_data, aes(variable, value)) +
-  geom_line(aes(group = sample), size = 0.1) +
+  geom_line(aes(group = sample), linewidth = 0.1) +
   geom_point() +
   labs(
-    title = "Paired <x> and <y> observations"
+    title = "Paired <a> and <b> observations"
   ) +
   cowplot::theme_cowplot() +
   theme(
@@ -524,7 +524,7 @@ ggplot(test_data, aes(variable, value)) +
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-t.test(x, y, paired = TRUE)
+t.test(a, b, paired = TRUE)
 ```
 
 ```{r}
@@ -533,13 +533,13 @@ t.test(x, y, paired = TRUE)
 #| fig-width: 7
 test_data %>% 
   pivot_wider(names_from = "variable", values_from = "value") %>% 
-  mutate(x_minus_y = x - y) %>%
-  ggplot(aes(x_minus_y)) +
-  geom_histogram(color = "black", fill = "grey") +
+  mutate(a_minus_b = a - b) %>%
+  ggplot(aes(a_minus_b)) +
+  geom_histogram(color = "black", fill = "grey", bins = 30) +
   geom_density(linetype = "dashed") +
   geom_vline(xintercept = 0, color = "red") +
   labs(
-    title = "<x> minus paired <y>"
+    title = "<a> minus paired <b>"
   ) +
   cowplot::theme_cowplot() +
   theme(
@@ -563,8 +563,8 @@ A non-parametric test do not require samples to follow any particular distributi
 ```{r}
 #| echo: true
 set.seed(1)
-x <- runif(n = 20, min = 1, max = 11)
-y <- runif(n = 10, min = 3, max = 13)
+a <- runif(n = 20, min = 1, max = 11)
+b <- runif(n = 10, min = 3, max = 13)
 ```
 
 ```{r}
@@ -572,12 +572,12 @@ y <- runif(n = 10, min = 3, max = 13)
 #| fig-height: 5
 #| fig-width: 7
 test_data <- bind_rows(
-  tibble(group = "x", value = x),
-  tibble(group = "y", value = y)
+  tibble(group = "a", value = a),
+  tibble(group = "b", value = b)
 )
 gg <- ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
-  geom_histogram(fill = "grey", color = "black") +
+  geom_histogram(fill = "grey", color = "black", bins = 30) +
   cowplot::theme_cowplot()
 gg
 ```
@@ -592,7 +592,7 @@ This is a two-group comparison, thus a 'Mann-Whitney' test.
 
 ```{r}
 #| echo: true
-wilcox.test(x, y)
+wilcox.test(a, b)
 ```
 
 <br/>
@@ -605,7 +605,7 @@ at the expense of being blind to the possibility of the data moving in the direc
 
 ```{r}
 #| echo: true
-wilcox.test(x, y, alternative = "less")
+wilcox.test(a, b, alternative = "less")
 ```
 :::
 
@@ -620,15 +620,15 @@ wilcox.test(x, y, alternative = "less")
 #| echo: true
 set.seed(1)
 n_sample <- 1000
-x1 <- rnorm(n = n_sample, mean = 10, sd = 2)
-x2 <- x1 + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
-x3 <- x2 + 0 + rnorm(n = n_sample, mean = 0, sd = 0.5)
+a <- rnorm(n = n_sample, mean = 10, sd = 2)
+b <- a + 5 + rnorm(n = n_sample, mean = 0, sd = 1)
+c <- b + 0 + rnorm(n = n_sample, mean = 0, sd = 0.5)
 test_data <- data.frame(
-  value = c(x1, x2, x3),
+  value = c(a, b, c),
   group = c(
-    rep("x1", length(x1)),
-    rep("x2", length(x2)),
-    rep("x3", length(x3))
+    rep("a", length(a)),
+    rep("b", length(b)),
+    rep("c", length(c))
   )
 )
 ```
@@ -639,7 +639,7 @@ test_data <- data.frame(
 #| fig-width: 7
 gg <- ggplot(test_data, aes(value)) +
   facet_wrap(~group, ncol = 1) +
-  geom_histogram(fill = "grey", color = "black") +
+  geom_histogram(fill = "grey", color = "black", bins = 30) +
   cowplot::theme_cowplot()
 gg
 ```
