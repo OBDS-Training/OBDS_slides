@@ -28,3 +28,7 @@
 
 - Use `git log`.
 - View log on GitHub.
+
+## Optional Exercise 5: Branching
+
+- TODO
