@@ -52,7 +52,7 @@
 
 > The `README.md` file is automatically displayed on the main page of your repository on GitHub.
 >
-> Click on the pencil icon in the top right corner of the README box.
+> Click on the pencil icon in the top right corner of the file view.
 >
 > Edit the file as needed.
 >
@@ -60,7 +60,7 @@
 
 - Commit the changes with a suitable commit message.
 
-> When ready, click the button 'Commit changes...'.
+> Click the button 'Commit changes...'.
 >
 > In the pop-up window, replace the default commit message by something more appropriate.
 >
@@ -93,34 +93,72 @@
 > ```bash
 > git status
 > ```
-> 
-> You should see:
-> 
-> ```
-> On branch main
-> Your branch is up to date with 'origin/main'.
-> 
-> Untracked files:
->   (use "git add <file>..." to include in what will be committed)
->         downloads.txt
-> 
-> nothing added to commit but untracked files present (use "git add" to track)
-> ```
 
 - Add the `downloads.txt` file to the staging area.
+
+> ```bash
+> git add downloads.txt
+> ```
+
 - Commit the changes with a suitable commit message.
+
+> ```bash
+> git commit -m "add file downloads.txt"
+> ```
 
 ## Exercise 3: Pushing and Pulling
 
-- Check the remote repository for your local repository.
+- Check the list of remote repositories for your local repository.
+
+> ``` bash
+> git remote -v
+> ```
+
 - Push your local changes to to GitHub.
-- Edit the downloads.txt file on GitHub.
+
+> ``` bash
+> git push
+> ```
+
+- Edit the `downloads.txt` file on GitHub.
+
+> Navigate to the file on GitHub.
+>
+> Click on the pencil icon in the top right corner of the file view.
+>
+> Edit the file as needed.
+>
+> Click the button 'Commit changes...'.
+>
+> In the pop-up window, replace the default commit message by something more appropriate.
+>
+> When ready, click the button 'Commit changes'. 
+
 - Pull your changes from GitHub.
+
+> ``` bash
+> git pull
+> ```
 
 ## Exercise 4: Viewing version history
 
 - Use `git log`.
-- View log on GitHub.
+
+> ```bash
+> git log
+> git log --oneline
+> git show COMMIT
+> ```
+
+- Navigate the repository history on GitHub.
+
+> Towards the top of the web page, click on the 'Insights' tab.
+>
+> On the left of the web page, click on the 'Network' tab.
+>
+> Hover over the nodes in the timeline and wait to see tooltips appear.
+>
+> Click on the nodes in the timeline to view the changes in that commit.
 
 ## Optional Exercise 5: Branching
 
