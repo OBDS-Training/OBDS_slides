@@ -49,7 +49,22 @@
 > Click the green button 'Create repository'.
 
 - Edit this `README.md` file to include the name and date of the course.
+
+> The `README.md` file is automatically displayed on the main page of your repository on GitHub.
+>
+> Click on the pencil icon in the top right corner of the README box.
+>
+> Edit the file as needed.
+>
+> NOTE: A useful guide to the Markdown syntax is available [here](https://www.markdownguide.org/basic-syntax/).
+
 - Commit the changes with a suitable commit message.
+
+> When ready, click the button 'Commit changes...'.
+>
+> In the pop-up window, replace the default commit message by something more appropriate.
+>
+> When ready, click the button 'Commit changes'.
 
 ## Exercise 2: Adding and committing files
 
