@@ -1,7 +1,37 @@
 ## Exercise 1: Setting up a repo on GitHub
 
 - Create a GitHub account.
+
+Navigate to <https://github.com/>.
+
+Click on the button 'Sign up'.
+
+Fill the form.
+
+NOTE: We recommend using your personal email address when signing up to ensure continuity between jobs.
+You can always add work emails to your account after it is created.
+Associating at least one academic email to your account qualifies you to apply for benefits via [GitHub Education](https://github.com/education).
+Pick a unique username.
+Continue  through the process (e.g. verifying your email address) until you are logged in to your account.
+
 - Create an SSH key on the cluster and upload it to your GitHub account.
+
+```bash
+ssh-keygen -t ecdsa -b 521
+# we recommend setting a passphrase to protect your SSH key pair
+cat .ssh/id_ecdsa.pub
+```
+
+Copy the public key printed by the last command above.
+
+Navigate to <https://github.com/settings/ssh/new>.
+
+Paste the public key in the field 'Key'.
+
+Copy the last portion of the key (that looks like `username@host`) in the field 'Title'.
+
+Click the green button 'Add SSH key'.
+
 - On GitHub, create a new repository called `obds_linux`.
   - In the form, tick the box to add a README file in this repository.
     This creates a markdown file `README.md` prefilled with some basic information about the repository.
