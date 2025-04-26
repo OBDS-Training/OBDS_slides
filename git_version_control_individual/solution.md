@@ -16,21 +16,21 @@
 
 - Create an SSH key on the cluster and upload it to your GitHub account.
 
-```bash
-ssh-keygen -t ecdsa -b 521
-# we recommend setting a passphrase to protect your SSH key pair
-cat .ssh/id_ecdsa.pub
-```
-
-Copy the public key printed by the last command above.
-
-Navigate to <https://github.com/settings/ssh/new>.
-
-Paste the public key in the field 'Key'.
-
-Copy the last portion of the key (that looks like `username@host`) in the field 'Title'.
-
-Click the green button 'Add SSH key'.
+> ```bash
+> ssh-keygen -t ecdsa -b 521
+> # we recommend setting a passphrase to protect your SSH key pair
+> cat .ssh/id_ecdsa.pub
+> ```
+> 
+> Copy the public key printed by the last command above.
+> 
+> Navigate to <https://github.com/settings/ssh/new>.
+> 
+> Paste the public key in the field 'Key'.
+> 
+> Copy the last portion of the key (that looks like `username@host`) in the field 'Title'.
+> 
+> Click the green button 'Add SSH key'.
 
 - On GitHub, create a new repository called `obds_linux`.
   - In the form, tick the box to add a README file in this repository.
