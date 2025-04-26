@@ -163,8 +163,51 @@
 ## Optional Exercise 5: Branching
 
 - Create a new branch and switch to it.
+
+> ```bash
+> git checkout -b BRANCH
+> # OR
+> git branch BRANCH
+> git checkout BRANCH
+> ```
+
 - List the branches in your repository.
+
+> ```bash
+> git branch
+> ```
+
 - Edit a file, add the changes to the staging area, and commit (with a message!).
-- Switch back to the main branch of your repository.
-- Merge the new branch with your main branch.
+
+> ```bash
+> nano FILE
+> # edit as needed
+> # Control-X
+> # Y
+> # Return
+> git add FILE
+> git commit -m "edited FILE"
+> ```
+
+- Merge the new branch into your main branch.
+
+> ```bash
+> git checkout main
+> git merge BRANCH
+> ```
+
 - Inspect the history of your repository to visualise the recent branching and merging events.
+
+> ```bash
+> git log --oneline
+> ```
+
+- What should you do now? Why?
+
+> You should push the merge commit to GitHub
+> because the commit and the merge happened on the cluster
+> and pushing to GitHub would backup your work in the cloud in case something happens to the cluster.
+> 
+> ```bash
+> git push
+> ```
