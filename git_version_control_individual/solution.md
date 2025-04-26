@@ -23,3 +23,8 @@
 - Push your local changes to to GitHub.
 - Edit the downloads.txt file on GitHub.
 - Pull your changes from GitHub.
+
+## Exercise 4: Viewing version history
+
+- Use `git log`.
+- View log on GitHub.
