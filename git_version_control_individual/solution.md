@@ -19,7 +19,7 @@
 
 ## Exercise 3: Pushing and Pulling
 
-- Check the remote repository for your local repository
-- Push your local changes to to GitHub
-- Edit the downloads.txt file on GitHub
-- Pull your changes from GitHub
+- Check the remote repository for your local repository.
+- Push your local changes to to GitHub.
+- Edit the downloads.txt file on GitHub.
+- Pull your changes from GitHub.
