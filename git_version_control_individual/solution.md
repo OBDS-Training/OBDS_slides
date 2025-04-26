@@ -11,8 +11,10 @@
 > NOTE: We recommend using your personal email address when signing up to ensure continuity between jobs.
 > You can always add work emails to your account after it is created.
 > Associating at least one academic email to your account qualifies you to apply for benefits via [GitHub Education](https://github.com/education).
+> 
 > Pick a unique username.
-> Continue  through the process (e.g. verifying your email address) until you are logged in to your account.
+> 
+> Click on the 'Continue' button and complete the process (e.g. verifying your email address) until you are logged in to your account.
 
 - Create an SSH key on the cluster and upload it to your GitHub account.
 
@@ -35,6 +37,17 @@
 - On GitHub, create a new repository called `obds_linux`.
   - In the form, tick the box to add a README file in this repository.
     This creates a markdown file `README.md` prefilled with some basic information about the repository.
+
+> On the GitHub website, click on the `+` icon in the navigation bar at the top of the website.
+>
+> Click on 'New repository'.
+>
+> In the field 'Repository name', type `obds_linux`.
+>
+> Tick the check box that states "Add a README file".
+>
+> Click the green button 'Create repository'.
+
 - Edit this `README.md` file to include the name and date of the course.
 - Commit the changes with a suitable commit message.
 
