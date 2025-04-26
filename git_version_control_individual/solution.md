@@ -31,4 +31,9 @@
 
 ## Optional Exercise 5: Branching
 
-- TODO
+- Create a new branch and switch to it.
+- List the branches in your repository.
+- Edit a file, add the changes to the staging area, and commit (with a message!).
+- Switch back to the main branch of your repository.
+- Merge the new branch with your main branch.
+- Inspect the history of your repository to visualise the recent branching and merging events.
