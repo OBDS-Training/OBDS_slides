@@ -69,10 +69,45 @@
 ## Exercise 2: Adding and committing files
 
 - Create a folder called `git` in your course folder `/project/<sso>`.
+
+> ```bash
+> mkdir /project/$USER/git
+> ```
+
 - Clone your new GitHub repository into this folder.
-- Copy your downloads.txt file to this folder.
+
+> ```bash
+> cd /project/$USER/git
+> git clone git@github.com:USERNAME/obds_linux.git
+> ```
+
+- Copy your `downloads.txt` file to this folder.
+
+> ```bash
+> cd /project/$USER/git/obds_linux
+> cp /PATH/TO/downloads.txt .
+> ```
+
 - Check the status od the repository.
-- Add the downloads.txt file to the staging area.
+
+> ```bash
+> git status
+> ```
+> 
+> You should see:
+> 
+> ```
+> On branch main
+> Your branch is up to date with 'origin/main'.
+> 
+> Untracked files:
+>   (use "git add <file>..." to include in what will be committed)
+>         downloads.txt
+> 
+> nothing added to commit but untracked files present (use "git add" to track)
+> ```
+
+- Add the `downloads.txt` file to the staging area.
 - Commit the changes with a suitable commit message.
 
 ## Exercise 3: Pushing and Pulling
