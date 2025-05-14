@@ -3,7 +3,7 @@ title: 'Introduction to the tidyverse'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2024-10-15 (updated: `r Sys.Date()`)"
+date: "2025-05-13 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
