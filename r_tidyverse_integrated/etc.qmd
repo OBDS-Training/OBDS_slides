@@ -37,12 +37,15 @@ We provide you with an Excel file `EH2011.xlsx` that contains gene expression da
 > 
 > [NIH AJCC staging system](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/ajcc-staging-system)
 > 
+> - sex: male or female
 > - grade: how abnormal the cancer cells and tissue look under a microscope
 > - T: size of the tumor and any spread of cancer into nearby tissue
 > - N: spread of cancer to nearby lymph nodes
 > - M: metastasis (spread of cancer to other parts of the body)
+> - vital_status: living or deceased
+> - sample_type: tumour or normal
 
-- Convert each of the four columns above to factors.
+- Convert each of the columns above to factors.
 
 - Combine sample information with gene expression data.
   Assign the output to `exprs_sampleinfo`.
@@ -53,15 +56,14 @@ We provide you with an Excel file `EH2011.xlsx` that contains gene expression da
 
 - Identify the gene with the largest absolute difference in mean expression between groups of male and female patients.
 
-- Visualise the expression of that gene across tumour grades.
-  Facet by `sex`.
-  Color by `T` score.
+- Visualise the expression of that gene in the two sexes using a geom of your choice.
+  Consider colouring and faceting by other metadata (e.g., `grade` and `T`).
 
 - Draw a heat map of all nine genes.
   Remove labels as well as ticks for the x-axis.
   Remove the panel grid and background.
 
-- Repeat the heat map, grouping samples by sex.
+- Repeat the heat map, faceting samples by sex.
 
 ## Further reading
 

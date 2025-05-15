@@ -1,5 +1,5 @@
 ---
-title: 'Template: Integrated exercise using the <i class="fab fa-r-project"></i> tidyverse'
+title: 'Building a tidyverse workflow'
 author: "Kevin Rue-Albrecht"
 date: "2024-10-16"
 date-format: long
@@ -65,12 +65,15 @@ sample_info
 > 
 > [NIH AJCC staging system](https://www.cancer.gov/about-cancer/diagnosis-staging/staging)
 > 
+> - sex: male or female
 > - grade: how abnormal the cancer cells and tissue look under a microscope
 > - T: size of the tumor and any spread of cancer into nearby tissue
 > - N: spread of cancer to nearby lymph nodes
 > - M: metastasis (spread of cancer to other parts of the body)
+> - vital_status: living or deceased
+> - sample_type: tumour or normal
 
-- Convert the four columns above to the factor type.
+- Convert each of the columns above to factors.
 
 ```{r}
 sample_info <- sample_info %>%
@@ -105,9 +108,8 @@ exprs_sampleinfo %>%
 
 ```
 
-- Visualise the expression of that gene across tumour grades.
-  Facet by `sex`.
-  Color by `T` score.
+- Visualise the expression of that gene in the two sexes using a geom of your choice.
+  Consider colouring and faceting by other metadata (e.g., `grade` and `T`).
 
 ```{r}
 table_for_ggplot <- exprs_sampleinfo %>% 
@@ -134,7 +136,7 @@ ggplot(exprs_sampleinfo,   ) +
 
 ```
 
-- Repeat the heat map, grouping samples by sex.
+- Repeat the heat map, faceting samples by sex.
 
 ```{r}
 # Copy the code chunk above and edit as needed
