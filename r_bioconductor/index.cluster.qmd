@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to Bioconductor'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
-author: "Devika Agarwal & Kevin Rue"
+author: "Kevin Rue & Devika Agarwal"
 institute: "Oxford Biomedical Data Science Training Programme"
 date: "2025-05-20 (updated: `r Sys.Date()`)"
 date-format: long
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Devika Agarwal & Kevin Rue -- Introduction to Bioconductor
+    footer: Kevin Rue & Devika Agarwal -- Introduction to Bioconductor
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
