@@ -57,6 +57,7 @@ str(read10x_data)
 > in the matrix.
 
 - Use the syntax `dim(object)` function to determine the number of features and barcodes (i.e., cells) in `read10x_data`.
+
 ```{r}
 dim(read10x_data)
 ```
