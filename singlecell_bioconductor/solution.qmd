@@ -1,7 +1,7 @@
 ---
 title: "Example code for single-cell analysis using Bioconductor"
 author: "Kevin Rue-Albrecht"
-date: "2024-11-11"
+date: "2025-06-09"
 output: html_document
 ---
 
@@ -37,6 +37,10 @@ sce <- DropletUtils::read10xCounts(samples = c(
     "filtered" = "data/filtered_feature_bc_matrix"
 ))
 ```
+
+> Answer:
+>
+> - Without the name, path is used for the Sample column in cell metadata
 
 - Print the object.
   What can you tell about its contents?
@@ -230,6 +234,10 @@ dec
 > 
 > A `DataFrame`, with one row per feature.
 
+:::{.notes}
+p.value, FDR - Raw and adjusted p-values for the test against the null hypothesis that bio<=0.
+:::
+
 - Use `scran::getTopHVGs()` to identify highly variable genes (e.g., top 10%).
 
 What is the output?
@@ -237,9 +245,8 @@ How many genes do you identify?
 Where are those genes located in the mean vs. (biological) variance plot?
 What happens to this plot if you set more stringent thresholds to define highly variable genes?
 
-
 ```{r}
-# Return 10% of genes with biological variance > 0
+# Return 10% of genes with biological variance > 0 (sum(dec$bio > 0) * 0.1)
 hvg <- scran::getTopHVGs(dec, prop=0.1)
 length(hvg)
 ```
@@ -280,7 +287,7 @@ ggplot(as_tibble(dec)) +
 > - Technical variance = mean trend fitted
 > - Biological = (total variance) - (technical variance)
 > 
-> Yes, biological variance can be negative (less variable than expected for that mean expression).
+> "Negative values inevitable when fitting a trend to the per-gene variances as approximately half of the genes will lie below the trend." 
 
 # Exercise
 
@@ -295,7 +302,7 @@ ggplot(as_tibble(dec)) +
 - Set a seed to control reproducibility.
 
 ```{r}
-set.seed(1234)
+set.seed(1234) # For those using approximations
 sce <- scran::fixedPCA(sce, subset.row = hvg)
 reducedDimNames(sce)
 ```
@@ -304,11 +311,13 @@ reducedDimNames(sce)
   List the names of dimensionality reduction results available each time.
 
 ```{r}
+set.seed(1234)
 sce <- runUMAP(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
 
 ```{r}
+set.seed(1234)
 sce <- runTSNE(sce, dimred = 'PCA', external_neighbors=TRUE)
 reducedDimNames(sce)
 ```
@@ -337,6 +346,10 @@ sce_umap
 
 - Use `scran::denoisePCA()` to remove principal components that correspond to technical noise, and compare downstream t-SNE or UMAP with those obtained before de-noising.
 
+:::{.notes}
+Idea is to retain all PCs until the percentage of total variation explained reaches some threshold T, which is set to total proportion explained by biological variance from the modelling done above.
+:::
+
 **Note:**
 
 - Name the output `sce_denoise`.
@@ -350,7 +363,7 @@ ncol(reducedDim(sce_denoise, "PCA"))
 
 > Answer:
 > 
-> The denoise PCA returned 5 principal components.
+> The denoise PCA returned 5 principal components (but this is also the default minimum number of PCs it can return, see `min.rank` parameter).
 
 ```{r}
 sce_denoise <- scater::runUMAP(sce_denoise, dimred = 'PCA', external_neighbors=TRUE)
@@ -371,6 +384,8 @@ plot_grid(
     nrow = 1)
 ```
 
+> One additional small cluster with more PCs (which can be expected), but we don't know yet if it's biologically meaningful or not
+
 # Exercise
 
 ## Clustering
@@ -383,6 +398,13 @@ Cluster cells using `scran`.
 output <- scran::getClusteredPCs(reducedDim(sce, "PCA"))
 metadata(output)$chosen
 ```
+
+:::{.notes}
+- Helps choose based on potential number of populations in the data
+- Picks number of PCs based on a rule of thumb that for a given total number of population N, we need at least N - 1 PCs to distinguish all of them
+- Quite useful to have an idea of the approximate number of PCs you want to take especially if you don't know how many populaations you expect (does quick clustering under the hood to approximate number of populations)
+- "We choose d that satisfies the constraint (only consider the values of d that yield no more than d + 1) and maximizes the number of clusters"
+:::
 
 - Use `scran::buildSNNGraph()` and `igraph::cluster_louvain()` with that "ideal" number of PCs.
   Assign the cluster label to a cell metadata column named `"label"`.
@@ -432,7 +454,6 @@ for (d in c(5, 10, 13, 15)) {
 plot_grid(plotlist = snn_plots, ncol = 2)
 ```
 
-
 - Try `scran::quickCluster()`; identify key parameters and compare results.
 
 ```{r}
@@ -457,16 +478,25 @@ gg_cluster
   Display the metadata of markers for the first cluster.
 
 ```{r}
-markers <- scran::findMarkers(x = sce, sce$label, direction = "up")
+markers <- scran::findMarkers(x = sce, sce$label, direction = "up", pval.type = "all")
 rowData(sce)[rownames(markers[[1]]),] %>% 
     as.data.frame() %>% 
     head()
 ```
 
-> "The set of genes with Top ≤ X is the union of the top X genes (ranked by p-value) from each pairwise comparison involving a given cluster. For example, the set of all genes with Top values of 1 contains the gene with the lowest p-value from each comparison. Similarly, the set of genes with Top values less than or equal to 10 contains the top 10 genes from each comparison. The Top field represents findMarkers()’s approach to consolidating multiple pairwise comparisons into a single ranking for each cluster; each DataFrame produced by findMarkers() will order genes based on the Top value by default." - From <https://bioconductor.org/books/3.12/OSCA/marker-detection.html>
+:::{.notes}
+`pval.type = "any"`
+- "The set of genes with Top ≤ X is the union of the top X genes (ranked by p-value) from each pairwise comparison involving a given cluster. For example, the set of all genes with Top values of 1 contains the gene with the lowest p-value from each comparison. Similarly, the set of genes with Top values less than or equal to 10 contains the top 10 genes from each comparison. The Top field represents findMarkers()’s approach to consolidating multiple pairwise comparisons into a single ranking for each cluster; each DataFrame produced by findMarkers() will order genes based on the Top value by default." - From <https://bioconductor.org/books/3.12/OSCA/marker-detection.html>
 
-> summary.logFC - log-fold change from the comparison with the lowest  
+- summary.logFC - log-fold change from the comparison with the lowest  
 p-value
+
+`pval.type = "all"`
+- "Combined p-value for each gene is the maximum of the p-values from all pairwise comparisons. A gene will only achieve a low combined p-value if it is strongly DE in all comparisons to other clusters." - OSCA
+
+`pval.type="some"`
+- "For each gene, we apply the Holm-Bonferroni correction across its p -values and take the middle-most value as the combined p-value." - OSCA
+:::
 
 Visualise the expression of selected markers:
 
