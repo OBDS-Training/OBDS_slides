@@ -44,6 +44,7 @@ knitr::include_graphics("img/summarizedexperiment-fig2.jpeg")
 :::
 
 ::: {.column width="50%"}
+
 ### SingleCellExperiment
 
 ```{r}
@@ -56,6 +57,20 @@ knitr::include_graphics("img/singlecellexperiment-osca.png")
 :::
 ::::
 
+::: {.notes}
+- Main difference between Seurat and Bioconductor workflows is the object that holds the data.
+- In Seurat, it’s the Seurat object; in Bioconductor, we use the SingleCellExperiment object, which builds on the SummarizedExperiment you saw in the previous lesson.
+- Think of this object as a container for different assays—each assay is a feature-by-cell matrix (like raw counts or log-normalized data).
+- Like SummarizedExperiment, it has:
+  - rowData: for feature-level metadata (e.g. gene symbols)
+  - colData: for cell-level metadata (e.g. sample or cluster ID)
+= The SingleCellExperiment object also includes slots specifically for single-cell data, like:
+  - reducedDims: to store dimensionality reductions like PCA or UMAP
+- Note that "assay" means different things in Seurat and Bioconductor, so it's important to keep this in mind.
+  - In Seurat, an assay refers to the type of experiment (e.g. RNA, ATAC), and each assay contains its own data/matrices and metadata.
+  - In Bioconductor, an assay refers to a matrix of data (e.g. raw counts, normalized counts) stored inside the SingleCellExperiment object.
+:::
+
 ## SingleCellExperiment
 
 ```{r}
@@ -65,36 +80,6 @@ knitr::include_graphics("img/singlecellexperiment-osca.png")
 ```
 
 **Source:** <https://bioconductor.org/books/3.17/OSCA.intro/the-singlecellexperiment-class.html>
-
-## A single-cell analysis workflow using Bioconductor
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-#| out-height: 500px
-## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
-knitr::include_graphics("img/workflow-osca.png")
-```
-:::
-
-::: {.column width="50%"}
-**Source:** <https://bioconductor.org/books/3.17/OSCA.intro/analysis-overview.html>
-
-<br/>
-
-**Key points:**
-
-- A shared data structure allows modular analysis.
-- Individual packages provide
-  + Data structures (`r BiocStyle::Biocpkg("SingleCellExperiment")`)
-  + Method (`r BiocStyle::Biocpkg("scran")`, `r BiocStyle::Biocpkg("scater")`)
-  + Annotation (`r BiocStyle::Biocpkg("org.Hs.eg.db")`)
-  + Reporting (`r BiocStyle::CRANpkg("rmarkdown")`, `r BiocStyle::CRANpkg("shiny")`)
-
-:::
-::::
 
 ## Bioconductor and Seurat
 
@@ -165,6 +150,41 @@ knitr::include_graphics("img/anndata.svg")
 **Source:** [https://anndata.readthedocs.io](https://anndata.readthedocs.io/en/latest/anndata.AnnData.html)
 :::
 ::::
+
+## Modular single-cell analysis using Bioconductor
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+## Source: https://github.com/Bioconductor/OrchestratingSingleCellAnalysis/tree/images/images
+knitr::include_graphics("img/workflow-osca.png")
+```
+:::
+
+::: {.column width="50%"}
+**Source:** <https://bioconductor.org/books/3.17/OSCA.intro/analysis-overview.html>
+
+<br/>
+
+**Key points:**
+
+- A shared data structure allows modular analysis.
+- Individual packages provide
+  + Data structures (`r BiocStyle::Biocpkg("SingleCellExperiment")`)
+  + Method (`r BiocStyle::Biocpkg("scran")`, `r BiocStyle::Biocpkg("scater")`)
+  + Annotation (`r BiocStyle::Biocpkg("org.Hs.eg.db")`)
+  + Reporting (`r BiocStyle::CRANpkg("rmarkdown")`, `r BiocStyle::CRANpkg("shiny")`)
+
+:::
+::::
+
+::: {.notes}
+- Another key difference between the two R-based single-cell workflows is that instead of having one package that handles everything (like Seurat), Bioconductor uses specialized packages, each focused on a specific step in the workflow.
+- This is possible because of the shared data structure holding the data, SingleCellExperiment.
+:::
 
 ## Bioconductor workflow - Overview
 

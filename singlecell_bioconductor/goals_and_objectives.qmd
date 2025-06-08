@@ -16,3 +16,8 @@
 - Normalise single-cell data and inspect the results.
 - Apply clustering methods and visualise the results.
 - Identify markers for each cluster and visualise their expression.
+
+::: {.notes}
+- Goal: Perform the single-cell analysis workflow you learned last week with Seurat, this time using Bioconductor packages.
+- Why? Seurat and Bioconductor offer many of the same features, but each also has unique methods. Learning both helps you apply the most suitable tools for different analyses.
+:::
