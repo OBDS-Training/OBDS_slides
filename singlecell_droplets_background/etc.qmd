@@ -122,13 +122,32 @@ empty droplets.
 - Remove empty droplets from the data sets.
   Call the new object `sce_filtered_emptydrops`.
 
-### Bonus point
+### Bonus point (see next slides)
 
 - Draw plots comparing empty droplets and other droplets
   (e.g., library size, mitochondrial content, PCA).
 
 - Import the filtered matrix for the same cells and compare their set of
   filtered cells to yours.
+
+## Bonus outputs
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+knitr::include_graphics("img/exercise-empty-bonus-1.png")
+knitr::include_graphics("img/exercise-empty-bonus-3.png")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+knitr::include_graphics("img/exercise-empty-bonus-2.png")
+```
+:::
+
+::::
 
 ## The origin of doublets
 
@@ -294,6 +313,25 @@ Continue using the data set after you excluded empty droplets.
   `r BiocStyle::Githubpkg('chris-mcginnis-ucsf/DoubletFinder')`
   + You will need to make a `Seurat` object.
 
+## Bonus outputs
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+knitr::include_graphics("img/exercise-doublet-bonus-1.png")
+knitr::include_graphics("img/exercise-doublet-bonus-3.png")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+knitr::include_graphics("img/exercise-doublet-bonus-2.png")
+```
+:::
+
+::::
+
 ## The origin of ambient RNA
 
 :::: {.columns}
@@ -413,6 +451,8 @@ See `?celda::decontX()` for more information.
   before and after decontamination as a bar plot; use `plotDecontXMarkerPercentage()`.
 - Visualize the log-normalised expression of marker genes before and after
   decontamination as a violin plot; use `plotDecontXMarkerExpression()`.
+
+Go to <https://bioconductor.org/packages/celda/> and open the vignette 'Estimate and remove cross-contamination from ambient RNA in single-cell data with DecontX'.
 
 ## References
 

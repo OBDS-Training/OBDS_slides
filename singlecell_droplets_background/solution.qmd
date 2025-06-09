@@ -244,7 +244,7 @@ plot_data <- tibble(
 ) %>% 
   arrange(scdblfinder)
 ggplot(plot_data, aes(PC1, PC2, color = scdblfinder)) +
-  geom_jitter(width = 0.1, height = 0) +
+  geom_point() +
   cowplot::theme_cowplot()
 ```
 
