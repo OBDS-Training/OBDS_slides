@@ -305,7 +305,7 @@ Continue using the data set after you excluded empty droplets.
 - Remove doublets from the data set.
   Call the new object `sce_filtered_scdblfinder`.
 
-### Bonus point
+### Bonus point (see next slides)
 
 - Draw plots comparing doublets and other droplets.
   (e.g., library size, mitochondrial content, PCA)
