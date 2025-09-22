@@ -323,6 +323,27 @@ two_by_three <- multiply(2, 3)
 two_by_three
 ```
 
+## Functions
+
+You might sometimes see functions in <i class="fab fa-r-project"></i> without an explicit return statement.
+
+```{r}
+#| eval: true
+#| echo: true
+multiply_no_return <- function(a, b) {
+    result <- a * b
+}
+```
+
+In this case the result of the last expression is returned.
+
+```{r}
+#| eval: true
+#| echo: true
+two_by_four <- multiply_no_return(2, 4)
+two_by_four
+```
+
 ## Reminder about brackets
 
 <br/>
