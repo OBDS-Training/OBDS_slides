@@ -18,9 +18,23 @@ knitr::include_graphics("img/r-console.png")
 
 ## The inception of <i class="fab fa-r-project"></i>
 
+:::: {.columns}
+
+::: {.column width="50%"}
 - Developed in 1995 by [Robert Gentleman](https://en.wikipedia.org/wiki/Robert_Gentleman_(statistician)) & [Ross Ihaka](https://en.wikipedia.org/wiki/Ross_Ihaka).
 - Based on *S* ([Wikipedia](https://en.wikipedia.org/wiki/S_(programming_language))).
 - Focused on user friendly data analysis, stats and visualization.
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 500px
+knitr::include_graphics("img/rue_gentleman.jpg")
+```
+:::
+
+::::
 
 ## Why <i class="fab fa-r-project"></i> is used
 

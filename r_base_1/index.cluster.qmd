@@ -3,7 +3,7 @@ title: 'Introduction to base <i class="fab fa-r-project"></i>'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
 author: "Kevin Rue & Mary Thompson"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-05-06 (updated: `r Sys.Date()`)"
+date: "2025-10-06 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
