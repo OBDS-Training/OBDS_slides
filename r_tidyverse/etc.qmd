@@ -440,6 +440,48 @@ iris %>%
 
 ::::
 
+## Operating on specific columns with across() and where()
+
+Sometimes we may want to use data from only a subset of the columns.
+
+Specific columns can be specified using `across()`:
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Using column names
+
+```{r}
+#| echo: true
+iris %>% 
+  summarise(
+    across(c(Sepal.Length, Sepal.Width), mean)
+  )
+```
+:::
+
+::: {.column width="50%"}
+### Using column positions
+
+```{r}
+#| echo: true
+iris %>% 
+  summarise(
+    across(c(1, 2), mean)
+  )
+```
+:::
+
+::::
+
+<br/>
+
+For the exercise, you will want to have a look at combining `across()` and `where()`.
+
+Hint: look at some of the examples for `where()`.
+
 ## Sort observations
 
 The `arrange()` function can be used to order observations using values in certain columns.
