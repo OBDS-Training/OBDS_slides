@@ -33,6 +33,19 @@ knitr::include_graphics("img/tidyverse.png")
 
 ::::
 
+## A brief history of the tidyverse {.vcenter}
+
+```{r}
+#| fig-align: center
+#| out-height: 450px
+#| out-width: 710px
+## Source: https://hadley.github.io/25-tidyverse-history/
+knitr::include_graphics("img/tidyverse_history.png")
+```
+"The hardest part of collaborative data analysis is not finding the correct statistical model, but getting the data into a form that you can actually work with."  
+  
+— Hadley Wickham [A personal history of the tidyverse](https://hadley.github.io/25-tidyverse-history/)
+
 ## The data science workflow
 
 ```{r}

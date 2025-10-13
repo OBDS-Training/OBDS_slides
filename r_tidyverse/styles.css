@@ -1,3 +1,11 @@
 .reveal .slide-logo {
     max-height: 5rem !important; /* !important needed to overwrite footer.css */
 }
+
+.vcenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
