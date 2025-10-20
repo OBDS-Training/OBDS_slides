@@ -11,7 +11,7 @@ BiocManager::valid()
 knitr::include_graphics("img/biocmanager-update.png")
 ```
 
-## Exercise
+## Demo
 
 ### Use Bioconductor packages and help pages
 
@@ -62,7 +62,7 @@ An E-box (enhancer box) is a DNA response element found in some eukaryotes that 
 The E-box motif is `"CANNTG"`.
 
 - Extract the sequence of chromosome Y from the `genome` object above.
-- Find out the appropriate method in the `r BiocStyle::Biocpkg("Biostrings")` and count the number of E-box motifs present on chromosome Y.
+- Use the `countPattern()` method in the `r BiocStyle::Biocpkg("Biostrings")` to count the number of E-box motifs present on chromosome Y.
 
 ## Genomic ranges
 
@@ -306,7 +306,7 @@ from the object.
   - What happens if you do not specify `AnnotationDbi`?
 - Use the `mapIds()` method to get the Ensembl identifier for those gene symbols.
 
-## Exercise
+## Demo
 
 ### biomaRt
 
