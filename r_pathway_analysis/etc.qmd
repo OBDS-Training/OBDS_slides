@@ -209,7 +209,7 @@ knitr::include_graphics("img/go_mf.png")
 
 ## Database 2: [Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/)
 
-- A collection of manually drawn **pathway** maps representing molecular interaction and reaction networks
+A collection of manually drawn pathway maps representing molecular interaction and reaction networks
 
 ```{r}
 #| fig-align: center
