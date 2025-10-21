@@ -387,19 +387,24 @@ Given the observed and null normalized enrichment scores, the FDR can be calcula
 For multiple peaks i.e. below and above 0, the maximum of the absolute values will be taken. Multiple peaks might mean that gsea is not appropriate for that gene set.
 -->
 
-# Exercise - Perform GSEA using fgsea 
+## Exercise
 
-## ORA vs. FCS (GSEA)
+- Perform GSEA using `fgsea::fgsea()`.
+
+## ORA vs. FCS
 
 ::: {.small-table}
-|                                          | ORA                                  | GSEA                                 |
-|------------------------------------------|--------------------------------------|--------------------------------------|
-| <span style="color:red;">Input</span>    | Subset of genes based on a threshold and background     | All genes ranked based on a gene statistic   |
-| <span style="color:red;">Analysis</span> | Equal importance of genes            | Ranked importance of genes           |
+|              | ORA                                  | GSEA                                 |
+|--------------|--------------------------------------|--------------------------------------|
+| **Input**    | Subset of genes based on a threshold and background     | All genes ranked based on a gene statistic   |
+| **Analysis** | Equal importance of genes            | Ranked importance of genes           |
 :::
 
-- Output 
-  + List of gene sets and metrics indicating enrichment in your gene list
+<br/>
+
+### Output
+
+In both cases, a table of statistics used to evaluate enrichment in your gene list.
 
 ## Choosing enrichment analysis tools
 
