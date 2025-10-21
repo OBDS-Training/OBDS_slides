@@ -219,26 +219,40 @@ A collection of manually drawn pathway maps representing molecular interaction a
 knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 ```
 
-## R packages to perform functional enrichment analysis
+## Software for gene set analysis
 
-- ORA
-  + [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html)
-  + goseq, GOstats, topGO
+:::: {.columns}
 
-- FCS (GSEA)
-  + [GSEAbase](https://bioconductor.org/packages/release/bioc/html/GSEABase.html)
+::: {.column width="50%"}
+**ORA**
 
-- Both
-  + [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html)
-  + [**fgsea**](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
-  + [ReactomePA](https://bioconductor.org/packages/release/bioc/html/ReactomePA.html)
+- [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html)
+- goseq, GOstats, topGO
 
-- Web-based tools are also available
-  + [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost)
-  + [DAVID](https://david.ncifcrf.gov)
-  + [Enrichr](https://maayanlab.cloud/Enrichr/)
-  
-# Exercise - Perform ORA using gprofiler2 
+**FCS (GSEA)**
+
+- [GSEAbase](https://bioconductor.org/packages/GSEABase/)
+
+**Both**
+
+- [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/)
+- [fgsea](https://bioconductor.org/packages/fgsea/)
+- [ReactomePA](https://bioconductor.org/packages/ReactomePA/)
+:::
+
+::: {.column width="50%"}
+**Web-based tools**
+
+- [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost)
+- [DAVID](https://david.ncifcrf.gov)
+- [Enrichr](https://maayanlab.cloud/Enrichr/)
+:::
+
+::::
+
+## Exercise
+
+- Perform ORA using `gprofiler2::gost()`.
 
 <!--
 
