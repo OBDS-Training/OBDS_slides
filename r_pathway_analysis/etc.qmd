@@ -448,15 +448,14 @@ In both cases, a table of statistics used to evaluate enrichment in your gene li
 
 - [Method review, 2019](https://www.nature.com/articles/s41596-018-0103-9)
 - [Nine quick tips for pathway enrichment analysis, 2022](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348)
-
-## References
-
 - [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichment-overview.html)
 - [Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM)
 - [Fisher's Exact Test](https://www.pathwaycommons.org/guide/primers/statistics/fishers_exact_test/)
 - [Functional Analysis for RNA-seq](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/11_FA_functional_class_scoring.html)
 - [Introduction to Pathway and Network Analysis](http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf)
 - [Ten Years of Pathway Analysis: Current Approaches and Outstanding Challenges](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002375)
+
+## References
 
 ```{r}
 #| results: asis
