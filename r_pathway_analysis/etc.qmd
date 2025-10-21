@@ -1,9 +1,29 @@
+## Gene set? Pathway? - Definitions
+
+<br/>
+
+**Gene set** - Set of molecules often grouped together on a certain basis, e.g.
+
+- All genes mentioned in a paper
+- All genes involved in a pathway
+
+<br/>
+  
+**Pathway** - Ordered/structured set of molecules describing a biological process
+
+- Showing interactions and dependencies amongst molecules
+
+<br/>
+
+::: {style="text-align: center;"}
+Be careful because the terms are often used interchangeably
+:::
+
 ## Gene set/Pathway enrichment analysis 
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-
 ```{r}
 #| fig-align: center
 #| out-height: 490px
@@ -11,60 +31,43 @@
 ## Source: custom-made (from Kevin's 'r_differential_expression' lecture)
 knitr::include_graphics("img/overview-rnaseq-workflow.png")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
-- Gene lists are complex and hard to interpret by eye
-- With gene set/pathway enrichment analysis, we can derive biological functions from a gene list
-  + Biological function is given by gene sets / pathways (e.g. genes involved in alcohol metabolism)
-  + What *gene sets/pathways* are significantly associated with the gene list
-
+- Gene lists are hard to interpret by eye.
+- With gene set enrichment analysis, we can infer biological functions from a gene list.
+  + Function is given by gene sets that can represent biological pathways
+    (e.g., genes involved in alcohol metabolism).
+  + What gene sets are significantly over- or under-represented in the gene list?
 :::
 
 ::::
 
-## Gene set? Pathway?
-
-- **Gene set** - Set of molecules often grouped together on a certain basis
-  + All genes mentioned in a paper
-  + All genes involved in a pathway
-  
-- **Pathway** - Ordered/structured set of molecules describing a biological process
-  + Showing interactions and dependencies amongst molecules
-
-<br>
-
-- But be careful because the terms are often used interchangeably
-
 ## Methods of functional enrichment analysis
 
-<!--
-```{r}
-#| fig-align: center
-#| out-height: 250px
-#| out-width: 580px
-## Source: http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf 
-knitr::include_graphics("img/types_method.png")
-```
--->
+**Over-representation analysis (ORA)**
 
-1. **Over-representation analysis (ORA)** 
-   - Input a list of genes often based on a selection criteria (e.g. upregulated genes)
-2. **Functional class scoring (FCS)** 
-   - Input entire list of genes but genes are ranked based on a gene-level statistic (e.g. fold change)
-   - **Gene Set Enrichment Analysis (GSEA)** uses FCS approach
-3. Pathway Topology (PT) 
-   - Similar to FCS but 
-   - Unlike the first two, needs pathways with information like type of interactions between genes (e.g. activation or inhibition); <span style="color:red;">not all databases have this information</span>
-   - Changing interactions between genes in a set affects PT result but not ORA or FCS
-   
-<!--
-   - "Even if these methods generally produce more precise results, they suffer from the limitation of using a gene topology based on the single cell type in use [24]. Moreover, the topologies of the genes are far from being final and might change as the general biology understanding advances (Nine quick tips for pathway enrichment analysis)"
--->
+- Input a subset of genes often based on a selection criteria
+  (e.g., upregulated genes).
 
-- All methods can output a **list of significant gene sets/pathways associated with the condition under study**
+**Functional class scoring (FCS)**
+
+- Input a complete list of genes ranked based on a gene-level statistic
+  (e.g. fold change).
+- "Gene Set Enrichment Analysis (GSEA)" uses FCS approach
+
+**Pathway Topology (PT)**
+
+Similar to FCS but:
+
+- Uses additional information like relationship between genes
+  (e.g. activation or inhibition).
+
+<br/>
+
+::: {style="text-align: center;"}
+All methods typically output a table of statistics used to select "significant" gene sets.
+:::
 
 <!--
 log2FC of X translates to 2^X-fold increase 
