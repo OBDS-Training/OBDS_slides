@@ -147,22 +147,26 @@ Think of background as genes that could have been positive or present in your ge
 
 This is a crucial choice because the size of the background influence the size of P-values.
 
-## Choosing databases of gene sets / pathways
+## Choosing databases of gene sets
 
-- Gene sets and pathways are available from many databases
-  + [Example list of gene set databases](https://maayanlab.cloud/Enrichr/#libraries)
-- **[Gene Ontology (GO)](https://geneontology.org)** and **[Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/)** are the most popular and frequently used
-  + Long standing curation
-  + Availability for wide range of species
-  
-- Can either use gene sets from one or multiple databases at the same time
-- Considerations:
-  + Scope - species? specific for [disease ontology](https://disease-ontology.org)?
-  + Curation - manual vs. electronic
-  + Actively maintained - new release?
-  + [Evidence](https://geneontology.org/docs/guide-go-evidence-codes/)
+Gene sets and pathways are available from many databases, [examples](https://maayanlab.cloud/Enrichr/#libraries).
 
-- Other databases - Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
+[Gene Ontology (GO)](https://geneontology.org) and [Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/) are the most popular and frequently used.
+
+- Long standing curation
+- Availability for wide range of species
+
+Some software packages allow you to use gene sets from multiple databases at the same time.
+
+Things to consider when choosing databases of gene sets:
+
+- Scope: are you interested in [disease ontology](https://disease-ontology.org)?
+- Species: were the annotations inferred from another species by homology?
+- Curation: were the annotation manually reviewed or computationally predicted?
+  [Evidence codes](https://geneontology.org/docs/guide-go-evidence-codes/)
+- Maintenance: when was the latest update?
+
+**Other databases:** Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
 
 ## Database 1: [Gene Ontology (GO)](https://geneontology.org)
 
