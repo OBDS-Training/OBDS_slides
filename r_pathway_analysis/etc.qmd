@@ -138,14 +138,14 @@ knitr::include_graphics("img/fisher-test-venn.svg")
 
 ## Choosing background genes
 
-- Think of background as genes that could have been positive or present in your gene list
-  + All genes in a species
-  + Only genes that the method can measure (e.g. targeted expression panels)
+Think of background as genes that could have been positive or present in your gene list, e.g.
+
+- All the genes in the genome
+- Only the genes that the method could measure (e.g., targeted expression panels)
 
 <br>
 
-- Important factor because the size of background influences the p-values
-  + <span style="color:green;">Illustrate with kinase genes</span>
+This is a crucial choice because the size of the background influence the size of P-values.
 
 ## Choosing databases of gene sets / pathways
 
