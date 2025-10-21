@@ -69,11 +69,6 @@ Similar to FCS but:
 All methods typically output a table of statistics used to select "significant" gene sets.
 :::
 
-<!--
-log2FC of X translates to 2^X-fold increase 
-log2FC of 3 translates to (2^3)8-fold increase
--->
-
 <!-- # Over-representation analysis (ORA) -->
 
 <!-- ## ORA workflow -->
@@ -90,20 +85,21 @@ log2FC of 3 translates to (2^3)8-fold increase
 
 ## Over-representation analysis (ORA) workflow
 
-- Determine enrichment of a gene set within our gene list relative to a background 
+**Goal:** Determine enrichment of a gene set within a query gene set relative to a background gene set.
 
-1. **Inputs**
-    a. Gene list based on a selection criteria - e.g. upregulated genes with $log_{2}$ FC > 1 and padj < 0.05
-    b. Background - Built-in or custom-made
-    c. Gene sets / Pathways
-       + Custom-made
-       + Accessed from databases as a built-in functionality of enrichment analysis tools or user does this separately and inputs gene sets to tools
+**Inputs**
 
-2. **Analysis**
-   + Done per gene set and so gives p-value per gene set
+- Query gene set (e.g. upregulated genes).
+- Background gene set (e.g. all genes tested for differential expression).
+- Gene sets to test for over-representation (e.g., Gene Ontology).
 
-3. **Multiple test correction** 
-   + Because we are testing multiple gene sets, we adjust the p-values  
+**Analysis**
+
+- Essentially a Fisher's exact test per gene set, giving a p-value per gene set.
+
+**Multiple test correction**
+
+- To account for the fact that many genes sets are tested.
 
 ## ORA analysis method
 
