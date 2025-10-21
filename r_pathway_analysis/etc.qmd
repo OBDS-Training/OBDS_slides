@@ -95,7 +95,7 @@ All methods typically output a table of statistics used to select "significant" 
 
 **Analysis**
 
-- Essentially a Fisher's exact test per gene set, giving a p-value per gene set.
+- Essentially a Fisher's exact test per gene set, giving a P-value per gene set.
 
 **Multiple test correction**
 
@@ -103,35 +103,38 @@ All methods typically output a table of statistics used to select "significant" 
 
 ## ORA analysis method
 
-- Per gene set, **statistically test for over-representation** in your gene list -- gives p-value
-- Can use Fisher's exact test of independence between two categorical variables -- (i) condition that gave us the DE genes (ii) gene set / pathway
+Each gene set is tested for over-representation in the query gene set, giving a P-value.
 
-  :::: {.columns}
+Fisher's Exact Test tests for independence between two categorical variables:
 
-  ::: {.column width="50%"}
+- In the query gene set or not
+- In the test gene set or not
 
-  ```{r}
-  #| fig-align: center
-  #| out-height: 200px
-  #| out-width: 450px
-  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
-  knitr::include_graphics("img/fisher-test-table.svg")
-  ```
+<br/>
 
-  :::
-  
-  ::: {.column width="50%"}
+:::: {.columns}
 
-  ```{r}
-  #| fig-align: center
-  #| out-height: 220px
-  #| out-width: 460px
-  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
-  knitr::include_graphics("img/fisher-test-venn.svg")
-  ```
-  :::
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 460px
+## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+knitr::include_graphics("img/fisher-test-table.svg")
+```
+:::
 
-  ::::
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 460px
+## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+knitr::include_graphics("img/fisher-test-venn.svg")
+```
+:::
+
+::::
 
 ## Choosing background genes
 
