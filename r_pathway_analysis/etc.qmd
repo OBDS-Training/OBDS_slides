@@ -160,11 +160,11 @@ Some software packages allow you to use gene sets from multiple databases at the
 
 Things to consider when choosing databases of gene sets:
 
-- Scope: are you interested in [disease ontology](https://disease-ontology.org)?
-- Species: were the annotations inferred from another species by homology?
-- Curation: were the annotation manually reviewed or computationally predicted?
+- **Scope:** are you interested in [disease ontology](https://disease-ontology.org)?
+- **Species:** were the annotations inferred from another species by homology?
+- **Curation:** were the annotation manually reviewed or computationally predicted?
   [Evidence codes](https://geneontology.org/docs/guide-go-evidence-codes/)
-- Maintenance: when was the latest update?
+- **Maintenance:** when was the latest update?
 
 **Other databases:** Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
 
@@ -406,16 +406,43 @@ For multiple peaks i.e. below and above 0, the maximum of the absolute values wi
 
 In both cases, a table of statistics used to evaluate enrichment in your gene list.
 
-## Choosing enrichment analysis tools
+## Choosing an enrichment analysis tool
 
-- Interface of tool - web vs. script?
-- Gene set database access or usage
-- Flexibility 
-  + Can you use custom background?
-  + Can you define which databases to use?
-- What gene identifiers are compatible? 
-  + Specificity - Gene IDs > Gene Symbol
-- Well documented and maintained?
+:::: {.columns}
+
+::: {.column width="50%"}
+**Method**
+
+- What is your statistical question?
+- Do you need to use ORA or FCS?
+
+**User interface**
+
+- Do you prefer web-based or scripted?
+
+**Flexibility**
+
+- Do it accept a custom background for ORA?
+- Which gene set databases does it support?
+:::
+
+::: {.column width="50%"}
+**Compatibility**
+
+- Does the tool support the gene identifiers you are using?
+- Does it convert them internally to another identifier?
+
+**Maintenance**
+
+- Is the tool well documented and maintained?
+
+**Gene set database**
+
+- Which one answers your scientific question?
+- Is it up-to-date?
+:::
+
+::::
 
 ## Useful links
 
