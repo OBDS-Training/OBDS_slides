@@ -273,30 +273,36 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 
 -->
 
-## Major limitations of ORA
+## Limitations of ORA
 
-- Gene list often comes from subsetting genes based on an arbitrary threshold
-  + Information loss
-  + ORA result depends heavily on this threshold
-- Equal importance assigned to each gene
-  + E.g. ignores fold changes from DE analysis
-- GSEA addresses these limitations
+The query gene set comes from subsetting genes based on an arbitrary threshold:
+
+- Information is lost (e.g. fold-change, p-value).
+  The ORA method will not see that.
+- All genes in the query are treated equally.
+  
+ORA results depends heavily on this selection.
+
+GSEA and other Functional class scoring (FCS) methods address these limitations.
 
 # Functional class scoring (FCS) 
 
 ## Functional class scoring (FCS)
 
-- While large changes in few genes can have significant effects on biological pathways 
-  + Detected by ORA *via* use of top significant differentially expressed genes as input
+Consider two scenarios that may lead to significant effects on biological pathways:
 
-<br>
+- Large fold-changes in few genes.
+- Smaller fold-changes in many genes.
 
-- Weaker but coordinated changes in groups of functionally-related genes (may not necessarily be significantly differentially expressed) may also have significant effects
-  + FCS can detect these weaker, coordinated changes
+**Over-representation analysis (ORA)** tends to detect more easily the former,
+in the subsets of significant differentially expressed genes selected by fold-change and P-value cutoffs.
 
-<br>
+However, it will struggle to detect the latter, if most genes have a fold-change below the selected cutoff.
 
-- **Gene set enrichment analysis (GSEA)** is a tool classified under FCS approaches
+Instead, **Functional class scoring (FCS)** considers _all_ the genes in the dataset,
+ranked by a gene-level statistic (e.g., fold-change).
+
+As a result, it will be able to detect smaller changes in many genes, as long as they are coordinated (i.e., ranked together at the top or bottom of the scoring metric).
 
 <!-- ## GSEA (vs. ORA) workflow -->
 
