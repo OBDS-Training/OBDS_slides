@@ -170,21 +170,27 @@ Things to consider when choosing databases of gene sets:
 
 ## Database 1: [Gene Ontology (GO)](https://geneontology.org)
 
-- GO uses 3 umbrella terms to describe our understanding of biology:
-  + Molecular function (MF) - Molecular activities of gene products e.g. catalysis or transport 
-  + Cellular component (CC) - Where gene products are active e.g. mitochondrion
-  + Biological process (BP) - Pathways and larger processes made up of the activities of multiple gene products e.g. DNA repair
+Gene Ontology uses three top-level terms to describe our understanding of biology:
+
+- **Molecular function (MF):**
+  Molecular activities of gene products
+  e.g. catalysis or transport.
+- **Cellular component (CC):**
+  Where gene products are active
+  e.g. mitochondrion.
+- **Biological process (BP):**
+  Pathways and larger processes made up of the activities of multiple gene products
+  e.g. DNA repair.
 
 :::: {.columns}
 
 ::: {.column width="50%"}
+1 GO term = 1 gene set
 
-- 1 GO term ~ 1 gene set
+From these 3 umbrella terms, other more specific GO terms branch are organised in a hierarchy:
 
-- From these 3 umbrella terms, other more specific GO terms branch out forming a tree-like structure
-  + Where edges between terms represent parent-child relationship, 
-  + Where 'child' terms are more specific than 'parent' terms
-
+- (Directed) edges between terms represent parent-child relationship.
+- Child terms identify specific subsets of genes in 'parent' terms.
 :::
 
 ::: {.column width="50%"}
