@@ -318,60 +318,62 @@ As a result, it will be able to detect smaller changes in many genes, as long as
 
 ## GSEA (vs. ORA) workflow
 
-<span style="color:red;">**Difference vs. ORA**</span>
+**Inputs**
 
-1. **Inputs**
-    a. <span style="color:red;">**All** genes **ranked**</span> based on a gene-level metric -- e.g. all genes tested for differential expression ranked based on $log_{2}$ FC
-    b. <span style="color:red;">No separate background list</span>
-    c. Gene sets / Pathways
-       + Custom-made
-       + Accessed from databases as a built-in functionality of enrichment analysis tools or user does this separately and inputs gene sets to tools
+- **All genes** ranked by some metric
+  e.g. log fold-change
+- Gene sets to test for over-representation (e.g., Gene Ontology).
+
+::: {style="text-align: center;"}
+**No** separate background list!
+:::
   
-2. <span style="color:red;">**Analysis**</span>
-   + Done per gene set giving an <span style="color:red;">**enrichment score** and corresponding **p-value**</span> per gene set
+**Analysis**
 
-3. **Multiple test correction** 
-   + Because we are testing multiple gene sets, we adjust the p-values  
-   
-- <span style="color:red;">Determine whether members of a gene set tend to be at the top or bottom of the ranked gene list</span>
+- Walk down the ranked gene list and calculate enrichment score (ES) per gene set.
+- Statistically test significance of ES *via* permutation test.
+
+**Multiple test correction**
+
+- To account for the fact that many genes sets are tested.
+
+**Result:** Determine whether members of a gene set tend to be at the top or bottom of the ranked gene list
 
 ## Gene Set Enrichment Analysis (GSEA) analysis method
 
-- Per gene set, calculate an **enrichment score** -- degree to which gene set is over-represented at the top or bottom of a ranked list of gene
+For each gene set to test, calculate an enrichment score;
+the degree to which gene set is over-represented at the top or bottom of a ranked list of gene
    
-- **Statistically test for significance of enrichment score** *via* permutation test
-  + Shuffle the order of genes in the ranked list multiple times, calculating the ES each time - this generates a null distribution from which the p-value can be derived
-  
-## Enrichment score per gene set
+Statistically test for significance of enrichment score via a permutation test:
 
-:::: {.columns}
-
-::: {.column width="45%"}
+- Shuffle the order of genes in the ranked list multiple times, calculating the ES each time - this generates a null distribution from which the p-value can be derived
 
 ```{r}
 #| fig-align: center
-#| out-height: 250px
-#| out-width: 300px
+#| out-height: 400px
+#| out-width: 500px
 ## Source: https://www.pnas.org/doi/10.1073/pnas.0506580102#fig1
 knitr::include_graphics("img/gsea_escore_diagram.png")
 ```
+  
+## Enrichment score method
 
-<!-- `r Citet(bib, "subramanian_gene_2005")` -->
+The enrichment score is based on a running sum statistic that is updated as we walk down the ranked list of genes:
 
-:::
+- Increases when gene encountered is in the gene set; decreases otherwise.
+- Degree of increase or decrease is weighted to come back to 0 at the end.
+- **ES is the maximum deviation from 0**
 
-::: {.column width="55%"}
+Interpreting the enrichment score (ES):
 
-- Enrichment score is based on a running sum statistic that changes as we walk down the ranked list of genes
-  + Sum increases when gene encountered is in gene set S; decreases otherwise
-  + Degree of increase or decrease can be weighted based on the ranking metric
-  + **ES is the maximum deviation from 0**
-- Interpreting ES
-  + ES > 0 - gene set represented at the top of list
-  + ES < 0 - gene set represented at the bottom of list
-- Leading edge subset - subset of your genes (present in gene set S) that contributed the most to the ES
-- Correlation with phenotype - plots the ranking metric for each gene
-- ES is normalised (NES) to be comparable across gene sets of different sizes
+- ES > 0 means that gene set enriched at the top of list
+- ES < 0 means that gene set enriched at the bottom of list
+
+"Leading edge":
+
+- The subset of your genes (present in gene set S) that drove the peak of enrichment.
+
+The enrichment score (ES) is normalised (NES) to be comparable across gene sets of different sizes.
 
 <!-- 
 Recall that the enrichment score is a function of the size of the gene set nk. This means that enrichment scores must be normalized for gene set size. GSEA solves this problem by applying a transformation to calculated enrichment scores such that they lie on a comparable scale. In particular, this normalized enrichment score (NES) is the enrichment score divided by the expected value (i.e. average) of the corresponding null distribution.  
@@ -384,10 +386,6 @@ Given the observed and null normalized enrichment scores, the FDR can be calcula
 <!-- 
 For multiple peaks i.e. below and above 0, the maximum of the absolute values will be taken. Multiple peaks might mean that gsea is not appropriate for that gene set.
 -->
-
-:::
-
-::::
 
 # Exercise - Perform GSEA using fgsea 
 
