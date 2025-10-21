@@ -222,22 +222,24 @@ but this time make sure you specify `as_short_link = TRUE`.
 What does it do?
 
 ```{r}
-gost_results_obj_link <- gost(query = upreg_gene_ids, 
-                         organism = "mmusculus", 
-                         ordered_query = FALSE,    
-                         multi_query = FALSE, 
-                         significant = TRUE, 
-                         exclude_iea = TRUE, 
-                         measure_underrepresentation = FALSE, 
-                         evcodes = FALSE, 
-                         user_threshold = 0.05, 
-                         correction_method = "g_SCS",  
-                         domain_scope = "custom_annotated",
-                         custom_bg = all_gene_tested_ids, 
-                         numeric_ns = "", 
-                         sources = NULL, 
-                         as_short_link = TRUE,
-                         highlight = FALSE)
+gost_results_obj_link <- gost(
+  query = upreg_gene_ids, 
+  organism = "mmusculus", 
+  ordered_query = FALSE,    
+  multi_query = FALSE, 
+  significant = TRUE, 
+  exclude_iea = TRUE, 
+  measure_underrepresentation = FALSE, 
+  evcodes = FALSE, 
+  user_threshold = 0.05, 
+  correction_method = "g_SCS",  
+  domain_scope = "custom_annotated",
+  custom_bg = all_gene_tested_ids, 
+  numeric_ns = "", 
+  sources = NULL, 
+  as_short_link = TRUE,
+  highlight = FALSE
+)
 gost_results_obj_link
 ```
 
