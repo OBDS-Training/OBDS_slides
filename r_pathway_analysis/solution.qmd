@@ -1,7 +1,7 @@
 ---
 title: "Solution: Pathway and gene set enrichment analysis"
-author: "Updated from Charlie George"
-date: "23/10/2024"
+author: "Kevin Rue-Albrecht"
+date: "21/10/2025"
 ---
 
 # Introduction
@@ -475,7 +475,6 @@ You may also want to use the `plotEnrichment()` function to visualise the enrich
 plotEnrichment(hallmark_list[["HALLMARK_PEROXISOME"]], scores) +
   scale_y_continuous(limits = c(-0.2,0.2))
 ```
-
 
 # sessionInfo
 
