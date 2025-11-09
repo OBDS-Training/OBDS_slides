@@ -3,6 +3,7 @@
 Data integration enables us to combine single-cell RNA-seq experiments.
 
 :::: {.columns}
+
 ::: {.column width="50%"}
 
 Multiple samples from different:
@@ -15,30 +16,33 @@ Multiple samples from different:
 - Modalities (i.e., data types)
 
 :::
+
 ::: {.column width="50%"}
 
-```{r}
-#| fig-align: center
-#| out-height: 250px
-#| out-width: 500px
-## Source: custom-made? (scRNA-seq_integration slide 3)
-knitr::include_graphics("img/merged_vs_integrated.png")
-```
-
-#### Benefits
+Benefits:
 
 - More cells
 - More replicates
 - More power
 - More information/complementary views
 - Identify more cell types
+
+```{r}
+#| fig-align: left
+#| out-height: 250px
+#| out-width: 500px
+## Source: custom-made? (scRNA-seq_integration slide 3)
+knitr::include_graphics("img/merged_vs_integrated.png")
+```
   
 :::
+
 ::::
 
 ## Motivation
 
 :::: {.columns}
+
 ::: {.column width="60%"}
 
 We aim to keep **biological variation** while removing batch effects.
@@ -52,6 +56,7 @@ Batch effects are problematic as they can be major drivers of heterogeneity in t
 - Complicating interpretation of the results
 
 :::
+
 ::: {.column width="40%"}
 
 ```{r}
@@ -63,6 +68,7 @@ knitr::include_graphics("img/tsne_batch_effect.png")
 ```
 
 :::
+
 ::::
 
 ::: {style="text-align: center;"}
@@ -80,6 +86,7 @@ But remember, it won’t always make sense to integrate everything!
 ## Source: https://www.nature.com/articles/s41587-019-0113-3
 knitr::include_graphics("img/stitched_panorama.png")
 ```
+
 `r Citet(bib, "hie_efficient_2019")`
 
 ## Many integration methods
@@ -91,6 +98,7 @@ knitr::include_graphics("img/stitched_panorama.png")
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1850-9
 knitr::include_graphics("img/integration_methods_1.png")
 ```
+
 Benchmark study `r Citep(bib, "tran_benchmark_2020")`
 
 - Choice of integration method might vary according to experimental setup, cell types, user preference
@@ -106,31 +114,37 @@ Benchmark study `r Citep(bib, "tran_benchmark_2020")`
 ## Source: https://www.nature.com/articles/s41592-021-01336-8
 knitr::include_graphics("img/integration_methods_2.png")
 ```
+
 Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 
 ## Major types of batch correction methods
 
 :::: {.columns}
+
 ::: {.column width="50%"}
 
-- Linear regression
-  + `Combat()` in sva
-  + `removeBatchEffect()` in limma 
-  + `rescaleBatches()` in batchelor
+**Linear regression**
 
-- Mutual nearest neighbour (MNN)
-  + `fastMNN()` in batchelor
-  + `mnnCorrect()` in scran
+- `Combat()` in sva
+- `removeBatchEffect()` in limma 
+- `rescaleBatches()` in batchelor
 
-- Canonical correlation analysis (CCA)
-  + `RunCCA()` in Seurat 
-  + `IntegrateData()` in Seurat
+**Mutual nearest neighbour (MNN)**
+
+- `fastMNN()` in batchelor
+- `mnnCorrect()` in scran
+
+**Canonical correlation analysis (CCA)**
+
+- `RunCCA()` in Seurat 
+- `IntegrateData()` in Seurat
 
 :::
 ::: {.column width="50%"}
 
-- Today we will walk through Seurat integration
-- If there's time, we will also use Harmony (within the Seurat workflow)
+Today we will walk through Seurat integration.
+
+If there's time, we will also use [Harmony](https://portals.broadinstitute.org/harmony/) (within the Seurat workflow).
 
 :::
 ::::
@@ -140,14 +154,14 @@ Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 :::: {.columns}
 ::: {.column width="50%"}
 
-- Originally developed for microarray then bulk RNA-seq
-- Not great for single cell analysis
+Originally developed for microarray, then bulk RNA-seq.
 
-- Assumptions
-  + The composition of cell subpopulations is the same across batches
-  + The batch effect is additive, i.e., any batch-induced fold-change in expression is the same across different cell subpopulations for any given gene
+Not great for single cell analysis
 
-- `batchelor::rescaleBatches()` fits a linear model to each gene expression profile, setting the undesirable batch term to zero, and yielding a set of corrected expression values for downstream analyses.
+**Assumptions:**
+
+- The composition of cell subpopulations is the same across batches
+- The batch effect is additive, i.e., any batch-induced fold-change in expression is the same across different cell subpopulations for any given gene
 
 :::
 ::: {.column width="50%"}
@@ -160,14 +174,16 @@ Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 knitr::include_graphics("img/batch_linear_regression_tsne.png")
 ```
 
-- In this example, one batch-specific cluster is still present, indicating that the correction is not complete. This suggests that at least one assumption is violated.
-
 :::
 ::::
 
+`batchelor::rescaleBatches()` fits a linear model to each gene expression profile, setting the undesirable batch term to zero, and yielding a set of corrected expression values for downstream analyses.
+
+In this example, one batch-specific cluster is still present, indicating that the correction is not complete. This suggests that at least one assumption is violated.
+
 ## Integration using Mutual nearest neighbors (MNN)
 
-- E.g. `scran::mnnCorrect()`
+e.g. `scran::mnnCorrect()`
 
 ```{r}
 #| fig-align: center
@@ -176,13 +192,15 @@ knitr::include_graphics("img/batch_linear_regression_tsne.png")
 ## Source: https://www.nature.com/articles/nbt.4091
 knitr::include_graphics("img/mnn_integration.png")
 ```
+
 `r Citet(bib, "haghverdi_batch_2018")`
 
 ## Integration using Harmony
 
-- Frequently scores highly in benchmarking studies
-  + Start from PCA to cluster in low dimensional space
-  + Uses soft k-means clustering
+Frequently scores highly in benchmarking studies.
+
+- Start from PCA to cluster in low dimensional space.
+- Uses soft k-means clustering.
 
 ```{r}
 #| fig-align: center
@@ -191,6 +209,7 @@ knitr::include_graphics("img/mnn_integration.png")
 ## Source: https://www.nature.com/articles/s41592-019-0619-0
 knitr::include_graphics("img/integration_with_harmony.png")
 ```
+
 `r Citet(bib, "korsunsky_fast_2019")`
 
 ## Integration using CCA (Seurat v2, 2018)
@@ -198,11 +217,17 @@ knitr::include_graphics("img/integration_with_harmony.png")
 :::: {.columns}
 
 ::: {.column width="50%"}
-- Learns a shared gene correlation structure that is conserved between the data sets.
-- As an optional step, it identifies individual cells that cannot be well described by this shared structure.
-- Aligns the data sets into a conserved low-dimensional space, using nonlinear 'warping' algorithms to normalize for differences in feature scale.
-- Proceeds with an integrated downstream analysis.
-- Performs comparative analysis on aligned subpopulations between the data sets.
+
+Learns a shared gene correlation structure that is conserved between the data sets.
+
+As an optional step, it identifies individual cells that cannot be well described by this shared structure.
+
+Aligns the data sets into a conserved low-dimensional space, using nonlinear 'warping' algorithms to normalize for differences in feature scale.
+
+Proceeds with an integrated downstream analysis.
+
+Performs comparative analysis on aligned subpopulations between the data sets.
+
 :::
 
 ::: {.column width="50%"}
@@ -214,6 +239,7 @@ knitr::include_graphics("img/integration_with_harmony.png")
 ## Source: https://www.sciencedirect.com/science/article/pii/S0092867419305598
 knitr::include_graphics("img/integration-seurat-cca.jpg")
 ```
+
 `r Citet(bib, "butler_2018_integrating")`
 
 :::
@@ -226,10 +252,18 @@ knitr::include_graphics("img/integration-seurat-cca.jpg")
 
 ::: {.column width="50%"}
 
-- Seurat v3 identifies correspondences between cells in different experiments.
-- These “anchors” can be used to harmonize datasets into a single reference.
-- Reference labels and data can be projected onto query datasets.
-- Extends beyond RNA-seq to single-cell protein, chromatin, and spatial data.
+Seurat v3 introduced new functionality to identify correspondences between cells in different experiments.
+
+These “anchors” can be used to harmonize datasets into a single reference.
+
+Reference labels and data can be projected onto query datasets.
+
+Extends beyond RNA-seq to single-cell protein, chromatin, and spatial data.
+
+**Features**
+
+- Filter out anchors whose correspondence is unsupported based on untransformed data
+- Extend to further samples and/or modalities
 :::
 
 ::: {.column width="50%"}
@@ -244,35 +278,21 @@ knitr::include_graphics("img/assembly_integration_Seuratv3.png")
 :::
 ::::
 
-### Features
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-- Filter out anchors whose correspondence is unsupported based on untransformed data
-
-:::
-::: {.column width="50%"}
-
-- Extend to further samples and/or modalities
-
-:::
-::::
-
 ## Seurat integration workflow
 
-- For each dataset
-  + `CreateSeuratObject()` to create one object per dataset
-  + Compute QC metrics and filter cells (already done by us)
-  + `NormalizeData()` or `SCTransform()` to normalise the count data
-  + `FindVariableFeatures()` to identify features that are outliers on a 'mean variability plot'
+For each dataset:
 
-- For the list of datasets
-  + `SelectIntegrationFeatures()` selects features to use for integrating the datasets
-  + `FindIntegrationAnchors()` finds a set of anchors between a list of Seurat objects
-  + `IntegrateData()` performs dataset integration using a pre-computed AnchorSet 
-  + Run the standard workflow for visualization and clustering (e.g. `ScaleData()`, `RunPCA()`, ...)
+- `CreateSeuratObject()` to create one object per dataset
+- Compute QC metrics and filter cells (already done by us)
+- `NormalizeData()` or `SCTransform()` to normalise the count data
+- `FindVariableFeatures()` to identify features that are outliers on a 'mean variability plot'
+
+For the list of datasets:
+
+- `SelectIntegrationFeatures()` selects features to use for integrating the datasets
+- `FindIntegrationAnchors()` finds a set of anchors between a list of Seurat objects
+- `IntegrateData()` performs dataset integration using a pre-computed AnchorSet 
+- Run the standard workflow for visualization and clustering (e.g. `ScaleData()`, `RunPCA()`, ...)
 
 ## Evaluating integration
 
@@ -283,42 +303,34 @@ knitr::include_graphics("img/assembly_integration_Seuratv3.png")
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1850-9
 knitr::include_graphics("img/evaluation_integration_1.png")
 ```
-`r Citet(bib, "tran_benchmark_2020")`
 
 :::: {.columns}
+
 ::: {.column width="50%"}
 
-- A) Benchmarking workflow
-- B) - Description of the ten datasets
+`r Citet(bib, "tran_benchmark_2020")`
+
+**A.** Benchmarking workflow
+
+**B.** Description of the ten datasets
 
 :::
+
 ::: {.column width="50%"}
 
-- "For each dataset and scenario tested, different methods emerged top."
-- "Harmony, LIGER, and Seurat 3 were highly ranked in at least four datasets."
+**Key messages:**
+
+"For each dataset and scenario tested, different methods emerged top."
+
+"Harmony, LIGER, and Seurat 3 were highly ranked in at least four datasets."
 
 :::
+
 ::::
 
 ## Evaluating integration
 
-- Quantitative evaluation of two independent mouse cell atlas datasets.
-
-:::: {.columns}
-::: {.column width="40%"}
-
-- Metrics
-  + ASW (average silhouette width)
-  + ARI (adjusted rand index)
-  + LISI (local inverse Simpson’s index)
-  + kBET (k-nearest neighbour batch effect test)
- 
-- Intepretation
-  + Upper-right quadrant of panels A-C is "better".
-  + Higher kBET is "better".
-
-:::
-::: {.column width="60%"}
+Quantitative evaluation of two independent mouse cell atlas datasets.
 
 ```{r}
 #| fig-align: center
@@ -327,12 +339,36 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 ## Source: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1850-9
 knitr::include_graphics("img/evaluation_integration_1.png")
 ```
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+Metrics
+
+- ASW (Average Silhouette Width)
+- ARI (Adjusted Rand Index)
+- LISI (Local Inverse Simpson’s Index)
+- kBET (k-nearest neighbour Batch Effect Test)
+
+:::
+
+::: {.column width="40%"}
+
+Intepretation
+
+- Upper-right quadrant of panels A-C is "better".
+- Higher kBET is "better".
+
 `r Citet(bib, "tran_benchmark_2020")`
 
 :::
+
 ::::
 
-## Exercise part 1 - Merging two PBMC data sets without integration
+## Exercise
+
+### Merge two PBMC data sets without integration
 
 1. Import the two RDS files into R & plot metadata covariates
 2. Create a merged Seurat object containing both sets of data
@@ -340,7 +376,9 @@ knitr::include_graphics("img/evaluation_integration_1.png")
 4. Produce a UMAP of the merged data set, coloring cells by data set of origin and unsupervised cluster.
 5. Discuss.
 
-## Exercise part 2 - integrate datasets using Seurat v5
+## Exercise
+
+### Integrate datasets using Seurat v5
 
 1. Use `IntegrateLayers()` in Seurat v5 to run a range of integration methods.
 2. For each integration method, repeat the workflow until cluster analysis.
