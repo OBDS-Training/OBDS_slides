@@ -12,6 +12,7 @@ library(SeuratWrappers)
 library(patchwork)
 library(ggplot2)
 library(dplyr)
+options(future.globals.maxSize = 10.0 * 1e9)
 ```
 
 ## Preamble
@@ -24,8 +25,8 @@ Some of the functions required for this workflow are only mentioned in this vign
 - Use `readRDS()` to import two prefiltered PBMC data sets from the files `pbmcv1_filtered.rds` and `pbmcv2_filtered.rds`.
 
 ```{r}
-pbmcv1 <- readRDS("data/pbmcv1_filtered.rds")
-pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv1 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv2 <- readRDS("data/pbmcv3_filtered.rds")
 ```
 
 Those RDS files contain objects that have been preprocessed through quality control and filtering, as demonstrated in the Seurat day 1 lesson.
@@ -244,7 +245,6 @@ You should see a new dimensionality reduction result called `integrated.mnn`.
 - Perform integration using sctransform-normalised data.
 
 ```{r}
-options(future.globals.maxSize = 3e+09)
 obj <- SCTransform(obj)
 obj <- RunPCA(obj, npcs = 30, verbose = F)
 obj <- IntegrateLayers(
