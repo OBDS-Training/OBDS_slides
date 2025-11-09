@@ -1,9 +1,9 @@
 ---
 title: 'Single-cell RNA-seq analysis using Bioconductor'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht & Liezel Tamon"
+author: "Kevin Rue-Albrecht & Mary Thompson"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-06-09 (updated: `r Sys.Date()`)"
+date: "2025-11-10 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -14,7 +14,7 @@ format:
     logo: img/ox_brand1_pos.gif
     css: styles.css
     fontsize: 1.5em
-    footer: Kevin Rue-Albrecht & Liezel Tamon -- Single-cell RNA-seq analysis using Bioconductor
+    footer: KKevin Rue-Albrecht & Mary Thompson -- Single-cell RNA-seq analysis using Bioconductor
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
