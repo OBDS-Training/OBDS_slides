@@ -1,0 +1,267 @@
+---
+title: "solution"
+format: html
+---
+
+## Setup
+
+### Attach required R packages
+
+```{r}
+#| message: false
+library(batchelor)
+library(edgeR)
+library(scater)
+library(ggplot2)
+library(scran)
+library(pheatmap)
+library(scuttle)
+```
+
+### Load data
+
+For convenience and reliability, the data were downloaded as described in the [Carpentries tutorial](https://carpentries-incubator.github.io/bioc-scrnaseq/multi-sample.html#setup-and-data-exploration) and saved locally as an RDS file.
+
+```{r}
+sce <- readRDS("/storage/olin0164/single_cell/pseudobulk/sce.rds")
+```
+
+## First steps
+
+Preview the full `sce` object.
+
+```{r}
+sce
+```
+
+Preview the cell metadata.
+
+```{r}
+colData(sce)
+```
+
+## Tidy up
+
+Let's immediately switch the column 'sample' to a factor.
+Aside from being good practice generally, it will also ensure that plots treat sample IDs as labels on a discrete scale, not values on a continuous scale
+
+```{r}
+sce$sample <- as.factor(sce$sample)
+```
+
+## Quality filtering
+
+Remove stripped nuclei and doublets.
+
+**Bonus point:**
+To speed up downstream steps, randomly select 50% of the cells that remain after quality filtering in each sample.
+In other words, if samples 5 and 6 had 100 and 200 cells after filtering, select 50 cells from sample 5 and 100 cells from sample 6.
+
+```{r}
+drop <- sce$celltype.mapped %in% c("stripped", "Doublet")
+
+sce <- sce[,!drop]
+```
+
+## Normalisation
+
+Normalise the data using `logNormCounts()`.
+Re-assign the output to `sce`.
+
+```{r}
+sce <- logNormCounts(sce)
+sce
+```
+
+If you preview the updated object, you should see a new assay named 'logcounts'.
+
+## Model gene variance
+
+Model gene variance (total, biological, technical) using `modelGeneVar()`.
+Provide the sample of origin for each cell as the 'blocking' factor.
+Assign the output to a new object called `dec`.
+
+```{r}
+dec <- modelGeneVar(sce, block = sce$sample)
+dec
+```
+
+If you preview the object, you should see the typical statistics for variance modelling, plus a column called 'per.block' due to the use of the `block=` argument.
+Refer to the help page of `modelGeneVar()` for detailed information.
+
+## Select highly variable genes
+
+Create a logical vector called `chosen.hvgs` that indicates whether the biological variance of each gene is strictly greater than 0.
+Use `table()` to display the number of genes that meet that condition or not.
+
+```{r}
+chosen.hvgs <- dec$bio > 0
+table(chosen.hvgs)
+```
+
+## Apply Principal Component Analysis
+
+As a first dimensionality reduction step, use `runPCA()` to perform PCA with the following settings:
+
+- Supply the set of highly variable features selected above, as the subset of rows to consider for PCA.
+- Further refine that set by selecting only the 1,000 genes with the highest variances.
+
+Re-assign the output to `sce`.
+
+Read the help page of `scater::runPCA()` to identify the arguments implementing those settings.
+
+```{r}
+sce <- runPCA(sce, subset_row = chosen.hvgs, ntop = 1000)
+sce
+```
+
+If you preview the object, you should see a new dimensionality reduction entry called 'PCA'.
+
+## Apply t-distributed stochastic neighbor embedding
+
+As a second dimensionality reduction step, use `runTSNE()` to perform Uniform t-distributed stochastic neighbor embedding on the PCA output.
+
+Re-assign the output to `sce`.
+
+```{r}
+sce <- runTSNE(sce, dimred = "PCA")
+sce
+```
+
+If you preview the object, you should see a new dimensionality reduction entry called 'TSNE'.
+
+## Visualise the t-SNE layout
+
+While we can use `plotTSNE()` for a quick preview, using `ggplot2` ourselves gives us more flexibility.
+
+Let's start by colouring the t-SNE plot with sample of origin.
+
+```{r}
+tsne_plot_data <- cbind(
+	reducedDim(sce, "TSNE"),
+	colData(sce)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = sample)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(override.aes = list(size = 3))
+	) +
+	theme_classic()
+```
+
+We can also colour by cell type assignment, provided in cell metadata column 'celltype.mapped'.
+
+This plot will requires a bit more fine tuning, due to the large number of categories:
+
+- Use `guides()` and `guide_legend()` to control the position of the legend.
+  Placing the legend under the plot works better in this case.
+- Use `theme()` and its arguments `legend.key.size=` and `legend.text=` to reducing spacing and font size to fit all labels.
+- Inside the quarto notebook, use `fig-height` and `fig-width` to control the overall size of the plot.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+tsne_plot_data <- cbind(
+	reducedDim(sce, "TSNE"),
+	colData(sce)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(
+			position = "bottom",
+			override.aes = list(size = 1)
+		)
+	) +
+	theme_classic() +
+	theme(
+		legend.key.size = unit(0.3, "line"),
+		legend.text = element_text(size = 7)
+	)
+```
+
+## Correct batch effects
+
+The last two plots highlight clear batch effects between subsets of samples.
+
+Whether to remove or retain such effects - particularly sample-specific variation - depends on the intended downstream analyses. For example, when the goal is to identify equivalent cell types across samples, correcting for sample effects is typically appropriate. In contrast, analyses of developmental time courses may rely on preserving differences between otherwise similar cell types across stages of organismal development.
+
+Correct the sample effect using `correctExperiment()`, with the following constraints:
+
+- Set a random seed before calling `correctExperiment()` to ensure reproducibility, as some steps in the procedure are stochastic.
+- Use the `batch=` argument to indicate the sample of origin for each cell.
+- Provide the set of highly variable genes selected earlier to the `subset.rows=` argument.
+- Configure the correction parameters using the `FastMnnParam()` function, ensuring that the three wild-type samples are merged together and the three knockout samples are merged together before the two sets are merged together.
+
+Assign the output to a new object called `merged`.
+
+```{r}
+set.seed(10102)
+
+merged <- correctExperiments(
+    sce, 
+    batch = sce$sample, 
+    subset.row = chosen.hvgs,
+    PARAM = FastMnnParam(
+        merge.order = list(
+            list(1,3,5), # WT (3 replicates)
+            list(2,4,6)  # td-Tomato (3 replicates)
+        )
+    )
+)
+merged
+```
+
+If you preview the new object, you should see an assay named 'reconstructed', along a "corrected" PCA, stored alongside existing dimensionality reduction results under the name 'corrected'.
+
+## Apply t-SNE to the corrected data
+
+As done earlier with the uncorrected PCA, apply t-SNE to the newly corrected PCA result stored under the name 'corrected'.
+
+```{r}
+merged <- runTSNE(merged, dimred = "corrected")
+merged
+```
+
+Note that this will overwrite the existing t-SNE results that was previously stored under the name 'TSNE'.
+
+## Visually the t-SNE layout after correction
+
+Re-use and adapt the earlier code for colouring the corrected data that you will find as a new dimensionality reduction entry under the name 'corrected'.
+
+```{r}
+tsne_plot_data <- cbind(
+	reducedDim(merged, "TSNE"),
+	colData(merged)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = batch)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(override.aes = list(size = 3))
+	) +
+	theme_classic()
+```
+
+Similarly, coloured by cell type:
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+tsne_plot_data <- cbind(
+	reducedDim(merged, "TSNE"),
+	colData(merged)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(
+			position = "bottom",
+			override.aes = list(size = 1)
+		)
+	) +
+	theme_classic() +
+	theme(
+		legend.key.size = unit(0.3, "line"),
+		legend.text = element_text(size = 7)
+	)
+```
