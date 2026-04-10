@@ -40,7 +40,9 @@ Preview the cell metadata.
 colData(sce)
 ```
 
-## Tidy up
+## Pre-process the data
+
+### Tidy up
 
 Let's immediately switch the column 'sample' to a factor.
 Aside from being good practice generally, it will also ensure that plots treat sample IDs as labels on a discrete scale, not values on a continuous scale
@@ -49,7 +51,7 @@ Aside from being good practice generally, it will also ensure that plots treat s
 sce$sample <- as.factor(sce$sample)
 ```
 
-## Quality filtering
+### Quality filtering
 
 Remove stripped nuclei and doublets.
 
@@ -63,7 +65,7 @@ drop <- sce$celltype.mapped %in% c("stripped", "Doublet")
 sce <- sce[,!drop]
 ```
 
-## Normalisation
+### Normalisation
 
 Normalise the data using `logNormCounts()`.
 Re-assign the output to `sce`.
@@ -75,7 +77,7 @@ sce
 
 If you preview the updated object, you should see a new assay named 'logcounts'.
 
-## Model gene variance
+### Model gene variance
 
 Model gene variance (total, biological, technical) using `modelGeneVar()`.
 Provide the sample of origin for each cell as the 'blocking' factor.
@@ -89,7 +91,7 @@ dec
 If you preview the object, you should see the typical statistics for variance modelling, plus a column called 'per.block' due to the use of the `block=` argument.
 Refer to the help page of `modelGeneVar()` for detailed information.
 
-## Select highly variable genes
+### Select highly variable genes
 
 Create a logical vector called `chosen.hvgs` that indicates whether the biological variance of each gene is strictly greater than 0.
 Use `table()` to display the number of genes that meet that condition or not.
@@ -99,7 +101,7 @@ chosen.hvgs <- dec$bio > 0
 table(chosen.hvgs)
 ```
 
-## Apply Principal Component Analysis
+### Apply Principal Component Analysis
 
 As a first dimensionality reduction step, use `runPCA()` to perform PCA with the following settings:
 
@@ -117,7 +119,7 @@ sce
 
 If you preview the object, you should see a new dimensionality reduction entry called 'PCA'.
 
-## Apply t-distributed stochastic neighbor embedding
+### Apply t-distributed stochastic neighbor embedding
 
 As a second dimensionality reduction step, use `runTSNE()` to perform Uniform t-distributed stochastic neighbor embedding on the PCA output.
 
@@ -130,7 +132,7 @@ sce
 
 If you preview the object, you should see a new dimensionality reduction entry called 'TSNE'.
 
-## Visualise the t-SNE layout
+### Visualise the t-SNE layout
 
 While we can use `plotTSNE()` for a quick preview, using `ggplot2` ourselves gives us more flexibility.
 
@@ -180,7 +182,7 @@ ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
 	)
 ```
 
-## Correct batch effects
+### Correct batch effects
 
 The last two plots highlight clear batch effects between subsets of samples.
 
@@ -214,7 +216,7 @@ merged
 
 If you preview the new object, you should see an assay named 'reconstructed', along a "corrected" PCA, stored alongside existing dimensionality reduction results under the name 'corrected'.
 
-## Apply t-SNE to the corrected data
+### Apply t-SNE to the corrected data
 
 As done earlier with the uncorrected PCA, apply t-SNE to the newly corrected PCA result stored under the name 'corrected'.
 
@@ -225,7 +227,7 @@ merged
 
 Note that this will overwrite the existing t-SNE results that was previously stored under the name 'TSNE'.
 
-## Visually the t-SNE layout after correction
+### Visually the t-SNE layout after correction
 
 Re-use and adapt the earlier code for colouring the corrected data that you will find as a new dimensionality reduction entry under the name 'corrected'.
 
@@ -264,4 +266,60 @@ ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
 		legend.key.size = unit(0.3, "line"),
 		legend.text = element_text(size = 7)
 	)
+```
+
+## Prepare for differential expression
+
+### Aggregate cells into pseudobulks
+
+Aggregate cells into pseudobulks using `aggregateAcrossCells()` with the following settings:
+
+- Give the columns 'celltype.mapped' and 'sample' to identify the groups of cells that correspond to each pseudobulk
+
+Assign the output to a new object called `summed`.
+
+```{r}
+summed <- aggregateAcrossCells(
+    merged, 
+    ids = colData(merged)[, c("celltype.mapped", "sample")]
+)
+
+summed
+```
+
+If you preview the new object, you should see it contains only 192 samples.
+Those correspond to each of the various cell types observed in the original six samples.
+
+### Prepare the data for edgeR
+
+Before we worry about automating the process over every cell type, let's walk through the process for a single cell type, e.g. 'Mesenchyme'.
+
+Create a new object called 'current' that contains only cells from the cell type of interest.
+
+```{r}
+current <- summed[, summed$celltype.mapped == "Mesenchyme"]
+current
+```
+
+Next, create a `DGEList` object, which is the standard data structure for the `edgeR` package.
+
+```{r}
+y <- DGEList(counts(current), samples = colData(current))
+y
+```
+
+### Check for samples with insufficient data
+
+Look back at the object named `current`.
+
+You will find a column of sample metadata called 'ncells'.
+Check whether any sample has stricter fewer than 10 cells in its pseudobulk.
+If so, remove any such sample as it would likely skew the analysis (normalisation and/or differential expression).
+
+```{r}
+discarded <- current$ncells < 10
+
+y <- y[, !discarded]
+
+table(discarded)
 ```
