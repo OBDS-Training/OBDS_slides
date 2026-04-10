@@ -371,3 +371,16 @@ par(mfrow = c(1, 1))
 ```
 
 Overall, the plots above seem acceptable: centered on y=0 with a larger vertical spread at the lowest values of x.
+
+Another way of checking whether normalisation produced sensible data is to produce an MDS plot using `limma::plotMDS()`.
+
+Multidimensional scaling (also called principal *coordinate* analysis (PCoA)) is a dimensionality reduction technique that’s conceptually similar to principal *component* analysis (PCA).
+
+```{r}
+limma::plotMDS(
+	cpm(y, log = TRUE),
+	col = ifelse(y$samples$tomato, "red", "blue")
+)
+```
+
+While the first dimension captures some difference between Samples 1 and 2 and the rest, the second dimension clearly separates the two conditions.
