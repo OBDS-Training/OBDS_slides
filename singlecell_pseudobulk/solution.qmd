@@ -401,3 +401,93 @@ design <- model.matrix(
 )
 design
 ```
+
+### Estimate the overdispersion parameter
+
+Estimate the Negative Binomial (NB) overdispersion parameter using `estimateDisp()`.
+
+```{r}
+y <- estimateDisp(y, design)
+
+summary(y$trended.dispersion)
+```
+
+### Visualise the biological coefficient of variation
+
+Visualise the relationship between the Biological Coefficient of Variation (BCV) and the average expression (log counts per million) for each gene, along with common and trend values, using `plotBCV()`.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 7
+plotBCV(y)
+```
+
+### Fit a model for each gene
+
+Fit a Quasi-Likelihood (QL) negative binomial generalized linear model for each gene using `glmQLFit()`.
+
+The `robust = TRUE` parameter avoids distortions from outlier genes and samples.
+It down-weights outliers and produces more stable and conservative dispersion estimates.
+
+```{r}
+fit <- glmQLFit(y, design, robust = TRUE)
+
+names(fit)
+```
+
+### Visualise genewise quasi-dispersion
+
+Plot the genewise quasi-dispersion against the gene abundance (in log2 counts per million) using `plotQLDisp()`.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 7
+plotQLDisp(fit)
+```
+
+## Differential expression
+
+### Perform the test
+
+Conduct genewise quasi F-tests for the contrast of interest using `glmQLFTest()`.
+
+```{r}
+res <- glmQLFTest(fit, coef = ncol(design))
+
+summary(decideTests(res))
+```
+
+### Access the results
+
+Extracts the most differentially expressed genes from the test object.
+
+**Bonus point:**
+Which parameter allows you to extract more or fewer top genes?
+
+```{r}
+topTags(res)
+```
+
+## Repeat the DE test for all cell types
+
+Thankfully, all the previous steps can be conveniently performed for each cell type in a single command, using the `pseudoBulkDGE()` function from the `scran` package.
+
+```{r}
+summed.filt <- summed[,summed$ncells >= 10]
+
+de.results <- pseudoBulkDGE(
+    summed.filt, 
+    label = summed.filt$celltype.mapped,
+    design = ~factor(pool) + tomato,
+    coef = "tomatoTRUE",
+    condition = summed.filt$tomato 
+)
+```
+
+We can check that we obtain the same results as above (or try other cell types).
+
+```{r}
+cur.results <- de.results[["Mesenchyme"]]
+
+cur.results[order(cur.results$PValue),]
+```
