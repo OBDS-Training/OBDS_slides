@@ -323,3 +323,51 @@ y <- y[, !discarded]
 
 table(discarded)
 ```
+
+### Check for genes with insufficient data
+
+We also typically want to avoid testing genes that are too lowly expressed to be reliably tested for differential expression.
+
+To do so, use `filterByExpr()`, with the following best practices:
+
+- Give the 'tomato' column of sample metadata to the `group=` argument.
+  This forces the function to consider the number of samples in the *smallest* group when assessing whether each gene is "sufficiently" expressed to be retained.
+  In some cases, a gene highly expressed in a certain condition might be excluded if that condition is only represented by a very small number of samples in the dataset.
+  
+
+```{r}
+keep <- filterByExpr(y, group = current$tomato)
+
+y <- y[keep,]
+
+table(keep)
+```
+
+### Normalise
+
+Having checked for unsuitable samples and genes, we can proceed to normalising the data with `calcNormFactors()`.
+
+```{r}
+y <- calcNormFactors(y)
+
+y$samples
+```
+
+If you preview the `samples` components of the object, you should see that the column named 'norm.factors' changed from 1 everywhere to a sample-specific normalisation factor.
+
+### Visualise the effect of normalisation
+
+Visualise the 'Mean-Difference' plot for each sample against the others using `plotMD()`.
+
+```{r}
+#| fig-width: 8
+#| fig-height: 6
+par(mfrow = c(2, 3))
+
+for (i in seq_len(ncol(y))) {
+    plotMD(y, column = i)
+}
+par(mfrow = c(1, 1))
+```
+
+Overall, the plots above seem acceptable: centered on y=0 with a larger vertical spread at the lowest values of x.
