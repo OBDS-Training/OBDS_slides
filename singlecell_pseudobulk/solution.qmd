@@ -384,3 +384,16 @@ limma::plotMDS(
 ```
 
 While the first dimension captures some difference between Samples 1 and 2 and the rest, the second dimension clearly separates the two conditions.
+
+### Prepare the design matrix
+
+The design matrix describes the experimental factors to model.
+In this case, 'tomato' is the factor of interest, for which we want to compute differential expresion.
+Meanwhile, 'pool' is an additional covariate that may capture - and correct for - systematic differences between pools.
+
+```{r}
+design <- model.matrix(~factor(pool) + factor(tomato),
+                       data = y$samples)
+design
+```
+
