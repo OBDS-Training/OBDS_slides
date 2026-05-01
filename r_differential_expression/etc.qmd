@@ -387,12 +387,12 @@ Models the effect of conditions relative to one another, ignoring any other cova
 
 `~ condition + genotype`
 
-Models the effets of conditions and genotypes independently.
+Models the effects of conditions and genotypes independently.
 Allows for the testing of either covariate while accounting for the effect of the other.
 
 `~ condition + genotype + condition:genotype`
 
-Models the effets of conditions and genotypes independently, as well as the effect of their interaction.
+Models the effects of conditions and genotypes independently, as well as the effect of their interaction.
 The interaction term captures the joint effect of two covariates.
 
 :::: {.columns}
@@ -1224,7 +1224,6 @@ knitr::include_graphics("img/normalization-composition.png")
 
 #### Assumption(s)
 
-- The sequencing depth is the same in both samples.
 - Most genes should yield a *similar fraction* of counts across samples (i.e., housekeeping, unaffected).
 
 ## Size factors using geometric mean
@@ -1374,16 +1373,19 @@ Outliers *not* shrunk toward the fitted trend.
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="45%"}
 ### Motivation(s)
 
-- Dispersion accounts for the variance *and* the mean of each gene.
+- Dispersion describes the relationship between a gene's mean expression and its variability across samples.
 - Higher variance $\rightarrow$ higher dispersion.
 - Higher mean $\rightarrow$ lower dispersion.
 - High dispersion $\rightarrow$ noisy gene.
 :::
 
-::: {.column width="50%"}
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
 $$K_{ij} \sim \textrm{NB}(\mu_{ij}, \alpha_i)$$
 
 With
