@@ -297,8 +297,14 @@ dispersionFunction(dds)
 
 ::: {.column width="50%"}
 ```{r}
-#| echo: true
-plot(dispersionFunction(dds))
+#| echo: false
+f <- dispersionFunction(dds)
+
+curve(f(x),
+      from = 1, to = 1e5,
+      log = "xy",
+      xlab = "Mean of normalized counts",
+      ylab = "Dispersion")
 ```
 :::
 
