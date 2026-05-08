@@ -491,3 +491,163 @@ cur.results <- de.results[["Mesenchyme"]]
 
 cur.results[order(cur.results$PValue),]
 ```
+
+## Differential abundance
+
+### Quantify cell type abundance per sample
+
+Count the number of cells from each type in each sample using `table()`, a simple base R function.
+
+```{r}
+abundances <- table(merged$celltype.mapped, merged$sample) 
+abundances
+```
+
+Pass the object through `unclass` to transform it from a 'table' to a 'matrix/array' type, which is more appropriate for downstream steps.
+
+```{r}
+abundances <- unclass(abundances)
+abundances
+```
+
+### Design matrix and dispersion
+
+Fetch the experimental information about each sample from the cell metadata (i.e. `colData(merged)`).
+
+Here, the function `match()` is helpful to find and retrieve the first cell for each sample, in the order of the abundance matrix.
+
+You don't need to be picky about columns of metadata; you can keep them all.
+
+```{r}
+extra.info <- colData(merged)[match(colnames(abundances), merged$sample), ]
+extra.info
+```
+
+Next, create a new `DGEList` object for differential abundance analysis, given the matrix of abundances values and the data-frame of information about each sample.
+
+```{r}
+y.ab <- DGEList(abundances, samples = extra.info)
+y.ab
+```
+
+Next, prepare a design matrix that models the `pool` and `tomato` conditions, based on the sample information.
+
+```{r}
+design <- model.matrix(~factor(pool) + factor(tomato), y.ab$samples)
+design
+```
+
+Next, estimate the Negative Binomial dispersion using the `estimateDisp()` function.
+
+Use `robust = TRUE`.
+
+```{r}
+y.ab <- estimateDisp(y.ab, design, robust = TRUE)
+y.ab
+```
+
+### Without normalising for total abundance
+
+For a discussion of different strategies, refer to [this section](https://carpentries-incubator.github.io/bioc-scrnaseq/multi-sample.html#background-on-compositional-effect) of the Bioconductor Carpentries episode on pseudo-bulk analysis.
+
+Without normalising for total abundance, we do not assume that the number of cells in each sample is equal.
+This would imply that most cell types do not change in abundance, which may not be true in cases where conditions cause the proportion of many cell types to change.
+In other words, we look at the actual number of cells rather than their proportion.
+
+Fit a Quasi-Likelihood (QL) negative binomial generalized linear model for each gene using `glmQLFit()`.
+
+Use `robust = TRUE` and `abundance.trend = FALSE`.
+
+```{r}
+fit.ab <- glmQLFit(y.ab, design, robust = TRUE, abundance.trend = FALSE)
+fit.ab
+```
+
+Finally, use `glmQLFTest()` to test for differential abundance.
+
+If you set `tomato` as the last factor in your design matrix, you can use the trick `coef = ncol(design)` to automatically test for difference between td-Tomato and wildtype condition.
+
+Save the result as `res` before summarising those results with `summary(decideTests(res))`.
+
+```{r}
+res <- glmQLFTest(fit.ab, coef = ncol(design))
+summary(decideTests(res))
+```
+
+You can then use `topTags()` to display the table of results for the top N cell types (sorted by P-value by default).
+
+Note that depending on the number of rows displayed, this table may include results that do not reach statistical significance.
+However, the number of significant results should match the summary number printed above.
+
+```{r}
+topTags(res, n = 10)
+```
+
+In the table above:
+
+- a **negative** log fold-change indicates a cell type with **lower** abundance in td-Tomato ('tomato=TRUE') relative to wild-type ('tomato=FALSE')
+- a **positive** log fold-change indicates a cell type with **higher** abundance in td-Tomato ('tomato=TRUE') relative to wild-type ('tomato=FALSE')
+
+### Normalising total cell numbers
+
+In contrast to the previous approach, use `calcNormFactors()` to normalize the data, which assumes that the abundance of most cell types does not change.
+
+```{r}
+y.ab2 <- calcNormFactors(y.ab)
+y.ab2
+```
+
+You can see the difference between the previous approach when you print the `norm.factors` of the two `DGEList` objects.
+
+```{r}
+cat("after calcNormFactors", fill = TRUE)
+y.ab2$samples$norm.factors
+cat("without calcNormFactors", fill = TRUE)
+y.ab$samples$norm.factors
+```
+
+You can then follow the same workflow as earlier to get to the differential abundance results: `estimateDisp()`, `glmQLFit()`, and `glmQLFTest()`.
+
+```{r}
+y.ab2 <- estimateDisp(y.ab2, design)
+fit.ab2 <- glmQLFit(y.ab2, design, robust = TRUE, abundance.trend = FALSE)
+res2 <- glmQLFTest(fit.ab2, coef = ncol(design))
+```
+
+At which point you can use `summary()` and `decideTests()` to count the number of significant results.
+
+```{r}
+summary(decideTests(res2))
+```
+
+And use `topTags()` to display the table of results.
+
+```{r}
+topTags(res2, n = 10)
+```
+
+You might find that the number of significant results hasn't changed, but even then you should see small difference in the test results, sometimes at the smallest decimal places.
+
+### Testing against a log-fold change threshold
+
+In this section, we come back to the dataset that was not normalised for total abundance, but we use a different function `glmTreat()` to explicitly test for changes in abundance above what would be expected from compositional changes alone.
+
+The motivation here is that in a sample where space physically limits the maximal number of cells, one cell type increasing a lot could take away space from the others and make their proportion automatically shrink, even if their actual number didn't change.
+
+Use `glmTreat()` with `lfc=1` to test for cell types changing at least 2-fold between the two `tomato` conditions.
+
+```{r}
+res.lfc <- glmTreat(fit.ab, coef = ncol(design), lfc = 1)
+```
+
+Use `summary(decideTests(...))` to count the number of significant results.
+
+```{r}
+summary(decideTests(res.lfc))
+```
+
+Use `topTags()` to display the results, including cell type, log fold-change, p-value, and False Discovery Rate.
+
+```{r}
+topTags(res.lfc)
+```
