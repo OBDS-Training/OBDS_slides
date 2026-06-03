@@ -3,7 +3,7 @@ title: 'Gene set / Pathway enrichment analysis'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
 author: "Kevin Rue & Mary Thompson"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-10-22"
+date: "2026-05-20"
 date-format: long
 format:
   revealjs: 
