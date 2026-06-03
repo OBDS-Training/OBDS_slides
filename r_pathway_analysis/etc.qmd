@@ -1,9 +1,29 @@
+## Gene set? Pathway? - Definitions
+
+<br/>
+
+**Gene set** - Set of molecules often grouped together on a certain basis, e.g.
+
+- All genes mentioned in a paper
+- All genes involved in a pathway
+
+<br/>
+  
+**Pathway** - Ordered/structured set of molecules describing a biological process
+
+- Showing interactions and dependencies amongst molecules
+
+<br/>
+
+::: {style="text-align: center;"}
+Be careful because the terms are often used interchangeably
+:::
+
 ## Gene set/Pathway enrichment analysis 
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-
 ```{r}
 #| fig-align: center
 #| out-height: 490px
@@ -11,65 +31,43 @@
 ## Source: custom-made (from Kevin's 'r_differential_expression' lecture)
 knitr::include_graphics("img/overview-rnaseq-workflow.png")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
-- Gene lists are complex and hard to interpret by eye
-- With gene set/pathway enrichment analysis, we can derive biological functions from a gene list
-  + Biological function is given by gene sets / pathways (e.g. genes involved in alcohol metabolism)
-  + What *gene sets/pathways* are significantly associated with the gene list
-
+- Gene lists are hard to interpret by eye.
+- With gene set enrichment analysis, we can infer biological functions from a gene list.
+  + Function is given by gene sets that can represent biological pathways
+    (e.g., genes involved in alcohol metabolism).
+  + What gene sets are significantly over- or under-represented in the gene list?
 :::
 
 ::::
 
-## Gene set? Pathway?
-
-- **Gene set** - Set of molecules often grouped together on a certain basis
-  + All genes mentioned in a paper
-  + All genes involved in a pathway
-  
-- **Pathway** - Ordered/structured set of molecules describing a biological process
-  + Showing interactions and dependencies amongst molecules
-
-<br>
-
-- But be careful because the terms are often used interchangeably
-
 ## Methods of functional enrichment analysis
 
-<!--
-```{r}
-#| fig-align: center
-#| out-height: 250px
-#| out-width: 580px
-## Source: http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf 
-knitr::include_graphics("img/types_method.png")
-```
--->
+**Over-representation analysis (ORA)**
 
-1. **Over-representation analysis (ORA)** 
-   - Input a list of genes often based on a selection criteria (e.g. upregulated genes)
-2. **Functional class scoring (FCS)** 
-   - Input entire list of genes but genes are ranked based on a gene-level statistic (e.g. fold change)
-   - **Gene Set Enrichment Analysis (GSEA)** uses FCS approach
-3. Pathway Topology (PT) 
-   - Similar to FCS but 
-   - Unlike the first two, needs pathways with information like type of interactions between genes (e.g. activation or inhibition); <span style="color:red;">not all databases have this information</span>
-   - Changing interactions between genes in a set affects PT result but not ORA or FCS
-   
-<!--
-   - "Even if these methods generally produce more precise results, they suffer from the limitation of using a gene topology based on the single cell type in use [24]. Moreover, the topologies of the genes are far from being final and might change as the general biology understanding advances (Nine quick tips for pathway enrichment analysis)"
--->
+- Input a subset of genes often based on a selection criteria
+  (e.g., upregulated genes).
 
-- All methods can output a **list of significant gene sets/pathways associated with the condition under study**
+**Functional class scoring (FCS)**
 
-<!--
-log2FC of X translates to 2^X-fold increase 
-log2FC of 3 translates to (2^3)8-fold increase
--->
+- Input a complete list of genes ranked based on a gene-level statistic
+  (e.g. fold change).
+- "Gene Set Enrichment Analysis (GSEA)" uses FCS approach
+
+**Pathway Topology (PT)**
+
+Similar to FCS but:
+
+- Uses additional information like relationship between genes
+  (e.g. activation or inhibition).
+
+<br/>
+
+::: {style="text-align: center;"}
+All methods typically output a table of statistics used to select "significant" gene sets.
+:::
 
 <!-- # Over-representation analysis (ORA) -->
 
@@ -87,98 +85,112 @@ log2FC of 3 translates to (2^3)8-fold increase
 
 ## Over-representation analysis (ORA) workflow
 
-- Determine enrichment of a gene set within our gene list relative to a background 
+**Goal:** Determine enrichment of a gene set within a query gene set relative to a background gene set.
 
-1. **Inputs**
-    a. Gene list based on a selection criteria - e.g. upregulated genes with $log_{2}$ FC > 1 and padj < 0.05
-    b. Background - Built-in or custom-made
-    c. Gene sets / Pathways
-       + Custom-made
-       + Accessed from databases as a built-in functionality of enrichment analysis tools or user does this separately and inputs gene sets to tools
+**Inputs**
 
-2. **Analysis**
-   + Done per gene set and so gives p-value per gene set
+- Query gene set (e.g. upregulated genes).
+- Background gene set (e.g. all genes tested for differential expression).
+- Gene sets to test for over-representation (e.g., Gene Ontology).
 
-3. **Multiple test correction** 
-   + Because we are testing multiple gene sets, we adjust the p-values  
+**Analysis**
+
+- Essentially a Fisher's exact test per gene set, giving a P-value per gene set.
+
+**Multiple test correction**
+
+- To account for the fact that many genes sets are tested.
 
 ## ORA analysis method
 
-- Per gene set, **statistically test for over-representation** in your gene list -- gives p-value
-- Can use Fisher's exact test of independence between two categorical variables -- (i) condition that gave us the DE genes (ii) gene set / pathway
+Each gene set is tested for over-representation in the query gene set, giving a P-value.
 
-  :::: {.columns}
+Fisher's Exact Test tests for independence between two categorical variables:
 
-  ::: {.column width="50%"}
+- In the query gene set or not
+- In the test gene set or not
 
-  ```{r}
-  #| fig-align: center
-  #| out-height: 200px
-  #| out-width: 450px
-  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
-  knitr::include_graphics("img/fisher-test-table.svg")
-  ```
-
-  :::
-  
-  ::: {.column width="50%"}
-
-  ```{r}
-  #| fig-align: center
-  #| out-height: 220px
-  #| out-width: 460px
-  ## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
-  knitr::include_graphics("img/fisher-test-venn.svg")
-  ```
-  :::
-
-  ::::
-
-## Choosing background genes
-
-- Think of background as genes that could have been positive or present in your gene list
-  + All genes in a species
-  + Only genes that the method can measure (e.g. targeted expression panels)
-
-<br>
-
-- Important factor because the size of background influences the p-values
-  + <span style="color:green;">Illustrate with kinase genes</span>
-
-## Choosing databases of gene sets / pathways
-
-- Gene sets and pathways are available from many databases
-  + [Example list of gene set databases](https://maayanlab.cloud/Enrichr/#libraries)
-- **[Gene Ontology (GO)](https://geneontology.org)** and **[Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/)** are the most popular and frequently used
-  + Long standing curation
-  + Availability for wide range of species
-  
-- Can either use gene sets from one or multiple databases at the same time
-- Considerations:
-  + Scope - species? specific for [disease ontology](https://disease-ontology.org)?
-  + Curation - manual vs. electronic
-  + Actively maintained - new release?
-  + [Evidence](https://geneontology.org/docs/guide-go-evidence-codes/)
-
-- Other databases - Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
-
-## Database 1: [Gene Ontology (GO)](https://geneontology.org)
-
-- GO uses 3 umbrella terms to describe our understanding of biology:
-  + Molecular function (MF) - Molecular activities of gene products e.g. catalysis or transport 
-  + Cellular component (CC) - Where gene products are active e.g. mitochondrion
-  + Biological process (BP) - Pathways and larger processes made up of the activities of multiple gene products e.g. DNA repair
+<br/>
 
 :::: {.columns}
 
 ::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 460px
+## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+knitr::include_graphics("img/fisher-test-table.svg")
+```
+:::
 
-- 1 GO term ~ 1 gene set
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| out-height: 300px
+#| out-width: 460px
+## Source: custom-made (from Kevin's 'r_stats_pca_clustering' lecture)
+knitr::include_graphics("img/fisher-test-venn.svg")
+```
+:::
 
-- From these 3 umbrella terms, other more specific GO terms branch out forming a tree-like structure
-  + Where edges between terms represent parent-child relationship, 
-  + Where 'child' terms are more specific than 'parent' terms
+::::
 
+## Choosing background genes
+
+Think of background as genes that could have been positive or present in your gene list, e.g.
+
+- All the genes in the genome
+- Only the genes that the method could measure (e.g., targeted expression panels)
+
+<br>
+
+This is a crucial choice because the size of the background influence the size of P-values.
+
+## Choosing databases of gene sets
+
+Gene sets and pathways are available from many databases, [examples](https://maayanlab.cloud/Enrichr/#libraries).
+
+[Gene Ontology (GO)](https://geneontology.org) and [Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/) are the most popular and frequently used.
+
+- Long standing curation
+- Availability for wide range of species
+
+Some software packages allow you to use gene sets from multiple databases at the same time.
+
+Things to consider when choosing databases of gene sets:
+
+- **Scope:** are you interested in [disease ontology](https://disease-ontology.org)?
+- **Species:** were the annotations inferred from another species by homology?
+- **Curation:** were the annotation manually reviewed or computationally predicted?
+  [Evidence codes](https://geneontology.org/docs/guide-go-evidence-codes/)
+- **Maintenance:** when was the latest update?
+
+**Other databases:** Molecular Signatures Database ([MSigDb](https://www.gsea-msigdb.org/gsea/msigdb)), Disease Gene Network ([Disease Gene Network](https://www.disgenet.org))
+
+## Database 1: [Gene Ontology (GO)](https://geneontology.org)
+
+Gene Ontology uses three top-level terms to describe our understanding of biology:
+
+- **Molecular function (MF):**
+  Molecular activities of gene products
+  e.g. catalysis or transport.
+- **Cellular component (CC):**
+  Where gene products are active
+  e.g. mitochondrion.
+- **Biological process (BP):**
+  Pathways and larger processes made up of the activities of multiple gene products
+  e.g. DNA repair.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+1 GO term = 1 gene set
+
+From these 3 umbrella terms, other more specific GO terms branch are organised in a hierarchy:
+
+- (Directed) edges between terms represent parent-child relationship.
+- Child terms identify specific subsets of genes in 'parent' terms.
 :::
 
 ::: {.column width="50%"}
@@ -197,7 +209,7 @@ knitr::include_graphics("img/go_mf.png")
 
 ## Database 2: [Kyoto Encyclopedia of Genes and Genomes (KEGG)](https://www.genome.jp/kegg/)
 
-- A collection of manually drawn **pathway** maps representing molecular interaction and reaction networks
+A collection of manually drawn pathway maps representing molecular interaction and reaction networks
 
 ```{r}
 #| fig-align: center
@@ -207,26 +219,40 @@ knitr::include_graphics("img/go_mf.png")
 knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 ```
 
-## R packages to perform functional enrichment analysis
+## Software for gene set analysis
 
-- ORA
-  + [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html)
-  + goseq, GOstats, topGO
+:::: {.columns}
 
-- FCS (GSEA)
-  + [GSEAbase](https://bioconductor.org/packages/release/bioc/html/GSEABase.html)
+::: {.column width="50%"}
+**ORA**
 
-- Both
-  + [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html)
-  + [**fgsea**](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
-  + [ReactomePA](https://bioconductor.org/packages/release/bioc/html/ReactomePA.html)
+- [**gprofiler2**](https://cran.r-project.org/web/packages/gprofiler2/index.html)
+- goseq, GOstats, topGO
 
-- Web-based tools are also available
-  + [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost)
-  + [DAVID](https://david.ncifcrf.gov)
-  + [Enrichr](https://maayanlab.cloud/Enrichr/)
-  
-# Exercise - Perform ORA using gprofiler2 
+**FCS (GSEA)**
+
+- [GSEAbase](https://bioconductor.org/packages/GSEABase/)
+
+**Both**
+
+- [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/)
+- [fgsea](https://bioconductor.org/packages/fgsea/)
+- [ReactomePA](https://bioconductor.org/packages/ReactomePA/)
+:::
+
+::: {.column width="50%"}
+**Web-based tools**
+
+- [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost)
+- [DAVID](https://david.ncifcrf.gov)
+- [Enrichr](https://maayanlab.cloud/Enrichr/)
+:::
+
+::::
+
+## Exercise
+
+- Perform ORA using `gprofiler2::gost()`.
 
 <!--
 
@@ -247,30 +273,36 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 
 -->
 
-## Major limitations of ORA
+## Limitations of ORA
 
-- Gene list often comes from subsetting genes based on an arbitrary threshold
-  + Information loss
-  + ORA result depends heavily on this threshold
-- Equal importance assigned to each gene
-  + E.g. ignores fold changes from DE analysis
-- GSEA addresses these limitations
+The query gene set comes from subsetting genes based on an arbitrary threshold:
+
+- Information is lost (e.g. fold-change, p-value).
+  The ORA method will not see that.
+- All genes in the query are treated equally.
+  
+ORA results depends heavily on this selection.
+
+GSEA and other Functional class scoring (FCS) methods address these limitations.
 
 # Functional class scoring (FCS) 
 
 ## Functional class scoring (FCS)
 
-- While large changes in few genes can have significant effects on biological pathways 
-  + Detected by ORA *via* use of top significant differentially expressed genes as input
+Consider two scenarios that may lead to significant effects on biological pathways:
 
-<br>
+- Large fold-changes in few genes.
+- Smaller fold-changes in many genes.
 
-- Weaker but coordinated changes in groups of functionally-related genes (may not necessarily be significantly differentially expressed) may also have significant effects
-  + FCS can detect these weaker, coordinated changes
+**Over-representation analysis (ORA)** tends to detect more easily the former,
+in the subsets of significant differentially expressed genes selected by fold-change and P-value cutoffs.
 
-<br>
+However, it will struggle to detect the latter, if most genes have a fold-change below the selected cutoff.
 
-- **Gene set enrichment analysis (GSEA)** is a tool classified under FCS approaches
+Instead, **Functional class scoring (FCS)** considers _all_ the genes in the dataset,
+ranked by a gene-level statistic (e.g., fold-change).
+
+As a result, it will be able to detect smaller changes in many genes, as long as they are coordinated (i.e., ranked together at the top or bottom of the scoring metric).
 
 <!-- ## GSEA (vs. ORA) workflow -->
 
@@ -286,60 +318,62 @@ knitr::include_graphics("img/kegg_dorso-ventral_axis_pathway.png")
 
 ## GSEA (vs. ORA) workflow
 
-<span style="color:red;">**Difference vs. ORA**</span>
+**Inputs**
 
-1. **Inputs**
-    a. <span style="color:red;">**All** genes **ranked**</span> based on a gene-level metric -- e.g. all genes tested for differential expression ranked based on $log_{2}$ FC
-    b. <span style="color:red;">No separate background list</span>
-    c. Gene sets / Pathways
-       + Custom-made
-       + Accessed from databases as a built-in functionality of enrichment analysis tools or user does this separately and inputs gene sets to tools
+- **All genes** ranked by some metric
+  e.g. log fold-change
+- Gene sets to test for over-representation (e.g., Gene Ontology).
+
+::: {style="text-align: center;"}
+**No** separate background list!
+:::
   
-2. <span style="color:red;">**Analysis**</span>
-   + Done per gene set giving an <span style="color:red;">**enrichment score** and corresponding **p-value**</span> per gene set
+**Analysis**
 
-3. **Multiple test correction** 
-   + Because we are testing multiple gene sets, we adjust the p-values  
-   
-- <span style="color:red;">Determine whether members of a gene set tend to be at the top or bottom of the ranked gene list</span>
+- Walk down the ranked gene list and calculate enrichment score (ES) per gene set.
+- Statistically test significance of ES *via* permutation test.
+
+**Multiple test correction**
+
+- To account for the fact that many genes sets are tested.
+
+**Result:** Determine whether members of a gene set tend to be at the top or bottom of the ranked gene list
 
 ## Gene Set Enrichment Analysis (GSEA) analysis method
 
-- Per gene set, calculate an **enrichment score** -- degree to which gene set is over-represented at the top or bottom of a ranked list of gene
+For each gene set to test, calculate an enrichment score;
+the degree to which gene set is over-represented at the top or bottom of a ranked list of gene
    
-- **Statistically test for significance of enrichment score** *via* permutation test
-  + Shuffle the order of genes in the ranked list multiple times, calculating the ES each time - this generates a null distribution from which the p-value can be derived
-  
-## Enrichment score per gene set
+Statistically test for significance of enrichment score via a permutation test:
 
-:::: {.columns}
-
-::: {.column width="45%"}
+- Shuffle the order of genes in the ranked list multiple times, calculating the ES each time - this generates a null distribution from which the p-value can be derived
 
 ```{r}
 #| fig-align: center
-#| out-height: 250px
-#| out-width: 300px
+#| out-height: 400px
+#| out-width: 500px
 ## Source: https://www.pnas.org/doi/10.1073/pnas.0506580102#fig1
 knitr::include_graphics("img/gsea_escore_diagram.png")
 ```
+  
+## Enrichment score method
 
-<!-- `r Citet(bib, "subramanian_gene_2005")` -->
+The enrichment score is based on a running sum statistic that is updated as we walk down the ranked list of genes:
 
-:::
+- Increases when gene encountered is in the gene set; decreases otherwise.
+- Degree of increase or decrease is weighted to come back to 0 at the end.
+- **ES is the maximum deviation from 0**
 
-::: {.column width="55%"}
+Interpreting the enrichment score (ES):
 
-- Enrichment score is based on a running sum statistic that changes as we walk down the ranked list of genes
-  + Sum increases when gene encountered is in gene set S; decreases otherwise
-  + Degree of increase or decrease can be weighted based on the ranking metric
-  + **ES is the maximum deviation from 0**
-- Interpreting ES
-  + ES > 0 - gene set represented at the top of list
-  + ES < 0 - gene set represented at the bottom of list
-- Leading edge subset - subset of your genes (present in gene set S) that contributed the most to the ES
-- Correlation with phenotype - plots the ranking metric for each gene
-- ES is normalised (NES) to be comparable across gene sets of different sizes
+- ES > 0 means that gene set enriched at the top of list
+- ES < 0 means that gene set enriched at the bottom of list
+
+"Leading edge":
+
+- The subset of your genes (present in gene set S) that drove the peak of enrichment.
+
+The enrichment score (ES) is normalised (NES) to be comparable across gene sets of different sizes.
 
 <!-- 
 Recall that the enrichment score is a function of the size of the gene set nk. This means that enrichment scores must be normalized for gene set size. GSEA solves this problem by applying a transformation to calculated enrichment scores such that they lie on a comparable scale. In particular, this normalized enrichment score (NES) is the enrichment score divided by the expected value (i.e. average) of the corresponding null distribution.  
@@ -353,48 +387,75 @@ Given the observed and null normalized enrichment scores, the FDR can be calcula
 For multiple peaks i.e. below and above 0, the maximum of the absolute values will be taken. Multiple peaks might mean that gsea is not appropriate for that gene set.
 -->
 
+## Exercise
+
+- Perform GSEA using `fgsea::fgsea()`.
+
+## ORA vs. FCS
+
+::: {.small-table}
+|              | ORA                                  | GSEA                                 |
+|--------------|--------------------------------------|--------------------------------------|
+| **Input**    | Subset of genes based on a threshold and background     | All genes ranked based on a gene statistic   |
+| **Analysis** | Equal importance of genes            | Ranked importance of genes           |
+:::
+
+<br/>
+
+### Output
+
+In both cases, a table of statistics used to evaluate enrichment in your gene list.
+
+## Choosing an enrichment analysis tool
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Method**
+
+- What is your statistical question?
+- Do you need to use ORA or FCS?
+
+**User interface**
+
+- Do you prefer web-based or scripted?
+
+**Flexibility**
+
+- Do it accept a custom background for ORA?
+- Which gene set databases does it support?
+:::
+
+::: {.column width="50%"}
+**Compatibility**
+
+- Does the tool support the gene identifiers you are using?
+- Does it convert them internally to another identifier?
+
+**Maintenance**
+
+- Is the tool well documented and maintained?
+
+**Gene set database**
+
+- Which one answers your scientific question?
+- Is it up-to-date?
 :::
 
 ::::
-
-# Exercise - Perform GSEA using fgsea 
-
-## ORA vs. FCS (GSEA)
-
-::: {.small-table}
-|                                          | ORA                                  | GSEA                                 |
-|------------------------------------------|--------------------------------------|--------------------------------------|
-| <span style="color:red;">Input</span>    | Subset of genes based on a threshold and background     | All genes ranked based on a gene statistic   |
-| <span style="color:red;">Analysis</span> | Equal importance of genes            | Ranked importance of genes           |
-:::
-
-- Output 
-  + List of gene sets and metrics indicating enrichment in your gene list
-
-## Choosing enrichment analysis tools
-
-- Interface of tool - web vs. script?
-- Gene set database access or usage
-- Flexibility 
-  + Can you use custom background?
-  + Can you define which databases to use?
-- What gene identifiers are compatible? 
-  + Specificity - Gene IDs > Gene Symbol
-- Well documented and maintained?
 
 ## Useful links
 
 - [Method review, 2019](https://www.nature.com/articles/s41596-018-0103-9)
 - [Nine quick tips for pathway enrichment analysis, 2022](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010348)
-
-## References
-
 - [Biomedical Knowledge Mining using GOSemSim and clusterProfiler](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichment-overview.html)
 - [Biostatsquid YouTube channel](https://www.youtube.com/watch?v=Yi4d7JIlAsM)
 - [Fisher's Exact Test](https://www.pathwaycommons.org/guide/primers/statistics/fishers_exact_test/)
 - [Functional Analysis for RNA-seq](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/11_FA_functional_class_scoring.html)
 - [Introduction to Pathway and Network Analysis](http://www3.stat.sinica.edu.tw/sisg2015/download/handout/S6-Alison_Motsinger-Reif.pdf)
 - [Ten Years of Pathway Analysis: Current Approaches and Outstanding Challenges](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002375)
+
+## References
 
 ```{r}
 #| results: asis
