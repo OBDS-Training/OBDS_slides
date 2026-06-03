@@ -1,0 +1,653 @@
+---
+title: "solution"
+format: html
+---
+
+## Setup
+
+### Attach required R packages
+
+```{r}
+#| message: false
+library(batchelor)
+library(edgeR)
+library(scater)
+library(ggplot2)
+library(scran)
+library(pheatmap)
+library(scuttle)
+```
+
+### Load data
+
+For convenience and reliability, the data were downloaded as described in the [Carpentries tutorial](https://carpentries-incubator.github.io/bioc-scrnaseq/multi-sample.html#setup-and-data-exploration) and saved locally as an RDS file.
+
+```{r}
+sce <- readRDS("/storage/olin0164/single_cell/pseudobulk/sce.rds")
+```
+
+## First steps
+
+Preview the full `sce` object.
+
+```{r}
+sce
+```
+
+Preview the cell metadata.
+
+```{r}
+colData(sce)
+```
+
+## Pre-process the data
+
+### Tidy up
+
+Let's immediately switch the column 'sample' to a factor.
+Aside from being good practice generally, it will also ensure that plots treat sample IDs as labels on a discrete scale, not values on a continuous scale
+
+```{r}
+sce$sample <- as.factor(sce$sample)
+```
+
+### Quality filtering
+
+Remove stripped nuclei and doublets.
+
+**Bonus point:**
+To speed up downstream steps, randomly select 50% of the cells that remain after quality filtering in each sample.
+In other words, if samples 5 and 6 had 100 and 200 cells after filtering, select 50 cells from sample 5 and 100 cells from sample 6.
+
+```{r}
+drop <- sce$celltype.mapped %in% c("stripped", "Doublet")
+
+sce <- sce[,!drop]
+```
+
+### Normalisation
+
+Normalise the data using `logNormCounts()`.
+Re-assign the output to `sce`.
+
+```{r}
+sce <- logNormCounts(sce)
+sce
+```
+
+If you preview the updated object, you should see a new assay named 'logcounts'.
+
+### Model gene variance
+
+Model gene variance (total, biological, technical) using `modelGeneVar()`.
+Provide the sample of origin for each cell as the 'blocking' factor.
+Assign the output to a new object called `dec`.
+
+```{r}
+dec <- modelGeneVar(sce, block = sce$sample)
+dec
+```
+
+If you preview the object, you should see the typical statistics for variance modelling, plus a column called 'per.block' due to the use of the `block=` argument.
+Refer to the help page of `modelGeneVar()` for detailed information.
+
+### Select highly variable genes
+
+Create a logical vector called `chosen.hvgs` that indicates whether the biological variance of each gene is strictly greater than 0.
+Use `table()` to display the number of genes that meet that condition or not.
+
+```{r}
+chosen.hvgs <- dec$bio > 0
+table(chosen.hvgs)
+```
+
+### Apply Principal Component Analysis
+
+As a first dimensionality reduction step, use `runPCA()` to perform PCA with the following settings:
+
+- Supply the set of highly variable features selected above, as the subset of rows to consider for PCA.
+- Further refine that set by selecting only the 1,000 genes with the highest variances.
+
+Re-assign the output to `sce`.
+
+Read the help page of `scater::runPCA()` to identify the arguments implementing those settings.
+
+```{r}
+sce <- runPCA(sce, subset_row = chosen.hvgs, ntop = 1000)
+sce
+```
+
+If you preview the object, you should see a new dimensionality reduction entry called 'PCA'.
+
+### Apply t-distributed stochastic neighbor embedding
+
+As a second dimensionality reduction step, use `runTSNE()` to perform Uniform t-distributed stochastic neighbor embedding on the PCA output.
+
+Re-assign the output to `sce`.
+
+```{r}
+sce <- runTSNE(sce, dimred = "PCA")
+sce
+```
+
+If you preview the object, you should see a new dimensionality reduction entry called 'TSNE'.
+
+### Visualise the t-SNE layout
+
+While we can use `plotTSNE()` for a quick preview, using `ggplot2` ourselves gives us more flexibility.
+
+Let's start by colouring the t-SNE plot with sample of origin.
+
+```{r}
+tsne_plot_data <- cbind(
+	reducedDim(sce, "TSNE"),
+	colData(sce)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = sample)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(override.aes = list(size = 3))
+	) +
+	theme_classic()
+```
+
+We can also colour by cell type assignment, provided in cell metadata column 'celltype.mapped'.
+
+This plot will requires a bit more fine tuning, due to the large number of categories:
+
+- Use `guides()` and `guide_legend()` to control the position of the legend.
+  Placing the legend under the plot works better in this case.
+- Use `theme()` and its arguments `legend.key.size=` and `legend.text=` to reducing spacing and font size to fit all labels.
+- Inside the quarto notebook, use `fig-height` and `fig-width` to control the overall size of the plot.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+tsne_plot_data <- cbind(
+	reducedDim(sce, "TSNE"),
+	colData(sce)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(
+			position = "bottom",
+			override.aes = list(size = 1)
+		)
+	) +
+	theme_classic() +
+	theme(
+		legend.key.size = unit(0.3, "line"),
+		legend.text = element_text(size = 7)
+	)
+```
+
+### Correct batch effects
+
+The last two plots highlight clear batch effects between subsets of samples.
+
+Whether to remove or retain such effects - particularly sample-specific variation - depends on the intended downstream analyses. For example, when the goal is to identify equivalent cell types across samples, correcting for sample effects is typically appropriate. In contrast, analyses of developmental time courses may rely on preserving differences between otherwise similar cell types across stages of organismal development.
+
+Correct the sample effect using `correctExperiment()`, with the following constraints:
+
+- Set a random seed before calling `correctExperiment()` to ensure reproducibility, as some steps in the procedure are stochastic.
+- Use the `batch=` argument to indicate the sample of origin for each cell.
+- Provide the set of highly variable genes selected earlier to the `subset.rows=` argument.
+- Configure the correction parameters using the `FastMnnParam()` function, ensuring that the three wild-type samples are merged together and the three knockout samples are merged together before the two sets are merged together.
+
+Assign the output to a new object called `merged`.
+
+```{r}
+set.seed(10102)
+
+merged <- correctExperiments(
+    sce, 
+    batch = sce$sample, 
+    subset.row = chosen.hvgs,
+    PARAM = FastMnnParam(
+        merge.order = list(
+            list(1,3,5), # WT (3 replicates)
+            list(2,4,6)  # td-Tomato (3 replicates)
+        )
+    )
+)
+merged
+```
+
+If you preview the new object, you should see an assay named 'reconstructed', along a "corrected" PCA, stored alongside existing dimensionality reduction results under the name 'corrected'.
+
+### Apply t-SNE to the corrected data
+
+As done earlier with the uncorrected PCA, apply t-SNE to the newly corrected PCA result stored under the name 'corrected'.
+
+```{r}
+merged <- runTSNE(merged, dimred = "corrected")
+merged
+```
+
+Note that this will overwrite the existing t-SNE results that was previously stored under the name 'TSNE'.
+
+### Visually the t-SNE layout after correction
+
+Re-use and adapt the earlier code for colouring the corrected data that you will find as a new dimensionality reduction entry under the name 'corrected'.
+
+```{r}
+tsne_plot_data <- cbind(
+	reducedDim(merged, "TSNE"),
+	colData(merged)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = batch)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(override.aes = list(size = 3))
+	) +
+	theme_classic()
+```
+
+Similarly, coloured by cell type:
+
+```{r}
+#| fig-height: 6
+#| fig-width: 8
+tsne_plot_data <- cbind(
+	reducedDim(merged, "TSNE"),
+	colData(merged)
+)
+ggplot(tsne_plot_data, aes(x = TSNE1, y = TSNE2, colour = celltype.mapped)) +
+	geom_point(size = 0.2) +
+	guides(
+		colour = guide_legend(
+			position = "bottom",
+			override.aes = list(size = 1)
+		)
+	) +
+	theme_classic() +
+	theme(
+		legend.key.size = unit(0.3, "line"),
+		legend.text = element_text(size = 7)
+	)
+```
+
+## Prepare for differential expression
+
+### Aggregate cells into pseudobulks
+
+Aggregate cells into pseudobulks using `aggregateAcrossCells()` with the following settings:
+
+- Give the columns 'celltype.mapped' and 'sample' to identify the groups of cells that correspond to each pseudobulk
+
+Assign the output to a new object called `summed`.
+
+```{r}
+summed <- aggregateAcrossCells(
+    merged, 
+    ids = colData(merged)[, c("celltype.mapped", "sample")]
+)
+
+summed
+```
+
+If you preview the new object, you should see it contains only 192 samples.
+Those correspond to each of the various cell types observed in the original six samples.
+
+### Prepare the data for edgeR
+
+Before we worry about automating the process over every cell type, let's walk through the process for a single cell type, e.g. 'Mesenchyme'.
+
+Create a new object called 'current' that contains only cells from the cell type of interest.
+
+```{r}
+current <- summed[, summed$celltype.mapped == "Mesenchyme"]
+current
+```
+
+Next, create a `DGEList` object, which is the standard data structure for the `edgeR` package.
+
+```{r}
+y <- DGEList(counts(current), samples = colData(current))
+y
+```
+
+### Check for samples with insufficient data
+
+Look back at the object named `current`.
+
+You will find a column of sample metadata called 'ncells'.
+Check whether any sample has stricter fewer than 10 cells in its pseudobulk.
+If so, remove any such sample as it would likely skew the analysis (normalisation and/or differential expression).
+
+```{r}
+discarded <- current$ncells < 10
+
+y <- y[, !discarded]
+
+table(discarded)
+```
+
+### Check for genes with insufficient data
+
+We also typically want to avoid testing genes that are too lowly expressed to be reliably tested for differential expression.
+
+To do so, use `filterByExpr()`, with the following best practices:
+
+- Give the 'tomato' column of sample metadata to the `group=` argument.
+  This forces the function to consider the number of samples in the *smallest* group when assessing whether each gene is "sufficiently" expressed to be retained.
+  In some cases, a gene highly expressed in a certain condition might be excluded if that condition is only represented by a very small number of samples in the dataset.
+  
+
+```{r}
+keep <- filterByExpr(y, group = current$tomato)
+
+y <- y[keep,]
+
+table(keep)
+```
+
+### Normalise
+
+Having checked for unsuitable samples and genes, we can proceed to normalising the data with `calcNormFactors()`.
+
+```{r}
+y <- calcNormFactors(y)
+
+y$samples
+```
+
+If you preview the `samples` components of the object, you should see that the column named 'norm.factors' changed from 1 everywhere to a sample-specific normalisation factor.
+
+### Visualise the effect of normalisation
+
+Visualise the 'Mean-Difference' plot for each sample against the others using `plotMD()`.
+
+```{r}
+#| fig-width: 8
+#| fig-height: 6
+par(mfrow = c(2, 3))
+
+for (i in seq_len(ncol(y))) {
+    plotMD(y, column = i)
+}
+par(mfrow = c(1, 1))
+```
+
+Overall, the plots above seem acceptable: centered on y=0 with a larger vertical spread at the lowest values of x.
+
+Another way of checking whether normalisation produced sensible data is to produce an MDS plot using `limma::plotMDS()`.
+
+Multidimensional scaling (also called principal *coordinate* analysis (PCoA)) is a dimensionality reduction technique that’s conceptually similar to principal *component* analysis (PCA).
+
+```{r}
+limma::plotMDS(
+	cpm(y, log = TRUE),
+	col = ifelse(y$samples$tomato, "red", "blue")
+)
+```
+
+While the first dimension captures some difference between Samples 1 and 2 and the rest, the second dimension clearly separates the two conditions.
+
+### Prepare the design matrix
+
+The design matrix describes the experimental factors to model.
+
+In this case, 'tomato' is the factor of interest, for which we want to compute differential expresion.
+Meanwhile, 'pool' is an additional covariate that may capture - and correct for - systematic differences between pools.
+
+Use `model.matrix()` to create a design matrix from the `y$samples` data-frame.
+
+```{r}
+design <- model.matrix(
+	~ factor(pool) + factor(tomato),
+	data = y$samples
+)
+design
+```
+
+### Estimate the overdispersion parameter
+
+Estimate the Negative Binomial (NB) overdispersion parameter using `estimateDisp()`.
+
+```{r}
+y <- estimateDisp(y, design)
+
+summary(y$trended.dispersion)
+```
+
+### Visualise the biological coefficient of variation
+
+Visualise the relationship between the Biological Coefficient of Variation (BCV) and the average expression (log counts per million) for each gene, along with common and trend values, using `plotBCV()`.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 7
+plotBCV(y)
+```
+
+### Fit a model for each gene
+
+Fit a Quasi-Likelihood (QL) negative binomial generalized linear model for each gene using `glmQLFit()`.
+
+The `robust = TRUE` parameter avoids distortions from outlier genes and samples.
+It down-weights outliers and produces more stable and conservative dispersion estimates.
+
+```{r}
+fit <- glmQLFit(y, design, robust = TRUE)
+
+names(fit)
+```
+
+### Visualise genewise quasi-dispersion
+
+Plot the genewise quasi-dispersion against the gene abundance (in log2 counts per million) using `plotQLDisp()`.
+
+```{r}
+#| fig-height: 6
+#| fig-width: 7
+plotQLDisp(fit)
+```
+
+## Differential expression
+
+### Perform the test
+
+Conduct genewise quasi F-tests for the contrast of interest using `glmQLFTest()`.
+
+```{r}
+res <- glmQLFTest(fit, coef = ncol(design))
+
+summary(decideTests(res))
+```
+
+### Access the results
+
+Extracts the most differentially expressed genes from the test object.
+
+**Bonus point:**
+Which parameter allows you to extract more or fewer top genes?
+
+```{r}
+topTags(res)
+```
+
+## Repeat the DE test for all cell types
+
+Thankfully, all the previous steps can be conveniently performed for each cell type in a single command, using the `pseudoBulkDGE()` function from the `scran` package.
+
+```{r}
+summed.filt <- summed[,summed$ncells >= 10]
+
+de.results <- pseudoBulkDGE(
+    summed.filt, 
+    label = summed.filt$celltype.mapped,
+    design = ~factor(pool) + tomato,
+    coef = "tomatoTRUE",
+    condition = summed.filt$tomato 
+)
+```
+
+We can check that we obtain the same results as above (or try other cell types).
+
+```{r}
+cur.results <- de.results[["Mesenchyme"]]
+
+cur.results[order(cur.results$PValue),]
+```
+
+## Differential abundance
+
+### Quantify cell type abundance per sample
+
+Count the number of cells from each type in each sample using `table()`, a simple base R function.
+
+```{r}
+abundances <- table(merged$celltype.mapped, merged$sample) 
+abundances
+```
+
+Pass the object through `unclass` to transform it from a 'table' to a 'matrix/array' type, which is more appropriate for downstream steps.
+
+```{r}
+abundances <- unclass(abundances)
+abundances
+```
+
+### Design matrix and dispersion
+
+Fetch the experimental information about each sample from the cell metadata (i.e. `colData(merged)`).
+
+Here, the function `match()` is helpful to find and retrieve the first cell for each sample, in the order of the abundance matrix.
+
+You don't need to be picky about columns of metadata; you can keep them all.
+
+```{r}
+extra.info <- colData(merged)[match(colnames(abundances), merged$sample), ]
+extra.info
+```
+
+Next, create a new `DGEList` object for differential abundance analysis, given the matrix of abundances values and the data-frame of information about each sample.
+
+```{r}
+y.ab <- DGEList(abundances, samples = extra.info)
+y.ab
+```
+
+Next, prepare a design matrix that models the `pool` and `tomato` conditions, based on the sample information.
+
+```{r}
+design <- model.matrix(~factor(pool) + factor(tomato), y.ab$samples)
+design
+```
+
+Next, estimate the Negative Binomial dispersion using the `estimateDisp()` function.
+
+Use `robust = TRUE`.
+
+```{r}
+y.ab <- estimateDisp(y.ab, design, robust = TRUE)
+y.ab
+```
+
+### Without normalising for total abundance
+
+For a discussion of different strategies, refer to [this section](https://carpentries-incubator.github.io/bioc-scrnaseq/multi-sample.html#background-on-compositional-effect) of the Bioconductor Carpentries episode on pseudo-bulk analysis.
+
+Without normalising for total abundance, we do not assume that the number of cells in each sample is equal.
+This would imply that most cell types do not change in abundance, which may not be true in cases where conditions cause the proportion of many cell types to change.
+In other words, we look at the actual number of cells rather than their proportion.
+
+Fit a Quasi-Likelihood (QL) negative binomial generalized linear model for each gene using `glmQLFit()`.
+
+Use `robust = TRUE` and `abundance.trend = FALSE`.
+
+```{r}
+fit.ab <- glmQLFit(y.ab, design, robust = TRUE, abundance.trend = FALSE)
+fit.ab
+```
+
+Finally, use `glmQLFTest()` to test for differential abundance.
+
+If you set `tomato` as the last factor in your design matrix, you can use the trick `coef = ncol(design)` to automatically test for difference between td-Tomato and wildtype condition.
+
+Save the result as `res` before summarising those results with `summary(decideTests(res))`.
+
+```{r}
+res <- glmQLFTest(fit.ab, coef = ncol(design))
+summary(decideTests(res))
+```
+
+You can then use `topTags()` to display the table of results for the top N cell types (sorted by P-value by default).
+
+Note that depending on the number of rows displayed, this table may include results that do not reach statistical significance.
+However, the number of significant results should match the summary number printed above.
+
+```{r}
+topTags(res, n = 10)
+```
+
+In the table above:
+
+- a **negative** log fold-change indicates a cell type with **lower** abundance in td-Tomato ('tomato=TRUE') relative to wild-type ('tomato=FALSE')
+- a **positive** log fold-change indicates a cell type with **higher** abundance in td-Tomato ('tomato=TRUE') relative to wild-type ('tomato=FALSE')
+
+### Normalising total cell numbers
+
+In contrast to the previous approach, use `calcNormFactors()` to normalize the data, which assumes that the abundance of most cell types does not change.
+
+```{r}
+y.ab2 <- calcNormFactors(y.ab)
+y.ab2
+```
+
+You can see the difference between the previous approach when you print the `norm.factors` of the two `DGEList` objects.
+
+```{r}
+cat("after calcNormFactors", fill = TRUE)
+y.ab2$samples$norm.factors
+cat("without calcNormFactors", fill = TRUE)
+y.ab$samples$norm.factors
+```
+
+You can then follow the same workflow as earlier to get to the differential abundance results: `estimateDisp()`, `glmQLFit()`, and `glmQLFTest()`.
+
+```{r}
+y.ab2 <- estimateDisp(y.ab2, design)
+fit.ab2 <- glmQLFit(y.ab2, design, robust = TRUE, abundance.trend = FALSE)
+res2 <- glmQLFTest(fit.ab2, coef = ncol(design))
+```
+
+At which point you can use `summary()` and `decideTests()` to count the number of significant results.
+
+```{r}
+summary(decideTests(res2))
+```
+
+And use `topTags()` to display the table of results.
+
+```{r}
+topTags(res2, n = 10)
+```
+
+You might find that the number of significant results hasn't changed, but even then you should see small difference in the test results, sometimes at the smallest decimal places.
+
+### Testing against a log-fold change threshold
+
+In this section, we come back to the dataset that was not normalised for total abundance, but we use a different function `glmTreat()` to explicitly test for changes in abundance above what would be expected from compositional changes alone.
+
+The motivation here is that in a sample where space physically limits the maximal number of cells, one cell type increasing a lot could take away space from the others and make their proportion automatically shrink, even if their actual number didn't change.
+
+Use `glmTreat()` with `lfc=1` to test for cell types changing at least 2-fold between the two `tomato` conditions.
+
+```{r}
+res.lfc <- glmTreat(fit.ab, coef = ncol(design), lfc = 1)
+```
+
+Use `summary(decideTests(...))` to count the number of significant results.
+
+```{r}
+summary(decideTests(res.lfc))
+```
+
+Use `topTags()` to display the results, including cell type, log fold-change, p-value, and False Discovery Rate.
+
+```{r}
+topTags(res.lfc)
+```

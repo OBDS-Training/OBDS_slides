@@ -1,9 +1,9 @@
 ---
 title: 'Single-cell dataset integration and batch correction'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
-author: "Lucy Garner"
+author: "Kevin Rue-Albrecht & Mary Thompson"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-06-04 (updated: `r Sys.Date()`)"
+date: "2025-11-05 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -13,8 +13,8 @@ format:
     preview-links: auto
     logo: img/ox_brand1_pos.gif
     css: styles.css
-    fontsize: 1.5em
-    footer: Lucy Garner -- Single-cell dataset integration and batch correction
+    fontsize: 1.25em
+    footer: Kevin Rue-Albrecht & Mary Thompson -- Single-cell dataset integration and batch correction
 # run the following line after knitting to convert HTML to PDF
 # renderthis::to_pdf("index.cluster.html")
 ---
