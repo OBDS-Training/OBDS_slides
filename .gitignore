@@ -21,3 +21,6 @@ renv.lock
 # misc
 data
 .positai
+
+/.quarto/
+**/*.quarto_ipynb
