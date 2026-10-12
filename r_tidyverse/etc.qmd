@@ -866,6 +866,7 @@ The `r BiocStyle::CRANpkg("stringr")` package is known for its many functions to
 - `str_c`: join multiple strings into a single string.
 - `str_length`: query the length of a string.
 - `str_to_lower` / `str_to_upper`: convert case of a string.
+- `str_flatten` : collapse a character vector into a single string.
 
 ## Extract substrings {.smaller}
 
@@ -938,6 +939,18 @@ words %>% str_trim() %>% str_c(collapse = " ")
 | [<img src="img/googledrive.png" height="75px" style="vertical-align: middle;">](https://googledrive.tidyverse.org/) | allows you to interact with files on Google Drive from R. |
 | [<img src="img/lubridate.png" height="75px" style="vertical-align: middle;">](https://lubridate.tidyverse.org/) | makes it easier to do the things R does with date-times and possible to do the things R does not. |
 | [<img src="img/hms.png" height="75px" style="vertical-align: middle;">](https://hms.tidyverse.org/) | provides a simple class for storing durations or time-of-day values and displaying them in the `hh:mm:ss` format. |
+
+## Exercise
+
+<br/>
+
+### OBDS participants
+
+- Read in the Excel file `obds_students.xlsx` using the `readxl` package.
+- Convert the columns `R` and `Python` to logical data type.
+- Combine the emails of students on the R course into a single string separated by semicolons.
+- The instructors also want to print name tags for each student. The name tags should have both the first name, surname, and preferred name (if provided). For example, "John Kelly" should become "John (Johnny) Kelly" and "Amanda Blake" should become "Amanda Blake".
+- Count how many external participants are on each course. All internal students have email addresses that end in ".ox.ac.uk".
 
 ## Further reading
 
