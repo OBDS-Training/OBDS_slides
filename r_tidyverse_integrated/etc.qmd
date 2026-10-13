@@ -65,6 +65,34 @@ We provide you with an Excel file `EH2011.xlsx` that contains gene expression da
 
 - Repeat the heat map, faceting samples by sex.
 
+## Bonus exercise -- Compare CD4 vs. CD8 cells
+
+Feel free to try this if you have extra time. This exercise will combine tidyverse functions with other concepts that we have been discussing, such as PCA. Note that for your real data, we would recommend using pre-existing R packages, such as DESeq2, for this type of analysis (we will discuss DESeq2 next week). 
+
+### Part 1
+
+- Import the provided read count data table. This table was produced by a tool called featureCounts.
+- Convert the count data into CPM (counts per million reads).
+- Convert the CPM to log2 CPM (you will need to add a pseudocount of 1 before log transformation).
+
+$$
+\mathrm{CPM} =
+\left(
+\frac{\text{reads per gene}}
+{\text{total mapped reads in sample}}
+\right)
+\times 10^6
+$$
+
+
+## Bonus exercise
+
+### Part 2
+
+- Perform PCA on the dataset.
+- Plot the dataset in principal component space.
+- Load the metadata file that contains the genotypes and cell types, then colour the samples by genotype and cell type in the PCA plot.
+
 ## Further reading
 
 - [Introduction to Tidy Transcriptomics (2021)](https://stemangiola.github.io/bioc2021_tidytranscriptomics/articles/tidytranscriptomics.html)
