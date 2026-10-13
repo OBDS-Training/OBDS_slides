@@ -151,3 +151,108 @@ ggplot(exprs_sampleinfo, aes(unique_patient_ID, gene, fill = exprs)) +
     axis.text.x = element_blank(), axis.ticks.x = element_blank(),
     panel.grid = element_blank(), panel.background = element_blank())
 ```
+
+## Bonus exercise
+
+### Part 1
+
+- Import the provided read count data table `allsamples_counts.tsv.gz`. This table was produced by a tool called featureCounts.
+
+```{r}
+infile <- "data/allsamples_counts.tsv.gz"
+featurecounts_table <- read_tsv(infile, comment="#")
+glimpse(featurecounts_table)
+```
+
+- Create a new tibble that contains the count data converted into CPM (counts per million reads).
+- Use this tibble to create a matrix with the row names as the gene IDs and the columns as the sample IDs.
+
+```{r}
+cpm_matrix <- featurecounts_table %>%
+  mutate(
+    across(
+      ends_with(".bam"),
+      ~ (.x / sum(.x, na.rm = TRUE)) * 1e6
+    )
+  ) %>% 
+  column_to_rownames("Geneid") %>% 
+  select(ends_with(fixed(".bam"))) %>% 
+  as.matrix()
+
+# CPM derived from featureCounts output should not have any NA values, but it is good to check this:
+if (anyNA(cpm)) {
+  warning("The CPM table contains NA values.")
+}
+```
+
+- Convert the CPM to log2 CPM (you will need to add a pseudocount of 1 before log transformation).
+
+```{r}
+# log2 transform
+cpm_matrix <- log2(cpm_matrix + 1)
+```
+
+- Transpose the cpm_matrix so that the genes are along the columns, use t().
+- Use prcomp() to run PCA, center the data but do not scale it.
+- Calculate the percent variance explained by each principal component.
+
+```{r}
+# PCA expects samples in rows and genes in columns
+cpm_matrix <- t(cpm_matrix)
+
+# Run PCA
+pca <- prcomp(cpm_matrix, center = TRUE, scale. = FALSE)
+
+percent_var <- (pca$sdev^2 / sum(pca$sdev^2)) * 100
+
+percent_var[1:5]
+```
+
+- Convert the in PCA scores (the coordinates of your samples in principal component space) to a data.frame. The PCA scores are stored in pca$x.
+- Add a column called `sample` which has the name of each sample (without the ".bam" suffix).
+- Use ggplot to create a scatter plot of PC1 vs. PC2.
+- Bonus: add the percent variance explained by PC1 and PC2 to the x- and y-axis labels.
+
+```{r}
+pca_df <- as.data.frame(pca$x)
+
+pca_df$sample <- rownames(pca_df) %>% str_replace(fixed(".bam"), "")
+
+ggplot(pca_df, aes(x = PC1, y = PC2, label = sample)) +
+  geom_point(size = 3) +
+  geom_text(vjust = -0.8) +
+  labs(
+    x = paste0("PC1 (", round(percent_var[1], 1), "%)"),
+    y = paste0("PC2 (", round(percent_var[2], 1), "%)")
+  ) +
+  theme_classic()
+```
+
+- Read in the metadata tsv file, `PRJEB18572_sample_info.tsv`.
+
+```{r}
+metadata <- read_tsv("data/PRJEB18572_sample_info.tsv")
+metadata
+```
+
+- Add the metadata to the the pca_df, using the common information (sample identity) to join.
+
+```{r}
+pca_df <- pca_df %>% left_join(metadata, join_by(sample == sample_id))
+```
+
+- Use ggplot to create a scatter plot of PC1 vs. PC2.
+- colour by cell type.
+- set the shape to vary by genotype.
+
+```{r}
+ggplot(pca_df, aes(x = PC1, y = PC2, color=cell_type, shape=genotype)) +
+  geom_point(size = 3) +
+  labs(
+    x = paste0("PC1 (", round(percent_var[1], 1), "%)"),
+    y = paste0("PC2 (", round(percent_var[2], 1), "%)")
+  ) +
+  theme_classic()
+```
+
+
