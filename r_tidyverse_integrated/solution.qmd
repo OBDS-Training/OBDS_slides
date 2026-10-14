@@ -164,11 +164,20 @@ featurecounts_table <- read_tsv(infile, comment="#")
 glimpse(featurecounts_table)
 ```
 
-- Create a new tibble that contains the count data converted into CPM (counts per million reads).
-- Use this tibble to create a matrix with the row names as the gene IDs and the columns as the sample IDs.
+- Create a new tibble called `counts` that contains only the column containing the gene ID `Geneid` and the columns containing the read counts (those ending in ".bam").
+- Remove the ".bam" suffix from the sample column names.
 
 ```{r}
-cpm_matrix <- featurecounts_table %>%
+counts <- featurecounts_table %>% 
+  select(Geneid | ends_with(".bam")) %>% 
+  rename_with(~ str_remove(.x, "\\.bam$"))
+```
+
+- Create a matrix that contains the count data converted into CPM (counts per million reads) with the row names as the gene IDs and the column names as the sample IDs.
+- Check if the matrix contains any NAs.
+
+```{r}
+cpm_matrix <- counts %>%
   mutate(
     across(
       ends_with(".bam"),
@@ -176,11 +185,10 @@ cpm_matrix <- featurecounts_table %>%
     )
   ) %>% 
   column_to_rownames("Geneid") %>% 
-  select(ends_with(fixed(".bam"))) %>% 
   as.matrix()
 
 # CPM derived from featureCounts output should not have any NA values, but it is good to check this:
-if (anyNA(cpm)) {
+if (anyNA(cpm_matrix)) {
   warning("The CPM table contains NA values.")
 }
 ```
