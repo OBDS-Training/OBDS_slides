@@ -1,9 +1,9 @@
 ---
 title: 'Building a tidyverse workflow'
 subtitle: '<i class="fab fa-r-project"></i> for data science and genomics'
-author: "Kevin Rue-Albrecht"
+author: "Mary Thompson & Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-05-14 (updated: `r Sys.Date()`)"
+date: "2026-10-14 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -54,6 +54,7 @@ NoCite(bib, "R")
 
 - Liezel Tamon
 - Kevin Rue-Albrecht
+- Mary Thompson
 
 <!--
 Docs:

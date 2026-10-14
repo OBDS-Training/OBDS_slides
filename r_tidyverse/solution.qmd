@@ -490,3 +490,83 @@ words %>%
     str_trim() %>%
     str_c(collapse = " ")
 ```
+
+## Exercise
+
+### Read in the data from Excel
+
+Load the readxl package.
+
+```{r}
+library(readxl)
+```
+
+Use the function `read_excel()` to read in the `obds_students.xlsx` file to a tibble.
+
+```{r}
+infile <- "data/obds_students.xlsx"
+df <- read_excel(infile)
+```
+
+Take a look at the dataset. The columns `R` and `Python` represent different OBDS courses. A 1 in these columns indicates that the student is attending that course and a 0 indicates that they are not attending that course.
+
+```{r}
+df
+```
+
+To make it simpler to filter the rows by which course they are on, convert the `R` and `Python` columns to logical type using as.logical().
+
+```{r}
+df <- df %>% 
+  mutate(R = as.logical(R)) %>% 
+  mutate(Python = as.logical(Python))
+df
+```
+
+### Gather student emails
+
+The instructors want to give the students for each course access to the course materials using SharePoint. Instead of adding each email one-by-one, the instructors can give all the students for each course to access to the materials by providing a list of emails.
+
+Generate a character vector of length 1, which contains the emails for all students on the R course, separated by a semi-colon (i.e. email1;email2;email3).
+
+```{r}
+emails_R <- df %>% 
+  filter(R) %>% 
+  pull(email) %>% 
+  str_flatten(collapse = ";")
+emails_R
+```
+
+### Create student name tags
+
+The instructors also want to print name tags for each student. The name tags should have both the first name, surname, and preferred name (if provided). For example, "John Kelly" should become "John (Johnny) Kelly" and "Amanda Blake" should become "Amanda Blake". Create a vector called `name_tags` that contains all the name tags to be printed.
+
+```{r}
+name_tags <- df %>%  
+  mutate(`preferred name` = str_c("(", `preferred name`,")")) %>% 
+  separate_wider_delim(
+    Name,
+    delim = " ",
+    names = c("first_name", "surname")) %>% 
+    unite(
+      name_tag,
+      first_name,
+      `preferred name`,
+      surname,
+      sep = " ",
+      na.rm = TRUE,
+      remove = FALSE
+    ) %>% 
+  pull(name_tag)
+name_tags
+```
+### Count external participants
+
+Count how many external participants are on each course. All internal students have email addresses that end in ".ox.ac.uk".
+
+```{r}
+n_external_participants <- sum(!df$email %>% str_ends(".ox.ac.uk"))
+n_external_participants
+```
+
+

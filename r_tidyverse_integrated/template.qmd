@@ -147,3 +147,89 @@ ggplot(exprs_sampleinfo,   ) +
 
 
 ```
+
+## Bonus exercise
+
+### Part 1
+
+- Import the provided read count data table `allsamples_counts.tsv.gz`. This table was produced by a tool called featureCounts.
+
+```{r}
+infile <- 
+featurecounts_table <- read_tsv(infile, comment="#")
+glimpse(featurecounts_table)
+```
+
+- Create a new tibble called `counts` that contains only the column containing the gene ID `Geneid` and the columns containing the read counts (those ending in ".bam").
+- Remove the ".bam" suffix from the sample column names.
+
+```{r}
+counts <- 
+```
+
+- Create a matrix that contains the count data converted into CPM (counts per million reads) with the row names as the gene IDs and the column names as the sample IDs.
+- Check if the matrix contains any NAs.
+
+```{r}
+cpm_matrix <- 
+
+# CPM derived from featureCounts output should not have any NA values, but it is good to check this:
+if (anyNA(cpm_matrix)) {
+  warning("The CPM table contains NA values.")
+}
+```
+
+- Convert the CPM to log2 CPM (you will need to add a pseudocount of 1 before log transformation).
+
+```{r}
+# log2 transform
+cpm_matrix <- 
+```
+
+- Transpose the cpm_matrix so that the genes are along the columns, use t().
+- Use prcomp() to run PCA, center the data but do not scale it.
+- Calculate the percent variance explained by each principal component.
+
+```{r}
+# PCA expects samples in rows and genes in columns
+cpm_matrix <- 
+
+# Run PCA
+pca <- 
+
+percent_var <- 
+
+percent_var[1:5]
+```
+
+- Convert the in PCA scores (the coordinates of your samples in principal component space) to a data.frame. The PCA scores are stored in pca$x.
+- Add a column called `sample` which has the name of each sample (without the ".bam" suffix).
+- Use ggplot to create a scatter plot of PC1 vs. PC2.
+- Bonus: add the percent variance explained by PC1 and PC2 to the x- and y-axis labels.
+
+```{r}
+pca_df <- 
+
+ggplot()
+```
+
+- Read in the metadata tsv file, `PRJEB18572_sample_info.tsv`.
+
+```{r}
+metadata <- 
+metadata
+```
+
+- Add the metadata to the the pca_df, using the common information (sample identity) to join.
+
+```{r}
+pca_df <- 
+```
+
+- Use ggplot to create a scatter plot of PC1 vs. PC2.
+- colour by cell type.
+- set the shape to vary by genotype.
+
+```{r}
+ggplot()
+```

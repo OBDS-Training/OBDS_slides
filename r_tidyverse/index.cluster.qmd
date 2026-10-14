@@ -1,9 +1,9 @@
 ---
 title: 'Introduction to the tidyverse'
 subtitle: 'Introduction to <i class="fab fa-r-project"></i>'
-author: "Kevin Rue-Albrecht"
+author: "Mary Thompson & Kevin Rue-Albrecht"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-05-13 (updated: `r Sys.Date()`)"
+date: "2026-10-13 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
