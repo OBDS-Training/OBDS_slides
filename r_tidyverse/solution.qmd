@@ -514,7 +514,7 @@ Take a look at the dataset. The columns `R` and `Python` represent different OBD
 df
 ```
 
-To make it simpler to filter the rows by which course they are on, convert the `R` and `Python` columns to logical type using as.logical().
+To make it simpler to filter the rows by which course they are on, convert the `R` and `Python` columns to logical type using `as.logical()`.
 
 ```{r}
 df <- df %>% 
@@ -525,7 +525,7 @@ df
 
 ### Gather student emails
 
-The instructors want to give the students for each course access to the course materials using SharePoint. Instead of adding each email one-by-one, the instructors can give all the students for each course to access to the materials by providing a list of emails.
+The instructors want to give the students for each course access to the course materials using SharePoint. Instead of adding each email one-by-one, the instructors can give all the students for each course to access to the materials by providing a list of emails. (Please note that these are fake, randomly generated names and fake email addresses.)
 
 Generate a character vector of length 1, which contains the emails for all students on the R course, separated by a semi-colon (i.e. email1;email2;email3).
 
@@ -565,8 +565,30 @@ name_tags
 Count how many external participants are on each course. All internal students have email addresses that end in ".ox.ac.uk".
 
 ```{r}
-n_external_participants <- sum(!df$email %>% str_ends(".ox.ac.uk"))
+n_external_participants <- sum(!df$email %>% str_ends(fixed("ox.ac.uk")), na.rm = TRUE)
 n_external_participants
 ```
+
+### A note on matching with regular expressions
+
+By default, `str_ends()` matches a regular expression, not an fixed string.
+A regular expression is a pattern used to identify a specific combination of characters within text.
+Take a look at the example below to see the effect of using a regular expression on matching an email address. 
+Do you need to modify your answer to 'Count external participants' to make the pattern matching more robust?
+
+```{r}
+# Example of an email that does not end in "ox.ac.uk"
+bad_email <- 'mary@ox2ac.uk'
+
+# Here the suffix is interpreted as a regular expression and "." is interpreted as a wildcard
+str_ends(bad_email, "ox.ac.uk")
+
+# Here the suffix is specified as a fixed string
+str_ends(bad_email, fixed("ox.ac.uk"))
+
+# Here the suffix is interpreted as a regular expression, with the dots escaped to specify a literal dots
+str_ends(bad_email, "\\.ox\\.ac\\.uk")
+```
+
 
 
