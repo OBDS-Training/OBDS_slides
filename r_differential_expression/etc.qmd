@@ -708,6 +708,131 @@ knitr::include_graphics("img/heteroskedastic.jpg")
 - Data must be made homoskedastic prior to downstream analyses that rely on variance (e.g., PCA, ).
 - Otherwise, genes with highest count (and thus, variance) will dominate the analyses.
 
+## Poisson vs. negative binomial distribution
+
+<div style="height: 50px;"></div>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 5
+#| out-width: 100%
+# Values of the count variable
+x <- 0:30
+
+# Set the same mean for both distributions
+mu <- 5
+
+# Calculate probabilities
+df <- data.frame(
+  x = rep(x, 2),
+  probability = c(
+    dpois(x, lambda = mu),
+    dnbinom(x, mu = mu, size = 2)
+  ),
+  distribution = rep(
+    c("Poisson", "Negative binomial"),
+    each = length(x)
+  )
+)
+
+# Plot
+ggplot(df, aes(x = x, y = probability,
+               colour = distribution)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_colour_manual(values = c(
+    "Poisson" = "#0072B2",
+    "Negative binomial" = "#D55E00"
+  )) +
+  labs(
+    x = "Count",
+    y = "Probability",
+    colour = "Distribution",
+    title = "Poisson vs Negative Binomial",
+    subtitle = "Same mean (5), different variances"
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.75, 0.85)
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| fig-height: 5
+#| fig-width: 5
+#| out-width: 100%
+# Parameters
+mu <- seq(0, 10, by = 0.1)
+alpha <- 0.5
+
+# Create data
+df <- data.frame(
+  mean = rep(mu, 2),
+  variance = c(
+    mu,
+    mu + alpha * mu^2
+  ),
+  distribution = rep(
+    c("Poisson", "Negative binomial"),
+    each = length(mu)
+  )
+)
+
+# Plot
+ggplot(df, aes(x = mean, y = variance,
+               colour = distribution)) +
+  geom_line(linewidth = 1.2) +
+  scale_colour_manual(values = c(
+    "Poisson" = "#0072B2",
+    "Negative binomial" = "#D55E00"
+  )) +
+annotate(
+  "text",
+  x = 5, y = 70,
+  label = "'Poisson:' ~~Var(Y) == mu",
+  parse = TRUE,
+  size = 4,
+  family = "sans",
+  colour = "#0072B2"
+) +
+  annotate(
+  "text",
+  x = 5, y = 60,
+  label = "'Negative binomial:' ~~Var(Y) == mu + alpha * mu^2",
+  parse = TRUE,
+  size = 4,
+  family = "sans",
+  colour = "#D55E00"
+) +
+  scale_y_continuous(limits = c(0, 70)) +
+  labs(
+    x = "Mean",
+    y = "Variance",
+    colour = "Distribution",
+    title = "Mean-variance relationship",
+    subtitle = expression(
+      "Poisson vs Negative Binomial, " *
+      alpha == 0.5,
+    )
+  ) +
+  theme_classic(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    plot.subtitle = element_text(family = "sans")
+    )
+```
+:::
+
+::::
+
 ## Data transformations for RNA-seq {.smaller}
 
 Methods that aim to produce homoskedastic transformed data are often described as "variance stabilising transformations".
@@ -946,73 +1071,6 @@ plotPCA(airway_rlog, intgroup = "cell")
 ::::
 
 **Pro-tip:** Pre-processing, filtering, and transformations applied to the data set have major effects on PCA.
-
-## Unwanted variation and surrogate variables {.smaller}
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-set.seed(1)
-n_replicates <- 3
-n_genes <- 1000
-sample_names <- paste0(rep(c("Control_", "Treated_"), each = n_replicates), rep(1:n_replicates, times = 2))
-sample_shift <- runif(n_replicates * 2)
-names(sample_shift) <- sample_names
-x <- tibble(
-  sample = rep(sample_names, each = n_genes),
-  group = str_extract(sample, "[[:alpha:]]+"),
-  value = rnorm(n_replicates * 2 * n_genes)
-) %>% 
-  group_by(sample) %>% 
-  mutate(value = value + sample_shift[.data[["sample"]]])
-ggplot(x, aes(sample, value, fill = group)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_boxplot() +
-  scale_fill_manual(values = c("Control" = "turquoise", "Treated" = "salmon")) +
-  theme_bw()
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-x <- x %>% 
-  group_by(sample) %>% 
-  mutate(value = value - mean(value))
-ggplot(x, aes(sample, value, fill = group)) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_boxplot() +
-  scale_fill_manual(values = c("Control" = "turquoise", "Treated" = "salmon")) +
-  theme_bw()
-```
-:::
-
-::::
-
-:::: {.columns}
-
-::: {.column width="66%"}
-### Objective(s)
-
-- Detected and correct systematic 'unwanted' bias in the data.
-- Remaining signal should be 'cleaner' and produce 'better' results.
-
-### Challenge(s)
-
-- Define 'unwanted', 'cleaner', 'better'.
-- Use and processing of spike-in molecules to capture (some) technical biases.
-:::
-
-::: {.column width="33%"}
-### Packages
-
-- `r BiocStyle::Biocpkg("sva")` `r Citep(bib, "sva_package")`.
-- `r BiocStyle::Biocpkg("RUVSeq")` `r Citep(bib, "ruvseq_package")`.
-:::
-
-::::
 
 ## Exercise
 
@@ -1428,7 +1486,7 @@ We also defined a **design formula** to indicate covariates to control for and t
 ::: {.column width="50%"}
 Given the design
 
-$$\sim 0 + dex + cell$$
+$$\sim 1 + dex + cell$$
 
 The expression of gene $i$ in sample $j$ is modelled as
 
