@@ -612,6 +612,15 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 
 - `scran::pairwiseWilcox()` and `scran::pairwiseBinom()` provide alternative statistical tests.
 
+### Example
+
+```{r}
+#| echo: true
+#| eval: false
+markers <- scran::findMarkers(x = sce, sce$label, direction = "up", pval.type = "all")
+head(markers[[1]])
+```
+
 ## Exercise
 
 ### Cluster markers
