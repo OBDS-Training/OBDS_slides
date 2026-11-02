@@ -420,6 +420,8 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 
 - `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
 
+<br/>
+
 ### Examples
 
 #### Model gene variance
