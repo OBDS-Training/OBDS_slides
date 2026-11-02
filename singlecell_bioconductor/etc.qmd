@@ -276,6 +276,32 @@ The package `r BiocStyle::Biocpkg("scuttle")` provides several utilities focused
 
 ... but you can also use `r BiocStyle::CRANpkg("ggplot2")` to visualise information stored as `DataFrame` in the `colData()` and `rowData()` (Note: you will first need to convert from `DataFrame` to `data.frame` or `tibble`).
 
+## Examples
+
+### Finding mitochondrial genes
+
+The `grep()` function can easily identify (human) mitochondrial genes from their gene symbol.
+
+```{r}
+#| echo: true
+#| eval: false
+is_mito_human <- grepl("^MT-", rowData(sce)$Symbol)
+is_mito_human
+```
+
+<br/>
+
+### Computing QC metrics for cells
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scuttle::addPerCellQC(sce, subsets = list(MT=is_mito_human))
+colData(sce)
+```
+
+Remember to look at the help page to learn about other arguments and best practices.
+
 ## Exercise
 
 ### Quality control
