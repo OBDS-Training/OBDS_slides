@@ -300,6 +300,20 @@ sce <- scuttle::addPerCellQC(sce, subsets = list(MT=is_mito_human))
 colData(sce)
 ```
 
+<br/>
+
+### Computing QC metrics for feature
+
+```{r}
+#| echo: true
+#| eval: false
+
+sce <- scuttle::addPerFeatureQC(sce)
+rowData(sce)
+```
+
+<br/>
+
 Remember to look at the help page to learn about other arguments and best practices.
 
 ## Exercise
