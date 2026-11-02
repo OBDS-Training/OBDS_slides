@@ -480,26 +480,49 @@ Those include:
 :::: {.columns}
 
 ::: {.column width="50%"}
-<!-- - `scater::runPCA()` / `BiocSingular::runPCA()` -->
 - `scater::runPCA()`
 - `scran::fixedPCA()`
+:::
+
+::: {.column width="50%"}
 - `scater::runTSNE()`
 - `scater::runUMAP()`
 :::
+::::
 
-<!-- ::: {.column width="50%"} -->
+<!-- - `scater::runPCA()` / `BiocSingular::runPCA()` -->
 <!-- - `BiocSingular::runSVD()` -->
 <!-- - `BiocSingular::runExactSVD()` -->
 <!-- - `BiocSingular::runIrlbaSVD()` -->
 <!-- - `BiocSingular::runRandomSVD()` -->
-<!-- ::: -->
-::::
 
 ### Important notes
 
 - Those methods generally use only a subset most variable features, not the entire dataset.
 - By default, `runTSNE()` performs a PCA step first, the result of which the first 50 PCs are used as input for the t-SNE algorithm.
 - By default, `runUMAP()` performs a PCA step first, of which the first 50 PCs are used as input into the UMAP algorithm.
+
+### Examples
+
+#### Run PCA
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scran::fixedPCA(sce)
+reducedDimNames(sce)
+```
+
+<br/>
+
+#### Run UMAP
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scran::runUMAP(sce)
+reducedDimNames(sce)
+```
 
 ## Exercise
 
