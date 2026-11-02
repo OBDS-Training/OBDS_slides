@@ -302,7 +302,7 @@ colData(sce)
 
 <br/>
 
-### Computing QC metrics for feature
+### Computing QC metrics for features
 
 ```{r}
 #| echo: true
