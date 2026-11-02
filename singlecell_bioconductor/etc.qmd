@@ -307,7 +307,6 @@ colData(sce)
 ```{r}
 #| echo: true
 #| eval: false
-
 sce <- scuttle::addPerFeatureQC(sce)
 rowData(sce)
 ```
@@ -352,6 +351,17 @@ The package `r BiocStyle::Biocpkg("scuttle")` hosts methods for the most common 
 - `scuttle::computePooledFactors` implements the deconvolution strategy from (Lun et al., 2016).
 
 `r NoCite(bib, "lun2016workflow")`
+
+### Example
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scuttle::logNormCounts(sce)
+assayNames(sce)
+```
+
+Have a look at the help page to learn about other arguments and best practices.
 
 ## scran: Deconvoluting size factors from cell pools  {.smaller}
 
