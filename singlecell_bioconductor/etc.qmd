@@ -225,6 +225,20 @@ The package `r BiocStyle::Biocpkg("DropletUtils")` provides several utilities fo
   It takes a list of paths to individual samples and returns a list with an item called `cleaned`, itself a list of sparse matrices, after removing swapped molecules.
 :::
 
+### Example
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- DropletUtils::read10xCounts(
+  samples = c(
+    "filtered" = "data/filtered_feature_bc_matrix"
+  )
+)
+```
+
+Have a look at the help page to learn about other arguments and best practices.
+
 ## Exercise
 
 ### Import scRNA-seq data and create a SingleCellExperiment object {.smaller}
