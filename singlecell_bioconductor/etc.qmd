@@ -313,7 +313,7 @@ rowData(sce)
 
 <br/>
 
-Remember to look at the help page to learn about other arguments and best practices.
+Remember to look at the help pages to learn about other arguments and best practices.
 
 ## Exercise
 
@@ -419,6 +419,32 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 - `scran::modelGeneVar()` decomposes the log-expression profiles for each gene into technical and biological components based on a fitted mean-variance trend.
 
 - `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
+
+### Examples
+
+#### Model gene variance
+
+```{r}
+#| echo: true
+#| eval: false
+dec <- scran::modelGeneVar(sce)
+dec
+```
+
+<br/>
+
+#### Identify most variable genes
+
+```{r}
+#| echo: true
+#| eval: false
+hvg <- scran::getTopHVGs(dec)
+length(hvg)
+```
+
+<br/>
+
+Remember to look at the help pages to learn about other arguments and best practices.
 
 ## Exercise
 
