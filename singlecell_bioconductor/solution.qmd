@@ -37,7 +37,7 @@ library(iSEE)
 ```{r}
 library(DropletUtils)
 sce <- DropletUtils::read10xCounts(samples = c(
-    "filtered" = "/project/shared/r/2_r_single_cell/1-seurat/filtered_feature_bc_matrix"
+    "filtered" = "/project/shared/r/2_r_single_cell/4-bioconductor/filtered_feature_bc_matrix/"
 ))
 ```
 
