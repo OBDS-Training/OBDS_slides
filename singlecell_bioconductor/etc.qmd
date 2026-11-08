@@ -326,9 +326,9 @@ Don't worry about those today, but you'll be using them with newer versions of R
 #| eval: false
 sce <- scrapper::quickRnaQc.se(
   sce,
-  subsets = qc_subsets,
+  subsets = list(mito = grepl("^MT-", rownames(sce))), # for instance
   more.suggest.args = list(
-    num.mads = params$num_mads
+    num.mads = 3L                                      # for instance
   )
 )
 colData(sce)
@@ -341,8 +341,8 @@ or
 #| eval: false
 results <- scrapper::analyze.se(
     sce,
-    rna.qc.subsets=list(Mito=is.mito),
-    num.threads=2 # limit number of threads to keep R CMD check happy.
+    rna.qc.subsets = list(Mito = is.mito),
+    num.threads = 1                        # more if you have them
 )
 results$x
 ```
@@ -492,7 +492,7 @@ Don't worry about those today, but you'll be using them with newer versions of R
 #| echo: true
 #| eval: false
 sce <- scrapper::chooseRnaHvgs.se(sce)
-hvg_rownames <- rownames(sce)[SummarizedExperiment::rowData(sce)$hvg]
+hvg_rownames <- rownames(sce)[rowData(sce)$hvg]
 ```
 
 ## Exercise
@@ -580,8 +580,8 @@ Don't worry about those today, but you'll be using them with newer versions of R
 #| eval: false
 sce <- runPca.se(
   x = sce,
-  features = feature_rownames,
-  number = params$n_pcs
+  features = hvg_rownames, # highly variable genes
+  number = 25              # default 
 )
 ```
 
@@ -659,9 +659,9 @@ Don't worry about those today, but you'll be using them with newer versions of R
 #| eval: false
 sce <- clusterGraph.se(
   x = sce,
-  num.neighbors = params$neighbours,
-  method = params$method,
-  resolution = params$resolution
+  num.neighbors = 10,             # default
+  method = "multilevel",          # default
+  resolution = 1                  # default
 )
 ```
 
@@ -724,14 +724,14 @@ Don't worry about those today, but you'll be using them with newer versions of R
 #| echo: true
 #| eval: false
 markers <- scrapper::scoreMarkers.se(
-    x = x,
-    groups = groups,
-    block = block,
-    num.threads = params$num_threads,
-    more.marker.args = more_marker_args,
-    assay.type = assay_type,
-    extra.columns = extra_columns,
-    order.by = order_by
+    x = sce,
+    groups = sce$label,         # cluster
+    block = NULL,               # batch, sample
+    num.threads = 1L,           # more CPUs if you have them
+    more.marker.args = list(),  # more options if you wish
+    assay.type = "logcounts",   # default
+    extra.columns = NULL,       # default
+    order.by = TRUE             # default
 )
 ```
 
