@@ -315,6 +315,38 @@ rowData(sce)
 
 Remember to look at the help pages to learn about other arguments and best practices.
 
+## Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+### Computing QC metrics
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scrapper::quickRnaQc.se(
+  sce,
+  subsets = qc_subsets,
+  more.suggest.args = list(
+    num.mads = params$num_mads
+  )
+)
+colData(sce)
+```
+
+or
+
+```{r}
+#| echo: true
+#| eval: false
+results <- scrapper::analyze.se(
+    sce,
+    rna.qc.subsets=list(Mito=is.mito),
+    num.threads=2 # limit number of threads to keep R CMD check happy.
+)
+results$x
+```
+
 ## Exercise
 
 ### Quality control
@@ -362,6 +394,16 @@ assayNames(sce)
 ```
 
 Have a look at the help page to learn about other arguments and best practices.
+
+#### Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scrapper::normalizeRnaCounts.se(sce)
+```
 
 ## scran: Deconvoluting size factors from cell pools  {.smaller}
 
@@ -420,8 +462,6 @@ The package `r BiocStyle::Biocpkg("scran")` provides methods that form a workflo
 
 - `scran::getTopHVGs()` uses modelling statistics `scran::modelGeneVar()` to define a set of highly variable genes.
 
-<br/>
-
 ### Examples
 
 #### Model gene variance
@@ -433,8 +473,6 @@ dec <- scran::modelGeneVar(sce)
 dec
 ```
 
-<br/>
-
 #### Identify most variable genes
 
 ```{r}
@@ -444,9 +482,18 @@ hvg <- scran::getTopHVGs(dec)
 length(hvg)
 ```
 
-<br/>
-
 Remember to look at the help pages to learn about other arguments and best practices.
+
+#### Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- scrapper::chooseRnaHvgs.se(sce)
+hvg_rownames <- rownames(sce)[SummarizedExperiment::rowData(sce)$hvg]
+```
 
 ## Exercise
 
@@ -524,6 +571,20 @@ sce <- scran::runUMAP(sce)
 reducedDimNames(sce)
 ```
 
+## Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- runPca.se(
+  x = sce,
+  features = feature_rownames,
+  number = params$n_pcs
+)
+```
+
 ## Exercise
 
 ### Dimensionality reduction
@@ -560,6 +621,7 @@ The CRAN package `r BiocStyle::CRANpkg("igraph")` provides powerful methods for 
   + The function works on a reduced dimension representation of the dataset, _not_ the gene expression matrix.
   + The output is a graph where nodes are cells and edges represent connections between nearest neighbors.
     To yield clusters, the graph must still be partitioned using an appropriate function, e.g. `igraph::cluster_louvain()`.
+- `scran::getClusteredPCs()` clusters cells after using varying number of PCs, and suggests the 'optimal' number of PCs using a heuristic based on the number of clusters.
 
 ### Example
 
@@ -568,6 +630,39 @@ The CRAN package `r BiocStyle::CRANpkg("igraph")` provides powerful methods for 
 #| eval: false
 g <- scran::buildSNNGraph(sce, use.dimred = 'PCA')
 colData(sce)[["cluster_louvain"]] <- factor(igraph::cluster_louvain(g)$membership)
+```
+
+or
+
+```{r}
+#| echo: true
+#| eval: false
+output <- scran::getClusteredPCs(reducedDim(sce, "PCA"))
+optimal_n_pcs <- metadata(output)$chosen
+```
+
+followed by
+
+```{r}
+#| echo: true
+#| eval: false
+g <- scran::buildSNNGraph(t(reducedDim(sce, "PCA")), d = optimal_n_pcs)
+colData(sce)[["label"]] <- factor(igraph::cluster_louvain(g)$membership)
+```
+
+## Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+```{r}
+#| echo: true
+#| eval: false
+sce <- clusterGraph.se(
+  x = sce,
+  num.neighbors = params$neighbours,
+  method = params$method,
+  resolution = params$resolution
+)
 ```
 
 ## Exercise
@@ -619,6 +714,25 @@ The package `r BiocStyle::Biocpkg("scran")` provides several methods for identif
 #| eval: false
 markers <- scran::findMarkers(x = sce, sce$label, direction = "up", pval.type = "all")
 head(markers[[1]])
+```
+
+#### Replacement functions in `scrapper`
+
+Don't worry about those today, but you'll be using them with newer versions of R and Bioconductor.
+
+```{r}
+#| echo: true
+#| eval: false
+markers <- scrapper::scoreMarkers.se(
+    x = x,
+    groups = groups,
+    block = block,
+    num.threads = params$num_threads,
+    more.marker.args = more_marker_args,
+    assay.type = assay_type,
+    extra.columns = extra_columns,
+    order.by = order_by
+)
 ```
 
 ## Exercise
