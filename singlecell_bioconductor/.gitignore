@@ -6,3 +6,6 @@
 xaringan-template.Rproj
 index_files/
 data
+
+/.quarto/
+**/*.quarto_ipynb
