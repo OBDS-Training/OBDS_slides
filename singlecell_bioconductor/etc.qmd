@@ -567,7 +567,7 @@ reducedDimNames(sce)
 ```{r}
 #| echo: true
 #| eval: false
-sce <- scran::runUMAP(sce)
+sce <- scater::runUMAP(sce)
 reducedDimNames(sce)
 ```
 
