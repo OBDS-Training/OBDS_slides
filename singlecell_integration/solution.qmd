@@ -22,11 +22,11 @@ Some of the functions required for this workflow are only mentioned in this vign
 
 ## Import data sets to integrate
 
-- Use `readRDS()` to import two prefiltered PBMC data sets from the files `pbmcv1_filtered.rds` and `pbmcv2_filtered.rds`.
+- Use `readRDS()` to import two prefiltered PBMC data sets from the files `pbmcv2_filtered.rds` and `pbmcv3_filtered.rds`.
 
 ```{r}
-pbmcv1 <- readRDS("data/pbmcv2_filtered.rds")
-pbmcv2 <- readRDS("data/pbmcv3_filtered.rds")
+pbmcv2 <- readRDS("data/pbmcv2_filtered.rds")
+pbmcv3 <- readRDS("data/pbmcv3_filtered.rds")
 ```
 
 Those RDS files contain objects that have been preprocessed through quality control and filtering, as demonstrated in the Seurat day 1 lesson.
@@ -34,8 +34,8 @@ Those RDS files contain objects that have been preprocessed through quality cont
 - Display the two objects to inspect them.
 
 ```{r}
-pbmcv1
 pbmcv2
+pbmcv3
 ```
 
 ## Prepare the data sets for integration
@@ -43,7 +43,7 @@ pbmcv2
 - Use `merge()` to combine the two Seurat objects into a single object.
 
 ```{r}
-obj <- merge(pbmcv1, pbmcv2)
+obj <- merge(pbmcv2, pbmcv3)
 ```
 
 In previous versions of Seurat, the integration workflow would have required the data to be represented as distinct Seurat objects.
@@ -487,7 +487,7 @@ This can be used to visually assess the agreement between the various integratio
 - Assign each output of `DimPlot()` to a new unique object name, to capture it for displaying it again later.
 
 ```{r}
-#| fig-width: 12
+#| fig-width: 20
 #| fig-height: 3
 umap_unintegrated_cca <- DimPlot(obj, reduction = "umap.unintegrated", group.by = c("cca_clusters"))
 umap_cca_cca <- DimPlot(obj, reduction = "umap.cca", group.by = c("cca_clusters"))

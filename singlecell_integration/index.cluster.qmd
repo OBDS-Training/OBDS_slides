@@ -3,7 +3,7 @@ title: 'Single-cell dataset integration and batch correction'
 subtitle: 'Single-cell genomics in <i class="fab fa-r-project"></i>'
 author: "Kevin Rue-Albrecht & Mary Thompson"
 institute: "Oxford Biomedical Data Science Training Programme"
-date: "2025-11-05 (updated: `r Sys.Date()`)"
+date: "2026-11-04 (updated: `r Sys.Date()`)"
 date-format: long
 format:
   revealjs: 
@@ -57,6 +57,7 @@ NoCite(bib, "R")
 - Carla Cohen
 - Devika Agarwal
 - Lucy Garner
+- Mary Thompson
 
 ## Prerequisites
 

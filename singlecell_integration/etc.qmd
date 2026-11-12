@@ -75,20 +75,6 @@ knitr::include_graphics("img/tsne_batch_effect.png")
 But remember, it won’t always make sense to integrate everything!
 :::
 
-## Panoramic integration
-
-<!-- ## Stitched panorama illustration -->
-
-```{r}
-#| fig-align: center
-#| out-height: 500px
-#| out-width: 1000px
-## Source: https://www.nature.com/articles/s41587-019-0113-3
-knitr::include_graphics("img/stitched_panorama.png")
-```
-
-`r Citet(bib, "hie_efficient_2019")`
-
 ## Many integration methods
 
 ```{r}
@@ -117,7 +103,7 @@ knitr::include_graphics("img/integration_methods_2.png")
 
 Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 
-## Major types of batch correction methods
+## Examples of batch correction methods
 
 :::: {.columns}
 
@@ -136,15 +122,16 @@ Benchmark study `r Citep(bib, "luecken_benchmarking_2022")`
 
 **Canonical correlation analysis (CCA)**
 
-- `RunCCA()` in Seurat 
-- `IntegrateData()` in Seurat
+- `method = CCAIntegration` in Seurat 
+
+**Iterative soft clustering-based correction**
+
+- `method = HarmonyIntegration` in Seurat
 
 :::
 ::: {.column width="50%"}
 
-Today we will walk through Seurat integration.
-
-If there's time, we will also use [Harmony](https://portals.broadinstitute.org/harmony/) (within the Seurat workflow).
+Today we will walk through several integration methods available in Seurat.
 
 :::
 ::::
@@ -195,6 +182,20 @@ knitr::include_graphics("img/mnn_integration.png")
 
 `r Citet(bib, "haghverdi_batch_2018")`
 
+## Panoramic integration
+
+<!-- ## Stitched panorama illustration -->
+
+```{r}
+#| fig-align: center
+#| out-height: 500px
+#| out-width: 1000px
+## Source: https://www.nature.com/articles/s41587-019-0113-3
+knitr::include_graphics("img/stitched_panorama.png")
+```
+
+`r Citet(bib, "hie_efficient_2019")`
+
 ## Integration using Harmony
 
 Frequently scores highly in benchmarking studies.
@@ -223,10 +224,6 @@ Learns a shared gene correlation structure that is conserved between the data se
 As an optional step, it identifies individual cells that cannot be well described by this shared structure.
 
 Aligns the data sets into a conserved low-dimensional space, using nonlinear 'warping' algorithms to normalize for differences in feature scale.
-
-Proceeds with an integrated downstream analysis.
-
-Performs comparative analysis on aligned subpopulations between the data sets.
 
 :::
 
@@ -278,21 +275,23 @@ knitr::include_graphics("img/assembly_integration_Seuratv3.png")
 :::
 ::::
 
-## Seurat integration workflow
+## Seurat integration workflow (Seurat v5)
 
 For each dataset:
 
 - `CreateSeuratObject()` to create one object per dataset
 - Compute QC metrics and filter cells (already done by us)
+
+Create a merged seurat dataset with merge().
+
+For the merged seurat dataset:
+
 - `NormalizeData()` or `SCTransform()` to normalise the count data
 - `FindVariableFeatures()` to identify features that are outliers on a 'mean variability plot'
-
-For the list of datasets:
-
-- `SelectIntegrationFeatures()` selects features to use for integrating the datasets
-- `FindIntegrationAnchors()` finds a set of anchors between a list of Seurat objects
-- `IntegrateData()` performs dataset integration using a pre-computed AnchorSet 
-- Run the standard workflow for visualization and clustering (e.g. `ScaleData()`, `RunPCA()`, ...)
+- `ScaleData()`
+- `RunPCA()`
+- `IntegrateLayers()` to integrate the different layers from different datasets
+- Run the standard workflow for visualization and clustering
 
 ## Evaluating integration
 
