@@ -1,0 +1,189 @@
+---
+title: "Single-cell pseudobulk analysis: worked solutions"
+format: html
+---
+
+# Preamble
+
+The input data was prepared as follows.
+
+The following code chunk contains code copied from the Seurat [Differential expression testing](https://satijalab.org/seurat/articles/de_vignette) vignette.
+
+```{r}
+#| eval: false
+library(Seurat)
+library(SeuratData)
+options(timeout = 1000)
+InstallData("ifnb")
+ifnb <- LoadData("ifnb")
+# load the inferred sample IDs of each cell
+ctrl <- read.table(url("https://raw.githubusercontent.com/yelabucsf/demuxlet_paper_code/master/fig3/ye1.ctrl.8.10.sm.best"), head = T, stringsAsFactors = F)
+stim <- read.table(url("https://raw.githubusercontent.com/yelabucsf/demuxlet_paper_code/master/fig3/ye2.stim.8.10.sm.best"), head = T, stringsAsFactors = F)
+info <- rbind(ctrl, stim)
+
+# rename the cell IDs by substituting the '-' into '.'
+info$BARCODE <- gsub(pattern = "\\-", replacement = "\\.", info$BARCODE)
+
+# only keep the cells with high-confidence sample ID
+info <- info[grep(pattern = "SNG", x = info$BEST), ]
+
+# remove cells with duplicated IDs in both ctrl and stim groups
+info <- info[!duplicated(info$BARCODE) & !duplicated(info$BARCODE, fromLast = T), ]
+
+# now add the sample IDs to ifnb 
+rownames(info) <- info$BARCODE
+info <- info[, c("BEST"), drop = F]
+names(info) <- c("donor_id")
+ifnb <- AddMetaData(ifnb, metadata = info)
+
+# remove cells without donor IDs
+ifnb$donor_id[is.na(ifnb$donor_id)] <- "unknown"
+ifnb <- subset(ifnb, subset = donor_id != "unknown")
+```
+
+The following code chunk contains in-house code to save key information (count matrix, cell metadata, gene metadata) to files that are used as input for this lesson.
+
+```{r}
+library(DropletUtils)
+library(tidyverse)
+DropletUtils::write10xCounts(path = "data/ifnb.h5", x = LayerData(ifnb, "counts"), type="hdf5")
+write_tsv(x = ifnb[[]] |> rownames_to_column("barcode"), file = "data/ifnb_coldata.tsv")
+```
+
+# Setup
+
+Run the chunks in order. This notebook uses a course RDS file; update the path
+below if your data are elsewhere. The analysis compares reporter-positive and
+reporter-negative cells across three paired pools.
+
+```{r}
+library(DropletUtils)
+library(muscat)
+library(tidyverse)
+```
+
+# Import data
+
+```{r}
+# Count matrix
+sce <- read10xCounts(samples = c("ifnb" = "data/ifnb.h5"), col.names = TRUE)
+# Cell metadata
+# - Converting relevant columns to factor type
+coldata <- read_tsv("data/ifnb_coldata.tsv", show_col_types = FALSE) |> 
+    mutate(across(c(orig.ident, stim, seurat_annotations, donor_id), as.factor)) |>
+    column_to_rownames("barcode")
+colData(sce) <- as(coldata[colnames(sce), ], "DataFrame")
+rm(coldata)
+sce
+```
+
+Inspect the gene metadata.
+
+```{r}
+rowData(sce)
+```
+
+Inspect the sample metadata.
+
+```{r}
+colData(sce)
+```
+
+How many cells from each condition (i.e. stimulation)?
+
+```{r}
+table(sce$stim)
+```
+
+How many cells from each donor?
+
+```{r}
+table(sce$donor_id)
+```
+
+Sample names can be created by combining donor ID and stimulation (in whichever order).
+
+```{r}
+sce$sample_id <- as.factor(paste0(sce$stim, sce$donor_id))
+```
+
+How many samples? How many cells from each sample?
+
+```{r}
+message(sprintf("Number of samples: %i", nlevels(sce$sample_id)))
+table(sce$sample_id)
+```
+
+# Analysis
+
+Prepare the SCE object.
+
+```{r}
+sce_muscat <- prepSCE(sce, 
+    kid="seurat_annotations", # subpopulation assignments
+    gid="stim",  # group IDs (ctrl/stim)
+    sid="sample_id",   # sample IDs (ctrl/stim.1234)
+    drop=TRUE)
+sce_muscat
+```
+
+Inspect the `experiment_info` entry in the metadata of the object.
+
+```{r}
+metadata(sce_muscat)$experiment_info
+```
+
+Inspect the cell metadata in the object.
+
+```{r}
+colData(sce_muscat)
+```
+
+Aggregate the counts into pseudobulks.
+
+```{r}
+pb <- aggregateData(sce_muscat,
+    assay="counts", fun="sum",
+    by=c("cluster_id", "sample_id"))
+pb
+```
+
+Each cell type is represented by a separate assay in the object.
+
+```{r}
+assayNames(pb)
+```
+
+Inspect the first few genes in the first pseubodulk matrix for the first cell type.
+
+```{r}
+t(head(assay(pb)))
+```
+
+Visualise a multidimensional scaling plot of the pseubobulks.
+
+```{r}
+(pb_mds <- pbMDS(pb))
+```
+
+Perform pseudobulk differential state analysis on the pseudobulks between conditions.
+
+```{r}
+res <- pbDS(pb, verbose=FALSE)
+names(res)
+```
+
+The table of results is the first element of the resulting object.
+
+```{r}
+tbl <- res$table[[1]]
+# one data.frame per cluster
+names(tbl)
+```
+
+View results for the first cell type.
+
+```{r}
+ct1 <- tbl[[8]]
+head(format(ct1[, -ncol(ct1)], digits=2))
+```
