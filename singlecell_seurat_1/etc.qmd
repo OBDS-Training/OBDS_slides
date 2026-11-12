@@ -72,14 +72,13 @@ knitr::include_graphics("img/10x-genomics-extends-their-application-portfolio-30
 
 ### Cell Ranger (10x Genomics)
 
-```{r}
-#| fig-align: center
-#| out-height: 200px
-#| out-width: 800px
-## Source: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count
-knitr::include_graphics("img/cellranger_count.png")
+```bash
+cellranger count \
+  --id=run_count_5kpbmcs_v3p1 \
+  --fastqs=/path/to/my/data/5k_pmbc_v3_nextgem_fastqs \
+  --sample=5k_pbmc_v3_nextgem \
+  --transcriptome=/path/to/my/index/refdata-gex-GRCh38-2024-A \
 ```
-
 - Most of the time, you will start from FASTQ files.
 - [cellranger count](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/count)
   is the method officially supported by 10x Genomics.
@@ -92,12 +91,38 @@ for each feature and each barcode (i.e., cell).
 
 That matrix is the starting point of your analysis using `r BiocStyle::CRANpkg("Seurat")`.
 
+## Cell Ranger example Slurm script
+
+```bash
+#!/usr/bin/env bash
+#SBATCH -J cellranger
+#SBATCH --export=ALL
+#SBATCH --nodes=1 --ntasks-per-node=8
+#SBATCH --signal=2
+#SBATCH --no-requeue
+#SBATCH --mem=64G
+#SBATCH --output=%j_%x.out
+#SBATCH --error=%j_%x.err
+#SBATCH --partition=long
+#SBATCH --time=1-00:00:00
+
+cellranger count \
+  --id=run_count_5kpbmcs_v3p1 \
+  --fastqs=/path/to/my/data/5k_pmbc_v3_nextgem_fastqs \
+  --sample=5k_pbmc_v3_nextgem \
+  --transcriptome=/path/to/my/index/refdata-gex-GRCh38-2024-A \
+  --create-bam=false \
+  --jobmode=local --localmem=57 --localcores=8
+```
+
+- [cellranger job submission mode](https://www.10xgenomics.com/support/software/cell-ranger/latest/advanced/cr-job-submission-mode) describes how to submit Cell Ranger jobs to a cluster.
+
 ## cellranger count - outputs
 
 ```{r}
 #| fig-align: center
 ## Source: https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/output/overview
-knitr::include_graphics("img/cellranger_count_output.png")
+knitr::include_graphics("img/cellranger_count_output_v9.png")
 ```
 
 ## Seurat workflow - Overview

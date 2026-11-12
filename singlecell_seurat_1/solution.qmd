@@ -477,7 +477,7 @@ seurat_after_qc <- FindClusters(seurat_after_qc, resolution = 0.5)
 
 > Answer:
 > 
-> Other parameters that can have a major impact on clustering results include `algorithm`, `method`, and `modularity.fxn`.
+> The `algorithm` can also impact on clustering results.
 >
 > Also keep in mind that some parameters of the upstream `FindNeighbors()` function
 > can affect the ability to find clusters in the resulting graph.
