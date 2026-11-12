@@ -97,20 +97,21 @@ unlike log-normalisation which is more effective on low to medium expression lev
 
 ## The SCTransform method
 
-Normalisation factors specific to groups of genes rather than constant factor as in global scaling normalisation.
+SCTransform performs normalisation and variance stabilisation using gene-specific negative binomial regression models, rather than relying on a global scaling factor.
 
 #### Step 1
 
 Construct a negative binomial generalised linear model (GLM) for each gene.
 
 ::: {.callout-note}
-- Log~10~UMI counts (the dependent variable $y$) is modelled against the sequencing depth (predictor variable $x$).
-- The model accounts for sequencing depth.
+- Raw UMI counts are the dependent variable ($y$).
+- Log~10~-transformed total UMI counts (sequencing depth) is the predictor variable ($x$).
+- The model estimates expected gene expression as a function of sequencing depth.
 :::
 
 #### Step 2
 
-Parameter estimates are regularised to avoid model overfitting, pooling information across genes.
+Regularise model parameter estimates to avoid model overfitting, pooling information across genes with similar mean expression levels.
 
 `r Citet(bib, "hafemeister_normalization_2019")`
 
@@ -130,15 +131,18 @@ knitr::include_graphics("img/sct_paperFig2A_modelparameters.png")
 
 #### Step 3
 
-Second round of Negative Binomial (NB) regression, constraining parameters of model to be those learned from previous step.
+Use the regularised parameters to calculate expected UMI counts and their variance for each gene in each cell.
 
 #### Step 4
 
-Pearson residuals (residuals from model divided by expected standard deviation of residuals) are taken as the scaled expression values
+Calculate Pearson residuals as the difference between observed and expected UMI counts, divided by the expected standard deviation.
+
+These residuals are used as variance-stabilised expression values.
 
 ::: {.callout-note}
-- Accounts for association between gene expression and variance.
-- Can be used to identify genes with unexpectedly high variance.
+- Accounts for the mean–variance relationship in UMI count data.
+- Reduces variation associated with sequencing depth.
+- Genes with high residual variance across cells can be identified as highly variable genes.
 :::
 
 ## SCTransform within a workflow
